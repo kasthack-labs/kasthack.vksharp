@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VKSharp.VK.EntityParsers;
+using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.Entities {
-    public class VKSchool {
+    public class School:IVKEntity<School> {
         public uint ID { get; set; }
         public uint Country { get; set; }
         public uint City { get; set; }
@@ -17,5 +14,8 @@ namespace VKSharp.VK.Entities {
         public string Speciality { get; set; }
         public uint Type { get; set; }
         public uint TypeName { get; set; }
+        public IVKEntityParser<School> GetParser() {
+            return VKSchoolParser.Instanse;
+        }
     }
 }

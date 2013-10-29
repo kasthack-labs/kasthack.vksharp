@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VKSharp.VK.EntityParsers;
+using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.Entities {
-    public class VKUniversity {
+    public class University: IVKEntity<University> {
         public uint ID { get; set; }
         public uint Country { get; set; }
         public uint City { get; set; }
@@ -15,5 +12,8 @@ namespace VKSharp.VK.Entities {
         public uint? Chair { get; set; }
         public string ChairName { get; set; }
         public ushort? Graduation { get; set; }
+        public IVKEntityParser<University> GetParser() {
+            return VKUniversityParser.Instanse;
+        }
     }
 }
