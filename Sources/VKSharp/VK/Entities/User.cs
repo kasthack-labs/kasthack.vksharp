@@ -24,6 +24,11 @@ namespace VKSharp.VK.Entities {
         public string Activity { get; set; }
         public string FacultyName { get; set; }
         public string FirstName { get; set; }
+        public string Interests { get; set; }
+        public string Movies { get; set; }
+        public string Tv { get; set; }
+        public string Books { get; set; }
+        public string Games { get; set; }
         public string HomePhone { get; set; }
         public string LastName { get; set; }
         public string MobilePhone { get; set; }

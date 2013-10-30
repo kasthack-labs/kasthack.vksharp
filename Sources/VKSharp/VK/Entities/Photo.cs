@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VKSharp.VK.EntityParsers;
+﻿using VKSharp.VK.EntityParsers;
 using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.Entities {
@@ -17,6 +12,10 @@ namespace VKSharp.VK.Entities {
         public string Photo807 { get; set; }
         public string Photo1280 { get; set; }
         public string Photo2560 { get; set; }
+        public uint Width { get; set; }
+        public uint Height { get; set; }
+        public string Text { get; set; }
+        public uint Date { get; set; }
         public IVKEntityParser<Photo> GetParser() {
             return PhotoParser.Instanse;
         }
