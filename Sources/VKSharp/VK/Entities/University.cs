@@ -13,7 +13,7 @@ namespace VKSharp.VK.Entities {
         public string ChairName { get; set; }
         public ushort? Graduation { get; set; }
         public IVKEntityParser<University> GetParser() {
-            return VKUniversityParser.Instanse;
+            return UniversityParser.Instanse;
         }
     }
 }

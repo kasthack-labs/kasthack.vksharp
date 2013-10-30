@@ -15,7 +15,7 @@ namespace VKSharp.VK.Entities {
         public uint Type { get; set; }
         public uint TypeName { get; set; }
         public IVKEntityParser<School> GetParser() {
-            return VKSchoolParser.Instanse;
+            return SchoolParser.Instanse;
         }
     }
 }

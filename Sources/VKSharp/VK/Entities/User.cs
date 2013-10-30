@@ -39,7 +39,7 @@ namespace VKSharp.VK.Entities {
         public uint? University { get; set; }
         public University[] Universities { get; set; }
         public IVKEntityParser<User> GetParser() {
-            return VKUserParser.Instanse;
+            return UserParser.Instanse;
         }
     }
 }

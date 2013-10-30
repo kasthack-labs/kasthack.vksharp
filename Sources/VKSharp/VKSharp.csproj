@@ -39,12 +39,16 @@
   <ItemGroup>
     <Compile Include="VKApi.cs" />
     <Compile Include="VK\Entities\Group.cs" />
+    <Compile Include="VK\Entities\Photo.cs" />
     <Compile Include="VK\EntityFragments\GroupCounters.cs" />
     <Compile Include="VK\Entities\Place.cs" />
+    <Compile Include="VK\EntityParsers\GroupParser.cs" />
+    <Compile Include="VK\EntityParsers\PhotoParser.cs" />
+    <Compile Include="VK\EntityParsers\PlaceParser.cs" />
     <Compile Include="VK\Helpers\DataTypes\GroupAdminLevel.cs" />
     <Compile Include="VK\Helpers\DataTypes\PageType.cs" />
-    <Compile Include="VK\EntityParsers\VKSchoolParser.cs" />
-    <Compile Include="VK\EntityParsers\VKUniversityParser.cs" />
+    <Compile Include="VK\EntityParsers\SchoolParser.cs" />
+    <Compile Include="VK\EntityParsers\UniversityParser.cs" />
     <Compile Include="VK\Helpers\DataTypes\Relation.cs" />
     <Compile Include="VK\EntityFragments\ProfileCounters.cs" />
     <Compile Include="VK\EntityFragments\SiteProfiles.cs" />
@@ -54,7 +58,7 @@
     <Compile Include="VK\Helpers\DataTypes\Date.cs" />
     <Compile Include="VK\Helpers\DataTypes\Sex.cs" />
     <Compile Include="VK\Entities\User.cs" />
-    <Compile Include="VK\EntityParsers\VKUserParser.cs" />
+    <Compile Include="VK\EntityParsers\UserParser.cs" />
     <Compile Include="VK\Helpers\BuiltInData.cs" />
     <Compile Include="VK\Interfaces\IVKEntity.cs" />
     <Compile Include="VK\Interfaces\IVKEntityParser.cs" />

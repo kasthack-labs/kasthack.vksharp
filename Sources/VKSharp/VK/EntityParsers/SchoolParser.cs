@@ -5,19 +5,18 @@ using VKSharp.VK.Entities;
 using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.EntityParsers {
-    class VKUserParser:IVKEntityParser<User> {
-        private static readonly Lazy<VKUserParser> Lazy = new Lazy<VKUserParser>( () => new VKUserParser() );
-        public static VKUserParser Instanse {
+    public class SchoolParser : IVKEntityParser<School> {
+        private static readonly Lazy<SchoolParser> Lazy = new Lazy<SchoolParser>( () => new SchoolParser() );
+        public static SchoolParser Instanse {
             get {
                 return Lazy.Value;
             }
         }
-
-        public User ParseFromXml(XNode node) {
+        public School ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }
 
-        public User[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public School[] ParseAllFromXml(IEnumerable<XNode> nodes) {
             throw new NotImplementedException();
         }
     }
