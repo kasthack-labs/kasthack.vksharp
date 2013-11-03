@@ -40,10 +40,14 @@
     <Compile Include="VKApi.cs" />
     <Compile Include="VK\Entities\Audio.cs" />
     <Compile Include="VK\Entities\Document.cs" />
+    <Compile Include="VK\Entities\Geo.cs" />
+    <Compile Include="VK\Entities\Post.cs" />
     <Compile Include="VK\Entities\Privacy.cs" />
     <Compile Include="VK\Entities\Video.cs" />
     <Compile Include="VK\EntityParsers\AudioParser.cs" />
     <Compile Include="VK\EntityParsers\DocumentParser.cs" />
+    <Compile Include="VK\EntityParsers\GeoParser.cs" />
+    <Compile Include="VK\EntityParsers\PostParser.cs" />
     <Compile Include="VK\EntityParsers\PrivacyParser.cs" />
     <Compile Include="VK\EntityParsers\VideoParser.cs" />
     <Compile Include="VK\Helpers\DataTypes\AudioGenre.cs" />

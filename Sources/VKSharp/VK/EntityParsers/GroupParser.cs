@@ -11,6 +11,9 @@ namespace VKSharp.VK.EntityParsers {
                 return Lazy.Value;
             }
         }
+
+        private GroupParser() {}
+
         public Group ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }

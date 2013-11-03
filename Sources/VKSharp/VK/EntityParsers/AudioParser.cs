@@ -12,6 +12,9 @@ namespace VKSharp.VK.EntityParsers {
                 return Lazy.Value;
             }
         }
+
+        private AudioParser() {}
+
         public Audio ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }

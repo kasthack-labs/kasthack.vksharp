@@ -3,7 +3,7 @@ using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.Entities {
     public class Audio:IVKEntity<Audio> {
-        public uint ID { get; set; }
+        public ulong ID { get; set; }
         public int OwnerID { get; set; }
         public string Title { get; set; }
         public uint Duration { get; set; }

@@ -12,6 +12,9 @@ namespace VKSharp.VK.EntityParsers {
                 return Lazy.Value;
             }
         }
+
+        private UniversityParser() {}
+
         public University ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }

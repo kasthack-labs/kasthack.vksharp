@@ -5,21 +5,21 @@ using VKSharp.VK.Entities;
 using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.EntityParsers {
-    public class PrivacyParser:IVKEntityParser<Privacy> {
-        private static readonly Lazy<PrivacyParser> Lazy = new Lazy<PrivacyParser>( () => new PrivacyParser() );
-        public static PrivacyParser Instanse {
+    class PostParser:IVKEntityParser<Post> {
+        private static readonly Lazy<PostParser> Lazy = new Lazy<PostParser>( () => new PostParser() );
+        public static PostParser Instanse {
             get {
                 return Lazy.Value;
             }
         }
 
-        private PrivacyParser() {}
+        private PostParser() {}
 
-        public Privacy ParseFromXml(XNode node) {
+        public Post ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }
 
-        public Privacy[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public Post[] ParseAllFromXml(IEnumerable<XNode> nodes) {
             throw new NotImplementedException();
         }
     }

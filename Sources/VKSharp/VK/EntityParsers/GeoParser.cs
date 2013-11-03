@@ -5,21 +5,19 @@ using VKSharp.VK.Entities;
 using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.EntityParsers {
-    public class UserParser:IVKEntityParser<User> {
-        private static readonly Lazy<UserParser> Lazy = new Lazy<UserParser>( () => new UserParser() );
-        public static UserParser Instanse {
+    public class GeoParser:IVKEntityParser<Geo> {
+        private static readonly Lazy<GeoParser> Lazy = new Lazy<GeoParser>( () => new GeoParser() );
+        public static GeoParser Instanse {
             get {
                 return Lazy.Value;
             }
         }
-
-        private UserParser() {}
-
-        public User ParseFromXml(XNode node) {
+        private GeoParser() {}
+        public Geo ParseFromXml( XNode node ) {
             throw new NotImplementedException();
         }
 
-        public User[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public Geo[] ParseAllFromXml(IEnumerable<XNode> nodes) {
             throw new NotImplementedException();
         }
     }

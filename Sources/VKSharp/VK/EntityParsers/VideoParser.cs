@@ -12,6 +12,9 @@ namespace VKSharp.VK.EntityParsers {
                 return Lazy.Value;
             }
         }
+
+        private VideoParser() {}
+
         public Video ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }

@@ -10,6 +10,9 @@ namespace VKSharp.VK.EntityParsers {
         public static PlaceParser Instanse {
             get { return Lazy.Value; }
         }
+
+        private PlaceParser() {}
+
         public Place ParseFromXml( XNode node ) {
             throw new NotImplementedException();
         }

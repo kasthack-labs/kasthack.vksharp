@@ -12,6 +12,7 @@ namespace VKSharp.VK.EntityParsers {
                 return Lazy.Value;
             }
         }
+        private DocumentParser() { }
         public Document ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }

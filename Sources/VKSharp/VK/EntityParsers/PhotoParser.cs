@@ -12,6 +12,9 @@ namespace VKSharp.VK.EntityParsers {
                 return Lazy.Value;
             }
         }
+
+        private PhotoParser() {}
+
         public Photo ParseFromXml(XNode node) {
             throw new NotImplementedException();
         }
