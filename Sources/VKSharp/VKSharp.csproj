@@ -42,12 +42,17 @@
     <Compile Include="VK\Entities\Document.cs" />
     <Compile Include="VK\Entities\Geo.cs" />
     <Compile Include="VK\Entities\Post.cs" />
+    <Compile Include="VK\Entities\PostLikes.cs" />
+    <Compile Include="VK\Entities\PostSource.cs" />
+    <Compile Include="VK\Helpers\DataTypes\PostSourceInfo.cs" />
     <Compile Include="VK\Entities\Privacy.cs" />
     <Compile Include="VK\Entities\Video.cs" />
     <Compile Include="VK\EntityParsers\AudioParser.cs" />
     <Compile Include="VK\EntityParsers\DocumentParser.cs" />
     <Compile Include="VK\EntityParsers\GeoParser.cs" />
+    <Compile Include="VK\EntityParsers\PostLikesParser.cs" />
     <Compile Include="VK\EntityParsers\PostParser.cs" />
+    <Compile Include="VK\EntityParsers\PostSourceParser.cs" />
     <Compile Include="VK\EntityParsers\PrivacyParser.cs" />
     <Compile Include="VK\EntityParsers\VideoParser.cs" />
     <Compile Include="VK\Helpers\DataTypes\AudioGenre.cs" />
@@ -62,6 +67,7 @@
     <Compile Include="VK\Helpers\DataTypes\PageType.cs" />
     <Compile Include="VK\EntityParsers\SchoolParser.cs" />
     <Compile Include="VK\EntityParsers\UniversityParser.cs" />
+    <Compile Include="VK\Helpers\DataTypes\PostSourceType.cs" />
     <Compile Include="VK\Helpers\DataTypes\Relation.cs" />
     <Compile Include="VK\EntityFragments\ProfileCounters.cs" />
     <Compile Include="VK\EntityFragments\SiteProfiles.cs" />
