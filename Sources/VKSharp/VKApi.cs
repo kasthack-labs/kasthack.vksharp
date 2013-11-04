@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using VKSharp.Helpers.Api;
 
 namespace VKSharp {
     public class VKApi {
