@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VKSharp.VK.EntityParsers;
+﻿using VKSharp.VK.EntityParsers;
+using VKSharp.VK.Helpers.DataTypes;
 using VKSharp.VK.Interfaces;
 
 namespace VKSharp.VK.Entities {
@@ -16,13 +12,5 @@ namespace VKSharp.VK.Entities {
         public IVKEntityParser<Privacy> GetParser() {
             return PrivacyParser.Instanse;
         }
-    }
-
-    public enum PrivacyType {
-        Nobody,
-        All,
-        Friends,
-        FriendsOfFriends,
-        Users
     }
 }

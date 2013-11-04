@@ -38,12 +38,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="VKApi.cs" />
+    <Compile Include="VK\Entities\Attachment.cs" />
     <Compile Include="VK\Entities\Audio.cs" />
+    <Compile Include="VK\Entities\Comment.cs" />
     <Compile Include="VK\Entities\Document.cs" />
     <Compile Include="VK\Entities\Geo.cs" />
     <Compile Include="VK\Entities\Post.cs" />
+    <Compile Include="VK\Entities\PostComments.cs" />
+    <Compile Include="VK\Entities\PostedPhoto.cs" />
     <Compile Include="VK\Entities\PostLikes.cs" />
+    <Compile Include="VK\Entities\PostReposts.cs" />
     <Compile Include="VK\Entities\PostSource.cs" />
+    <Compile Include="VK\Helpers\DataTypes\PrivacyType.cs" />
+    <Compile Include="VK\EntityParsers\AttachmentParser.cs" />
+    <Compile Include="VK\EntityParsers\CommentParser.cs" />
+    <Compile Include="VK\EntityParsers\PostCommentsParser.cs" />
+    <Compile Include="VK\EntityParsers\PostedPhotoParser.cs" />
+    <Compile Include="VK\EntityParsers\PostRepostsParser.cs" />
+    <Compile Include="VK\Helpers\DataTypes\AttachmentType.cs" />
     <Compile Include="VK\Helpers\DataTypes\PostSourceInfo.cs" />
     <Compile Include="VK\Entities\Privacy.cs" />
     <Compile Include="VK\Entities\Video.cs" />
@@ -68,6 +80,7 @@
     <Compile Include="VK\EntityParsers\SchoolParser.cs" />
     <Compile Include="VK\EntityParsers\UniversityParser.cs" />
     <Compile Include="VK\Helpers\DataTypes\PostSourceType.cs" />
+    <Compile Include="VK\Helpers\DataTypes\PostType.cs" />
     <Compile Include="VK\Helpers\DataTypes\Relation.cs" />
     <Compile Include="VK\EntityFragments\ProfileCounters.cs" />
     <Compile Include="VK\EntityFragments\SiteProfiles.cs" />
