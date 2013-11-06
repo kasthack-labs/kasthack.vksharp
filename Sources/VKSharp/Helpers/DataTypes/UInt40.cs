@@ -394,7 +394,12 @@ namespace VKSharp.Helpers.DataTypes {
                 _2 = a
             };
         }
-
+        public override string ToString() {
+            return ( (ulong) this ).ToString();
+        }
+        public static UInt40 Parse(string s) {
+            return (UInt40) ulong.Parse(s);
+        }
         #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿using VKSharp.Core.EntityParsers;
 using VKSharp.Core.Enums;
-using VKSharp.VK.Interfaces;
+using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Audio : OwnedEntity<Audio> {

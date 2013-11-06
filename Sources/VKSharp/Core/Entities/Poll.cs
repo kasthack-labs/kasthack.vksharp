@@ -1,5 +1,5 @@
 ﻿using System;
-using VKSharp.VK.Interfaces;
+using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Poll:IVKEntity<Poll> {

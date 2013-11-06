@@ -1,5 +1,5 @@
 ﻿using VKSharp.Core.EntityParsers;
-using VKSharp.VK.Interfaces;
+using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class School:IVKEntity<School> {

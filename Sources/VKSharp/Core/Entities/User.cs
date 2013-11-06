@@ -1,8 +1,8 @@
 ﻿using VKSharp.Core.EntityFragments;
 using VKSharp.Core.EntityParsers;
 using VKSharp.Core.Enums;
+using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.DataTypes;
-using VKSharp.VK.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class User:IVKEntity<User> {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
 using VKSharp.Core.Entities;
-using VKSharp.VK.Interfaces;
+using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
     public class GroupParser : IVKEntityParser<Group> {
