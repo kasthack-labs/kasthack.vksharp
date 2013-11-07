@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
+using VKSharp.Data.Api;
+using VKSharp.Data.Executors;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
-using VKSharp.Helpers.Api;
 
 namespace VKSharp {
     public class VKApi {
         #region Vars
         private uint _reqCounter;
         private List<VKToken> _tokens = new List<VKToken>(); //tokens
+        private readonly IExecutor _executor = new SimpleXMLExecutor();
         #endregion
 
         #region Properties & propfuncs
@@ -43,7 +44,7 @@ namespace VKSharp {
         #endregion
 
         #region Public functions
-        public async Task<User[]> usersGetAsync( uint ids, UserFields fields = UserFields.First_Name|UserFields.Last_Name, NameCase nameCase = NameCase.Nom ) {
+        public async Task<User[]> usersGetAsync( IEnumerable<uint> ids, UserFields fields = UserFields.First_Name|UserFields.Last_Name, NameCase nameCase = NameCase.Nom ) {
             var Req = new VKRequest<User>() {
                 MethodName = "users.get",
                 Parameters = new Dictionary<string, string>() {
@@ -53,6 +54,7 @@ namespace VKSharp {
                             ",",
                             Enum.GetValues(typeof(UserFields))
                                 .OfType<UserFields>()
+                                .Where(a=>a!=UserFields.Everything)
                                 .Where(a=>fields.HasFlag(a))
                                 .Select(a=>a.ToString().ToLowerInvariant())
                                 .ToArray()
@@ -70,9 +72,9 @@ namespace VKSharp {
                         nameCase.ToString().ToLowerInvariant()
                     }
                 },
-                Token = this.IsLogged?this.GetToken():null
+                Token = this.IsLogged ? this.GetToken() : null
             };
-            var Resp = await this.Executor.ExecAsync(Req);
+            var Resp = await this._executor.ExecAsync( Req );
             return Resp.Data;
             //this.
         }

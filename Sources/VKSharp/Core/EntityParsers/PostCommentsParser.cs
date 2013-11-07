@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
+using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
@@ -16,11 +16,11 @@ namespace VKSharp.Core.EntityParsers {
         private PostCommentsParser() { }
 
 
-        public PostComments ParseFromXml(XNode node) {
+        public PostComments ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }
 
-        public PostComments[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public PostComments[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
     }

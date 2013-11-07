@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
+using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
@@ -13,11 +13,11 @@ namespace VKSharp.Core.EntityParsers {
             }
         }
         private PhotoAlbumBaseParser() { }
-        public PhotoAlbumBase ParseFromXml(XNode node) {
+        public PhotoAlbumBase ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }
 
-        public PhotoAlbumBase[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public PhotoAlbumBase[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
     }

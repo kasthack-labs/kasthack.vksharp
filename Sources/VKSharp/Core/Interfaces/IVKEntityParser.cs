@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Xml.Linq;
+using System.Xml;
 
 namespace VKSharp.Core.Interfaces {
     public interface IVKEntityParser<out T> {
-        T ParseFromXml(XNode node);
-        T[] ParseAllFromXml(IEnumerable<XNode> nodes);
+        T ParseFromXml(XmlNode node);
+        T[] ParseAllFromXml( IEnumerable<XmlNode> nodes );
     }
 }

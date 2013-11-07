@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EpicMorg.Net.AWC">
+      <HintPath>..\..\Libs\EpicMorg.Net.AWC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -37,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\EntityParsers\ProfileCountersParser.cs" />
+    <Compile Include="Data\Api\VKPermission.cs" />
     <Compile Include="Data\Executors\IExecutor.cs" />
     <Compile Include="Data\Request\ResponseStatus.cs" />
     <Compile Include="Data\Request\VKResponse.cs" />

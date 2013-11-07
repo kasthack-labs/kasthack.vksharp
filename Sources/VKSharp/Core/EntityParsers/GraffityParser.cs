@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
+using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
@@ -15,11 +15,11 @@ namespace VKSharp.Core.EntityParsers {
 
         private GraffityParser() { }
 
-        public Graffity ParseFromXml(XNode node) {
+        public Graffity ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }
 
-        public Graffity[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public Graffity[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
     }

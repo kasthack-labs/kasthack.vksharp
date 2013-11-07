@@ -1,7 +1,7 @@
 ﻿namespace VKSharp.Core.Enums {
     public enum Sex {
-        Male,
-        Female,
-        Unknown
+        Male=2,
+        Female=1,
+        Unknown=0
     }
 }

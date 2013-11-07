@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Authentication;
+using VKSharp.Helpers;
 
-namespace VKSharp.Helpers.Api {
+namespace VKSharp.Data.Api {
     public class VKToken {
         public string Token { get; private set; }
         public string Sign { get; private set; }
@@ -15,16 +16,18 @@ namespace VKSharp.Helpers.Api {
         }
 
         public static string GetOAuthURL( int appID, VKPermission permissions = VKPermission.None, string redirectURL = "https://oauth.vk.com/blank.html" ) {
+            var testperm =
+                Enum.GetValues(typeof (VKPermission))
+                    .OfType<VKPermission>()
+                    .Where(a => a != VKPermission.None && a != VKPermission.Everything);
             return String.Format(
                                  BuiltInData.Instance.OAuthURL,
                                  appID,
                                  String.Join(
                                              ",",
-                                             Enum.GetValues( typeof( VKPermission ) )
-                                                 .OfType<VKPermission>()
-                                                 .Where(a=>a!=VKPermission.None)
+                                             testperm
                                                  .Where( a => permissions.HasFlag( a ) )
-                                                 .Select( a => a.ToString() ) ),
+                                                 .Select( a => a.ToString().ToLowerInvariant() ) ),
                                  redirectURL );
         }
 
@@ -35,12 +38,14 @@ namespace VKSharp.Helpers.Api {
             const string errorPn = @"error";
             const string errorRPn = @"error_reason";
             const string errorDescPn = @"error_description";
-            var query =
-                new Uri(url).Query.Split('&')
-                            .Select(a => a.Split('='))
-                            .Where(a => a.Length == 2)
-                            .GroupBy(a => a[ 0 ])
-                            .ToDictionary(a => a.Key, a => a.First()[1]);
+            var query =new Uri(url)
+                .Fragment
+                .TrimStart('#')
+                .Split( '&' )
+                .Select(a => a.Split('='))
+                .Where(a => a.Length == 2)
+                .GroupBy(a => a[ 0 ])
+                .ToDictionary(a => a.Key, a => a.First()[1]);
             if ( query.ContainsKey( accessTokenPn ) )
                 return new VKToken(query[ accessTokenPn ], query.ContainsKey( signPn ) ? query[ signPn ] : "", userID:uint.Parse( query[ useridPn ] ) );
             if ( query.ContainsKey(errorPn))
@@ -57,28 +62,5 @@ namespace VKSharp.Helpers.Api {
         public static VKToken FromLoginPass( string login, string pass ) {
             throw new NotImplementedException();
         }
-    }
-    [Flags]
-    public enum VKPermission {
-        None,
-        Ads,
-        Audio,
-        Docs,
-        Friends,
-        Groups,
-        Messages,
-        Nohttps,
-        Notes,
-        Notifications,
-        Notify,
-        Offers,
-        Offline,
-        Pages,
-        Photos,
-        Questions,
-        Stats,
-        Status,
-        Video,
-        Wall,
     }
 }

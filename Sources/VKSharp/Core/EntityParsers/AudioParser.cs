@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
+using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
@@ -15,11 +15,11 @@ namespace VKSharp.Core.EntityParsers {
 
         private AudioParser() {}
 
-        public Audio ParseFromXml(XNode node) {
+        public Audio ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }
 
-        public Audio[] ParseAllFromXml(IEnumerable<XNode> nodes) {
+        public Audio[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
     }
