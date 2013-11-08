@@ -24,15 +24,7 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                     {
                         "fields",
-                        String.Join(
-                            ",",
-                            Enum.GetValues(typeof(UserFields))
-                                .OfType<UserFields>()
-                                .Where(a=>a!=UserFields.Everything)
-                                .Where(a=>fields.HasFlag(a))
-                                .Select(a=>a.ToString().ToLowerInvariant())
-                                .ToArray()
-                        )
+                        String.Join(",",MiscTools.GetUserFields(fields))
                     },
                     {
                         "list_id",
@@ -45,6 +37,68 @@ namespace VKSharp {
                     {
                         "user_id",
                         userID.ToString(BuiltInData.Instance.NC)
+                    },
+                    {
+                        "offset",
+                        offset.ToString(BuiltInData.Instance.NC)
+                    },
+                    {
+                        "count",
+                        count.ToString(BuiltInData.Instance.NC)
+                    },
+                    {
+                        "name_case",
+                        nameCase.ToString().ToLowerInvariant()
+                    }
+                },
+                Token = this.IsLogged ? this.CurrenToken : null
+            };
+            var resp = await this._executor.ExecAsync( req );
+            return resp.Data;
+        }
+
+        public async Task<User[]> FriendsGetByPhonesAsync(
+           IEnumerable<ulong> phones,
+           UserFields fields = UserFields.First_Name | UserFields.Last_Name ) {
+            var req = new VKRequest<User> {
+                MethodName = "friends.get",
+                Parameters = new Dictionary<string, string> {
+                    {
+                        "fields",
+                        String.Join(",",MiscTools.GetUserFields(fields))
+                    },
+                    {
+                        "phones",
+                        String.Join(
+                            ",",
+                            phones.Select(a=>"+"+a)
+                        )
+                    }
+                }
+            };
+            if ( !this.IsLogged )
+                throw new InvalidOperationException( "This method requires auth!" );
+            req.Token = this.CurrenToken;
+            var resp = await this._executor.ExecAsync( req );
+            return resp.Data;
+        }
+
+        public async Task<User[]> FriendsGetSuggestionsAsync(
+            FriendSuggestionFilters filters = FriendSuggestionFilters.Everything,
+            uint offset = 0,
+            ushort count = 100,
+            UserFields fields = UserFields.First_Name | UserFields.Last_Name,
+            NameCase nameCase = NameCase.Nom ) {
+            var req = new VKRequest<User> {
+                MethodName = "friends.get",
+                Parameters = new Dictionary<string, string> {
+                    {
+                        "fields",
+                        String.Join(",",MiscTools.GetUserFields(fields))
+                    },
+                    {
+                        "filters",
+                        String.Join(",",MiscTools.GetFilterFields(filters))
                     },
                     {
                         "offset",

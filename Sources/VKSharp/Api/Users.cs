@@ -18,12 +18,7 @@ namespace VKSharp {
                         "fields",
                         String.Join(
                             ",",
-                            Enum.GetValues(typeof(UserFields))
-                                .OfType<UserFields>()
-                                .Where(a=>a!=UserFields.Everything)
-                                .Where(a=>fields.HasFlag(a))
-                                .Select(a=>a.ToString().ToLowerInvariant())
-                                .ToArray()
+                            String.Join(",",MiscTools.GetFieldFlags(fields))
                         )
                     },
                     {
@@ -56,15 +51,7 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                     {
                         "fields",
-                        String.Join(
-                            ",",
-                            Enum.GetValues(typeof(UserFields))
-                                .OfType<UserFields>()
-                                .Where(a=>a!=UserFields.Everything)
-                                .Where(a=>fields.HasFlag(a))
-                                .Select(a=>a.ToString().ToLowerInvariant())
-                                .ToArray()
-                        )
+                        String.Join(",",MiscTools.GetFieldFlags(fields))
                     },
                     {
                         "user_id",

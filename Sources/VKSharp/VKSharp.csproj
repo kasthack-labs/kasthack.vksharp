@@ -49,6 +49,7 @@
     <Compile Include="Core\EntityParsers\ProfileCountersParser.cs" />
     <Compile Include="Data\Api\VKPermission.cs" />
     <Compile Include="Data\Executors\IExecutor.cs" />
+    <Compile Include="Data\Parameters\FriendSuggestionFilters.cs" />
     <Compile Include="Data\Parameters\UserSortOrder.cs" />
     <Compile Include="Data\Request\ResponseStatus.cs" />
     <Compile Include="Data\Request\VKResponse.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="Data\Executors\SimpleXMLExecutor.cs" />
     <Compile Include="Data\Parameters\UserFields.cs" />
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
+    <Compile Include="Helpers\MiscTools.cs" />
     <Compile Include="VKApi.cs" />
     <Compile Include="Core\Entities\Attachment.cs" />
     <Compile Include="Core\Entities\Audio.cs" />
