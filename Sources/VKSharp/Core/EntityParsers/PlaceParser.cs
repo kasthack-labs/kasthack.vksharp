@@ -13,6 +13,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private PlaceParser() {}
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Place entity) {
+            throw new NotImplementedException();
+        }
+
         public Place ParseFromXml( XmlNode node ) {
             throw new NotImplementedException();
         }

@@ -112,9 +112,11 @@ namespace VKSharp {
                         "name_case",
                         nameCase.ToString().ToLowerInvariant()
                     }
-                },
-                Token = this.IsLogged ? this.CurrenToken : null
+                }
             };
+            if ( !this.IsLogged )
+                throw new InvalidOperationException( "This method requires auth!" );
+            req.Token = this.CurrenToken;
             var resp = await this._executor.ExecAsync( req );
             return resp.Data;
         }

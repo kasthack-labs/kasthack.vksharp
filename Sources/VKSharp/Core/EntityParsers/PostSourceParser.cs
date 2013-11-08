@@ -13,7 +13,11 @@ namespace VKSharp.Core.EntityParsers {
             }
         }
         private PostSourceParser() { }
-        
+
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PostSource entity) {
+            throw new NotImplementedException();
+        }
+
         public PostSource ParseFromXml( XmlNode node ) {
             throw new NotImplementedException();
         }

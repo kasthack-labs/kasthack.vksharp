@@ -18,7 +18,7 @@ namespace VKSharp {
                         "fields",
                         String.Join(
                             ",",
-                            String.Join(",",MiscTools.GetFieldFlags(fields))
+                            String.Join(",",MiscTools.GetUserFields(fields))
                         )
                     },
                     {
@@ -37,7 +37,6 @@ namespace VKSharp {
             };
             var resp = await this._executor.ExecAsync( req );
             return resp.Data;
-            //this.
         }
 
         public async Task<EntityList<User>> UsersGetFollowersAsync(
@@ -51,7 +50,7 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                     {
                         "fields",
-                        String.Join(",",MiscTools.GetFieldFlags(fields))
+                        String.Join(",",MiscTools.GetUserFields(fields))
                     },
                     {
                         "user_id",

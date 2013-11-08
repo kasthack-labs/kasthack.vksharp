@@ -40,11 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Account.cs" />
     <Compile Include="Api\Friends.cs" />
     <Compile Include="Api\Users.cs" />
+    <Compile Include="Api\Groups.cs" />
+    <Compile Include="Api\Wrappers\Account.cs" />
     <Compile Include="Api\Wrappers\Friends.cs" />
+    <Compile Include="Api\Wrappers\Groups.cs" />
     <Compile Include="Api\Wrappers\Users.cs" />
+    <Compile Include="Core\Entities\BanInfo.cs" />
     <Compile Include="Core\Entities\EntityList.cs" />
+    <Compile Include="Core\EntityParsers\BanInfoParser.cs" />
     <Compile Include="Core\EntityParsers\EntityListParser.cs" />
     <Compile Include="Core\EntityParsers\ProfileCountersParser.cs" />
     <Compile Include="Data\Api\VKPermission.cs" />

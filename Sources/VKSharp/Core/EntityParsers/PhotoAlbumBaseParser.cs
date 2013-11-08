@@ -13,6 +13,11 @@ namespace VKSharp.Core.EntityParsers {
             }
         }
         private PhotoAlbumBaseParser() { }
+        
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PhotoAlbumBase entity) {
+            throw new NotImplementedException();
+        }
+
         public PhotoAlbumBase ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

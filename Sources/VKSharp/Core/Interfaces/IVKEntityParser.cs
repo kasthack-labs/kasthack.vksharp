@@ -3,6 +3,8 @@ using System.Xml;
 
 namespace VKSharp.Core.Interfaces {
     public interface IVKEntityParser<T> {
+        //
+        void FillFromXml( IEnumerable<XmlNode> nodes, ref T entity );
         //parse one from xml node
         T ParseFromXml(XmlNode node);
         //same for array
@@ -11,7 +13,5 @@ namespace VKSharp.Core.Interfaces {
         T ParseFromXmlFragments(IEnumerable<XmlNode> nodes);
         //update
         void UpdateFromFragment(XmlNode node, ref T entity);
-        //parse_ref
-
     }
 }

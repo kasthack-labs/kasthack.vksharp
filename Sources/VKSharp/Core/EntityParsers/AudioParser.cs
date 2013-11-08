@@ -15,6 +15,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private AudioParser() {}
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Audio entity) {
+            throw new NotImplementedException();
+        }
+
         public Audio ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

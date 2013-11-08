@@ -15,6 +15,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private VideoParser() {}
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Video entity) {
+            throw new NotImplementedException();
+        }
+
         public Video ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

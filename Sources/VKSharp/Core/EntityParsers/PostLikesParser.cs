@@ -13,7 +13,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private PostLikesParser() { }
 
-        
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PostLikes entity) {
+            throw new NotImplementedException();
+        }
+
         public PostLikes ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

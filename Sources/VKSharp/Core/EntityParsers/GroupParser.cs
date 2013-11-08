@@ -15,6 +15,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private GroupParser() {}
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Group entity) {
+            throw new NotImplementedException();
+        }
+
         public Group ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

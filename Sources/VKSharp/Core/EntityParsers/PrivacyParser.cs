@@ -15,6 +15,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private PrivacyParser() {}
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Privacy entity) {
+            throw new NotImplementedException();
+        }
+
         public Privacy ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

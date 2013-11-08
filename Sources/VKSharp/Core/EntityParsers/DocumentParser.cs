@@ -13,6 +13,11 @@ namespace VKSharp.Core.EntityParsers {
             }
         }
         private DocumentParser() { }
+        
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Document entity) {
+            throw new NotImplementedException();
+        }
+
         public Document ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

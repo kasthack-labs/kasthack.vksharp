@@ -15,6 +15,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private GraffityParser() { }
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Graffity entity) {
+            throw new NotImplementedException();
+        }
+
         public Graffity ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

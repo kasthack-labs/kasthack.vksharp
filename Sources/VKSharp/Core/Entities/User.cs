@@ -10,6 +10,7 @@ namespace VKSharp.Core.Entities {
         public ProfilePhotos ProfilePhotos { get; set; }
         public SiteProfiles SiteProfiles { get; set; }
         public ProfileCounters Counters { get; set; }
+        public BanInfo BanInfo { get; set; }
 
         public bool? CanPost { get; set; }
         public bool? CanSeeAllPosts { get; set; }

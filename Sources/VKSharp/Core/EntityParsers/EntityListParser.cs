@@ -15,15 +15,19 @@ namespace VKSharp.Core.EntityParsers {
         }
 
         private EntityListParser() { }
-        
+
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref EntityList<T> entity) {
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref entity );
+        }
+
         public EntityList<T> ParseFromXml(XmlNode node) {
             return this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
         }
 
         public EntityList<T> ParseFromXmlFragments( IEnumerable<XmlNode> nodes ) {
             var el = new EntityList<T>();
-            foreach (var cn in nodes)
-                this.UpdateFromFragment(cn, ref el);
+            this.FillFromXml(nodes, ref el);
             return el;
             
         }

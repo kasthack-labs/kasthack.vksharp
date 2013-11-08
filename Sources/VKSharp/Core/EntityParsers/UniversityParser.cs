@@ -15,6 +15,11 @@ namespace VKSharp.Core.EntityParsers {
         }
 
         private UniversityParser() {}
+        
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref University entity) {
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref entity );
+        }
 
         public University ParseFromXml(XmlNode node) {
             if ( String.CompareOrdinal(node.Name, "university") != 0 )
@@ -28,8 +33,7 @@ namespace VKSharp.Core.EntityParsers {
 
         public University ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var sc = new University();
-            foreach ( var cn in nodes)
-                this.UpdateFromFragment( cn, ref sc );
+            this.FillFromXml(nodes, ref sc);
             return sc;
         }
 

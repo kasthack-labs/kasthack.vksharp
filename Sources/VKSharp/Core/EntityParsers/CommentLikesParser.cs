@@ -14,6 +14,11 @@ namespace VKSharp.Core.EntityParsers {
         }
 
         private CommentLikesParser() { }
+        
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref CommentLikes entity) {
+            throw new NotImplementedException();
+        }
+
         public CommentLikes ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

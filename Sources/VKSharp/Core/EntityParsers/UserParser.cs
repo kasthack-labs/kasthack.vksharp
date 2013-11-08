@@ -19,6 +19,11 @@ namespace VKSharp.Core.EntityParsers {
 
         private UserParser() { }
 
+        public void FillFromXml( IEnumerable<XmlNode> nodes, ref User entity ) {
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref entity );
+        }
+
         public User ParseFromXml( XmlNode node ) {
             if ( String.CompareOrdinal( node.Name, "user" ) != 0 )
                 return null;
@@ -35,8 +40,7 @@ namespace VKSharp.Core.EntityParsers {
                 SiteProfiles = new SiteProfiles(),
                 Counters = new ProfileCounters()
             };
-            foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref u );
+            this.FillFromXml(nodes, ref u);
             return u;
         }
 
@@ -171,7 +175,9 @@ namespace VKSharp.Core.EntityParsers {
                     break;
 
                 case "counters":
-                    entity.Counters = entity.Counters.GetParser().ParseFromXml( node );
+                    var c = entity.Counters;
+                    var cp = c.GetParser();
+                    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref c);
                     break;
 
                 case "relation":
@@ -186,6 +192,11 @@ namespace VKSharp.Core.EntityParsers {
                     break;
                 case "universities":
                     entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    break;
+                case "ban_info":
+                    var b = entity.BanInfo;
+                    var bp = b.GetParser();
+                    bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref b);
                     break;
             }
         }

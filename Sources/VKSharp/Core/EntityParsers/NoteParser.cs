@@ -15,6 +15,10 @@ namespace VKSharp.Core.EntityParsers {
 
         private NoteParser() { }
 
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Note entity) {
+            throw new NotImplementedException();
+        }
+
         public Note ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

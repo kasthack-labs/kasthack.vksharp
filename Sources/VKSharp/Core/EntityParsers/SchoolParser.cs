@@ -16,6 +16,11 @@ namespace VKSharp.Core.EntityParsers {
 
         private SchoolParser() { }
 
+        public void FillFromXml( IEnumerable<XmlNode> nodes, ref School entity ) {
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref entity );
+        }
+
         public School ParseFromXml( XmlNode node ) {
             if ( String.CompareOrdinal( node.Name, "school" ) != 0 )
                 return null;
@@ -28,8 +33,7 @@ namespace VKSharp.Core.EntityParsers {
 
         public School ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var sc = new School();
-            foreach ( var cn in nodes)
-                this.UpdateFromFragment( cn, ref sc );
+            this.FillFromXml(nodes, ref sc);
             return sc;
         }
 

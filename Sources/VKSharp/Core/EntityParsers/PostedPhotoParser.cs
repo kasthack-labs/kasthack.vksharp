@@ -13,7 +13,11 @@ namespace VKSharp.Core.EntityParsers {
             }
         }
         private PostedPhotoParser() { }
-        
+
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PostedPhoto entity) {
+            throw new NotImplementedException();
+        }
+
         public PostedPhoto ParseFromXml(XmlNode node) {
             throw new NotImplementedException();
         }

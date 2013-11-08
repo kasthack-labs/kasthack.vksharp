@@ -16,6 +16,11 @@ namespace VKSharp.Core.EntityParsers {
 
         private ProfileCountersParser() { }
 
+        public void FillFromXml( IEnumerable<XmlNode> nodes, ref ProfileCounters entity ) {
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref entity );
+        }
+
         public ProfileCounters ParseFromXml( XmlNode node ) {
             if ( String.CompareOrdinal( node.Name, "counters" ) != 0 )
                 return null;
@@ -28,8 +33,7 @@ namespace VKSharp.Core.EntityParsers {
 
         public ProfileCounters ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var pc = new ProfileCounters();
-            foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref pc );
+            this.FillFromXml(nodes, ref pc);
             return pc;
         }
 

@@ -13,6 +13,11 @@ namespace VKSharp.Core.EntityParsers {
             }
         }
         private GeoParser() {}
+        
+        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Geo entity) {
+            throw new NotImplementedException();
+        }
+
         public Geo ParseFromXml( XmlNode node ) {
             throw new NotImplementedException();
         }
