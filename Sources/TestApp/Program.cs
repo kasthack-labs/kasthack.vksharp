@@ -1,6 +1,7 @@
 ﻿using System;
 using kasthack.Tools;
 using VKSharp;
+using VKSharp.Core.Enums;
 using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 
@@ -17,10 +18,12 @@ namespace TestApp {
             catch ( FormatException ex ) {
                 ConTools.WriteError( ex.Message );
             }
-            var userQuery = vk.UsersGet( new[] { 1U }, UserFields.Everything );
-            userQuery.Dump();
-            var subsQuery = vk.UsersGetFollowers(1u);
-            subsQuery.Dump();
+            //var userQuery = vk.UsersGet( new[] { 1U }, UserFields.Everything );
+            //userQuery.Dump();
+            //var followersQuery = vk.UsersGetFollowers(1u);
+            //followersQuery.Items.Dump();
+            var friendsQuery = vk.FriendsGet(8878040, UserSortOrder.ByID, null, 0, 100, UserFields.Everything);
+            friendsQuery.Dump();
             Console.ReadLine();
         }
     }
