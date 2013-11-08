@@ -22,39 +22,17 @@ namespace VKSharp {
             var req = new VKRequest<User> {
                 MethodName = "friends.get",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "fields",
-                        String.Join(",",MiscTools.GetUserFields(fields))
-                    },
-                    {
-                        "list_id",
-                        listID.HasValue?listID.ToString().ToLowerInvariant():""
-                    },
-                    {
-                        "order",
-                        order==UserSortOrder.ByID?"":order.ToString().ToLowerInvariant()
-                    },
-                    {
-                        "user_id",
-                        userID.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "offset",
-                        offset.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "count",
-                        count.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "name_case",
-                        nameCase.ToString().ToLowerInvariant()
-                    }
+                    { "fields", String.Join(",",MiscTools.GetUserFields(fields)) },
+                    { "list_id", MiscTools.NullableString(listID) },
+                    { "order", order==UserSortOrder.ByID?"":order.ToNCLString() },
+                    { "user_id", userID.ToNCString() },
+                    { "offset", offset.ToNCString() },
+                    { "count", count.ToNCString() },
+                    { "name_case", nameCase.ToNCLString() }
                 },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
-            var resp = await this._executor.ExecAsync( req );
-            return resp.Data;
+            return ( await this._executor.ExecAsync( req ) ).Data;
         }
 
         public async Task<User[]> FriendsGetByPhonesAsync(
@@ -63,24 +41,14 @@ namespace VKSharp {
             var req = new VKRequest<User> {
                 MethodName = "friends.get",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "fields",
-                        String.Join(",",MiscTools.GetUserFields(fields))
-                    },
-                    {
-                        "phones",
-                        String.Join(
-                            ",",
-                            phones.Select(a=>"+"+a)
-                        )
-                    }
+                    { "fields", String.Join(",",MiscTools.GetUserFields(fields)) },
+                    { "phones", String.Join( ",", phones.Select(a=>"+"+a) ) }
                 }
             };
             if ( !this.IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
-            var resp = await this._executor.ExecAsync( req );
-            return resp.Data;
+            return ( await this._executor.ExecAsync( req ) ).Data;
         }
 
         public async Task<User[]> FriendsGetSuggestionsAsync(
@@ -92,33 +60,17 @@ namespace VKSharp {
             var req = new VKRequest<User> {
                 MethodName = "friends.get",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "fields",
-                        String.Join(",",MiscTools.GetUserFields(fields))
-                    },
-                    {
-                        "filters",
-                        String.Join(",",MiscTools.GetFilterFields(filters))
-                    },
-                    {
-                        "offset",
-                        offset.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "count",
-                        count.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "name_case",
-                        nameCase.ToString().ToLowerInvariant()
-                    }
+                    { "fields", String.Join(",",MiscTools.GetUserFields(fields)) },
+                    { "filters", String.Join(",",MiscTools.GetFilterFields(filters)) },
+                    { "offset", offset.ToNCString() },
+                    { "count", count.ToNCString() },
+                    { "name_case", nameCase.ToNCLString() }
                 }
             };
             if ( !this.IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
-            var resp = await this._executor.ExecAsync( req );
-            return resp.Data;
+            return ( await this._executor.ExecAsync( req ) ).Data;
         }
     }
 }

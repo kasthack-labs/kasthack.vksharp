@@ -14,25 +14,15 @@ namespace VKSharp {
             var req = new VKRequest<User> {
                 MethodName = "groups.getBanned",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "offset",
-                        offset.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "count",
-                        count.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "group_id",
-                        groupID.ToString()
-                    }
+                    { "offset", offset.ToString(BuiltInData.Instance.NC) },
+                    { "count", count.ToString(BuiltInData.Instance.NC) },
+                    { "group_id", groupID.ToString(BuiltInData.Instance.NC) }
                 }
             };
             if ( !this.IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
-            var resp = await this._executor.ExecAsync( req );
-            return resp.Data;
+            return ( await this._executor.ExecAsync( req ) ).Data;
         }
     }
 }
