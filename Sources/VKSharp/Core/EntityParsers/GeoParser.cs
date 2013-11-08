@@ -20,5 +20,13 @@ namespace VKSharp.Core.EntityParsers {
         public Geo[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
+
+        public Geo ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateFromFragment(XmlNode node, ref Geo entity) {
+            throw new NotImplementedException();
+        }
     }
 }

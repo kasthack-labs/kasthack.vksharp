@@ -17,49 +17,58 @@ namespace VKSharp.Core.EntityParsers {
         private UniversityParser() {}
 
         public University ParseFromXml(XmlNode node) {
-            var sc = new University();
-            foreach (XmlNode cn in node.ChildNodes) {
-                switch ( cn.Name ) {
-                    case "city":
-                        sc.City = uint.Parse(cn.InnerText);
-                        break;
-                    case "country":
-                        sc.Country = uint.Parse(cn.InnerText);
-                        break;
-                    case "id":
-                        sc.ID = uint.Parse(cn.InnerText);
-                        break;
-                    case "name":
-                        sc.Name = cn.InnerText;
-                        break;
-                    case "chair":
-                        sc.Chair = uint.Parse(cn.InnerText);
-                        break;
-                    case "faculty":
-                        sc.Faculty = uint.Parse( cn.InnerText );
-                        break;
-                    case "chair_name":
-                        sc.ChairName = cn.InnerText;
-                        break;
-                    case "faculty_name":
-                        sc.FacultyName = cn.InnerText;
-                        break;
-                    case "graduation":
-                        sc.Graduation = ushort.Parse(cn.InnerText);
-                        break;
-                    case "education_form":
-                        sc.EducationForm = cn.InnerText;
-                        break;
-                    case "education_status":
-                        sc.EducationStatus = cn.InnerText;
-                        break;
-                }
-            }
-            return sc;
+            if ( String.CompareOrdinal(node.Name, "university") != 0 )
+                return null;
+            return this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
         }
 
         public University[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
-            return nodes.Select( this.ParseFromXml ).ToArray();
+            return nodes.Select( this.ParseFromXml ).Where(a=>a!=null).ToArray();
+        }
+
+        public University ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            var sc = new University();
+            foreach ( var cn in nodes)
+                this.UpdateFromFragment( cn, ref sc );
+            return sc;
+        }
+
+        public void UpdateFromFragment(XmlNode node, ref University entity) {
+            switch ( node.Name ) {
+                case "city":
+                    entity.City = uint.Parse( node.InnerText );
+                    break;
+                case "country":
+                    entity.Country = uint.Parse( node.InnerText );
+                    break;
+                case "id":
+                    entity.ID = uint.Parse( node.InnerText );
+                    break;
+                case "name":
+                    entity.Name = node.InnerText;
+                    break;
+                case "chair":
+                    entity.Chair = uint.Parse( node.InnerText );
+                    break;
+                case "faculty":
+                    entity.Faculty = uint.Parse( node.InnerText );
+                    break;
+                case "chair_name":
+                    entity.ChairName = node.InnerText;
+                    break;
+                case "faculty_name":
+                    entity.FacultyName = node.InnerText;
+                    break;
+                case "graduation":
+                    entity.Graduation = ushort.Parse( node.InnerText );
+                    break;
+                case "education_form":
+                    entity.EducationForm = node.InnerText;
+                    break;
+                case "education_status":
+                    entity.EducationStatus = node.InnerText;
+                    break;
+            }
         }
     }
 }

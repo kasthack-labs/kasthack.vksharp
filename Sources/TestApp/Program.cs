@@ -17,9 +17,10 @@ namespace TestApp {
             catch ( FormatException ex ) {
                 ConTools.WriteError( ex.Message );
             }
-            var ret = vk.usersGetAsync( new[] { 1U }, UserFields.Everything );
-            ret.Wait();
-            ret.Result.Dump();
+            var userQuery = vk.UsersGet( new[] { 1U }, UserFields.Everything );
+            userQuery.Dump();
+            var subsQuery = vk.UsersGetFollowers(1u);
+            subsQuery.Dump();
             Console.ReadLine();
         }
     }

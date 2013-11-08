@@ -21,5 +21,14 @@ namespace VKSharp.Core.EntityParsers {
         public Attachment[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
             throw new NotImplementedException();
         }
+
+        public Attachment ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateFromFragment(XmlNode node, ref Attachment entity) {
+            throw new NotImplementedException();
+        }
+
     }
 }

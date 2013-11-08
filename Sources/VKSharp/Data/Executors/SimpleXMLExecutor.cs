@@ -10,35 +10,56 @@ using VKSharp.Data.Request;
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>, new() {
+            var doc = new XmlDocument();
+            var raw = await this.ExecRawAsync( request );
+            doc.LoadXml( raw );
+            var rootNode = doc.DocumentElement;
+            if ( rootNode.HasAttribute( "list" ) && rootNode.Attributes[ "list" ].Value.ToLowerInvariant() == "true" ) {
+                return new VKResponse<T> {
+                    Data = ( (IVKEntity<T>) ( new T() ) )
+                            .GetParser()
+                            .ParseAllFromXml( rootNode.ChildNodes.OfType<XmlNode>() ),
+                    Status = null
+                };
+            }
+            return new VKResponse<T> {
+                Data = new[]{( (IVKEntity<T>) ( new T() ) )
+                        .GetParser()
+                        .ParseFromXmlFragments( rootNode.ChildNodes.OfType<XmlNode>() )},
+                Status = null
+            };
+        }
+
+        public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>, new() {
             var bID = Helpers.BuiltInData.Instance;
             var vk = bID.VKDomain;
             var query = String.Join( "&", request.Parameters.Select( a => a.Key + "=" + a.Value ) );
             var queryB = new StringBuilder();
             queryB.Append( "/method/" );
             queryB.Append( request.MethodName );
-            queryB.Append(@".xml");
+            queryB.Append( @".xml" );
             if ( request.Token != null ) {
                 queryB.Append( "?access_token=" );
                 queryB.Append( request.Token.Token );
-            }
-            if ( new Uri( vk ).Scheme != "https" ) {
-                queryB.Append(
-                    "&sig="+
-                    BitConverter.ToString(
-                        bID.Hasher.ComputeHash(
-                            bID.TextEncoding.
-                            GetBytes(
-                                queryB +"&" + query +
-                                request.Token.Sign
+                if ( new Uri( vk ).Scheme != "https" ) {
+                    queryB.Append(
+                        "&sig=" +
+                        BitConverter.ToString(
+                            bID.Hasher.ComputeHash(
+                                bID.TextEncoding.
+                                GetBytes(
+                                    queryB + "&" + query +
+                                    request.Token.Sign
+                                )
                             )
-                        )
-                    ).
-                    Replace( "-", "" ).
-                    ToLower()
-                );
+                        ).
+                        Replace( "-", "" ).
+                        ToLower()
+                    );
+                }
             }
-            queryB.Insert(0, vk);
-            var raw_response = await AWC.DownloadStringAsync(
+            queryB.Insert( 0, vk );
+            return await AWC.DownloadStringAsync(
                 queryB.ToString(),
                 bID.TextEncoding,
                 null,
@@ -47,14 +68,6 @@ namespace VKSharp.Data.Executors {
                 query,
                 40000
             );
-            var doc = new XmlDocument();
-            doc.LoadXml(raw_response);
-            return new VKResponse<T> {
-                Data =( (IVKEntity<T>) ( new T() ) )
-                        .GetParser()
-                        .ParseAllFromXml(doc.DocumentElement.ChildNodes.OfType<XmlNode>()),
-                Status = null
-            };
         }
     }
 }

@@ -22,5 +22,13 @@ namespace VKSharp.Core.EntityParsers {
         public Photo[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
+
+        public Photo ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateFromFragment(XmlNode node, ref Photo entity) {
+            throw new NotImplementedException();
+        }
     }
 }

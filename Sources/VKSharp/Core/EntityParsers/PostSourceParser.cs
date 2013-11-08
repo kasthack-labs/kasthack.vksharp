@@ -21,5 +21,13 @@ namespace VKSharp.Core.EntityParsers {
         public PostSource[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
             throw new NotImplementedException();
         }
+
+        public PostSource ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateFromFragment(XmlNode node, ref PostSource entity) {
+            throw new NotImplementedException();
+        }
     }
 }

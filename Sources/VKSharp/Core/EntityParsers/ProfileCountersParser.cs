@@ -17,58 +17,68 @@ namespace VKSharp.Core.EntityParsers {
         private ProfileCountersParser() { }
 
         public ProfileCounters ParseFromXml( XmlNode node ) {
-            var pc = new ProfileCounters();
-            foreach (XmlNode cn in node.ChildNodes) {
-                switch ( cn.Name ) {
-                    case "albums":
-                        pc.Albums = uint.Parse( cn.InnerText );
-                        break;
-                    case "videos":
-                        pc.Videos = uint.Parse( cn.InnerText );
-                        break;
-                    case "audios":
-                        pc.Audios = uint.Parse( cn.InnerText );
-                        break;
-                    case "photos":
-                        pc.Photos = uint.Parse( cn.InnerText );
-                        break;
-                    case "notes":
-                        pc.Notes = uint.Parse( cn.InnerText );
-                        break;
-                    case "friends":
-                        pc.Friends = uint.Parse( cn.InnerText );
-                        break;
-                    case "groups":
-                        pc.Groups = uint.Parse( cn.InnerText );
-                        break;
-                    case "online_friends":
-                        pc.OnlineFriends = uint.Parse( cn.InnerText );
-                        break;
-                    case "mutual_friends":
-                        pc.MutualFriends = uint.Parse( cn.InnerText );
-                        break;
-                    case "user_videos":
-                        pc.UserVideos = uint.Parse( cn.InnerText );
-                        break;
-                    case "followers":
-                        pc.Followers = uint.Parse( cn.InnerText );
-                        break;
-                    case "user_photos":
-                        pc.UserPhotos = uint.Parse( cn.InnerText );
-                        break;
-                    case "subscriptions":
-                        pc.Subscriptions = uint.Parse( cn.InnerText );
-                        break;
-                    case "pages":
-                        pc.Pages = uint.Parse( cn.InnerText );
-                        break;
-                }
-            }
-            return pc;
+            if ( String.CompareOrdinal( node.Name, "counters" ) != 0 )
+                return null;
+            return this.ParseFromXmlFragments( node.ChildNodes.OfType<XmlNode>() );
         }
 
         public ProfileCounters[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
-            return nodes.Select( this.ParseFromXml ).ToArray();
+            return nodes.Select( this.ParseFromXml ).Where(a=>a!=null).ToArray();
         }
+
+        public ProfileCounters ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            var pc = new ProfileCounters();
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref pc );
+            return pc;
+        }
+
+        public void UpdateFromFragment(XmlNode node, ref ProfileCounters entity) {
+            switch ( node.Name ) {
+                case "albums":
+                    entity.Albums = uint.Parse( node.InnerText );
+                    break;
+                case "videos":
+                    entity.Videos = uint.Parse( node.InnerText );
+                    break;
+                case "audios":
+                    entity.Audios = uint.Parse( node.InnerText );
+                    break;
+                case "photos":
+                    entity.Photos = uint.Parse( node.InnerText );
+                    break;
+                case "notes":
+                    entity.Notes = uint.Parse( node.InnerText );
+                    break;
+                case "friends":
+                    entity.Friends = uint.Parse( node.InnerText );
+                    break;
+                case "groups":
+                    entity.Groups = uint.Parse( node.InnerText );
+                    break;
+                case "online_friends":
+                    entity.OnlineFriends = uint.Parse( node.InnerText );
+                    break;
+                case "mutual_friends":
+                    entity.MutualFriends = uint.Parse( node.InnerText );
+                    break;
+                case "user_videos":
+                    entity.UserVideos = uint.Parse( node.InnerText );
+                    break;
+                case "followers":
+                    entity.Followers = uint.Parse( node.InnerText );
+                    break;
+                case "user_photos":
+                    entity.UserPhotos = uint.Parse( node.InnerText );
+                    break;
+                case "subscriptions":
+                    entity.Subscriptions = uint.Parse( node.InnerText );
+                    break;
+                case "pages":
+                    entity.Pages = uint.Parse( node.InnerText );
+                    break;
+            }
+        }
+
     }
 }

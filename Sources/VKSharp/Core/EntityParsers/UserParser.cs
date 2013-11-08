@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Xml;
 using VKSharp.Core.Entities;
@@ -21,165 +20,174 @@ namespace VKSharp.Core.EntityParsers {
         private UserParser() { }
 
         public User ParseFromXml( XmlNode node ) {
-            var u = new User() {
+            if ( String.CompareOrdinal( node.Name, "user" ) != 0 )
+                return null;
+            return this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
+        }
+
+        public User[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
+            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
+        }
+
+        public User ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+            var u = new User {
                 ProfilePhotos = new ProfilePhotos(),
                 SiteProfiles = new SiteProfiles(),
                 Counters = new ProfileCounters()
             };
-            foreach ( XmlNode cn in node.ChildNodes ) {
-                switch ( cn.Name ) {
-                    case "can_post":
-                        u.CanPost = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "can_see_all_posts":
-                        u.CanSeeAllPosts = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "can_see_audio":
-                        u.CanSeeAudio = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "can_write_private_message":
-                        u.CanWritePrivateMessage = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "has_mobile":
-                        u.HasMobile = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "online":
-                        u.Online = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "verified":
-                        u.Verified = int.Parse( cn.InnerText ) == 1;
-                        break;
-                    case "bdate":
-                        u.BDate = Date.Parse( cn.InnerText );
-                        break;
-
-                    case "activity":
-                        u.Activity = cn.InnerText;
-                        break;
-                    case "faculty_name":
-                        u.FacultyName = cn.InnerText;
-                        break;
-                    case "first_name":
-                        u.FirstName = cn.InnerText;
-                        break;
-                    case "interests":
-                        u.Interests = cn.InnerText;
-                        break;
-                    case "movies":
-                        u.Movies = cn.InnerText;
-                        break;
-                    case "tv":
-                        u.Tv = cn.InnerText;
-                        break;
-                    case "books":
-                        u.Books = cn.InnerText;
-                        break;
-                    case "games":
-                        u.Games = cn.InnerText;
-                        break;
-                    case "home_phone":
-                        u.HomePhone = cn.InnerText;
-                        break;
-                    case "last_name":
-                        u.LastName = cn.InnerText;
-                        break;
-                    case "mobile_phone":
-                        u.MobilePhone = cn.InnerText;
-                        break;
-                    case "screen_name":
-                        u.ScreenName = cn.InnerText;
-                        break;
-                    case "status":
-                        u.Status = cn.InnerText;
-                        break;
-                    case "university_name":
-                        u.UniversityName = cn.InnerText;
-                        break;
-
-                    case "uid":
-                        u.ID = uint.Parse( cn.InnerText );
-                        break;
-                    case "city":
-                        u.City = uint.Parse( cn.InnerText );
-                        break;
-                    case "country":
-                        u.Country = uint.Parse( cn.InnerText );
-                        break;
-                    case "faculty":
-                        u.Faculty = uint.Parse( cn.InnerText );
-                        break;
-                    case "graduation":
-                        u.Graduation = uint.Parse( cn.InnerText );
-                        break;
-                    case "last_seen":
-                        u.LastSeen = uint.Parse( cn.InnerText );
-                        break;
-                    case "university":
-                        u.University = uint.Parse( cn.InnerText );
-                        break;
-
-                    case "photo_50":
-                        u.ProfilePhotos.Photo50 = cn.InnerText;
-                        break;
-                    case "photo_100":
-                        u.ProfilePhotos.Photo100 = cn.InnerText;
-                        break;
-                    case "photo_200":
-                        u.ProfilePhotos.Photo200 = cn.InnerText;
-                        break;
-                    case "photo_max":
-                        u.ProfilePhotos.PhotoMax = cn.InnerText;
-                        break;
-                    case "photo_200_orig":
-                        u.ProfilePhotos.Photo200Orig = cn.InnerText;
-                        break;
-                    case "photo_400_orig":
-                        u.ProfilePhotos.Photo400Orig = cn.InnerText;
-                        break;
-                    case "photo_max_orig":
-                        u.ProfilePhotos.PhotoMaxOrig = cn.InnerText;
-                        break;
-
-                    case "skype":
-                        u.SiteProfiles.Skype = cn.InnerText;
-                        break;
-                    case "facebook":
-                        u.SiteProfiles.Facebook = ulong.Parse( cn.InnerText );
-                        break;
-                    case "facebook_name":
-                        u.SiteProfiles.FacebookName = cn.InnerText;
-                        break;
-                    case "twitter":
-                        u.SiteProfiles.Twitter = cn.InnerText;
-                        break;
-                    case "instagram":
-                        u.SiteProfiles.Instagram = cn.InnerText;
-                        break;
-
-                    case "counters":
-                        u.Counters = u.Counters.GetParser().ParseFromXml( cn );
-                        break;
-
-                    case "relation":
-                        u.Relation = (Relation) int.Parse(cn.InnerText);
-                        break;
-                    case "sex":
-                        u.Sex = (Sex) int.Parse( cn.InnerText );
-                        break;
-
-                    case "schools":
-                        u.Schools = new School().GetParser().ParseAllFromXml(cn.ChildNodes.OfType<XmlNode>());
-                        break;
-                    case "universities":
-                        u.Universities = new University().GetParser().ParseAllFromXml( cn.ChildNodes.OfType<XmlNode>() );
-                        break;
-                }
-            }
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref u );
             return u;
         }
 
-        public User[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
-            return nodes.Select( this.ParseFromXml ).ToArray();
+        public void UpdateFromFragment(XmlNode node, ref User entity) {
+            switch ( node.Name ) {
+                case "can_post":
+                    entity.CanPost = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "can_see_all_posts":
+                    entity.CanSeeAllPosts = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "can_see_audio":
+                    entity.CanSeeAudio = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "can_write_private_message":
+                    entity.CanWritePrivateMessage = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "has_mobile":
+                    entity.HasMobile = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "online":
+                    entity.Online = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "verified":
+                    entity.Verified = int.Parse( node.InnerText ) == 1;
+                    break;
+                case "bdate":
+                    entity.BDate = Date.Parse( node.InnerText );
+                    break;
+
+                case "activity":
+                    entity.Activity = node.InnerText;
+                    break;
+                case "faculty_name":
+                    entity.FacultyName = node.InnerText;
+                    break;
+                case "first_name":
+                    entity.FirstName = node.InnerText;
+                    break;
+                case "interests":
+                    entity.Interests = node.InnerText;
+                    break;
+                case "movies":
+                    entity.Movies = node.InnerText;
+                    break;
+                case "tv":
+                    entity.Tv = node.InnerText;
+                    break;
+                case "books":
+                    entity.Books = node.InnerText;
+                    break;
+                case "games":
+                    entity.Games = node.InnerText;
+                    break;
+                case "home_phone":
+                    entity.HomePhone = node.InnerText;
+                    break;
+                case "last_name":
+                    entity.LastName = node.InnerText;
+                    break;
+                case "mobile_phone":
+                    entity.MobilePhone = node.InnerText;
+                    break;
+                case "screen_name":
+                    entity.ScreenName = node.InnerText;
+                    break;
+                case "status":
+                    entity.Status = node.InnerText;
+                    break;
+                case "university_name":
+                    entity.UniversityName = node.InnerText;
+                    break;
+
+                case "uid":
+                    entity.ID = uint.Parse( node.InnerText );
+                    break;
+                case "city":
+                    entity.City = uint.Parse( node.InnerText );
+                    break;
+                case "country":
+                    entity.Country = uint.Parse( node.InnerText );
+                    break;
+                case "faculty":
+                    entity.Faculty = uint.Parse( node.InnerText );
+                    break;
+                case "graduation":
+                    entity.Graduation = uint.Parse( node.InnerText );
+                    break;
+                case "last_seen":
+                    entity.LastSeen = uint.Parse( node.InnerText );
+                    break;
+                case "university":
+                    entity.University = uint.Parse( node.InnerText );
+                    break;
+
+                case "photo_50":
+                    entity.ProfilePhotos.Photo50 = node.InnerText;
+                    break;
+                case "photo_100":
+                    entity.ProfilePhotos.Photo100 = node.InnerText;
+                    break;
+                case "photo_200":
+                    entity.ProfilePhotos.Photo200 = node.InnerText;
+                    break;
+                case "photo_max":
+                    entity.ProfilePhotos.PhotoMax = node.InnerText;
+                    break;
+                case "photo_200_orig":
+                    entity.ProfilePhotos.Photo200Orig = node.InnerText;
+                    break;
+                case "photo_400_orig":
+                    entity.ProfilePhotos.Photo400Orig = node.InnerText;
+                    break;
+                case "photo_max_orig":
+                    entity.ProfilePhotos.PhotoMaxOrig = node.InnerText;
+                    break;
+
+                case "skype":
+                    entity.SiteProfiles.Skype = node.InnerText;
+                    break;
+                case "facebook":
+                    entity.SiteProfiles.Facebook = ulong.Parse( node.InnerText );
+                    break;
+                case "facebook_name":
+                    entity.SiteProfiles.FacebookName = node.InnerText;
+                    break;
+                case "twitter":
+                    entity.SiteProfiles.Twitter = node.InnerText;
+                    break;
+                case "instagram":
+                    entity.SiteProfiles.Instagram = node.InnerText;
+                    break;
+
+                case "counters":
+                    entity.Counters = entity.Counters.GetParser().ParseFromXml( node );
+                    break;
+
+                case "relation":
+                    entity.Relation = (Relation) int.Parse( node.InnerText );
+                    break;
+                case "sex":
+                    entity.Sex = (Sex) int.Parse( node.InnerText );
+                    break;
+
+                case "schools":
+                    entity.Schools = new School().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    break;
+                case "universities":
+                    entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    break;
+            }
         }
     }
 }

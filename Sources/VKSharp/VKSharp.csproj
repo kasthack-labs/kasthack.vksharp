@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Entities\EntityList.cs" />
+    <Compile Include="Core\EntityParsers\EntityListParser.cs" />
     <Compile Include="Core\EntityParsers\ProfileCountersParser.cs" />
     <Compile Include="Data\Api\VKPermission.cs" />
     <Compile Include="Data\Executors\IExecutor.cs" />
