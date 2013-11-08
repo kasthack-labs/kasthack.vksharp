@@ -26,10 +26,10 @@ namespace VKSharp.Helpers {
         }
 
         public static string ToNCString<T>(this T value) where T: IFormattable {
-            return ((IFormattable)value).ToString( "{0}", BuiltInData.Instance.NC);
+            return ((IFormattable)value).ToString( null, BuiltInData.Instance.NC);
         }
         public static string ToNCLString<T>( this T value ) where T : IFormattable {
-            return ( (IFormattable) value ).ToString( "{0}", BuiltInData.Instance.NC ).ToLower( BuiltInData.Instance.NC );
+            return ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC ).ToLower( BuiltInData.Instance.NC );
         }
     }
 }

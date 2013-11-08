@@ -7,6 +7,7 @@ using VKSharp.Core.Enums;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
+using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
@@ -14,24 +15,9 @@ namespace VKSharp {
             var req = new VKRequest<User> {
                 MethodName = "users.get",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "fields",
-                        String.Join(
-                            ",",
-                            String.Join(",",MiscTools.GetUserFields(fields))
-                        )
-                    },
-                    {
-                        "user_ids",
-                        String.Join(
-                            ",",
-                            ids
-                        )
-                    },
-                    {
-                        "name_case",
-                        nameCase.ToString().ToLowerInvariant()
-                    }
+                    { "fields", String.Join(",",String.Join(",",MiscTools.GetUserFields(fields)))},
+                    { "user_ids", String.Join( ",", ids ) },
+                    { "name_case", nameCase.ToNCLString() }
                 },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
@@ -48,26 +34,11 @@ namespace VKSharp {
             var req = new VKRequest<EntityList<User>> {
                 MethodName = "users.getFollowers",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "fields",
-                        String.Join(",",MiscTools.GetUserFields(fields))
-                    },
-                    {
-                        "user_id",
-                        userID.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "offset",
-                        offset.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "count",
-                        count.ToString(BuiltInData.Instance.NC)
-                    },
-                    {
-                        "name_case",
-                        nameCase.ToString().ToLowerInvariant()
-                    }
+                    { "fields", String.Join(",",MiscTools.GetUserFields(fields)) },
+                    { "user_id", userID.ToNCString() },
+                    { "offset", offset.ToNCString() },
+                    { "count", count.ToNCString() },
+                    { "name_case", nameCase.ToNCLString() }
                 },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
@@ -78,8 +49,8 @@ namespace VKSharp {
         public async Task<User[]> UsersSearchAsync(
             string query = "",
             SearchSortOrder sort = SearchSortOrder.ByRating,
-            uint? offset = null,
-            uint? count = null,
+            ushort? offset = null,
+            ushort? count = null,
             UserFields fields = UserFields.First_Name|UserFields.Last_Name,
             uint? cityID = null,
             uint? countryID = null,
@@ -89,11 +60,11 @@ namespace VKSharp {
             uint? universityYear = null,
             Sex? sex = null,
             Relation? relation = null,
-            uint? ageFrom = null,
-            uint? ageTo = null,
-            uint? birthDay = null,
-            uint? birthMonth = null,
-            uint? birthYear = null,
+            byte? ageFrom = null,
+            byte? ageTo = null,
+            byte? birthDay = null,
+            byte? birthMonth = null,
+            ushort? birthYear = null,
             bool? online = null,
             bool? hasPhoto = null,
             uint? schoolCountryID = null,
@@ -127,8 +98,8 @@ namespace VKSharp {
                     { "birth_day", MiscTools.NullableString(birthDay) },
                     { "birth_month", MiscTools.NullableString(birthMonth) },
                     { "birth_year", MiscTools.NullableString(birthYear) },
-                    { "online", MiscTools.NullableString(online) },
-                    { "has_photo", MiscTools.NullableString(hasPhoto) },
+                    { "online", MiscTools.NullableString(online.HasValue?(uint?)(online.Value?1:0):null) },
+                    { "has_photo", MiscTools.NullableString(hasPhoto.HasValue?(uint?)(hasPhoto.Value?1:0):null)  },
                     { "school_country", MiscTools.NullableString(schoolCountryID) }, 
                     { "school_city", MiscTools.NullableString(schoolCityID) }, 
                     { "school", MiscTools.NullableString(schoolID) }, 
@@ -143,10 +114,16 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-    }
 
-    public enum SearchSortOrder {
-        ByRating = 0,
-        ByRegistrationDate = 1
+        public async Task<StructEntity<bool>> UserIsAppUserAsync( uint? userID ) {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "users.isAppUser",
+                //fucking magic! i don't know why standard initializer doesn't work here
+                Parameters = new Dictionary<string, string> { { "user_id", MiscTools.NullableString( userID ) } },
+                Token = this.IsLogged ? this.CurrenToken : null
+            };
+
+            return ( await this._executor.ExecAsync( req ) ).Data[ 0 ];
+        }
     }
 }

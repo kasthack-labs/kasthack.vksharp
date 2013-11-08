@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Api\Account.cs" />
     <Compile Include="Api\Friends.cs" />
+    <Compile Include="Data\Parameters\SearchSortOrder.cs" />
     <Compile Include="Api\Users.cs" />
     <Compile Include="Api\Groups.cs" />
     <Compile Include="Api\Wrappers\Account.cs" />
@@ -64,6 +65,9 @@
     <Compile Include="Data\Parameters\UserFields.cs" />
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
+    <Compile Include="Helpers\PrimitiveEntities\Numbers.cs" />
+    <Compile Include="Helpers\Parsers\PrimitiveParser.cs" />
+    <Compile Include="Helpers\Parsers\PrimitiveParserFactory.cs" />
     <Compile Include="VKApi.cs" />
     <Compile Include="Core\Entities\Attachment.cs" />
     <Compile Include="Core\Entities\Audio.cs" />
@@ -137,7 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Helpers\Exceptions\" />
-    <Folder Include="Helpers\Parsers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

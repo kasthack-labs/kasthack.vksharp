@@ -6,6 +6,7 @@ using System.Xml;
 using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
+using VKSharp.Helpers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
@@ -14,7 +15,7 @@ namespace VKSharp.Data.Executors {
             var raw = await this.ExecRawAsync( request );
             doc.LoadXml( raw );
             var rootNode = doc.DocumentElement;
-            if ( rootNode.HasAttribute( "list" ) && rootNode.Attributes[ "list" ].Value.ToLowerInvariant() == "true" ) {
+            if ( rootNode.HasAttribute( "list" ) && rootNode.Attributes[ "list" ].Value.ToLower(BuiltInData.Instance.NC) == "true" ) {
                 return new VKResponse<T> {
                     Data = ( (IVKEntity<T>) ( new T() ) )
                             .GetParser()
