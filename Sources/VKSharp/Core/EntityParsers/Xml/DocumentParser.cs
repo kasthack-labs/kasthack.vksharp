@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class DocumentParser : IVKEntityParser<Document> {
+    public class DocumentParser : IXmlVKEntityParser<Document> {
         private static readonly Lazy<DocumentParser> Lazy = new Lazy<DocumentParser>( () => new DocumentParser() );
         public static DocumentParser Instanse {
             get {

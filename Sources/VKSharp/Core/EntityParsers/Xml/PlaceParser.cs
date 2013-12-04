@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class PlaceParser : IVKEntityParser<Place> {
+    public class PlaceParser : IXmlVKEntityParser<Place> {
         private static readonly Lazy<PlaceParser> Lazy = new Lazy<PlaceParser>( () => new PlaceParser() );
         public static PlaceParser Instanse {
             get { return Lazy.Value; }

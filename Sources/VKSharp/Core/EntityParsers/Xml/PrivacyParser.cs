@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class PrivacyParser:IVKEntityParser<Privacy> {
+    public class PrivacyParser:IXmlVKEntityParser<Privacy> {
         private static readonly Lazy<PrivacyParser> Lazy = new Lazy<PrivacyParser>( () => new PrivacyParser() );
         public static PrivacyParser Instanse {
             get {

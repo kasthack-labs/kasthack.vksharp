@@ -6,7 +6,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class EntityListParser<T>:IVKEntityParser<EntityList<T>> where T : IVKEntity<T>, new() {
+    public class EntityListParser<T>:IXmlVKEntityParser<EntityList<T>> where T : IVKEntity<T>, new() {
         private static readonly Lazy<EntityListParser<T>> Lazy = new Lazy<EntityListParser<T>>( () => new EntityListParser<T>() );
         public static EntityListParser<T> Instanse {
             get {

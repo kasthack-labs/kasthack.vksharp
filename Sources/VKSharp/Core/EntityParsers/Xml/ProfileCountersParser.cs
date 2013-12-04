@@ -6,7 +6,7 @@ using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class ProfileCountersParser:IVKEntityParser<ProfileCounters> {
+    public class ProfileCountersParser:IXmlVKEntityParser<ProfileCounters> {
          private static readonly Lazy<ProfileCountersParser> Lazy = new Lazy<ProfileCountersParser>( () => new ProfileCountersParser() );
         public static ProfileCountersParser Instanse {
             get {

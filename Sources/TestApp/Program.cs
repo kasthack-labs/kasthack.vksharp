@@ -28,8 +28,11 @@ namespace TestApp {
             //friendsQuery.Dump();
             //var friendsPhone = vk.FriendsGetByPhones(new ulong[] {79312602112});
             //friendsPhone.Dump();
-            var isAppUserQuery = vk.UserIsAppUser( 8878040 );
-            isAppUserQuery.Data.Dump();
+            //var isAppUserQuery = vk.UserIsAppUser( 8878040 );
+            //isAppUserQuery.Data.Dump();
+
+            var au = vk.AudiosGet();
+
             Console.ReadLine();
         }
     }

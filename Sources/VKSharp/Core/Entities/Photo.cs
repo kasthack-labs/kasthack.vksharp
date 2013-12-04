@@ -14,8 +14,5 @@ namespace VKSharp.Core.Entities {
         public uint Height { get; set; }
         public string Text { get; set; }
         public uint Date { get; set; }
-        public override IVKEntityParser<Photo> GetParser() {
-            return PhotoParser.Instanse;
-        }
     }
 }

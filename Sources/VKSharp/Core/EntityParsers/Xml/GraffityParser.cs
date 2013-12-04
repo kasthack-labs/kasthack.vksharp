@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class GraffityParser:IVKEntityParser<Graffity> {
+    public class GraffityParser:IXmlVKEntityParser<Graffity> {
         private static readonly Lazy<GraffityParser> Lazy = new Lazy<GraffityParser>( () => new GraffityParser() );
         public static GraffityParser Instanse {
             get {

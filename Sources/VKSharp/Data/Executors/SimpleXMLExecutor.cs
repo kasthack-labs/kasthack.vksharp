@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,25 +8,49 @@ using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
+using VKSharp.Helpers.Parsers;
+using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
+        private static readonly Lazy<Dictionary<Type, object>> _parserStor = new Lazy<Dictionary<Type, object>>(() => 
+        new Dictionary<Type, object> {
+        }
+        );
+
+        private static Dictionary<Type, object> ParserStor {
+            get {
+                return _parserStor.Value;
+            }
+        }
+
+        private static IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>, new() {
+            object parser;
+            var ti = typeof( T );
+            if ( ParserStor.TryGetValue( ti, out parser ) )
+                return (IXmlVKEntityParser<T>) parser;
+            if (!ti.IsGenericType)
+                throw new Exception();
+            if ( ti.GetGenericTypeDefinition() == typeof (StructEntity<>) ) {
+                ParserStor.Add(ti, PrimitiveParserFactory.GetParserFor<>());
+            }
+        }
+
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>, new() {
             var doc = new XmlDocument();
             var raw = await this.ExecRawAsync( request );
             doc.LoadXml( raw );
             var rootNode = doc.DocumentElement;
+            var parser = GetParser<T>();
             if ( rootNode.HasAttribute( "list" ) && rootNode.Attributes[ "list" ].Value.ToLower(BuiltInData.Instance.NC) == "true" ) {
                 return new VKResponse<T> {
-                    Data = ( (IVKEntity<T>) ( new T() ) )
-                            .GetParser()
+                    Data =  parser
                             .ParseAllFromXml( rootNode.ChildNodes.OfType<XmlNode>() ),
                     Status = null
                 };
             }
             return new VKResponse<T> {
-                Data = new[]{( (IVKEntity<T>) ( new T() ) )
-                        .GetParser()
+                Data = new[]{parser
                         .ParseFromXmlFragments( rootNode.ChildNodes.OfType<XmlNode>() )},
                 Status = null
             };

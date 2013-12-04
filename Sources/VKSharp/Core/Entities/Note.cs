@@ -10,8 +10,5 @@ namespace VKSharp.Core.Entities {
         public uint? ReadCommentCount { get; set; }
         public string Text { get; set; }
         public string Title { get; set; }
-        public override IVKEntityParser<Note> GetParser() {
-            return NoteParser.Instanse;
-        }
     }
 }

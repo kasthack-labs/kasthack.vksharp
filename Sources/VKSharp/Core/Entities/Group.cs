@@ -5,7 +5,7 @@ using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Group:IVKEntity<Group> {
-
+        
         public bool IsAdmin { get; set; }
         public bool IsClosed { get; set; }
         public bool IsMember { get; set; }
@@ -34,8 +34,6 @@ namespace VKSharp.Core.Entities {
         public uint? PostID { get; set; }
         public uint? StartDate { get; set; }
 
-        public IVKEntityParser<Group> GetParser() {
-            return GroupParser.Instanse;
-        }
+        public VKApi Context { get; set; }
     }
 }

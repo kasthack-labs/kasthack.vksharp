@@ -2,7 +2,7 @@
 using System.Xml;
 
 namespace VKSharp.Core.Interfaces {
-    public interface IVKEntityParser<T> {
+    public interface IXmlVKEntityParser<T> {
         //
         void FillFromXml( IEnumerable<XmlNode> nodes, ref T entity );
         //parse one from xml node

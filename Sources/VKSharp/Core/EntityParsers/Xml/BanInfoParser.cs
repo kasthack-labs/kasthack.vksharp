@@ -6,7 +6,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class BanInfoParser:IVKEntityParser<BanInfo> {
+    public class BanInfoParser:IXmlVKEntityParser<BanInfo> {
 
         private static readonly Lazy<BanInfoParser> Lazy = new Lazy<BanInfoParser>( () => new BanInfoParser() );
         public static BanInfoParser Instanse {

@@ -6,7 +6,7 @@ using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp.Helpers.Parsers {
-    public class PrimitiveParser<TP> : IVKEntityParser<StructEntity<TP>> where TP : struct {
+    public class PrimitiveParser<TP> : IXmlVKEntityParser<StructEntity<TP>> where TP : struct {
         private readonly Func<string, TP> _parseFunc;
         public PrimitiveParser( Func<string, TP> parseFunc ) {
             this._parseFunc = parseFunc;

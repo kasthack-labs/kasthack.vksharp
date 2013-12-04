@@ -9,7 +9,7 @@ using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.EntityParsers {
-    public class UserParser : IVKEntityParser<User> {
+    public class UserParser : IXmlVKEntityParser<User> {
         private static readonly Lazy<UserParser> Lazy = new Lazy<UserParser>( () => new UserParser() );
         public static UserParser Instanse {
             get {

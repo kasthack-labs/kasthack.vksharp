@@ -3,7 +3,7 @@ using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Geo:IVKEntity<Geo> {
-
+        
         public string Address { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }
@@ -11,8 +11,6 @@ namespace VKSharp.Core.Entities {
         public uint CountryID { get; set; }
         public uint PlaceID { get; set; }
 
-        public IVKEntityParser<Geo> GetParser() {
-            return GeoParser.Instanse;
-        }
+        public VKApi Context { get; set; }
     }
 }

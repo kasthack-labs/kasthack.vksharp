@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class PostRepostsParser:IVKEntityParser<PostReposts> {
+    public class PostRepostsParser:IXmlVKEntityParser<PostReposts> {
         private static readonly Lazy<PostRepostsParser> Lazy = new Lazy<PostRepostsParser>( () => new PostRepostsParser() );
         public static PostRepostsParser Instanse {
             get {

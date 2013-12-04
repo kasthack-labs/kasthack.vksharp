@@ -2,13 +2,12 @@
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class PostLikes:IVKEntity<PostLikes> {
+    public class PostLikes : IVKEntity<PostLikes> {
         public uint Count { get; set; }
         public bool? UserLikes { get; set; }
         public bool? CanLike { get; set; }
         public bool? CanPublish { get; set; }
-        public IVKEntityParser<PostLikes> GetParser() {
-            return PostLikesParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

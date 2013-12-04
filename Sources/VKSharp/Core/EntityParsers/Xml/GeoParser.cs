@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class GeoParser:IVKEntityParser<Geo> {
+    public class GeoParser:IXmlVKEntityParser<Geo> {
         private static readonly Lazy<GeoParser> Lazy = new Lazy<GeoParser>( () => new GeoParser() );
         public static GeoParser Instanse {
             get {

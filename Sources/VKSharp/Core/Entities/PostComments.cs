@@ -3,10 +3,9 @@ using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class PostComments:IVKEntity<PostComments> {
-        public uint Count { get; set; }
+                public uint Count { get; set; }
         public bool? CanPost { get; set; }
-        public IVKEntityParser<PostComments> GetParser() {
-            return PostCommentsParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

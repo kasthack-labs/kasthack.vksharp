@@ -6,7 +6,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class SchoolParser : IVKEntityParser<School> {
+    public class SchoolParser : IXmlVKEntityParser<School> {
         private static readonly Lazy<SchoolParser> Lazy = new Lazy<SchoolParser>( () => new SchoolParser() );
         public static SchoolParser Instanse {
             get {

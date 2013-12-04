@@ -1,5 +1,6 @@
 ﻿namespace VKSharp.Core.Interfaces {
     public interface IVKEntity<T> where T : IVKEntity<T>, new() {
-        IVKEntityParser<T> GetParser();
+        VKApi Context { get; set; }
+        //IXmlVKEntityParser<T> GetParser();
     }
 }

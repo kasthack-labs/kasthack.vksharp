@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class GroupParser : IVKEntityParser<Group> {
+    public class GroupParser : IXmlVKEntityParser<Group> {
         private static readonly Lazy<GroupParser> Lazy = new Lazy<GroupParser>( () => new GroupParser() );
         public static GroupParser Instanse {
             get {

@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class VideoParser : IVKEntityParser<Video> {
+    public class VideoParser : IXmlVKEntityParser<Video> {
         private static readonly Lazy<VideoParser> Lazy = new Lazy<VideoParser>( () => new VideoParser() );
         public static VideoParser Instanse {
             get {

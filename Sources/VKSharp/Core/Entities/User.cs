@@ -6,7 +6,7 @@ using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
     public class User:IVKEntity<User> {
-
+        
         public ProfilePhotos ProfilePhotos { get; set; }
         public SiteProfiles SiteProfiles { get; set; }
         public ProfileCounters Counters { get; set; }
@@ -48,9 +48,8 @@ namespace VKSharp.Core.Entities {
         public uint? LastSeen { get; set; }
         public uint? University { get; set; }
         public University[] Universities { get; set; }
-        public IVKEntityParser<User> GetParser() {
-            return UserParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
         public override string ToString() {
             return "ID :" + this.ID;
         }

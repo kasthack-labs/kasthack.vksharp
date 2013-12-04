@@ -21,8 +21,5 @@ namespace VKSharp.Core.Entities {
         public bool? UserLikes { get; set; }
         public uint? LikesCount { get; set; }
         public bool? PlaybackLooped { get; set; }
-        public override IVKEntityParser<Video> GetParser() {
-            return VideoParser.Instanse;
-        }
     }
 }

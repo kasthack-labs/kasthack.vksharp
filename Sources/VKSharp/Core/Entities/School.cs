@@ -3,7 +3,7 @@ using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class School:IVKEntity<School> {
-        public string Class { get; set; }
+                public string Class { get; set; }
         public string Name { get; set; }
         public string Speciality { get; set; }
         public uint City { get; set; }
@@ -14,8 +14,7 @@ namespace VKSharp.Core.Entities {
         public ushort? Graduation { get; set; }
         public ushort? YearFrom { get; set; }
         public ushort? YearTo { get; set; }
-        public IVKEntityParser<School> GetParser() {
-            return SchoolParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

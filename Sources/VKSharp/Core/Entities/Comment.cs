@@ -3,7 +3,7 @@ using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Comment : IVKEntity<Comment> {
-
+        
         public Attachment[] Attachments { get; set; }
         public CommentLikes Likes { get; set; }
         public int FromID { get; set; }
@@ -14,8 +14,6 @@ namespace VKSharp.Core.Entities {
         public uint ID { get; set; }
         public uint ReplyToCID { get; set; }
 
-        public IVKEntityParser<Comment> GetParser() {
-            return CommentParser.Instanse;
-        }
+        public VKApi Context { get; set; }
     }
 }

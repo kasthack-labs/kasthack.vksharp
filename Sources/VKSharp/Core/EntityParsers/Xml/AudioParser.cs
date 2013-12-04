@@ -5,7 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
-    public class AudioParser : IVKEntityParser<Audio> {
+    public class AudioParser : IXmlVKEntityParser<Audio> {
         private static readonly Lazy<AudioParser> Lazy = new Lazy<AudioParser>( () => new AudioParser() );
         public static AudioParser Instanse {
             get {
