@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using VKSharp.Core.Entities;
+using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers {
@@ -16,23 +18,54 @@ namespace VKSharp.Core.EntityParsers {
         private AudioParser() {}
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Audio entity) {
-            throw new NotImplementedException();
+            foreach ( var cn in nodes )
+                this.UpdateFromFragment( cn, ref entity );
         }
 
         public Audio ParseFromXml(XmlNode node) {
-            throw new NotImplementedException();
+            return this.ParseFromXmlFragments( node.ChildNodes.OfType<XmlNode>() );
         }
 
         public Audio[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
-            throw new NotImplementedException();
+            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
         }
 
         public Audio ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
-            throw new NotImplementedException();
+            var sc = new Audio();
+            this.FillFromXml( nodes, ref sc );
+            return sc;
         }
 
         public void UpdateFromFragment(XmlNode node, ref Audio entity) {
-            throw new NotImplementedException();
+            switch ( node.Name ) {
+                case "id":
+                    entity.ID = ulong.Parse( node.InnerText );
+                    break;
+                case "owner_id":
+                    entity.OwnerID = int.Parse( node.InnerText );
+                    break;
+                case "album_id":
+                    entity.OwnerID = int.Parse( node.InnerText );
+                    break;
+                case "artist":
+                    entity.Artist = node.InnerText;
+                    break;
+                case "title":
+                    entity.Title = node.InnerText;
+                    break;
+                case "duration":
+                    entity.Duration = uint.Parse( node.InnerText );
+                    break;
+                case "url":
+                    entity.Url = node.InnerText;
+                    break;
+                case "lyrics_id":
+                    entity.LyricsID = int.Parse( node.InnerText );
+                    break;
+                case "genre_id":
+                    entity.Genre = (AudioGenre)int.Parse( node.InnerText );
+                    break;
+            }
         }
 
     }

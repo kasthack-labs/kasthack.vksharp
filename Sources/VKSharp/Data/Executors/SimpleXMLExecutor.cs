@@ -15,7 +15,7 @@ namespace VKSharp.Data.Executors {
             var raw = await this.ExecRawAsync( request );
             doc.LoadXml( raw );
             var rootNode = doc.DocumentElement;
-            if ( rootNode.HasAttribute( "list" ) && rootNode.Attributes[ "list" ].Value.ToLower(BuiltInData.Instance.NC) == "true" ) {
+            if ( rootNode.HasAttribute( "list" ) && rootNode.Attributes[ "list" ].Value.ToLower(BuiltInData.Instance.NC) == "true" ){
                 return new VKResponse<T> {
                     Data = ( (IVKEntity<T>) ( new T() ) )
                             .GetParser()
@@ -34,7 +34,8 @@ namespace VKSharp.Data.Executors {
         public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>, new() {
             var bID = Helpers.BuiltInData.Instance;
             var vk = bID.VKDomain;
-            var query = String.Join( "&", request.Parameters.Select( a => a.Key + "=" + a.Value ) );
+            var query = String.Join( "&", request.Parameters.Where( a=>a.Value!="" ).Select( a => a.Key + "=" + a.Value ).Concat( new []{"v=5.5"} ) );
+            
             var queryB = new StringBuilder();
             queryB.Append( "/method/" );
             queryB.Append( request.MethodName );

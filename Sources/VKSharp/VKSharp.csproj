@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Account.cs" />
+    <Compile Include="Api\Audios.cs" />
     <Compile Include="Api\Friends.cs" />
+    <Compile Include="Api\Wrappers\Audios.cs" />
     <Compile Include="Data\Parameters\SearchSortOrder.cs" />
     <Compile Include="Api\Users.cs" />
     <Compile Include="Api\Groups.cs" />
