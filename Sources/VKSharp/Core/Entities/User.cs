@@ -18,6 +18,7 @@ namespace VKSharp.Core.Entities {
         public bool? CanWritePrivateMessage { get; set; }
         public bool? HasMobile { get; set; }
         public bool? Online { get; set; }
+        public bool? OnlineMobile { get; set; }
         public bool? Verified { get; set; }
         public Date BDate { get; set; }
 

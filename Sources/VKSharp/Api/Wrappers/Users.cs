@@ -21,7 +21,6 @@ namespace VKSharp {
         }
 
         public StructEntity<bool> UserIsAppUser( uint? userID ) {
-//                Console.WriteLine(5.ToNCLString());
                 return Helper.SyncTask( this.UserIsAppUserAsync( userID ) );
         }
     }
