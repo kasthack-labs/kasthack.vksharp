@@ -2,11 +2,10 @@
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Data.Api;
-using VKSharp.Data.Parameters;
 
 namespace TestApp {
     class Program {
-        static void Main( string[] args ) {
+        static void Main() {
             var vk = new VKApi();
             var str = VKToken.GetOAuthURL( 3174839,VKPermission.Everything^(VKPermission.Notify|VKPermission.Nohttps) );
             str.Dump();
@@ -31,7 +30,7 @@ namespace TestApp {
             //var isAppUserQuery = vk.UserIsAppUser( 8878040 );
             //isAppUserQuery.Data.Dump();
 
-            var au = vk.AudiosGet();
+            //var au = vk.AudiosGet();
 
             Console.ReadLine();
         }

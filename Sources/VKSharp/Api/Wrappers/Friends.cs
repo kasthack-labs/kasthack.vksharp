@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using EpicMorg.Net;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;

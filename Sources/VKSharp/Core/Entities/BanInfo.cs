@@ -1,9 +1,8 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class BanInfo : IVKEntity<BanInfo> {
-                public uint AdminID { get; set; }
+        public uint AdminID { get; set; }
         public uint AddDate { get; set; }
         public uint EndDate { get; set; }
         public string Reason { get; set; }

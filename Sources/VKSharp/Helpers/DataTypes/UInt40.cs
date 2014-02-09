@@ -347,13 +347,13 @@ namespace VKSharp.Helpers.DataTypes {
         }
 
         public static explicit operator UInt40( Int64 a ) {
-            return new UInt40() {
+            return new UInt40 {
                 _1 = (byte) ( a >> 32 ),
                 _2 = (uint) a
             };
         }
         public static explicit operator UInt40( UInt64 a ) {
-            return new UInt40() {
+            return new UInt40 {
                 _1 = (byte) ( a >> 32 ),
                 _2 = (uint) a
             };

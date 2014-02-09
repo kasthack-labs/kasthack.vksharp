@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {

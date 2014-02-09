@@ -5,8 +5,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp.Helpers.Parsers {
     public static class PrimitiveParserFactory {
-        private static readonly Lazy<Dictionary<Type, object>> ParserLazy = new Lazy<Dictionary<Type, object>>( () => new Dictionary<Type, object>()
-        {
+        private static readonly Lazy<Dictionary<Type, object>> ParserLazy = new Lazy<Dictionary<Type, object>>( () => new Dictionary<Type, object> {
             {
                 typeof(int),
                 new PrimitiveParser<int>(int.Parse)

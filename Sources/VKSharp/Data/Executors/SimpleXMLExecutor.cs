@@ -8,19 +8,16 @@ using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
-using VKSharp.Helpers.Parsers;
 using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
-        private static readonly Lazy<Dictionary<Type, object>> _parserStor = new Lazy<Dictionary<Type, object>>(() => 
-        new Dictionary<Type, object> {
-        }
-        );
+        private static readonly Lazy<Dictionary<Type, object>> ParserStorLazy = new Lazy<Dictionary<Type, object>>(() => 
+        new Dictionary<Type, object>() );
 
         private static Dictionary<Type, object> ParserStor {
             get {
-                return _parserStor.Value;
+                return ParserStorLazy.Value;
             }
         }
 
@@ -32,8 +29,9 @@ namespace VKSharp.Data.Executors {
             if (!ti.IsGenericType)
                 throw new Exception();
             if ( ti.GetGenericTypeDefinition() == typeof (StructEntity<>) ) {
-                ParserStor.Add(ti, PrimitiveParserFactory.GetParserFor<>());
+                //ParserStor.Add(ti, ti.IsGenericTypeDefinition
             }
+            return null;
         }
 
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>, new() {
@@ -57,7 +55,7 @@ namespace VKSharp.Data.Executors {
         }
 
         public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>, new() {
-            var bID = Helpers.BuiltInData.Instance;
+            var bID = BuiltInData.Instance;
             var vk = bID.VKDomain;
             var query = String.Join( "&", request.Parameters.Select( a => a.Key + "=" + a.Value ) );
             var queryB = new StringBuilder();

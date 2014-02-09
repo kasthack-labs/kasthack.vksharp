@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityFragments {
     public class ProfileCounters:IVKEntity<ProfileCounters> {

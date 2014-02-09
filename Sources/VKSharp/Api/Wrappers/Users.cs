@@ -3,9 +3,7 @@ using EpicMorg.Net;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Data.Parameters;
-using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
-using System;
 
 namespace VKSharp {
     public partial class VKApi {
@@ -21,7 +19,6 @@ namespace VKSharp {
         }
 
         public StructEntity<bool> UserIsAppUser( uint? userID ) {
-//                Console.WriteLine(5.ToNCLString());
                 return Helper.SyncTask( this.UserIsAppUserAsync( userID ) );
         }
     }

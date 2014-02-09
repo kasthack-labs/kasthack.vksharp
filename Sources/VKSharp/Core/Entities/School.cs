@@ -1,9 +1,8 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class School:IVKEntity<School> {
-                public string Class { get; set; }
+        public string Class { get; set; }
         public string Name { get; set; }
         public string Speciality { get; set; }
         public uint City { get; set; }

@@ -8,7 +8,7 @@ using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.DataTypes;
 
-namespace VKSharp.Core.EntityParsers {
+namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : IXmlVKEntityParser<User> {
         private static readonly Lazy<UserParser> Lazy = new Lazy<UserParser>( () => new UserParser() );
         public static UserParser Instanse {
@@ -25,9 +25,7 @@ namespace VKSharp.Core.EntityParsers {
         }
 
         public User ParseFromXml( XmlNode node ) {
-            if ( String.CompareOrdinal( node.Name, "user" ) != 0 )
-                return null;
-            return this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
+            return String.CompareOrdinal( node.Name, "user" ) != 0 ? null : this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
         }
 
         public User[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
@@ -176,8 +174,8 @@ namespace VKSharp.Core.EntityParsers {
 
                 case "counters":
                     var c = entity.Counters;
-                    var cp = c.GetParser();
-                    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref c);
+                    //var cp = c.GetParser();
+                    //cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref c);
                     break;
 
                 case "relation":
@@ -188,15 +186,15 @@ namespace VKSharp.Core.EntityParsers {
                     break;
 
                 case "schools":
-                    entity.Schools = new School().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    //entity.Schools = new School().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
                     break;
                 case "universities":
-                    entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    //entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
                     break;
                 case "ban_info":
                     var b = entity.BanInfo;
-                    var bp = b.GetParser();
-                    bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref b);
+                    //var bp = b.GetParser();
+                    //bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref b);
                     break;
             }
         }

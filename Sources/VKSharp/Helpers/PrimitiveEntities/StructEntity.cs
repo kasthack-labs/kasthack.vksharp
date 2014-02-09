@@ -8,7 +8,7 @@ namespace VKSharp.Helpers.PrimitiveEntities {
         public VKApi Context { get; set; }
 
         public IXmlVKEntityParser<StructEntity<T>> GetParser() {
-            return PrimitiveParserFactory.GetParser<T>();
+            return PrimitiveParserFactory.GetParser<StructEntity<T>,T>();
         }
     }
 }

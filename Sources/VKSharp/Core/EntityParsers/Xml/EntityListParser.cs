@@ -38,7 +38,7 @@ namespace VKSharp.Core.EntityParsers {
                     entity.TotalCount = uint.Parse( node.InnerText );
                     break;
                 case "items":
-                    entity.Items = new T().GetParser().ParseAllFromXml(node.ChildNodes.OfType<XmlNode>());
+                    //entity.Items =  //GetParser().ParseAllFromXml(node.ChildNodes.OfType<XmlNode>());
                     break;
             }
         }

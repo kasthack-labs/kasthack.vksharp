@@ -1,5 +1,4 @@
 ﻿using VKSharp.Core.EntityFragments;
-using VKSharp.Core.EntityParsers;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.DataTypes;

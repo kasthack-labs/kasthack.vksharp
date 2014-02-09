@@ -47,7 +47,7 @@ namespace VKSharp.Data.Api {
                 .GroupBy(a => a[ 0 ])
                 .ToDictionary(a => a.Key, a => a.First()[1]);
             if ( query.ContainsKey( accessTokenPn ) )
-                return new VKToken(query[ accessTokenPn ], query.ContainsKey( signPn ) ? query[ signPn ] : "", userID:uint.Parse( query[ useridPn ] ) );
+                return new VKToken(query[ accessTokenPn ], query.ContainsKey( signPn ) ? query[ signPn ] : "", uint.Parse( query[ useridPn ] ) );
             if ( query.ContainsKey(errorPn))
                 throw new AuthenticationException(
                     String.Format(
