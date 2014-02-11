@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class AttachmentParser : IXmlVKEntityParser<Attachment> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<AttachmentParser> Lazy = new Lazy<AttachmentParser>( () => new AttachmentParser() );
         public static AttachmentParser Instanse {
             get {

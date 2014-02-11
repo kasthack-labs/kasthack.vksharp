@@ -4,9 +4,11 @@ using System.Linq;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
+namespace VKSharp.Core.EntityParsers.Xml {
     public class UniversityParser : IXmlVKEntityParser<University> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<UniversityParser> Lazy = new Lazy<UniversityParser>( () => new UniversityParser() );
         public static UniversityParser Instanse {
             get {

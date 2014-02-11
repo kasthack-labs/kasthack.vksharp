@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class NoteParser:IXmlVKEntityParser<Note> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class NoteParser : IXmlVKEntityParser<Note> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<NoteParser> Lazy = new Lazy<NoteParser>( () => new NoteParser() );
         public static NoteParser Instanse {
             get {

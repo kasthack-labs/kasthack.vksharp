@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp.Helpers.Parsers {
     public class PrimitiveParser<TP> : IXmlVKEntityParser<StructEntity<TP>> where TP : struct {
         private readonly Func<string, TP> _parseFunc;
+        public IExecutor Executor { get; set; }
         public PrimitiveParser( Func<string, TP> parseFunc ) {
             this._parseFunc = parseFunc;
         }

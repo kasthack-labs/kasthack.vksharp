@@ -4,9 +4,11 @@ using System.Linq;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class BanInfoParser:IXmlVKEntityParser<BanInfo> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class BanInfoParser : IXmlVKEntityParser<BanInfo> {
+        public IExecutor Executor { get; set; }
 
         private static readonly Lazy<BanInfoParser> Lazy = new Lazy<BanInfoParser>( () => new BanInfoParser() );
         public static BanInfoParser Instanse {

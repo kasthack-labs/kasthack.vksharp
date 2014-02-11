@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class PhotoParser:IXmlVKEntityParser<Photo> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class PhotoParser : IXmlVKEntityParser<Photo> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<PhotoParser> Lazy = new Lazy<PhotoParser>( () => new PhotoParser() );
         public static PhotoParser Instanse {
             get {

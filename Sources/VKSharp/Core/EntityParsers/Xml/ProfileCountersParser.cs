@@ -4,9 +4,11 @@ using System.Linq;
 using System.Xml;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class ProfileCountersParser:IXmlVKEntityParser<ProfileCounters> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class ProfileCountersParser : IXmlVKEntityParser<ProfileCounters> {
+        public IExecutor Executor { get; set; }
          private static readonly Lazy<ProfileCountersParser> Lazy = new Lazy<ProfileCountersParser>( () => new ProfileCountersParser() );
         public static ProfileCountersParser Instanse {
             get {

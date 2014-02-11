@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class GraffityParser:IXmlVKEntityParser<Graffity> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class GraffityParser : IXmlVKEntityParser<Graffity> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<GraffityParser> Lazy = new Lazy<GraffityParser>( () => new GraffityParser() );
         public static GraffityParser Instanse {
             get {

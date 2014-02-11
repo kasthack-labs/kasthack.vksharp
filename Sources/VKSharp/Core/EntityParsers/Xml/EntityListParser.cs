@@ -4,9 +4,11 @@ using System.Linq;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class EntityListParser<T>:IXmlVKEntityParser<EntityList<T>> where T : IVKEntity<T>, new() {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class EntityListParser<T> : IXmlVKEntityParser<EntityList<T>> where T : IVKEntity<T> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<EntityListParser<T>> Lazy = new Lazy<EntityListParser<T>>( () => new EntityListParser<T>() );
         public static EntityListParser<T> Instanse {
             get {

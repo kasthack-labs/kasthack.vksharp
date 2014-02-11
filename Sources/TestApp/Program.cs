@@ -1,7 +1,9 @@
 ﻿using System;
+using System.IO;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Data.Api;
+using VKSharp.Data.Parameters;
 
 namespace TestApp {
     class Program {
@@ -9,7 +11,11 @@ namespace TestApp {
             var vk = new VKApi();
             var str = VKToken.GetOAuthURL( 3174839,VKPermission.Everything^(VKPermission.Notify|VKPermission.Nohttps) );
             str.Dump();
+#if !DEBUG
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
+#else
+            var redirecturl = File.ReadAllText( "debug.token" );
+#endif
             try {
                 vk.AddToken(VKToken.FromRedirectUrl(redirecturl));
             }
@@ -19,8 +25,8 @@ namespace TestApp {
                 return;
             }
 
-            //var userQuery = vk.UsersGet( new[] { 1U }, UserFields.Everything );
-            //userQuery.Dump();
+            var userQuery = vk.UsersGet( new[] { 1U }, UserFields.Everything );
+            userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();
             //var friendsQuery = vk.FriendsGet(8878040, UserSortOrder.ByID, null, 0, 100, UserFields.Everything);

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class AudioParser : IXmlVKEntityParser<Audio> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<AudioParser> Lazy = new Lazy<AudioParser>( () => new AudioParser() );
         public static AudioParser Instanse {
             get {

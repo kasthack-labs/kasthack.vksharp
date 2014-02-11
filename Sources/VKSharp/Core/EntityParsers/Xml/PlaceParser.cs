@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
+namespace VKSharp.Core.EntityParsers.Xml {
     public class PlaceParser : IXmlVKEntityParser<Place> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<PlaceParser> Lazy = new Lazy<PlaceParser>( () => new PlaceParser() );
         public static PlaceParser Instanse {
             get { return Lazy.Value; }

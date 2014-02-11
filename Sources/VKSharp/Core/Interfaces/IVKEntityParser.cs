@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using VKSharp.Data.Executors;
 
 namespace VKSharp.Core.Interfaces {
-    public interface IXmlVKEntityParser<T> {
+    public interface IXmlVKEntityParser<T> where T:IVKEntity<T> {
+        IExecutor Executor { get; set; }
         //
         void FillFromXml( IEnumerable<XmlNode> nodes, ref T entity );
         //parse one from xml node

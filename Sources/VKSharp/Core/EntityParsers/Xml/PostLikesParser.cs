@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class PostLikesParser:IXmlVKEntityParser<PostLikes> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class PostLikesParser : IXmlVKEntityParser<PostLikes> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<PostLikesParser> Lazy = new Lazy<PostLikesParser>( () => new PostLikesParser() );
         public static PostLikesParser Instanse {
             get { return Lazy.Value; }

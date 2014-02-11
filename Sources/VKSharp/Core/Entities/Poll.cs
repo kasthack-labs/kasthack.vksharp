@@ -10,9 +10,5 @@ namespace VKSharp.Core.Entities {
         public uint AnswerID { get; set; }
 
         public VKApi Context { get; set; }
-
-        public IXmlVKEntityParser<Poll> GetParser() {
-            throw new NotImplementedException();
-        }
     }
 }

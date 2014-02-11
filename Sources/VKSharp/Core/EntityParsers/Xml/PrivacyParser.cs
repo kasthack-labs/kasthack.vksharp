@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class PrivacyParser:IXmlVKEntityParser<Privacy> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class PrivacyParser : IXmlVKEntityParser<Privacy> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<PrivacyParser> Lazy = new Lazy<PrivacyParser>( () => new PrivacyParser() );
         public static PrivacyParser Instanse {
             get {

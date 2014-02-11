@@ -6,10 +6,12 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : IXmlVKEntityParser<User> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<UserParser> Lazy = new Lazy<UserParser>( () => new UserParser() );
         public static UserParser Instanse {
             get {

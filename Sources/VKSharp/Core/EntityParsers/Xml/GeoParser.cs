@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class GeoParser:IXmlVKEntityParser<Geo> {
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class GeoParser : IXmlVKEntityParser<Geo> {
+        public IExecutor Executor { get; set; }
         private static readonly Lazy<GeoParser> Lazy = new Lazy<GeoParser>( () => new GeoParser() );
         public static GeoParser Instanse {
             get {
