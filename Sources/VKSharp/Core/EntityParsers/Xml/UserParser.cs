@@ -129,9 +129,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 case "graduation":
                     entity.Graduation = uint.Parse( node.InnerText );
                     break;
-                case "last_seen":
-                    entity.LastSeen = uint.Parse( node.InnerText );
-                    break;
+                //case "last_seen":
+                //    entity.LastSeen = uint.Parse( node.InnerText );
+                //    break;
                 case "university":
                     entity.University = uint.Parse( node.InnerText );
                     break;
@@ -174,11 +174,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.SiteProfiles.Instagram = node.InnerText;
                     break;
 
-                case "counters":
-                    var c = entity.Counters;
-                    //var cp = c.GetParser();
-                    //cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref c);
-                    break;
+                //case "counters":
+                //    var c = entity.Counters;
+                //    var cp = c.GetParser();
+                //    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref c);
+                //    break;
 
                 case "relation":
                     entity.Relation = (Relation) int.Parse( node.InnerText );
@@ -187,17 +187,17 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.Sex = (Sex) int.Parse( node.InnerText );
                     break;
 
-                case "schools":
-                    //entity.Schools = new School().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
-                    break;
-                case "universities":
-                    //entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
-                    break;
-                case "ban_info":
-                    var b = entity.BanInfo;
-                    //var bp = b.GetParser();
-                    //bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref b);
-                    break;
+                //case "schools":
+                //    entity.Schools = new School().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                //    break;
+                //case "universities":
+                //    entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                //    break;
+                //case "ban_info":
+                //    var b = entity.BanInfo;
+                //    var bp = b.GetParser();
+                //    bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref b);
+                //    break;
             }
         }
     }
