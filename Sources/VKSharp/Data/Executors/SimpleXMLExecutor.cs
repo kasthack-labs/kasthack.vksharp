@@ -13,45 +13,77 @@ using VKSharp.Helpers.Parsers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
-        private static readonly Lazy<Dictionary<Type, object>> ParserStorLazy = new Lazy<Dictionary<Type, object>>( () => {
+        private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
+        private static Dictionary<Type, Type> _parserGenericStor;
+        private static Dictionary<Type, object> _parserStor;
+        private static void LoadParsers(){
             //reflection magic
             try {
-                var dic =
-                    Assembly.GetAssembly( typeof( SimpleXMLExecutor ) )
+                var types = CurrentAssemblyLazy
+                        .Value
                         .GetTypes()
-                        .Where( t => String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
-                        .Where( a=>!a.IsGenericType )
+                        .Where(
+                            t =>
+                            String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
                         .Select( a => new {
-                            InstanceProperty = a.GetProperty( "Instanse", BindingFlags.Static | BindingFlags.Public ),
+                            Type=a,
+                            InstanceProperty = GetParserInstanseProperty(a),
                             Iface = a.GetInterface( "IXmlVKEntityParser`1" )
                         } )
                         .Where( a => a.InstanceProperty != null && a.Iface != null )
+                        .ToArray();
+                _parserGenericStor = types.Where( a => a.Type.IsGenericType ).ToDictionary(
+                    a=>a.Iface.GenericTypeArguments[0].GetGenericTypeDefinition(),
+                    a=>a.Type.GetGenericTypeDefinition()
+                );
+                _parserStor = types.Where( a=>!a.Type.IsGenericType )
                         .ToDictionary(
                             a => a.Iface.GetGenericArguments()[0],
                             a => a.InstanceProperty.GetValue( null, null )
                         );
                 foreach ( var o in PrimitiveParserFactory.ParserLazy.Value )
-                    dic.Add( o.Key, o.Value );
-                return dic;
+                    _parserStor.Add( o.Key, o.Value );
             }
             catch ( Exception ex ) {
                 Console.WriteLine( ex.Message );
                 throw;
             }
-        } );
+        }
 
         private static Dictionary<Type, object> ParserStor {
             get {
-                return ParserStorLazy.Value;
+                if (_parserStor==null) LoadParsers();
+                return _parserStor;
+            }
+        }
+
+        private static Dictionary<Type, Type> ParserGenericStor {
+            get {
+                if (_parserGenericStor==null) LoadParsers();
+                return _parserGenericStor;
             }
         }
 
         private static IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
             object parser;
             var ti = typeof( T );
-            if ( ParserStor.TryGetValue( ti, out parser ) )
+            if (ParserStor.TryGetValue( ti, out parser ) )
                 return (IXmlVKEntityParser<T>) parser;
+            if ( ti.IsGenericType ) {
+                var tiG = ti.GetGenericTypeDefinition();
+                Type parserGTD;
+                if ( ParserGenericStor.TryGetValue( tiG, out parserGTD ) ) {
+                    var parserTD = parserGTD.MakeGenericType( ti.GenericTypeArguments[0] );
+                    parser = GetParserInstanseProperty( parserTD ).GetValue( null, null );
+                    ParserStor.Add( ti, parser );
+                    return (IXmlVKEntityParser<T>) parser;
+                }
+            }
             throw new Exception( "No such parser" );
+        }
+
+        private static PropertyInfo GetParserInstanseProperty( Type parserTD ) {
+            return parserTD.GetProperty( "Instanse", BindingFlags.Static | BindingFlags.Public );
         }
 
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {

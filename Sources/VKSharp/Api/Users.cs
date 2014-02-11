@@ -11,7 +11,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<User[]> UsersGetAsync( IEnumerable<uint> ids, UserFields fields = UserFields.First_Name|UserFields.Last_Name, NameCase nameCase = NameCase.Nom ) {
+        public async Task<User[]> UsersGetAsync( UserFields fields = UserFields.First_Name|UserFields.Last_Name, NameCase nameCase = NameCase.Nom, params uint[] ids ) {
             var req = new VKRequest<User> {
                 MethodName = "users.get",
                 Parameters = new Dictionary<string, string> {
