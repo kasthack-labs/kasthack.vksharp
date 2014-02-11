@@ -11,7 +11,7 @@ namespace VKSharp.Core.Interfaces {
         T ParseFromXml(XmlNode node);
         //same for array
         T[] ParseAllFromXml( IEnumerable<XmlNode> nodes );
-        //parse from set of nodes
+        //parse from set of nodesё
         T ParseFromXmlFragments(IEnumerable<XmlNode> nodes);
         //update
         void UpdateFromFragment(XmlNode node, ref T entity);

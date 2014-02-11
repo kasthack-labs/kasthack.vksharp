@@ -13,10 +13,10 @@ using VKSharp.Helpers.Parsers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
-        private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
-        private static Dictionary<Type, Type> _parserGenericStor;
-        private static Dictionary<Type, object> _parserStor;
-        private static void LoadParsers(){
+        private readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
+        private Dictionary<Type, Type> _parserGenericStor;
+        private Dictionary<Type, object> _parserStor;
+        private void LoadParsers(){
             //reflection magic
             try {
                 var types = CurrentAssemblyLazy
@@ -50,21 +50,21 @@ namespace VKSharp.Data.Executors {
             }
         }
 
-        private static Dictionary<Type, object> ParserStor {
+        private Dictionary<Type, object> ParserStor {
             get {
                 if (_parserStor==null) LoadParsers();
                 return _parserStor;
             }
         }
 
-        private static Dictionary<Type, Type> ParserGenericStor {
+        private Dictionary<Type, Type> ParserGenericStor {
             get {
                 if (_parserGenericStor==null) LoadParsers();
                 return _parserGenericStor;
             }
         }
 
-        private static IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
+        private IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
             object parser;
             var ti = typeof( T );
             if (ParserStor.TryGetValue( ti, out parser ) )
