@@ -15,7 +15,7 @@ namespace VKSharp {
            int offset=0,
            int? count=null) {
             var req = new VKRequest<Audio> {
-                MethodName = "account.getBanned",
+                MethodName = "audio.get",
                 Parameters = new Dictionary<string, string> {
                     { "offset", offset.ToNCString() },
                     { "count", MiscTools.NullableString( count ) },
@@ -25,8 +25,7 @@ namespace VKSharp {
                     { "audio_ids", String.Join(",", audioIds?? new ulong[]{} )}
                 }
             };
-            if ( !this.IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
+            if ( !this.IsLogged ) throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data;
         }

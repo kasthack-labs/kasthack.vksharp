@@ -13,7 +13,7 @@ using VKSharp.Helpers.Parsers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
-        private readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
+        private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
         private Dictionary<Type, Type> _parserGenericStor;
         private Dictionary<Type, object> _parserStor;
         private void LoadParsers(){
@@ -106,7 +106,7 @@ namespace VKSharp.Data.Executors {
         public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
             var bID = BuiltInData.Instance;
             var vk = bID.VKDomain;
-            var query = String.Join( "&", request.Parameters.Select( a => a.Key + "=" + a.Value ) );
+            var query = String.Join( "&", request.Parameters.Where( a=>a.Value!="" ).Select( a => a.Key + "=" + a.Value ) );
             var queryB = new StringBuilder();
             queryB.Append( "/method/" );
             queryB.Append( request.MethodName );
@@ -137,7 +137,7 @@ namespace VKSharp.Data.Executors {
                 bID.TextEncoding,
                 null,
                 null,
-                AWC.RequestMethod.POST,
+                AWC.RequestMethod.Post,
                 query,
                 40000
             );
