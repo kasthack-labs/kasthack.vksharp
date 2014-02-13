@@ -2,7 +2,7 @@
 
 namespace VKSharp.Core.Entities {
     public class University: IVKEntity<University> {
-                public string ChairName { get; set; }
+        public string ChairName { get; set; }
         public string FacultyName { get; set; }
         public string Name { get; set; }
         public string EducationForm { get; set; }

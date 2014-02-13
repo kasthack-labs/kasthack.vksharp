@@ -5,5 +5,6 @@
         public string FacebookName { get; set; }
         public string Twitter { get; set; }
         public string Instagram { get; set; }
+        public string LiveJournal { get; set; }
     }
 }
