@@ -11,7 +11,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<User[]> UsersGetAsync( UserFields fields = UserFields.First_Name|UserFields.Last_Name, NameCase nameCase = NameCase.Nom, params uint[] ids ) {
+        public async Task<User[]> UsersGetAsync( UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params uint[] ids ) {
             var req = new VKRequest<User> {
                 MethodName = "users.get",
                 Parameters = new Dictionary<string, string> {
@@ -29,7 +29,7 @@ namespace VKSharp {
             uint userID,
             uint offset = 0,
             ushort count = 100,
-            UserFields fields = UserFields.First_Name | UserFields.Last_Name,
+            UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom ) {
             var req = new VKRequest<EntityList<User>> {
                 MethodName = "users.getFollowers",
@@ -51,7 +51,7 @@ namespace VKSharp {
             SearchSortOrder sort = SearchSortOrder.ByRating,
             ushort? offset = null,
             ushort? count = null,
-            UserFields fields = UserFields.First_Name|UserFields.Last_Name,
+            UserFields fields = UserFields.None,
             uint? cityID = null,
             uint? countryID = null,
             string hometown = "",

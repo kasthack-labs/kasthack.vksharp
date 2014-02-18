@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class PostCommentsParser : IXmlVKEntityParser<PostComments> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<PostCommentsParser> Lazy = new Lazy<PostCommentsParser>( () => new PostCommentsParser() );
-        public static PostCommentsParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private PostCommentsParser() { }
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref PostComments entity) {
             throw new NotImplementedException();

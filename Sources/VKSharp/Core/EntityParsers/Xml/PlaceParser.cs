@@ -8,12 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class PlaceParser : IXmlVKEntityParser<Place> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<PlaceParser> Lazy = new Lazy<PlaceParser>( () => new PlaceParser() );
-        public static PlaceParser Instanse {
-            get { return Lazy.Value; }
-        }
-
-        private PlaceParser() {}
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Place entity) {
             throw new NotImplementedException();

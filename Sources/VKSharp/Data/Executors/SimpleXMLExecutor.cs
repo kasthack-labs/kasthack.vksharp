@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
-using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
@@ -13,6 +11,7 @@ using VKSharp.Helpers.Parsers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
+        private const string _reqExt = "xml";
         private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
         private Dictionary<Type, Type> _parserGenericStor;
         private Dictionary<Type, object> _parserStor;
@@ -27,10 +26,9 @@ namespace VKSharp.Data.Executors {
                             String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
                         .Select( a => new {
                             Type=a,
-                            InstanceProperty = GetParserInstanseProperty(a),
                             Iface = a.GetInterface( "IXmlVKEntityParser`1" )
                         } )
-                        .Where( a => a.InstanceProperty != null && a.Iface != null )
+                        .Where( a => a.Iface != null )
                         .ToArray();
                 _parserGenericStor = types.Where( a => a.Type.IsGenericType ).ToDictionary(
                     a=>a.Iface.GenericTypeArguments[0].GetGenericTypeDefinition(),
@@ -39,10 +37,11 @@ namespace VKSharp.Data.Executors {
                 _parserStor = types.Where( a=>!a.Type.IsGenericType )
                         .ToDictionary(
                             a => a.Iface.GetGenericArguments()[0],
-                            a => a.InstanceProperty.GetValue( null, null )
+                            a => Activator.CreateInstance( a.Type )
                         );
-                foreach ( var o in PrimitiveParserFactory.ParserLazy.Value )
+                foreach ( var o in PrimitiveParserFactory.ParserLazy.Value ){
                     _parserStor.Add( o.Key, o.Value );
+                }
             }
             catch ( Exception ex ) {
                 Console.WriteLine( ex.Message );
@@ -66,29 +65,24 @@ namespace VKSharp.Data.Executors {
 
         private IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
             object parser;
-            var ti = typeof( T );
-            if (ParserStor.TryGetValue( ti, out parser ) )
-                return (IXmlVKEntityParser<T>) parser;
-            if ( ti.IsGenericType ) {
-                var tiG = ti.GetGenericTypeDefinition();
-                Type parserGTD;
-                if ( ParserGenericStor.TryGetValue( tiG, out parserGTD ) ) {
-                    var parserTD = parserGTD.MakeGenericType( ti.GenericTypeArguments[0] );
-                    parser = GetParserInstanseProperty( parserTD ).GetValue( null, null );
-                    ParserStor.Add( ti, parser );
-                    return (IXmlVKEntityParser<T>) parser;
-                }
+            Type parserGTD, ti = typeof( T );
+            if ( ParserStor.TryGetValue( ti, out parser ) ) {
+                var p = (IXmlVKEntityParser<T>) parser;
+                p.Executor = p.Executor ?? this;
+                return p;
             }
-            throw new Exception( "No such parser" );
-        }
-
-        private static PropertyInfo GetParserInstanseProperty( Type parserTD ) {
-            return parserTD.GetProperty( "Instanse", BindingFlags.Static | BindingFlags.Public );
+            if ( !ti.IsGenericType || !this.ParserGenericStor.TryGetValue( ti.GetGenericTypeDefinition(), out parserGTD ) )
+                throw new Exception( "No such parser" );
+            parser = Activator.CreateInstance( parserGTD.MakeGenericType( ti.GenericTypeArguments[0] ) );
+            var p2 = (IXmlVKEntityParser<T>) parser;
+            p2.Executor = p2.Executor ?? this;
+            this.ParserStor.Add( ti, p2 );
+            return p2;
         }
 
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
             var doc = new XmlDocument();
-            var raw = await this.ExecRawAsync( request );
+            var raw = await this.ExecRawAsync( request);
             doc.LoadXml( raw );
             var rootNode = doc.DocumentElement;
             var parser = GetParser<T>();
@@ -104,43 +98,7 @@ namespace VKSharp.Data.Executors {
         }
 
         public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
-            var bID = BuiltInData.Instance;
-            var vk = bID.VKDomain;
-            var query = String.Join( "&", request.Parameters.Where( a=>a.Value!="" ).Select( a => a.Key + "=" + a.Value ) );
-            var queryB = new StringBuilder();
-            queryB.Append( "/method/" );
-            queryB.Append( request.MethodName );
-            queryB.Append( @".xml" );
-            if ( request.Token != null ) {
-                queryB.Append( "?access_token=" );
-                queryB.Append( request.Token.Token );
-                if ( new Uri( vk ).Scheme != "https" ) {
-                    queryB.Append(
-                        "&sig=" +
-                        BitConverter.ToString(
-                            bID.Hasher.ComputeHash(
-                                bID.TextEncoding.
-                                GetBytes(
-                                    queryB + "&" + query +
-                                    request.Token.Sign
-                                )
-                            )
-                        ).
-                        Replace( "-", "" ).
-                        ToLower()
-                    );
-                }
-            }
-            queryB.Insert( 0, vk );
-            return await AWC.DownloadStringAsync(
-                queryB.ToString(),
-                bID.TextEncoding,
-                null,
-                null,
-                AWC.RequestMethod.Post,
-                query,
-                40000
-            );
+            return await ParserHelper.ExecRawAsync( request, _reqExt );
         }
     }
 }

@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class PrivacyParser : IXmlVKEntityParser<Privacy> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<PrivacyParser> Lazy = new Lazy<PrivacyParser>( () => new PrivacyParser() );
-        public static PrivacyParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private PrivacyParser() {}
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Privacy entity) {
             throw new NotImplementedException();

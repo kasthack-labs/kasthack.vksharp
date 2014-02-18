@@ -8,13 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class GeoParser : IXmlVKEntityParser<Geo> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<GeoParser> Lazy = new Lazy<GeoParser>( () => new GeoParser() );
-        public static GeoParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-        private GeoParser() {}
         
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Geo entity) {
             throw new NotImplementedException();

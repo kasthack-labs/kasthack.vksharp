@@ -9,14 +9,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class ProfileCountersParser : IXmlVKEntityParser<ProfileCounters> {
         public IExecutor Executor { get; set; }
-         private static readonly Lazy<ProfileCountersParser> Lazy = new Lazy<ProfileCountersParser>( () => new ProfileCountersParser() );
-        public static ProfileCountersParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private ProfileCountersParser() { }
 
         public void FillFromXml( IEnumerable<XmlNode> nodes, ref ProfileCounters entity ) {
             foreach ( var cn in nodes )
@@ -24,9 +16,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public ProfileCounters ParseFromXml( XmlNode node ) {
-            if ( String.CompareOrdinal( node.Name, "counters" ) != 0 )
-                return null;
-            return this.ParseFromXmlFragments( node.ChildNodes.OfType<XmlNode>() );
+            return String.CompareOrdinal( node.Name, "counters" ) != 0 ? null : this.ParseFromXmlFragments( node.ChildNodes.OfType<XmlNode>() );
         }
 
         public ProfileCounters[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {

@@ -9,14 +9,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class EntityListParser<T> : IXmlVKEntityParser<EntityList<T>> where T : IVKEntity<T> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<EntityListParser<T>> Lazy = new Lazy<EntityListParser<T>>( () => new EntityListParser<T>() );
-        public static EntityListParser<T> Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private EntityListParser() { }
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref EntityList<T> entity) {
             foreach ( var cn in nodes )

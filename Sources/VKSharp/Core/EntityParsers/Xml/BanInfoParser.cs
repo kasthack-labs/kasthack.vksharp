@@ -10,14 +10,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class BanInfoParser : IXmlVKEntityParser<BanInfo> {
         public IExecutor Executor { get; set; }
 
-        private static readonly Lazy<BanInfoParser> Lazy = new Lazy<BanInfoParser>( () => new BanInfoParser() );
-        public static BanInfoParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
 
-        private BanInfoParser() { }
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref BanInfo entity) {
             foreach ( var node in nodes )
                 this.UpdateFromFragment( node, ref entity );

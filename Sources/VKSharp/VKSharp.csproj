@@ -67,6 +67,7 @@
     <Compile Include="Data\Parameters\UserFields.cs" />
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
+    <Compile Include="Helpers\ParserHelper.cs" />
     <Compile Include="Helpers\PrimitiveEntities\StructEntity.cs" />
     <Compile Include="Helpers\Parsers\PrimitiveParser.cs" />
     <Compile Include="Helpers\Parsers\PrimitiveParserFactory.cs" />

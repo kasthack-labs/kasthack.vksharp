@@ -9,12 +9,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class SchoolParser : IXmlVKEntityParser<School> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<SchoolParser> Lazy = new Lazy<SchoolParser>( () => new SchoolParser() );
-        public static SchoolParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
 
         private SchoolParser() { }
 
@@ -54,10 +48,10 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.Type = uint.Parse( node.InnerText );
                     break;
                 case "type_name":
-                    entity.TypeName = uint.Parse( node.InnerText );
+                    //entity.TypeName = uint.Parse( node.InnerText );
                     break;
                 case "graduation":
-                    entity.Graduation = ushort.Parse( node.InnerText );
+                    //entity.Graduation = ushort.Parse( node.InnerText );
                     break;
                 case "year_from":
                     entity.YearFrom = ushort.Parse( node.InnerText );

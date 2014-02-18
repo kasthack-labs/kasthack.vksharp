@@ -12,14 +12,6 @@ using VKSharp.Helpers.DataTypes;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : IXmlVKEntityParser<User> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<UserParser> Lazy = new Lazy<UserParser>( () => new UserParser() );
-        public static UserParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private UserParser() { }
 
         public void FillFromXml( IEnumerable<XmlNode> nodes, ref User entity ) {
             foreach ( var cn in nodes )
@@ -37,7 +29,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public User ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var u = new User {
                 ProfilePhotos = new ProfilePhotos(),
-                SiteProfiles = new SiteProfiles(),
+                Connections = new SiteProfiles(),
                 Counters = new ProfileCounters()
             };
             this.FillFromXml(nodes, ref u);
@@ -72,7 +64,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     break;
 
                 case "activity":
-                    entity.Activity = node.InnerText;
+                    entity.Activities = node.InnerText;
                     break;
                 case "faculty_name":
                     entity.FacultyName = node.InnerText;
@@ -105,7 +97,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.MobilePhone = node.InnerText;
                     break;
                 case "screen_name":
-                    entity.ScreenName = node.InnerText;
+                    //entity.ScreenName = node.InnerText;
                     break;
                 case "status":
                     entity.Status = node.InnerText;
@@ -127,7 +119,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.Faculty = uint.Parse( node.InnerText );
                     break;
                 case "graduation":
-                    entity.Graduation = uint.Parse( node.InnerText );
+                    //entity.Graduation = uint.Parse( node.InnerText );
                     break;
                 //case "last_seen":
                 //    entity.LastSeen = uint.Parse( node.InnerText );
@@ -159,25 +151,25 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     break;
 
                 case "skype":
-                    entity.SiteProfiles.Skype = node.InnerText;
+                    entity.Connections.Skype = node.InnerText;
                     break;
                 case "facebook":
-                    entity.SiteProfiles.Facebook = ulong.Parse( node.InnerText );
+                    entity.Connections.Facebook = ulong.Parse( node.InnerText );
                     break;
                 case "facebook_name":
-                    entity.SiteProfiles.FacebookName = node.InnerText;
+                    entity.Connections.FacebookName = node.InnerText;
                     break;
                 case "twitter":
-                    entity.SiteProfiles.Twitter = node.InnerText;
+                    entity.Connections.Twitter = node.InnerText;
                     break;
                 case "instagram":
-                    entity.SiteProfiles.Instagram = node.InnerText;
+                    entity.Connections.Instagram = node.InnerText;
                     break;
 
                 //case "counters":
-                //    var c = entity.Counters;
-                //    var cp = c.GetParser();
-                //    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref c);
+                //    var p2 = entity.Counters;
+                //    var cp = p2.GetParser();
+                //    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref p2);
                 //    break;
 
                 case "relation":

@@ -10,14 +10,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class AudioParser : IXmlVKEntityParser<Audio> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<AudioParser> Lazy = new Lazy<AudioParser>( () => new AudioParser() );
-        public static AudioParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private AudioParser() {}
 
         public void FillFromXml( IEnumerable<XmlNode> nodes, ref Audio entity ) {
             foreach ( var cn in nodes )

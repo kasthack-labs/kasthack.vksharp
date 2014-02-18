@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class GraffityParser : IXmlVKEntityParser<Graffity> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<GraffityParser> Lazy = new Lazy<GraffityParser>( () => new GraffityParser() );
-        public static GraffityParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private GraffityParser() { }
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Graffity entity) {
             throw new NotImplementedException();

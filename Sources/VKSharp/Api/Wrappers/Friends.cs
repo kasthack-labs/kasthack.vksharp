@@ -14,7 +14,7 @@ namespace VKSharp {
             uint? listID = null,
             uint offset = 0,
             ushort count = 100,
-            UserFields fields = UserFields.First_Name | UserFields.Last_Name,
+            UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom ) {
             return Helper.SyncTask(
                 this.FriendsGetAsync(
@@ -31,7 +31,7 @@ namespace VKSharp {
 
         public User[] FriendsGetByPhones(
             IEnumerable<ulong> phones,
-            UserFields fields = UserFields.First_Name | UserFields.Last_Name) {
+            UserFields fields = UserFields.None ) {
             return Helper.SyncTask(this.FriendsGetByPhonesAsync(phones, fields));
         }
 
@@ -39,7 +39,7 @@ namespace VKSharp {
             FriendSuggestionFilters filters = FriendSuggestionFilters.Everything,
             uint offset = 0,
             ushort count = 100,
-            UserFields fields = UserFields.First_Name | UserFields.Last_Name,
+            UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom) {
                 return Helper.SyncTask(
                     this.FriendsGetSuggestionsAsync(

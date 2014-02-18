@@ -9,14 +9,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UniversityParser : IXmlVKEntityParser<University> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<UniversityParser> Lazy = new Lazy<UniversityParser>( () => new UniversityParser() );
-        public static UniversityParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private UniversityParser() {}
         
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref University entity) {
             foreach ( var cn in nodes )
@@ -24,9 +16,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public University ParseFromXml(XmlNode node) {
-            if ( String.CompareOrdinal(node.Name, "university") != 0 )
-                return null;
-            return this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
+            return String.CompareOrdinal(node.Name, "university") != 0 ? null : this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
         }
 
         public University[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {

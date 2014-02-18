@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class GroupParser : IXmlVKEntityParser<Group> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<GroupParser> Lazy = new Lazy<GroupParser>( () => new GroupParser() );
-        public static GroupParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private GroupParser() {}
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Group entity) {
             throw new NotImplementedException();

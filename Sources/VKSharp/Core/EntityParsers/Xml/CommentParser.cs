@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class CommentParser : IXmlVKEntityParser<Comment> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<CommentParser> Lazy = new Lazy<CommentParser>( () => new CommentParser() );
-        public static CommentParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private CommentParser() { }
         
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Comment entity) {
             throw new NotImplementedException();

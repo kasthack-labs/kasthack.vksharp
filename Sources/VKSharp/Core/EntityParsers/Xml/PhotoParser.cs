@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class PhotoParser : IXmlVKEntityParser<Photo> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<PhotoParser> Lazy = new Lazy<PhotoParser>( () => new PhotoParser() );
-        public static PhotoParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private PhotoParser() {}
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, ref Photo entity) {
             throw new NotImplementedException();
