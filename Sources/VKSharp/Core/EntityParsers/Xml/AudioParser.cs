@@ -11,9 +11,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class AudioParser : IXmlVKEntityParser<Audio> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml( IEnumerable<XmlNode> nodes, ref Audio entity ) {
+        public void FillFromXml( IEnumerable<XmlNode> nodes, Audio entity ) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public Audio ParseFromXml( XmlNode node ) {
@@ -26,11 +26,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public Audio ParseFromXmlFragments( IEnumerable<XmlNode> nodes ) {
             var sc = new Audio();
-            this.FillFromXml( nodes, ref sc );
+            this.FillFromXml( nodes, sc );
             return sc;
         }
 
-        public void UpdateFromFragment( XmlNode node, ref Audio entity ) {
+        public void UpdateFromFragment( XmlNode node, Audio entity ) {
             switch ( node.Name ) {
                 case "id":
                     entity.ID = ulong.Parse( node.InnerText );

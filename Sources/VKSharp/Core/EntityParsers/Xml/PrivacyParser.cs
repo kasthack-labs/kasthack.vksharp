@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class PrivacyParser : IXmlVKEntityParser<Privacy> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Privacy entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Privacy entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Privacy entity) {
+        public void UpdateFromFragment(XmlNode node, Privacy entity) {
             throw new NotImplementedException();
         }
 

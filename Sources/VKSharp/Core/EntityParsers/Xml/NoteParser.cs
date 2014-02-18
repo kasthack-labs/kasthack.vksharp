@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class NoteParser : IXmlVKEntityParser<Note> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Note entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Note entity) {
             throw new NotImplementedException();
         }
 
@@ -24,7 +24,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public Note ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
-        public void UpdateFromFragment(XmlNode node, ref Note entity) {
+        public void UpdateFromFragment(XmlNode node, Note entity) {
             throw new NotImplementedException();
         }
     }

@@ -10,9 +10,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class ProfileCountersParser : IXmlVKEntityParser<ProfileCounters> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml( IEnumerable<XmlNode> nodes, ref ProfileCounters entity ) {
+        public void FillFromXml( IEnumerable<XmlNode> nodes, ProfileCounters entity ) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public ProfileCounters ParseFromXml( XmlNode node ) {
@@ -25,11 +25,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public ProfileCounters ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var pc = new ProfileCounters();
-            this.FillFromXml(nodes, ref pc);
+            this.FillFromXml(nodes, pc);
             return pc;
         }
 
-        public void UpdateFromFragment(XmlNode node, ref ProfileCounters entity) {
+        public void UpdateFromFragment(XmlNode node, ProfileCounters entity) {
             switch ( node.Name ) {
                 case "albums":
                     entity.Albums = uint.Parse( node.InnerText );

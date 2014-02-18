@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class GeoParser : IXmlVKEntityParser<Geo> {
         public IExecutor Executor { get; set; }
         
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Geo entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Geo entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Geo entity) {
+        public void UpdateFromFragment(XmlNode node, Geo entity) {
             throw new NotImplementedException();
         }
     }

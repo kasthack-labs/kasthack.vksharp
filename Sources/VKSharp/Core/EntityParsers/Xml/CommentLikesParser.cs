@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class CommentLikesParser : IXmlVKEntityParser<CommentLikes> {
         public IExecutor Executor { get; set; }
         
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref CommentLikes entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, CommentLikes entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref CommentLikes entity) {
+        public void UpdateFromFragment(XmlNode node, CommentLikes entity) {
             throw new NotImplementedException();
         }
 

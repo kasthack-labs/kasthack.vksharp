@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class AttachmentParser : IXmlVKEntityParser<Attachment> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Attachment entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Attachment entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Attachment entity) {
+        public void UpdateFromFragment(XmlNode node, Attachment entity) {
             throw new NotImplementedException();
         }
 

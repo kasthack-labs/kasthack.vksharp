@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class PlaceParser : IXmlVKEntityParser<Place> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Place entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Place entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Place entity) {
+        public void UpdateFromFragment(XmlNode node, Place entity) {
             throw new NotImplementedException();
         }
     }

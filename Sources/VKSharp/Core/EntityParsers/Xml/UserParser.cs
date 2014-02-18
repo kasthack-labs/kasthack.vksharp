@@ -7,15 +7,25 @@ using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
+using VKSharp.Helpers;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : IXmlVKEntityParser<User> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml( IEnumerable<XmlNode> nodes, ref User entity ) {
+        private static Lazy<Dictionary<string, Action<User, string>>> _generatedParsers =
+            new Lazy<Dictionary<string, Action<User, string>>>( ParserHelper.GetStringParsers<User> );
+
+        private static Dictionary<string, Action<User, string>> GeneratedParsers {
+            get {
+                return _generatedParsers.Value;
+            }
+        }
+
+        public void FillFromXml( IEnumerable<XmlNode> nodes, User entity ) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public User ParseFromXml( XmlNode node ) {
@@ -32,102 +42,21 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 Connections = new SiteProfiles(),
                 Counters = new ProfileCounters()
             };
-            this.FillFromXml(nodes, ref u);
+            this.FillFromXml(nodes, u );
             return u;
         }
 
-        public void UpdateFromFragment(XmlNode node, ref User entity) {
-            switch ( node.Name ) {
-                case "can_post":
-                    entity.CanPost = int.Parse( node.InnerText ) == 1;
-                    break;
-                case "can_see_all_posts":
-                    entity.CanSeeAllPosts = int.Parse( node.InnerText ) == 1;
-                    break;
-                case "can_see_audio":
-                    entity.CanSeeAudio = int.Parse( node.InnerText ) == 1;
-                    break;
-                case "can_write_private_message":
-                    entity.CanWritePrivateMessage = int.Parse( node.InnerText ) == 1;
-                    break;
-                case "has_mobile":
-                    entity.HasMobile = int.Parse( node.InnerText ) == 1;
-                    break;
-                case "online":
-                    entity.Online = int.Parse( node.InnerText ) == 1;
-                    break;
-                case "verified":
-                    entity.Verified = int.Parse( node.InnerText ) == 1;
-                    break;
+        public void UpdateFromFragment(XmlNode node, User entity) {
+            Action<User, string> parser;
+            var nodeName = node.Name;
+            if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
+                parser( entity, node.InnerText );
+                return;
+            }
+            switch ( nodeName ) {
                 case "bdate":
                     entity.BDate = Date.Parse( node.InnerText );
                     break;
-
-                case "activity":
-                    entity.Activities = node.InnerText;
-                    break;
-                case "faculty_name":
-                    entity.FacultyName = node.InnerText;
-                    break;
-                case "first_name":
-                    entity.FirstName = node.InnerText;
-                    break;
-                case "interests":
-                    entity.Interests = node.InnerText;
-                    break;
-                case "movies":
-                    entity.Movies = node.InnerText;
-                    break;
-                case "tv":
-                    entity.Tv = node.InnerText;
-                    break;
-                case "books":
-                    entity.Books = node.InnerText;
-                    break;
-                case "games":
-                    entity.Games = node.InnerText;
-                    break;
-                case "home_phone":
-                    entity.HomePhone = node.InnerText;
-                    break;
-                case "last_name":
-                    entity.LastName = node.InnerText;
-                    break;
-                case "mobile_phone":
-                    entity.MobilePhone = node.InnerText;
-                    break;
-                case "screen_name":
-                    //entity.ScreenName = node.InnerText;
-                    break;
-                case "status":
-                    entity.Status = node.InnerText;
-                    break;
-                case "university_name":
-                    entity.UniversityName = node.InnerText;
-                    break;
-
-                case "uid":
-                    entity.ID = uint.Parse( node.InnerText );
-                    break;
-                case "city":
-                    entity.City = uint.Parse( node.InnerText );
-                    break;
-                case "country":
-                    entity.Country = uint.Parse( node.InnerText );
-                    break;
-                case "faculty":
-                    entity.Faculty = uint.Parse( node.InnerText );
-                    break;
-                case "graduation":
-                    //entity.Graduation = uint.Parse( node.InnerText );
-                    break;
-                //case "last_seen":
-                //    entity.LastSeen = uint.Parse( node.InnerText );
-                //    break;
-                case "university":
-                    entity.University = uint.Parse( node.InnerText );
-                    break;
-
                 case "photo_50":
                     entity.ProfilePhotos.Photo50 = node.InnerText;
                     break;
@@ -169,7 +98,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 //case "counters":
                 //    var p2 = entity.Counters;
                 //    var cp = p2.GetParser();
-                //    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref p2);
+                //    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), p2);
                 //    break;
 
                 case "relation":
@@ -188,7 +117,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 //case "ban_info":
                 //    var b = entity.BanInfo;
                 //    var bp = b.GetParser();
-                //    bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), ref b);
+                //    bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), b);
                 //    break;
             }
         }

@@ -10,9 +10,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class UniversityParser : IXmlVKEntityParser<University> {
         public IExecutor Executor { get; set; }
         
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref University entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, University entity) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public University ParseFromXml(XmlNode node) {
@@ -25,11 +25,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public University ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var sc = new University();
-            this.FillFromXml(nodes, ref sc);
+            this.FillFromXml(nodes, sc);
             return sc;
         }
 
-        public void UpdateFromFragment(XmlNode node, ref University entity) {
+        public void UpdateFromFragment(XmlNode node, University entity) {
             switch ( node.Name ) {
                 case "city":
                     entity.City = uint.Parse( node.InnerText );

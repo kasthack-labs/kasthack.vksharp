@@ -6,7 +6,7 @@ namespace VKSharp.Core.Interfaces {
     public interface IXmlVKEntityParser<T> where T:IVKEntity<T> {
         IExecutor Executor { get; set; }
         //
-        void FillFromXml( IEnumerable<XmlNode> nodes, ref T entity );
+        void FillFromXml( IEnumerable<XmlNode> nodes, T entity );
         //parse one from xml node
         T ParseFromXml(XmlNode node);
         //same for array
@@ -14,6 +14,6 @@ namespace VKSharp.Core.Interfaces {
         //parse from set of nodesё
         T ParseFromXmlFragments(IEnumerable<XmlNode> nodes);
         //update
-        void UpdateFromFragment(XmlNode node, ref T entity);
+        void UpdateFromFragment(XmlNode node, T entity);
     }
 }

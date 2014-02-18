@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class GraffityParser : IXmlVKEntityParser<Graffity> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Graffity entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Graffity entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Graffity entity) {
+        public void UpdateFromFragment(XmlNode node, Graffity entity) {
             throw new NotImplementedException();
         }
     }

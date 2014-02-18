@@ -12,9 +12,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         private SchoolParser() { }
 
-        public void FillFromXml( IEnumerable<XmlNode> nodes, ref School entity ) {
+        public void FillFromXml( IEnumerable<XmlNode> nodes, School entity ) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public School ParseFromXml( XmlNode node ) {
@@ -29,11 +29,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public School ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var sc = new School();
-            this.FillFromXml(nodes, ref sc);
+            this.FillFromXml(nodes, sc);
             return sc;
         }
 
-        public void UpdateFromFragment(XmlNode node, ref School entity) {
+        public void UpdateFromFragment(XmlNode node, School entity) {
             switch ( node.Name ) {
                 case "city":
                     entity.City = uint.Parse( node.InnerText );

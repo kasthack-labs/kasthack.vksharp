@@ -11,9 +11,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public IExecutor Executor { get; set; }
 
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref BanInfo entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, BanInfo entity) {
             foreach ( var node in nodes )
-                this.UpdateFromFragment( node, ref entity );
+                this.UpdateFromFragment( node, entity );
         }
 
         public BanInfo ParseFromXml(XmlNode node) {
@@ -26,11 +26,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public BanInfo ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var entity = new BanInfo();
-            this.FillFromXml(nodes, ref entity);
+            this.FillFromXml(nodes, entity);
             return entity;
         }
 
-        public void UpdateFromFragment(XmlNode node, ref BanInfo entity) {
+        public void UpdateFromFragment(XmlNode node, BanInfo entity) {
             switch ( node.Name ) {
                 case"admin_id":
                     entity.AdminID = uint.Parse(node.InnerText);

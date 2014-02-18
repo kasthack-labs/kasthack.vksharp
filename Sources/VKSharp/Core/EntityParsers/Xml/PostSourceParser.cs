@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class PostSourceParser : IXmlVKEntityParser<PostSource> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PostSource entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, PostSource entity) {
             throw new NotImplementedException();
         }
 
@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref PostSource entity) {
+        public void UpdateFromFragment(XmlNode node, PostSource entity) {
             throw new NotImplementedException();
         }
     }

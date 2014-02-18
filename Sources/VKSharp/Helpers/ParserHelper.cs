@@ -9,19 +9,17 @@ using VKSharp.Data.Request;
 
 namespace VKSharp.Helpers {
     public static class ParserHelper {
-        private static class _p {
-            internal static string _s( string a ) { return a; }
-        }
-        private static Lazy<Dictionary<Type, object>> _parsers = new Lazy<Dictionary<Type, object>>(()=>new Dictionary<Type, object>() {
-            {typeof(string), new Func<string,string>(_p._s) },
-            {typeof(int), new Func<string,int>(int.Parse) },
-            {typeof(uint), new Func<string,uint>(uint.Parse) },
-            {typeof(long), new Func<string,long>(long.Parse) },
-            {typeof(byte), new Func<string,byte>(byte.Parse) },
-            {typeof(bool), new Func<string,bool>((a)=>int.Parse( a ) == 1) },
+        private static Lazy<Dictionary<Type, Func<string, object>>> _parsers = new Lazy<Dictionary<Type, Func<string, object>>>( () => new Dictionary<Type, Func<string, object>> {
+            {typeof(string), s=>s },
+            {typeof(int?),  s => (int?)int.Parse( s )},
+            {typeof(uint),  s => uint.Parse( s )},
+            {typeof(uint?), s => (uint?)uint.Parse( s ) },
+            {typeof(long?), s => (long?)long.Parse( s ) },
+            {typeof(byte?), s => (byte?)byte.Parse( s ) },
+            {typeof(bool?), a=>(bool?)(int.Parse( a ) == 1) },
         });
 
-        private static Dictionary<Type, object> Parsers {
+        private static Dictionary<Type, Func<string, object>> Parsers {
             get {
                 return _parsers.Value;
             }
@@ -73,10 +71,20 @@ namespace VKSharp.Helpers {
             var props = enityType.GetProperties();
             var ret = new Dictionary<string, Action<T, string>>();
 
-            foreach (var v in props.Where( a => Parsers.ContainsKey( a.PropertyType ) )) {
+            for (var index = 0; index < props.Length; index++) {
+                var v = props[ index ];
+                var pt = v.PropertyType;
+                if ( !Parsers.ContainsKey( pt ) ) continue;
                 var key = v.Name;
-                var setForAnyFoo = (Action<T,string>) Delegate.CreateDelegate(typeof(Action<T, string>), null,v.GetSetMethod());
+                var setter =(Action<T, object>)
+                    Delegate.CreateDelegate(
+                        typeof (Action).GetGenericTypeDefinition().MakeGenericType( typeof (T), pt ),
+                        null,
+                        v.GetSetMethod() );
+                Action<T, string> parser = ( arg1, s ) => setter( arg1, Parsers[ pt ]( s ) );
+                ret.Add( key, parser );
             }
+            return ret;
         }
     }
 }

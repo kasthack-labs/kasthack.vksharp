@@ -9,7 +9,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class PhotoAlbumBaseParser : IXmlVKEntityParser<PhotoAlbumBase> {
         public IExecutor Executor { get; set; }
         
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PhotoAlbumBase entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, PhotoAlbumBase entity) {
             throw new NotImplementedException();
         }
 
@@ -24,7 +24,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public PhotoAlbumBase ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
-        public void UpdateFromFragment(XmlNode node, ref PhotoAlbumBase entity) {
+        public void UpdateFromFragment(XmlNode node, PhotoAlbumBase entity) {
             throw new NotImplementedException();
         }
     }

@@ -10,9 +10,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class EntityListParser<T> : IXmlVKEntityParser<EntityList<T>> where T : IVKEntity<T> {
         public IExecutor Executor { get; set; }
 
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref EntityList<T> entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, EntityList<T> entity) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public EntityList<T> ParseFromXml(XmlNode node) {
@@ -21,12 +21,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public EntityList<T> ParseFromXmlFragments( IEnumerable<XmlNode> nodes ) {
             var el = new EntityList<T>();
-            this.FillFromXml(nodes, ref el);
+            this.FillFromXml(nodes, el);
             return el;
             
         }
 
-        public void UpdateFromFragment(XmlNode node, ref EntityList<T> entity) {
+        public void UpdateFromFragment(XmlNode node, EntityList<T> entity) {
             switch ( node.Name ) {
                 case "count":
                     entity.TotalCount = uint.Parse( node.InnerText );
