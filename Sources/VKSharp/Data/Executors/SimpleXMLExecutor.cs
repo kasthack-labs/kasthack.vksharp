@@ -34,14 +34,15 @@ namespace VKSharp.Data.Executors {
                     a=>a.Iface.GenericTypeArguments[0].GetGenericTypeDefinition(),
                     a=>a.Type.GetGenericTypeDefinition()
                 );
-                _parserStor = types.Where( a=>!a.Type.IsGenericType )
-                        .ToDictionary(
-                            a => a.Iface.GetGenericArguments()[0],
-                            a => Activator.CreateInstance( a.Type )
-                        );
-                foreach ( var o in PrimitiveParserFactory.ParserLazy.Value ){
+                var dictionary = types
+                    .Where( a => !a.Type.IsGenericType )
+                    .Where( a => a.Type.GetConstructor( Type.EmptyTypes )!=null )
+                    .ToDictionary( a => a.Iface.GetGenericArguments()[ 0 ], a => Activator.CreateInstance( a.Type ) );
+                foreach (var xmlVKEntityParser in dictionary.Values.OfType<IXmlVKEntityParser>())
+                    xmlVKEntityParser.Executor = this;
+                _parserStor = dictionary;
+                foreach (var o in PrimitiveParserFactory.ParserLazy.Value)
                     _parserStor.Add( o.Key, o.Value );
-                }
             }
             catch ( Exception ex ) {
                 Console.WriteLine( ex.Message );
@@ -66,11 +67,8 @@ namespace VKSharp.Data.Executors {
         private IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
             object parser;
             Type parserGTD, ti = typeof( T );
-            if ( ParserStor.TryGetValue( ti, out parser ) ) {
-                var p = (IXmlVKEntityParser<T>) parser;
-                p.Executor = p.Executor ?? this;
-                return p;
-            }
+            if ( ParserStor.TryGetValue( ti, out parser ) )
+                return (IXmlVKEntityParser<T>) parser;
             if ( !ti.IsGenericType || !this.ParserGenericStor.TryGetValue( ti.GetGenericTypeDefinition(), out parserGTD ) )
                 throw new Exception( "No such parser" );
             parser = Activator.CreateInstance( parserGTD.MakeGenericType( ti.GenericTypeArguments[0] ) );

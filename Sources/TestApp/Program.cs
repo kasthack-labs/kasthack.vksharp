@@ -13,7 +13,7 @@ namespace TestApp {
             var vk = new VKApi();
             var str = VKToken.GetOAuthURL( 3174839,VKPermission.Everything^(VKPermission.Notify|VKPermission.Nohttps) );
             str.Dump();
-#if DEBUG
+#if !DEBUG
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
 #else
             var redirecturl = File.ReadAllText( "debug.token" );
@@ -27,7 +27,7 @@ namespace TestApp {
                 return;
             }
 
-            //var userQuery = vk.UsersGet(UserFields.Everything, 1 );
+            var userQuery = vk.UsersGet( UserFields.Everything, ids:1 );
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();
@@ -38,14 +38,14 @@ namespace TestApp {
             //var isAppUserQuery = vk.UserIsAppUser( 8878040 );
             //isAppUserQuery.Data.Dump();
 
-            var au = vk.AudiosGet();
-            var cnt = 100;
-            var outpath = @"B:\audio";
-            foreach (var audio in au.Take( cnt )) {
-                var name = audio.Artist + " - " + audio.Title;
-                name.Dump();
-                AWC.DownloadFile( audio.Url, Path.Combine( outpath, name+".mp3" ) );
-            }
+            //var au = vk.AudiosGet();
+            //var cnt = 100;
+            //var outpath = @"B:\audio";
+            //foreach (var audio in au.Take( cnt )) {
+            //    var name = audio.Artist + " - " + audio.Title;
+            //    name.Dump();
+            //    AWC.DownloadFile( audio.Url, Path.Combine( outpath, name+".mp3" ) );
+            //}
 
             Console.ReadLine();
         }

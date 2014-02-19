@@ -8,14 +8,6 @@ using VKSharp.Data.Executors;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class VideoParser : IXmlVKEntityParser<Video> {
         public IExecutor Executor { get; set; }
-        private static readonly Lazy<VideoParser> Lazy = new Lazy<VideoParser>( () => new VideoParser() );
-        public static VideoParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-
-        private VideoParser() {}
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, Video entity) {
             throw new NotImplementedException();
