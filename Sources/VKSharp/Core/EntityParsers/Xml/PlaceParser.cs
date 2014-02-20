@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class PlaceParser : IVKEntityParser<Place> {
-        private static readonly Lazy<PlaceParser> Lazy = new Lazy<PlaceParser>( () => new PlaceParser() );
-        public static PlaceParser Instanse {
-            get { return Lazy.Value; }
-        }
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class PlaceParser : IXmlVKEntityParser<Place> {
+        public IExecutor Executor { get; set; }
 
-        private PlaceParser() {}
-
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Place entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Place entity) {
             throw new NotImplementedException();
         }
 
@@ -29,7 +25,7 @@ namespace VKSharp.Core.EntityParsers {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Place entity) {
+        public bool UpdateFromFragment( XmlNode node, Place entity ) {
             throw new NotImplementedException();
         }
     }

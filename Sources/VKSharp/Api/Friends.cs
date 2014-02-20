@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +16,7 @@ namespace VKSharp {
            uint? listID = null,
            uint offset = 0,
            ushort count = 100,
-           UserFields fields = UserFields.First_Name | UserFields.Last_Name,
+           UserFields fields = UserFields.None,
            NameCase nameCase = NameCase.Nom ) {
             var req = new VKRequest<User> {
                 MethodName = "friends.get",
@@ -37,7 +36,7 @@ namespace VKSharp {
 
         public async Task<User[]> FriendsGetByPhonesAsync(
            IEnumerable<ulong> phones,
-           UserFields fields = UserFields.First_Name | UserFields.Last_Name ) {
+           UserFields fields = UserFields.None ) {
             var req = new VKRequest<User> {
                 MethodName = "friends.get",
                 Parameters = new Dictionary<string, string> {
@@ -55,7 +54,7 @@ namespace VKSharp {
             FriendSuggestionFilters filters = FriendSuggestionFilters.Everything,
             uint offset = 0,
             ushort count = 100,
-            UserFields fields = UserFields.First_Name | UserFields.Last_Name,
+            UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom ) {
             var req = new VKRequest<User> {
                 MethodName = "friends.get",

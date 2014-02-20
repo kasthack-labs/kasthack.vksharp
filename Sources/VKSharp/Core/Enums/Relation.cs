@@ -6,6 +6,7 @@
         Married=4,
         Complicated=5,
         Searching=6,
-        InLove=7
+        InLove=7,
+        Unknown =0 
     }
 }

@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
 
@@ -10,8 +9,5 @@ namespace VKSharp.Core.Entities {
         public uint CreatedDate { get; set; }
         public uint UpdatedDate { get; set; }
         public uint Size { get; set; }
-        public override IVKEntityParser<PhotoAlbumBase> GetParser() {
-            return PhotoAlbumBaseParser.Instanse;
-        }
     }
 }

@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class GroupParser : IVKEntityParser<Group> {
-        private static readonly Lazy<GroupParser> Lazy = new Lazy<GroupParser>( () => new GroupParser() );
-        public static GroupParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class GroupParser : IXmlVKEntityParser<Group> {
+        public IExecutor Executor { get; set; }
 
-        private GroupParser() {}
-
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Group entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Group entity) {
             throw new NotImplementedException();
         }
 
@@ -31,7 +25,7 @@ namespace VKSharp.Core.EntityParsers {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Group entity) {
+        public bool UpdateFromFragment(XmlNode node, Group entity) {
             throw new NotImplementedException();
         }
     }

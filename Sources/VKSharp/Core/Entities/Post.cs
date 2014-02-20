@@ -1,10 +1,9 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Post : IVKEntity<Post> {
-        public Attachment[] Attachments { get; set; }
+                public Attachment[] Attachments { get; set; }
         public bool FriendsOnly { get; set; }
         public Geo Geo { get; set; }
         public Group[] Groups { get; set; }
@@ -28,8 +27,7 @@ namespace VKSharp.Core.Entities {
         public uint? ReplyPostID { get; set; }
         public uint? SignerID { get; set; }
         public User[] Profiles { get; set; }
-        public IVKEntityParser<Post> GetParser() {
-            return PostParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class PhotoAlbumBaseParser : IVKEntityParser<PhotoAlbumBase> {
-        private static readonly Lazy<PhotoAlbumBaseParser> Lazy = new Lazy<PhotoAlbumBaseParser>( () => new PhotoAlbumBaseParser() );
-        public static PhotoAlbumBaseParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
-        private PhotoAlbumBaseParser() { }
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class PhotoAlbumBaseParser : IXmlVKEntityParser<PhotoAlbumBase> {
+        public IExecutor Executor { get; set; }
         
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PhotoAlbumBase entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, PhotoAlbumBase entity) {
             throw new NotImplementedException();
         }
 
@@ -29,7 +24,7 @@ namespace VKSharp.Core.EntityParsers {
         public PhotoAlbumBase ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
-        public void UpdateFromFragment(XmlNode node, ref PhotoAlbumBase entity) {
+        public bool UpdateFromFragment( XmlNode node, PhotoAlbumBase entity ) {
             throw new NotImplementedException();
         }
     }

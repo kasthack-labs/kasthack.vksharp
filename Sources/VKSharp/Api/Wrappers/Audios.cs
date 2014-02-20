@@ -4,10 +4,7 @@ using VKSharp.Core.Entities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public
-            //Audio[]
-            EntityList<Audio>
-            AudiosGet(
+        public Audio[] AudiosGet(
            int? ownerID=null,
            int? albumID=null,
            IEnumerable<ulong> audioIds=null,

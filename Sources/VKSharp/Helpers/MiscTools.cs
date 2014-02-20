@@ -7,7 +7,7 @@ namespace VKSharp.Helpers {
         public static string[] GetUserFields(UserFields fields) {
             return Enum.GetValues(typeof (UserFields))
                 .OfType<UserFields>()
-                .Where(a => a != UserFields.Everything)
+                .Where(a => a != UserFields.Everything&& a!=UserFields.None)
                 .Where(a => fields.HasFlag(a))
                 .Select(a => a.ToNCLString())
                 .ToArray();

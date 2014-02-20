@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class University: IVKEntity<University> {
@@ -14,8 +13,7 @@ namespace VKSharp.Core.Entities {
         public uint? Chair { get; set; }
         public uint? Faculty { get; set; }
         public ushort? Graduation { get; set; }
-        public IVKEntityParser<University> GetParser() {
-            return UniversityParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class PostCommentsParser:IVKEntityParser<PostComments> {
-        private static readonly Lazy<PostCommentsParser> Lazy = new Lazy<PostCommentsParser>( () => new PostCommentsParser() );
-        public static PostCommentsParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class PostCommentsParser : IXmlVKEntityParser<PostComments> {
+        public IExecutor Executor { get; set; }
 
-        private PostCommentsParser() { }
-
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref PostComments entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, PostComments entity) {
             throw new NotImplementedException();
         }
 
@@ -31,7 +25,7 @@ namespace VKSharp.Core.EntityParsers {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref PostComments entity) {
+        public bool UpdateFromFragment( XmlNode node, PostComments entity ) {
             throw new NotImplementedException();
         }
 

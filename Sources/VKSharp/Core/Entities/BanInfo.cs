@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class BanInfo : IVKEntity<BanInfo> {
@@ -8,8 +7,7 @@ namespace VKSharp.Core.Entities {
         public uint EndDate { get; set; }
         public string Reason { get; set; }
         public string Comment { get; set; }
-        public IVKEntityParser<BanInfo> GetParser() {
-            return BanInfoParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
+using VKSharp.Data.Executors;
 
 namespace VKSharp.Core.Interfaces {
-    public interface IVKEntityParser<T> {
+    public interface IXmlVKEntityParser<T> : IXmlVKEntityParser where T : IVKEntity<T> {
         //
-        void FillFromXml( IEnumerable<XmlNode> nodes, ref T entity );
+        void FillFromXml( IEnumerable<XmlNode> nodes, T entity );
         //parse one from xml node
         T ParseFromXml(XmlNode node);
         //same for array
         T[] ParseAllFromXml( IEnumerable<XmlNode> nodes );
-        //parse from set of nodes
+        //parse from set of nodesё
         T ParseFromXmlFragments(IEnumerable<XmlNode> nodes);
         //update
-        void UpdateFromFragment(XmlNode node, ref T entity);
+        bool UpdateFromFragment(XmlNode node, T entity);
     }
 }

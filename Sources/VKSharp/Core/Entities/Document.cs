@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Document : OwnedEntity<Document> {
@@ -8,8 +7,5 @@ namespace VKSharp.Core.Entities {
         public string Url { get; set; }
         public string Photo100 { get; set; }
         public string Photo130 { get; set; }
-        public override IVKEntityParser<Document> GetParser() {
-            return DocumentParser.Instanse;
-        }
     }
 }

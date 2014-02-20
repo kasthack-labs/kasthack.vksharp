@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityFragments {
     public class ProfileCounters:IVKEntity<ProfileCounters> {
@@ -16,9 +15,8 @@ namespace VKSharp.Core.EntityFragments {
         public uint? Followers { get; set; }
         public uint? UserPhotos { get; set; }
         public uint? Subscriptions { get; set; }
-        public uint? Pages { get; set; }
-        public IVKEntityParser<ProfileCounters> GetParser() {
-            return ProfileCountersParser.Instanse;
-        }
+        public uint? Pages { get; set; }    //???
+
+        public VKApi Context { get; set; }
     }
 }

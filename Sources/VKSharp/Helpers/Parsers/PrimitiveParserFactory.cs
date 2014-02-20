@@ -5,8 +5,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp.Helpers.Parsers {
     public static class PrimitiveParserFactory {
-        private static readonly Lazy<Dictionary<Type, object>> ParserLazy = new Lazy<Dictionary<Type, object>>( () => new Dictionary<Type, object>()
-        {
+        internal static readonly Lazy<Dictionary<Type, object>> ParserLazy = new Lazy<Dictionary<Type, object>>( () => new Dictionary<Type, object> {
             {
                 typeof(int),
                 new PrimitiveParser<int>(int.Parse)
@@ -49,8 +48,11 @@ namespace VKSharp.Helpers.Parsers {
                 return ParserLazy.Value;
             }
         }
-        public static IVKEntityParser<StructEntity<T>> GetParser<T>() where T : struct {
-            return (IVKEntityParser<StructEntity<T>>) Parsers[ typeof( T ) ];
+        public static IXmlVKEntityParser<T> GetParser<T,T2>() where T : StructEntity<T2>, IVKEntity<T> where T2 : struct {
+            return GetParserFor<T,T2>(typeof (T));
+        }
+        public static IXmlVKEntityParser<T> GetParserFor<T,T2>( Type ti ) where T : StructEntity<T2>, IVKEntity<T> where T2 : struct {
+            return (IXmlVKEntityParser<T>) Parsers[ ti ];
         }
     }
 }

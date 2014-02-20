@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Photo : OwnedEntity<Photo> {
@@ -14,8 +13,5 @@ namespace VKSharp.Core.Entities {
         public uint Height { get; set; }
         public string Text { get; set; }
         public uint Date { get; set; }
-        public override IVKEntityParser<Photo> GetParser() {
-            return PhotoParser.Instanse;
-        }
     }
 }

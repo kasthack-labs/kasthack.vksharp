@@ -4,21 +4,15 @@ using System.Linq;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class EntityListParser<T>:IVKEntityParser<EntityList<T>> where T : IVKEntity<T>, new() {
-        private static readonly Lazy<EntityListParser<T>> Lazy = new Lazy<EntityListParser<T>>( () => new EntityListParser<T>() );
-        public static EntityListParser<T> Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class EntityListParser<T> : IXmlVKEntityParser<EntityList<T>> where T : IVKEntity<T> {
+        public IExecutor Executor { get; set; }
 
-        private EntityListParser() { }
-
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref EntityList<T> entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, EntityList<T> entity) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, ref entity );
+                this.UpdateFromFragment( cn, entity );
         }
 
         public EntityList<T> ParseFromXml(XmlNode node) {
@@ -27,20 +21,25 @@ namespace VKSharp.Core.EntityParsers {
 
         public EntityList<T> ParseFromXmlFragments( IEnumerable<XmlNode> nodes ) {
             var el = new EntityList<T>();
-            this.FillFromXml(nodes, ref el);
+            this.FillFromXml(nodes, el);
             return el;
             
         }
 
-        public void UpdateFromFragment(XmlNode node, ref EntityList<T> entity) {
+        public bool UpdateFromFragment(XmlNode node, EntityList<T> entity) {
             switch ( node.Name ) {
                 case "count":
                     entity.TotalCount = uint.Parse( node.InnerText );
                     break;
                 case "items":
-                    entity.Items = new T().GetParser().ParseAllFromXml(node.ChildNodes.OfType<XmlNode>());
+                    entity.Items =  ( (SimpleXMLExecutor) this.Executor )
+                        .GetParser<T>()
+                        .ParseAllFromXml(node.ChildNodes.OfType<XmlNode>());
                     break;
+                default:
+                    return false;
             }
+            return true;
         }
 
         public EntityList<T>[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {

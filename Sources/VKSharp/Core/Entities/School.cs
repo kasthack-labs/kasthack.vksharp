@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class School:IVKEntity<School> {
@@ -10,12 +9,11 @@ namespace VKSharp.Core.Entities {
         public uint Country { get; set; }
         public uint ID { get; set; }
         public uint Type { get; set; }
-        public uint TypeName { get; set; }
-        public ushort? Graduation { get; set; }
+        public string TypeStr { get; set; }
+        public ushort? YearGraduated { get; set; }
         public ushort? YearFrom { get; set; }
         public ushort? YearTo { get; set; }
-        public IVKEntityParser<School> GetParser() {
-            return SchoolParser.Instanse;
-        }
+
+        public VKApi Context { get; set; }
     }
 }

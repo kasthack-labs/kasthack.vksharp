@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
+using VKSharp.Data.Executors;
 
-namespace VKSharp.Core.EntityParsers {
-    public class VideoParser : IVKEntityParser<Video> {
-        private static readonly Lazy<VideoParser> Lazy = new Lazy<VideoParser>( () => new VideoParser() );
-        public static VideoParser Instanse {
-            get {
-                return Lazy.Value;
-            }
-        }
+namespace VKSharp.Core.EntityParsers.Xml {
+    public class VideoParser : IXmlVKEntityParser<Video> {
+        public IExecutor Executor { get; set; }
 
-        private VideoParser() {}
-
-        public void FillFromXml(IEnumerable<XmlNode> nodes, ref Video entity) {
+        public void FillFromXml(IEnumerable<XmlNode> nodes, Video entity) {
             throw new NotImplementedException();
         }
 
@@ -31,7 +25,7 @@ namespace VKSharp.Core.EntityParsers {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, ref Video entity) {
+        public bool UpdateFromFragment(XmlNode node, Video entity) {
             throw new NotImplementedException();
         }
     }

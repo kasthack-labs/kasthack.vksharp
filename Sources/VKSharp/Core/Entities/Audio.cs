@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
@@ -12,8 +11,5 @@ namespace VKSharp.Core.Entities {
         public string Url { get; set; }
         public uint Duration { get; set; }
 
-        public override IVKEntityParser<Audio> GetParser() {
-            return AudioParser.Instanse;
-        }
     }
 }

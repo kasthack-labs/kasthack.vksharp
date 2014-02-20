@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.EntityParsers;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
@@ -7,8 +6,6 @@ namespace VKSharp.Core.Entities {
         public AttachmentType Type { get; set; }
         public object AttachmentBody { get; set; }
 
-        public IVKEntityParser<Attachment> GetParser() {
-            return AttachmentParser.Instanse;
-        }
+        public VKApi Context { get; set; }
     }
 }

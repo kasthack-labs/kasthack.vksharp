@@ -9,11 +9,15 @@ using VKSharp.Data.Parameters;
 
 namespace TestApp {
     class Program {
-        static void Main( string[] args ) {
+        static void Main() {
             var vk = new VKApi();
             var str = VKToken.GetOAuthURL( 3174839,VKPermission.Everything^(VKPermission.Notify|VKPermission.Nohttps) );
             str.Dump();
+#if !DEBUG
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
+#else
+            var redirecturl = File.ReadAllText( "debug.token" );
+#endif
             try {
                 vk.AddToken(VKToken.FromRedirectUrl(redirecturl));
             }
@@ -23,7 +27,7 @@ namespace TestApp {
                 return;
             }
 
-            //var userQuery = vk.UsersGet( new[] { 1U }, UserFields.Everything );
+            var userQuery = vk.UsersGet( UserFields.Everything, ids: 1704311 );
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();
@@ -34,19 +38,15 @@ namespace TestApp {
             //var isAppUserQuery = vk.UserIsAppUser( 8878040 );
             //isAppUserQuery.Data.Dump();
 
-            var au = vk.AudiosGet(count:500);
-            var p = @"B:\p";
-            foreach (var v in au.Items) {
-                var f = v.Artist + " - " + v.Title + ".mp3";
-                f = Path.GetInvalidFileNameChars().Aggregate( f.Trim(),
-                    ( current, variable ) => current.Replace( variable,
-                        '-' ) ).Replace( "!","" );
-                if ( !File.Exists( Path.Combine( @"D:\files\Общие\Музыка\kasthack.Audios", f ) ) && !File.Exists( Path.Combine( p, f ) ) )
-                    AWC.DownloadFile(
-                        v.Url,
-                        Path.Combine( p, f)
-                    );
-            }
+            //var au = vk.AudiosGet();
+            //var cnt = 100;
+            //var outpath = @"B:\audio";
+            //foreach (var audio in au.Take( cnt )) {
+            //    var name = audio.Artist + " - " + audio.Title;
+            //    name.Dump();
+            //    AWC.DownloadFile( audio.Url, Path.Combine( outpath, name+".mp3" ) );
+            //}
+
             Console.ReadLine();
         }
     }

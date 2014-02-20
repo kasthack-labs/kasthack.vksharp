@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VKSharp.Helpers.DataTypes {
+﻿namespace VKSharp.Helpers.DataTypes {
     public class Date {
         public int? Year { get; set; }
         public int Month { get; set; }
@@ -12,7 +10,7 @@ namespace VKSharp.Helpers.DataTypes {
             var l = spl.Length;
             //if(l==0)
             //    return null
-            return new Date() {
+            return new Date {
                 Day=int.Parse(spl[--l]),
                 Month = int.Parse( spl[ --l ] ),
                 Year = l>0?(int?)int.Parse( spl[ --l ] ):null
