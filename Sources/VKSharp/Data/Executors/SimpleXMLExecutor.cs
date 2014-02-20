@@ -11,7 +11,7 @@ using VKSharp.Helpers.Parsers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
-        private const string _reqExt = "xml";
+        private const string ReqExt = "xml";
         private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
         private Dictionary<Type, Type> _parserGenericStor;
         private Dictionary<Type, object> _parserStor;
@@ -30,7 +30,8 @@ namespace VKSharp.Data.Executors {
                         } )
                         .Where( a => a.Iface != null )
                         .ToArray();
-                _parserGenericStor = types.Where( a => a.Type.IsGenericType ).ToDictionary(
+                var tmp = types.Where( a => a.Type.IsGenericType && a.Iface.IsGenericType && a.Iface.GenericTypeArguments[ 0 ].IsGenericType ).ToArray();
+                _parserGenericStor = tmp.ToDictionary(
                     a=>a.Iface.GenericTypeArguments[0].GetGenericTypeDefinition(),
                     a=>a.Type.GetGenericTypeDefinition()
                 );
@@ -96,7 +97,7 @@ namespace VKSharp.Data.Executors {
         }
 
         public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
-            return await ParserHelper.ExecRawAsync( request, _reqExt );
+            return await ParserHelper.ExecRawAsync( request, ReqExt );
         }
     }
 }

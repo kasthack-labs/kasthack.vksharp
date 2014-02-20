@@ -24,20 +24,17 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return u;
         }
 
-        private IXmlVKEntityParser<T> GP<T>() where T : IVKEntity<T> {
+        private IXmlVKEntityParser<T> GetP<T>() where T : IVKEntity<T> {
             return ( (SimpleXMLExecutor) this.Executor ).GetParser<T>();
         }
 
         public override bool UpdateFromFragment(XmlNode node, User entity) {
             Action<User, string> parser;
             var nodeName = node.Name;
-            if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
-                parser( entity, node.InnerText );
+            if ( this.GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
+                 || this.GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ))
                 return true;
-            }
-            if ( this.GP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
-                 || this.GP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ))
-                return true;
+            var changed = true;
             switch ( nodeName ) {
                 case "bdate":
                     entity.BDate = Date.Parse( node.InnerText );
@@ -49,20 +46,28 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.Sex = (Sex) int.Parse( node.InnerText );
                     break;
                 case "counters":
-                    this.GP<ProfileCounters>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.Counters );
+                    this.GetP<ProfileCounters>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.Counters );
                     break;
                 case "schools":
-                    entity.Schools = this.GP<School>().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    entity.Schools = this.GetP<School>().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
                     break;
                 case "universities":
-                    entity.Universities =this.GP<University>().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    entity.Universities =this.GetP<University>().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    break;
+                case "deactivated":
+                    Deleted d;
+                    entity.Deactivated = Enum.TryParse( node.InnerText, true, out d )?(Deleted?)d:null;
                     break;
                 //case "ban_info":
-                //    this.GP<BanInfo>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.BanInfo );
+                //    this.GetP<BanInfo>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.BanInfo );
                 //    break;
                 default:
-                    return false;
+                    changed=false;
+                    break;
             }
+            if ( changed ) return true;
+            if ( !GeneratedParsers.TryGetValue( nodeName, out parser ) ) return false;
+            parser( entity, node.InnerText );
             return true;
         }
     }

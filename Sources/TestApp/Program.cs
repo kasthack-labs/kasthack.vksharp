@@ -9,9 +9,9 @@ namespace TestApp {
     class Program {
         static void Main() {
             var vk = new VKApi();
+#if !DEBUG
             var str = VKToken.GetOAuthURL( 3174839,VKPermission.Everything^(VKPermission.Notify|VKPermission.Nohttps) );
             str.Dump();
-#if !DEBUG
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
 #else
             var redirecturl = File.ReadAllText( "debug.token" );
@@ -25,7 +25,7 @@ namespace TestApp {
                 return;
             }
 
-            var userQuery = vk.UsersGet( UserFields.Everything, ids: 1704311 );
+            var userQuery = vk.UsersGet( UserFields.Everything, ids: 3 );
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();

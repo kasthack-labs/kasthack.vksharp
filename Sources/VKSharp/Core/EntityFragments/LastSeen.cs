@@ -1,5 +1,4 @@
-﻿using VKSharp.Core.Entities;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 
 namespace VKSharp.Core.EntityFragments {
     public class LastSeen {
