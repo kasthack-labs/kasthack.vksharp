@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;

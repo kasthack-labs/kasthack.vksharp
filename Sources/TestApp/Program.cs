@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
-using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Data.Api;

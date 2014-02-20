@@ -48,6 +48,5 @@ namespace VKSharp.Core.EntityParsers.Xml {
             }
             return false;
         }
-
     }
 }
