@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, Privacy entity) {
+        public bool UpdateFromFragment( XmlNode node, Privacy entity ) {
             throw new NotImplementedException();
         }
 

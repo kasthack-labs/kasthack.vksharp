@@ -13,6 +13,6 @@ namespace VKSharp.Core.Interfaces {
         //parse from set of nodesё
         T ParseFromXmlFragments(IEnumerable<XmlNode> nodes);
         //update
-        void UpdateFromFragment(XmlNode node, T entity);
+        bool UpdateFromFragment(XmlNode node, T entity);
     }
 }

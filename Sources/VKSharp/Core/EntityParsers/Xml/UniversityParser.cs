@@ -5,11 +5,21 @@ using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
+using VKSharp.Helpers;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UniversityParser : IXmlVKEntityParser<University> {
         public IExecutor Executor { get; set; }
-        
+
+        private static Lazy<Dictionary<string, Action<University, string>>> _generatedParsers =
+            new Lazy<Dictionary<string, Action<University, string>>>( ParserHelper.GetStringParsers<University> );
+
+        private static Dictionary<string, Action<University, string>> GeneratedParsers {
+            get {
+                return _generatedParsers.Value;
+            }
+        }
+
         public void FillFromXml(IEnumerable<XmlNode> nodes, University entity) {
             foreach ( var cn in nodes )
                 this.UpdateFromFragment( cn, entity );
@@ -29,42 +39,14 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return sc;
         }
 
-        public void UpdateFromFragment(XmlNode node, University entity) {
-            switch ( node.Name ) {
-                case "city":
-                    entity.City = uint.Parse( node.InnerText );
-                    break;
-                case "country":
-                    entity.Country = uint.Parse( node.InnerText );
-                    break;
-                case "id":
-                    entity.ID = uint.Parse( node.InnerText );
-                    break;
-                case "name":
-                    entity.Name = node.InnerText;
-                    break;
-                case "chair":
-                    entity.Chair = uint.Parse( node.InnerText );
-                    break;
-                case "faculty":
-                    entity.Faculty = uint.Parse( node.InnerText );
-                    break;
-                case "chair_name":
-                    entity.ChairName = node.InnerText;
-                    break;
-                case "faculty_name":
-                    entity.FacultyName = node.InnerText;
-                    break;
-                case "graduation":
-                    entity.Graduation = ushort.Parse( node.InnerText );
-                    break;
-                case "education_form":
-                    entity.EducationForm = node.InnerText;
-                    break;
-                case "education_status":
-                    entity.EducationStatus = node.InnerText;
-                    break;
+        public bool UpdateFromFragment(XmlNode node, University entity) {
+            Action<University, string> parser;
+            var nodeName = node.Name;
+            if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
+                parser( entity, node.InnerText );
+                return true;
             }
+            return false;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             throw new NotImplementedException();
         }
 
-        public void UpdateFromFragment(XmlNode node, PostedPhoto entity) {
+        public bool UpdateFromFragment( XmlNode node, PostedPhoto entity ) {
             throw new NotImplementedException();
         }
 

@@ -9,7 +9,7 @@ namespace VKSharp.Core.Entities {
         public uint Country { get; set; }
         public uint ID { get; set; }
         public uint Type { get; set; }
-        public uint TypeStr { get; set; }
+        public string TypeStr { get; set; }
         public ushort? YearGraduated { get; set; }
         public ushort? YearFrom { get; set; }
         public ushort? YearTo { get; set; }

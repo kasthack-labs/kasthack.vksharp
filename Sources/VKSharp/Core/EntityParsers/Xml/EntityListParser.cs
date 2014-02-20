@@ -26,15 +26,20 @@ namespace VKSharp.Core.EntityParsers.Xml {
             
         }
 
-        public void UpdateFromFragment(XmlNode node, EntityList<T> entity) {
+        public bool UpdateFromFragment(XmlNode node, EntityList<T> entity) {
             switch ( node.Name ) {
                 case "count":
                     entity.TotalCount = uint.Parse( node.InnerText );
                     break;
                 case "items":
-                    //entity.Items =  //GetParser().ParseAllFromXml(node.ChildNodes.OfType<XmlNode>());
+                    entity.Items =  ( (SimpleXMLExecutor) this.Executor )
+                        .GetParser<T>()
+                        .ParseAllFromXml(node.ChildNodes.OfType<XmlNode>());
                     break;
+                default:
+                    return false;
             }
+            return true;
         }
 
         public EntityList<T>[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {

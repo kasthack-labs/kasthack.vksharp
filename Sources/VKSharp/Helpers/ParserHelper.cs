@@ -19,6 +19,7 @@ namespace VKSharp.Helpers {
                     {typeof(uint?), new Func<string,uint?>(s => (uint?)uint.Parse( s )) },
                     {typeof(long?), new Func<string,long?>(s => (long?)long.Parse( s )) },
                     {typeof(byte?), new Func<string,byte?>(s => (byte?)byte.Parse( s )) },
+                    {typeof(ushort?), new Func<string,ushort?>(s => (ushort?)ushort.Parse( s )) },
                     {typeof(bool?), new Func<string,bool?>(a=>(bool?)(int.Parse( a ) == 1)) },
                 } );
         private static Lazy<Type> _actionTypeLazy = new Lazy<Type>( () => typeof( Action<object, object> ).GetGenericTypeDefinition() );
@@ -33,27 +34,17 @@ namespace VKSharp.Helpers {
             }
         }
         private static Action<TEntity, string> GetParser<TEntity, TProperty>( PropertyInfo property ) {
-            return ( a, b ) => (
-                        (Action<TEntity, TProperty>)
-                        Delegate.CreateDelegate(
-                            typeof( Action<TEntity, TProperty> ),
-                            null,
-                            property.GetSetMethod()
-                        )
-                    )(
-                        a,
-                        (
-                            (Func<string, TProperty>)
-                            Parsers[ typeof( TProperty ) ]
-                        )( b )
-                    );
+            //don't inline these funcs
+            var p = ( (Func<string, TProperty>) Parsers[ typeof( TProperty ) ] );
+            var s = ( (Action<TEntity, TProperty>) Delegate.CreateDelegate( typeof( Action<TEntity, TProperty> ), null, property.GetSetMethod() ) );
+            return ( a, b ) => s( a, p( b ) );
         }
-        private static void GetParsers<TEntity, TProperty>( Dictionary<string, Action<TEntity, string>> ret, Dictionary<Type, PropertyInfo[]> props ) {
-            if ( !props.ContainsKey( typeof (TProperty) ) ) return;
+        private static void GetParsers<TEntity, TProperty>( IDictionary<string, Action<TEntity, string>> ret, IReadOnlyDictionary<Type, PropertyInfo[]> props ) {
+            if ( !props.ContainsKey( typeof( TProperty ) ) ) return;
             foreach ( var pi in props[ typeof( TProperty ) ] )
                 ret.Add( ConvertName( pi.Name ), GetParser<TEntity, TProperty>( pi ) );
         }
-        
+
         public static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string extension ) where T : IVKEntity<T> {
             var bID = BuiltInData.Instance;
             var vk = bID.VKDomain;
@@ -99,9 +90,9 @@ namespace VKSharp.Helpers {
             var enityType = typeof( T );
             var props = enityType
                 .GetProperties()
-                .GroupBy( a=>a.PropertyType )
-                .Where( a=>Parsers.ContainsKey( a.Key ) )
-                .ToDictionary( a=>a.Key, a=>a.ToArray() );
+                .GroupBy( a => a.PropertyType )
+                .Where( a => Parsers.ContainsKey( a.Key ) )
+                .ToDictionary( a => a.Key, a => a.ToArray() );
             //bug. Don't know how to implement it right
             GetParsers<T, string>( ret, props );
             GetParsers<T, int?>( ret, props );
@@ -110,12 +101,13 @@ namespace VKSharp.Helpers {
             GetParsers<T, long?>( ret, props );
             GetParsers<T, byte?>( ret, props );
             GetParsers<T, bool?>( ret, props );
+            GetParsers<T, ushort?>( ret, props );
             return ret;
         }
         public static string ConvertName( string name ) {
             var t = new StringBuilder();
             t.Append( Char.ToLower( name[ 0 ] ) );
-            for (var index = 1; index < name.Length; index++) {
+            for ( var index = 1; index < name.Length; index++ ) {
                 var c = name[ index ];
                 if ( !Char.IsUpper( c ) ) t.Append( c );
                 else {

@@ -27,7 +27,7 @@ namespace TestApp {
                 return;
             }
 
-            var userQuery = vk.UsersGet( UserFields.Everything, ids:1 );
+            var userQuery = vk.UsersGet( UserFields.Everything, ids: 1704311 );
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();

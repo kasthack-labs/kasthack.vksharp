@@ -5,11 +5,20 @@ using System.Xml;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
+using VKSharp.Helpers;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class BanInfoParser : IXmlVKEntityParser<BanInfo> {
         public IExecutor Executor { get; set; }
 
+        private static Lazy<Dictionary<string, Action<BanInfo, string>>> _generatedParsers =
+            new Lazy<Dictionary<string, Action<BanInfo, string>>>( ParserHelper.GetStringParsers<BanInfo> );
+
+        private static Dictionary<string, Action<BanInfo, string>> GeneratedParsers {
+            get {
+                return _generatedParsers.Value;
+            }
+        }
 
         public void FillFromXml(IEnumerable<XmlNode> nodes, BanInfo entity) {
             foreach ( var node in nodes )
@@ -30,24 +39,14 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return entity;
         }
 
-        public void UpdateFromFragment(XmlNode node, BanInfo entity) {
-            switch ( node.Name ) {
-                case"admin_id":
-                    entity.AdminID = uint.Parse(node.InnerText);
-                    break;
-                case "date":
-                    entity.AddDate = uint.Parse( node.InnerText );
-                    break;
-                case "end_date":
-                    entity.EndDate = uint.Parse( node.InnerText );
-                    break;
-                case "reason":
-                    entity.Reason = node.InnerText;
-                    break;
-                case "comment":
-                    entity.Comment = node.InnerText;
-                    break;
+        public bool UpdateFromFragment(XmlNode node, BanInfo entity) {
+            Action<BanInfo, string> parser;
+            var nodeName = node.Name;
+            if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
+                parser( entity, node.InnerText );
+                return true;
             }
+            return false;
         }
     }
 }

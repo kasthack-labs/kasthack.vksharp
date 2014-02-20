@@ -31,8 +31,9 @@ namespace VKSharp.Helpers.Parsers {
             this.FillFromXml( nodes, entity );
             return entity;
         }
-        public void UpdateFromFragment( XmlNode node, StructEntity<TP> entity ) {
+        public bool UpdateFromFragment( XmlNode node, StructEntity<TP> entity ) {
             entity.Data = this._parseFunc( node.InnerText.Trim() );
+            return true;
         }
     }
 }

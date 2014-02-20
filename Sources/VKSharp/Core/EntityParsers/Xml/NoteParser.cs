@@ -24,7 +24,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public Note ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             throw new NotImplementedException();
         }
-        public void UpdateFromFragment(XmlNode node, Note entity) {
+        public bool UpdateFromFragment( XmlNode node, Note entity ) {
             throw new NotImplementedException();
         }
     }

@@ -46,80 +46,46 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return u;
         }
 
-        public void UpdateFromFragment(XmlNode node, User entity) {
+        private IXmlVKEntityParser<T> GP<T>() where T : IVKEntity<T> {
+            return ( (SimpleXMLExecutor) this.Executor ).GetParser<T>();
+        }
+
+        public bool UpdateFromFragment(XmlNode node, User entity) {
             Action<User, string> parser;
             var nodeName = node.Name;
             if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
                 parser( entity, node.InnerText );
-                return;
+                return true;
             }
+            if ( this.GP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
+                 || this.GP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ))
+                return true;
             switch ( nodeName ) {
                 case "bdate":
                     entity.BDate = Date.Parse( node.InnerText );
                     break;
-                case "photo_50":
-                    entity.ProfilePhotos.Photo50 = node.InnerText;
-                    break;
-                case "photo_100":
-                    entity.ProfilePhotos.Photo100 = node.InnerText;
-                    break;
-                case "photo_200":
-                    entity.ProfilePhotos.Photo200 = node.InnerText;
-                    break;
-                case "photo_max":
-                    entity.ProfilePhotos.PhotoMax = node.InnerText;
-                    break;
-                case "photo_200_orig":
-                    entity.ProfilePhotos.Photo200Orig = node.InnerText;
-                    break;
-                case "photo_400_orig":
-                    entity.ProfilePhotos.Photo400Orig = node.InnerText;
-                    break;
-                case "photo_max_orig":
-                    entity.ProfilePhotos.PhotoMaxOrig = node.InnerText;
-                    break;
-
-                case "skype":
-                    entity.Connections.Skype = node.InnerText;
-                    break;
-                case "facebook":
-                    entity.Connections.Facebook = ulong.Parse( node.InnerText );
-                    break;
-                case "facebook_name":
-                    entity.Connections.FacebookName = node.InnerText;
-                    break;
-                case "twitter":
-                    entity.Connections.Twitter = node.InnerText;
-                    break;
-                case "instagram":
-                    entity.Connections.Instagram = node.InnerText;
-                    break;
-
-                //case "counters":
-                //    var p2 = entity.Counters;
-                //    var cp = p2.GetParser();
-                //    cp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), p2);
-                //    break;
-
                 case "relation":
                     entity.Relation = (Relation) int.Parse( node.InnerText );
                     break;
                 case "sex":
                     entity.Sex = (Sex) int.Parse( node.InnerText );
                     break;
-
-                //case "schools":
-                //    entity.Schools = new School().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
-                //    break;
-                //case "universities":
-                //    entity.Universities = new University().GetParser().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
-                //    break;
+                case "counters":
+                    this.GP<ProfileCounters>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.Counters );
+                    break;
+                case "schools":
+                    entity.Schools = this.GP<School>().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    break;
+                case "universities":
+                    entity.Universities =this.GP<University>().ParseAllFromXml( node.ChildNodes.OfType<XmlNode>() );
+                    break;
                 //case "ban_info":
-                //    var b = entity.BanInfo;
-                //    var bp = b.GetParser();
-                //    bp.FillFromXml(node.ChildNodes.OfType<XmlNode>(), b);
+                //    this.GP<BanInfo>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.BanInfo );
                 //    break;
+                default:
+                    return false;
             }
+            return true;
         }
     }
 }
