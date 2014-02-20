@@ -109,11 +109,13 @@ namespace VKSharp.Helpers {
             t.Append( Char.ToLower( name[ 0 ] ) );
             for ( var index = 1; index < name.Length; index++ ) {
                 var c = name[ index ];
-                if ( !Char.IsUpper( c ) ) t.Append( c );
-                else {
+                //add '_' b4 numbers and captials 
+                if ( Char.IsUpper( c ) || ( Char.IsNumber( c ) && !Char.IsNumber( name[ index - 1 ] ) ) ) {
                     t.Append( '_' );
                     t.Append( Char.ToLower( c ) );
+                    continue;
                 }
+                t.Append( c );
             }
             return t.ToString();
         }
