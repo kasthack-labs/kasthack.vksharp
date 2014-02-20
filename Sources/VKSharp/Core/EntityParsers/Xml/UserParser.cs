@@ -7,36 +7,14 @@ using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
-using VKSharp.Helpers;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.EntityParsers.Xml {
-    public class UserParser : IXmlVKEntityParser<User> {
-        public IExecutor Executor { get; set; }
-
-        private static Lazy<Dictionary<string, Action<User, string>>> _generatedParsers =
-            new Lazy<Dictionary<string, Action<User, string>>>( ParserHelper.GetStringParsers<User> );
-
-        private static Dictionary<string, Action<User, string>> GeneratedParsers {
-            get {
-                return _generatedParsers.Value;
-            }
-        }
-
-        public void FillFromXml( IEnumerable<XmlNode> nodes, User entity ) {
-            foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, entity );
-        }
-
-        public User ParseFromXml( XmlNode node ) {
+    public class UserParser : DefaultParser<User> {
+        public override User ParseFromXml( XmlNode node ) {
             return String.CompareOrdinal( node.Name, "user" ) != 0 ? null : this.ParseFromXmlFragments(node.ChildNodes.OfType<XmlNode>());
         }
-
-        public User[] ParseAllFromXml( IEnumerable<XmlNode> nodes ) {
-            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
-        }
-
-        public User ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
+        public override User ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
             var u = new User {
                 ProfilePhotos = new ProfilePhotos(),
                 Connections = new SiteProfiles(),
@@ -50,7 +28,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return ( (SimpleXMLExecutor) this.Executor ).GetParser<T>();
         }
 
-        public bool UpdateFromFragment(XmlNode node, User entity) {
+        public override bool UpdateFromFragment(XmlNode node, User entity) {
             Action<User, string> parser;
             var nodeName = node.Name;
             if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {

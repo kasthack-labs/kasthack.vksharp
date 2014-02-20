@@ -1,33 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Xml;
-using VKSharp.Core.Entities;
-using VKSharp.Core.Interfaces;
-using VKSharp.Data.Executors;
+﻿using VKSharp.Core.Entities;
 
 namespace VKSharp.Core.EntityParsers.Xml {
-    public class PostedPhotoParser : IXmlVKEntityParser<PostedPhoto> {
-        public IExecutor Executor { get; set; }
-
-        public void FillFromXml(IEnumerable<XmlNode> nodes, PostedPhoto entity) {
-            throw new NotImplementedException();
-        }
-
-        public PostedPhoto ParseFromXml(XmlNode node) {
-            throw new NotImplementedException();
-        }
-
-        public PostedPhoto[] ParseAllFromXml(IEnumerable<XmlNode> nodes) {
-            throw new NotImplementedException();
-        }
-
-        public PostedPhoto ParseFromXmlFragments(IEnumerable<XmlNode> nodes) {
-            throw new NotImplementedException();
-        }
-
-        public bool UpdateFromFragment( XmlNode node, PostedPhoto entity ) {
-            throw new NotImplementedException();
-        }
-
+    public class PostedPhotoParser : DefaultParser<PostedPhoto> {
     }
 }
