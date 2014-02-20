@@ -10,8 +10,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public abstract class DefaultParser<T> : IXmlVKEntityParser<T> where T : IVKEntity<T>, new() {
         public IExecutor Executor { get; set; }
 
-        protected static Lazy<Dictionary<string, Action<T, string>>> _generatedParsers =
-    new Lazy<Dictionary<string, Action<T, string>>>( ParserHelper.GetStringParsers<T> );
+        protected static Lazy<Dictionary<string, Action<T, string>>> _generatedParsers = new Lazy<Dictionary<string, Action<T, string>>>( ParserHelper.GetStringParsers<T> );
 
         protected static Dictionary<string, Action<T, string>> GeneratedParsers {
             get {

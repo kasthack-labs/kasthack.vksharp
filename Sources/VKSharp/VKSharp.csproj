@@ -44,6 +44,11 @@
     <Compile Include="Api\Audios.cs" />
     <Compile Include="Api\Friends.cs" />
     <Compile Include="Api\Wrappers\Audios.cs" />
+    <Compile Include="Core\Enums\VKPlatform.cs" />
+    <Compile Include="Core\EntityFragments\Relative.cs" />
+    <Compile Include="Core\Enums\RelativeType.cs" />
+    <Compile Include="Core\EntityFragments\LastSeen.cs" />
+    <Compile Include="Core\EntityFragments\Exports.cs" />
     <Compile Include="Core\EntityParsers\Xml\DefaultParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\ProfilePhotosParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\SiteProfilesParser.cs" />

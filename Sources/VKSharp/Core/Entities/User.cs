@@ -83,40 +83,4 @@ namespace VKSharp.Core.Entities {
             return "ID :" + this.ID;
         }
     }
-
-    public class LastSeen {
-        public uint Time { get; set; }
-        public VKPlatform Platform { get; set; }
-    }
-
-    public enum VKPlatform : byte {
-        Mobile = 1,
-        IPhone = 2,
-        IPad = 3,
-        Android = 4,
-        WPhone = 5,
-        Windows = 6,
-        Web = 7
-    }
-
-    public class Relative {
-        public int? ID { get; set; }
-        public string Name { get; set; }
-        public RelativeType Type;
-    }
-
-    public enum RelativeType {
-        Child,
-        Parent,
-        Sibling,
-        GrandChild,
-        GrandParent
-    }
-
-    public class Exports {
-        public bool? Twitter { get; set; }
-        public bool? Facebook { get; set; }
-        public bool? LiveJournal { get; set; }
-        public bool? Instagram { get; set; }
-    }
 }
