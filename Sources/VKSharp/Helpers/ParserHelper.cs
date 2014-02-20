@@ -22,12 +22,6 @@ namespace VKSharp.Helpers {
                     {typeof(ushort?), new Func<string,ushort?>(s => (ushort?)ushort.Parse( s )) },
                     {typeof(bool?), new Func<string,bool?>(a=>(bool?)(int.Parse( a ) == 1)) },
                 } );
-        private static Lazy<Type> _actionTypeLazy = new Lazy<Type>( () => typeof( Action<object, object> ).GetGenericTypeDefinition() );
-        private static Type ActionType {
-            get {
-                return _actionTypeLazy.Value;
-            }
-        }
         private static Dictionary<Type, object> Parsers {
             get {
                 return _parsers.Value;

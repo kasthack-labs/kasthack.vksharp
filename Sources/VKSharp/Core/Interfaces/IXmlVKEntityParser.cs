@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
-using VKSharp.Data.Executors;
 
 namespace VKSharp.Core.Interfaces {
     public interface IXmlVKEntityParser<T> : IXmlVKEntityParser where T : IVKEntity<T> {

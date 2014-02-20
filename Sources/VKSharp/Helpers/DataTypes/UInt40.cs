@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace VKSharp.Helpers.DataTypes {
     [Serializable]
@@ -395,7 +396,7 @@ namespace VKSharp.Helpers.DataTypes {
             };
         }
         public override string ToString() {
-            return ( (ulong) this ).ToString();
+            return ( (ulong) this ).ToString( BuiltInData.Instance.NC );
         }
         public static UInt40 Parse(string s) {
             return (UInt40) ulong.Parse(s);
