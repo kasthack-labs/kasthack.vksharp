@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Data.Api;
@@ -24,8 +25,8 @@ namespace TestApp {
                 Console.ReadLine();
                 return;
             }
-
-            var userQuery = vk.UsersGet( UserFields.Everything, ids: 3 );
+            var ids = Enumerable.Range( 2000, 3000 ).Select( a=>(uint) a).ToArray();
+            var userQuery = vk.UsersGet( UserFields.Bdate | UserFields.Universities, ids: ids  );
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();

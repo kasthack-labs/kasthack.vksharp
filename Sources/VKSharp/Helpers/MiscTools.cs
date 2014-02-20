@@ -8,7 +8,7 @@ namespace VKSharp.Helpers {
             return Enum.GetValues(typeof (UserFields))
                 .OfType<UserFields>()
                 .Where(a => a != UserFields.Everything&& a!=UserFields.None)
-                .Where(a => fields.HasFlag(a))
+                .Where(a => (fields & a)==a)
                 .Select(a => a.ToNCLString())
                 .ToArray();
         }

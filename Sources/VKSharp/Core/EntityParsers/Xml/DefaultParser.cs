@@ -41,7 +41,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
             Action<T, string> parser;
             var nodeName = node.Name;
             if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
-                parser( entity, node.InnerText );
+                try {
+                    parser( entity, node.InnerText );
+                }
+                catch (FormatException ex) {
+                    throw new Exception(String.Format("Parser error: field {0} at entity {1}\r\nXml:\r\n{2}", node.Name, typeof(T), node.OwnerDocument.InnerXml), ex);
+                }
                 return true;
             }
             return false;
