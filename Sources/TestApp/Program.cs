@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using kasthack.Tools;
 using VKSharp;
+using VKSharp.Core.Enums;
 using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 
@@ -25,8 +26,8 @@ namespace TestApp {
                 Console.ReadLine();
                 return;
             }
-            var ids = Enumerable.Range( 2000, 3000 ).Select( a=>(uint) a).ToArray();
-            var userQuery = vk.UsersGet( UserFields.Bdate | UserFields.Universities, ids: ids  );
+            //var ids = Enumerable.Range( 2000, 3000 ).Select( a=>(uint) a).ToArray();
+            var userQuery = vk.UsersGet( UserFields.Bdate | UserFields.Universities, NameCase.Nom,  1, 8878040  );
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();

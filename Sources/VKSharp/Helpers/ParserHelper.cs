@@ -15,7 +15,7 @@ namespace VKSharp.Helpers {
                 () => new Dictionary<Type, object> {
                     {typeof(string), new Func<string,string>(s=>s.Trim('\r','\n','\t', ' ')) },
                     {typeof(int?),  new Func<string,int?>(s => {int r; return int.TryParse( s, out r)?(int?)r:null;})},
-                    {typeof(uint),  new Func<string,uint>(uint.Parse)},
+                    {typeof(uint),  new Func<string,uint>( s => {uint r; return uint.TryParse( s, out r)?r:uint.MaxValue;})},
                     {typeof(uint?), new Func<string,uint?>(s => {uint r; return uint.TryParse( s, out r)?(uint?)r:null;})},
                     {typeof(long?), new Func<string,long?>(s => {long r; return long.TryParse( s, out r)?(long?)r:null;})},
                     {typeof(byte?), new Func<string,byte?>(s => {byte r; return byte.TryParse( s, out r)?(byte?)r:null;})},

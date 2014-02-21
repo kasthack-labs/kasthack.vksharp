@@ -1,4 +1,6 @@
-﻿namespace VKSharp.Helpers.DataTypes {
+﻿using System;
+
+namespace VKSharp.Helpers.DataTypes {
     public class Date {
         public int? Year { get; set; }
         public int Month { get; set; }
@@ -11,10 +13,20 @@
             //if(l==0)
             //    return null
             return new Date {
-                Day=int.Parse(spl[--l]),
+                Year = l>2?(int?) int.Parse( spl[ --l ] ) : null,
                 Month = int.Parse( spl[ --l ] ),
-                Year = l>0?(int?)int.Parse( spl[ --l ] ):null
+                Day=int.Parse(spl[--l]),
             };
+        }
+
+        /// <summary>
+        /// Возвращает строку, которая представляет текущий объект.
+        /// </summary>
+        /// <returns>
+        /// Строка, представляющая текущий объект.
+        /// </returns>
+        public override string ToString() {
+            return String.Format( Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}", Day, Month, Year );
         }
     }
 }
