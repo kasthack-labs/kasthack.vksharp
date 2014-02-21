@@ -8,7 +8,7 @@ using VKSharp.Helpers;
 namespace VKSharp {
     public partial class VKApi {
         public async Task<User[]> GroupsGetBannedAsync(
-            uint groupID,
+            uint groupId,
             uint offset = 0,
             ushort count = 100) {
             var req = new VKRequest<User> {
@@ -16,7 +16,7 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                     { "offset", offset.ToString(BuiltInData.Instance.NC) },
                     { "count", count.ToString(BuiltInData.Instance.NC) },
-                    { "group_id", groupID.ToString(BuiltInData.Instance.NC) }
+                    { "group_id", groupId.ToString(BuiltInData.Instance.NC) }
                 }
             };
             if ( !this.IsLogged )

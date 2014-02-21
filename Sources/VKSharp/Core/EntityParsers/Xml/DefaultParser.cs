@@ -40,16 +40,15 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public virtual bool UpdateFromFragment( XmlNode node, T entity ) {
             Action<T, string> parser;
             var nodeName = node.Name;
-            if ( GeneratedParsers.TryGetValue( nodeName, out parser ) ) {
-                try {
-                    parser( entity, node.InnerText );
-                }
-                catch (FormatException ex) {
-                    throw new Exception(String.Format("Parser error: field {0} at entity {1}\r\nXml:\r\n{2}", node.Name, typeof(T), node.OwnerDocument.InnerXml), ex);
-                }
-                return true;
+            if ( !GeneratedParsers.TryGetValue( nodeName, out parser ) ) return false;
+            try {
+                parser( entity, node.InnerText );
             }
-            return false;
+            catch (Exception ex) {
+                //if (ex is FormatException || ex is OverflowException)
+                throw new Exception(String.Format("Parser error: field {0} at entity {1}\r\nXml:\r\n{2}", node.Name, typeof(T), node.OwnerDocument.InnerXml), ex);
+            }
+            return true;
         }
     }
 }

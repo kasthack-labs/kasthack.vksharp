@@ -11,9 +11,9 @@ using VKSharp.Helpers;
 namespace VKSharp {
     public partial class VKApi {
         public async Task<User[]> FriendsGetAsync(
-           uint userID,
-           UserSortOrder order = UserSortOrder.ByID,
-           uint? listID = null,
+           uint userId,
+           UserSortOrder order = UserSortOrder.ById,
+           uint? listId = null,
            uint offset = 0,
            ushort count = 100,
            UserFields fields = UserFields.None,
@@ -22,9 +22,9 @@ namespace VKSharp {
                 MethodName = "friends.get",
                 Parameters = new Dictionary<string, string> {
                     { "fields", String.Join(",",MiscTools.GetUserFields(fields)) },
-                    { "list_id", MiscTools.NullableString(listID) },
-                    { "order", order==UserSortOrder.ByID?"":order.ToNCLString() },
-                    { "user_id", userID.ToNCString() },
+                    { "list_id", MiscTools.NullableString(listId) },
+                    { "order", order==UserSortOrder.ById?"":order.ToNCLString() },
+                    { "user_id", userId.ToNCString() },
                     { "offset", offset.ToNCString() },
                     { "count", count.ToNCString() },
                     { "name_case", nameCase.ToNCLString() }

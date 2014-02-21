@@ -2,7 +2,7 @@
 
 namespace VKSharp.Core.Entities {
     public class Place:IVKEntity<Place> {
-                public uint ID { get; set; }
+                public uint Id { get; set; }
         public uint Title { get; set; }
         public uint Latitude { get; set; }
         public uint Longitude { get; set; }

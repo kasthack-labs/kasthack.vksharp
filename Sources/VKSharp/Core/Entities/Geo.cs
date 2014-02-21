@@ -6,9 +6,9 @@ namespace VKSharp.Core.Entities {
         public string Address { get; set; }
         public string Title { get; set; }
         public string Type { get; set; }
-        public uint CityID { get; set; }
-        public uint CountryID { get; set; }
-        public uint PlaceID { get; set; }
+        public uint CityId{ get; set; }
+        public uint CountryId{ get; set; }
+        public uint PlaceId{ get; set; }
 
         public VKApi Context { get; set; }
     }

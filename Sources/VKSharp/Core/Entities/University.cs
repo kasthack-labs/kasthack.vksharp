@@ -9,7 +9,7 @@ namespace VKSharp.Core.Entities {
         public string EducationStatus { get; set; }
         public uint City { get; set; }
         public uint Country { get; set; }
-        public uint ID { get; set; }
+        public uint Id { get; set; }
         public uint? Chair { get; set; }
         public uint? Faculty { get; set; }
         public ushort? Graduation { get; set; }

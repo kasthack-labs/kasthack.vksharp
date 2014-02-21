@@ -3,6 +3,6 @@
         Name,
         Hints,
         Random,
-        ByID
+        ById
     }
 }

@@ -13,7 +13,7 @@ namespace VKSharp.Helpers {
         private static Lazy<Dictionary<Type, object>> _parsers =
             new Lazy<Dictionary<Type, object>>(
                 () => new Dictionary<Type, object> {
-                    {typeof(string), new Func<string,string>(s=>s) },
+                    {typeof(string), new Func<string,string>(s=>s.Trim('\r','\n','\t', ' ')) },
                     {typeof(int?),  new Func<string,int?>(s => (int?)int.Parse( s ))},
                     {typeof(uint),  new Func<string,uint>(uint.Parse)},
                     {typeof(uint?), new Func<string,uint?>(s => (uint?)uint.Parse( s )) },
@@ -40,8 +40,8 @@ namespace VKSharp.Helpers {
         }
 
         public static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string extension ) where T : IVKEntity<T> {
-            var bID = BuiltInData.Instance;
-            var vk = bID.VKDomain;
+            var bId = BuiltInData.Instance;
+            var vk = bId.VKDomain;
             var query = String.Join( "&", request.Parameters.Where( a => a.Value != "" ).Select( a => a.Key + "=" + a.Value ) );
             var queryB = new StringBuilder();
             queryB.Append( "/method/" );
@@ -55,8 +55,8 @@ namespace VKSharp.Helpers {
                     queryB.Append(
                         "&sig=" +
                         BitConverter.ToString(
-                            bID.Hasher.ComputeHash(
-                                bID.TextEncoding.
+                            bId.Hasher.ComputeHash(
+                                bId.TextEncoding.
                                 GetBytes(
                                     queryB + "&" + query +
                                     request.Token.Sign
@@ -71,7 +71,7 @@ namespace VKSharp.Helpers {
             queryB.Insert( 0, vk );
             return await AWC.DownloadStringAsync(
                 queryB.ToString(),
-                bID.TextEncoding,
+                bId.TextEncoding,
                 null,
                 null,
                 AWC.RequestMethod.Post,

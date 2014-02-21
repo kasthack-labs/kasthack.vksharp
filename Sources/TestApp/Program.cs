@@ -30,7 +30,7 @@ namespace TestApp {
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();
-            //var friendsQuery = vk.FriendsGet(8878040, UserSortOrder.ByID, null, 0, 100, UserFields.Everything);
+            //var friendsQuery = vk.FriendsGet(8878040, UserSortOrder.ById, null, 0, 100, UserFields.Everything);
             //friendsQuery.Dump();
             //var friendsPhone = vk.FriendsGetByPhones(new ulong[] {79312602112});
             //friendsPhone.Dump();

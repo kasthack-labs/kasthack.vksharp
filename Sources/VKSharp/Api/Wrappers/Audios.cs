@@ -5,16 +5,16 @@ using VKSharp.Core.Entities;
 namespace VKSharp {
     public partial class VKApi {
         public Audio[] AudiosGet(
-           int? ownerID=null,
-           int? albumID=null,
+           int? ownerId=null,
+           int? albumId=null,
            IEnumerable<ulong> audioIds=null,
            bool needUser=false,
            int offset=0,
            int? count=null) {
             return Helper.SyncTask(
                 this.AudiosGetAsync(
-                    ownerID,
-                    albumID,
+                    ownerId,
+                    albumId,
                     audioIds,
                     needUser,
                     offset,

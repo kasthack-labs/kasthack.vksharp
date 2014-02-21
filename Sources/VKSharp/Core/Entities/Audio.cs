@@ -4,8 +4,8 @@ using VKSharp.Core.Interfaces;
 namespace VKSharp.Core.Entities {
     public class Audio : OwnedEntity<Audio> {
         public AudioGenre Genre { get; set; }
-        public int AlbumID { get; set; }
-        public int LyricsID { get; set; }
+        public int AlbumId { get; set; }
+        public int LyricsId { get; set; }
         public string Artist { get; set; }
         public string Title { get; set; }
         public string Url { get; set; }

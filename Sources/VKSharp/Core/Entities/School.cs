@@ -7,7 +7,7 @@ namespace VKSharp.Core.Entities {
         public string Speciality { get; set; }
         public uint City { get; set; }
         public uint Country { get; set; }
-        public uint ID { get; set; }
+        public uint Id { get; set; }
         public uint Type { get; set; }
         public string TypeStr { get; set; }
         public ushort? YearGraduated { get; set; }

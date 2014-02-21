@@ -8,8 +8,8 @@ using VKSharp.Helpers;
 namespace VKSharp {
     public partial class VKApi {
         public async Task<Audio[]> AudiosGetAsync(
-           int? ownerID=null,
-           int? albumID=null,
+           int? ownerId=null,
+           int? albumId=null,
            IEnumerable<ulong> audioIds=null,
            bool needUser=false,
            int offset=0,
@@ -20,8 +20,8 @@ namespace VKSharp {
                     { "offset", offset.ToNCString() },
                     { "count", MiscTools.NullableString( count ) },
                     { "need_user", (needUser?1:0).ToNCString() },
-                    { "owner_id", MiscTools.NullableString(ownerID) },
-                    { "album_id", MiscTools.NullableString(albumID) },
+                    { "owner_id", MiscTools.NullableString(ownerId) },
+                    { "album_id", MiscTools.NullableString(albumId) },
                     { "audio_ids", String.Join(",", audioIds?? new ulong[]{} )}
                 }
             };

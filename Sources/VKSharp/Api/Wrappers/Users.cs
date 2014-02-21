@@ -9,16 +9,16 @@ namespace VKSharp {
         public User[] UsersGet( UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params uint[] ids ) {
             return Helper.SyncTask( this.UsersGetAsync( fields, nameCase, ids ) );
         }
-        public EntityList<User> UsersGetFollowers( uint userID,
+        public EntityList<User> UsersGetFollowers( uint userId,
             uint offset = 0,
             ushort count = 100,
             UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom ) {
-            return Helper.SyncTask( this.UsersGetFollowersAsync( userID, offset, count, fields, nameCase ) );
+            return Helper.SyncTask( this.UsersGetFollowersAsync( userId, offset, count, fields, nameCase ) );
         }
 
-        public StructEntity<bool> UserIsAppUser( uint? userID ) {
-                return Helper.SyncTask( this.UserIsAppUserAsync( userID ) );
+        public StructEntity<bool> UserIsAppUser( uint? userId ) {
+                return Helper.SyncTask( this.UserIsAppUserAsync( userId ) );
         }
     }
 }

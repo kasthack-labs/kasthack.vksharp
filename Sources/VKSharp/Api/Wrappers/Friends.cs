@@ -9,18 +9,18 @@ namespace VKSharp {
 
 
         public User[] FriendsGet(
-            uint userID,
-            UserSortOrder order = UserSortOrder.ByID,
-            uint? listID = null,
+            uint userId,
+            UserSortOrder order = UserSortOrder.ById,
+            uint? listId = null,
             uint offset = 0,
             ushort count = 100,
             UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom ) {
             return Helper.SyncTask(
                 this.FriendsGetAsync(
-                    userID,
+                    userId,
                     order,
-                    listID,
+                    listId,
                     offset,
                     count,
                     fields,

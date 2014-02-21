@@ -25,12 +25,12 @@ namespace VKSharp.Core.Entities {
         public string Site { get; set; }
         public string Status { get; set; }
         public string WikiPage { get; set; }
-        public uint ID { get; set; }
+        public uint Id { get; set; }
         public uint? City { get; set; }
         public uint? Country { get; set; }
         public uint? EndDate { get; set; }
         public uint? MembersCount { get; set; }
-        public uint? PostID { get; set; }
+        public uint? PostId { get; set; }
         public uint? StartDate { get; set; }
 
         public VKApi Context { get; set; }

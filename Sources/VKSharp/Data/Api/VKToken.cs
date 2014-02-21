@@ -7,22 +7,22 @@ namespace VKSharp.Data.Api {
     public class VKToken {
         public string Token { get; private set; }
         public string Sign { get; private set; }
-        public uint UserID { get; private set; }
+        public uint UserId { get; private set; }
 
-        public VKToken( string token, string sign = null, uint userID = 0 ) {
+        public VKToken( string token, string sign = null, uint userId = 0 ) {
             this.Token = token;
             this.Sign = sign;
-            this.UserID = userID;
+            this.UserId = userId;
         }
 
-        public static string GetOAuthURL( int appID, VKPermission permissions = VKPermission.None, string redirectURL = "https://oauth.vk.com/blank.html" ) {
+        public static string GetOAuthURL( int appId, VKPermission permissions = VKPermission.None, string redirectURL = "https://oauth.vk.com/blank.html" ) {
             var testperm =
                 Enum.GetValues(typeof (VKPermission))
                     .OfType<VKPermission>()
                     .Where(a => a != VKPermission.None && a != VKPermission.Everything);
             return String.Format(
                                  BuiltInData.Instance.OAuthURL,
-                                 appID,
+                                 appId,
                                  String.Join(
                                              ",",
                                              testperm

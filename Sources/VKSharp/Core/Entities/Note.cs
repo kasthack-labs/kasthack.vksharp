@@ -2,8 +2,8 @@
 
 namespace VKSharp.Core.Entities {
     public class Note : OwnedEntity<Note> {
-        //UserID -> OwnerID
-        public override int OwnerID { get; set; }
+        //UserId -> OwnerId
+        public override int OwnerId { get; set; }
         public uint Date { get; set; }
         public uint CommentCount { get; set; }
         public uint? ReadCommentCount { get; set; }
