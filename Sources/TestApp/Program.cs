@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Core.Enums;

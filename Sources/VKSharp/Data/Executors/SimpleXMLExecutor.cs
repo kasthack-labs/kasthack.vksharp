@@ -65,7 +65,7 @@ namespace VKSharp.Data.Executors {
             }
         }
 
-        internal IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
+        public IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T>  {
             object parser;
             Type parserGTD, ti = typeof( T );
             if ( ParserStor.TryGetValue( ti, out parser ) )
