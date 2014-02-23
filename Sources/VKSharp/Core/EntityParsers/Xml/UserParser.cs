@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
+using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
 using VKSharp.Helpers.DataTypes;
@@ -16,8 +15,6 @@ namespace VKSharp.Core.EntityParsers.Xml {
             lock (_userParserLocker) {
                 if((bool)_userParserLocker) return;
                 var v = GeneratedParsers;
-                foreach ( var action in v.Keys.Where( a => !( a == "id" || a == "last_name" || a == "first_name" ) ).ToArray() )
-                    v.Remove( action );
                 _userParserLocker = true;
             }
         }
@@ -30,7 +27,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             var u = new User {
                 ProfilePhotos = new ProfilePhotos(),
                 Connections = new SiteProfiles(),
-                Counters = new ProfileCounters()
+                Counters = new ProfileCounters(),
             };
             this.FillFromXml(nodes, u );
             return u;
@@ -43,36 +40,39 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public override bool UpdateFromFragment(XElement node, User entity) {
             Action<User, string> parser;
             var nodeName = node.Name.ToString();
-            //if ( this.GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
-            //     || this.GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ))
-            //    return true;
+            if ( this.GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
+                 || this.GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ) )
+                return true;
             var changed = true;
             switch ( nodeName ) {
                 case "bdate":
                     entity.BDate = Date.Parse( node.Value );
                     break;
-                //case "relation":
-                //    entity.Relation = (Relation) int.Parse( node.InnerText );
-                //    break;
-                //case "sex":
-                //    entity.Sex = (Sex) int.Parse( node.InnerText );
-                //    break;
-                //case "counters":
-                //    this.GetP<ProfileCounters>().FillFromXml( node.ChildNodes, entity.Counters );
-                //    break;
-                //case "schools":
-                //    entity.Schools = this.GetP<School>().ParseAllFromXml( node.ChildNodes );
-                //    break;
+                case "relation":
+                    entity.Relation = (Relation) int.Parse( node.Value );
+                    break;
+                case "sex":
+                    entity.Sex = (Sex) int.Parse( node.Value );
+                    break;
+                case "counters":
+                    this.GetP<ProfileCounters>().FillFromXml( node.Elements(), entity.Counters );
+                    break;
+                case "schools":
+                    entity.Schools = this.GetP<School>().ParseAllFromXml( node.Elements() );
+                    break;
                 case "universities":
                     entity.Universities = this.GetP<University>().ParseAllFromXml( node.Elements() );
                     break;
-                //case "deactivated":
-                //    Deleted d;
-                //    entity.Deactivated = Enum.TryParse( node.InnerText, true, out d )?(Deleted?)d:null;
-                //    break;
+                case "deactivated":
+                    Deleted d;
+                    entity.Deactivated = Enum.TryParse( node.Value, true, out d ) ? (Deleted?) d : null;
+                    break;
                 //case "ban_info":
-                //    this.GetP<BanInfo>().FillFromXml( node.ChildNodes.OfType<XmlNode>(), entity.BanInfo );
+                //    this.GetP<BanInfo>().FillFromXml( node.Elements(), entity. );
                 //    break;
+                case "last_seen":
+                    entity.LastSeen = this.GetP<LastSeen>().ParseFromXml( node );
+                    break;
                 default:
                     changed=false;
                     break;

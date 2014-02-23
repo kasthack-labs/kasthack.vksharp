@@ -26,7 +26,7 @@ namespace TestApp {
                 return;
             }
             //var ids = Enumerable.Range( 2000, 3000 ).Select( a=>(uint) a).ToArray();
-            var userQuery = vk.UsersGet( UserFields.Bdate | UserFields.Universities, NameCase.Nom,  1, 8878040  );
+            var userQuery = vk.UsersGet( UserFields.Bdate | UserFields.Universities, NameCase.Nom, 1);
             //userQuery.Dump();
             //var followersQuery = vk.UsersGetFollowers( 1u );
             //followersQuery.Items.Dump();

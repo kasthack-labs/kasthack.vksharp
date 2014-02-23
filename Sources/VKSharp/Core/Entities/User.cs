@@ -64,7 +64,7 @@ namespace VKSharp.Core.Entities {
         public string UniversityName { get; set; }
 
         public uint? CommonCount { get; set; }
-        public uint Id { get; set; }
+        public uint Uid { get; set; }
         public uint? City { get; set; }
         public uint? Country { get; set; }
         public uint? Faculty { get; set; }
@@ -80,7 +80,7 @@ namespace VKSharp.Core.Entities {
         public VKApi Context { get; set; }
         
         public override string ToString() {
-            return "ID :" + this.Id;
+            return "ID :" + this.Uid;
         }
     }
 }
