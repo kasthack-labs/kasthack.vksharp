@@ -55,17 +55,22 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.Sex = (Sex) int.Parse( node.Value );
                     break;
                 case "counters":
-                    this.GetP<ProfileCounters>().FillFromXml( node.Elements(), entity.Counters );
+                    this.GetP<ProfileCounters>()
+                        .FillFromXml( node.Elements(), entity.Counters );
                     break;
                 case "schools":
-                    entity.Schools = this.GetP<School>().ParseAllFromXml( node.Elements() );
+                    entity.Schools = this.GetP<School>()
+                        .ParseAllFromXml( node.Elements() );
                     break;
                 case "universities":
-                    entity.Universities = this.GetP<University>().ParseAllFromXml( node.Elements() );
+                    entity.Universities = this.GetP<University>()
+                        .ParseAllFromXml( node.Elements() );
                     break;
                 case "deactivated":
                     Deleted d;
-                    entity.Deactivated = Enum.TryParse( node.Value, true, out d ) ? (Deleted?) d : null;
+                    entity.Deactivated = Enum.TryParse( node.Value, true, out d )
+                        ? (Deleted?) d
+                        : null;
                     break;
                 //case "ban_info":
                 //    this.GetP<BanInfo>().FillFromXml( node.Elements(), entity. );

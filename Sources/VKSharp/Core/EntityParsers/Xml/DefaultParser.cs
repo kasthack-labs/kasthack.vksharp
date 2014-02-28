@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml;
 using System.Xml.Linq;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
@@ -10,7 +9,8 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public abstract class DefaultParser<T> : IXmlVKEntityParser<T> where T : IVKEntity<T>, new() {
         public IExecutor Executor { get; set; }
 
-        protected static readonly Lazy<Dictionary<string, Action<T, string>>> GeneratedParsersLazy = new Lazy<Dictionary<string, Action<T, string>>>( ParserHelper.GetStringParsers<T> );
+        protected static readonly Lazy<Dictionary<string, Action<T, string>>> GeneratedParsersLazy =
+            new Lazy<Dictionary<string, Action<T, string>>>( ParserHelper.GetStringParsers<T> );
         protected static Dictionary<string, Action<T, string>> GeneratedParsers {
             get {
                 return GeneratedParsersLazy.Value;
@@ -51,7 +51,15 @@ namespace VKSharp.Core.EntityParsers.Xml {
             }
             catch (Exception ex) {
                 //if (ex is FormatException || ex is OverflowException)
-                throw new Exception(String.Format("Parser error: field {0} at entity {1}\r\nXml:\r\n{2}", node.Name, typeof(T), node.Document.ToString()), ex);
+                throw new Exception(
+                    String.Format(
+                        "Parser error: field {0} at entity {1}\r\nXml:\r\n{2}",
+                        node.Name,
+                        typeof(T),
+                        node.Document
+                    ),
+                    ex
+                );
             }
             return true;
         }

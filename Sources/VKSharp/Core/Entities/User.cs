@@ -1,10 +1,11 @@
-﻿using VKSharp.Core.EntityFragments;
+﻿using System;
+using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
-    public class User : IVKEntity<User> {
+    public class User : IVKEntity<User>, IEquatable<User> {
         public Audio StatusAudio { get; set; }
 
         public bool? BlackListed { get; set; }
@@ -19,29 +20,29 @@ namespace VKSharp.Core.Entities {
         public bool? OnlineMobile { get; set; }
         public bool? Verified { get; set; }
         public bool? WallComments { get; set; }
-        
+
         public byte Timezone { get; set; }
-        
+
         public Date BDate { get; set; }
-        
+
         public Exports Exports { get; set; }
-        
+
         public LastSeen LastSeen { get; set; }
-        
+
         public ProfileCounters Counters { get; set; }
-        
+
         public ProfilePhotos ProfilePhotos { get; set; }
-        
+
         public Relation? Relation { get; set; }
-        
+
         public Relative[] Relatives { get; set; }
-        
+
         public School[] Schools { get; set; }
-        
+
         public Sex? Sex { get; set; }
-        
+
         public SiteProfiles Connections { get; set; }
-        
+
         public string About { get; set; }
         public string Activities { get; set; }
         public string Books { get; set; }
@@ -72,13 +73,36 @@ namespace VKSharp.Core.Entities {
         public uint? University { get; set; }
 
         public uint[] Lists { get; set; }
-        
+
         public University[] Universities { get; set; }
-        
+
         public ushort? Graduation { get; set; }
 
         public VKApi Context { get; set; }
-        
+        public bool Equals( User other ) {
+            return !Object.ReferenceEquals( other, null ) && this.Uid == other.Uid;
+        }
+
+        public static bool operator ==( User a, User b ) {
+            return Object.ReferenceEquals( a, null )
+                       ? Object.ReferenceEquals( b, null )
+                       : ( a.Equals( b ) );
+        }
+
+        public static bool operator !=( User a, User b ) {
+            return !( a == b );
+        }
+
+        /// <summary>
+        /// Играет роль хэш-функции для определенного типа.
+        /// </summary>
+        /// <returns>
+        /// Хэш-код для текущего объекта <see cref="T:System.Object"/>.
+        /// </returns>
+        public override int GetHashCode() {
+            return unchecked( (int) ( 0 + this.Uid ) );
+        }
+
         public override string ToString() {
             return "ID :" + this.Uid;
         }

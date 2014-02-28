@@ -3,7 +3,7 @@ using System.Linq;
 using VKSharp.Data.Parameters;
 
 namespace VKSharp.Helpers {
-    static class MiscTools {
+    public static class MiscTools {
         public static string[] GetUserFields(UserFields fields) {
             var s = Enum.GetValues( typeof( UserFields ) )
                 .OfType<UserFields>()
@@ -31,7 +31,9 @@ namespace VKSharp.Helpers {
             return ((IFormattable)value).ToString( null, BuiltInData.Instance.NC);
         }
         public static string ToNCLString<T>( this T value ) where T : IFormattable {
-            return ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC ).ToLower( BuiltInData.Instance.NC );
+            return ( (IFormattable) value )
+                .ToString( null, BuiltInData.Instance.NC )
+                .ToLower( BuiltInData.Instance.NC );
         }
     }
 }

@@ -9,6 +9,11 @@ namespace VKSharp {
         private uint _reqCounter;
         private readonly List<VKToken> _tokens = new List<VKToken>(); //tokens
         private readonly IExecutor _executor = new SimpleXMLExecutor();
+
+        public IExecutor Executor {
+            get { return _executor; }
+        } 
+
         #endregion
 
         #region Properties & propfuncs

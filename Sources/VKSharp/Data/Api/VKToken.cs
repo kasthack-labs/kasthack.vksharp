@@ -15,7 +15,10 @@ namespace VKSharp.Data.Api {
             this.UserId = userId;
         }
 
-        public static string GetOAuthURL( int appId, VKPermission permissions = VKPermission.None, string redirectURL = "https://oauth.vk.com/blank.html" ) {
+        public static string GetOAuthURL(
+            int appId,
+            VKPermission permissions = VKPermission.None,
+            string redirectURL = "https://oauth.vk.com/blank.html" ) {
             var testperm =
                 Enum.GetValues(typeof (VKPermission))
                     .OfType<VKPermission>()
@@ -26,8 +29,10 @@ namespace VKSharp.Data.Api {
                                  String.Join(
                                              ",",
                                              testperm
-                                                 .Where( a => permissions.HasFlag( a ) )
-                                                 .Select( a => a.ToString().ToLowerInvariant() ) ),
+                                                .Where( a => permissions.HasFlag( a ) )
+                                                .Select( a => a.ToString()
+                                                    .ToLowerInvariant() )
+                                                ),
                                  redirectURL );
         }
 
@@ -47,7 +52,13 @@ namespace VKSharp.Data.Api {
                 .GroupBy(a => a[ 0 ])
                 .ToDictionary(a => a.Key, a => a.First()[1]);
             if ( query.ContainsKey( accessTokenPn ) )
-                return new VKToken(query[ accessTokenPn ], query.ContainsKey( signPn ) ? query[ signPn ] : "", uint.Parse( query[ useridPn ] ) );
+                return new VKToken(
+                    query[ accessTokenPn ],
+                    query.ContainsKey( signPn )
+                        ? query[ signPn ]
+                        : "",
+                    uint.Parse( query[ useridPn ] )
+                );
             if ( query.ContainsKey(errorPn))
                 throw new AuthenticationException(
                     String.Format(

@@ -3,20 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using System.Xml;
 using System.Xml.Linq;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
+using VKSharp.Helpers.Exceptions;
 using VKSharp.Helpers.Parsers;
 
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
         private const string ReqExt = "xml";
-        private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
+        private static readonly Lazy<Assembly> CurrentAssemblyLazy =
+            new Lazy<Assembly>(
+                () => Assembly.GetAssembly(
+                    typeof( SimpleXMLExecutor )
+                )
+            );
         private Dictionary<Type, Type> _parserGenericStor;
         private Dictionary<Type, object> _parserStor;
-        private static object locker = (uint?)0;
+        private static object locker = (uint?) 0;
         private void LoadParsers() {
             //reflection magic
             lock ( locker ) {
@@ -26,26 +31,54 @@ namespace VKSharp.Data.Executors {
                             .GetTypes()
                             .Where(
                                 t =>
-                                String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
+                                String.Equals(
+                                    t.Namespace,
+                                    "VKSharp.Core.EntityParsers.Xml",
+                                    StringComparison.Ordinal
+                                )
+                            )
                             .Select( a => new {
                                 Type = a,
                                 Iface = a.GetInterface( "IXmlVKEntityParser`1" )
                             } )
                             .Where( a => a.Iface != null )
                             .ToArray();
-                    var tmp = types.Where( a => a.Type.IsGenericType && a.Iface.IsGenericType && a.Iface.GenericTypeArguments[ 0 ].IsGenericType ).ToArray();
+                    var tmp = types.Where( a =>
+                            a.Type.IsGenericType
+                            && a.Iface.IsGenericType
+                            && a.Iface
+                                .GenericTypeArguments[ 0 ]
+                                .IsGenericType
+                        )
+                        .ToArray();
                     _parserGenericStor = tmp.ToDictionary(
-                        a => a.Iface.GenericTypeArguments[ 0 ].GetGenericTypeDefinition(),
-                        a => a.Type.GetGenericTypeDefinition()
+                        a => a
+                            .Iface
+                            .GenericTypeArguments[ 0 ]
+                            .GetGenericTypeDefinition(),
+                        a => a
+                            .Type
+                            .GetGenericTypeDefinition()
                     );
                     var dictionary = types
                         .Where( a => !a.Type.IsGenericType )
-                        .Where( a => a.Type.GetConstructor( Type.EmptyTypes ) != null )
-                        .ToDictionary( a => a.Iface.GetGenericArguments()[ 0 ], a => Activator.CreateInstance( a.Type ) );
-                    foreach ( var xmlVKEntityParser in dictionary.Values.OfType<IXmlVKEntityParser>() )
+                        .Where( a => a
+                            .Type
+                            .GetConstructor( Type.EmptyTypes ) != null )
+                        .ToDictionary(
+                            a => a.Iface.GetGenericArguments()[ 0 ],
+                            a => Activator.CreateInstance( a.Type )
+                        );
+                    foreach ( var xmlVKEntityParser in dictionary
+                        .Values
+                        .OfType<IXmlVKEntityParser>()
+                    )
                         xmlVKEntityParser.Executor = this;
                     _parserStor = dictionary;
-                    foreach ( var o in PrimitiveParserFactory.ParserLazy.Value )
+                    foreach ( var o in PrimitiveParserFactory
+                        .ParserLazy
+                        .Value
+                    )
                         _parserStor.Add( o.Key, o.Value );
                 }
                 catch ( Exception ex ) {
@@ -72,29 +105,53 @@ namespace VKSharp.Data.Executors {
 
         public IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T> {
             object parser;
-            Type parserGTD, ti = typeof( T );
-            if ( ParserStor.TryGetValue( ti, out parser ) )
-                return (IXmlVKEntityParser<T>) parser;
-            if ( !ti.IsGenericType || !this.ParserGenericStor.TryGetValue( ti.GetGenericTypeDefinition(), out parserGTD ) )
-                throw new Exception( "No such parser" );
-            parser = Activator.CreateInstance( parserGTD.MakeGenericType( ti.GenericTypeArguments[ 0 ] ) );
-            var p2 = (IXmlVKEntityParser<T>) parser;
-            p2.Executor = p2.Executor ?? this;
-            this.ParserStor.Add( ti, p2 );
+            var ti = typeof( T );
+            IXmlVKEntityParser<T> p2;
+            if ( GetParserForT(ti, out parser) ) {
+                p2 = (IXmlVKEntityParser<T>) parser;
+                p2.Executor = p2.Executor ?? this;
+                this.ParserStor.Add( ti, p2 );
+            }
+            else p2 = (IXmlVKEntityParser<T>) parser;
             return p2;
         }
-
-        public VKResponse<T> ParseResponse<T>( string input ) where T : IVKEntity<T> {
-            var doc = XDocument.Parse( input );
-            return ParseResponseXml<T>( doc );
+        ///returns <was parser created or taken from cache>
+        private bool GetParserForT( Type ti, out object parser) {
+            if ( this.ParserStor.TryGetValue( ti, out parser ) ) return false;
+            Type parserGTD;
+            if (
+                !ti.IsGenericType
+                ||
+                !this.ParserGenericStor.TryGetValue(
+                    ti.GetGenericTypeDefinition(),
+                    out parserGTD
+                )
+            )
+                throw new Exception( "No such parser" );
+            parser = Activator.CreateInstance(
+                parserGTD.MakeGenericType( ti.GenericTypeArguments[ 0 ] )
+            );
+            return true;
         }
 
-        public VKResponse<T> ParseResponseXml<T>( XDocument doc ) where T : IVKEntity<T> {
+        public VKResponse<T> ParseResponse<T>( string input )
+            where T : IVKEntity<T> {
+            return ParseResponseXml<T>( XDocument.Parse( input ) );
+        }
+
+        public VKResponse<T> ParseResponseXml<T>( XDocument doc )
+            where T : IVKEntity<T> {
             var rootNode = doc.Root;
+            if ( rootNode.Name.ToString() == "error" )
+                throw new VKException( rootNode.Element( "error_msg" ).Value );
             var parser = GetParser<T>();
             var _l = rootNode.Attribute( "list" );
             return new VKResponse<T> {
-                Data = (_l!=null&&_l.Value.ToLower( BuiltInData.Instance.NC ) == "true")
+                Data = (
+                            _l != null
+                            &&
+                            _l.Value.ToLower( BuiltInData.Instance.NC ) == "true"
+                        )
                         ? parser.ParseAllFromXml( rootNode.Elements() )
                         : new[] {
                             parser.ParseFromXmlFragments( rootNode.Elements() )
@@ -103,11 +160,13 @@ namespace VKSharp.Data.Executors {
             };
         }
 
-        public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
+        public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request )
+            where T : IVKEntity<T> {
             return this.ParseResponse<T>( await this.ExecRawAsync( request ) );
         }
 
-        public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
+        public async Task<string> ExecRawAsync<T>( VKRequest<T> request )
+            where T : IVKEntity<T> {
             return await ParserHelper.ExecRawAsync( request, ReqExt );
         }
     }

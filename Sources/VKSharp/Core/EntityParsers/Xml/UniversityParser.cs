@@ -8,7 +8,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
             lock (_userParserLocker) {
                 if((bool)_userParserLocker) return;
                 var v = GeneratedParsers;
-                foreach ( var action in v.Keys.Where( a => !( a == "id" || a == "name") ).ToArray() )
+                foreach ( var action in v
+                    .Keys
+                    .Where( a => !( a == "id" || a == "name") )
+                    .ToArray()
+                )
                     v.Remove( action );
                 _userParserLocker = true;
             }

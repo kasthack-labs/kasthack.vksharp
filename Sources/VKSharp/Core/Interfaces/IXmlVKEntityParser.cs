@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Linq;
 
 namespace VKSharp.Core.Interfaces {
-    public interface IXmlVKEntityParser<T> : IXmlVKEntityParser where T : IVKEntity<T> {
+    public interface IXmlVKEntityParser<T> : IXmlVKEntityParser where T : IVKEntity<T>{
         //
         void FillFromXml( IEnumerable<XElement> nodes, T entity );
         //parse one from xml node

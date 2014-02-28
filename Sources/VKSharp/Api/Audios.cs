@@ -25,7 +25,8 @@ namespace VKSharp {
                     { "audio_ids", String.Join(",", audioIds?? new ulong[]{} )}
                 }
             };
-            if ( !this.IsLogged ) throw new InvalidOperationException( "This method requires auth!" );
+            if ( !this.IsLogged )
+                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data;
         }

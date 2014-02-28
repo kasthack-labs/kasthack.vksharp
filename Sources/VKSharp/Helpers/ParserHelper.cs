@@ -30,19 +30,33 @@ namespace VKSharp.Helpers {
         private static Action<TEntity, string> GetParser<TEntity, TProperty>( PropertyInfo property ) {
             //don't inline these funcs
             var p = ( (Func<string, TProperty>) Parsers[ typeof( TProperty ) ] );
-            var s = ( (Action<TEntity, TProperty>) Delegate.CreateDelegate( typeof( Action<TEntity, TProperty> ), null, property.GetSetMethod() ) );
+            var s = (Action<TEntity, TProperty>) Delegate.CreateDelegate(
+                typeof( Action<TEntity, TProperty> ),
+                null,
+                property.GetSetMethod()
+            );
             return ( a, b ) => s( a, p( b ) );
         }
-        private static void GetParsers<TEntity, TProperty>( IDictionary<string, Action<TEntity, string>> ret, IReadOnlyDictionary<Type, PropertyInfo[]> props ) {
+        private static void GetParsers<TEntity, TProperty>(
+            IDictionary<string, Action<TEntity, string>> ret,
+            IReadOnlyDictionary<Type, PropertyInfo[]> props
+            ) {
             if ( !props.ContainsKey( typeof( TProperty ) ) ) return;
             foreach ( var pi in props[ typeof( TProperty ) ] )
                 ret.Add( ConvertName( pi.Name ), GetParser<TEntity, TProperty>( pi ) );
         }
 
-        public static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string extension ) where T : IVKEntity<T> {
+        public static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string extension )
+            where T : IVKEntity<T> {
             var bId = BuiltInData.Instance;
             var vk = bId.VKDomain;
-            var query = String.Join( "&", request.Parameters.Where( a => a.Value != "" ).Select( a => a.Key + "=" + a.Value ) );
+            var query = String.Join(
+                "&",
+                request
+                    .Parameters
+                    .Where( a => a.Value != "" )
+                    .Select( a => a.Key + "=" + a.Value )
+            );
             var queryB = new StringBuilder();
             queryB.Append( "/method/" );
             queryB.Append( request.MethodName );
@@ -86,7 +100,7 @@ namespace VKSharp.Helpers {
                 .GetProperties()
                 .GroupBy( a => a.PropertyType )
                 .Where( a => Parsers.ContainsKey( a.Key ) )
-                .ToDictionary( a => a.Key, a => a.ToArray() );
+                .ToDictionary( a => a.Key, a => a.ToArray() );  
             //bug. Don't know how to implement it right
             GetParsers<T, string>( ret, props );
             GetParsers<T, int?>( ret, props );
@@ -104,7 +118,15 @@ namespace VKSharp.Helpers {
             for ( var index = 1; index < name.Length; index++ ) {
                 var c = name[ index ];
                 //add '_' b4 numbers and captials 
-                if ( Char.IsUpper( c ) || ( Char.IsNumber( c ) && !Char.IsNumber( name[ index - 1 ] ) ) ) {
+                if (
+                    Char.IsUpper( c )
+                    ||
+                    (
+                        Char.IsNumber( c )
+                        &&
+                        !Char.IsNumber( name[ index - 1 ] )
+                    )
+                ) {
                     t.Append( '_' );
                     t.Append( Char.ToLower( c ) );
                     continue;

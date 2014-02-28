@@ -26,7 +26,12 @@ namespace VKSharp.Helpers.DataTypes {
         /// Строка, представляющая текущий объект.
         /// </returns>
         public override string ToString() {
-            return String.Format( Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}", Day, Month, Year );
+            return String.Format(
+                Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}",
+                Day,
+                Month,
+                Year
+            );
         }
     }
 }
