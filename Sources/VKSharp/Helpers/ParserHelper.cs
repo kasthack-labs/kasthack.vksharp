@@ -15,12 +15,20 @@ namespace VKSharp.Helpers {
                 () => new Dictionary<Type, object> {
                     {typeof(string), new Func<string,string>(s=>s.Trim('\r','\n','\t', ' ')) },
                     {typeof(int?),  new Func<string,int?>(s => {int r; return int.TryParse( s, out r)?(int?)r:null;})},
-                    {typeof(uint),  new Func<string,uint>( s => {uint r; return uint.TryParse( s, out r)?r:uint.MaxValue;})},
                     {typeof(uint?), new Func<string,uint?>(s => {uint r; return uint.TryParse( s, out r)?(uint?)r:null;})},
                     {typeof(long?), new Func<string,long?>(s => {long r; return long.TryParse( s, out r)?(long?)r:null;})},
+                    {typeof(ulong?), new Func<string,ulong?>(s => {ulong r; return ulong.TryParse( s, out r)?(ulong?)r:null;})},
                     {typeof(byte?), new Func<string,byte?>(s => {byte r; return byte.TryParse( s, out r)?(byte?)r:null;})},
                     {typeof(ushort?), new Func<string,ushort?>(s => {ushort r; return ushort.TryParse( s, out r)?(ushort?)r:null;})},
                     {typeof(bool?), new Func<string,bool?>(s=>{int r; return int.TryParse( s, out r)?(bool?)(r==1):null;})},
+                    //==========================
+                    {typeof(int),  new Func<string,int>(s => {int r; return int.TryParse( s, out r)?r:0;})},
+                    {typeof(uint), new Func<string,uint>(s => {uint r; return uint.TryParse( s, out r)?r:0U;})},
+                    {typeof(long), new Func<string,long>(s => {long r; return long.TryParse( s, out r)?r:0L;})},
+                    {typeof(ulong), new Func<string,ulong>(s => {ulong r; return ulong.TryParse( s, out r)?r:0UL;})},
+                    {typeof(byte), new Func<string,byte>(s => {byte r; return byte.TryParse( s, out r)?r:(byte)0;})},
+                    {typeof(ushort), new Func<string,ushort>(s => {ushort r; return ushort.TryParse( s, out r)?r:(ushort)0;})},
+                    {typeof(bool), new Func<string,bool>(s=>{int r; return int.TryParse( s, out r) && (r==1);})},
                 } );
         private static Dictionary<Type, object> Parsers {
             get {
@@ -65,22 +73,17 @@ namespace VKSharp.Helpers {
             if ( request.Token != null ) {
                 queryB.Append( "?access_token=" );
                 queryB.Append( request.Token.Token );
-                if ( new Uri( vk ).Scheme != "https" ) {
+                queryB.Append( "&v=5.21" );
+                if ( new Uri( vk ).Scheme != "https" )
                     queryB.Append(
-                        "&sig=" +
-                        BitConverter.ToString(
+                        "&sig="
+                        + BitConverter.ToString(
                             bId.Hasher.ComputeHash(
-                                bId.TextEncoding.
-                                GetBytes(
-                                    queryB + "&" + query +
-                                    request.Token.Sign
-                                )
-                            )
-                        ).
-                        Replace( "-", "" ).
-                        ToLower()
-                    );
-                }
+                                bId.TextEncoding
+                                .GetBytes( queryB + "&" + query + request.Token.Sign ) )
+                        )
+                        .Replace( "-", "" )
+                        .ToLower() );
             }
             queryB.Insert( 0, vk );
             return await AWC.DownloadStringAsync(
@@ -100,15 +103,22 @@ namespace VKSharp.Helpers {
                 .GetProperties()
                 .GroupBy( a => a.PropertyType )
                 .Where( a => Parsers.ContainsKey( a.Key ) )
-                .ToDictionary( a => a.Key, a => a.ToArray() );  
+                .ToDictionary( a => a.Key, a => a.ToArray() );
             //bug. Don't know how to implement it right
             GetParsers<T, string>( ret, props );
+            GetParsers<T, int>( ret, props );
             GetParsers<T, int?>( ret, props );
-            GetParsers<T, uint?>( ret, props );
             GetParsers<T, uint>( ret, props );
-            GetParsers<T, long?>( ret, props );
+            GetParsers<T, uint?>( ret, props );
+            GetParsers<T, long>( ret, props );
+            GetParsers<T, long?>(ret, props);
+            GetParsers<T, ulong>(ret, props);
+            GetParsers<T, ulong?>(ret, props);
+            GetParsers<T, byte>( ret, props );
             GetParsers<T, byte?>( ret, props );
+            GetParsers<T, bool>( ret, props );
             GetParsers<T, bool?>( ret, props );
+            GetParsers<T, ushort>( ret, props );
             GetParsers<T, ushort?>( ret, props );
             return ret;
         }

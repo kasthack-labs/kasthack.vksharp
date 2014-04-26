@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Net;
 using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
@@ -32,24 +33,36 @@ namespace TestApp {
             }
             var cnt = 5;
             var vs = 800;
-            var vr = new VKRequest<User>() {
-                Token = tk,
-                MethodName = "execute.mfetch"+cnt+"a",
-                Parameters =
-                    Enumerable.Range( 0, cnt )
-                        .ToDictionary( a => "u" + a, a => String.Join( ",", Enumerable.Range( a*vs, vs ) ) )
-            };
-            var fields = UserFields.Everything;
-            vr.Parameters.Add( "fields", String.Join( ",", String.Join( ",", MiscTools.GetUserFields( fields ) ) ) );
-            var v = Helper.SyncTask( ParserHelper.ExecRawAsync( vr, "json" ) );
-
+            //WebRequest.DefaultWebProxy = new WebProxy("http://localhost:8118/");
+            var user = vk.UsersGet( UserFields.Everything );
+            var aus = vk.AudiosGet( 10032475 );
+            var outpath = @"D:\files\артем\Музыка";
+            aus.TotalCount.ToString().Dump();
+            foreach (var audio in aus) {
+                var name = audio.Artist + "-" + audio.Title;
+                name.Dump();
+                AWC.DownloadFile( audio.Url, Path.Combine( outpath, name+".mp3" ) );
+            }
+            "Complete".Dump();
+            //var vr = new VKRequest<User>() {
+            //    Token = tk,
+            //    MethodName = "execute.mfetch"+cnt+"a",
+            //    Parameters =
+            //        Enumerable.Range( 0, cnt )
+            //            .ToDictionary( a => "u" + a, a => String.Join( ",", Enumerable.Range( a*vs, vs ) ) )
+            //};
+            //var fields = UserFields.Everything;
+            //vr.Parameters.Add( "fields", String.Join( ",", String.Join( ",", MiscTools.GetUserFields( fields ) ) ) );
+            //var v = Helper.SyncTask( ParserHelper.ExecRawAsync( vr, "json" ) );
+            var v = vk.UsersGet( ids: 1U );
             //var u = vk.UsersSearch(
             //    universityId: 1,
             //    sex: Sex.Male,
             //    sort:SearchSortOrder.ByRegistrationDate,
             //    fields: UserFields.Universities | UserFields.Last_Seen | UserFields.Bdate
             //);
-            File.WriteAllText( @"B:\response-"+cnt+"-"+vs+".json", v );
+            
+            //File.WriteAllText( @"B:\response-" + cnt + "-" + vs + ".json", v );
         }
     }
 }

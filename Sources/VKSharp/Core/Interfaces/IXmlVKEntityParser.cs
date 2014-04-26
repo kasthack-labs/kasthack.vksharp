@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace VKSharp.Core.Interfaces {
@@ -10,9 +9,12 @@ namespace VKSharp.Core.Interfaces {
         T ParseFromXml( XElement node );
         //same for array
         T[] ParseAllFromXml( IEnumerable<XElement> nodes );
-        //parse from set of nodesё
+        //parse from set of nodёs
         T ParseFromXmlFragments( IEnumerable<XElement> nodes );
         //update
         bool UpdateFromFragment( XElement node, T entity );
+        //bad name but I have no better idea
+        //used to add parsers for subentities
+        void Attach();
     }
 }

@@ -6,7 +6,10 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public User[] UsersGet( UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params uint[] ids ) {
+        public User[] UsersGet(
+            UserFields fields = UserFields.None,
+            NameCase nameCase = NameCase.Nom,
+            params uint[] ids ) {
             return Helper.SyncTask( this.UsersGetAsync( fields, nameCase, ids ) );
         }
         public EntityList<User> UsersGetFollowers( uint userId,

@@ -15,7 +15,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
             }
             switch ( nodeName ) {
                 case "genre_id":
-                    entity.Genre = (AudioGenre) int.Parse( node.Value );
+                    entity.GenreId = (AudioGenre) int.Parse( node.Value );
                     break;
                 default:
                     return false;

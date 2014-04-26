@@ -31,6 +31,7 @@ namespace VKSharp.Core.Entities {
 
         public ProfileCounters Counters { get; set; }
 
+        [FlatMap]
         public ProfilePhotos ProfilePhotos { get; set; }
 
         public Relation? Relation { get; set; }
@@ -40,7 +41,8 @@ namespace VKSharp.Core.Entities {
         public School[] Schools { get; set; }
 
         public Sex? Sex { get; set; }
-
+        
+        [FlatMap]
         public SiteProfiles Connections { get; set; }
 
         public string About { get; set; }
@@ -93,12 +95,6 @@ namespace VKSharp.Core.Entities {
             return !( a == b );
         }
 
-        /// <summary>
-        /// Играет роль хэш-функции для определенного типа.
-        /// </summary>
-        /// <returns>
-        /// Хэш-код для текущего объекта <see cref="T:System.Object"/>.
-        /// </returns>
         public override int GetHashCode() {
             return unchecked( (int) ( 0 + this.Uid ) );
         }
@@ -106,5 +102,9 @@ namespace VKSharp.Core.Entities {
         public override string ToString() {
             return "ID :" + this.Uid;
         }
+    }
+    [AttributeUsage(AttributeTargets.Property)]
+    public class FlatMap : Attribute {
+        
     }
 }
