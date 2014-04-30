@@ -67,7 +67,7 @@ namespace VKSharp.Core.Entities {
         public string UniversityName { get; set; }
 
         public uint? CommonCount { get; set; }
-        public uint Uid { get; set; }
+        public uint Id { get; set; }
         public uint? City { get; set; }
         public uint? Country { get; set; }
         public uint? Faculty { get; set; }
@@ -82,7 +82,7 @@ namespace VKSharp.Core.Entities {
 
         public VKApi Context { get; set; }
         public bool Equals( User other ) {
-            return !Object.ReferenceEquals( other, null ) && this.Uid == other.Uid;
+            return !Object.ReferenceEquals( other, null ) && this.Id == other.Id;
         }
 
         public static bool operator ==( User a, User b ) {
@@ -96,11 +96,11 @@ namespace VKSharp.Core.Entities {
         }
 
         public override int GetHashCode() {
-            return unchecked( (int) ( 0 + this.Uid ) );
+            return unchecked( (int) ( 0 + this.Id ) );
         }
 
         public override string ToString() {
-            return "ID :" + this.Uid;
+            return "ID :" + this.Id;
         }
     }
     [AttributeUsage(AttributeTargets.Property)]
