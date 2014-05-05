@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using EpicMorg.Net;
 using VKSharp.Core.Entities;
+using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
@@ -19,6 +20,14 @@ namespace VKSharp {
                     needUser,
                     offset,
                     count ) );
+        }
+
+        public StructEntity<bool> AudiosReorder(
+            ulong audioId,
+            int? ownerId = null,
+            ulong? after = null,
+            ulong? before = null ) {
+            return Helper.SyncTask(this.AudiosReorderAsync( audioId, ownerId, after, before ));
         }
     }
 }

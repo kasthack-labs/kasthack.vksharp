@@ -127,7 +127,7 @@ namespace VKSharp {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "users.isAppUser",
                 //fucking magic! i don't know why standard initializer doesn't work here
-                Parameters = new Dictionary<string, string>(){
+                Parameters = new Dictionary<string, string> {
                     {"user_id", MiscTools.NullableString( userId )}
                 },
                 Token = this.IsLogged ? this.CurrenToken : null
@@ -135,9 +135,5 @@ namespace VKSharp {
 
             return ( await this._executor.ExecAsync( req ) ).Data[ 0 ];
         }
-
-        //public async Task<User[]> UsersSearch() {
-            
-        //}
     }
 }

@@ -10,5 +10,9 @@ namespace VKSharp.Core.Entities {
         public string Title { get; set; }
         public string Url { get; set; }
         public uint Duration { get; set; }
+
+        public override string ToString() {
+            return Artist + " - " + Title;
+        }
     }
 }

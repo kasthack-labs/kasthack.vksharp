@@ -10,5 +10,14 @@ namespace VKSharp.Core.Entities {
         public VKApi Context { get; set; }
         public IEnumerator<T> GetEnumerator() { return ( (IEnumerable<T>) Items ).GetEnumerator(); }
         IEnumerator IEnumerable.GetEnumerator() { return Items.GetEnumerator(); }
+
+        public T this[ int key ] {
+            get {
+                return Items[ key ];
+            }
+            set {
+                Items[ key ] = value;
+            }
+        }
     }
 }

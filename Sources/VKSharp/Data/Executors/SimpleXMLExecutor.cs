@@ -4,8 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using VKSharp.Core.Entities;
-using VKSharp.Core.EntityParsers.Xml;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
@@ -72,7 +70,7 @@ namespace VKSharp.Data.Executors {
             new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
         //definitons of generic parser
         //key : generic type def
-        //value : gereric parser def
+        //value : generic parser def
         private Dictionary<Type, Type> _parserGenericStor;
         //parsers
         private Dictionary<Type, object> _parserStor;
@@ -125,11 +123,11 @@ namespace VKSharp.Data.Executors {
                     )
                         xmlVKEntityParser.Executor = this;
                     _parserStor = dictionary;
-                    foreach ( var o in PrimitiveParserFactory
-                        .ParserLazy
-                        .Value
-                    )
-                        _parserStor.Add( o.Key, o.Value );
+                    //foreach ( var o in PrimitiveParserFactory
+                    //    .ParserLazy
+                    //    .Value
+                    //)
+                    //    _parserStor.Add( o.Key, o.Value );
                 }
                 catch ( Exception ex ) {
                     Console.WriteLine( ex.Message );
@@ -173,6 +171,7 @@ namespace VKSharp.Data.Executors {
         }
         //private Dictionary<> 
         //get subentity parsers
+        //TODO:implement GetSubentityParsers
         public Dictionary<string, Action<TParentEntity, XElement>> GetSubentityParsers<TParentEntity>()
         where TParentEntity:IVKEntity<TParentEntity> {
             var ti = typeof( TParentEntity );
@@ -190,7 +189,7 @@ namespace VKSharp.Data.Executors {
             object parser;
             var ti = typeof( T );
             IXmlVKEntityParser<T> p2;
-            if ( GetParserForT( ti, out parser ) ) {
+            if ( GetParserForT<T>( ti, out parser ) ) {
                 p2 = (IXmlVKEntityParser<T>) parser;
                 p2.Executor = p2.Executor ?? this;
                 this.ParserStor.Add( ti, p2 );
@@ -198,9 +197,11 @@ namespace VKSharp.Data.Executors {
             else p2 = (IXmlVKEntityParser<T>) parser;
             return p2;
         }
-        ///returns <was parser created or taken from cache>
-        private bool GetParserForT( Type ti, out object parser ) {
+        //returns <was parser created or taken from cache>
+        private bool GetParserForT<T>( Type ti, out object parser ) {
             if ( this.ParserStor.TryGetValue( ti, out parser ) ) return false;
+            //if ( ( parser = PrimitiveParserFactory.GetParserFor( ti ) ) != null )
+            //    return true;
             Type parserGTD;
             if (
                 !ti.IsGenericType

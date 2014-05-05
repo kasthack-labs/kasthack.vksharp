@@ -8,7 +8,7 @@ namespace VKSharp.Core.Entities {
     public class User : IVKEntity<User>, IEquatable<User> {
         public Audio StatusAudio { get; set; }
 
-        public bool? BlackListed { get; set; }
+        public bool? Blacklisted { get; set; }
         public bool? CanPost { get; set; }
         public bool? CanSeeAllPosts { get; set; }
         public bool? CanSeeAudio { get; set; }
@@ -59,7 +59,7 @@ namespace VKSharp.Core.Entities {
         public string MobilePhone { get; set; }
         public string Movies { get; set; }
         public string Music { get; set; }
-        public string NickName { get; set; }
+        public string Nickname { get; set; }
         public string Quotes { get; set; }
         public string Site { get; set; }
         public string Status { get; set; }
