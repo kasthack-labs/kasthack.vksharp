@@ -18,7 +18,7 @@ namespace VKSharp {
                 Parameters =
                     new Dictionary<string, string> {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
-                        { "user_ids", String.Join( ",", ids ) },
+                        { "user_ids", String.Join( ",", ids.Select( a=>a.ToNCString() ) ) },
                         { "name_case", nameCase.ToNCLString() }
                     },
                 Token = this.IsLogged ? this.CurrenToken : null

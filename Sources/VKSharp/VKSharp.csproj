@@ -41,13 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Database.cs" />
     <Compile Include="Api\Account.cs" />
     <Compile Include="Api\Audios.cs" />
     <Compile Include="Api\Auth.cs" />
     <Compile Include="Api\Friends.cs" />
     <Compile Include="Api\Wrappers\Audios.cs" />
     <Compile Include="Api\Wrappers\Auth.cs" />
+    <Compile Include="Api\Wrappers\Database.cs" />
+    <Compile Include="Core\Entities\City.cs" />
+    <Compile Include="Core\Entities\DatabaseEntry.cs" />
     <Compile Include="Core\Entities\Lyrics.cs" />
+    <Compile Include="Core\EntityParsers\Xml\DatabaseEntryParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\LastSeenParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\LyricsParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\StructEntityParser.cs" />

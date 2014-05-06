@@ -155,26 +155,5 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-
-        public StructEntity<int>[] FriendsGetAppUsers() {
-            return Helper.SyncTask(this.FriendsGetAppUsersAsync());
-        }
-
-        public StructEntity<bool> FriendsDeleteList( uint listId ) {
-            return Helper.SyncTask( this.FriendsDeleteListAsync( listId ) );
-        }
-        public StructEntity<int> FriendsAdd(uint userId, string text) { return Helper.SyncTask(this.FriendsAddAsync(userId, text)); }
-        public StructEntity<int> FriendsDelete(uint userId) { return Helper.SyncTask(this.FriendsDeleteAsync(userId)); }
-
-        public StructEntity<int>[] FriendsGetRecent(int? count = null) { return Helper.SyncTask(this.FriendsGetRecentAsync(count)); }
-
-        public StructEntity<int>[] FriendsGetMutual(
-            uint targetId,
-            uint? sourceId = null,
-            bool randomOrder = false,
-            int? count = null,
-            int? offset = null) {
-            return Helper.SyncTask(this.FriendsGetMutualAsync(targetId, sourceId, randomOrder, count, offset));
-        }
     }
 }
