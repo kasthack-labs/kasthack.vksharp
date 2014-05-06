@@ -9,19 +9,19 @@ namespace VKSharp {
         public User[] UsersGet(
             UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom,
-            params uint[] ids ) {
-            return Helper.SyncTask( this.UsersGetAsync( fields, nameCase, ids ) );
+            params uint[] ids) {
+            return Helper.SyncTask(this.UsersGetAsync(fields, nameCase, ids));
         }
-        public EntityList<User> UsersGetFollowers( uint userId,
+        public EntityList<User> UsersGetFollowers(uint userId,
             uint offset = 0,
             ushort count = 100,
             UserFields fields = UserFields.None,
-            NameCase nameCase = NameCase.Nom ) {
-            return Helper.SyncTask( this.UsersGetFollowersAsync( userId, offset, count, fields, nameCase ) );
+            NameCase nameCase = NameCase.Nom) {
+            return Helper.SyncTask(this.UsersGetFollowersAsync(userId, offset, count, fields, nameCase));
         }
 
-        public StructEntity<bool> UserIsAppUser( uint? userId ) {
-            return Helper.SyncTask( this.UserIsAppUserAsync( userId ) );
+        public StructEntity<bool> UserIsAppUser(uint? userId) {
+            return Helper.SyncTask(this.UserIsAppUserAsync(userId));
         }
 
         public User[] UsersSearch(
@@ -53,7 +53,7 @@ namespace VKSharp {
             string interests = "",
             string company = "",
             string position = "",
-            uint? groupId = null ) {
+            uint? groupId = null) {
             return
                 Helper.SyncTask(
                     this.UsersSearchAsync(
@@ -85,7 +85,11 @@ namespace VKSharp {
                         interests,
                         company,
                         position,
-                        groupId ) );
+                        groupId));
+        }
+
+        public StructEntity<bool> UsersReport(uint id, ComplaintType type, string comment) {
+            return Helper.SyncTask(this.UsersReportAsync(id, type, comment));
         }
     }
 }

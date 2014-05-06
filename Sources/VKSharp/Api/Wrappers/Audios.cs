@@ -29,5 +29,9 @@ namespace VKSharp {
             ulong? before = null ) {
             return Helper.SyncTask(this.AudiosReorderAsync( audioId, ownerId, after, before ));
         }
+
+        public Lyrics AudiosGetLyrics( int lyricsId ) {
+            return Helper.SyncTask( this.AudiosGetLyricsAsync( lyricsId ) );
+        }
     }
 }

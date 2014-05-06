@@ -43,10 +43,15 @@
   <ItemGroup>
     <Compile Include="Api\Account.cs" />
     <Compile Include="Api\Audios.cs" />
+    <Compile Include="Api\Auth.cs" />
     <Compile Include="Api\Friends.cs" />
     <Compile Include="Api\Wrappers\Audios.cs" />
+    <Compile Include="Api\Wrappers\Auth.cs" />
+    <Compile Include="Core\Entities\Lyrics.cs" />
     <Compile Include="Core\EntityParsers\Xml\LastSeenParser.cs" />
+    <Compile Include="Core\EntityParsers\Xml\LyricsParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\StructEntityParser.cs" />
+    <Compile Include="Core\Enums\ComplaintType.cs" />
     <Compile Include="Core\Enums\Deleted.cs" />
     <Compile Include="Core\Enums\VKPlatform.cs" />
     <Compile Include="Core\EntityFragments\Relative.cs" />
@@ -84,7 +89,6 @@
     <Compile Include="Helpers\ParserHelper.cs" />
     <Compile Include="Helpers\PrimitiveEntities\StructEntity.cs" />
     <Compile Include="Helpers\Parsers\PrimitiveParser.cs" />
-    <Compile Include="Helpers\Parsers\PrimitiveParserFactory.cs" />
     <Compile Include="VKApi.cs" />
     <Compile Include="Core\Entities\Attachment.cs" />
     <Compile Include="Core\Entities\Audio.cs" />

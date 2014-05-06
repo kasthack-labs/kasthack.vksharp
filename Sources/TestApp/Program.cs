@@ -33,8 +33,26 @@ namespace TestApp {
                 return;
             }
             //Reorder( vk );
-            //GetAudiosStats(vk);
-            GetArtistsStats(vk);
+            //GetArtistsStats(vk);
+            //GetArtistsStats(vk);
+            //GetUsersTest(vk);
+            //CheckLyrics(vk);
+            //CheckMutual( vk );
+        }
+
+        private static void CheckMutual( VKApi vk ) {
+            var v = vk.FriendsGetMutual( 1704311 );
+        }
+
+        private static void GetUsersTest( VKApi vk ) {
+            var users = vk.UsersGet( ids: 1 );
+            users.Dump();
+        }
+
+        private static void CheckLyrics( VKApi vk ) {
+            var v = vk.AudiosGetLyrics( 1 );
+            v.Text.Dump();
+            Console.ReadLine();
         }
 
         private static void GetArtistsStats( VKApi vk ) {

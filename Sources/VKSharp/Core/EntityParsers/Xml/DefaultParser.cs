@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
@@ -45,13 +46,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public virtual T[] ParseAllFromXml( IEnumerable<XElement> nodes ) {
-            var list = new List<T>();
-            foreach ( var node in nodes ) {
-                var a = this.ParseFromXml( node );
-                if ( a != null )
-                    list.Add( a );
-            }
-            return list.ToArray();
+            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
         }
 
         public virtual T ParseFromXmlFragments( IEnumerable<XElement> nodes ) {

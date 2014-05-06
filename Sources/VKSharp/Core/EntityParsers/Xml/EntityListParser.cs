@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Xml;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Executors;
