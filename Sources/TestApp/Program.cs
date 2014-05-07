@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading;
 using EpicMorg.Net;
 using kasthack.Tools;
@@ -32,7 +33,11 @@ namespace TestApp {
                 Console.ReadLine();
                 return;
             }
-            
+            var s =string.Join(
+                "\r\n",
+                typeof( VKApi ).GetMethods( BindingFlags.Instance | BindingFlags.Public | BindingFlags.InvokeMethod )
+                               .Select( a => a.Name ) );
+            Console.ReadLine();
             //Reorder( vk );
             //GetArtistsStats(vk);
             //GetArtistsStats(vk);

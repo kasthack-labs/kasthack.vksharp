@@ -37,13 +37,9 @@ namespace VKSharp {
             var req = new VKRequest<StorageEntry> {
                 MethodName = "storage.get",
                 Parameters = new Dictionary<string, string> {
-                    {
-                        "keys", string.Join( ",", keys )
-                    }, {
-                        "user_id", MiscTools.NullableString( userId )
-                    }, {
-                        "global", ( global ? 1 : 0 ).ToNCString()
-                    }
+                    { "keys", string.Join( ",", keys ) },
+                    { "user_id", MiscTools.NullableString( userId ) },
+                    { "global", ( global ? 1 : 0 ).ToNCString() }
                 }
             };
             if (this.IsLogged)

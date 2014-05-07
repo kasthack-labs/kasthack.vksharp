@@ -62,7 +62,8 @@
     <Compile Include="Core\Entities\Lyrics.cs" />
     <Compile Include="Core\Entities\MemberShip.cs" />
     <Compile Include="Core\Entities\StorageEntry.cs" />
-    <Compile Include="Core\EntityParsers\StorageEntryParser.cs" />
+    <Compile Include="Core\EntityParsers\Xml\LinkCheckResultParser.cs" />
+    <Compile Include="Core\EntityParsers\Xml\StorageEntryParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\DatabaseEntryParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\LastSeenParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\LyricsParser.cs" />
