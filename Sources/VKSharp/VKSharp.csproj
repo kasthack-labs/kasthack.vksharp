@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Videos.cs" />
     <Compile Include="Api\Photos.cs" />
     <Compile Include="Api\Wall.cs" />
     <Compile Include="Api\Database.cs" />
