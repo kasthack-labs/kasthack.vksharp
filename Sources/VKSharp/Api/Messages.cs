@@ -13,7 +13,7 @@ namespace VKSharp {
                 MethodName = "messages.delete",
                 Parameters = new Dictionary<string, string> {
                     {
-                        "message_ids", String.Join( ",", messageIds.Select( a => a.ToNCString() ) )
+                        "message_ids", messageIds.ToNCStringA()
                     }
                 }
             };
@@ -26,7 +26,7 @@ namespace VKSharp {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "messages.markAsImportant",
                 Parameters = new Dictionary<string, string> {
-                    { "message_ids", String.Join( ",", messageIds.Select( a => a.ToNCString() ) ) },
+                    { "message_ids", messageIds.ToNCStringA() },
                     { "important", (important?1:0).ToNCString() }
                 }
             };
@@ -39,7 +39,7 @@ namespace VKSharp {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "messages.markAsRead",
                 Parameters = new Dictionary<string, string> {
-                    { "message_ids", String.Join( ",", messageIds.Select( a => a.ToNCString() ) ) },
+                    { "message_ids", messageIds.ToNCStringA() },
                     { "user_id", userId.ToNCString() },
                     { "start_message_id", MiscTools.NullableString( startMessageId ) }
                 }

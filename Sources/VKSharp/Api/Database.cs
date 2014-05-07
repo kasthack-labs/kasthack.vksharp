@@ -47,8 +47,7 @@ namespace VKSharp {
         public async Task<DatabaseEntry[]> DatabaseGetStreetsByIdAsync( params uint[] streetIds ) {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getStreetsById",
-                Parameters =
-                    new Dictionary<string, string> { { "street_ids", String.Join( ",", streetIds.Select( a => a.ToNCString() ) ) } }
+                Parameters = new Dictionary<string, string> { { "street_ids", streetIds.ToNCStringA() } }
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
@@ -57,7 +56,7 @@ namespace VKSharp {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getCountriesById",
                 Parameters =
-                    new Dictionary<string, string> { { "country_ids", String.Join( ",", countryIds.Select( a => a.ToNCString() ) ) } }
+                    new Dictionary<string, string> { { "country_ids", countryIds.ToNCStringA() } }
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
@@ -65,7 +64,7 @@ namespace VKSharp {
         public async Task<DatabaseCity[]> DatabaseGetCitiesByIdAsync( params uint[] cityIds ) {
             var req = new VKRequest<DatabaseCity> {
                 MethodName = "database.getCitiesById",
-                Parameters = new Dictionary<string, string> { { "city_ids", String.Join( ",", cityIds.Select( a => a.ToNCString() ) ) } }
+                Parameters = new Dictionary<string, string> { { "city_ids", cityIds.ToNCStringA() } }
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }

@@ -25,7 +25,7 @@ namespace VKSharp {
                         { "need_user", ( needUser ? 1 : 0 ).ToNCString() },
                         { "owner_id", MiscTools.NullableString( ownerId ) },
                         { "album_id", MiscTools.NullableString( albumId ) },
-                        { "audio_ids", String.Join( ",", audioIds ?? new ulong[] { } ) }
+                        { "audio_ids", (audioIds ?? new ulong[] { } ).ToNCStringA() }
                     }
             };
             if ( !this.IsLogged )

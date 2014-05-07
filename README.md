@@ -112,10 +112,18 @@ VKSharp
 	* photos.restoreComment
 * Status
 	* status.set
+* Docs
+	* docs.delete
+	* docs.add
+	* docs.getUploadServer
+	* docs.getWallUploadServer
 * Storage [x]
 	* storage.get
 	* storage.getKeys
 	* storage.set
+* Newsfeed
+	* newsfeed.addBan
+	* newsfeed.deleteBan
 * User	[*^getSubscriptions]
 	* users.isAppUser
 	* users.get
@@ -125,6 +133,10 @@ VKSharp
 * Utils [*^resolveScreenName]
 	* utils.checkLink
 	* utils.getServerTime
+* Pages
+	* pages.clearCache
+* Notifications
+	* notifications.markAsViewed
 * Videos
 	* videos.delete
 	* videos.deleteAlbum

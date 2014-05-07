@@ -34,7 +34,7 @@ namespace VKSharp {
                 var req = new VKRequest<MemberShip> {
                 MethodName = "groups.isMember",
                 Parameters = new Dictionary<string, string> {
-                    { "user_ids", String.Join( ",", userIds.Select( a=>a.ToNCString() ) ) },
+                    { "user_ids", userIds.ToNCStringA() },
                     { "group_id", groupId },
                     {"extended", (extended?1:0).ToNCString()}
                 }
@@ -48,6 +48,10 @@ namespace VKSharp {
                     { "group_id", groupId.ToNCString() },
                 }
             };
+
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> GroupsLeaveAsync(uint groupId) {
@@ -57,6 +61,10 @@ namespace VKSharp {
                     { "group_id", groupId.ToNCString() },
                 }
             };
+
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> GroupsUnbanUserAsync(uint groupId, uint userId) {
@@ -67,6 +75,10 @@ namespace VKSharp {
                     { "user_id", userId.ToNCString() },
                 }
             };
+
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
     }

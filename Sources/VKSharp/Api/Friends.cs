@@ -26,11 +26,11 @@ namespace VKSharp {
                     new Dictionary<string, string> {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
                         { "list_id", MiscTools.NullableString( listId ) },
-                        { "order", order == UserSortOrder.ById ? "" : order.ToNCLString() },
+                        { "order", order == UserSortOrder.ById ? "" : order.ToNClString() },
                         { "user_id", userId.ToNCString() },
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
-                        { "name_case", nameCase.ToNCLString() }
+                        { "name_case", nameCase.ToNClString() }
                     },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
@@ -66,7 +66,7 @@ namespace VKSharp {
                         { "filters", String.Join( ",", MiscTools.GetFilterFields( filters ) ) },
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
-                        { "name_case", nameCase.ToNCLString() }
+                        { "name_case", nameCase.ToNClString() }
                     }
             };
             if (!this.IsLogged)

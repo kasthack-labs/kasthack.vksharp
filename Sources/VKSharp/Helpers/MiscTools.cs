@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using VKSharp.Data.Parameters;
 
@@ -9,7 +10,7 @@ namespace VKSharp.Helpers {
                 .OfType<UserFields>()
                 .Where(a => a != UserFields.Everything&& a!=UserFields.None)
                 .Where(a => (fields & a)==a)
-                .Select(a => a.ToNCLString())
+                .Select(a => a.ToNClString())
                 .ToArray();
             return s;
         }
@@ -18,7 +19,7 @@ namespace VKSharp.Helpers {
                 .OfType<FriendSuggestionFilters>()
                 .Where( a => a != FriendSuggestionFilters.Everything )
                 .Where( a => fields.HasFlag( a ) )
-                .Select( a => a.ToNCLString() )
+                .Select( a => a.ToNClString() )
                 .ToArray();
             return s;
         }
@@ -30,10 +31,14 @@ namespace VKSharp.Helpers {
         public static string ToNCString<T>(this T value) where T: IFormattable {
             return ((IFormattable)value).ToString( null, BuiltInData.Instance.NC);
         }
-        public static string ToNCLString<T>( this T value ) where T : IFormattable {
+        public static string ToNClString<T>( this T value ) where T : IFormattable {
             return ( (IFormattable) value )
                 .ToString( null, BuiltInData.Instance.NC )
                 .ToLower( BuiltInData.Instance.NC );
+        }
+
+        public static string ToNCStringA<T>( this IEnumerable<T> value ) where T : IFormattable {
+            return String.Join( ",", value.Select( a => a.ToNCString() ) );
         }
     }
 }

@@ -41,8 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Pages.cs" />
+    <Compile Include="Api\Docs.cs" />
+    <Compile Include="Api\Status.cs" />
     <Compile Include="Api\Notes.cs" />
     <Compile Include="Api\Board.cs" />
+    <Compile Include="Api\Newsfeed.cs" />
     <Compile Include="Api\Utils.cs" />
     <Compile Include="Api\Storage.cs" />
     <Compile Include="Api\Messages.cs" />

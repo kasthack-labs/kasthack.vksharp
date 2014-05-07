@@ -18,8 +18,8 @@ namespace VKSharp {
                 Parameters =
                     new Dictionary<string, string> {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
-                        { "user_ids", String.Join( ",", ids.Select( a=>a.ToNCString() ) ) },
-                        { "name_case", nameCase.ToNCLString() }
+                        { "user_ids", ids.ToNCStringA() },
+                        { "name_case", nameCase.ToNClString() }
                     },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
@@ -37,11 +37,11 @@ namespace VKSharp {
                 MethodName = "users.getFollowers",
                 Parameters =
                     new Dictionary<string, string> {
-                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields )) },
                         { "user_id", userId.ToNCString() },
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
-                        { "name_case", nameCase.ToNCLString() }
+                        { "name_case", nameCase.ToNClString() }
                     },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
@@ -133,7 +133,7 @@ namespace VKSharp {
                 Parameters =
                     new Dictionary<string, string> {
                         { "user_id", id.ToNCString() },
-                        { "type", type.ToNCLString() },
+                        { "type", type.ToNClString() },
                         { "comment", comment }
                     },
                 Token = this.IsLogged ? this.CurrenToken : null
