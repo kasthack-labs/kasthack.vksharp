@@ -27,7 +27,6 @@ VKSharp
 
 * Account
 	* account.getBanned
-
 * Audios
 	* audios.add
 	* audios.addAlbum
