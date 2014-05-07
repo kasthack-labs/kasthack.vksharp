@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Photos.cs" />
+    <Compile Include="Api\Wall.cs" />
     <Compile Include="Api\Database.cs" />
     <Compile Include="Api\Account.cs" />
     <Compile Include="Api\Audios.cs" />
@@ -49,15 +51,18 @@
     <Compile Include="Api\Wrappers\Audios.cs" />
     <Compile Include="Api\Wrappers\Auth.cs" />
     <Compile Include="Api\Wrappers\Database.cs" />
+    <Compile Include="Api\Wrappers\Wall.cs" />
     <Compile Include="Core\Entities\City.cs" />
     <Compile Include="Core\Entities\DatabaseEntry.cs" />
     <Compile Include="Core\Entities\Lyrics.cs" />
+    <Compile Include="Core\Entities\MemberShip.cs" />
     <Compile Include="Core\EntityParsers\Xml\DatabaseEntryParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\LastSeenParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\LyricsParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\StructEntityParser.cs" />
     <Compile Include="Core\Enums\ComplaintType.cs" />
     <Compile Include="Core\Enums\Deleted.cs" />
+    <Compile Include="Core\Enums\ReportReason.cs" />
     <Compile Include="Core\Enums\VKPlatform.cs" />
     <Compile Include="Core\EntityFragments\Relative.cs" />
     <Compile Include="Core\Enums\RelativeType.cs" />
@@ -92,6 +97,7 @@
     <Compile Include="Helpers\Exceptions\VKException.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
     <Compile Include="Helpers\ParserHelper.cs" />
+    <Compile Include="Helpers\PrimitiveEntities\SimpleEntity.cs" />
     <Compile Include="Helpers\PrimitiveEntities\StructEntity.cs" />
     <Compile Include="Helpers\Parsers\PrimitiveParser.cs" />
     <Compile Include="VKApi.cs" />

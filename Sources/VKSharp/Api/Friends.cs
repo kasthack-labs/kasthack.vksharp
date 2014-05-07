@@ -132,12 +132,23 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
+        
         public async Task<StructEntity<bool>> FriendsDeleteListAsync(uint listId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "friends.deleteList",
                 Parameters = new Dictionary<string, string> {
                     { "list_id", listId.ToNCString() }
                 }
+            };
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+        public async Task<StructEntity<bool>> FriendsDeleteAllRequestsAsync() {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "friends.deleteAllRequests",
+                Parameters = new Dictionary<string, string> {}
             };
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
