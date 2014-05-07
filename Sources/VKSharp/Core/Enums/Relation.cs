@@ -7,6 +7,6 @@
         Complicated=5,
         Searching=6,
         InLove=7,
-        Unknown =0 
+        Unknown =0
     }
 }
