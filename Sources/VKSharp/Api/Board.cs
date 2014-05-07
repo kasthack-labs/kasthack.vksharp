@@ -9,36 +9,12 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<User[]> AccountGetBannedAsync(
-            uint offset = 0,
-            ushort count = 20 ) {
-            var req = new VKRequest<User> {
-                MethodName = "account.getBanned",
-                Parameters = new Dictionary<string, string> {
-                    { "offset", offset.ToNCString() },
-                    { "count", count.ToNCString() }
-                }
-            };
-            if ( !this.IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data;
-        }
-        public async Task<StructEntity<bool>> AccountSetOfflineAsync() {
+        public async Task<StructEntity<bool>> BoardDeleteTopicAsync(uint groupId, uint topicId) {
             var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "account.setOffline",
-                Parameters = new Dictionary<string, string>()
-            };
-            if (!this.IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
-        }
-        public async Task<StructEntity<bool>> AccountSetOnlineAsync(bool voip) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "account.setOnline",
+                MethodName = "board.deleteTopic",
                 Parameters = new Dictionary<string, string> {
-                    { "voip", (voip?1:0).ToNCString() }
+                    { "group_id", groupId.ToNCString() },
+                    { "topic_id", topicId.ToNCString() },
                 }
             };
             if (!this.IsLogged)
@@ -46,11 +22,13 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AccountUnregisterDeviceAsync(string token) {
+        public async Task<StructEntity<bool>> BoardDeleteCommentAsync(uint groupId, uint topicId, uint comment_id) {
             var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "account.unregisterDevice",
+                MethodName = "board.deleteComment",
                 Parameters = new Dictionary<string, string> {
-                    { "token", token }
+                    { "group_id", groupId.ToNCString() },
+                    { "topic_id", topicId.ToNCString() },
+                    { "comment_id", comment_id.ToNCString() }
                 }
             };
             if (!this.IsLogged)
@@ -58,11 +36,13 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AccountBanUserDeviceAsync(uint userId) {
+        public async Task<StructEntity<bool>> BoardRestoreCommentAsync(uint groupId, uint topicId, uint comment_id) {
             var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "account.banUser",
+                MethodName = "board.restoreComment",
                 Parameters = new Dictionary<string, string> {
-                    { "user_id", userId.ToNCString() }
+                    { "group_id", groupId.ToNCString() },
+                    { "topic_id", topicId.ToNCString() },
+                    { "comment_id", comment_id.ToNCString() }
                 }
             };
             if (!this.IsLogged)
@@ -70,11 +50,13 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AccountUnbanUserDeviceAsync(uint userId) {
+        
+        public async Task<StructEntity<bool>> BoardCloseTopicAsync(uint groupId, uint topicId) {
             var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "account.unbanUser",
+                MethodName = "board.closeTopic",
                 Parameters = new Dictionary<string, string> {
-                    { "user_id", userId.ToNCString() }
+                    { "group_id", groupId.ToNCString() },
+                    { "topic_id", topicId.ToNCString() },
                 }
             };
             if (!this.IsLogged)
@@ -82,11 +64,12 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AccountSetInfoAsync(uint? intro) {
+        public async Task<StructEntity<bool>> BoardFixTopicAsync(uint groupId, uint topicId) {
             var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "account.setInfo",
+                MethodName = "board.fixTopic",
                 Parameters = new Dictionary<string, string> {
-                    { "intro", MiscTools.NullableString( intro ) }
+                    { "group_id", groupId.ToNCString() },
+                    { "topic_id", topicId.ToNCString() },
                 }
             };
             if (!this.IsLogged)
@@ -94,6 +77,19 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-
+        public async Task<StructEntity<bool>> BoardUnfixTopicAsync(uint groupId, uint topicId) {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "board.unfixTopic",
+                Parameters = new Dictionary<string, string> {
+                    { "group_id", groupId.ToNCString() },
+                    { "topic_id", topicId.ToNCString() },
+                }
+            };
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+        
     }
 }

@@ -22,6 +22,33 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
+        public async Task<StructEntity<bool>> MessagesMarkAsImportantAsync(bool important, params int[] messageIds) {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "messages.markAsImportant",
+                Parameters = new Dictionary<string, string> {
+                    { "message_ids", String.Join( ",", messageIds.Select( a => a.ToNCString() ) ) },
+                    { "important", (important?1:0).ToNCString() }
+                }
+            };
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+        public async Task<StructEntity<bool>> MessagesMarkAsReadAsync(int userId, uint? startMessageId = null, params int[] messageIds) {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "messages.markAsRead",
+                Parameters = new Dictionary<string, string> {
+                    { "message_ids", String.Join( ",", messageIds.Select( a => a.ToNCString() ) ) },
+                    { "user_id", userId.ToNCString() },
+                    { "start_message_id", MiscTools.NullableString( startMessageId ) }
+                }
+            };
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
 
         public async Task<StructEntity<bool>> MessagesDeleteDialogAsync( string userId,
                                                                          uint offset,
@@ -44,6 +71,38 @@ namespace VKSharp {
                 MethodName = "messages.restore",
                 Parameters = new Dictionary<string, string> {
                     { "message_id", messageId.ToNCString() }
+                }
+            };
+            if (!this.IsLogged)
+                throw new InvalidOperationException("This method requires auth!");
+            req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+
+        public async Task<StructEntity<bool>> MessagesRemoveChatUserAsync( int chatId,
+                                                                           int userId ) {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "messages.removeChatUser",
+                Parameters = new Dictionary<string, string> {
+                    {
+                        "chat_id", chatId.ToNCString()
+                    }, {
+                        "user_id", userId.ToNCString()
+                    }
+                }
+            };
+            if ( !this.IsLogged )
+                throw new InvalidOperationException( "This method requires auth!" );
+            req.Token = this.CurrenToken;
+            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+        }
+
+        public async Task<StructEntity<bool>> MessagesAddChatUserAsync(uint userId, int? chatId) {
+            var req = new VKRequest<StructEntity<bool>> {
+                MethodName = "messages.addChatUser",
+                Parameters = new Dictionary<string, string> {
+                    { "chat_id", MiscTools.NullableString( chatId ) },
+                    { "user_id", userId.ToNCString() }
                 }
             };
             if (!this.IsLogged)

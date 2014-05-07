@@ -27,6 +27,12 @@ VKSharp
 
 * Account
 	* account.getBanned
+	* account.setOffline
+	* account.setOnline
+	* account.unregisterDevice
+	* account.banUser
+	* account.unbanUser
+	* account.setInfo
 * Audios
 	* audios.add
 	* audios.addAlbum
@@ -39,7 +45,7 @@ VKSharp
 	* audios.reorder
 * Auth
 	* auth.checkPhone
-* Database
+* Database [*^getSchoolClasses]
 	* database.getChairs
 	* database.getCities
 	* database.getCitiesById
@@ -67,10 +73,25 @@ VKSharp
 	* groups.join
 	* groups.leave
 	* groups.unbanUser
+* Board
+	* board.deleteTopic
+	* board.deleteComment
+	* board.restoreComment
+	* board.closeTopic
+	* board.fixTopic
+	* board.unfixTopic
 * Messages
 	* messages.delete
 	* messages.deleteDialog
 	* messages.restore
+	* messages.removeChatUser
+	* messages.addChatUser
+	* messages.markAsRead
+	* messages.markAsImportant
+* Notes
+	* notes.delete
+	* notes.deleteComment
+	* notes.restoreComment
 * Photos
 	* photos.confirmTag
 	* photos.copy
@@ -89,17 +110,19 @@ VKSharp
 	* photos.report
 	* photos.reportComment
 	* photos.restoreComment
-* Storage
+* Status
+	* status.set
+* Storage [x]
 	* storage.get
 	* storage.getKeys
 	* storage.set
-* User
-	* user.isAppUser
+* User	[*^getSubscriptions]
+	* users.isAppUser
 	* users.get
 	* users.getFollowers
 	* users.report
 	* users.search
-* Utils
+* Utils [*^resolveScreenName]
 	* utils.checkLink
 	* utils.getServerTime
 * Videos
