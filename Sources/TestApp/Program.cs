@@ -32,6 +32,7 @@ namespace TestApp {
                 Console.ReadLine();
                 return;
             }
+            
             //Reorder( vk );
             //GetArtistsStats(vk);
             //GetArtistsStats(vk);
