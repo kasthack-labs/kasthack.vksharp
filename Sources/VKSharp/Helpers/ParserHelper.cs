@@ -86,13 +86,14 @@ namespace VKSharp.Helpers {
                         .ToLower() );
             }
             queryB.Insert( 0, vk );
+            var e = string.IsNullOrEmpty( query );
             return await AWC.DownloadStringAsync(
                 queryB.ToString(),
                 bId.TextEncoding,
                 null,
                 null,
-                AWC.RequestMethod.Post,
-                query,
+                e ? AWC.RequestMethod.Get: AWC.RequestMethod.Post,
+                e?null:query,
                 40000
             );
         }
