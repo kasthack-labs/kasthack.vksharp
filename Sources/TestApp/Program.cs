@@ -5,14 +5,9 @@ using System.Net;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
-using VKSharp.Core.Entities;
 using VKSharp.Data.Api;
-using VKSharp.Data.Parameters;
-using VKSharp.Data.Request;
-using VKSharp.Helpers;
 
 namespace TestApp {
     class Program {
@@ -33,13 +28,19 @@ namespace TestApp {
             WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
             //GetImplementedMethods();
-            await vk.AccountSetOfflineAsync();
+            //await vk.unr
             //await Reorder( vk );
             //await GetArtistsStats(vk);
             //await GetArtistsStats(vk);
             //await GetUsersTest(vk);
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
+            //await GetSubscriptions( vk );
+        }
+
+
+        private static async Task GetSubscriptions( VKApi vk ) {
+            var s = await vk.UserGetSubscriptionsAsync(1);
         }
 
         private static void GetImplementedMethods() {

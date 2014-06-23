@@ -19,7 +19,7 @@ namespace VKSharp.Data.Executors {
                 if ( tp != p.PropertyType )
                     throw new InvalidOperationException( "Wrong TProperty type" );
                 //Func<XElement, TProperty> pd =
-                //    ( a ) => ( context.GetParser<TProperty>() ).ParseFromXml( a );
+                //    ( entity ) => ( context.GetParser<TProperty>() ).ParseFromXml( entity );
                 var parser = context.GetParser<TProperty>();
                 var sd =
                     (Action<TParentEntity, TProperty>)
@@ -104,8 +104,8 @@ namespace VKSharp.Data.Executors {
                         types.Where( a => !a.Type.IsGenericType )
                              .Where( a => a.Type.GetConstructor( Type.EmptyTypes ) != null )
                              .ToDictionary( a => a.Iface.GetGenericArguments()[ 0 ], a => Activator.CreateInstance( a.Type ) );
-                    foreach ( var xmlVKEntityParser in dictionary.Values.OfType<IXmlVKEntityParser>() )
-                        xmlVKEntityParser.Executor = this;
+                    foreach ( var xmlVkEntityParser in dictionary.Values.OfType<IXmlVKEntityParser>() )
+                        xmlVkEntityParser.Executor = this;
                     this._parserStor = dictionary;
                     //foreach ( var o in PrimitiveParserFactory
                     //    .ParserLazy
@@ -120,7 +120,7 @@ namespace VKSharp.Data.Executors {
             }
         }
 
-        private static TypeIfacePair[] GetTypesParser( IEnumerable<Type> typesXml ) {
+        private static IEnumerable<TypeIfacePair> GetTypesParser( IEnumerable<Type> typesXml ) {
             return
                 typesXml.Select( a => new TypeIfacePair( a, a.GetInterface( "IXmlVKEntityParser`1" ) ) )
                         .Where( a => a.Iface != null )

@@ -38,11 +38,16 @@ VKSharp
 	* audios.addAlbum
 	* audios.delete
 	* audios.deleteAlbum
+	* !audios.edit
 	* audios.get
+	* audios.getById
 	* audios.getCount
 	* audios.getLyrics
 	* audios.getUploadServer
 	* audios.reorder
+	* audios.restore
+	* audios.save
+	* audios.search
 * Auth
 	* auth.checkPhone
 * Database [*^getSchoolClasses]
@@ -124,12 +129,13 @@ VKSharp
 * Newsfeed
 	* newsfeed.addBan
 	* newsfeed.deleteBan
-* User	[*^getSubscriptions]
+* User	[x]
 	* users.isAppUser
 	* users.get
 	* users.getFollowers
 	* users.report
 	* users.search
+	* users.getSubscriptions
 * Utils [*^resolveScreenName]
 	* utils.checkLink
 	* utils.getServerTime

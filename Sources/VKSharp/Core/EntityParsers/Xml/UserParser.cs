@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
@@ -71,6 +72,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.Deactivated = Enum.TryParse( node.Value, true, out d )
                         ? (Deleted?) d
                         : null;
+                    break;
+                case "lists":
+                    entity.Lists = node.Value.Split( ',' ).Select( uint.Parse ).ToArray();
                     break;
                 //case "ban_info":
                 //    this.GetP<BanInfo>().FillFromXml( node.Elements(), entity. );

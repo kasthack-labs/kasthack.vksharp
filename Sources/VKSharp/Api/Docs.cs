@@ -8,8 +8,8 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<StructEntity<bool>> DocsGetUploadServerAsync(uint? groupId) {
-            var req = new VKRequest<StructEntity<bool>> {
+        public async Task<SimpleEntity<string>> DocsGetUploadServerAsync(uint? groupId = null) {
+            var req = new VKRequest<SimpleEntity<string>> {
                 MethodName = "docs.getUploadServer",
                 Parameters = new Dictionary<string, string> {
                     {"group_id", MiscTools.NullableString( groupId )}
@@ -20,7 +20,7 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> DocsGetWallUploadServerAsync(uint? groupId) {
+        public async Task<StructEntity<bool>> DocsGetWallUploadServerAsync(uint? groupId=null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "docs.getWallUploadServer",
                 Parameters = new Dictionary<string, string> {

@@ -9,7 +9,7 @@ namespace VKSharp.Helpers.Parsers {
         public PrimitiveParser( Func<string, TP> parseFunc ) {
             this._parseFunc = parseFunc;
         }
-        public bool UpdateFromFragment( XElement node, StructEntity<TP> entity ) {
+        public override bool UpdateFromFragment( XElement node, StructEntity<TP> entity ) {
             entity.Data = this._parseFunc( node.Value.Trim() );
             return true;
         }

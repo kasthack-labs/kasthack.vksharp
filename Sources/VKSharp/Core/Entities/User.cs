@@ -71,6 +71,7 @@ namespace VKSharp.Core.Entities {
         public uint? City { get; set; }
         public uint? Country { get; set; }
         public uint? Faculty { get; set; }
+        public uint? FollowersCount { get; set; }
         public uint? OnlineApp { get; set; }
         public uint? University { get; set; }
 

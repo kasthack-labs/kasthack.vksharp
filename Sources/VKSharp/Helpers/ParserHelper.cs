@@ -10,57 +10,77 @@ using VKSharp.Data.Request;
 
 namespace VKSharp.Helpers {
     public static class ParserHelper {
-        private static Lazy<Dictionary<Type, object>> _parsers =
-            new Lazy<Dictionary<Type, object>>(
-                () => new Dictionary<Type, object> {
+
+        private static readonly Dictionary<Type, object> Parsers = new Dictionary<Type, object> {
                     {typeof(string), new Func<string,string>(s=>s.Trim('\r','\n','\t', ' ')) },
-                    {typeof(int?),  new Func<string,int?>(s => {int r; return int.TryParse( s, out r)?(int?)r:null;})},
-                    {typeof(uint?), new Func<string,uint?>(s => {uint r; return uint.TryParse( s, out r)?(uint?)r:null;})},
-                    {typeof(long?), new Func<string,long?>(s => {long r; return long.TryParse( s, out r)?(long?)r:null;})},
-                    {typeof(ulong?), new Func<string,ulong?>(s => {ulong r; return ulong.TryParse( s, out r)?(ulong?)r:null;})},
-                    {typeof(byte?), new Func<string,byte?>(s => {byte r; return byte.TryParse( s, out r)?(byte?)r:null;})},
-                    {typeof(ushort?), new Func<string,ushort?>(s => {ushort r; return ushort.TryParse( s, out r)?(ushort?)r:null;})},
-                    {typeof(bool?), new Func<string,bool?>(s=>{int r; return int.TryParse( s, out r)?(bool?)(r==1):null;})},
-                    //==========================
-                    {typeof(int),  new Func<string,int>(s => {int r; return int.TryParse( s, out r)?r:0;})},
-                    {typeof(uint), new Func<string,uint>(s => {uint r; return uint.TryParse( s, out r)?r:0U;})},
-                    {typeof(long), new Func<string,long>(s => {long r; return long.TryParse( s, out r)?r:0L;})},
-                    {typeof(ulong), new Func<string,ulong>(s => {ulong r; return ulong.TryParse( s, out r)?r:0UL;})},
-                    {typeof(byte), new Func<string,byte>(s => {byte r; return byte.TryParse( s, out r)?r:(byte)0;})},
-                    {typeof(ushort), new Func<string,ushort>(s => {ushort r; return ushort.TryParse( s, out r)?r:(ushort)0;})},
                     {typeof(bool), new Func<string,bool>(s=>{int r; return int.TryParse( s, out r) && (r==1);})},
-                } );
-        private static Dictionary<Type, object> Parsers {
-            get {
-                return _parsers.Value;
-            }
+                    {typeof(bool?), new Func<string,bool?>(s=>{int r; return int.TryParse( s, out r)?(bool?)(r==1):null;})},
+                };
+        private delegate bool GenericTryParse<T>(string input, out T value);
+        private static readonly Lazy<MethodInfo> GetNullableTryParseBuilderLazy = new Lazy<MethodInfo>(
+            () => typeof(ParserHelper).GetMethod("BuildNullableTryParse", BindingFlags.Static | BindingFlags.NonPublic));
+        private static MethodInfo GetNullableTryParseBuilder { get { return GetNullableTryParseBuilderLazy.Value; } }
+
+        //Don't rename. Invoked via reflection only.
+        private static Func<string, T> BuildTryParse<T>() {
+            var m = GetTryParse<T>();
+            if ( m == null ) return null;
+            var del = (GenericTryParse<T>)m.CreateDelegate( typeof( GenericTryParse<T> ) );
+            return s => { T r; return del( s, out r ) ? r : default( T ); };
+        }
+
+        private static MethodInfo GetTryParse<T>() {
+            var t = typeof( T );
+            return t.GetMethod("TryParse", BindingFlags.Static | BindingFlags.Public);
+        }
+
+        //Don't rename. Invoked via reflection only.
+        private static Func<string, T?> BuildNullableTryParse<T>() where T: struct {
+            var m = GetTryParse<T>();
+            if (m == null) return null;
+            var del = (GenericTryParse<T>)m.CreateDelegate(typeof(GenericTryParse<T>));
+            return s => { T r; return del(s, out r) ? (T?)r : null; };
         }
         private static Action<TEntity, string> GetParser<TEntity, TProperty>( PropertyInfo property ) {
-            //don't inline these funcs
-            var p = ( (Func<string, TProperty>) Parsers[ typeof( TProperty ) ] );
-            var s = (Action<TEntity, TProperty>) Delegate.CreateDelegate(
-                typeof( Action<TEntity, TProperty> ),
-                null,
-                property.GetSetMethod()
-            );
-            return ( a, b ) => s( a, p( b ) );
+            Func<string, TProperty> p;
+            object o;
+            var tp = typeof( TProperty );
+            //Build parser if we don't have it yet
+            if ( !Parsers.TryGetValue( tp, out o ) ) {
+                //Tentity is T? -> build nullable parser
+                if ( tp.IsGenericType && tp.GetGenericTypeDefinition() == typeof( Nullable<> ) ) {
+                    var to = tp.GetGenericArguments();
+                    var rettype = typeof( Func<,> ).MakeGenericType( typeof( string ), tp );
+                    p = ( (Func<Func<string, TProperty>>)GetNullableTryParseBuilder.MakeGenericMethod( to )
+                        .CreateDelegate( typeof( Func<> ).MakeGenericType( rettype ) ) )();
+                }
+                else  p = BuildTryParse<TProperty>();
+                if ( p == null )
+                    return null;
+                Parsers.Add( tp, p );
+            }
+            else p = (Func<string, TProperty>)o;
+            var updater = (Action<TEntity, TProperty>) Delegate.CreateDelegate( typeof( Action<TEntity, TProperty> ),
+                null, property.GetSetMethod() );
+            return ( entity, value ) => updater( entity, p( value ) );
         }
-        private static void GetParsers<TEntity, TProperty>(
-            IDictionary<string, Action<TEntity, string>> ret,
-            IReadOnlyDictionary<Type, PropertyInfo[]> props
-            ) {
-            if ( !props.ContainsKey( typeof( TProperty ) ) ) return;
-            foreach ( var pi in props[ typeof( TProperty ) ] )
-                ret.Add( ConvertName( pi.Name ), GetParser<TEntity, TProperty>( pi ) );
+
+        private static void GetParsers<TEntity, TProperty>( IDictionary<string, Action<TEntity, string>> ret,
+            IReadOnlyDictionary<Type, PropertyInfo[]> props ) {
+            var tp = typeof( TProperty );
+            if (!props.ContainsKey(tp)) return;
+            foreach ( var pi in props[ tp ] ) {
+                var p = GetParser<TEntity, TProperty>( pi );
+                if (p!=null)
+                    ret.Add( ConvertName( pi.Name ), p );
+            }
         }
 
         public static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string extension )
             where T : IVKEntity<T> {
             var bId = BuiltInData.Instance;
             var vk = bId.VKDomain;
-            var query = String.Join(
-                "&",
-                request
+            var query = String.Join( "&", request
                     .Parameters
                     .Where( a => a.Value != "" )
                     .Select( a => a.Key + "=" + a.Value )
@@ -99,28 +119,31 @@ namespace VKSharp.Helpers {
         }
         public static Dictionary<string, Action<T, string>> GetStringParsers<T>() {
             var ret = new Dictionary<string, Action<T, string>>();
-            var enityType = typeof( T );
-            var props = enityType
+            var entityType = typeof( T );
+            var props = entityType
                 .GetProperties()
                 .GroupBy( a => a.PropertyType )
                 .Where( a => Parsers.ContainsKey( a.Key ) )
                 .ToDictionary( a => a.Key, a => a.ToArray() );
+            var method = typeof( Helper ).GetMethod( "GetParsers", BindingFlags.Static | BindingFlags.NonPublic );
+            foreach ( var type in props.Keys.ToArray() )
+                method.MakeGenericMethod( entityType, type ).Invoke( null, new object[]{ ret, props });
             //bug. Don't know how to implement it right
-            GetParsers<T, string>( ret, props );
-            GetParsers<T, int>( ret, props );
-            GetParsers<T, int?>( ret, props );
-            GetParsers<T, uint>( ret, props );
-            GetParsers<T, uint?>( ret, props );
-            GetParsers<T, long>( ret, props );
-            GetParsers<T, long?>(ret, props);
-            GetParsers<T, ulong>(ret, props);
-            GetParsers<T, ulong?>(ret, props);
-            GetParsers<T, byte>( ret, props );
-            GetParsers<T, byte?>( ret, props );
-            GetParsers<T, bool>( ret, props );
-            GetParsers<T, bool?>( ret, props );
-            GetParsers<T, ushort>( ret, props );
-            GetParsers<T, ushort?>( ret, props );
+            //GetParsers<T, string>( ret, props );
+            //GetParsers<T, int>( ret, props );
+            //GetParsers<T, int?>( ret, props );
+            //GetParsers<T, uint>( ret, props );
+            //GetParsers<T, uint?>( ret, props );
+            //GetParsers<T, long>( ret, props );
+            //GetParsers<T, long?>(ret, props);
+            //GetParsers<T, ulong>(ret, props);
+            //GetParsers<T, ulong?>(ret, props);
+            //GetParsers<T, byte>( ret, props );
+            //GetParsers<T, byte?>( ret, props );
+            //GetParsers<T, bool>( ret, props );
+            //GetParsers<T, bool?>( ret, props );
+            //GetParsers<T, ushort>( ret, props );
+            //GetParsers<T, ushort?>( ret, props );
             return ret;
         }
         public static string ConvertName( string name ) {
@@ -129,20 +152,11 @@ namespace VKSharp.Helpers {
             for ( var index = 1; index < name.Length; index++ ) {
                 var c = name[ index ];
                 //add '_' b4 numbers and captials 
-                if (
-                    Char.IsUpper( c )
-                    ||
-                    (
-                        Char.IsNumber( c )
-                        &&
-                        !Char.IsNumber( name[ index - 1 ] )
-                    )
-                ) {
+                if ( Char.IsUpper( c ) || ( Char.IsNumber( c ) && !Char.IsNumber( name[ index - 1 ] ) ) ) {
                     t.Append( '_' );
                     t.Append( Char.ToLower( c ) );
-                    continue;
                 }
-                t.Append( c );
+                else t.Append( c );
             }
             return t.ToString();
         }

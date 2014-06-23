@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EpicMorg.Net;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Data.Parameters;
@@ -133,7 +132,7 @@ namespace VKSharp {
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         
-        public async Task<StructEntity<bool>> FriendsDeleteListAsync(uint listId) {
+        public async Task FriendsDeleteListAsync(uint listId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "friends.deleteList",
                 Parameters = new Dictionary<string, string> {
@@ -143,9 +142,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
-        public async Task<StructEntity<bool>> FriendsDeleteAllRequestsAsync() {
+        public async Task FriendsDeleteAllRequestsAsync() {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "friends.deleteAllRequests",
                 Parameters = new Dictionary<string, string> {}
@@ -153,7 +152,7 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
 
         public async Task<StructEntity<int>[]> FriendsGetAppUsersAsync() {

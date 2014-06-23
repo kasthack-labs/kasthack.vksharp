@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
 using VKSharp.Data.Request;
@@ -24,7 +23,7 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-        public async Task<StructEntity<bool>> AccountSetOfflineAsync() {
+        public async Task AccountSetOfflineAsync() {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.setOffline",
                 Parameters = new Dictionary<string, string>()
@@ -32,9 +31,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> AccountSetOnlineAsync(bool voip) {
+        public async Task AccountSetOnlineAsync(bool voip) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.setOnline",
                 Parameters = new Dictionary<string, string> {
@@ -44,9 +43,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
-        public async Task<StructEntity<bool>> AccountUnregisterDeviceAsync(string token) {
+        public async Task AccountUnregisterDeviceAsync(string token) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.unregisterDevice",
                 Parameters = new Dictionary<string, string> {
@@ -56,9 +55,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
-        public async Task<StructEntity<bool>> AccountBanUserDeviceAsync(uint userId) {
+        public async Task AccountBanUserDeviceAsync(uint userId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.banUser",
                 Parameters = new Dictionary<string, string> {
@@ -68,9 +67,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
-        public async Task<StructEntity<bool>> AccountUnbanUserDeviceAsync(uint userId) {
+        public async Task AccountUnbanUserDeviceAsync(uint userId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.unbanUser",
                 Parameters = new Dictionary<string, string> {
@@ -80,9 +79,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
-        public async Task<StructEntity<bool>> AccountSetInfoAsync(uint? intro) {
+        public async Task AccountSetInfoAsync(uint? intro) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.setInfo",
                 Parameters = new Dictionary<string, string> {
@@ -92,7 +91,7 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
 
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
+using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
@@ -43,7 +44,7 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AudiosReorderAsync(
+        public async Task AudiosReorderAsync(
             ulong audioId,
             int? ownerId = null,
             ulong? after = null,
@@ -61,12 +62,15 @@ namespace VKSharp {
             if ( !this.IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
         public async Task<SimpleEntity<string>> AudiosGetUploadServerAsync( int albumId, uint? groupId ) {
             var req = new VKRequest<SimpleEntity<string>> {
                 MethodName = "audio.getUploadServer",
-                Parameters = new Dictionary<string, string>()
+                Parameters = new Dictionary<string, string>() {
+                    {"album_id", albumId.ToNCString()},
+                    {"group_id", MiscTools.NullableString( groupId )}
+                }
             };
             if ( !this.IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
@@ -88,7 +92,7 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AudiosDeleteAsync( uint audioId, int ownerId ) {
+        public async Task AudiosDeleteAsync( uint audioId, int ownerId ) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "audio.delete",
                 Parameters = new Dictionary<string, string> { { "audio_id", audioId.ToNCString() }, { "owner_id", ownerId.ToNCString() } }
@@ -96,7 +100,7 @@ namespace VKSharp {
             if ( !this.IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
             req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
         public async Task<StructEntity<int>> AudiosAddAlbumAsync( string title, uint? groupId = null ) {
             var req = new VKRequest<StructEntity<int>> {
@@ -111,7 +115,7 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> AudiosDeleteAlbumAsync(uint albumId, uint? groupId = null) {
+        public async Task AudiosDeleteAlbumAsync(uint albumId, uint? groupId = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "audio.deleteAlbum",
                 Parameters =
@@ -123,7 +127,7 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
         public async Task<StructEntity<int>> AudiosGetCountAsync(int? ownerId) {
             var req = new VKRequest<StructEntity<int>> {
@@ -137,6 +141,80 @@ namespace VKSharp {
                 req.Token = this.CurrenToken;
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        
+
+        public async Task<Audio[]> AudiosGetByIdAsync( IEnumerable<Tuple<int, int>> audios, bool itunes = false ) {
+            return await AudiosGetByIdAsync( audios.Select( a => a.Item1 + "_" + a.Item2 ), itunes );
+        }
+        public async Task<Audio[]> AudiosGetByIdAsync(IEnumerable<string> audios, bool itunes = false) {
+            var req = new VKRequest<Audio>
+            {
+                MethodName = "audio.getById",
+                Parameters = new Dictionary<string, string> {
+                        { "audios", String.Join( ",", audios ) },
+                        { "itunes", (itunes?1:0).ToNCString() }
+                    }
+            };
+            if (this.IsLogged)
+                req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data;
+        }
+        public async Task<EntityList<Audio>> AudiosSearchAsync(
+            string q,
+            bool autoComplete=true,
+            bool lyrics=false,
+            bool performerOnly=false,
+            AudioSortOrder sort = AudioSortOrder.ByRating,
+            bool searchOwn = false,
+            int offset=0,
+            int? count = null) {
+                var req = new VKRequest<EntityList<Audio>> {
+                    MethodName = "audio.search",
+                    Parameters = new Dictionary<string, string> {
+                        { "q",q},
+                        { "auto_complete",(autoComplete?1:0).ToNCString()},
+                        { "lyrics",(lyrics?1:0).ToNCString()},
+                        { "performer_only",(searchOwn?1:0).ToNCString()},
+                        { "search_own",(performerOnly?1:0).ToNCString()},
+                        { "offset", offset.ToNCString() },
+                        { "count", MiscTools.NullableString( count ) },
+                        { "sort",((int)sort).ToNCString()}
+                    }
+                };
+                if (this.IsLogged)
+                    req.Token = this.CurrenToken;
+                return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+        public async Task<Audio[]> AudiosSaveAsync(string server, string audio,
+            string hash, string artist="", string title="")
+        {
+            var req = new VKRequest<Audio> {
+                MethodName = "audio.save",
+                Parameters = new Dictionary<string, string> {
+                        { "server", server },
+                        { "audio", audio },
+                        { "hash", hash },
+                        { "artist", artist },
+                        { "title", title },
+                    }
+            };
+            if (this.IsLogged)
+                req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data;
+        }
+
+        public async Task<Audio> AudiosRestoreAsync( long audioId, int? ownerId = null ) {
+            var req = new VKRequest<Audio>
+            {
+                MethodName = "audio.restore",
+                Parameters =
+                    new Dictionary<string, string> {
+                        { "owner_id", MiscTools.NullableString( ownerId ) },
+                        { "audio_id", audioId.ToNCString() }
+                    }
+            };
+            if (this.IsLogged)
+                req.Token = this.CurrenToken;
+            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
     }
 }

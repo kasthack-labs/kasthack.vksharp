@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EpicMorg.Net;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Data.Parameters;
@@ -118,7 +117,7 @@ namespace VKSharp {
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
 
-        public async Task<StructEntity<bool>> UserIsAppUserAsync( uint? userId ) {
+        public async Task<StructEntity<bool>> UserIsAppUserAsync( uint? userId = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "users.isAppUser",
                 Parameters = new Dictionary<string, string> { { "user_id", MiscTools.NullableString( userId ) } },
@@ -127,7 +126,7 @@ namespace VKSharp {
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
-        public async Task<StructEntity<bool>> UsersReportAsync( uint id, ComplaintType type, string comment ) {
+        public async Task UsersReportAsync( uint id, ComplaintType type, string comment ) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "users.report",
                 Parameters =
@@ -136,6 +135,19 @@ namespace VKSharp {
                         { "type", type.ToNClString() },
                         { "comment", comment }
                     },
+                Token = this.IsLogged ? this.CurrenToken : null
+            };
+            await this._executor.ExecAsync(req);
+        }
+        //TODO: extended view is not supported
+        public async Task<UserSubscriptions> UserGetSubscriptionsAsync(uint? userId = null, int offset=0, int? count=null) {
+            var req = new VKRequest<UserSubscriptions> {
+                MethodName = "users.getSubscriptions",
+                Parameters = new Dictionary<string, string> {
+                    { "user_id", MiscTools.NullableString(userId) },
+                    { "offset", offset.ToNCString() },
+                    {"count", MiscTools.NullableString( count )}
+                },
                 Token = this.IsLogged ? this.CurrenToken : null
             };
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
