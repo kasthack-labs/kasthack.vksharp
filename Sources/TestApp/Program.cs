@@ -27,12 +27,13 @@ namespace TestApp {
 #endif
             WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
+
             //GetImplementedMethods();
             //await vk.unr
             //await Reorder( vk );
             //await GetArtistsStats(vk);
             //await GetArtistsStats(vk);
-            //await GetUsersTest(vk);
+            await GetUsersTest(vk);
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );

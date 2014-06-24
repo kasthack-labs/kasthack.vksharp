@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Parameters\AudioSortOrder.cs" />
     <Compile Include="Api\Notifications.cs" />
     <Compile Include="Api\Pages.cs" />
     <Compile Include="Api\Docs.cs" />
@@ -89,7 +90,7 @@
     <Compile Include="Core\EntityParsers\Xml\DefaultParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\ProfilePhotosParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\SiteProfilesParser.cs" />
-    <Compile Include="Core\Interfaces\IXmlVKEntityParser_2.cs" />
+    <Compile Include="Core\Interfaces\IXmlVKEntityParser.cs" />
     <Compile Include="Data\Parameters\SearchSortOrder.cs" />
     <Compile Include="Api\Users.cs" />
     <Compile Include="Api\Groups.cs" />
@@ -180,7 +181,7 @@
     <Compile Include="Helpers\BuiltInData.cs" />
     <Compile Include="Core\Interfaces\OwnedEntity.cs" />
     <Compile Include="Core\Interfaces\IVKEntity.cs" />
-    <Compile Include="Core\Interfaces\IXmlVKEntityParser.cs" />
+    <Compile Include="Core\Interfaces\IXmlVKEntityParserT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Request\VKRequest.cs" />
     <Compile Include="Data\Api\VKToken.cs" />

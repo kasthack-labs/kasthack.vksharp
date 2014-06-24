@@ -16,27 +16,11 @@ namespace VKSharp.Data.Executors {
         private class PropertyMapper<TProperty> where TProperty : IVKEntity<TProperty> {
             internal Action<TParentEntity, XElement> GetPropertyParser<TParentEntity>( PropertyInfo p, SimpleXMLExecutor context ) {
                 var tp = typeof( TProperty );
-                if ( tp != p.PropertyType )
-                    throw new InvalidOperationException( "Wrong TProperty type" );
-                //Func<XElement, TProperty> pd =
-                //    ( entity ) => ( context.GetParser<TProperty>() ).ParseFromXml( entity );
+                if ( tp != p.PropertyType ) throw new InvalidOperationException( "Wrong TProperty type" );
                 var parser = context.GetParser<TProperty>();
-                var sd =
-                    (Action<TParentEntity, TProperty>)
+                var sd = (Action<TParentEntity, TProperty>)
                     Delegate.CreateDelegate( typeof( Action<TParentEntity, TProperty> ), null, p.GetSetMethod() );
-                //if (Attribute.IsDefined( p, typeof(FlatMap) )){
-                //    throw new NotImplementedException();
-                //    //multiple keys req
-                //    var gd = (Func<TParentEntity, TProperty>) Delegate.CreateDelegate(
-                //        typeof( Action<TParentEntity, TProperty> ),
-                //        null,
-                //        p.GetGetMethod()
-                //    );
-                //}
-                //else {
-
                 return ( item, node ) => sd( item, parser.ParseFromXml( node ) );
-                //}
             }
         }
 
@@ -107,11 +91,6 @@ namespace VKSharp.Data.Executors {
                     foreach ( var xmlVkEntityParser in dictionary.Values.OfType<IXmlVKEntityParser>() )
                         xmlVkEntityParser.Executor = this;
                     this._parserStor = dictionary;
-                    //foreach ( var o in PrimitiveParserFactory
-                    //    .ParserLazy
-                    //    .Value
-                    //)
-                    //    _parserStor.Add( o.Key, o.Value );
                 }
                 catch ( Exception ex ) {
                     Console.WriteLine( ex.Message );
@@ -128,10 +107,9 @@ namespace VKSharp.Data.Executors {
         }
 
         private static IEnumerable<Type> GetTypesXml() {
-            return
-                CurrentAssemblyLazy.Value.GetTypes()
-                                   .Where( t => String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
-                                   .ToArray();
+            return CurrentAssemblyLazy.Value.GetTypes()
+                .Where( t => String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
+                .ToArray();
         }
         #endregion
 
@@ -186,8 +164,6 @@ namespace VKSharp.Data.Executors {
         private bool GetParserForT<T>( Type ti, out object parser ) {
             if ( this.ParserStor.TryGetValue( ti, out parser ) )
                 return false;
-            //if ( ( parser = PrimitiveParserFactory.GetParserFor( ti ) ) != null )
-            //    return true;
             Type parserGTD;
             if ( !ti.IsGenericType || !this.ParserGenericStor.TryGetValue( ti.GetGenericTypeDefinition(), out parserGTD ) )
                 throw new Exception( "No such parser" );
