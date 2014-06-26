@@ -10,7 +10,7 @@ namespace VKSharp.Helpers {
                 .OfType<UserFields>()
                 .Where(a => a != UserFields.Everything&& a!=UserFields.None)
                 .Where(a => (fields & a)==a)
-                .Select(a => a.ToNClString().ToSnake())
+                .Select(a => a.ToNCString().ToSnake())
                 .ToArray();
             return s;
         }

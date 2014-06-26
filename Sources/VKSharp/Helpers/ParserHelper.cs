@@ -69,8 +69,8 @@ namespace VKSharp.Helpers
         /// <param name="s">Input string</param>
         /// <param name="value">Output value</param>
         private static bool ParseEnum<TEnum>(string s, out TEnum value) where TEnum:struct {
-            long i;
-            var ret = long.TryParse( s, out i );
+            int i;
+            var ret = int.TryParse( s, out i );
             if ( ret ) value = (TEnum)(object)i;
             else ret = Enum.TryParse( s, true, out value );
             return ret;

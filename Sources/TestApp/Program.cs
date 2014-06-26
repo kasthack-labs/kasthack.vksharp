@@ -55,7 +55,7 @@ namespace TestApp {
         }
 
         private static async Task GetPostsTest (VKApi vk) {
-            var posts = await vk.WallGetAsync( 8878040 );
+            var posts = await vk.WallGetAsync(8878040);
             posts.Items.Dump();
         }
 
@@ -77,7 +77,7 @@ namespace TestApp {
 
         private static async Task GetUsersTest(VKApi vk) {
             var users = await vk.UsersGetAsync(fields: UserFields.Everything, ids: new uint[]{8878040});
-            users.Select(a=>a.ToString()).Dump();
+            users.Dump();
         }
 
         private static async Task CheckLyrics(VKApi vk) {

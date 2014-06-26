@@ -1,5 +1,5 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum VKPlatform : byte {
+    public enum VKPlatform  {
         Mobile = 1,
         Iphone = 2,
         Ipad = 3,

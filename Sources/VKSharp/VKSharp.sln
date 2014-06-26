@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-VisualStudioVersion = 12.0.30219.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSharp", "VKSharp.csproj", "{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}"
 EndProject
@@ -19,24 +19,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\TestApp\TestApp.csproj
+		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = ..\TestApp\TestApp.csproj
 	EndGlobalSection
 EndGlobal
