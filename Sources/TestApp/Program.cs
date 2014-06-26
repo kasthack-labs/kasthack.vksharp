@@ -8,12 +8,19 @@ using System.Threading.Tasks;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Data.Api;
+using VKSharp.Data.Parameters;
 
 namespace TestApp {
     class Program {
         private static void Main() {
-            var t = Main2();
-            t.Wait();
+            try{
+                Console.WriteLine("Starting..");
+                var t = Main2();
+                t.Wait();
+            }finally{
+                Console.WriteLine( "Complete" );
+                Console.ReadLine();
+            }
         }
 
         static async Task Main2() {
@@ -23,11 +30,18 @@ namespace TestApp {
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
 #else
-            var redirecturl = File.ReadAllText( "debug.token" );
+            string redirecturl=null;
+            try{
+                redirecturl = File.ReadAllText( "debug.token" );
+            }
+            catch(Exception ex){
+                ex.Message.Dump();
+            }
 #endif
-            WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
+            //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 
+            //await GetPostsTest( vk );
             //GetImplementedMethods();
             //await vk.unr
             //await Reorder( vk );
@@ -37,8 +51,13 @@ namespace TestApp {
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
+
         }
 
+        private static async Task GetPostsTest (VKApi vk) {
+            var posts = await vk.WallGetAsync( 8878040 );
+            posts.Items.Dump();
+        }
 
         private static async Task GetSubscriptions( VKApi vk ) {
             var s = await vk.UserGetSubscriptionsAsync(1);
@@ -57,8 +76,8 @@ namespace TestApp {
         }
 
         private static async Task GetUsersTest(VKApi vk) {
-            var users = await vk.UsersGetAsync(ids: 1);
-            users.Dump();
+            var users = await vk.UsersGetAsync(fields: UserFields.Everything, ids: new uint[]{8878040});
+            users.Select(a=>a.ToString()).Dump();
         }
 
         private static async Task CheckLyrics(VKApi vk) {

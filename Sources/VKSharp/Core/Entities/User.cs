@@ -99,7 +99,6 @@ namespace VKSharp.Core.Entities {
         public override int GetHashCode() {
             return unchecked( (int) ( 0 + this.Id ) );
         }
-
         public override string ToString() {
             return "ID :" + this.Id;
         }

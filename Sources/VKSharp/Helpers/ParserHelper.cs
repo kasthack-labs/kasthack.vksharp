@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
+using VKSharp.Core.Enums;
+using System.Diagnostics.Contracts;
 
 namespace VKSharp.Helpers
 {
@@ -48,13 +50,32 @@ namespace VKSharp.Helpers
             () => HelperType.GetMethod("BuildNullableTryParse", BindingFlags.Static | BindingFlags.NonPublic));
         private static readonly Lazy<MethodInfo> GetParsersBuilderLazy = new Lazy<MethodInfo>(
             () => HelperType.GetMethod("GetParsers", BindingFlags.Static | BindingFlags.NonPublic));
+        private static readonly Lazy<MethodInfo> ParseEnumFromIntStringLazy = new Lazy<MethodInfo>(
+            () => HelperType.GetMethod("ParseEnum", BindingFlags.Static | BindingFlags.NonPublic));
         /// <summary>
         /// Wrapper for GetNullableTryParseBuilderLazy
         /// </summary>
         private static MethodInfo GetNullableTryParseBuilder { get { return GetNullableTryParseBuilderLazy.Value; } }
+        /// <summary>
+        /// Wrapper for GetParsersBuilderLazy
+        /// </summary>
         private static MethodInfo GetParsersBuilder { get { return GetParsersBuilderLazy.Value; } }
+        private static MethodInfo ParseEnumMethod { get { return ParseEnumFromIntStringLazy.Value; } }
         #endregion
-        
+        /// <summary>
+        /// Parses the enum from int string/Enum string.
+        /// </summary>
+        /// <returns><c>true</c>, if enum was parsed, <c>false</c> otherwise.</returns>
+        /// <param name="s">Input string</param>
+        /// <param name="value">Output value</param>
+        private static bool ParseEnum<TEnum>(string s, out TEnum value) where TEnum:struct {
+            long i;
+            var ret = long.TryParse( s, out i );
+            if ( ret ) value = (TEnum)(object)i;
+            else ret = Enum.TryParse( s, true, out value );
+            return ret;
+        }
+
         /// <summary>
         /// Return TEntity.TryParse method
         /// </summary>
@@ -66,13 +87,16 @@ namespace VKSharp.Helpers
 #if CHECKBUILDER
             try {
 #endif
-                tryParseMethod = targetType.GetMethod(
-                    "TryParse",
-                    BindingFlags.Static | BindingFlags.Public,
-                    Type.DefaultBinder,
-                    new []{typeof(string),targetType.MakeByRefType()},
-                    null
-                );
+                if (targetType.IsEnum)
+                    tryParseMethod = ParseEnumMethod.MakeGenericMethod(targetType);
+                else
+                    tryParseMethod = targetType.GetMethod(
+                        "TryParse",
+                        BindingFlags.Static | BindingFlags.Public,
+                        Type.DefaultBinder,
+                        new []{typeof(string),targetType.MakeByRefType()},
+                        null
+                    );
 #if CHECKBUILDER
             }
             catch {
@@ -149,7 +173,7 @@ namespace VKSharp.Helpers
             if (!props.ContainsKey(propertyType)) return; //no properties of this type -> return
             foreach (var pi in props[propertyType]) {//build updater delegates for each property of this type
                 var updater = GetPropertyUpdaterDelegate<TEntity, TProperty>(pi, propertyType);
-                if (updater != null) ret.Add(ConvertNameToSnake(pi.Name), updater);
+                if (updater != null) ret.Add(ToSnake(pi.Name), updater);
                 //key: property name converted to snake_case, value: delegate which updates property
             }
         }
@@ -224,7 +248,7 @@ namespace VKSharp.Helpers
                     method.MakeGenericMethod( entityType, type ).Invoke( null, new object[] { ret, props } );
 #if CHECKBUILDER
                 }
-                catch ( Exception ex ) {
+                catch ( Exception ) {
                     
                 }
 #endif
@@ -236,7 +260,7 @@ namespace VKSharp.Helpers
         /// </summary>
         /// <param name="name">Name for converting</param>
         /// <returns>Converted string</returns>
-        public static string ConvertNameToSnake(string name)
+        public static string ToSnake(this string name)
         {
             var t = new StringBuilder();
             t.Append(Char.ToLower(name[0]));

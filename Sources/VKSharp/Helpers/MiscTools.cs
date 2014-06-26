@@ -10,7 +10,7 @@ namespace VKSharp.Helpers {
                 .OfType<UserFields>()
                 .Where(a => a != UserFields.Everything&& a!=UserFields.None)
                 .Where(a => (fields & a)==a)
-                .Select(a => a.ToNClString())
+                .Select(a => a.ToNClString().ToSnake())
                 .ToArray();
             return s;
         }
@@ -19,7 +19,7 @@ namespace VKSharp.Helpers {
                 .OfType<FriendSuggestionFilters>()
                 .Where( a => a != FriendSuggestionFilters.Everything )
                 .Where( a => fields.HasFlag( a ) )
-                .Select( a => a.ToNClString() )
+                .Select( a => a.ToNClString().ToSnake() )
                 .ToArray();
             return s;
         }

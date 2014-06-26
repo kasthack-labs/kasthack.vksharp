@@ -6,12 +6,19 @@ namespace VKSharp.Helpers.DataTypes {
         public int Month { get; set; }
         public int Day { get; set; }
 
+        public static bool TryParse(string sim, out Date date ){
+            try{
+                date = Parse(sim);
+                return true;
+            }
+            catch{
+                date = null;
+                return false;
+            }
+        }
         public static Date Parse(string innerText) {
-
             var spl = innerText.Split('.');
             var l = spl.Length;
-            //if(l==0)
-            //    return null
             return new Date {
                 Year = l>2?(int?) int.Parse( spl[ --l ] ) : null,
                 Month = int.Parse( spl[ --l ] ),
