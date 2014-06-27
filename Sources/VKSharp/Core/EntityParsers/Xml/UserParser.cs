@@ -4,10 +4,6 @@ using System.Linq;
 using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
-using VKSharp.Core.Enums;
-using VKSharp.Core.Interfaces;
-using VKSharp.Data.Executors;
-using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : DefaultParser<User> {
@@ -26,9 +22,6 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return u;
         }
 
-        private IXmlVKEntityParser<T> GetP<T>() where T : IVKEntity<T> {
-            return ( (SimpleXMLExecutor) this.Executor ).GetParser<T>();
-        }
 
         public override bool UpdateFromFragment(XElement node, User entity) {
             Action<User, string> parser;
@@ -56,6 +49,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 //case "ban_info":
                 //    this.GetP<BanInfo>().FillFromXml( node.Elements(), entity. );
                 //    break;
+                case "exports":
+                    entity.Exports = this.GetP<Exports>().ParseFromXml( node );
+                    break;
+                case "relatives":
+                    entity.Relatives = this.GetP<Relative>().ParseAllFromXml( node.Elements() );
+                    break;
                 case "last_seen":
                     entity.LastSeen = this.GetP<LastSeen>().ParseFromXml( node );
                     break;

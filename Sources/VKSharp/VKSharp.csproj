@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Parameters\UsersSearchParams.cs" />
     <Compile Include="Data\Parameters\AudioSortOrder.cs" />
     <Compile Include="Api\Notifications.cs" />
     <Compile Include="Api\Pages.cs" />

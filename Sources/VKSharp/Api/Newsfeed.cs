@@ -8,7 +8,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<StructEntity<bool>> NewsfeedAddBanAsync(IEnumerable<uint> userIds, IEnumerable<int> groupIds) {
+        public async Task NewsfeedAddBanAsync(IEnumerable<uint> userIds, IEnumerable<int> groupIds) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "newsfeed.addBan",
                 Parameters = new Dictionary<string, string> {
@@ -19,9 +19,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> NewsfeedDeleteBanAsync(IEnumerable<uint> userIds, IEnumerable<int> groupIds) {
+        public async Task NewsfeedDeleteBanAsync(IEnumerable<uint> userIds, IEnumerable<int> groupIds) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "newsfeed.deleteBan",
                 Parameters = new Dictionary<string, string> {
@@ -32,7 +32,7 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync(req);
         }
     }
 }

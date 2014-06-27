@@ -82,5 +82,11 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 if ( this.Executor is SimpleXMLExecutor )
                     ( this.Executor as SimpleXMLExecutor ).AttachParser( this );
         }
+
+
+        protected IXmlVKEntityParser<TEntity> GetP<TEntity>() where TEntity : IVKEntity<TEntity>
+        {
+            return ((SimpleXMLExecutor)this.Executor).GetParser<TEntity>();
+        }
     }
 }

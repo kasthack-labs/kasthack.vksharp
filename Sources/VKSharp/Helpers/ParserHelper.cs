@@ -191,7 +191,7 @@ namespace VKSharp.Helpers
             var query = String.Join("&", request
                     .Parameters
                     .Where(a => a.Value != "")
-                    .Select(a => a.Key + "=" + a.Value)
+                    .Select(a => a.Key + "=" + Uri.EscapeDataString( a.Value) )
             );
             var queryB = new StringBuilder();
             queryB.Append("/method/");

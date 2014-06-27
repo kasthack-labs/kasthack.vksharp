@@ -10,11 +10,7 @@ namespace VKSharp {
         public async Task<StructEntity<bool>> StatusSet( string text ) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "status.set",
-                Parameters = new Dictionary<string, string> {
-                    {
-                        "text", text
-                    }
-                }
+                Parameters = new Dictionary<string, string> { { "text", text } }
             };
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");

@@ -9,10 +9,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<User[]> GroupsGetBannedAsync(
-            uint groupId,
-            uint offset = 0,
-            ushort count = 100) {
+        public async Task<User[]> GroupsGetBannedAsync( uint groupId, uint offset = 0, ushort count = 100) {
             var req = new VKRequest<User> {
                 MethodName = "groups.getBanned",
                 Parameters = new Dictionary<string, string> {
@@ -27,10 +24,7 @@ namespace VKSharp {
             return (await this._executor.ExecAsync(req)).Data;
         }
 
-        public async Task<MemberShip[]> GroupsIsMemberAsync(
-            string groupId,
-            bool extended = false,
-            params uint[] userIds) {
+        public async Task<MemberShip[]> GroupsIsMemberAsync( string groupId, bool extended = false, params uint[] userIds) {
                 var req = new VKRequest<MemberShip> {
                 MethodName = "groups.isMember",
                 Parameters = new Dictionary<string, string> {

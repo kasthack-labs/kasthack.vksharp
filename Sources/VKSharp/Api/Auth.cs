@@ -7,10 +7,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<StructEntity<bool>> AuthCheckPhoneAsync(
-            string phone,
-            string clientSecret,
-            int? clientId = null) {
+        public async Task<StructEntity<bool>> AuthCheckPhoneAsync( string phone, string clientSecret, int? clientId = null) {
                 var req = new VKRequest<StructEntity<bool>> {
                     MethodName = "auth.checkPhone",
                     Parameters = new Dictionary<string, string> {

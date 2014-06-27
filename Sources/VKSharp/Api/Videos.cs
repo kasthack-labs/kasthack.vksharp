@@ -9,7 +9,8 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<StructEntity<bool>> VideosReportAsync(int ownerId, uint photoId, ReportReason? reason = null, string comment="", string search_query="") {
+        public async Task<StructEntity<bool>> VideosReportAsync(
+            int ownerId, uint photoId, ReportReason? reason = null, string comment="", string search_query="") {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.report",
                 Parameters =
@@ -25,7 +26,7 @@ namespace VKSharp {
                 req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> VideosReportCommentAsync(int ownerId, uint commentId, ReportReason? reason = null) {
+        public async Task VideosReportCommentAsync(int ownerId, uint commentId, ReportReason? reason = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.reportComment",
                 Parameters =
@@ -37,9 +38,9 @@ namespace VKSharp {
             };
             if ( this.IsLogged )
                 req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> VideosDeleteAlbumAsync(uint albumId, uint? groupId = null) {
+        public async Task VideosDeleteAlbumAsync(uint albumId, uint? groupId = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.deleteAlbum",
                 Parameters =
@@ -51,9 +52,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> VideosDeleteAsync(uint videoId, int? ownerId = null) {
+        public async Task VideosDeleteAsync(uint videoId, int? ownerId = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.delete",
                 Parameters =
@@ -65,9 +66,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> VideosDeleteCommentAsync(int ownerId, uint commentId) {
+        public async Task VideosDeleteCommentAsync(int ownerId, uint commentId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.deleteComment",
                 Parameters =
@@ -79,9 +80,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> VideosRestoreCommentAsync(int ownerId, uint commentId) {
+        public async Task VideosRestoreCommentAsync(int ownerId, uint commentId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.restoreComment",
                 Parameters = new Dictionary<string, string> {
@@ -92,9 +93,9 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
-        public async Task<StructEntity<bool>> VideosRemoveTagAsync(uint videoId, uint tagId, int? ownerId = null) {
+        public async Task VideosRemoveTagAsync(uint videoId, uint tagId, int? ownerId = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "video.removeTag",
                 Parameters =
@@ -107,7 +108,7 @@ namespace VKSharp {
             if (!this.IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            await this._executor.ExecAsync( req );
         }
     }
 }

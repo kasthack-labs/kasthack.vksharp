@@ -8,10 +8,7 @@ using VKSharp.Helpers;
 namespace VKSharp {
     public partial class VKApi {
         public async Task<EntityList<DatabaseEntry>> DatabaseGetCountriesAsync(
-            bool needAll = false,
-            string code = "",
-            uint offset = 0,
-            uint count = 100 ) {
+            bool needAll = false, string code = "", uint offset = 0, uint count = 100 ) {
             var req = new VKRequest<EntityList<DatabaseEntry>> {
                 MethodName = "database.getCountries",
                 Parameters =
@@ -24,12 +21,8 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-
         public async Task<EntityList<DatabaseEntry>> DatabaseGetRegionsAsync(
-            uint country_id,
-            string q = "",
-            uint offset = 0,
-            uint count = 100 ) {
+            uint country_id, string q = "", uint offset = 0, uint count = 100 ) {
             var req = new VKRequest<EntityList<DatabaseEntry>> {
                 MethodName = "database.getRegions",
                 Parameters =
@@ -42,7 +35,6 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-
         public async Task<DatabaseEntry[]> DatabaseGetStreetsByIdAsync( params uint[] streetIds ) {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getStreetsById",
@@ -50,7 +42,6 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-
         public async Task<DatabaseEntry[]> DatabaseGetCountriesByIdAsync( params uint[] countryIds ) {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getCountriesById",
@@ -59,7 +50,6 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-
         public async Task<DatabaseCity[]> DatabaseGetCitiesByIdAsync( params uint[] cityIds ) {
             var req = new VKRequest<DatabaseCity> {
                 MethodName = "database.getCitiesById",
@@ -67,14 +57,8 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-
-        public async Task<DatabaseCity[]> DatabaseGetCitiesAsync(
-            uint countryId,
-            uint? regionId = null,
-            string q = "",
-            bool? needAll = null,
-            uint offset = 0,
-            uint count = 100 ) {
+        public async Task<DatabaseCity[]> DatabaseGetCitiesAsync( uint countryId, uint? regionId = null,
+            string q = "", bool? needAll = null, uint offset = 0, uint count = 100 ) {
             var req = new VKRequest<DatabaseCity> {
                 MethodName = "database.getCities",
                 Parameters =
@@ -89,13 +73,8 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-
-        public async Task<DatabaseEntry[]> DatabaseGetUniversitiesAsync(
-            uint? countryId = null,
-            uint? cityId = null,
-            string q = "",
-            uint offset = 0,
-            uint count = 100 ) {
+        public async Task<DatabaseEntry[]> DatabaseGetUniversitiesAsync( uint? countryId = null,
+            uint? cityId = null, string q = "", uint offset = 0, uint count = 100 ) {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getUniversities",
                 Parameters =
@@ -109,8 +88,8 @@ namespace VKSharp {
             };
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
-
-        public async Task<DatabaseEntry[]> DatabaseGetSchoolsAsync( uint? cityId = null, string q = "", uint offset = 0, uint count =100 ) {
+        public async Task<DatabaseEntry[]> DatabaseGetSchoolsAsync( uint? cityId = null,
+            string q = "", uint offset = 0, uint count =100 ) {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getSchools",
                 Parameters =
@@ -124,10 +103,7 @@ namespace VKSharp {
             return ( await this._executor.ExecAsync( req ) ).Data;
         }
         public async Task<EntityList<DatabaseEntry>> DatabaseGetFacultiesAsync(
-            uint universityId,
-            uint offset = 0,
-            uint count = 100
-            ) {
+            uint universityId, uint offset = 0, uint count = 100 ) {
                 var req = new VKRequest<EntityList<DatabaseEntry>> {
                 MethodName = "database.getFaculties",
                 Parameters =
@@ -140,10 +116,7 @@ namespace VKSharp {
             return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<EntityList<DatabaseEntry>> DatabaseGetChairsAsync(
-            uint facultyId,
-            uint offset = 0,
-            uint count = 100
-            ) {
+            uint facultyId, uint offset = 0, uint count = 100 ) {
             var req = new VKRequest<EntityList<DatabaseEntry>> {
                 MethodName = "database.getChairs",
                 Parameters =
