@@ -41,7 +41,8 @@ namespace TestApp {
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 
-            await GetPostsTest( vk );
+            await ByIdTest( vk );
+            //await GetPostsTest( vk );
             //GetImplementedMethods();
             //await vk.unr
             //await Reorder( vk );
@@ -52,6 +53,11 @@ namespace TestApp {
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
 
+        }
+
+        private static async Task ByIdTest( VKApi vk ) {
+            var post = await vk.WallGetByIdAsync( 50, "-50664244_1067" );
+            post.Dump();
         }
 
         private static async Task GetPostsTest (VKApi vk) {

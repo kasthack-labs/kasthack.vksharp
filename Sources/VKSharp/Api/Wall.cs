@@ -126,10 +126,10 @@ namespace VKSharp {
             if ( this.IsLogged ) req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<Post[]> WallGetByIdAsync(IEnumerable<Tuple<int,uint>> ids, int copyHistoryDepth = 2){
-            return await WallGetByIdAsync( ids.Select( a => a.Item1.ToNCString() + "_" + a.Item2.ToNCString() ), copyHistoryDepth );
+        public async Task<Post[]> WallGetByIdAsync(int copyHistoryDepth = 2, params Tuple<int,uint>[] ids ){
+            return await WallGetByIdAsync( copyHistoryDepth, ids.Select( a => a.Item1.ToNCString() + "_" + a.Item2.ToNCString() ).ToArray() );
         }
-        public async Task<Post[]> WallGetByIdAsync(IEnumerable<string> ids, int copyHistoryDepth = 2){
+        public async Task<Post[]> WallGetByIdAsync(int copyHistoryDepth = 2, params string[] ids){
             var req = new VKRequest<Post> {
                 MethodName = "wall.getById",
                 Parameters = new Dictionary<string, string> {

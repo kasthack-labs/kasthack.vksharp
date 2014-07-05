@@ -20,10 +20,10 @@ namespace VKSharp.Core.EntityParsers.Xml {
                         case AttachmentType.Audio:
                             entity.AttachmentBody = GetP<Audio>().ParseFromXml( node );
                             break;
-                        case AttachmentType.Document:
+                        case AttachmentType.Doc:
                             entity.AttachmentBody = GetP<Document>().ParseFromXml( node );
                             break;
-                        case AttachmentType.Graffity:
+                        case AttachmentType.Graffiti:
                             entity.AttachmentBody = GetP<Graffity>().ParseFromXml( node );
                             break;
                         case AttachmentType.Link:
