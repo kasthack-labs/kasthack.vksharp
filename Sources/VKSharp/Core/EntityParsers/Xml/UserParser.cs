@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
+using System.Xml.XPath;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : DefaultParser<User> {
@@ -32,16 +33,13 @@ namespace VKSharp.Core.EntityParsers.Xml {
             var changed = true;
             switch ( nodeName ) {
                 case "counters":
-                    this.GetP<ProfileCounters>()
-                        .FillFromXml( node.Elements(), entity.Counters );
+                    this.GetP<ProfileCounters>().FillFromXml( node.Elements(), entity.Counters );
                     break;
                 case "schools":
-                    entity.Schools = this.GetP<School>()
-                        .ParseAllFromXml( node.Elements() );
+                    entity.Schools = this.GetP<School>().ParseAllFromXml( node.Elements() );
                     break;
                 case "universities":
-                    entity.Universities = this.GetP<University>()
-                        .ParseAllFromXml( node.Elements() );
+                    entity.Universities = this.GetP<University>().ParseAllFromXml( node.Elements() );
                     break;
                 case "lists":
                     entity.Lists = node.Value.Split( ',' ).Select( uint.Parse ).ToArray();
@@ -57,6 +55,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     break;
                 case "last_seen":
                     entity.LastSeen = this.GetP<LastSeen>().ParseFromXml( node );
+                    break;
+                case "occupation":
+                    entity.Occupation = this.GetP<Occupation>().ParseFromXml( node );
+                    break;
+                case "personal":
+                    entity.Personal = this.GetP<StandInLife>().ParseFromXml( node );
                     break;
                 default:
                     changed=false;

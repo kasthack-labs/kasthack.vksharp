@@ -187,6 +187,15 @@
     <Compile Include="Data\Request\VKRequest.cs" />
     <Compile Include="Data\Api\VKToken.cs" />
     <Compile Include="Data\Parameters\WallPostFilter.cs" />
+    <Compile Include="Core\EntityFragments\Occupation.cs" />
+    <Compile Include="Core\EntityParsers\Xml\OccupationParser.cs" />
+    <Compile Include="Core\Enums\OccupationType.cs" />
+    <Compile Include="Core\EntityFragments\StandInLife.cs" />
+    <Compile Include="Core\Enums\PoliticalPreferences.cs" />
+    <Compile Include="Core\Enums\PeopleMain.cs" />
+    <Compile Include="Core\Enums\LifeMain.cs" />
+    <Compile Include="Core\Enums\Attitude.cs" />
+    <Compile Include="Core\EntityParsers\Xml\StandInLifeParser.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

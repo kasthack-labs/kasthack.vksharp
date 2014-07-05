@@ -52,6 +52,8 @@ namespace VKSharp.Data.Parameters {
         Universities = 1UL << 46,
         Verified = 1UL << 47,
         WallComments = 1UL << 48,
+        ScreenName = 1UL << 49,
+        Occupation = 1UL << 50,
         Everything = ~0UL,
         None = 0UL
     }

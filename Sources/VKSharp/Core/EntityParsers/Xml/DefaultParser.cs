@@ -23,12 +23,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         protected static readonly Lazy<Dictionary<string, Action<T, string>>> GeneratedParsersLazy =
             new Lazy<Dictionary<string, Action<T, string>>>( ParserHelper.GetStringParsers<T> );
         //subentities
-        protected Dictionary<string, Action<T, XElement>> subentityParsers;
-        
-        public DefaultParser() {
-            //subentityParsers = _executor
-
-        }
+        protected Dictionary<string, Action<T, XElement>> SubentityParsers;
 
         protected static Dictionary<string, Action<T, string>> GeneratedParsers {
             get {
@@ -46,7 +41,8 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public virtual T[] ParseAllFromXml( IEnumerable<XElement> nodes ) {
-            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
+            var _a = default(T);
+            return nodes.Select( this.ParseFromXml ).Where( a => a != _a ).ToArray();
         }
 
         public virtual T ParseFromXmlFragments( IEnumerable<XElement> nodes ) {
@@ -63,7 +59,6 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 parser( entity, node.Value );
             }
             catch ( Exception ex ) {
-                //if (ex is FormatException || ex is OverflowException)
                 throw new Exception(
                     String.Format(
                         "Parser error: field {0} at entity {1}\r\nXml:\r\n{2}",
@@ -78,9 +73,8 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public virtual void Attach() {
-            if (this.Executor!=null)
-                if ( this.Executor is SimpleXMLExecutor )
-                    ( this.Executor as SimpleXMLExecutor ).AttachParser( this );
+            var simpleXMLExecutor = this.Executor as SimpleXMLExecutor;
+            if ( simpleXMLExecutor != null ) simpleXMLExecutor.AttachParser( this );
         }
 
 

@@ -3,8 +3,6 @@ using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Post : OwnedEntity<Post> {
-        public uint Id { get; set; }
-        public int OwnerId { get; set; }
         public int FromId { get; set; }
         public uint Date { get; set; }
         public string Text { get; set; }
@@ -24,8 +22,6 @@ namespace VKSharp.Core.Entities {
         //???
         public Group[] Groups { get; set; }
         public User[] Profiles { get; set; }
-
-        public VKApi Context { get; set; }
 
         public override string ToString () {
             return string.Format( "Post #{0}@{1}by{2}", Id, OwnerId, FromId );
