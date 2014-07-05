@@ -12,7 +12,7 @@ namespace VKSharp.Core.EntityFragments {
         public LifeMain LifeMain { get; set; }
         public Attitude Smoking { get; set; }
         public Attitude Alcohol { get; set; }
-        VKApi Context { get; set;}
+        public VKApi Context { get; set;}
     }
 }
 

@@ -50,6 +50,7 @@ VKSharp
 	* audios.search
 * Auth
 	* auth.checkPhone
+	* auth.confirm
 * Database [*^getSchoolClasses]
 	* database.getChairs
 	* database.getCities
@@ -154,6 +155,8 @@ VKSharp
 * Wall
 	* wall.delete
 	* wall.deleteComment
+	* wall.get
+	* wall.getById
 	* wall.reportComment
 	* wall.reportPost
 	* wall.restore

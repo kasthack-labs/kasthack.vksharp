@@ -21,8 +21,7 @@ namespace VKSharp {
                     },
                 }
             };
-            if ( !this.IsLogged )
-                throw new InvalidOperationException ( "This method requires auth!" );
+            if ( !this.IsLogged ) throw new InvalidOperationException ( "This method requires auth!" );
             req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
@@ -112,11 +111,8 @@ namespace VKSharp {
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
-        public async Task<EntityList<Post>> WallGetAsync (int? ownerId,
-                                                          string domain = "",
-                                                          int offset = 0,
-                                                          int count = 100,
-                                                          WallPostFilter filter = WallPostFilter.All) {
+        public async Task<EntityList<Post>> WallGetAsync (int? ownerId, string domain = "",
+            int offset = 0, int count = 100, WallPostFilter filter = WallPostFilter.All) {
             var req = new VKRequest<EntityList<Post>> {
                 MethodName = "wall.get",
                 Parameters = new Dictionary<string, string> {
@@ -130,6 +126,19 @@ namespace VKSharp {
             if ( this.IsLogged ) req.Token = this.CurrenToken;
             return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-
+        public async Task<Post[]> WallGetByIdAsync(IEnumerable<Tuple<int,uint>> ids, int copyHistoryDepth = 2){
+            return await WallGetByIdAsync( ids.Select( a => a.Item1.ToNCString() + "_" + a.Item2.ToNCString() ), copyHistoryDepth );
+        }
+        public async Task<Post[]> WallGetByIdAsync(IEnumerable<string> ids, int copyHistoryDepth = 2){
+            var req = new VKRequest<Post> {
+                MethodName = "wall.getById",
+                Parameters = new Dictionary<string, string> {
+                    { "posts", String.Join(",", ids) },
+                    { "copy_history_depth", copyHistoryDepth.ToNCString() }
+                }
+            };
+            if ( this.IsLogged ) req.Token = this.CurrenToken;
+            return ( await this._executor.ExecAsync( req ) ).Data;
+        }
     }
 }

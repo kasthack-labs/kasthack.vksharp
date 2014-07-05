@@ -41,8 +41,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public virtual T[] ParseAllFromXml( IEnumerable<XElement> nodes ) {
-            var _a = default(T);
-            return nodes.Select( this.ParseFromXml ).Where( a => a != _a ).ToArray();
+            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
         }
 
         public virtual T ParseFromXmlFragments( IEnumerable<XElement> nodes ) {
