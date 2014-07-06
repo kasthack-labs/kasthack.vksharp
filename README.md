@@ -106,6 +106,7 @@ VKSharp
 	* photos.deleteComment
 	* photos.edit
 	* photos.getAlbumCount
+	* photos.getAlbums
 	* photos.getProfileUploadServer
 	* photos.getUploadServer
 	* photos.makeCover
