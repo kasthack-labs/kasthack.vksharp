@@ -127,7 +127,7 @@
     <Compile Include="Core\Entities\Geo.cs" />
     <Compile Include="Core\Entities\Graffity.cs" />
     <Compile Include="Core\Entities\Note.cs" />
-    <Compile Include="Core\Entities\PhotoAlbumBase.cs" />
+    <Compile Include="Core\Entities\PhotoAlbum.cs" />
     <Compile Include="Core\Entities\Poll.cs" />
     <Compile Include="Core\Entities\Post.cs" />
     <Compile Include="Core\Entities\PostComments.cs" />
@@ -138,7 +138,7 @@
     <Compile Include="Core\EntityParsers\Xml\CommentLikesParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\GraffityParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\NoteParser.cs" />
-    <Compile Include="Core\EntityParsers\Xml\PhotoAlbumBaseParser.cs" />
+    <Compile Include="Core\EntityParsers\Xml\PhotoAlbumParser.cs" />
     <Compile Include="Core\Enums\PrivacyType.cs" />
     <Compile Include="Core\EntityParsers\Xml\AttachmentParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\CommentParser.cs" />

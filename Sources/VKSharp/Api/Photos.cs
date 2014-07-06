@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
@@ -110,6 +111,25 @@ namespace VKSharp {
                 req.Token = this.CurrenToken;
             await this._executor.ExecAsync(req);
         }
+
+        public async Task<EntityList<PhotoAlbum>> PhotosGetAlbumsAsync( int? ownerId=null, int offset = 0,
+            int? count = null, bool needSystem = true, bool needCovers = false, params long[] albumIds ) {
+                var req = new VKRequest<EntityList<PhotoAlbum>>
+                {
+                    MethodName = "photos.getAlbums",
+                    Parameters = new Dictionary<string, string> {
+                        { "owner_id", MiscTools.NullableString( ownerId ) },
+                        {"offset", offset.ToNCString()},
+                        {"count", MiscTools.NullableString( count )},
+                        {"need_system", needSystem?"1":"0"},
+                        {"need_covers", needCovers?"1":"0"},
+                        {"album_ids", String.Join( ",", albumIds )}
+                    }
+                };
+                if (this.IsLogged) req.Token = this.CurrenToken;
+                return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+
         public async Task PhotosGetProfileUploadServerAsync() {
             var req = new VKRequest<SimpleEntity<string>> {
                 MethodName = "photos.getProfileUploadServer",
@@ -253,5 +273,6 @@ namespace VKSharp {
             req.Token = this.CurrenToken;
             await this._executor.ExecAsync(req);
         }
+        
     }
 }

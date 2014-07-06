@@ -41,6 +41,7 @@ namespace TestApp {
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 
+            await AlbumsTest( vk );
             //await ByIdTest( vk );
             //await GetPostsTest( vk );
             //GetImplementedMethods();
@@ -48,11 +49,16 @@ namespace TestApp {
             //await Reorder( vk );
             //await GetArtistsStats(vk);
             //await GetArtistsStats(vk);
-            await GetUsersTest(vk);
+            //await GetUsersTest(vk);
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
 
+        }
+
+        private static async Task AlbumsTest( VKApi vk ) {
+            var albums = await vk.PhotosGetAlbumsAsync(needCovers:true);
+            albums.Dump();
         }
 
         private static async Task ByIdTest( VKApi vk ) {
