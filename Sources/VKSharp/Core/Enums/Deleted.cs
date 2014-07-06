@@ -1,5 +1,6 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum Deleted {
+    public enum Deleted : byte
+    {
         Deleted,
         Banned
     }

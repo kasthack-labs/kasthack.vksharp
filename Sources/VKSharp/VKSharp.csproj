@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\EntityFragments\GeoEntry.cs" />
+    <Compile Include="Core\EntityParsers\Xml\GeoEntryParser.cs" />
     <Compile Include="Data\Parameters\UsersSearchParams.cs" />
     <Compile Include="Data\Parameters\AudioSortOrder.cs" />
     <Compile Include="Api\Notifications.cs" />
@@ -210,7 +212,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Folder Include="Core\ResponseEntities\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

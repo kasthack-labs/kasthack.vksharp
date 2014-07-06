@@ -1,5 +1,5 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum AttachmentType {
+    public enum AttachmentType:byte {
         Photo,
         PostedPhoto,
         Video,

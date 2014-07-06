@@ -1,5 +1,6 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum PostSourceInfo {
+    public enum PostSourceInfo : byte
+    {
         ProfileActivity,
         ProfilePhoto,
         Comments,

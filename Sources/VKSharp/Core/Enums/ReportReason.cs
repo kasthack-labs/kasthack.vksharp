@@ -1,11 +1,11 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum ReportReason {
-        Spam =0,
+    public enum ReportReason : byte {
+        Spam = 0,
         ChildPorn = 1,
-        Racism =2,
+        Racism = 2,
         Violence = 3,
         Drugs = 4,
-        AdultMaterial =5,
-        Insult =6
+        AdultMaterial = 5,
+        Insult = 6
     }
 }

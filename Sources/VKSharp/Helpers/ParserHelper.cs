@@ -68,10 +68,11 @@ namespace VKSharp.Helpers
         /// <returns><c>true</c>, if enum was parsed, <c>false</c> otherwise.</returns>
         /// <param name="s">Input string</param>
         /// <param name="value">Output value</param>
-        private static bool ParseEnum<TEnum>(string s, out TEnum value) where TEnum:struct {
-            int i;
-            var ret = int.TryParse( s, out i );
-            if ( ret ) value = (TEnum)(object)i;
+        private static bool ParseEnum<TEnum, TBase>(string s, out TEnum value) where TEnum:struct {
+            long i;
+            var ret = long.TryParse( s, out i );
+            if ( ret )
+                value =  (TEnum) Convert.ChangeType( i, typeof(TBase) );
             else ret = Enum.TryParse( s, true, out value );
             return ret;
         }
@@ -88,7 +89,7 @@ namespace VKSharp.Helpers
             try {
 #endif
                 if (targetType.IsEnum)
-                    tryParseMethod = ParseEnumMethod.MakeGenericMethod(targetType);
+                    tryParseMethod = ParseEnumMethod.MakeGenericMethod(targetType, targetType.GetEnumUnderlyingType());
                 else
                     tryParseMethod = targetType.GetMethod(
                         "TryParse",

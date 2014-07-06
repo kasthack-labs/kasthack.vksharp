@@ -41,14 +41,14 @@ namespace TestApp {
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 
-            await ByIdTest( vk );
+            //await ByIdTest( vk );
             //await GetPostsTest( vk );
             //GetImplementedMethods();
             //await vk.unr
             //await Reorder( vk );
             //await GetArtistsStats(vk);
             //await GetArtistsStats(vk);
-            //await GetUsersTest(vk);
+            await GetUsersTest(vk);
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
@@ -82,7 +82,7 @@ namespace TestApp {
         }
 
         private static async Task GetUsersTest(VKApi vk) {
-            var users = await vk.UsersGetAsync(fields: UserFields.Everything, ids: new uint[]{8878040});
+            var users = await vk.UsersGetAsync(fields: UserFields.Everything, ids: new uint[]{1704311});
             users.Dump();
         }
 

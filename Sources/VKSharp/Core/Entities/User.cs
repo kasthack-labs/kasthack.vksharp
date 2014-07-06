@@ -20,7 +20,7 @@ namespace VKSharp.Core.Entities {
         public bool? Verified { get; set; }
         public bool? WallComments { get; set; }
         public byte? Timezone { get; set; }
-        public Date BDate { get; set; }
+        public Date? Bdate { get; set; }
         public Exports Exports { get; set; }
         public LastSeen LastSeen { get; set; }
         public Occupation Occupation { get; set; }
@@ -57,8 +57,8 @@ namespace VKSharp.Core.Entities {
         public StandInLife Personal { get; set;}
         public uint? CommonCount { get; set; }
         public uint Id { get; set; }
-        public uint? City { get; set; }
-        public uint? Country { get; set; }
+        public GeoEntry City { get; set; }
+        public GeoEntry Country { get; set; }
         public uint? Faculty { get; set; }
         public uint? FollowersCount { get; set; }
         public uint? OnlineApp { get; set; }

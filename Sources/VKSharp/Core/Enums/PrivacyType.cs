@@ -1,5 +1,5 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum PrivacyType {
+    public enum PrivacyType : byte {
         Nobody,
         All,
         Friends,

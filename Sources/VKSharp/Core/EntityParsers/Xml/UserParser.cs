@@ -27,6 +27,10 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public override bool UpdateFromFragment(XElement node, User entity) {
             Action<User, string> parser;
             var nodeName = node.Name.ToString();
+            if (GeneratedParsers.TryGetValue(nodeName, out parser)) {
+                parser(entity, node.Value);
+                return true;
+            }
             if ( this.GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
                  || this.GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ) )
                 return true;
@@ -50,6 +54,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 case "exports":
                     entity.Exports = this.GetP<Exports>().ParseFromXml( node );
                     break;
+                case "country":
+                    entity.Country = this.GetP<GeoEntry>().ParseFromXml( node );
+                    break;
+                case "city":
+                    entity.City = this.GetP<GeoEntry>().ParseFromXml( node );
+                    break;
                 case "relatives":
                     entity.Relatives = this.GetP<Relative>().ParseAllFromXml( node.Elements() );
                     break;
@@ -66,10 +76,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     changed=false;
                     break;
             }
-            if ( changed ) return true;
-            if ( !GeneratedParsers.TryGetValue( nodeName, out parser ) ) return false;
-            parser( entity, node.Value );
-            return true;
+            return changed;
         }
     }
 }

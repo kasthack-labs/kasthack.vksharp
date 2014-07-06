@@ -1,5 +1,5 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum PostType {
+    public enum PostType : byte {
         Post,
         Copy,
         Reply,

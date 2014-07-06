@@ -1,18 +1,18 @@
 ﻿using System;
 
 namespace VKSharp.Helpers.DataTypes {
-    public class Date {
+    public struct Date {
         public int? Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
-
-        public static bool TryParse(string sim, out Date date ){
+        //TODO: replace try-catch checks
+        public static bool TryParse(string sim, out Date date ) {
+            date = default( Date );
             try{
                 date = Parse(sim);
                 return true;
             }
             catch{
-                date = null;
                 return false;
             }
         }

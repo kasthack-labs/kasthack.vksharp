@@ -1,5 +1,6 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum ComplaintType {
+    public enum ComplaintType : byte
+    {
         Porn,
         Spam,
         Insult,

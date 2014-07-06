@@ -1,9 +1,10 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum PostSourceType {
-        VK,
+    public enum PostSourceType : byte
+    {
+        Vk,
         Widget,
-        API,
+        Api,
         Rss,
-        SMS,
+        Sms,
     }
 }

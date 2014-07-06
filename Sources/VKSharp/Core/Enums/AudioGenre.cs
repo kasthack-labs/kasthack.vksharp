@@ -1,5 +1,6 @@
 ﻿namespace VKSharp.Core.Enums {
-    public enum AudioGenre {
+    public enum AudioGenre : byte
+    {
         Rock = 1,
         Pop = 2,
         RapAndHipHop = 3,
