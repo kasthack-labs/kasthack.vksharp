@@ -16,9 +16,9 @@ namespace VKSharp {
                     { "client_secret", clientSecret },
                     { "client_id", MiscTools.NullableString( clientId ) }
                 },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<ConfirmResult> AuthConfirmAsync(
             uint clientId,
@@ -40,9 +40,9 @@ namespace VKSharp {
                     { "test_mode", testMode?"1":"0" },
                     { "intro", MiscTools.NullableString(intro) }
                 },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
     }
 }

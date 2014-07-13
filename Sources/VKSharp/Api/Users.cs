@@ -20,18 +20,18 @@ namespace VKSharp {
                     { "offset", offset.ToNCString() },
                     {"count", MiscTools.NullableString( count )}
                 },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
 
         public async Task<StructEntity<bool>> UserIsAppUserAsync( uint? userId = null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "users.isAppUser",
                 Parameters = new Dictionary<string, string> { { "user_id", MiscTools.NullableString( userId ) } },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<User[]> UsersGetAsync( UserFields fields = UserFields.None,
@@ -44,9 +44,9 @@ namespace VKSharp {
                         { "user_ids", ids.ToNCStringA() },
                         { "name_case", nameCase.ToNClString() }
                     },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            var resp = await this._executor.ExecAsync( req );
+            var resp = await _executor.ExecAsync( req );
             return resp.Data;
         }
 
@@ -63,9 +63,9 @@ namespace VKSharp {
                         { "count", count.ToNCString() },
                         { "name_case", nameCase.ToNClString() }
                     },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            var resp = await this._executor.ExecAsync( req );
+            var resp = await _executor.ExecAsync( req );
             return resp.Data.First();
         }
 
@@ -78,9 +78,9 @@ namespace VKSharp {
                         { "type", type.ToNClString() },
                         { "comment", comment }
                     },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            await this._executor.ExecAsync(req);
+            await _executor.ExecAsync(req);
         }
 
         public async Task<User[]> UsersSearchAsync( UsersSearchParams usersSearchParams ) {
@@ -118,9 +118,9 @@ namespace VKSharp {
                         { "position", usersSearchParams.Position },
                         { "group_id", MiscTools.NullableString( usersSearchParams.GroupId ) }
                     },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
 
         //TODO: extended view is not supported

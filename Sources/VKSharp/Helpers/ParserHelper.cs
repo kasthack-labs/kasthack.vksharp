@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
-using VKSharp.Core.Enums;
-using System.Diagnostics.Contracts;
 
 namespace VKSharp.Helpers
 {

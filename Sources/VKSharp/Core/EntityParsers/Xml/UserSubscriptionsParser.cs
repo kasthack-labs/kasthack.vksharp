@@ -8,10 +8,10 @@ namespace VKSharp.Core.EntityParsers.Xml
         public override bool UpdateFromFragment( XElement node, UserSubscriptions entity ) {
             switch ( node.Name.ToString() ) {
                 case "users":
-                    entity.Users = this.GetP<EntityList<StructEntity<uint>>>().ParseFromXml( node );
+                    entity.Users = GetP<EntityList<StructEntity<uint>>>().ParseFromXml( node );
                     break;
                 case "groups":
-                    entity.Groups = this.GetP<EntityList<StructEntity<uint>>>().ParseFromXml( node );
+                    entity.Groups = GetP<EntityList<StructEntity<uint>>>().ParseFromXml( node );
                     break;
                 default:
                     return false;

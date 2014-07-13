@@ -6,7 +6,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class SimpleEntityParser<T> : DefaultParser<SimpleEntity<T>> where T : class {
         public override SimpleEntity<T> ParseFromXml(XElement node) {
             var se = new SimpleEntity<T>();
-            this.UpdateFromFragment( node, se );
+            UpdateFromFragment( node, se );
             return se;
         }
 

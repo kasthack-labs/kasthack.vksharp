@@ -1,5 +1,4 @@
-﻿using System;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.ResponseEntities {
     public class ConfirmResult : IVKEntity<ConfirmResult>{

@@ -11,7 +11,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                     entity.TotalCount = uint.Parse( node.Value );
                     break;
                 case "items":
-                    entity.Items =  ( (SimpleXMLExecutor) this.Executor )
+                    entity.Items =  ( (SimpleXMLExecutor) Executor )
                         .GetParser<T>()
                         .ParseAllFromXml(node.Elements());
                     break;

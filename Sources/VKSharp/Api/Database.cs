@@ -19,7 +19,7 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<EntityList<DatabaseEntry>> DatabaseGetRegionsAsync(
             uint country_id, string q = "", uint offset = 0, uint count = 100 ) {
@@ -33,14 +33,14 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<DatabaseEntry[]> DatabaseGetStreetsByIdAsync( params uint[] streetIds ) {
             var req = new VKRequest<DatabaseEntry> {
                 MethodName = "database.getStreetsById",
                 Parameters = new Dictionary<string, string> { { "street_ids", streetIds.ToNCStringA() } }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task<DatabaseEntry[]> DatabaseGetCountriesByIdAsync( params uint[] countryIds ) {
             var req = new VKRequest<DatabaseEntry> {
@@ -48,14 +48,14 @@ namespace VKSharp {
                 Parameters =
                     new Dictionary<string, string> { { "country_ids", countryIds.ToNCStringA() } }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task<DatabaseCity[]> DatabaseGetCitiesByIdAsync( params uint[] cityIds ) {
             var req = new VKRequest<DatabaseCity> {
                 MethodName = "database.getCitiesById",
                 Parameters = new Dictionary<string, string> { { "city_ids", cityIds.ToNCStringA() } }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task<DatabaseCity[]> DatabaseGetCitiesAsync( uint countryId, uint? regionId = null,
             string q = "", bool? needAll = null, uint offset = 0, uint count = 100 ) {
@@ -71,7 +71,7 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task<DatabaseEntry[]> DatabaseGetUniversitiesAsync( uint? countryId = null,
             uint? cityId = null, string q = "", uint offset = 0, uint count = 100 ) {
@@ -86,7 +86,7 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task<DatabaseEntry[]> DatabaseGetSchoolsAsync( uint? cityId = null,
             string q = "", uint offset = 0, uint count =100 ) {
@@ -100,7 +100,7 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task<EntityList<DatabaseEntry>> DatabaseGetFacultiesAsync(
             uint universityId, uint offset = 0, uint count = 100 ) {
@@ -113,7 +113,7 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<EntityList<DatabaseEntry>> DatabaseGetChairsAsync(
             uint facultyId, uint offset = 0, uint count = 100 ) {
@@ -126,7 +126,7 @@ namespace VKSharp {
                         { "count", count.ToNCString() }
                     }
             };
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
     }
 }

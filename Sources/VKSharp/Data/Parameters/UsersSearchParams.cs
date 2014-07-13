@@ -10,35 +10,35 @@ namespace VKSharp.Data.Parameters {
                                   ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, uint? schoolCountryId = null,
                                   uint? schoolCityId = null, uint? schoolId = null, uint? schoolYear = null, string religion = "",
                                   string interests = "", string company = "", string position = "", uint? groupId = null ) {
-            this.Query = query;
-            this.Sort = sort;
-            this.Offset = offset;
-            this.Count = count;
-            this.Fields = fields;
-            this.CityId = cityId;
-            this.CountryId = countryId;
-            this.Hometown = hometown;
-            this.UniversityCountryId = universityCountryId;
-            this.UniversityId = universityId;
-            this.UniversityYear = universityYear;
-            this.Sex = sex;
-            this.Relation = relation;
-            this.AgeFrom = ageFrom;
-            this.AgeTo = ageTo;
-            this.BirthDay = birthDay;
-            this.BirthMonth = birthMonth;
-            this.BirthYear = birthYear;
-            this.Online = online;
-            this.HasPhoto = hasPhoto;
-            this.SchoolCountryId = schoolCountryId;
-            this.SchoolCityId = schoolCityId;
-            this.SchoolId = schoolId;
-            this.SchoolYear = schoolYear;
-            this.Religion = religion;
-            this.Interests = interests;
-            this.Company = company;
-            this.Position = position;
-            this.GroupId = groupId;
+            Query = query;
+            Sort = sort;
+            Offset = offset;
+            Count = count;
+            Fields = fields;
+            CityId = cityId;
+            CountryId = countryId;
+            Hometown = hometown;
+            UniversityCountryId = universityCountryId;
+            UniversityId = universityId;
+            UniversityYear = universityYear;
+            Sex = sex;
+            Relation = relation;
+            AgeFrom = ageFrom;
+            AgeTo = ageTo;
+            BirthDay = birthDay;
+            BirthMonth = birthMonth;
+            BirthYear = birthYear;
+            Online = online;
+            HasPhoto = hasPhoto;
+            SchoolCountryId = schoolCountryId;
+            SchoolCityId = schoolCityId;
+            SchoolId = schoolId;
+            SchoolYear = schoolYear;
+            Religion = religion;
+            Interests = interests;
+            Company = company;
+            Position = position;
+            GroupId = groupId;
         }
 
         public string Query { get; private set; }

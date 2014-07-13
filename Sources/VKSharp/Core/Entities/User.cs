@@ -68,12 +68,12 @@ namespace VKSharp.Core.Entities {
         public ushort? Graduation { get; set; }
         public VKApi Context { get; set; }
         public bool Equals( User other ) {
-            return !Object.ReferenceEquals( other, null ) && this.Id == other.Id;
+            return !ReferenceEquals( other, null ) && Id == other.Id;
         }
 
         public static bool operator ==( User a, User b ) {
-            return Object.ReferenceEquals( a, null )
-                       ? Object.ReferenceEquals( b, null )
+            return ReferenceEquals( a, null )
+                       ? ReferenceEquals( b, null )
                        : ( a.Equals( b ) );
         }
 
@@ -82,10 +82,10 @@ namespace VKSharp.Core.Entities {
         }
 
         public override int GetHashCode() {
-            return unchecked( (int) ( 0 + this.Id ) );
+            return unchecked( (int) ( 0 + Id ) );
         }
         public override string ToString() {
-            return "ID :" + this.Id;
+            return "ID :" + Id;
         }
     }
     [AttributeUsage(AttributeTargets.Property)]

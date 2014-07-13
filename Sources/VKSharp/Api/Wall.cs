@@ -21,9 +21,9 @@ namespace VKSharp {
                     },
                 }
             };
-            if ( !this.IsLogged ) throw new InvalidOperationException ( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            if ( !IsLogged ) throw new InvalidOperationException ( "This method requires auth!" );
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<StructEntity<bool>> WallRestoreAsync (int ownerId, uint postId) {
@@ -37,10 +37,10 @@ namespace VKSharp {
                     },
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException ( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<StructEntity<bool>> WallDeleteCommentAsync (int ownerId, uint commentId) {
@@ -55,10 +55,10 @@ namespace VKSharp {
                     },
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException ( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<StructEntity<bool>> WallRestoreCommentAsync (int ownerId, uint commentId) {
@@ -73,10 +73,10 @@ namespace VKSharp {
                     },
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException ( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<StructEntity<bool>> WallReportPostAsync (int ownerId, uint postId, ReportReason? reason = null) {
@@ -89,10 +89,10 @@ namespace VKSharp {
                     { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException ( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<StructEntity<bool>> WallReportCommentAsync (int ownerId, uint commentId, ReportReason? reason = null) {
@@ -105,10 +105,10 @@ namespace VKSharp {
                     { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException ( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
 
         public async Task<EntityList<Post>> WallGetAsync (int? ownerId, string domain = "",
@@ -123,8 +123,8 @@ namespace VKSharp {
                     { "filter", filter.ToNClString().ToSnake() }
                 }
             };
-            if ( this.IsLogged ) req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            if ( IsLogged ) req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<Post[]> WallGetByIdAsync(int copyHistoryDepth = 2, params Tuple<int,uint>[] ids ){
             return await WallGetByIdAsync( copyHistoryDepth, ids.Select( a => a.Item1.ToNCString() + "_" + a.Item2.ToNCString() ).ToArray() );
@@ -137,8 +137,8 @@ namespace VKSharp {
                     { "copy_history_depth", copyHistoryDepth.ToNCString() }
                 }
             };
-            if ( this.IsLogged ) req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            if ( IsLogged ) req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
     }
 }

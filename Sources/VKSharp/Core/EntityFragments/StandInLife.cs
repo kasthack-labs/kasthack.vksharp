@@ -1,5 +1,4 @@
-﻿using System;
-using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.Interfaces;
 using VKSharp.Core.Enums;
 
 namespace VKSharp.Core.EntityFragments {

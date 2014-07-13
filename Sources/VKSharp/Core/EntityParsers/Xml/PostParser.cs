@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 using VKSharp.Core.Entities;
 
 namespace VKSharp.Core.EntityParsers.Xml {
@@ -9,25 +8,25 @@ namespace VKSharp.Core.EntityParsers.Xml {
             var changed = true;
             switch ( node.Name.ToString() ) {
                 case "comments":
-                    entity.Comments = this.GetP<PostComments>().ParseFromXml( node );
+                    entity.Comments = GetP<PostComments>().ParseFromXml( node );
                     break;
                 case "likes":
-                    entity.Likes = this.GetP<PostLikes>().ParseFromXml(node);
+                    entity.Likes = GetP<PostLikes>().ParseFromXml(node);
                     break;
                 case "reposts":
-                    entity.Reposts = this.GetP<PostReposts>().ParseFromXml(node);
+                    entity.Reposts = GetP<PostReposts>().ParseFromXml(node);
                     break;
                 case "post_source":
-                    entity.PostSource = this.GetP<PostSource>().ParseFromXml(node);
+                    entity.PostSource = GetP<PostSource>().ParseFromXml(node);
                     break;
                 case "geo":
-                    entity.Geo = this.GetP<Geo>().ParseFromXml(node);
+                    entity.Geo = GetP<Geo>().ParseFromXml(node);
                     break;
                 case "copy_history":
-                    entity.CopyHistory = this.ParseAllFromXml( node.Elements() );
+                    entity.CopyHistory = ParseAllFromXml( node.Elements() );
                     break;
                 case "attachments":
-                    entity.Attachments = this.GetP<Attachment>().ParseAllFromXml( node.Elements() );
+                    entity.Attachments = GetP<Attachment>().ParseAllFromXml( node.Elements() );
                     break;
                 default:
                     changed = false;

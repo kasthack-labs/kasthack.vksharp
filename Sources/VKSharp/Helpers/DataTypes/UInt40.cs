@@ -28,7 +28,7 @@ namespace VKSharp.Helpers.DataTypes {
             return obj is UInt40 && Equals((UInt40) obj);
         }
         public override int GetHashCode() {
-            unchecked { return ( this._1.GetHashCode() * 397 ) ^ (int) this._2; }
+            unchecked { return ( _1.GetHashCode() * 397 ) ^ (int) _2; }
         }
 
         private byte _1;
@@ -38,68 +38,68 @@ namespace VKSharp.Helpers.DataTypes {
             if (!(obj is UInt40))
                 throw new ArgumentException();
             var other = (UInt40) obj;
-            var cmp = this._1.CompareTo( other._1 );
-            return cmp != 0 ? cmp : this._2.CompareTo( other._2 );
+            var cmp = _1.CompareTo( other._1 );
+            return cmp != 0 ? cmp : _2.CompareTo( other._2 );
         }
         public int CompareTo( UInt40 other ) {
-            var cmp = this._1.CompareTo( other._1 );
-            return cmp != 0 ? cmp : this._2.CompareTo( other._2 );
+            var cmp = _1.CompareTo( other._1 );
+            return cmp != 0 ? cmp : _2.CompareTo( other._2 );
         }
         public int CompareTo( byte other ) {
-            return this._1 != 0 ? 1 : this._2.CompareTo( other );
+            return _1 != 0 ? 1 : _2.CompareTo( other );
         }
 
         public int CompareTo( ushort other ) {
-            return this._1 != 0 ? 1 : this._2.CompareTo( other );
+            return _1 != 0 ? 1 : _2.CompareTo( other );
         }
         public int CompareTo( uint other ) {
-            return this._1 != 0 ? 1 : this._2.CompareTo( other );
+            return _1 != 0 ? 1 : _2.CompareTo( other );
         }
         public int CompareTo( sbyte other ) {
-            return this._1 != 0 ? 1 : this._2.CompareTo( other );
+            return _1 != 0 ? 1 : _2.CompareTo( other );
         }
         public int CompareTo( short other ) {
-            return this._1 != 0 ? 1 : this._2.CompareTo( other );
+            return _1 != 0 ? 1 : _2.CompareTo( other );
         }
         public int CompareTo( int other ) {
-            return this._1 != 0 ? 1 : this._2.CompareTo( other );
+            return _1 != 0 ? 1 : _2.CompareTo( other );
         }
         public int CompareTo( long other ) {
-            var cmp = this._1.CompareTo( (byte) ( other >> 32 ) );
-            return cmp != 0 ? cmp : this._2.CompareTo( (uint) other );
+            var cmp = _1.CompareTo( (byte) ( other >> 32 ) );
+            return cmp != 0 ? cmp : _2.CompareTo( (uint) other );
         }
         public int CompareTo( ulong other ) {
-            var cmp = this._1.CompareTo( (byte)(other>>32) );
-            return cmp != 0 ? cmp : this._2.CompareTo( (uint)other );
+            var cmp = _1.CompareTo( (byte)(other>>32) );
+            return cmp != 0 ? cmp : _2.CompareTo( (uint)other );
         }
         #endregion
         #region Equality comparers
         public bool Equals( byte other ) {
-            return this._1 == 0 && this._2 == other;
+            return _1 == 0 && _2 == other;
         }
         public bool Equals( ushort other ) {
-            return this._1 == 0 && this._2 == other;
+            return _1 == 0 && _2 == other;
         }
         public bool Equals( uint other ) {
-            return this._1 == 0 && this._2 == other;
+            return _1 == 0 && _2 == other;
         }
         public bool Equals( UInt40 other ) {
-            return this._1 == other._1 && this._2 == other._2;
+            return _1 == other._1 && _2 == other._2;
         }
         public bool Equals( sbyte other ) {
-            return this._1 == 0 && this._2 == other;
+            return _1 == 0 && _2 == other;
         }
         public bool Equals( short other ) {
-            return this._1 == 0 && this._2 == other;
+            return _1 == 0 && _2 == other;
         }
         public bool Equals( int other ) {
-            return this._1 == 0 && this._2 == other;
+            return _1 == 0 && _2 == other;
         }
         public bool Equals( long other ) {
-            return this._1 == (byte) ( other >> 32 ) && this._2 == (uint) other;
+            return _1 == (byte) ( other >> 32 ) && _2 == (uint) other;
         }
         public bool Equals( ulong other ) {
-            return this._1 == (byte) ( other >> 32 ) && this._2 == (uint) other;
+            return _1 == (byte) ( other >> 32 ) && _2 == (uint) other;
         }
         #endregion
         #region Some math : UInt40

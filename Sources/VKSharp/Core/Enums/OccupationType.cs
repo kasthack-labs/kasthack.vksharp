@@ -1,7 +1,3 @@
-using System;
-using VKSharp.Core.Interfaces;
-using System.ComponentModel;
-
 namespace VKSharp.Core.Enums
 {
     public enum OccupationType : byte {

@@ -14,20 +14,20 @@ namespace VKSharp.Helpers {
         }
 
         public string VKDomain {
-            get { return this._vkDomain; }
+            get { return _vkDomain; }
         }
         public string OAuthURL {
-            get { return this._oAuthURL; }
+            get { return _oAuthURL; }
         }
         public Encoding TextEncoding {
-            get { return this._textEncoding; }
+            get { return _textEncoding; }
         }
         public MD5 Hasher {
-            get { return this._hasher; }
+            get { return _hasher; }
         }
 
         public CultureInfo NC {
-            get { return this._culture; }
+            get { return _culture; }
         }
 
         private readonly string _vkDomain;
@@ -36,8 +36,8 @@ namespace VKSharp.Helpers {
         private readonly MD5 _hasher = MD5.Create();
         private readonly CultureInfo _culture = CultureInfo.InvariantCulture;
         private BuiltInData() {
-            this._vkDomain = "https://api.vk.com";
-            this._oAuthURL = "https://oauth.vk.com/authorize?client_id={0}&scope={1}&redirect_uri={2}&response_type=token";
+            _vkDomain = "https://api.vk.com";
+            _oAuthURL = "https://oauth.vk.com/authorize?client_id={0}&scope={1}&redirect_uri={2}&response_type=token";
         }
     }
 }

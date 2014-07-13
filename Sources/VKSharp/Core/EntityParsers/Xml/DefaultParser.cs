@@ -33,20 +33,20 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public virtual void FillFromXml( IEnumerable<XElement> nodes, T entity ) {
             foreach ( var cn in nodes )
-                this.UpdateFromFragment( cn, entity );
+                UpdateFromFragment( cn, entity );
         }
 
         public virtual T ParseFromXml( XElement node ) {
-            return this.ParseFromXmlFragments( node.Elements() );
+            return ParseFromXmlFragments( node.Elements() );
         }
 
         public virtual T[] ParseAllFromXml( IEnumerable<XElement> nodes ) {
-            return nodes.Select( this.ParseFromXml ).Where( a => a != null ).ToArray();
+            return nodes.Select( ParseFromXml ).Where( a => a != null ).ToArray();
         }
 
         public virtual T ParseFromXmlFragments( IEnumerable<XElement> nodes ) {
             var sc = new T();
-            this.FillFromXml( nodes, sc );
+            FillFromXml( nodes, sc );
             return sc;
         }
 
@@ -72,14 +72,14 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         public virtual void Attach() {
-            var simpleXMLExecutor = this.Executor as SimpleXMLExecutor;
+            var simpleXMLExecutor = Executor as SimpleXMLExecutor;
             if ( simpleXMLExecutor != null ) simpleXMLExecutor.AttachParser( this );
         }
 
 
         protected IXmlVKEntityParser<TEntity> GetP<TEntity>() where TEntity : IVKEntity<TEntity>
         {
-            return ((SimpleXMLExecutor)this.Executor).GetParser<TEntity>();
+            return ((SimpleXMLExecutor)Executor).GetParser<TEntity>();
         }
     }
 }

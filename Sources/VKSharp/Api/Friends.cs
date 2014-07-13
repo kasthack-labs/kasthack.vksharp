@@ -17,10 +17,10 @@ namespace VKSharp {
                 MethodName = "friends.add",
                 Parameters = new Dictionary<string, string> { { "user_id", userId.ToNCString() }, { "text", text } }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
 
         public async Task FriendsDeleteAllRequestsAsync() {
@@ -28,10 +28,10 @@ namespace VKSharp {
                 MethodName = "friends.deleteAllRequests",
                 Parameters = new Dictionary<string, string> {}
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
 
         //TODO: Add mapping of return code to enum
@@ -42,10 +42,10 @@ namespace VKSharp {
                     { "user_id", userId.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         
         public async Task FriendsDeleteListAsync(uint listId) {
@@ -55,10 +55,10 @@ namespace VKSharp {
                     { "list_id", listId.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
 
         public async Task<StructEntity<int>[]> FriendsGetAppUsersAsync() {
@@ -66,10 +66,10 @@ namespace VKSharp {
                 MethodName = "friends.getAppUsers",
                 Parameters = new Dictionary<string, string>()
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
 
         public async Task<User[]> FriendsGetAsync( uint userId, UserSortOrder order = UserSortOrder.ById,
@@ -87,9 +87,9 @@ namespace VKSharp {
                         { "count", count.ToNCString() },
                         { "name_case", nameCase.ToNClString() }
                     },
-                Token = this.IsLogged ? this.CurrenToken : null
+                Token = IsLogged ? CurrenToken : null
             };
-            return (await this._executor.ExecAsync(req)).Data;
+            return (await _executor.ExecAsync(req)).Data;
         }
 
         public async Task<User[]> FriendsGetByPhonesAsync(IEnumerable<ulong> phones, UserFields fields = UserFields.None) {
@@ -101,10 +101,10 @@ namespace VKSharp {
                         { "phones", String.Join( ",", phones.Select( a => "+" + a ) ) }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data;
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data;
         }
 
         public async Task<StructEntity<int>[]> FriendsGetMutualAsync(
@@ -120,10 +120,10 @@ namespace VKSharp {
                         { "offset", MiscTools.NullableString( offset ) }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data;
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data;
         }
 
         public async Task<StructEntity<int>[]> FriendsGetRecentAsync(int? count = null) {
@@ -131,10 +131,10 @@ namespace VKSharp {
                 MethodName = "friends.getRecent",
                 Parameters = new Dictionary<string, string> { { "count", MiscTools.NullableString(count) } }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data;
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data;
         }
 
         public async Task<User[]> FriendsGetSuggestionsAsync(
@@ -151,10 +151,10 @@ namespace VKSharp {
                         { "name_case", nameCase.ToNClString() }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data;
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data;
         }
     }
 }

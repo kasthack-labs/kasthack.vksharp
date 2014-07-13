@@ -41,6 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Parameters\SpecialAlbum.cs" />
+    <Compile Include="Core\Entities\Counter.cs" />
+    <Compile Include="Core\Entities\PhotoLikes.cs" />
+    <Compile Include="Core\EntityParsers\Xml\CounterParser.cs" />
+    <Compile Include="Core\EntityParsers\Xml\PhotoLikesParser.cs" />
+    <Compile Include="Data\Parameters\FeedType.cs" />
     <Compile Include="Core\EntityFragments\GeoEntry.cs" />
     <Compile Include="Core\EntityParsers\Xml\GeoEntryParser.cs" />
     <Compile Include="Data\Parameters\UsersSearchParams.cs" />

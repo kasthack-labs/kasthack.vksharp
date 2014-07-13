@@ -13,5 +13,9 @@ namespace VKSharp.Core.Entities {
         public uint Height { get; set; }
         public string Text { get; set; }
         public uint Date { get; set; }
+        public bool? CanComment { get; set; }
+        public PhotoLikes Likes { get; set; }
+        public Counter Tags { get; set; }
+        public Counter Comments { get; set; }
     }
 }

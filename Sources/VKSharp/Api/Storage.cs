@@ -18,9 +18,9 @@ namespace VKSharp {
                     { "global", ( global ? 1 : 0 ).ToNCString() }
                 }
             };
-            if (this.IsLogged)
-                req.Token = this.CurrenToken;
-            return ( await this.Executor.ExecAsync( req ) ).Data;
+            if (IsLogged)
+                req.Token = CurrenToken;
+            return ( await Executor.ExecAsync( req ) ).Data;
         }
         public async Task<SimpleEntity<string>[]> StorageGetKeysAsync(
             uint? userId, bool global = false, uint offset=0, uint count=100) {
@@ -33,9 +33,9 @@ namespace VKSharp {
                     { "count", count.ToNCString() },
                 }
             };
-            if (this.IsLogged)
-                req.Token = this.CurrenToken;
-            return (await this.Executor.ExecAsync(req)).Data;
+            if (IsLogged)
+                req.Token = CurrenToken;
+            return (await Executor.ExecAsync(req)).Data;
         }
          public async Task<StructEntity<bool>> StorageSetAsync(
              string key, string value, uint? userId, bool global = false ) {
@@ -48,9 +48,9 @@ namespace VKSharp {
                     { "global", ( global ? 1 : 0 ).ToNCString() }
                 }
             };
-            if ( this.IsLogged )
-                req.Token = this.CurrenToken;
-            return ( await this.Executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            if ( IsLogged )
+                req.Token = CurrenToken;
+            return ( await Executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
     }
 }

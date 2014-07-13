@@ -4,14 +4,13 @@ using System.Linq;
 using System.Xml.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
-using System.Xml.XPath;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : DefaultParser<User> {
         public override User ParseFromXml( XElement node ) {
             return String.CompareOrdinal( node.Name.ToString(), "user" ) != 0
                 ? null
-                : this.ParseFromXmlFragments(node.Elements());
+                : ParseFromXmlFragments(node.Elements());
         }
         public override User ParseFromXmlFragments(IEnumerable<XElement> nodes) {
             var u = new User {
@@ -19,7 +18,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 Connections = new SiteProfiles(),
                 Counters = new ProfileCounters(),
             };
-            this.FillFromXml(nodes, u );
+            FillFromXml(nodes, u );
             return u;
         }
 
@@ -31,19 +30,19 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 parser(entity, node.Value);
                 return true;
             }
-            if ( this.GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
-                 || this.GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ) )
+            if ( GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
+                 || GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ) )
                 return true;
             var changed = true;
             switch ( nodeName ) {
                 case "counters":
-                    this.GetP<ProfileCounters>().FillFromXml( node.Elements(), entity.Counters );
+                    GetP<ProfileCounters>().FillFromXml( node.Elements(), entity.Counters );
                     break;
                 case "schools":
-                    entity.Schools = this.GetP<School>().ParseAllFromXml( node.Elements() );
+                    entity.Schools = GetP<School>().ParseAllFromXml( node.Elements() );
                     break;
                 case "universities":
-                    entity.Universities = this.GetP<University>().ParseAllFromXml( node.Elements() );
+                    entity.Universities = GetP<University>().ParseAllFromXml( node.Elements() );
                     break;
                 case "lists":
                     entity.Lists = node.Value.Split( ',' ).Select( uint.Parse ).ToArray();
@@ -52,25 +51,25 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 //    this.GetP<BanInfo>().FillFromXml( node.Elements(), entity. );
                 //    break;
                 case "exports":
-                    entity.Exports = this.GetP<Exports>().ParseFromXml( node );
+                    entity.Exports = GetP<Exports>().ParseFromXml( node );
                     break;
                 case "country":
-                    entity.Country = this.GetP<GeoEntry>().ParseFromXml( node );
+                    entity.Country = GetP<GeoEntry>().ParseFromXml( node );
                     break;
                 case "city":
-                    entity.City = this.GetP<GeoEntry>().ParseFromXml( node );
+                    entity.City = GetP<GeoEntry>().ParseFromXml( node );
                     break;
                 case "relatives":
-                    entity.Relatives = this.GetP<Relative>().ParseAllFromXml( node.Elements() );
+                    entity.Relatives = GetP<Relative>().ParseAllFromXml( node.Elements() );
                     break;
                 case "last_seen":
-                    entity.LastSeen = this.GetP<LastSeen>().ParseFromXml( node );
+                    entity.LastSeen = GetP<LastSeen>().ParseFromXml( node );
                     break;
                 case "occupation":
-                    entity.Occupation = this.GetP<Occupation>().ParseFromXml( node );
+                    entity.Occupation = GetP<Occupation>().ParseFromXml( node );
                     break;
                 case "personal":
-                    entity.Personal = this.GetP<StandInLife>().ParseFromXml( node );
+                    entity.Personal = GetP<StandInLife>().ParseFromXml( node );
                     break;
                 default:
                     changed=false;

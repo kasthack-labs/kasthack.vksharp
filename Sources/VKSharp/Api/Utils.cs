@@ -12,14 +12,14 @@ namespace VKSharp {
                 MethodName = "utils.checkLink",
                 Parameters = new Dictionary<string, string> { {"url", url} }
             };
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<uint>> UtilsGetServerTimeAsync() {
             var req = new VKRequest<StructEntity<uint>> {
                 MethodName = "utils.getServerTime",
                 Parameters = new Dictionary<string, string>()
             };
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
     }
 }

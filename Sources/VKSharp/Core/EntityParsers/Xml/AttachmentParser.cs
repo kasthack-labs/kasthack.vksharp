@@ -1,10 +1,11 @@
-﻿using VKSharp.Core.Entities;
+﻿using System;
+using System.Xml.Linq;
+using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
-using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class AttachmentParser : DefaultParser<Attachment> {
-        public override bool UpdateFromFragment (System.Xml.Linq.XElement node, Attachment entity) {
+        public override bool UpdateFromFragment (XElement node, Attachment entity) {
             if ( node.Name != "type" ) {
                 if ( entity.Type != null ) {
                     switch ( entity.Type.Value ) {
@@ -48,7 +49,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                             entity.AttachmentBody = GetP<EntityList<Photo>>().ParseFromXml( node );
                             break;
                         default:
-                            throw new System.ArgumentOutOfRangeException ();
+                            throw new ArgumentOutOfRangeException ();
                     }
                 } else {
                 }

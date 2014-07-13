@@ -18,20 +18,20 @@ namespace VKSharp {
                         { "access_key", accessKey }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> DocsDeleteAsync(uint docsId, int ownerId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "docs.delete",
                 Parameters = new Dictionary<string, string> { { "doc_id", docsId.ToNCString() }, { "owner_id", ownerId.ToNCString() } }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<SimpleEntity<string>> DocsGetUploadServerAsync(uint? groupId = null) {
             var req = new VKRequest<SimpleEntity<string>> {
@@ -40,10 +40,10 @@ namespace VKSharp {
                     {"group_id", MiscTools.NullableString( groupId )}
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> DocsGetWallUploadServerAsync(uint? groupId=null) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -52,10 +52,10 @@ namespace VKSharp {
                     {"group_id", MiscTools.NullableString( groupId )}
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
     }
 }

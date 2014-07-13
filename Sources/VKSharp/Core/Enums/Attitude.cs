@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VKSharp.Core.Enums {
+﻿namespace VKSharp.Core.Enums {
     public enum Attitude : byte {
         Unknown = 0,
         VeryNegative = 1,

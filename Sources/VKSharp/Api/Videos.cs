@@ -22,9 +22,9 @@ namespace VKSharp {
                         {"search_query",search_query}
                     }
             };
-            if ( this.IsLogged )
-                req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            if ( IsLogged )
+                req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task VideosReportCommentAsync(int ownerId, uint commentId, ReportReason? reason = null) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -36,9 +36,9 @@ namespace VKSharp {
                         { "reason", reason == null ? "" : ( (int) reason ).ToNCString() }
                     }
             };
-            if ( this.IsLogged )
-                req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            if ( IsLogged )
+                req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task VideosDeleteAlbumAsync(uint albumId, uint? groupId = null) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -49,10 +49,10 @@ namespace VKSharp {
                         { "group_id", MiscTools.NullableString( groupId ) }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task VideosDeleteAsync(uint videoId, int? ownerId = null) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -63,10 +63,10 @@ namespace VKSharp {
                         { "owner_id", MiscTools.NullableString( ownerId ) }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task VideosDeleteCommentAsync(int ownerId, uint commentId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -77,10 +77,10 @@ namespace VKSharp {
                     { "comment_id", commentId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task VideosRestoreCommentAsync(int ownerId, uint commentId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -90,10 +90,10 @@ namespace VKSharp {
                     { "comment_id", commentId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task VideosRemoveTagAsync(uint videoId, uint tagId, int? ownerId = null) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -105,10 +105,10 @@ namespace VKSharp {
                         { "owner_id", MiscTools.NullableString( ownerId ) }
                     }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
     }
 }

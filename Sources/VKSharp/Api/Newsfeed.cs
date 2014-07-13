@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
@@ -16,10 +15,10 @@ namespace VKSharp {
                     {"group_ids",groupIds.ToNCStringA()}
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task NewsfeedDeleteBanAsync(IEnumerable<uint> userIds, IEnumerable<int> groupIds) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -29,10 +28,10 @@ namespace VKSharp {
                     {"group_ids",groupIds.ToNCStringA()}
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
     }
 }

@@ -14,9 +14,9 @@ namespace VKSharp {
                         { "url", url },
                     }
             };
-            if (this.IsLogged)
-                req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            if (IsLogged)
+                req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         
     }

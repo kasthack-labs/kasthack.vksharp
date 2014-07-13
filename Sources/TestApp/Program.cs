@@ -40,8 +40,9 @@ namespace TestApp {
 #endif
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
-
-            await AlbumsTest( vk );
+            await GetPhotosTest( vk );
+            //await Offliner( vk );
+            //await AlbumsTest( vk );
             //await ByIdTest( vk );
             //await GetPostsTest( vk );
             //GetImplementedMethods();
@@ -54,6 +55,19 @@ namespace TestApp {
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
 
+        }
+
+        private static async Task GetPhotosTest( VKApi vk ) {
+            var albums = await vk.PhotosGetAlbumsAsync();
+            var photos = await vk.PhotosGetAsync( albumId: (int)albums.FirstOrDefault().Id, count: 1000 );
+        }
+
+        private static async Task Offliner( VKApi vk ) {
+            while ( true ) {
+                await vk.AccountSetOfflineAsync();
+                Console.WriteLine( "Offline at {0}", DateTime.Now );
+                await Task.Delay( 2000 );
+            }
         }
 
         private static async Task AlbumsTest( VKApi vk ) {
@@ -131,7 +145,7 @@ namespace TestApp {
                         artist = a.Artist.Substring(4);
                     return artist + a.Title;
                 }).ToArray();
-            await api.AudiosReorderAsync(audioId: sorted.First().Id, before: firstid);
+            await api.AudiosReorderAsync( sorted.First().Id, before: firstid);
             var map = audios.Select((audio, index) => new { audio.Id, index }).ToDictionary(a => a.Id, a => a.index);
             for (var i = 1; i < sorted.Length; i++) {
                 var cur = sorted[i];

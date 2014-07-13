@@ -12,10 +12,10 @@ namespace VKSharp {
                 MethodName = "notes.delete",
                 Parameters = new Dictionary<string, string> { { "note_id", noteId.ToNCString() }}
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task NotesDeleteCommentAsync(uint ownerId, uint commentId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -25,10 +25,10 @@ namespace VKSharp {
                     { "comment_id", commentId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task NotesRestoreCommentAsync(uint ownerId, uint commentId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -38,10 +38,10 @@ namespace VKSharp {
                     { "comment_id", commentId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
 
     }

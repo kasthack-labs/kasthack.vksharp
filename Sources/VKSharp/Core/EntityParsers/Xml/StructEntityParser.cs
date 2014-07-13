@@ -5,7 +5,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
     public class StructEntityParser<T>:DefaultParser<StructEntity<T>> where T : struct {
         public override StructEntity<T> ParseFromXml( XElement node ) {
             var se = new StructEntity<T>();
-            this.UpdateFromFragment( node, se );
+            UpdateFromFragment( node, se );
             return se;
         }
 

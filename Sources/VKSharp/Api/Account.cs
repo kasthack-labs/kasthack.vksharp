@@ -15,10 +15,10 @@ namespace VKSharp {
                     { "user_id", userId.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task<User[]> AccountGetBannedAsync( uint offset = 0, ushort count = 20 ) {
             var req = new VKRequest<User> {
@@ -28,10 +28,10 @@ namespace VKSharp {
                     { "count", count.ToNCString() }
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data;
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
         public async Task AccountSetInfoAsync(uint? intro) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -40,20 +40,20 @@ namespace VKSharp {
                     { "intro", MiscTools.NullableString( intro ) }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task AccountSetOfflineAsync() {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.setOffline",
                 Parameters = new Dictionary<string, string>()
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync( req );
+            req.Token = CurrenToken;
+            await _executor.ExecAsync( req );
         }
         public async Task AccountSetOnlineAsync(bool voip) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -62,10 +62,10 @@ namespace VKSharp {
                     { "voip", (voip?1:0).ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task AccountUnbanUserDeviceAsync(uint userId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -74,10 +74,10 @@ namespace VKSharp {
                     { "user_id", userId.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task AccountUnregisterDeviceAsync(string token) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -86,10 +86,10 @@ namespace VKSharp {
                     { "token", token }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VKSharp.Core.Enums {
+﻿namespace VKSharp.Core.Enums {
     public enum PeopleMain : byte {
         Unknown = 0,
         MindAndCreativity = 1,

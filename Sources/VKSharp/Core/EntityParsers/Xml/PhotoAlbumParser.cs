@@ -8,10 +8,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 return true;
             switch ( node.Name.ToString().ToLowerInvariant() ) {
                 case "privacy_view":
-                    entity.PrivacyView = this.GetP<Privacy>().ParseFromXml( node );
+                case "privacy"://photos.createAlbum
+                    entity.PrivacyView = GetP<Privacy>().ParseFromXml( node );
                     break;
                 case "privacy_comment":
-                    entity.PrivacyComment = this.GetP<Privacy>().ParseFromXml(node);
+                case "comment_privacy"://photos.createAlbum
+                    entity.PrivacyComment = GetP<Privacy>().ParseFromXml(node);
                     break;
                 default:
                     return false;

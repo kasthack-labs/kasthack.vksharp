@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VKSharp.Core.Enums {
+﻿namespace VKSharp.Core.Enums {
     public enum PoliticalPreferences : byte {
         Unknown = 0,
         Communist = 1,

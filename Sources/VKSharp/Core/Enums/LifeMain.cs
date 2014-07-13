@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace VKSharp.Core.Enums {
+﻿namespace VKSharp.Core.Enums {
     public enum LifeMain : byte {
         Unknown = 0,
         FamilyAndChildren = 1,

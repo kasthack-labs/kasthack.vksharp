@@ -10,9 +10,9 @@ namespace VKSharp.Data.Api {
         public uint UserId { get; private set; }
 
         public VKToken( string token, string sign = null, uint userId = 0 ) {
-            this.Token = token;
-            this.Sign = sign;
-            this.UserId = userId;
+            Token = token;
+            Sign = sign;
+            UserId = userId;
         }
 
         public static string GetOAuthURL(

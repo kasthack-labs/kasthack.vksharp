@@ -15,10 +15,10 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task BoardDeleteCommentAsync(uint groupId, uint topicId, uint comment_id) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -29,10 +29,10 @@ namespace VKSharp {
                     { "comment_id", comment_id.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task BoardDeleteTopicAsync(uint groupId, uint topicId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -42,10 +42,10 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task BoardFixTopicAsync(uint groupId, uint topicId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -55,10 +55,10 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task BoardRestoreCommentAsync(uint groupId, uint topicId, uint comment_id) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -69,10 +69,10 @@ namespace VKSharp {
                     { "comment_id", comment_id.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
         public async Task BoardUnfixTopicAsync(uint groupId, uint topicId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -82,10 +82,10 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
     }
 }

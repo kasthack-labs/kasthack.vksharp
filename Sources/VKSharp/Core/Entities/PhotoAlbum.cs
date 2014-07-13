@@ -3,7 +3,6 @@
 namespace VKSharp.Core.Entities {
 
     public class PhotoAlbum : OwnedEntity<PhotoAlbum> {
-        //public Photo Thumb { get; set; }//equals null if album is attached to post|message
         public uint ThumbId { get; set; }
         public string ThumbSrc { get; set; }
         public string Title { get; set; }

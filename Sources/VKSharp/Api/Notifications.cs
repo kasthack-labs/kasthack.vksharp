@@ -11,10 +11,10 @@ namespace VKSharp {
                 MethodName = "notifications.markAsViewed",
                 Parameters = new Dictionary<string, string> ()
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            await this._executor.ExecAsync(req);
+            req.Token = CurrenToken;
+            await _executor.ExecAsync(req);
         }
     }
 }

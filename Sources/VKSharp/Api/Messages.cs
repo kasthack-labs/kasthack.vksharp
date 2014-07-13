@@ -16,10 +16,10 @@ namespace VKSharp {
                     { "user_id", userId.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> MessagesDeleteAsync( params int[] messageIds ) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -30,10 +30,10 @@ namespace VKSharp {
                     }
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> MessagesDeleteDialogAsync(
             string userId, uint offset, uint count ) {
@@ -45,10 +45,10 @@ namespace VKSharp {
                     { "user_id", userId }
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> MessagesMarkAsImportantAsync(
             bool important, params int[] messageIds) {
@@ -59,10 +59,10 @@ namespace VKSharp {
                     { "important", (important?1:0).ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> MessagesMarkAsReadAsync(
             int userId, uint? startMessageId = null, params int[] messageIds) {
@@ -74,10 +74,10 @@ namespace VKSharp {
                     { "start_message_id", MiscTools.NullableString( startMessageId ) }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> MessagesRemoveChatUserAsync( int chatId, int userId ) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -87,10 +87,10 @@ namespace VKSharp {
                     { "user_id", userId.ToNCString() }
                 }
             };
-            if ( !this.IsLogged )
+            if ( !IsLogged )
                 throw new InvalidOperationException( "This method requires auth!" );
-            req.Token = this.CurrenToken;
-            return ( await this._executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
         public async Task<StructEntity<bool>> MessagesRestoreAsync(int messageId) {
             var req = new VKRequest<StructEntity<bool>> {
@@ -99,10 +99,10 @@ namespace VKSharp {
                     { "message_id", messageId.ToNCString() }
                 }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return (await this._executor.ExecAsync(req)).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
     }
 }

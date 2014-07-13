@@ -12,10 +12,10 @@ namespace VKSharp {
                 MethodName = "status.set",
                 Parameters = new Dictionary<string, string> { { "text", text } }
             };
-            if (!this.IsLogged)
+            if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
-            req.Token = this.CurrenToken;
-            return ( await this.Executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            req.Token = CurrenToken;
+            return ( await Executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
     }
 }
