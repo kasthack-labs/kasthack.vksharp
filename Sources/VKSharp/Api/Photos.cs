@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
+using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
@@ -58,7 +59,7 @@ namespace VKSharp {
                 req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task PhotosDeleteAlbumAsync(ulong albumId,  uint? groupId=null) {
+        public async Task PhotosDeleteAlbumAsync(long albumId,  uint? groupId=null) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "photos.deleteAlbum",
                 Parameters =
@@ -176,7 +177,7 @@ namespace VKSharp {
                 if (IsLogged) req.Token = CurrenToken;
                 return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task<EntityList<Photo>> PhotosGetAsync(int? ownerId = null, int? albumId = null,
+        public async Task<EntityList<Photo>> PhotosGetAsync(int? ownerId = null, long? albumId = null,
             ulong[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,
             uint? feed = null, uint offset = 0, uint? count = null) {
                 var req = new VKRequest<EntityList<Photo>> {
@@ -228,8 +229,10 @@ namespace VKSharp {
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
-        public async Task<SimpleEntity<string>> PhotosGetUploadServerAsync( int albumId, uint? groupId ) {
-            var req = new VKRequest<SimpleEntity<string>> {
+        public async Task<PhotosUploadServer> PhotosGetUploadServerAsync(long albumId, uint? groupId)
+        {
+            var req = new VKRequest<PhotosUploadServer>
+            {
                 MethodName = "photos.getUploadServer",
                 Parameters =
                     new Dictionary<string, string> {
@@ -361,13 +364,13 @@ namespace VKSharp {
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
-        public async Task<EntityList<Photo>> PhotosSaveAsync(int albumId, string server, string hash,
+        public async Task<Photo[]> PhotosSaveAsync(string server, string hash, int? albumId = null,
             uint? groupId = null, string photosList = "",  double? latitude = null, double? longitude = null,
             string caption = "", string description = "") {
-            var req = new VKRequest<EntityList<Photo>> {
+            var req = new VKRequest<Photo> {
                 MethodName = "photos.save",
                 Parameters = new Dictionary<string, string> {
-                    {"album_id", albumId.ToNCString()},
+                    {"album_id", MiscTools.NullableString( albumId ) },
                     {"server",server},
                     {"hash",hash},
                     {"group_id", MiscTools.NullableString( groupId )},
@@ -381,7 +384,7 @@ namespace VKSharp {
             if (!IsLogged)
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
-            return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
+            return ( await _executor.ExecAsync( req ) ).Data;
         }
     }
 }

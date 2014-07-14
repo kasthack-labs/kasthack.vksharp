@@ -3,12 +3,16 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
+using VKSharp.Core.Entities;
 using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
+using VKSharp.Helpers;
 
 namespace TestApp {
     class Program {
@@ -40,7 +44,11 @@ namespace TestApp {
 #endif
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
-            await GetPhotosTest( vk );
+
+            await UploadPhotos(vk);
+            //await Backup( vk );
+            //await NewAlbumTest( vk );
+            //await GetPhotosTest( vk );
             //await Offliner( vk );
             //await AlbumsTest( vk );
             //await ByIdTest( vk );
@@ -57,9 +65,70 @@ namespace TestApp {
 
         }
 
+        private static async Task UploadPhotos( VKApi vk ) {
+            const string sourcepath = @"C:\Temp\na";
+            var v = new UploadHelper( vk );
+            var album = await vk.PhotosCreateAlbumAsync( "Test upload album" );
+            await v.UploadPhotos( album.Id, null, Directory.GetFiles( sourcepath ) );
+        }
+
+        private static async Task Backup( VKApi vk ) {
+            var outpath = @"F:\backup\kasthack\vk";
+            var albums = await vk.PhotosGetAlbumsAsync();
+            Console.WriteLine( "Found {0} albums", albums.Items.Length );
+            foreach ( var photoAlbum in albums ) {
+                Console.WriteLine("Downloading album {0}/{1}", photoAlbum.Title, albums.Items.Length);
+
+                var name = MakeValidFileName( photoAlbum.Title.Trim() );
+                name = String.IsNullOrEmpty( name ) ? photoAlbum.Id.ToNCString() : name;
+                var albumPath = Path.Combine( outpath, name );
+                if ( Directory.Exists( albumPath ) ) albumPath += photoAlbum.Id;
+                if (!Directory.Exists(albumPath)) Directory.CreateDirectory(albumPath);
+                
+                var photos = await vk.PhotosGetAsync( albumId: photoAlbum.Id, count:1000 );
+                var i = 1;
+                foreach ( var photo in photos ) {
+                    try {
+                        await AWC.DownloadFileAsync( FindMaxRes( photo ), Path.Combine( albumPath, i + ".jpg" ) );
+                        Console.WriteLine( "Donwloaded {0}/{1} in album", i, photos.Items.Length );
+                        i++;
+                    }
+                    catch {
+                        
+                    }
+                }
+                Console.WriteLine( "Complete" );
+            }
+        }
+
+        private static string FindMaxRes( Photo photo ) {
+            if ( photo.Photo2560 != null )
+                return photo.Photo2560;
+            if ( photo.Photo1280 != null )
+                return photo.Photo1280;
+            if ( photo.Photo807 != null )
+                return photo.Photo807;
+            if ( photo.Photo604 != null )
+                return photo.Photo604;
+            if ( photo.Photo130 != null )
+                return photo.Photo130;
+            return photo.Photo75;
+        }
+
+        private static readonly Regex InvalidRegStr = new Regex(
+                string.Format(@"([{0}]*\.+$)|([{0}]+)", Regex.Escape(new string(Path.GetInvalidFileNameChars()))),
+                RegexOptions.Compiled | RegexOptions.CultureInvariant);
+        private static string MakeValidFileName(string name) {
+            return InvalidRegStr.Replace(name, "_");
+        }
+        private static async Task NewAlbumTest( VKApi vk ) {
+            var alb = await vk.PhotosCreateAlbumAsync( "TestAlbum" );
+            await vk.PhotosDeleteAlbumAsync( alb.Id );
+        }
+
         private static async Task GetPhotosTest( VKApi vk ) {
             var albums = await vk.PhotosGetAlbumsAsync();
-            var photos = await vk.PhotosGetAsync( albumId: (int)albums.FirstOrDefault().Id, count: 1000 );
+            var photos = await vk.PhotosGetAsync( albumId: albums.FirstOrDefault().Id, count: 1000 );
         }
 
         private static async Task Offliner( VKApi vk ) {
