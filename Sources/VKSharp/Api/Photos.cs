@@ -364,13 +364,13 @@ namespace VKSharp {
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
-        public async Task<Photo[]> PhotosSaveAsync(string server, string hash, int? albumId = null,
-            uint? groupId = null, string photosList = "",  double? latitude = null, double? longitude = null,
+        public async Task<Photo[]> PhotosSaveAsync(long albumId, string server,  string photosList,string hash,
+            uint? groupId = null,  double? latitude = null, double? longitude = null,
             string caption = "", string description = "") {
             var req = new VKRequest<Photo> {
                 MethodName = "photos.save",
                 Parameters = new Dictionary<string, string> {
-                    {"album_id", MiscTools.NullableString( albumId ) },
+                    {"album_id", albumId.ToNCString() },
                     {"server",server},
                     {"hash",hash},
                     {"group_id", MiscTools.NullableString( groupId )},

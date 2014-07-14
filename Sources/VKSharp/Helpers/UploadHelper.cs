@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using VKSharp.Core.Entities;
 
 namespace VKSharp.Helpers
@@ -30,22 +29,15 @@ namespace VKSharp.Helpers
                     var us = await _api.PhotosGetUploadServerAsync( albumId, gid == 0 ? null : gid );
                     var ul = fileg.Select( a => a.path ).ToArray();
                     streams = ul.Select( File.OpenRead ).ToArray();
+                    VkPhotoUploadResponse pr;
                     using ( var content = new MultipartFormDataContent() ) {
                         for ( var index = 0; index < streams.Length; index++ )
                             content.Add( new StreamContent( streams[ index ] ), "file" + index, index + Path.GetExtension( ul[ index ] ) );
                         var upl = await _client.PostAsync( us.UploadUrl, content );
                         var respjson = await upl.Content.ReadAsStringAsync();
-                        throw new NotImplementedException();
-                        //Add response parsing here
-                        //Also fix PhotosSaveAsync params 
+                        pr = JsonConvert.DeserializeObject<VkPhotoUploadResponse>( respjson );
                     }
-                    var hash = "goes_here";
-                    var photosList = "";
-                    var server = "goes here";
-                    ret.AddRange( await _api.PhotosSaveAsync( server, hash, photosList: photosList ) );
-                }
-                catch(Exception ex) {
-                    throw;
+                    ret.AddRange( await _api.PhotosSaveAsync( pr.aid, pr.server, pr.photos_list, pr.hash ));
                 }
                 finally {
                     foreach ( var stream in streams ) {
@@ -57,6 +49,13 @@ namespace VKSharp.Helpers
                 }
             }
             return ret;
+        }
+        
+        private class VkPhotoUploadResponse {
+            public string server { get; set; }
+            public string hash { get; set; }
+            public long aid { get; set; }
+            public string photos_list { get; set; }
         }
     }
 }

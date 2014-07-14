@@ -101,13 +101,17 @@ VKSharp
 * Photos
 	* photos.confirmTag
 	* photos.copy
+	* photos.createAlbum
 	* photos.delete
 	* photos.deleteAlbum
 	* photos.deleteComment
 	* photos.edit
-	* photos.getAlbumCount
+	* photos.editAlbum
+	* photos.get
 	* photos.getAlbums
-	* photos.getProfileUploadServer
+	* photos.getAlbumsCount
+	* photos.getAll
+	* photos.getOwnerPhotoUploadServer
 	* photos.getUploadServer
 	* photos.makeCover
 	* photos.move
@@ -117,6 +121,7 @@ VKSharp
 	* photos.report
 	* photos.reportComment
 	* photos.restoreComment
+	* photos.save
 * Status
 	* status.set
 * Docs
