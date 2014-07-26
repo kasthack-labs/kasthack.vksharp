@@ -52,10 +52,12 @@ namespace VKSharp.Helpers
         }
         
         private class VkPhotoUploadResponse {
+            // ReSharper disable InconsistentNaming
             public string server { get; set; }
             public string hash { get; set; }
             public long aid { get; set; }
             public string photos_list { get; set; }
+            // ReSharper restore InconsistentNaming
         }
     }
 }

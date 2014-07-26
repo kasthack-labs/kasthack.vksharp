@@ -8,9 +8,10 @@ using VKSharp.Core.EntityFragments;
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : DefaultParser<User> {
         public override User ParseFromXml( XElement node ) {
-            return String.CompareOrdinal( node.Name.ToString(), "user" ) != 0
-                ? null
-                : ParseFromXmlFragments(node.Elements());
+            return //String.CompareOrdinal( node.Name.ToString(), "user" ) != 0
+                //? null
+                //:
+                ParseFromXmlFragments(node.Elements());
         }
         public override User ParseFromXmlFragments(IEnumerable<XElement> nodes) {
             var u = new User {

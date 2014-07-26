@@ -291,15 +291,16 @@ namespace VKSharp {
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
-        public async Task PhotosReorderAlbumsAsync( int albumId, int before, int after, int? ownerId = null ) {
+        public async Task PhotosReorderAlbumsAsync(long albumId, long? before=null, long? after=null, int? ownerId = null)
+        {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "photos.reorderAlbums",
                 Parameters =
                     new Dictionary<string, string> {
                         { "owner_id", MiscTools.NullableString( ownerId ) },
                         { "album_id", albumId.ToNCString() },
-                        { "before", before.ToNCString() },
-                        { "after", after.ToNCString() },
+                        { "before", MiscTools.NullableString(before) },
+                        { "after", MiscTools.NullableString(after) },
                     }
             };
             if (!IsLogged)

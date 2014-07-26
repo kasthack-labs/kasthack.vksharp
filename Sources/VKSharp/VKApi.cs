@@ -6,9 +6,9 @@ using VKSharp.Data.Executors;
 namespace VKSharp {
     public partial class VKApi {
         #region Vars
-        private uint _reqCounter;
-        private readonly List<VKToken> _tokens = new List<VKToken>(); //tokens
-        private readonly IExecutor _executor = new SimpleXMLExecutor();
+        protected uint _reqCounter;
+        protected readonly List<VKToken> _tokens = new List<VKToken>(); //tokens
+        protected readonly IExecutor _executor = new SimpleXMLExecutor();
 
         public IExecutor Executor {
             get { return _executor; }
@@ -17,13 +17,15 @@ namespace VKSharp {
         #endregion
 
         #region Properties & propfuncs
-        private uint ReqCounter {
+        protected uint ReqCounter
+        {
             get {
                 return _reqCounter++;
             }
         }
 
-        private VKToken CurrenToken {
+        protected VKToken CurrenToken
+        {
             get {
                 if ( _tokens.Count == 0 )
                     throw new InvalidOperationException( "User must be authorized for requesting this method" );
