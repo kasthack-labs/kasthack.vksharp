@@ -95,12 +95,12 @@ namespace TestApp {
             var users = await vk.MultiUserAsync( UserFields.Everything, ids: Enumerable.Range( 1, 4000 ).Select( a=>(uint)a ).ToArray() );
             Console.WriteLine( users.Count() );
         }
-        private static SemaphoreSlim dumpSlim = new SemaphoreSlim( 25 );
+        private static SemaphoreSlim dumpSlim = new SemaphoreSlim( 1 );
         private const int DelayReq = 600;
         private static async Task DumpVK( VKExt vk ) {
             Console.WriteLine( DateTime.Now );
             ServicePointManager.DefaultConnectionLimit = 1000;
-            const string path = @"E:\files\kasth_000\Downloaded\Data\databases\vk_xml_new";
+            const string path = @"E:\files\kasth_000\Downloaded\Data\databases\vk_xml_2014_07_27\Dump";
             const UserFields fields = UserFields.Everything;
             const int chunk = 3000;
             const int max = 230000000;
@@ -137,6 +137,9 @@ namespace TestApp {
                     while ((str = await vk.MultiUserRawAsync(fields, range)).ToLowerInvariant() == "error"&&fails++<3) {
                         Console.WriteLine( "Retrying "+range.First() );
                         await Task.Delay(DelayReq);
+                    }
+                    if ( fails == 3 ) {
+                        return;
                     }
                     using (var file = File.OpenWrite(sp))
                     {
