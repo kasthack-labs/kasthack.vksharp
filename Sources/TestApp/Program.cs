@@ -11,16 +11,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
+using VKSharp.Core.Interfaces;
 using VKSharp.Data.Api;
 using VKSharp.Data.Executors;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
+using VKSharp.Helpers.PrimitiveEntities;
 
 namespace TestApp {
     class Program {
@@ -52,8 +55,10 @@ namespace TestApp {
 #endif
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
+            await MultiSpeed( vk );
+            //await CheckOnlines( vk );
             //await CheckWritten( @"E:\files\kasth_000\Downloaded\Data\databases\vk_xml_new\users_1_1.xml" );
-            await DumpVK( vk );
+            //await DumpVK( vk );
             //await MultiUser(vk);
             //await SaveAudios( vk );
             //await SortAlbums( vk );
@@ -77,6 +82,26 @@ namespace TestApp {
 
         }
 
+        private static async Task MultiSpeed( VKExt vk ) {
+            var cnt = 1000;
+            var offset = 1;//200000000
+            var w = new Stopwatch();
+            w.Start();
+            var ons = await vk.MultiUserAsync(UserFields.Everything, Enumerable.Range(offset, cnt).Select(a => (uint)a).ToArray());
+            w.Stop();
+            Console.WriteLine("{0} rec at +{1}", cnt, w.Elapsed );
+            //Console.WriteLine(ons.Ids.Count());
+        }
+
+        private static async Task CheckOnlines( VKExt vk ) {
+            var w = new Stopwatch();
+            w.Start();
+            var ons = await vk.OnlinesAsync( Enumerable.Range( 1, 21000 ).ToArray() );
+            w.Stop();
+            Console.WriteLine( "21000 rec at +" + w.Elapsed );
+            Console.WriteLine( ons.Ids.Count() );
+        }
+
         private static async Task CheckWritten( string path ) {
             using (var file = File.OpenRead(path))
             {
@@ -95,7 +120,7 @@ namespace TestApp {
             var users = await vk.MultiUserAsync( UserFields.Everything, ids: Enumerable.Range( 1, 4000 ).Select( a=>(uint)a ).ToArray() );
             Console.WriteLine( users.Count() );
         }
-        private static SemaphoreSlim dumpSlim = new SemaphoreSlim( 1 );
+        private static SemaphoreSlim dumpSlim = new SemaphoreSlim( 25 );
         private const int DelayReq = 600;
         private static async Task DumpVK( VKExt vk ) {
             Console.WriteLine( DateTime.Now );
@@ -130,17 +155,19 @@ namespace TestApp {
                 {
                     if (!Directory.Exists(path))
                         Directory.CreateDirectory(path);
-                    string str;
+                    string[] strs;
                     //Console.WriteLine( "Dumping {0}+{1} to {2}", range.First(), range.Length, fname );
                     Console.WriteLine( "Entering " + fname );
                     var fails = 0;
-                    while ((str = await vk.MultiUserRawAsync(fields, range)).ToLowerInvariant() == "error"&&fails++<3) {
+                    while ((strs = await vk.MultiUsersRawAsync2(fields, range)).Any(a=>a.ToLowerInvariant() == "error")&&fails++<3) {
                         Console.WriteLine( "Retrying "+range.First() );
                         await Task.Delay(DelayReq);
                     }
                     if ( fails == 3 ) {
                         return;
                     }
+                    var d = XDocument.Parse( strs.First() );
+                    var str = GetFinStr( d, strs.Skip( 1 ).ToArray() );
                     using (var file = File.OpenWrite(sp))
                     {
                         using ( var gzip = new GZipStream(file, CompressionMode.Compress, true) ) {
@@ -159,6 +186,14 @@ namespace TestApp {
             finally {
                 dumpSlim.Release();
             }
+        }
+
+        private static string GetFinStr( XDocument xDocument, string[] toArray ) {
+            foreach (var s in toArray) {
+                var d = XDocument.Parse(s);
+                xDocument.Root.Add(d.Root.Elements());
+            }
+            return xDocument.ToString();
         }
 
         private static async Task SaveAudios( VKApi vk ) {
@@ -360,6 +395,40 @@ namespace TestApp {
     }
 
     internal class VKExt : VKApi {
+        public async Task<string[]> MultiUsersRawAsync2(UserFields fields = UserFields.None, params uint[] ids) {
+            int c = 1500;
+            var _1 = await MultiUserRawAsync(fields, ids.Take(c).ToArray());
+            if (ids.Length <= c)
+                return new[] {
+                    _1
+                };
+            var _2 = await MultiUserRawAsync(fields, ids.Skip(c).ToArray());
+            return new[] { _1,_2 };
+        }
+        public async Task<string[]> MultiUsersRawAsync(UserFields fields = UserFields.None, params uint[] ids)
+        {
+
+            var ids_s = ids.Select((a, index) => new { a, index })
+                .GroupBy(a => a.index / 1000)
+                .ToDictionary(a => a.Key, a => a.Select(b => b.a).ToArray());
+            var retl = new List<string>();
+            foreach (var uintse in ids_s)
+            {
+                var req = new VKRequest<User>
+                {
+                    MethodName = "execute.mfetch4a",
+                    Parameters =
+                        new Dictionary<string, string> {
+                            { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+                            { "u0", string.Join( ",",uintse.Value ) }
+                        },
+                    Token = IsLogged ? CurrenToken : null
+                };
+                retl.Add(await _executor.ExecRawAsync(req));
+                await Task.Delay( 1000 );
+            }
+            return retl.ToArray();
+        }
         public async Task<string> MultiUserRawAsync( UserFields fields = UserFields.None, params uint[] ids ) {
             var req = new VKRequest<User>
             {
@@ -378,9 +447,26 @@ namespace TestApp {
                 req.Parameters.Add(keyValuePair.Key, keyValuePair.Value);
             return await _executor.ExecRawAsync(req);
         }
-
         public async Task<User[]> MultiUserAsync(UserFields fields = UserFields.None, params uint[] ids) {
             return ((SimpleXMLExecutor) _executor).ParseResponse<User>( await MultiUserRawAsync( fields, ids ) ).Data;
+        }
+
+        public async Task<Onlines> OnlinesAsync( params int[] ids ) {
+            var req = new VKRequest<Onlines>
+            {
+                MethodName = "execute.onlines",
+                Parameters =
+                    new Dictionary<string, string> {
+                    },
+                Token = IsLogged ? CurrenToken : null
+            };
+            var ids_s = ids.Select((a, index) => new { a, index })
+                .GroupBy(a => a.index / 1000)
+                .ToDictionary(a => a.Key, a => a.Select(b => b.a).ToArray());
+            var v = ids_s.Select(a => new KeyValuePair<string, string>("u" + a.Key, String.Join(",", a.Value))).ToArray();
+            foreach (var keyValuePair in v)
+                req.Parameters.Add(keyValuePair.Key, keyValuePair.Value);
+            return (await _executor.ExecAsync( req )).Data.FirstOrDefault();
         }
     }
 }

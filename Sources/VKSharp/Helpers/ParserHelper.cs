@@ -1,4 +1,5 @@
-﻿#define CHECKBUILDER
+﻿#define COMMAS
+#define CHECKBUILDER
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -190,7 +191,11 @@ namespace VKSharp.Helpers
             var query = String.Join("&", request
                     .Parameters
                     .Where(a => a.Value != "")
-                    .Select(a => a.Key + "=" + Uri.EscapeDataString( a.Value) )
+                    .Select(a => a.Key + "=" + Uri.EscapeDataString( a.Value)
+#if COMMAS
+                        .Replace("%2C",",")
+#endif
+                    )
             );
             var queryB = new StringBuilder();
             queryB.Append("/method/");

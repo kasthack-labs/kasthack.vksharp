@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Entities\Onlines.cs" />
+    <Compile Include="Core\EntityParsers\Xml\OnlinesParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\PhotosUploadServerParser.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Data\Parameters\SpecialAlbum.cs" />
