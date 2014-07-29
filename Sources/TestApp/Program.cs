@@ -55,7 +55,8 @@ namespace TestApp {
 #endif
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
-            await MultiSpeed( vk );
+            await FetchDocs( vk );
+            //await MultiSpeed( vk );
             //await CheckOnlines( vk );
             //await CheckWritten( @"E:\files\kasth_000\Downloaded\Data\databases\vk_xml_new\users_1_1.xml" );
             //await DumpVK( vk );
@@ -80,6 +81,34 @@ namespace TestApp {
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
 
+        }
+
+        private static async Task FetchDocs( VKExt vk ) {
+            var save_path = @"F:\backup\kasthack\vk\docs";
+            var docs = await vk.DocsGetAsync();
+            Console.WriteLine( docs.Sum( a=>a.Size )>>20 );
+            foreach ( var document in docs.OrderBy( a => a.Size ).ToArray() ) {
+                try {
+                    var fn = MakeValidFileName( document.Title ).Trim();
+                    if ( fn == "" )
+                        fn = DateTime.Now.ToFileTime().ToString();
+                    var fname = Path.Combine( save_path, fn );
+                    var d = true;
+                    while ( File.Exists( fname ) ){
+                        if ( new FileInfo( fname ).Length == document.Size ) {
+                            d = false;
+                            break;
+                        }
+                        fname += "." + 1;
+                    }
+                    if ( !d ) continue;
+                    await AWC.DownloadFileAsync( document.Url, fname );
+                    Console.WriteLine( fname );
+                }
+                catch ( Exception ) {
+                    throw;
+                }
+            }
         }
 
         private static async Task MultiSpeed( VKExt vk ) {
