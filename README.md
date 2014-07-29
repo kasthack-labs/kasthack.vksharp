@@ -51,6 +51,7 @@ VKSharp
 * Auth
 	* auth.checkPhone
 	* auth.confirm
+
 * Database [*^getSchoolClasses]
 	* database.getChairs
 	* database.getCities
@@ -124,11 +125,14 @@ VKSharp
 	* photos.save
 * Status
 	* status.set
-* Docs
+* Docs [x]
 	* docs.delete
 	* docs.add
 	* docs.getUploadServer
 	* docs.getWallUploadServer
+	* docs.save
+	* docs.get
+	* docs.getById
 * Storage [x]
 	* storage.get
 	* storage.getKeys
