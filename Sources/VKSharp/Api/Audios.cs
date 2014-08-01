@@ -18,8 +18,6 @@ namespace VKSharp {
                     { "title", title }
                 }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
@@ -33,8 +31,6 @@ namespace VKSharp {
                         { "group_id", MiscTools.NullableString( groupId ) }
                     }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
@@ -47,8 +43,6 @@ namespace VKSharp {
                         { "group_id", MiscTools.NullableString( groupId ) }
                     }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -57,8 +51,6 @@ namespace VKSharp {
                 MethodName = "audio.delete",
                 Parameters = new Dictionary<string, string> { { "audio_id", audioId.ToNCString() }, { "owner_id", ownerId.ToNCString() } }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -114,8 +106,6 @@ namespace VKSharp {
                 MethodName = "audio.getLyrics",
                 Parameters = new Dictionary<string, string> { { "lyrics_id", lyricsId.ToNCString() } }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
@@ -127,8 +117,6 @@ namespace VKSharp {
                     {"group_id", MiscTools.NullableString( groupId )}
                 }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }

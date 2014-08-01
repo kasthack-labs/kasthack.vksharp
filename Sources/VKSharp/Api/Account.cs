@@ -8,15 +8,13 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task AccountBanUserDeviceAsync(uint userId) {
+        public async Task AccountBanUserAsync(uint userId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.banUser",
                 Parameters = new Dictionary<string, string> {
                     { "user_id", userId.ToNCString() }
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -28,8 +26,6 @@ namespace VKSharp {
                     { "count", count.ToNCString() }
                 }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data;
         }
@@ -67,7 +63,7 @@ namespace VKSharp {
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
-        public async Task AccountUnbanUserDeviceAsync(uint userId) {
+        public async Task AccountUnbanUserAsync(uint userId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "account.unbanUser",
                 Parameters = new Dictionary<string, string> {
