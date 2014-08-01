@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using VKSharp.Core.Entities;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
@@ -56,6 +57,43 @@ namespace VKSharp {
                 throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+        public async Task<EntityList<Document>> DocsGetAsync(int? count=null, int? offset=null, int? ownerId = null) {
+            var req = new VKRequest<EntityList<Document>>
+            {
+                MethodName = "docs.get",
+                Parameters =
+                    new Dictionary<string, string> {
+                        { "owner_id", MiscTools.NullableString( ownerId ) },
+                        { "count", MiscTools.NullableString( count ) },
+                        { "offset", MiscTools.NullableString( offset ) },
+                    }
+            };
+            if ( IsLogged ) req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
+        }
+        public async Task<Document[]> DocsGetByIdAsync(params Tuple<int,int>[] docs)
+        {
+            var req = new VKRequest<Document> {
+                MethodName = "docs.getById",
+                Parameters = new Dictionary<string, string> {
+                        {"docs",String.Join( ",", docs.Select( a=>a.Item1+"_"+a.Item2 ) )}
+                    }
+            };
+            if (IsLogged) req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data;
+        }
+        public async Task<Document[]> DocsSaveAsync( string file, string title, params string[] tags ) {
+            var req = new VKRequest<Document> {
+                MethodName = "docs.save",
+                Parameters = new Dictionary<string, string> {
+                        {"file",file},
+                        {"title",title},
+                        {"tags",String.Join( ",", tags )},
+                    }
+            };
+            if (IsLogged) req.Token = CurrenToken;
+            return (await _executor.ExecAsync(req)).Data;
         }
     }
 }

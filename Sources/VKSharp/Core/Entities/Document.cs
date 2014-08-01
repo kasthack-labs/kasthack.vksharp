@@ -7,5 +7,7 @@ namespace VKSharp.Core.Entities {
         public string Url { get; set; }
         public string Photo100 { get; set; }
         public string Photo130 { get; set; }
+
+        public string Ext { get; set; }
     }
 }

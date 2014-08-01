@@ -140,5 +140,9 @@ namespace VKSharp {
             if ( IsLogged ) req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data;
         }
+
+        //public async Task<StructEntity<long>> WallPostAsync(int? ownerId = null,bool friendsOnly = false, ) {
+            
+        //}
     }
 }

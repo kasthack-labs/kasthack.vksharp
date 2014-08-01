@@ -51,6 +51,14 @@ VKSharp
 * Auth
 	* auth.checkPhone
 	* auth.confirm
+
+* Board
+	* board.deleteTopic
+	* board.deleteComment
+	* board.restoreComment
+	* board.closeTopic
+	* board.fixTopic
+	* board.unfixTopic
 * Database [*^getSchoolClasses]
 	* database.getChairs
 	* database.getCities
@@ -62,6 +70,14 @@ VKSharp
 	* database.getSchools
 	* database.getStreetsById
 	* database.getUniversities
+* Docs [x]
+	* docs.delete
+	* docs.add
+	* docs.getUploadServer
+	* docs.getWallUploadServer
+	* docs.save
+	* docs.get
+	* docs.getById
 * Friends
 	* friends.add
 	* friends.delete
@@ -79,13 +95,6 @@ VKSharp
 	* groups.join
 	* groups.leave
 	* groups.unbanUser
-* Board
-	* board.deleteTopic
-	* board.deleteComment
-	* board.restoreComment
-	* board.closeTopic
-	* board.fixTopic
-	* board.unfixTopic
 * Messages
 	* messages.delete
 	* messages.deleteDialog
@@ -94,10 +103,17 @@ VKSharp
 	* messages.addChatUser
 	* messages.markAsRead
 	* messages.markAsImportant
+* Newsfeed
+	* newsfeed.addBan
+	* newsfeed.deleteBan
 * Notes
 	* notes.delete
 	* notes.deleteComment
 	* notes.restoreComment
+* Notifications
+	* notifications.markAsViewed
+* Pages
+	* pages.clearCache
 * Photos
 	* photos.confirmTag
 	* photos.copy
@@ -124,18 +140,10 @@ VKSharp
 	* photos.save
 * Status
 	* status.set
-* Docs
-	* docs.delete
-	* docs.add
-	* docs.getUploadServer
-	* docs.getWallUploadServer
 * Storage [x]
 	* storage.get
 	* storage.getKeys
 	* storage.set
-* Newsfeed
-	* newsfeed.addBan
-	* newsfeed.deleteBan
 * User	[x]
 	* users.isAppUser
 	* users.get
@@ -146,10 +154,6 @@ VKSharp
 * Utils [*^resolveScreenName]
 	* utils.checkLink
 	* utils.getServerTime
-* Pages
-	* pages.clearCache
-* Notifications
-	* notifications.markAsViewed
 * Videos
 	* videos.delete
 	* videos.deleteAlbum
