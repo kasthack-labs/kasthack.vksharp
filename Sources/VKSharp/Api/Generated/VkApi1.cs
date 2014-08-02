@@ -1127,6 +1127,71 @@ namespace VKSharp {
 									)
 			)).Data;
 		}
+		public async Task<StructEntity<bool>> UsersIsAppUserAsync(
+			 uint? userId = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.UsersIsAppUser(
+											userId
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task UsersReportAsync(
+			 uint userId ,
+			 ComplaintType type ,
+			 string comment 
+			){
+			await Executor.ExecAsync(
+				_reqapi.UsersReport(
+											userId,
+											type,
+											comment
+									)
+			);
+		}
+		public async Task<UserSubscriptions> UsersGetSubscriptionsAsync(
+			 uint? userId = null,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.UsersGetSubscriptions(
+											userId,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<User[]> UsersGetAsync(
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom,
+			params uint[] userIds 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.UsersGet(
+											fields,
+											nameCase,
+											userIds
+									)
+			)).Data;
+		}
+		public async Task<EntityList<User>> UsersGetFollowersAsync(
+			 uint? userId = null,
+			 uint offset = 0,
+			 uint count = 100,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.UsersGetFollowers(
+											userId,
+											offset,
+											count,
+											fields,
+											nameCase
+									)
+			)).Data.FirstOrDefault();
+		}
 		public async Task<LinkCheckResult> UtilsCheckLinkAsync(
 			 string url = ""
 			){
@@ -1299,6 +1364,45 @@ namespace VKSharp {
 											reason
 									)
 			);
+		}
+		public async Task<Post[]> WallGetByIdAsync(
+			 uint copyHistoryDepth = 2,
+			params string[] posts 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.WallGetById(
+											copyHistoryDepth,
+											posts
+									)
+			)).Data;
+		}
+		public async Task<Post[]> WallGetByIdAsync(
+			 uint copyHistoryDepth = 2,
+			params Tuple<int,uint>[] posts 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.WallGetById(
+											copyHistoryDepth,
+											posts
+									)
+			)).Data;
+		}
+		public async Task<EntityList<Post>> WallGetAsync(
+			 int? ownerId = null,
+			 string domain = "",
+			 uint offset = 0,
+			 uint count = 100,
+			 WallPostFilter filter = WallPostFilter.All
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.WallGet(
+											ownerId,
+											domain,
+											offset,
+											count,
+											filter
+									)
+			)).Data.FirstOrDefault();
 		}
 	}
 }

@@ -69,24 +69,8 @@
     <Compile Include="Core\EntityParsers\Xml\GeoEntryParser.cs" />
     <Compile Include="Data\Parameters\UsersSearchParams.cs" />
     <Compile Include="Data\Parameters\AudioSortOrder.cs" />
-    <Compile Include="Api\Notifications.cs" />
-    <Compile Include="Api\Pages.cs" />
-    <Compile Include="Api\Docs.cs" />
-    <Compile Include="Api\Status.cs" />
-    <Compile Include="Api\Notes.cs" />
-    <Compile Include="Api\Board.cs" />
-    <Compile Include="Api\Newsfeed.cs" />
-    <Compile Include="Api\Utils.cs" />
-    <Compile Include="Api\Storage.cs" />
-    <Compile Include="Api\Messages.cs" />
-    <Compile Include="Api\Videos.cs" />
     <Compile Include="Api\Photos.cs" />
     <Compile Include="Api\Wall.cs" />
-    <Compile Include="Api\Database.cs" />
-    <Compile Include="Api\Account.cs" />
-    <Compile Include="Api\Audios.cs" />
-    <Compile Include="Api\Auth.cs" />
-    <Compile Include="Api\Friends.cs" />
     <Compile Include="Core\Entities\City.cs" />
     <Compile Include="Core\Entities\DatabaseEntry.cs" />
     <Compile Include="Core\Entities\LinkCheckResult.cs" />
@@ -120,7 +104,6 @@
     <Compile Include="Core\Interfaces\IXmlVKEntityParser.cs" />
     <Compile Include="Data\Parameters\SearchSortOrder.cs" />
     <Compile Include="Api\Users.cs" />
-    <Compile Include="Api\Groups.cs" />
     <Compile Include="Core\Entities\BanInfo.cs" />
     <Compile Include="Core\Entities\EntityList.cs" />
     <Compile Include="Core\EntityParsers\Xml\BanInfoParser.cs" />
@@ -246,6 +229,9 @@
     <None Include="Generated\RequestApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RequestApi.cs</LastGenOutput>
+    </None>
+    <None Include="Generated\VKSharpFuncs.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

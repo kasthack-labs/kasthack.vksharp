@@ -1544,6 +1544,95 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<StructEntity<bool>> UsersIsAppUser(
+			 uint? userId = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "users.isAppUser",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", MiscTools.NullableString(userId) }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<StructEntity<int>> UsersReport(
+			 uint userId ,
+			 ComplaintType type ,
+			 string comment 
+			){
+			var req = new VKRequest<StructEntity<int>>{
+				MethodName = "users.report",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", userId.ToNCString() },
+			{ "type", type.ToNClString() },
+			{ "comment", comment }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<UserSubscriptions> UsersGetSubscriptions(
+			 uint? userId = null,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<UserSubscriptions>{
+				MethodName = "users.getSubscriptions",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", MiscTools.NullableString(userId) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<User> UsersGet(
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom,
+			params uint[] userIds 
+			){
+			var req = new VKRequest<User>{
+				MethodName = "users.get",
+				Parameters = new Dictionary<string, string> {
+					{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "name_case", nameCase.ToNClString() },
+			{ "user_ids", userIds.ToNCStringA() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<EntityList<User>> UsersGetFollowers(
+			 uint? userId = null,
+			 uint offset = 0,
+			 uint count = 100,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom
+			){
+			var req = new VKRequest<EntityList<User>>{
+				MethodName = "users.getFollowers",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", MiscTools.NullableString(userId) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "name_case", nameCase.ToNClString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
 		public VKRequest<LinkCheckResult> UtilsCheckLink(
 			 string url = ""
 			){
@@ -1777,6 +1866,58 @@ namespace VKSharp {
 			};
 				req.Token = CurrentToken;
 			
+			return req;
+		}
+		public VKRequest<Post> WallGetById(
+			 uint copyHistoryDepth = 2,
+			params string[] posts 
+			){
+			var req = new VKRequest<Post>{
+				MethodName = "wall.getById",
+				Parameters = new Dictionary<string, string> {
+					{ "copy_history_depth", copyHistoryDepth.ToNCString() },
+			{ "posts", String.Join(",",posts) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<Post> WallGetById(
+			 uint copyHistoryDepth = 2,
+			params Tuple<int,uint>[] posts 
+			){
+			var req = new VKRequest<Post>{
+				MethodName = "wall.getById",
+				Parameters = new Dictionary<string, string> {
+					{ "copy_history_depth", copyHistoryDepth.ToNCString() },
+			{ "posts", String.Join(",",posts.Select(a=>a.Item1 +"_" +a.Item2)) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<EntityList<Post>> WallGet(
+			 int? ownerId = null,
+			 string domain = "",
+			 uint offset = 0,
+			 uint count = 100,
+			 WallPostFilter filter = WallPostFilter.All
+			){
+			var req = new VKRequest<EntityList<Post>>{
+				MethodName = "wall.get",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "domain", domain },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() },
+			{ "filter", filter.ToNClString().ToSnake() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
 			return req;
 		}
 	}

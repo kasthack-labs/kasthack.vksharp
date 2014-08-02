@@ -349,7 +349,7 @@ namespace TestApp {
         }
 
         private static async Task GetSubscriptions( VKApi vk ) {
-            var s = await vk.UserGetSubscriptionsAsync(1);
+            var s = await vk.UsersGetSubscriptionsAsync(1);
         }
 
         private static void GetImplementedMethods() {
@@ -365,7 +365,7 @@ namespace TestApp {
         }
 
         private static async Task GetUsersTest(VKApi vk) {
-            var users = await vk.UsersGetAsync(fields: UserFields.Everything, ids: new uint[]{1704311});
+            var users = await vk.UsersGetAsync(fields: UserFields.Everything, userIds: new uint[]{1704311});
             users.Dump();
         }
 

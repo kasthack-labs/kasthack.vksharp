@@ -808,6 +808,54 @@
       <param name="global" type="bool" default="false"/>
     </params>
   </method>
+  <!--Users-->
+  <method name="users.isAppUser">
+    <request type="StructEntity&lt;bool&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="user_id" type="uint?" default="null" />
+    </params>
+  </method>
+  <method name="users.report">
+    <request type="StructEntity&lt;int&gt;" need_token="true"/>
+    <return parse="false" multiple="false"/>
+    <params>
+      <param name="user_id" type="uint" />
+      <param name="type" type="ComplaintType" custom="#name.ToNClString()" />
+      <param name="comment" type="string" />
+    </params>
+  </method>
+  <method name="users.getSubscriptions">
+    <request type="UserSubscriptions" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="user_id" type="uint?" default="null" />
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="users.get">
+    <request type="User" need_token="false"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="fields" type="UserFields" default="UserFields.None"/>
+      <param name="name_case" type="NameCase" default="NameCase.Nom"
+             custom="#name.ToNClString()"/>
+      <param name="user_ids" type="uint[]" params="params" />
+    </params>
+  </method>
+  <method name="users.getFollowers">
+    <request type="EntityList&lt;User&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="user_id" type="uint?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="fields" type="UserFields" default="UserFields.None"/>
+      <param name="name_case" type="NameCase" default="NameCase.Nom"
+             custom="#name.ToNClString()"/>
+    </params>
+  </method>
   <!--Utils-->
   <method name="utils.checkLink">
     <request type="LinkCheckResult" need_token="false"/>
@@ -937,7 +985,34 @@
              custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()"/>
     </params>
   </method>
-  
+  <method name="wall.getById">
+    <request type="Post" need_token="true"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="copy_history_depth" type="uint" default="2"/>
+      <param name="posts" type="string[]" params="params"/>
+    </params>
+  </method>
+  <method name="wall.getById">
+    <request type="Post" need_token="true"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="copy_history_depth" type="uint" default="2"/>
+      <param name="posts" type="Tuple&lt;int,uint&gt;[]" params="params"/>
+    </params>
+  </method>
+  <method name="wall.get">
+    <request type="EntityList&lt;Post&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="domain" type="string" default="&quot;&quot;"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="filter" type="WallPostFilter" default="WallPostFilter.All"
+             custom="#name.ToNClString().ToSnake()"/>
+    </params>
+  </method>
   <!--
   <method name="audio.addAlbum">
     <request type="StructEntity&lt;int&gt;" need_token="false"/>
