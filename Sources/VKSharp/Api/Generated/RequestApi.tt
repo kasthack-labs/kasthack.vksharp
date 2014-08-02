@@ -104,7 +104,7 @@ public static string Stringify(string name, string type){
 	if (nums.Any(a=>type==a+"?"))
 		return "MiscTools.NullableString("+name+")";
 	if (nums.Any(a=>type==a+"[]"))
-		return name+".ToNCStringA()";
+		return "("+name+"??new "+type+"{}).ToNCStringA()";
 	if (type=="string[]")
 		return "String.Join(\",\","+name+")";
 	if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))

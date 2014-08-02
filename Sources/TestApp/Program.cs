@@ -6,7 +6,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -16,14 +15,11 @@ using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Core.Entities;
-using VKSharp.Core.Enums;
-using VKSharp.Core.Interfaces;
 using VKSharp.Data.Api;
 using VKSharp.Data.Executors;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
-using VKSharp.Helpers.PrimitiveEntities;
 
 namespace TestApp {
     class Program {
@@ -246,14 +242,14 @@ namespace TestApp {
             var sorted = audios
                 .OrderBy(
                 a =>a.Title.Trim()).ToArray();
-            await api.PhotosReorderAlbumsAsync((int)sorted.First().Id, before: (int?) firstid);
+            await api.PhotosReorderAlbumsAsync(sorted.First().Id, before:  firstid);
             var map = audios.Select((audio, index) => new { audio.Id, index }).ToDictionary(a => a.Id, a => a.index);
             for (var i = 1; i < sorted.Length; i++)
             {
                 var cur = sorted[i];
                 var prev = sorted[i - 1];
                 var previ = map[cur.Id];
-                await api.PhotosReorderAlbumsAsync((int)cur.Id, after: (int)prev.Id);
+                await api.PhotosReorderAlbumsAsync(cur.Id, after: prev.Id);
                 Thread.Sleep(300);
                 Console.WriteLine("Moved {0}, {1} of {2} complete", cur, i, audios.Length);
             }
@@ -279,7 +275,7 @@ namespace TestApp {
                 if ( Directory.Exists( albumPath ) ) albumPath += photoAlbum.Id;
                 if (!Directory.Exists(albumPath)) Directory.CreateDirectory(albumPath);
                 
-                var photos = await vk.PhotosGetAsync( albumId: (int)photoAlbum.Id, count:1000 );
+                var photos = await vk.PhotosGetAsync( albumId: photoAlbum.Id, count:1000 );
                 var i = 1;
                 foreach ( var photo in photos ) {
                     try {
@@ -317,12 +313,12 @@ namespace TestApp {
         }
         private static async Task NewAlbumTest( VKApi vk ) {
             var alb = await vk.PhotosCreateAlbumAsync( "TestAlbum" );
-            await vk.PhotosDeleteAlbumAsync( (int)alb.Id );
+            await vk.PhotosDeleteAlbumAsync( alb.Id );
         }
 
         private static async Task GetPhotosTest( VKApi vk ) {
             var albums = await vk.PhotosGetAlbumsAsync();
-            var photos = await vk.PhotosGetAsync( albumId: (int)albums.FirstOrDefault().Id, count: 1000 );
+            var photos = await vk.PhotosGetAsync( albumId: albums.FirstOrDefault().Id, count: 1000 );
         }
 
         private static async Task Offliner( VKApi vk ) {
@@ -408,14 +404,14 @@ namespace TestApp {
                         artist = a.Artist.Substring(4);
                     return artist + a.Title;
                 }).ToArray();
-            //await api.AudioReorderAsync( sorted.First().Id, before: firstid);
+            await api.AudioReorderAsync( sorted.First().Id, before: firstid);
             var map = audios.Select((audio, index) => new { audio.Id, index }).ToDictionary(a => a.Id, a => a.index);
             for (var i = 1; i < sorted.Length; i++) {
                 var cur = sorted[i];
                 var prev = sorted[i - 1];
                 var previ = map[cur.Id];
                 if (previ == 0 || audios[previ - 1].Id != prev.Id) {
-                    //await api.AudioReorderAsync(cur.Id, after: prev.Id);
+                    await api.AudioReorderAsync(cur.Id, after: prev.Id);
                     Thread.Sleep(300);
                 }
                 Console.WriteLine("Moved {0}, {1} of {2} complete", cur, i, audios.Items.Length);
