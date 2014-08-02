@@ -23,6 +23,7 @@ using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
 
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
 	public class RequestApi {
 		public VKToken CurrentToken {get;set;}
@@ -75,25 +76,10 @@ namespace VKSharp {
 	<#}#>
 }
 }
+
+// ReSharper restore UseObjectOrCollectionInitializer
 // ReSharper restore UnusedMember.Global
 <#+
-public static string ToSnake(string name)
-{
-    var t = new StringBuilder();
-    t.Append(Char.ToLower(name[0]));
-    for (var index = 1; index < name.Length; index++)
-    {
-        var c = name[index];
-        //add '_' before numbers and captials 
-        if (Char.IsUpper(c) || (Char.IsNumber(c) && !Char.IsNumber(name[index - 1])))
-        {
-            t.Append('_');
-            t.Append(Char.ToLower(c));
-        }
-        else t.Append(c);
-    }
-    return t.ToString();
-}
 public static string ToMeth(string name,bool p=false)
 {
     var t = new StringBuilder();

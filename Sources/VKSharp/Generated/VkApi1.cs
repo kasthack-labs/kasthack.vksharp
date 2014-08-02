@@ -637,6 +637,72 @@ namespace VKSharp {
 									)
 			)).Data;
 		}
+		public async Task<User[]> GroupsGetBannedAsync(
+			 uint groupId ,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.GroupsGetBanned(
+											groupId,
+											offset,
+											count
+									)
+			)).Data;
+		}
+		public async Task<MemberShip[]> GroupsIsMemberAsync(
+			 uint groupId ,
+			 bool extended = false,
+			params uint[] userIds 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.GroupsIsMember(
+											groupId,
+											extended,
+											userIds
+									)
+			)).Data;
+		}
+		public async Task GroupsJoinAsync(
+			 uint groupId ,
+			 bool notSure = false
+			){
+			await Executor.ExecAsync(
+				_reqapi.GroupsJoin(
+											groupId,
+											notSure
+									)
+			);
+		}
+		public async Task GroupsLeaveAsync(
+			 uint groupId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.GroupsLeave(
+											groupId
+									)
+			);
+		}
+		public async Task GroupsUnbanUserAsync(
+			 uint groupId ,
+			 uint userId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.GroupsUnbanUser(
+											groupId,
+											userId
+									)
+			);
+		}
+		public async Task PagesClearCacheAsync(
+			 string url = ""
+			){
+			await Executor.ExecAsync(
+				_reqapi.PagesClearCache(
+											url
+									)
+			);
+		}
 		public async Task PhotosDeleteCommentAsync(
 			 int ownerId ,
 			 uint commentId 

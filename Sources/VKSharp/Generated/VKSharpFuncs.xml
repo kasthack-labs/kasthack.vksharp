@@ -448,6 +448,56 @@
       <param name="count" type="uint" default="100"/>
     </params>
   </method>
+  <!--Groups-->
+  <method name="groups.getBanned">
+    <request type="User" need_token="True"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="groups.isMember">
+    <request type="MemberShip" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="extended" type="bool" default="false"/>
+      <param name="user_ids" type="uint[]" params="params"/>
+    </params>
+  </method>
+  <method name="groups.join">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="not_sure" type="bool" default="false"/>
+    </params>
+  </method>
+  <method name="groups.leave">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+    </params>
+  </method>
+  <method name="groups.unbanUser">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="user_id" type="uint"/>
+    </params>
+  </method>
+  <!--Pages-->
+  <method name="pages.clearCache">
+    <request type="StructEntity&lt;bool&gt;" need_token="False"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="url" type="string" default="&quot;&quot;"/>
+    </params>
+  </method>
   <!--Photos-->
   <method name="photos.deleteComment">
     <request type="StructEntity&lt;bool&gt;" need_token="True"/>

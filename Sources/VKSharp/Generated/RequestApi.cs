@@ -10,6 +10,7 @@ using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
 
 // ReSharper disable UnusedMember.Global
+// ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
 	public class RequestApi {
 		public VKToken CurrentToken {get;set;}
@@ -879,6 +880,98 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<User> GroupsGetBanned(
+			 uint groupId ,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<User>{
+				MethodName = "groups.getBanned",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<MemberShip> GroupsIsMember(
+			 uint groupId ,
+			 bool extended = false,
+			params uint[] userIds 
+			){
+			var req = new VKRequest<MemberShip>{
+				MethodName = "groups.isMember",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() },
+			{ "extended", (extended?1:0).ToNCString() },
+			{ "user_ids", userIds.ToNCStringA() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> GroupsJoin(
+			 uint groupId ,
+			 bool notSure = false
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "groups.join",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() },
+			{ "not_sure", (notSure?1:0).ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> GroupsLeave(
+			 uint groupId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "groups.leave",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> GroupsUnbanUser(
+			 uint groupId ,
+			 uint userId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "groups.unbanUser",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() },
+			{ "user_id", userId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> PagesClearCache(
+			 string url = ""
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "pages.clearCache",
+				Parameters = new Dictionary<string, string> {
+					{ "url", url }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
 		public VKRequest<StructEntity<bool>> PhotosDeleteComment(
 			 int ownerId ,
 			 uint commentId 
@@ -1378,4 +1471,6 @@ namespace VKSharp {
 		}
 	}
 }
+
+// ReSharper restore UseObjectOrCollectionInitializer
 // ReSharper restore UnusedMember.Global
