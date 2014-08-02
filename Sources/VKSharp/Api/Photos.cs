@@ -12,36 +12,6 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task PhotosConfirmTagAsync(ulong photoId, uint tagId, int? ownerId = null) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.confirmTag",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "photo_id", photoId.ToNCString() },
-                        { "tag_id", tagId.ToNCString() },
-                        { "owner_id", MiscTools.NullableString( ownerId ) }
-                    }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        public async Task PhotosCopyAsync( int ownerId, ulong photoId, string accessKey = "" ) {
-            var req = new VKRequest<StructEntity<int>> {
-                MethodName = "photos.copy",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "owner_id", ownerId.ToNCString() },
-                        { "photo_id", photoId.ToNCString() },
-                        { "access_key", accessKey }
-                    }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
         public async Task<PhotoAlbum> PhotosCreateAlbumAsync(string title, string description = "", int? groupId = null,
             PrivacyType? privacy=null, PrivacyType? commentPrivacy = null) {
                 var req = new VKRequest<PhotoAlbum> {
@@ -58,48 +28,6 @@ namespace VKSharp {
                     throw new InvalidOperationException("This method requires auth!");
                 req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
-        }
-        public async Task PhotosDeleteAlbumAsync(long albumId,  uint? groupId=null) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.deleteAlbum",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "album_id", albumId.ToNCString() },
-                        { "group_id", MiscTools.NullableString( groupId ) }
-                    }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        public async Task PhotosDeleteAsync(ulong photoId, int? ownerId = null) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.delete",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "photo_id", photoId.ToNCString() },
-                        { "owner_id", MiscTools.NullableString( ownerId ) }
-                    }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        public async Task PhotosDeleteCommentAsync(int ownerId, uint commentId) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.deleteComment",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "owner_id", ownerId.ToNCString() },
-                        { "comment_id", commentId.ToNCString() },
-                    }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
         }
         public async Task PhotosEditAlbumAsync( ulong albumId, string title = "", string description = "",
             int? ownerId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null ) {
@@ -118,33 +46,6 @@ namespace VKSharp {
                     throw new InvalidOperationException("This method requires auth!");
                 req.Token = CurrenToken;
                 await _executor.ExecAsync(req);
-        }
-        public async Task PhotosEditAsync( int ownerId, ulong photoId, string caption = "" ) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.edit",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "owner_id", ownerId.ToNCString() },
-                        { "photo_id", photoId.ToNCString() },
-                        { "access_key", caption }
-                    }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        public async Task<StructEntity<int>> PhotosGetAlbumsCountAsync( uint? userId, uint? groupId ) {
-            var req = new VKRequest<StructEntity<int>> {
-                MethodName = "photos.getAlbumsCount",
-                Parameters = new Dictionary<string, string> {
-                        { "user_id", MiscTools.NullableString( userId ) },
-                        { "group_id", MiscTools.NullableString( groupId ) }
-                    }
-            };
-            if ( IsLogged )
-                req.Token = CurrenToken;
-            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<EntityList<PhotoAlbum>> PhotosGetAlbumsAsync( int? ownerId=null, int offset = 0,
             int? count = null, bool needSystem = true, bool needCovers = false, params long[] albumIds ) {
@@ -219,15 +120,14 @@ namespace VKSharp {
                 req.Token = CurrenToken;
             return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task PhotosOwnerPhotoUploadServerAsync() {
+        public async Task<SimpleEntity<string>> PhotosGetOwnerPhotoUploadServerAsync()
+        {
             var req = new VKRequest<SimpleEntity<string>> {
                 MethodName = "photos.getOwnerPhotoUploadServer",
                 Parameters = new Dictionary<string, string>()
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
+            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
         public async Task<PhotosUploadServer> PhotosGetUploadServerAsync(long albumId, uint? groupId)
         {
@@ -240,8 +140,6 @@ namespace VKSharp {
                         { "group_id", MiscTools.NullableString( groupId ) }
                     }
             };
-            if ( !IsLogged )
-                throw new InvalidOperationException( "This method requires auth!" );
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
@@ -286,8 +184,6 @@ namespace VKSharp {
                         { "owner_id", MiscTools.NullableString( ownerId ) }
                     }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -303,8 +199,6 @@ namespace VKSharp {
                         { "after", MiscTools.NullableString(after) },
                     }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -319,51 +213,8 @@ namespace VKSharp {
                         { "after", after.ToNCString() },
                     }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync( req );
-        }
-        public async Task PhotosReportAsync( int ownerId, ulong photoId, ReportReason? reason = null ) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.report",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "owner_id", ownerId.ToNCString() },
-                        { "photo_id", photoId.ToNCString() },
-                        { "reason", reason == null ? "" : ( (int) reason ).ToNCString() }
-                    }
-            };
-            if ( IsLogged )
-                req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        public async Task PhotosReportCommentAsync( int ownerId, uint commentId, ReportReason? reason = null ) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.reportComment",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "owner_id", ownerId.ToNCString() },
-                        { "comment_id", commentId.ToNCString() },
-                        { "reason", reason == null ? "" : ( (int) reason ).ToNCString() }
-                    }
-            };
-            if ( IsLogged )
-                req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        public async Task PhotosRestoreCommentAsync(int ownerId, uint commentId) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "photos.restoreComment",
-                Parameters = new Dictionary<string, string> {
-                    { "owner_id", ownerId.ToNCString() },
-                    { "comment_id", commentId.ToNCString() },
-                }
-            };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
         }
         public async Task<Photo[]> PhotosSaveAsync(long albumId, string server,  string photosList,string hash,
             uint? groupId = null,  double? latitude = null, double? longitude = null,

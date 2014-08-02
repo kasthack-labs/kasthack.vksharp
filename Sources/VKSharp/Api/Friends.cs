@@ -12,56 +12,9 @@ using VKSharp.Helpers.PrimitiveEntities;
 namespace VKSharp {
     public partial class VKApi {
         //TODO: Add mapping of return code to enum
-        public async Task FriendsAddAsync(uint userId, string text) {
-            var req = new VKRequest<StructEntity<int>> {
-                MethodName = "friends.add",
-                Parameters = new Dictionary<string, string> { { "user_id", userId.ToNCString() }, { "text", text } }
-            };
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-
-        public async Task FriendsDeleteAllRequestsAsync() {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "friends.deleteAllRequests",
-                Parameters = new Dictionary<string, string> {}
-            };
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-
+        //FriendsDeleteAsync
         //TODO: Add mapping of return code to enum
-        public async Task FriendsDeleteAsync(uint userId) {
-            var req = new VKRequest<StructEntity<int>> {
-                MethodName = "friends.delete",
-                Parameters = new Dictionary<string, string> {
-                    { "user_id", userId.ToNCString() }
-                }
-            };
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-        
-        public async Task FriendsDeleteListAsync(uint listId) {
-            var req = new VKRequest<StructEntity<bool>> {
-                MethodName = "friends.deleteList",
-                Parameters = new Dictionary<string, string> {
-                    { "list_id", listId.ToNCString() }
-                }
-            };
-            req.Token = CurrenToken;
-            await _executor.ExecAsync(req);
-        }
-
-        public async Task<StructEntity<int>[]> FriendsGetAppUsersAsync() {
-            var req = new VKRequest<StructEntity<int>> {
-                MethodName = "friends.getAppUsers",
-                Parameters = new Dictionary<string, string>()
-            };
-            req.Token = CurrenToken;
-            return ( await _executor.ExecAsync( req ) ).Data;
-        }
-
+        //FriendsDeleteAsync
         public async Task<User[]> FriendsGetAsync( uint userId, UserSortOrder order = UserSortOrder.ById,
             uint? listId = null, uint offset = 0, ushort count = 100, UserFields fields = UserFields.None,
             NameCase nameCase = NameCase.Nom) {
@@ -94,25 +47,6 @@ namespace VKSharp {
             req.Token = CurrenToken;
             return (await _executor.ExecAsync(req)).Data;
         }
-
-        public async Task<StructEntity<int>[]> FriendsGetMutualAsync(
-            uint targetId, uint? sourceId = null, bool randomOrder = false, int? count = null, int? offset = null) {
-            var req = new VKRequest<StructEntity<int>> {
-                MethodName = "friends.getMutual",
-                Parameters =
-                    new Dictionary<string, string> {
-                        { "target_uid", targetId.ToNCString() },
-                        { "source_uid", MiscTools.NullableString( sourceId ) },
-                        { "order", randomOrder ? "random" : "" },
-                        { "count", MiscTools.NullableString( count ) },
-                        { "offset", MiscTools.NullableString( offset ) }
-                    }
-            };
-            if (IsLogged)
-                req.Token = CurrenToken;
-            return (await _executor.ExecAsync(req)).Data;
-        }
-
         public async Task<StructEntity<int>[]> FriendsGetRecentAsync(int? count = null) {
             var req = new VKRequest<StructEntity<int>> {
                 MethodName = "friends.getRecent",

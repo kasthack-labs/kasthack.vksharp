@@ -15,16 +15,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using VKSharp.Core.Entities;
+using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Api;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
 
+// ReSharper disable UnusedMember.Global
 namespace VKSharp {
 	public class RequestApi {
-		private VKToken CurrentToken {get;set;}
-		private bool IsLogged {get;set;}
+		public VKToken CurrentToken {get;set;}
+		public bool IsLogged {get;set;} 
 	<#
 		const string inputFile = @"E:\files\kasth_000\Own\Sources\Github\VKSharp\Sources\VKSharp\Generated\VKSharpFuncs.xml";
 		var d = XDocument.Load( inputFile );
@@ -47,7 +49,8 @@ namespace VKSharp {
 					pname= pnode.Attribute("name").Value,
 					pda = pnode.Attribute("default"),
 					pdefault = pnode.Attribute("default")!=null,
-					pms = pnode.Attribute("params")!=null
+					pms = pnode.Attribute("params")!=null,
+					custom = pnode.Attribute("custom")!=null?pnode.Attribute("custom").Value:null
 				}).ToArray();
 				var l = els.Length;
 				for (var i =0; i<l; i++){ var a = pms[i]; #>
@@ -58,7 +61,7 @@ namespace VKSharp {
 				MethodName = "<#=mname#>",
 				Parameters = new Dictionary<string, string> {
 					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
-{ "<#=a.pname#>", <#=Stringify(ToMeth(a.pname, true), a.ptype)#> }<#=i<l-1?",":""#>
+{ "<#=a.pname#>", <#=a.custom==null?Stringify(ToMeth(a.pname, true), a.ptype):a.custom.Replace("#name",ToMeth(a.pname,true))#> }<#=i<l-1?",":""#>
 			<#}#>
 	}
 			};
@@ -72,6 +75,7 @@ namespace VKSharp {
 	<#}#>
 }
 }
+// ReSharper restore UnusedMember.Global
 <#+
 public static string ToSnake(string name)
 {

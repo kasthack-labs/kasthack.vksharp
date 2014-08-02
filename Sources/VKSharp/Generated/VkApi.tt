@@ -12,16 +12,14 @@
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ output extension=".cs" #>
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
+using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
-using VKSharp.Data.Api;
-using VKSharp.Data.Request;
-using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
 
+// ReSharper disable UnusedMember.Global
 namespace VKSharp {
 	public partial class VKApi {
 	<#
@@ -53,17 +51,18 @@ namespace VKSharp {
 <#=a.pms?"params":""#> <#=a.ptype#> <#=ToMeth(a.pname, true)#> <#=a.pdefault?"= "+a.pda.Value:""#><#=i<l-1?",":""#>
 			<#}#>
 ){
-			return _rawapi.Executor.Parse(
-				await _rawapi.<#=ToMeth(mname)#>(
+			<#if(parse){#>return (<#}#>await Executor.ExecAsync(
+				_reqapi.<#=ToMeth(mname)#>(
 					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
 						<#=ToMeth(a.pname, true)#><#=i<l-1?",":""#>
 					<#}#>
 				)
-			);
+			)<#if(parse){#>).Data<#=!multiple?".FirstOrDefault()":""#><#}#>;
 		}
 	<#}#>
 }
 }
+// ReSharper restore UnusedMember.Global
 <#+
 public static string ToMeth(string name,bool p=false)
 {

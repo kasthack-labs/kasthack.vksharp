@@ -54,8 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Entities\Onlines.cs" />
+    <Compile Include="Core\Entities\Status.cs" />
     <Compile Include="Core\EntityParsers\Xml\OnlinesParser.cs" />
     <Compile Include="Core\EntityParsers\Xml\PhotosUploadServerParser.cs" />
+    <Compile Include="Core\EntityParsers\Xml\StatusParser.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Data\Parameters\SpecialAlbum.cs" />
     <Compile Include="Core\Entities\Counter.cs" />
@@ -137,6 +139,11 @@
       <DependentUpon>RequestApi.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Generated\VkApi1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkApi.tt</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
@@ -232,6 +239,10 @@
     <Compile Include="Core\EntityParsers\Xml\LinkParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Generated\VkApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>VkApi1.cs</LastGenOutput>
+    </None>
     <None Include="Generated\RequestApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RequestApi.cs</LastGenOutput>
@@ -247,7 +258,9 @@
   </Target>
   -->
   <ItemGroup>
-    <Content Include="Generated\VKSharpFuncs.xml" />
+    <Content Include="Generated\VKSharpFuncs.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

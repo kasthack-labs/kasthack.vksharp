@@ -228,7 +228,7 @@ namespace TestApp {
         private static async Task SaveAudios( VKApi vk ) {
             var id = 10032475;
             var outpath = @"E:\files\Общие\Музыка\cheapsapha";
-            var aus = await vk.AudiosGetAsync( id );
+            var aus = await vk.AudioGetAsync( id );
             foreach ( var audio in aus ) {
                 var oname = MakeValidFileName( String.Join( " - ", audio.Artist, audio.Title ) );
                 oname = oname.Substring( 0, Math.Min( 60, oname.Length ) )+".mp3";
@@ -317,7 +317,7 @@ namespace TestApp {
         }
         private static async Task NewAlbumTest( VKApi vk ) {
             var alb = await vk.PhotosCreateAlbumAsync( "TestAlbum" );
-            await vk.PhotosDeleteAlbumAsync( alb.Id );
+            await vk.PhotosDeleteAlbumAsync( (int)alb.Id );
         }
 
         private static async Task GetPhotosTest( VKApi vk ) {
@@ -370,13 +370,13 @@ namespace TestApp {
         }
 
         private static async Task CheckLyrics(VKApi vk) {
-            var v = await vk.AudiosGetLyricsAsync(1);
+            var v = await vk.AudioGetLyricsAsync(1);
             v.Text.Dump();
             Console.ReadLine();
         }
 
         private static async Task GetArtistsStats(VKApi vk) {
-            var audios = await vk.AudiosGetAsync();
+            var audios = await vk.AudioGetAsync();
             var arr = audios.GroupBy(a => a.Artist)
                   .Select(a => new { Artist = a.Key, Count = a.ToArray().Count() })
                   .Where(a => a.Count > 1)
@@ -389,7 +389,7 @@ namespace TestApp {
         }
 
         private static async Task GetBadAudios(VKApi vk) {
-            var audios = await vk.AudiosGetAsync();
+            var audios = await vk.AudioGetAsync();
             foreach (var audio in audios.Where(a => a.Artist.Trim() != a.Artist || a.Title.Trim() != a.Title)) {
                 Console.WriteLine(audio);
             }
@@ -398,7 +398,7 @@ namespace TestApp {
         }
 
         private static async Task Reorder(VKApi api) {
-            var audios = await api.AudiosGetAsync();
+            var audios = await api.AudioGetAsync();
             var firstid = audios.First().Id;
             var sorted = audios.Items
                 .OrderBy(
@@ -408,14 +408,14 @@ namespace TestApp {
                         artist = a.Artist.Substring(4);
                     return artist + a.Title;
                 }).ToArray();
-            await api.AudiosReorderAsync( sorted.First().Id, before: firstid);
+            //await api.AudioReorderAsync( sorted.First().Id, before: firstid);
             var map = audios.Select((audio, index) => new { audio.Id, index }).ToDictionary(a => a.Id, a => a.index);
             for (var i = 1; i < sorted.Length; i++) {
                 var cur = sorted[i];
                 var prev = sorted[i - 1];
                 var previ = map[cur.Id];
                 if (previ == 0 || audios[previ - 1].Id != prev.Id) {
-                    await api.AudiosReorderAsync(cur.Id, after: prev.Id);
+                    //await api.AudioReorderAsync(cur.Id, after: prev.Id);
                     Thread.Sleep(300);
                 }
                 Console.WriteLine("Moved {0}, {1} of {2} complete", cur, i, audios.Items.Length);
