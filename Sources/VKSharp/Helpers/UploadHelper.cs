@@ -37,7 +37,7 @@ namespace VKSharp.Helpers
                         var respjson = await upl.Content.ReadAsStringAsync();
                         pr = JsonConvert.DeserializeObject<VkPhotoUploadResponse>( respjson );
                     }
-                    ret.AddRange( await _api.PhotosSaveAsync( pr.aid, pr.server, pr.photos_list, pr.hash ));
+                    ret.AddRange( await _api.PhotosSaveAsync( (int)pr.aid, pr.server, pr.photos_list, pr.hash ));
                 }
                 finally {
                     foreach ( var stream in streams ) {

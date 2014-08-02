@@ -100,7 +100,7 @@ public static string Stringify(string name, string type){
 		return "("+name+"?1:0).ToNCString()";
 	if (type=="bool?")
 		return name=" != null ? ( "+name+".Value ? 1 : 0 ).ToNCString() : \"\"";
-	var nums = "int,uint,byte,sbyte,short,ushort,long,ulong".Split(',');
+	var nums = "int,uint,byte,sbyte,short,ushort,long,ulong,double".Split(',');
 	if (nums.Any(a=>a==type))
 		return name+".ToNCString()";
 	if (nums.Any(a=>type==a+"?"))

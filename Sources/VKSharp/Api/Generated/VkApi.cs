@@ -1262,6 +1262,31 @@ namespace VKSharp {
 									)
 			)).Data.FirstOrDefault();
 		}
+		public async Task<Photo[]> PhotosSaveAsync(
+			 int albumId ,
+			 string server ,
+			 string photosList ,
+			 string hash ,
+			 uint? groupId = null,
+			 double? latitude = null,
+			 double? longitude = null,
+			 string caption = "",
+			 string description = ""
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosSave(
+											albumId,
+											server,
+											photosList,
+											hash,
+											groupId,
+											latitude,
+											longitude,
+											caption,
+											description
+									)
+			)).Data;
+		}
 		public async Task<Status[]> StatusGetAsync(
 			 int userId 
 			){

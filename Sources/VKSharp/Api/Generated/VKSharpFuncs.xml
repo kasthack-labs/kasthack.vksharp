@@ -896,6 +896,21 @@
       <param name="album_ids" type="long[]" params="params" />
     </params>
   </method>
+  <method name="photos.save">
+    <request type="Photo" need_token="false"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="album_id" type="int"/>
+      <param name="server" type="string"/>
+      <param name="photos_list" type="string"/>
+      <param name="hash" type="string"/>
+      <param name="group_id" type="uint?" default="null"/>
+      <param name="latitude" type="double?" default="null"/>
+      <param name="longitude" type="double?" default="null"/>
+      <param name="caption" type="string" default="&quot;&quot;"/>
+      <param name="description" type="string" default="&quot;&quot;"/>
+    </params>
+  </method>
   <!--Status-->
   <method name="status.get">
     <request type="Status" need_token="true"/>

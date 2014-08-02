@@ -1708,6 +1708,36 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<Photo> PhotosSave(
+			 int albumId ,
+			 string server ,
+			 string photosList ,
+			 string hash ,
+			 uint? groupId = null,
+			 double? latitude = null,
+			 double? longitude = null,
+			 string caption = "",
+			 string description = ""
+			){
+			var req = new VKRequest<Photo>{
+				MethodName = "photos.save",
+				Parameters = new Dictionary<string, string> {
+					{ "album_id", albumId.ToNCString() },
+			{ "server", server },
+			{ "photos_list", photosList },
+			{ "hash", hash },
+			{ "group_id", MiscTools.NullableString(groupId) },
+			{ "latitude", MiscTools.NullableString(latitude) },
+			{ "longitude", MiscTools.NullableString(longitude) },
+			{ "caption", caption },
+			{ "description", description }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
 		public VKRequest<Status> StatusGet(
 			 int userId 
 			){
