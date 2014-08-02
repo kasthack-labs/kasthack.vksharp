@@ -958,6 +958,195 @@ namespace VKSharp {
 			
 			return req;
 		}
+		public VKRequest<StructEntity<bool>> MessagesAddChatUser(
+			 uint userId ,
+			 int? chatId = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.addChatUser",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", userId.ToNCString() },
+			{ "chat_id", MiscTools.NullableString(chatId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> MessagesRemoveChatUser(
+			 int userId ,
+			 int chatId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.removeChatUser",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", userId.ToNCString() },
+			{ "chat_id", chatId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> MessagesDelete(
+			params int[] messageIds 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.delete",
+				Parameters = new Dictionary<string, string> {
+					{ "message_ids", messageIds.ToNCStringA() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> MessagesMarkAsRead(
+			 int userId ,
+			 uint? startMessageId = null,
+			params int[] messageIds 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.markAsRead",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", userId.ToNCString() },
+			{ "start_message_id", MiscTools.NullableString(startMessageId) },
+			{ "message_ids", messageIds.ToNCStringA() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> MessagesRestore(
+			 int messageId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.restore",
+				Parameters = new Dictionary<string, string> {
+					{ "message_id", messageId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> MessagesDeleteDialog(
+			 int userId ,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.deleteDialog",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", userId.ToNCString() },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> MessagesMarkAsImportant(
+			 bool important ,
+			params int[] messageIds 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "messages.markAsImportant",
+				Parameters = new Dictionary<string, string> {
+					{ "important", (important?1:0).ToNCString() },
+			{ "message_ids", messageIds.ToNCStringA() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> NewsfeedAddBan(
+			 uint[] userIds ,
+			 uint[] groupIds 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "newsfeed.addBan",
+				Parameters = new Dictionary<string, string> {
+					{ "user_ids", userIds.ToNCStringA() },
+			{ "group_ids", groupIds.ToNCStringA() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> NewsfeedDeleteBan(
+			 uint[] userIds ,
+			 uint[] groupIds 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "newsfeed.deleteBan",
+				Parameters = new Dictionary<string, string> {
+					{ "user_ids", userIds.ToNCStringA() },
+			{ "group_ids", groupIds.ToNCStringA() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> NotesDelete(
+			 uint noteId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "notes.delete",
+				Parameters = new Dictionary<string, string> {
+					{ "note_id", noteId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> NotesDeleteComment(
+			 int ownerId ,
+			 uint commentId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "notes.deleteComment",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", ownerId.ToNCString() },
+			{ "comment_id", commentId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> NotesRestoreComment(
+			 int ownerId ,
+			 uint commentId 
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "notes.restoreComment",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", ownerId.ToNCString() },
+			{ "comment_id", commentId.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> NotificationsMarkAsViewed(
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "notifications.markAsViewed",
+				Parameters = new Dictionary<string, string> {
+						}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
 		public VKRequest<StructEntity<bool>> PagesClearCache(
 			 string url = ""
 			){

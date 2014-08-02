@@ -9,13 +9,13 @@
               <xs:element name="request">
                 <xs:complexType>
                   <xs:attribute name="type" type="xs:string" use="required" />
-                  <xs:attribute name="need_token" type="xs:string" use="required" />
+                  <xs:attribute name="need_token" type="xs:boolean" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element name="return">
                 <xs:complexType>
-                  <xs:attribute name="parse" type="xs:string" use="required" />
-                  <xs:attribute name="multiple" type="xs:string" use="required" />
+                  <xs:attribute name="parse" type="xs:boolean" use="required" />
+                  <xs:attribute name="multiple" type="xs:boolean" use="required" />
                 </xs:complexType>
               </xs:element>
               <xs:element minOccurs="0" name="params">

@@ -694,6 +694,143 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task MessagesAddChatUserAsync(
+			 uint userId ,
+			 int? chatId = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesAddChatUser(
+											userId,
+											chatId
+									)
+			);
+		}
+		public async Task MessagesRemoveChatUserAsync(
+			 int userId ,
+			 int chatId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesRemoveChatUser(
+											userId,
+											chatId
+									)
+			);
+		}
+		public async Task MessagesDeleteAsync(
+			params int[] messageIds 
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesDelete(
+											messageIds
+									)
+			);
+		}
+		public async Task MessagesMarkAsReadAsync(
+			 int userId ,
+			 uint? startMessageId = null,
+			params int[] messageIds 
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesMarkAsRead(
+											userId,
+											startMessageId,
+											messageIds
+									)
+			);
+		}
+		public async Task MessagesRestoreAsync(
+			 int messageId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesRestore(
+											messageId
+									)
+			);
+		}
+		public async Task MessagesDeleteDialogAsync(
+			 int userId ,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesDeleteDialog(
+											userId,
+											offset,
+											count
+									)
+			);
+		}
+		public async Task MessagesMarkAsImportantAsync(
+			 bool important ,
+			params int[] messageIds 
+			){
+			await Executor.ExecAsync(
+				_reqapi.MessagesMarkAsImportant(
+											important,
+											messageIds
+									)
+			);
+		}
+		public async Task NewsfeedAddBanAsync(
+			 uint[] userIds ,
+			 uint[] groupIds 
+			){
+			await Executor.ExecAsync(
+				_reqapi.NewsfeedAddBan(
+											userIds,
+											groupIds
+									)
+			);
+		}
+		public async Task NewsfeedDeleteBanAsync(
+			 uint[] userIds ,
+			 uint[] groupIds 
+			){
+			await Executor.ExecAsync(
+				_reqapi.NewsfeedDeleteBan(
+											userIds,
+											groupIds
+									)
+			);
+		}
+		public async Task NotesDeleteAsync(
+			 uint noteId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.NotesDelete(
+											noteId
+									)
+			);
+		}
+		public async Task NotesDeleteCommentAsync(
+			 int ownerId ,
+			 uint commentId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.NotesDeleteComment(
+											ownerId,
+											commentId
+									)
+			);
+		}
+		public async Task NotesRestoreCommentAsync(
+			 int ownerId ,
+			 uint commentId 
+			){
+			await Executor.ExecAsync(
+				_reqapi.NotesRestoreComment(
+											ownerId,
+											commentId
+									)
+			);
+		}
+		public async Task NotificationsMarkAsViewedAsync(
+			){
+			await Executor.ExecAsync(
+				_reqapi.NotificationsMarkAsViewed(
+									)
+			);
+		}
 		public async Task PagesClearCacheAsync(
 			 string url = ""
 			){
