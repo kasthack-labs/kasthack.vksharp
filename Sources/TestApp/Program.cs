@@ -51,7 +51,7 @@ namespace TestApp {
 #endif
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
-            await FetchDocs( vk );
+            //await FetchDocs( vk );
             //await MultiSpeed( vk );
             //await CheckOnlines( vk );
             //await CheckWritten( @"E:\files\kasth_000\Downloaded\Data\databases\vk_xml_new\users_1_1.xml" );
@@ -72,7 +72,7 @@ namespace TestApp {
             //await Reorder( vk );
             //await GetArtistsStats(vk);
             //await GetArtistsStats(vk);
-            //await GetUsersTest(vk);
+            await GetUsersTest(vk);
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
