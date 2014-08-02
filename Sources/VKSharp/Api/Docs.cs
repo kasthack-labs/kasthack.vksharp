@@ -9,7 +9,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
     public partial class VKApi {
-        public async Task<StructEntity<int>> DocsAddAsync(int ownerId, uint docId, string accessKey) {
+        public async Task<StructEntity<int>> DocsAddAsync(int ownerId, uint docId, string accessKey="") {
             var req = new VKRequest<StructEntity<int>> {
                 MethodName = "docs.add",
                 Parameters =
@@ -19,20 +19,17 @@ namespace VKSharp {
                         { "access_key", accessKey }
                     }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> DocsDeleteAsync(uint docsId, int ownerId) {
+        public async Task DocsDeleteAsync(uint docsId, int ownerId) {
             var req = new VKRequest<StructEntity<bool>> {
                 MethodName = "docs.delete",
-                Parameters = new Dictionary<string, string> { { "doc_id", docsId.ToNCString() }, { "owner_id", ownerId.ToNCString() } }
+                Parameters = new Dictionary<string, string> { { "doc_id", docsId.ToNCString() },
+                { "owner_id", ownerId.ToNCString() } }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
-            return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
+            await _executor.ExecAsync( req );
         }
         public async Task<SimpleEntity<string>> DocsGetUploadServerAsync(uint? groupId = null) {
             var req = new VKRequest<SimpleEntity<string>> {
@@ -41,20 +38,18 @@ namespace VKSharp {
                     {"group_id", MiscTools.NullableString( groupId )}
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             return ( await _executor.ExecAsync( req ) ).Data.FirstOrDefault();
         }
-        public async Task<StructEntity<bool>> DocsGetWallUploadServerAsync(uint? groupId=null) {
-            var req = new VKRequest<StructEntity<bool>> {
+        public async Task<SimpleEntity<string>> DocsGetWallUploadServerAsync(uint? groupId = null)
+        {
+            var req = new VKRequest<SimpleEntity<string>>
+            {
                 MethodName = "docs.getWallUploadServer",
                 Parameters = new Dictionary<string, string> {
                     {"group_id", MiscTools.NullableString( groupId )}
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             return (await _executor.ExecAsync(req)).Data.FirstOrDefault();
         }

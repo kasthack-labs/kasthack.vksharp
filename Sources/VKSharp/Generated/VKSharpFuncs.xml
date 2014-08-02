@@ -175,12 +175,283 @@
       <param name="title" type="string" default="&quot;&quot;"/>
     </params>
   </method>
+  <!--Auth-->
+  <method name="auth.checkPhone">
+    <request type="StructEntity&lt;bool&gt;" need_token="False"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="phone" type="string"/>
+      <param name="client_secret" type="string"/>
+      <param name="client_id" type="int?" default="null"/>
+    </params>
+  </method>
+  <method name="auth.confirm">
+    <request type="ConfirmResult" need_token="True"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="client_id" type="uint"/>
+      <param name="client_secret" type="string"/>
+      <param name="phone" type="string"/>
+      <param name="code" type="string"/>
+      <param name="password" type="string" default="&quot;&quot;"/>
+      <param name="test_mode" type="bool" default="false"/>
+      <param name="intro" type="int?" default="null"/>
+    </params>
+  </method>
+  <!--Board-->
+  <method name="board.closeTopic">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="topic_id" type="uint"/>
+    </params>
+  </method>
+  <method name="board.deleteComment">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="topic_id" type="uint"/>
+      <param name="comment_id" type="uint"/>
+    </params>
+  </method>
+  <method name="board.deleteTopic">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="topic_id" type="uint"/>
+    </params>
+  </method>
+  <method name="board.fixTopic">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="topic_id" type="uint"/>
+    </params>
+  </method>
+  <method name="board.unfixTopic">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="topic_id" type="uint"/>
+    </params>
+  </method>
+  <method name="board.restoreComment">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="topic_id" type="uint"/>
+      <param name="comment_id" type="uint"/>
+    </params>
+  </method>
+  <!--Database-->
+  <method name="database.getCountries">
+    <request type="EntityList&lt;DatabaseEntry&gt;" need_token="False"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="need_all" type="bool" default="false"/>
+      <param name="code" type="string" default="&quot;&quot;"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="database.getRegions">
+    <request type="EntityList&lt;DatabaseEntry&gt;" need_token="False"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="country_id" type="uint"/>
+      <param name="q" type="string" default="&quot;&quot;"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="database.getStreetsById">
+    <request type="DatabaseEntry" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="street_ids" type="uint[]" params="params"/>
+    </params>
+  </method>
+  <method name="database.getCountriesById">
+    <request type="EntityList&lt;DatabaseEntry&gt;" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="country_ids" type="uint[]" params="params"/>
+    </params>
+  </method>
+  <method name="database.getCitiesById">
+    <request type="DatabaseCity" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="city_ids" type="uint[]" params="params"/>
+    </params>
+  </method>
+  <method name="database.getCities">
+    <request type="DatabaseCity" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="country_id" type="uint"/>
+      <param name="region_id" type="uint?" default="null"/>
+      <param name="q" type="string" default="&quot;&quot;"/>
+      <param name="need_all" type="bool" default="false"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="database.getUniversities">
+    <request type="DatabaseEntry" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="country_id" type="uint?" default="null"/>
+      <param name="city_id" type="uint?" default="null"/>
+      <param name="q" type="string" default="&quot;&quot;"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="database.getSchools">
+    <request type="DatabaseEntry" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="city_id" type="uint?" default="null"/>
+      <param name="q" type="string" default="&quot;&quot;"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="database.getFaculties">
+    <request type="EntityList&lt;DatabaseEntry&gt;" need_token="False"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="university_id" type="uint" />
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="database.getChairs">
+    <request type="EntityList&lt;DatabaseEntry&gt;" need_token="False"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="faculty_id" type="uint" />
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <!--Docs-->
+  <method name="docs.add">
+    <request type="StructEntity&lt;int&gt;" need_token="True"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="doc_id" type="uint"/>
+      <param name="owner_id" type="int"/>
+      <param name="access_key" type="string" default="&quot;&quot;"/>
+    </params>
+  </method>
+  <method name="docs.delete">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="doc_id" type="uint"/>
+      <param name="owner_id" type="int"/>
+    </params>
+  </method>
+  <method name="docs.getUploadServer">
+    <request type="SimpleEntity&lt;string&gt;" need_token="True"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint?" default="null"/>
+    </params>
+  </method>
+  <method name="docs.getWallUploadServer">
+    <request type="SimpleEntity&lt;string&gt;" need_token="True"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="group_id" type="uint?" default="null"/>
+    </params>
+  </method>
+  <method name="docs.get">
+    <request type="EntityList&lt;Document&gt;" need_token="False"/>
+    <return parse="True" multiple="False"/>
+    <params>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="docs.getById">
+    <request type="Document" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="docs" type="Tuple&lt;int,int&gt;[]" params="params" />
+    </params>
+  </method>
+  <method name="docs.save">
+    <request type="Document" need_token="True"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="file" type="string"/>
+      <param name="title" type="string"/>
+      <param name="tags" type="string[]" params="params" />
+    </params>
+  </method>
+  <!--Friends-->
+  <method name="friends.add">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="user_id" type="uint"/>
+      <param name="text" type="string" default="&quot;&quot;"/>
+    </params>
+  </method>
+  <method name="friends.deleteAllRequests">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+  </method>
+  <method name="friends.delete">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="user_id" type="uint"/>
+    </params>
+  </method>
+  <method name="friends.deleteList">
+    <request type="StructEntity&lt;bool&gt;" need_token="True"/>
+    <return parse="False" multiple="False"/>
+    <params>
+      <param name="list_id" type="uint"/>
+    </params>
+  </method>
+  <method name="friends.getAppUsers">
+    <request type="StructEntity&lt;int&gt;" need_token="False"/>
+    <return parse="True" multiple="True"/>
+  </method>
+  <method name="friends.getMutual">
+    <request type="StructEntity&lt;int&gt;" need_token="False"/>
+    <return parse="True" multiple="True"/>
+    <params>
+      <param name="list_id" type="uint"/>
+    </params>
+  </method>
   <!--
   <method name="audio.addAlbum">
     <request type="StructEntity&lt;int&gt;" need_token="False"/>
     <return parse="True" multiple="False"/>
     <params>
+      <param name="" type=""/>
       <param name="" type="" default=""/>
+      <param name="q" type="string" default="&quot;&quot;"/>
+      <param name="need_all" type="bool" default="false"/>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="ids" type="uint[]" params="params"/>
+      <param name="order" type="UserSortOrder" default="UserSortOrder.ById"
+        custom="#name==UserSortOrder.ById ? &quot;&quot; : #name.ToNClString()"
     </params>
   </method>
   -->

@@ -133,6 +133,11 @@
     <Compile Include="Data\Parameters\NameCase.cs" />
     <Compile Include="Data\Executors\SimpleXMLExecutor.cs" />
     <Compile Include="Data\Parameters\UserFields.cs" />
+    <Compile Include="Generated\RequestApi.cs">
+      <DependentUpon>RequestApi.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
@@ -227,6 +232,10 @@
     <Compile Include="Core\EntityParsers\Xml\LinkParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Generated\RequestApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RequestApi.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
@@ -237,7 +246,12 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Generated\VKSharpFuncs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />

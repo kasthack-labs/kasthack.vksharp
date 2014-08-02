@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using VKSharp.Core.Entities;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Api;
@@ -22,9 +23,7 @@ using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
 
 namespace VKSharp {
-	public class RequestApi {
-		private VKToken CurrentToken {get;set;}
-		private bool IsLogged {get;set;}
+	public partial class VKApi {
 	<#
 		const string inputFile = @"E:\files\kasth_000\Own\Sources\Github\VKSharp\Sources\VKSharp\Generated\VKSharpFuncs.xml";
 		var d = XDocument.Load( inputFile );
@@ -38,7 +37,7 @@ namespace VKSharp {
 			var needToken = bool.Parse(rn.Attribute( "need_token" ).Value);
 			var mname = node.Attribute("name").Value;
 	#>
-	public <#=("VKRequest<"+type+">")#> <#=ToMeth(mname)#>(
+	public async Task<#=parse?("<"+type+(multiple?"[]":"")+">"):""#> <#=ToMeth(mname)#>Async(
 			<#
 				var pn = node.Element("params")??new XElement("params");
 				var els = pn.Elements().ToArray();
@@ -54,42 +53,18 @@ namespace VKSharp {
 <#=a.pms?"params":""#> <#=a.ptype#> <#=ToMeth(a.pname, true)#> <#=a.pdefault?"= "+a.pda.Value:""#><#=i<l-1?",":""#>
 			<#}#>
 ){
-			var req = new VKRequest<<#=type#>>{
-				MethodName = "<#=mname#>",
-				Parameters = new Dictionary<string, string> {
+			return _rawapi.Executor.Parse(
+				await _rawapi.<#=ToMeth(mname)#>(
 					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
-{ "<#=a.pname#>", <#=Stringify(ToMeth(a.pname, true), a.ptype)#> }<#=i<l-1?",":""#>
-			<#}#>
-	}
-			};
-	<#if (!needToken){#>
-		if (IsLogged){
-	<#}#>
-			req.Token = CurrentToken;
-			<#=!needToken?"}":""#>
-			return req;
+						<#=ToMeth(a.pname, true)#><#=i<l-1?",":""#>
+					<#}#>
+				)
+			);
 		}
 	<#}#>
 }
 }
 <#+
-public static string ToSnake(string name)
-{
-    var t = new StringBuilder();
-    t.Append(Char.ToLower(name[0]));
-    for (var index = 1; index < name.Length; index++)
-    {
-        var c = name[index];
-        //add '_' before numbers and captials 
-        if (Char.IsUpper(c) || (Char.IsNumber(c) && !Char.IsNumber(name[index - 1])))
-        {
-            t.Append('_');
-            t.Append(Char.ToLower(c));
-        }
-        else t.Append(c);
-    }
-    return t.ToString();
-}
 public static string ToMeth(string name,bool p=false)
 {
     var t = new StringBuilder();
@@ -102,25 +77,5 @@ public static string ToMeth(string name,bool p=false)
         else t.Append(c);
     }
     return t.ToString();
-}
-public static string Stringify(string name, string type){
-	if (type=="string")
-		return name;
-	if (type=="bool")
-		return "("+name+"?1:0).ToNCString()";
-	if (type=="bool?")
-		return name=" != null ? ( "+name+".Value ? 1 : 0 ).ToNCString() : \"\"";
-	var nums = "int,uint,byte,sbyte,short,ushort,long,ulong".Split(',');
-	if (nums.Any(a=>a==type))
-		return name+".ToNCString()";
-	if (nums.Any(a=>type==a+"?"))
-		return "MiscTools.NullableString("+name+")";
-	if (nums.Any(a=>type==a+"[]"))
-		return name+".ToNCStringA()";
-	if (type=="string[]")
-		return "String.Join(\",\","+name+")";
-	if (Regex.IsMatch(type, @"Tuple\<[a-zA-Z]+,[a-zA-Z]+\>\[\]"))
-		return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
-	return "";
 }
 #>

@@ -15,8 +15,6 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -29,8 +27,6 @@ namespace VKSharp {
                     { "comment_id", comment_id.ToNCString() }
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -42,8 +38,6 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -55,8 +49,6 @@ namespace VKSharp {
                     { "topic_id", topicId.ToNCString() },
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
@@ -69,8 +61,6 @@ namespace VKSharp {
                     { "comment_id", comment_id.ToNCString() }
                 }
             };
-            if (!IsLogged)
-                throw new InvalidOperationException("This method requires auth!");
             req.Token = CurrenToken;
             await _executor.ExecAsync(req);
         }
