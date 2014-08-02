@@ -1460,6 +1460,254 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<PhotoAlbum> PhotosCreateAlbum(
+			 string title ,
+			 string description = "",
+			 uint? groupId = null,
+			 PrivacyType? privacy = null,
+			 PrivacyType? commentPrivacy = null
+			){
+			var req = new VKRequest<PhotoAlbum>{
+				MethodName = "photos.createAlbum",
+				Parameters = new Dictionary<string, string> {
+					{ "title", title },
+			{ "description", description },
+			{ "group_id", MiscTools.NullableString(groupId) },
+			{ "privacy", MiscTools.NullableString( (byte?)privacy ) },
+			{ "comment_privacy", MiscTools.NullableString( (byte?)commentPrivacy ) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> PhotosEditAlbum(
+			 int albumId ,
+			 string title ,
+			 string description = "",
+			 int? ownerId = null,
+			 PrivacyType? privacy = null,
+			 PrivacyType? commentPrivacy = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "photos.editAlbum",
+				Parameters = new Dictionary<string, string> {
+					{ "album_id", albumId.ToNCString() },
+			{ "title", title },
+			{ "description", description },
+			{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "privacy", MiscTools.NullableString( (byte?)privacy ) },
+			{ "comment_privacy", MiscTools.NullableString( (byte?)commentPrivacy ) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<SimpleEntity<string>> PhotosGetOwnerPhotoUploadServer(
+			){
+			var req = new VKRequest<SimpleEntity<string>>{
+				MethodName = "photos.getOwnerPhotoUploadServer",
+				Parameters = new Dictionary<string, string> {
+						}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<PhotosUploadServer> PhotosGetUploadServer(
+			 long albumId ,
+			 uint? groupId = null
+			){
+			var req = new VKRequest<PhotosUploadServer>{
+				MethodName = "photos.getUploadServer",
+				Parameters = new Dictionary<string, string> {
+					{ "album_id", albumId.ToNCString() },
+			{ "group_id", MiscTools.NullableString(groupId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> PhotosReorderAlbums(
+			 int albumId ,
+			 int? ownerId = null,
+			 int? after = null,
+			 int? before = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "photos.reorderAlbums",
+				Parameters = new Dictionary<string, string> {
+					{ "album_id", albumId.ToNCString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "after", MiscTools.NullableString(after) },
+			{ "before", MiscTools.NullableString(before) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> PhotosReorderPhotos(
+			 int photoId ,
+			 int? ownerId = null,
+			 int? after = null,
+			 int? before = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "photos.reorderPhotos",
+				Parameters = new Dictionary<string, string> {
+					{ "photo_id", photoId.ToNCString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "after", MiscTools.NullableString(after) },
+			{ "before", MiscTools.NullableString(before) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> PhotosMove(
+			 int photoId ,
+			 int targetAlbumId ,
+			 int? ownerId = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "photos.move",
+				Parameters = new Dictionary<string, string> {
+					{ "photo_id", photoId.ToNCString() },
+			{ "target_album_id", targetAlbumId.ToNCString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> PhotosMakeCover(
+			 int photoId ,
+			 int albumId ,
+			 int? ownerId = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "photos.makeCover",
+				Parameters = new Dictionary<string, string> {
+					{ "photo_id", photoId.ToNCString() },
+			{ "album_id", albumId.ToNCString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<EntityList<Photo>> PhotosGetAll(
+			 int? ownerId = null,
+			 bool extended = false,
+			 uint offset = 0,
+			 uint count = 100,
+			 bool noServiceAlbums = false
+			){
+			var req = new VKRequest<EntityList<Photo>>{
+				MethodName = "photos.getAll",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "extended", (extended?1:0).ToNCString() },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() },
+			{ "no_service_albums", (noServiceAlbums?1:0).ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<EntityList<Photo>> PhotosGet(
+			 int? ownerId = null,
+			 int? albumId = null,
+			 int[] photoIds = null,
+			 bool rev = true,
+			 bool extended = false,
+			 FeedType? feedType = null,
+			 uint? feed = null,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<EntityList<Photo>>{
+				MethodName = "photos.get",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "album_id", MiscTools.NullableString(albumId) },
+			{ "photo_ids", photoIds.ToNCStringA() },
+			{ "rev", (rev?1:0).ToNCString() },
+			{ "extended", (extended?1:0).ToNCString() },
+			{ "feed_type", MiscTools.NullableString( feedType ) },
+			{ "feed", MiscTools.NullableString(feed) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<EntityList<Photo>> PhotosGet(
+			 SpecialAlbum albumId ,
+			 int? ownerId = null,
+			 int[] photoIds = null,
+			 bool rev = true,
+			 bool extended = false,
+			 FeedType? feedType = null,
+			 uint? feed = null,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<EntityList<Photo>>{
+				MethodName = "photos.get",
+				Parameters = new Dictionary<string, string> {
+					{ "album_id", albumId.ToNClString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "photo_ids", photoIds.ToNCStringA() },
+			{ "rev", (rev?1:0).ToNCString() },
+			{ "extended", (extended?1:0).ToNCString() },
+			{ "feed_type", MiscTools.NullableString( feedType ) },
+			{ "feed", MiscTools.NullableString(feed) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<EntityList<PhotoAlbum>> PhotosGetAlbums(
+			 int? ownerId = null,
+			 uint offset = 0,
+			 uint count = 100,
+			 bool needSystem = true,
+			 bool needCovers = true,
+			params long[] albumIds 
+			){
+			var req = new VKRequest<EntityList<PhotoAlbum>>{
+				MethodName = "photos.getAlbums",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", MiscTools.NullableString(ownerId) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() },
+			{ "need_system", (needSystem?1:0).ToNCString() },
+			{ "need_covers", (needCovers?1:0).ToNCString() },
+			{ "album_ids", albumIds.ToNCStringA() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
 		public VKRequest<Status> StatusGet(
 			 int userId 
 			){

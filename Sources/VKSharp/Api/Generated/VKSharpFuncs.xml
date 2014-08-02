@@ -763,6 +763,139 @@
       <param name="group_id" type="uint?" default="null"/>
     </params>
   </method>
+  <method name="photos.createAlbum">
+    <request type="PhotoAlbum" need_token="true"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="title" type="string"/>
+      <param name="description" type="string" default="&quot;&quot;" />
+      <param name="group_id" type="uint?" default="null" />
+      <param name="privacy" type="PrivacyType?" default="null"
+             custom="MiscTools.NullableString( (byte?)#name )"/>
+      <param name="comment_privacy" type="PrivacyType?" default="null"
+             custom="MiscTools.NullableString( (byte?)#name )"/>
+    </params>
+  </method>
+  <method name="photos.editAlbum">
+    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
+    <return parse="false" multiple="false"/>
+    <params>
+      <param name="album_id" type="int"/>
+      <param name="title" type="string"/>
+      <param name="description" type="string" default="&quot;&quot;" />
+      <param name="owner_id" type="int?" default="null" />
+      <param name="privacy" type="PrivacyType?" default="null"
+             custom="MiscTools.NullableString( (byte?)#name )"/>
+      <param name="comment_privacy" type="PrivacyType?" default="null"
+             custom="MiscTools.NullableString( (byte?)#name )"/>
+    </params>
+  </method>
+  <method name="photos.getOwnerPhotoUploadServer">
+    <request type="SimpleEntity&lt;string&gt;" need_token="true"/>
+    <return parse="true" multiple="false"/>
+  </method>
+  <method name="photos.getUploadServer">
+    <request type="PhotosUploadServer" need_token="true"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="album_id" type="long"/>
+      <param name="group_id" type="uint?" default="null"/>
+    </params>
+  </method>
+  <method name="photos.reorderAlbums">
+    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
+    <return parse="false" multiple="false"/>
+    <params>
+      <param name="album_id" type="int"/>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="after" type="int?" default="null"/>
+      <param name="before" type="int?" default="null"/>
+    </params>
+  </method>
+  <method name="photos.reorderPhotos">
+    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
+    <return parse="false" multiple="false"/>
+    <params>
+      <param name="photo_id" type="int"/>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="after" type="int?" default="null"/>
+      <param name="before" type="int?" default="null"/>
+    </params>
+  </method>
+  <method name="photos.move">
+    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
+    <return parse="false" multiple="false"/>
+    <params>
+      <param name="photo_id" type="int"/>
+      <param name="target_album_id" type="int"/>
+      <param name="owner_id" type="int?" default="null"/>
+    </params>
+  </method>
+  <method name="photos.makeCover">
+    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
+    <return parse="false" multiple="false"/>
+    <params>
+      <param name="photo_id" type="int"/>
+      <param name="album_id" type="int"/>
+      <param name="owner_id" type="int?" default="null"/>
+    </params>
+  </method>
+  <method name="photos.getAll">
+    <request type="EntityList&lt;Photo&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="extended" type="bool" default="false"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="no_service_albums" type="bool" default="false"/>
+    </params>
+  </method>
+  <method name="photos.get">
+    <request type="EntityList&lt;Photo&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="album_id" type="int?" default="null"/>
+      <param name="photo_ids" type="int[]" default="null"/>
+      <param name="rev" type="bool" default="true"/>
+      <param name="extended" type="bool" default="false"/>
+      <param name="feed_type" type="FeedType?" default="null"
+             custom="MiscTools.NullableString( #name )"/>
+      <param name="feed" type="uint?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="photos.get">
+    <request type="EntityList&lt;Photo&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="album_id" type="SpecialAlbum"
+             custom="#name.ToNClString()"/>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="photo_ids" type="int[]" default="null"/>
+      <param name="rev" type="bool" default="true"/>
+      <param name="extended" type="bool" default="false"/>
+      <param name="feed_type" type="FeedType?" default="null"
+             custom="MiscTools.NullableString( #name )"/>
+      <param name="feed" type="uint?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+    </params>
+  </method>
+  <method name="photos.getAlbums">
+    <request type="EntityList&lt;PhotoAlbum&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="owner_id" type="int?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="need_system" type="bool" default="true"/>
+      <param name="need_covers" type="bool" default="true"/>
+      <param name="album_ids" type="long[]" params="params" />
+    </params>
+  </method>
   <!--Status-->
   <method name="status.get">
     <request type="Status" need_token="true"/>

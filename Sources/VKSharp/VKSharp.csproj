@@ -53,6 +53,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Generated\RequestApi1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Api\Generated\VkApi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VkApi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Core\Entities\Onlines.cs" />
     <Compile Include="Core\Entities\Status.cs" />
     <Compile Include="Core\EntityParsers\Xml\OnlinesParser.cs" />
@@ -70,7 +80,6 @@
     <Compile Include="Data\Parameters\UsersSearchParams.cs" />
     <Compile Include="Data\Parameters\AudioSortOrder.cs" />
     <Compile Include="Api\Photos.cs" />
-    <Compile Include="Api\Wall.cs" />
     <Compile Include="Core\Entities\City.cs" />
     <Compile Include="Core\Entities\DatabaseEntry.cs" />
     <Compile Include="Core\Entities\LinkCheckResult.cs" />
@@ -118,16 +127,6 @@
     <Compile Include="Data\Parameters\NameCase.cs" />
     <Compile Include="Data\Executors\SimpleXMLExecutor.cs" />
     <Compile Include="Data\Parameters\UserFields.cs" />
-    <Compile Include="Generated\RequestApi.cs">
-      <DependentUpon>RequestApi.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Generated\VkApi1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VkApi.tt</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
@@ -222,15 +221,15 @@
     <Compile Include="Core\EntityParsers\Xml\LinkParser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Generated\VkApi.tt">
+    <None Include="Api\Generated\RequestApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VkApi1.cs</LastGenOutput>
+      <LastGenOutput>RequestApi1.cs</LastGenOutput>
     </None>
-    <None Include="Generated\RequestApi.tt">
+    <None Include="Api\Generated\VkApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>RequestApi.cs</LastGenOutput>
+      <LastGenOutput>VkApi.cs</LastGenOutput>
     </None>
-    <None Include="Generated\VKSharpFuncs.xsd">
+    <None Include="Api\Generated\VKSharpFuncs.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -244,12 +243,10 @@
   </Target>
   -->
   <ItemGroup>
-    <Content Include="Generated\VKSharpFuncs.xml">
-      <SubType>Designer</SubType>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Api\Generated\VKSharpFuncs.xml" />
   </ItemGroup>
   <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

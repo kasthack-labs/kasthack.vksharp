@@ -1066,6 +1066,202 @@ namespace VKSharp {
 									)
 			)).Data.FirstOrDefault();
 		}
+		public async Task<PhotoAlbum> PhotosCreateAlbumAsync(
+			 string title ,
+			 string description = "",
+			 uint? groupId = null,
+			 PrivacyType? privacy = null,
+			 PrivacyType? commentPrivacy = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosCreateAlbum(
+											title,
+											description,
+											groupId,
+											privacy,
+											commentPrivacy
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task PhotosEditAlbumAsync(
+			 int albumId ,
+			 string title ,
+			 string description = "",
+			 int? ownerId = null,
+			 PrivacyType? privacy = null,
+			 PrivacyType? commentPrivacy = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.PhotosEditAlbum(
+											albumId,
+											title,
+											description,
+											ownerId,
+											privacy,
+											commentPrivacy
+									)
+			);
+		}
+		public async Task<SimpleEntity<string>> PhotosGetOwnerPhotoUploadServerAsync(
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGetOwnerPhotoUploadServer(
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<PhotosUploadServer> PhotosGetUploadServerAsync(
+			 long albumId ,
+			 uint? groupId = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGetUploadServer(
+											albumId,
+											groupId
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task PhotosReorderAlbumsAsync(
+			 int albumId ,
+			 int? ownerId = null,
+			 int? after = null,
+			 int? before = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.PhotosReorderAlbums(
+											albumId,
+											ownerId,
+											after,
+											before
+									)
+			);
+		}
+		public async Task PhotosReorderPhotosAsync(
+			 int photoId ,
+			 int? ownerId = null,
+			 int? after = null,
+			 int? before = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.PhotosReorderPhotos(
+											photoId,
+											ownerId,
+											after,
+											before
+									)
+			);
+		}
+		public async Task PhotosMoveAsync(
+			 int photoId ,
+			 int targetAlbumId ,
+			 int? ownerId = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.PhotosMove(
+											photoId,
+											targetAlbumId,
+											ownerId
+									)
+			);
+		}
+		public async Task PhotosMakeCoverAsync(
+			 int photoId ,
+			 int albumId ,
+			 int? ownerId = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.PhotosMakeCover(
+											photoId,
+											albumId,
+											ownerId
+									)
+			);
+		}
+		public async Task<EntityList<Photo>> PhotosGetAllAsync(
+			 int? ownerId = null,
+			 bool extended = false,
+			 uint offset = 0,
+			 uint count = 100,
+			 bool noServiceAlbums = false
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGetAll(
+											ownerId,
+											extended,
+											offset,
+											count,
+											noServiceAlbums
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<EntityList<Photo>> PhotosGetAsync(
+			 int? ownerId = null,
+			 int? albumId = null,
+			 int[] photoIds = null,
+			 bool rev = true,
+			 bool extended = false,
+			 FeedType? feedType = null,
+			 uint? feed = null,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGet(
+											ownerId,
+											albumId,
+											photoIds,
+											rev,
+											extended,
+											feedType,
+											feed,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<EntityList<Photo>> PhotosGetAsync(
+			 SpecialAlbum albumId ,
+			 int? ownerId = null,
+			 int[] photoIds = null,
+			 bool rev = true,
+			 bool extended = false,
+			 FeedType? feedType = null,
+			 uint? feed = null,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGet(
+											albumId,
+											ownerId,
+											photoIds,
+											rev,
+											extended,
+											feedType,
+											feed,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<EntityList<PhotoAlbum>> PhotosGetAlbumsAsync(
+			 int? ownerId = null,
+			 uint offset = 0,
+			 uint count = 100,
+			 bool needSystem = true,
+			 bool needCovers = true,
+			params long[] albumIds 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGetAlbums(
+											ownerId,
+											offset,
+											count,
+											needSystem,
+											needCovers,
+											albumIds
+									)
+			)).Data.FirstOrDefault();
+		}
 		public async Task<Status[]> StatusGetAsync(
 			 int userId 
 			){
