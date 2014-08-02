@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
+using VKSharp.Data.Parameters;
 using VKSharp.Helpers.PrimitiveEntities;
 
 // ReSharper disable UnusedMember.Global
@@ -190,6 +191,17 @@ namespace VKSharp {
 									)
 			)).Data;
 		}
+		public async Task<Audio[]> AudioGetByIdAsync(
+			 bool itunes = false,
+			params Tuple<int, int>[] audios 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.AudioGetById(
+											itunes,
+											audios
+									)
+			)).Data;
+		}
 		public async Task<StructEntity<int>> AudioGetCountAsync(
 			 int? ownerId = null
 			){
@@ -261,6 +273,29 @@ namespace VKSharp {
 											title
 									)
 			)).Data;
+		}
+		public async Task<EntityList<Audio>> AudioSearchAsync(
+			 string q ,
+			 bool autoComplete = true,
+			 bool lyrics = false,
+			 bool performerOnly = false,
+			 AudioSortOrder sort = AudioSortOrder.ByRating,
+			 bool searchOwn = false,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.AudioSearch(
+											q,
+											autoComplete,
+											lyrics,
+											performerOnly,
+											sort,
+											searchOwn,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
 		}
 		public async Task<StructEntity<bool>> AuthCheckPhoneAsync(
 			 string phone ,
@@ -577,16 +612,65 @@ namespace VKSharp {
 									)
 			)).Data;
 		}
-		public async Task FriendsAddAsync(
+		public async Task<EntityList<User>> FriendsGetAsync(
+			 uint? userId = null,
+			 UserSortOrder order = UserSortOrder.ById,
+			 uint? listId = null,
+			 uint offset = 0,
+			 uint count = 100,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.FriendsGet(
+											userId,
+											order,
+											listId,
+											offset,
+											count,
+											fields,
+											nameCase
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<EntityList<User>> FriendsGetSuggestionsAsync(
+			 FriendSuggestionFilters filters = FriendSuggestionFilters.Everything,
+			 uint offset = 0,
+			 uint count = 100,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.FriendsGetSuggestions(
+											filters,
+											offset,
+											count,
+											fields,
+											nameCase
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<User[]> FriendsGetByPhonesAsync(
+			 ulong[] order ,
+			 UserFields fields = UserFields.None
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.FriendsGetByPhones(
+											order,
+											fields
+									)
+			)).Data;
+		}
+		public async Task<StructEntity<int>> FriendsAddAsync(
 			 uint userId ,
 			 string text = ""
 			){
-			await Executor.ExecAsync(
+			return (await Executor.ExecAsync(
 				_reqapi.FriendsAdd(
 											userId,
 											text
 									)
-			);
+			)).Data.FirstOrDefault();
 		}
 		public async Task FriendsDeleteAllRequestsAsync(
 			){
@@ -595,14 +679,23 @@ namespace VKSharp {
 									)
 			);
 		}
-		public async Task FriendsDeleteAsync(
+		public async Task<StructEntity<int>[]> FriendsGetRecentAsync(
+			 int? count = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.FriendsGetRecent(
+											count
+									)
+			)).Data;
+		}
+		public async Task<StructEntity<int>> FriendsDeleteAsync(
 			 uint userId 
 			){
-			await Executor.ExecAsync(
+			return (await Executor.ExecAsync(
 				_reqapi.FriendsDelete(
 											userId
 									)
-			);
+			)).Data.FirstOrDefault();
 		}
 		public async Task FriendsDeleteListAsync(
 			 uint listId 

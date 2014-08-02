@@ -5,6 +5,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Api;
+using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
@@ -267,6 +268,22 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<Audio> AudioGetById(
+			 bool itunes = false,
+			params Tuple<int, int>[] audios 
+			){
+			var req = new VKRequest<Audio>{
+				MethodName = "audio.getById",
+				Parameters = new Dictionary<string, string> {
+					{ "itunes", (itunes?1:0).ToNCString() },
+			{ "audios", String.Join(",",audios.Select(a=>a.Item1 +"_" +a.Item2)) }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
 		public VKRequest<StructEntity<int>> AudioGetCount(
 			 int? ownerId = null
 			){
@@ -364,6 +381,34 @@ namespace VKSharp {
 			};
 				req.Token = CurrentToken;
 			
+			return req;
+		}
+		public VKRequest<EntityList<Audio>> AudioSearch(
+			 string q ,
+			 bool autoComplete = true,
+			 bool lyrics = false,
+			 bool performerOnly = false,
+			 AudioSortOrder sort = AudioSortOrder.ByRating,
+			 bool searchOwn = false,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<EntityList<Audio>>{
+				MethodName = "audio.search",
+				Parameters = new Dictionary<string, string> {
+					{ "q", q },
+			{ "auto_complete", (autoComplete?1:0).ToNCString() },
+			{ "lyrics", (lyrics?1:0).ToNCString() },
+			{ "performer_only", (performerOnly?1:0).ToNCString() },
+			{ "sort", ((int)sort).ToNCString() },
+			{ "search_own", (searchOwn?1:0).ToNCString() },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
 			return req;
 		}
 		public VKRequest<StructEntity<bool>> AuthCheckPhone(
@@ -794,11 +839,74 @@ namespace VKSharp {
 			
 			return req;
 		}
-		public VKRequest<StructEntity<bool>> FriendsAdd(
+		public VKRequest<EntityList<User>> FriendsGet(
+			 uint? userId = null,
+			 UserSortOrder order = UserSortOrder.ById,
+			 uint? listId = null,
+			 uint offset = 0,
+			 uint count = 100,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom
+			){
+			var req = new VKRequest<EntityList<User>>{
+				MethodName = "friends.get",
+				Parameters = new Dictionary<string, string> {
+					{ "user_id", MiscTools.NullableString(userId) },
+			{ "order", order.ToNClString() },
+			{ "list_id", MiscTools.NullableString(listId) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "name_case", nameCase.ToNClString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<EntityList<User>> FriendsGetSuggestions(
+			 FriendSuggestionFilters filters = FriendSuggestionFilters.Everything,
+			 uint offset = 0,
+			 uint count = 100,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom
+			){
+			var req = new VKRequest<EntityList<User>>{
+				MethodName = "friends.getSuggestions",
+				Parameters = new Dictionary<string, string> {
+					{ "filters", String.Join( ",", MiscTools.GetFilterFields( filters ) ) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "name_case", nameCase.ToNClString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<User> FriendsGetByPhones(
+			 ulong[] order ,
+			 UserFields fields = UserFields.None
+			){
+			var req = new VKRequest<User>{
+				MethodName = "friends.getByPhones",
+				Parameters = new Dictionary<string, string> {
+					{ "order", String.Join( ",", order.Select( a => "+" + a ) ) },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<StructEntity<int>> FriendsAdd(
 			 uint userId ,
 			 string text = ""
 			){
-			var req = new VKRequest<StructEntity<bool>>{
+			var req = new VKRequest<StructEntity<int>>{
 				MethodName = "friends.add",
 				Parameters = new Dictionary<string, string> {
 					{ "user_id", userId.ToNCString() },
@@ -820,10 +928,23 @@ namespace VKSharp {
 			
 			return req;
 		}
-		public VKRequest<StructEntity<bool>> FriendsDelete(
+		public VKRequest<StructEntity<int>> FriendsGetRecent(
+			 int? count = null
+			){
+			var req = new VKRequest<StructEntity<int>>{
+				MethodName = "friends.getRecent",
+				Parameters = new Dictionary<string, string> {
+					{ "count", MiscTools.NullableString(count) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<int>> FriendsDelete(
 			 uint userId 
 			){
-			var req = new VKRequest<StructEntity<bool>>{
+			var req = new VKRequest<StructEntity<int>>{
 				MethodName = "friends.delete",
 				Parameters = new Dictionary<string, string> {
 					{ "user_id", userId.ToNCString() }

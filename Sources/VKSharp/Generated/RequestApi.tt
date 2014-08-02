@@ -3,7 +3,6 @@
 <#@ assembly Name="System.Configuration" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
-<#@ assembly name="System.Net" #>
 <#@ assembly name="System" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -18,6 +17,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Api;
+using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.PrimitiveEntities;
@@ -109,8 +109,10 @@ public static string Stringify(string name, string type){
 		return name+".ToNCStringA()";
 	if (type=="string[]")
 		return "String.Join(\",\","+name+")";
-	if (Regex.IsMatch(type, @"Tuple\<[a-zA-Z]+,[a-zA-Z]+\>\[\]"))
+	if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))
 		return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
+	if (type=="UserFields")
+		return "String.Join( \",\", MiscTools.GetUserFields( "+name+" ) )";
 	return "";
 }
 #>

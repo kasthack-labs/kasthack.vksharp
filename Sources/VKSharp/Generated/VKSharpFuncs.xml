@@ -131,6 +131,14 @@
       <param name="audios" type="string[]" params="params"/>
     </params>
   </method>
+  <method name="audio.getById">
+    <request type="Audio" need_token="false"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="itunes" type="bool" default="false"/>
+      <param name="audios" type="Tuple&lt;int, int&gt;[]" params="params"/>
+    </params>
+  </method>
   <method name="audio.getCount">
     <request type="StructEntity&lt;int&gt;" need_token="false"/>
     <return parse="true" multiple="false"/>
@@ -180,6 +188,20 @@
       <param name="hash" type="string"/>
       <param name="artist" type="string" default="&quot;&quot;"/>
       <param name="title" type="string" default="&quot;&quot;"/>
+    </params>
+  </method>
+  <method name="audio.search">
+    <request type="EntityList&lt;Audio&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="q" type="string"/>
+      <param name="auto_complete" type="bool" default="true"/>
+      <param name="lyrics" type="bool" default="false"/>
+      <param name="performer_only" type="bool" default="false"/>
+      <param name="sort" type="AudioSortOrder" default="AudioSortOrder.ByRating" custom="((int)#name).ToNCString()"/>
+      <param name="search_own" type="bool" default="false"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
     </params>
   </method>
   <!--Auth-->
@@ -407,9 +429,45 @@
     </params>
   </method>
   <!--Friends-->
+  <method name="friends.get">
+    <request type="EntityList&lt;User&gt;" need_token="false"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="user_id" type="uint?" default="null"/>
+      <param name="order" type="UserSortOrder" default="UserSortOrder.ById"
+             custom="#name.ToNClString()"/>
+      <param name="list_id" type="uint?" default="null"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="fields" type="UserFields" default="UserFields.None"/>
+      <param name="name_case" type="NameCase" default="NameCase.Nom"
+             custom="#name.ToNClString()"/>
+    </params>
+  </method>
+  <method name="friends.getSuggestions">
+    <request type="EntityList&lt;User&gt;" need_token="true"/>
+    <return parse="true" multiple="false"/>
+    <params>
+      <param name="filters" type="FriendSuggestionFilters" default="FriendSuggestionFilters.Everything"
+             custom="String.Join( &quot;,&quot;, MiscTools.GetFilterFields( #name ) )"/>
+      <param name="offset" type="uint" default="0"/>
+      <param name="count" type="uint" default="100"/>
+      <param name="fields" type="UserFields" default="UserFields.None"/>
+      <param name="name_case" type="NameCase" default="NameCase.Nom"
+             custom="#name.ToNClString()"/>
+    </params>
+  </method>
+  <method name="friends.getByPhones">
+    <request type="User" need_token="false"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="order" type="ulong[]" custom="String.Join( &quot;,&quot;, #name.Select( a => &quot;+&quot; + a ) )"/>
+      <param name="fields" type="UserFields" default="UserFields.None"/>
+    </params>
+  </method>
   <method name="friends.add">
-    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
-    <return parse="false" multiple="false"/>
+    <request type="StructEntity&lt;int&gt;" need_token="true"/>
+    <return parse="true" multiple="false"/>
     <params>
       <param name="user_id" type="uint"/>
       <param name="text" type="string" default="&quot;&quot;"/>
@@ -419,9 +477,16 @@
     <request type="StructEntity&lt;bool&gt;" need_token="true"/>
     <return parse="false" multiple="false"/>
   </method>
+  <method name="friends.getRecent">
+    <request type="StructEntity&lt;int&gt;" need_token="true"/>
+    <return parse="true" multiple="true"/>
+    <params>
+      <param name="count" type="int?" default="null"/>
+    </params>
+  </method>
   <method name="friends.delete">
-    <request type="StructEntity&lt;bool&gt;" need_token="true"/>
-    <return parse="false" multiple="false"/>
+    <request type="StructEntity&lt;int&gt;" need_token="true"/>
+    <return parse="true" multiple="false"/>
     <params>
       <param name="user_id" type="uint"/>
     </params>
@@ -669,7 +734,7 @@
       <param name="owner_id" type="int"/>
       <param name="photo_id" type="uint" />
       <param name="reason" type="ReportReason?" default="null"
-             custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()"/>\
+             custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()"/>
     </params>
   </method>
   <method name="photos.copy">
@@ -883,6 +948,7 @@
       <param name="q" type="string" default="&quot;&quot;"/>
       <param name="need_all" type="bool" default="false"/>
       <param name="owner_id" type="int?" default="null"/>
+      <param name="user_id" type="uint?" default="null"/>
       <param name="offset" type="uint" default="0"/>
       <param name="count" type="uint" default="100"/>
       <param name="ids" type="uint[]" params="params"/>
