@@ -13,9 +13,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
-	public class RequestApi {
-		public VKToken CurrentToken {get;set;}
-		public bool IsLogged {get;set;} 
+	public partial class RequestApi {
 		public VKRequest<StructEntity<bool>> AccountSetNameInMenu(
 			 string name 
 			){
@@ -25,7 +23,7 @@ namespace VKSharp {
 					{ "name", name }
 				}
 			};
-				req.Token = CurrentToken;
+            req.Token = CurrentToken;
 			
 			return req;
 		}
@@ -62,7 +60,7 @@ namespace VKSharp {
 					{ "token", token }
 				}
 			};
-				req.Token = CurrentToken;
+            req.Token = CurrentToken;
 			
 			return req;
 		}

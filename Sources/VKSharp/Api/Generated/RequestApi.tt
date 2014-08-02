@@ -25,9 +25,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
-	public class RequestApi {
-		public VKToken CurrentToken {get;set;}
-		public bool IsLogged {get;set;} 
+	public partial class RequestApi {
 	<#
 		string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
 		var d = XDocument.Load( inputFile );

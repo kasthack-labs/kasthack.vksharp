@@ -451,7 +451,7 @@ namespace TestApp {
                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
                             { "u0", string.Join( ",",uintse.Value ) }
                         },
-                    Token = IsLogged ? CurrenToken : null
+                    Token = IsLogged ? CurrentToken : null
                 };
                 retl.Add(await _executor.ExecRawAsync(req));
                 await Task.Delay( 1000 );
@@ -466,7 +466,7 @@ namespace TestApp {
                     new Dictionary<string, string> {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
                     },
-                Token = IsLogged ? CurrenToken : null
+                Token = IsLogged ? CurrentToken : null
             };
             var ids_s = ids.Select((a, index) => new { a, index })
                 .GroupBy(a => a.index / 1000)
@@ -487,7 +487,7 @@ namespace TestApp {
                 Parameters =
                     new Dictionary<string, string> {
                     },
-                Token = IsLogged ? CurrenToken : null
+                Token = IsLogged ? CurrentToken : null
             };
             var ids_s = ids.Select((a, index) => new { a, index })
                 .GroupBy(a => a.index / 1000)

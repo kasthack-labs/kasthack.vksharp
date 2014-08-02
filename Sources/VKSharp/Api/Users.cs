@@ -46,7 +46,7 @@ namespace VKSharp {
                         { "position", usersSearchParams.Position },
                         { "group_id", MiscTools.NullableString( usersSearchParams.GroupId ) }
                     },
-                Token = IsLogged ? CurrenToken : null
+                Token = IsLogged ? CurrentToken : null
             };
             return ( await _executor.ExecAsync( req ) ).Data;
         }
