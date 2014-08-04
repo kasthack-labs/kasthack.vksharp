@@ -1004,6 +1004,22 @@
       <param name="count" type="uint" default="100" />
     </params>
   </method>
+  <method name="users.getNearby">
+    <request type="EntityList&lt;User&gt;" need_token="false" />
+    <return parse="true" multiple="false" />
+    <params>
+      <param name="latitude" type="double"/>
+      <param name="longitude" type="double"/>
+      <param name="accuracy" type="uint?" default="null"/>
+      <param name="timeout" type="uint?" default="null"/>
+      <param name="radius" type="byte" default="null"/><!--TODO: enum mapping-->
+      <param name="fields" type="UserFields" default="UserFields.None" />
+      <param name="name_case" type="NameCase" default="NameCase.Nom"
+             custom="#name.ToNClString()" />
+      <param name="offset" type="uint" default="0" />
+      <param name="count" type="uint" default="100" />
+    </params>
+  </method>
   <!--Utils-->
   <method name="utils.checkLink">
     <request type="LinkCheckResult" need_token="false" />

@@ -25,5 +25,10 @@ namespace VKSharp {
             IsLogged = true;
         }
         public bool IsLogged { get; set; }
+        public int TokenCount {
+            get {
+                return _tokens.Count;
+            }
+        }
     }
 }

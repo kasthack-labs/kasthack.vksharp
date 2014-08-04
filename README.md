@@ -149,12 +149,13 @@ VKSharp
 	* storage.get
 	* storage.getKeys
 	* storage.set
-* Users
+* Users [*^search]
 	* users.get
 	* users.getFollowers
 	* users.getSubscriptions
 	* users.isAppUser
 	* users.report
+	* users.getNearby
 * Utils
 	* utils.checkLink
 	* utils.getServerTime

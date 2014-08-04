@@ -1,0 +1,76 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly Name="System.Configuration" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Threading.Tasks;
+using VKSharp.Core.Enums;
+using VKSharp.Data.Parameters;
+
+// ReSharper disable UnusedMember.Global
+namespace VKSharp {
+	public partial class RawApi {
+	<#
+		string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
+		var d = XDocument.Load( inputFile );
+		var n = d.Root;
+		foreach ( var node in n.Elements() ) {
+			var rn = node.Element( "request" );
+			var retn = node.Element( "return" );
+			var parse = bool.Parse(retn.Attribute("parse").Value);
+			var multiple = bool.Parse(retn.Attribute("multiple").Value);
+			var type = rn.Attribute("type").Value;
+			var needToken = bool.Parse(rn.Attribute( "need_token" ).Value);
+			var mname = node.Attribute("name").Value;
+	#>
+	public async Task<string> <#=ToMeth(mname)#>Async(
+			<#
+				var pn = node.Element("params")??new XElement("params");
+				var els = pn.Elements().ToArray();
+				var pms = els.Select(pnode=>new{
+					ptype = pnode.Attribute("type").Value,
+					pname= pnode.Attribute("name").Value,
+					pda = pnode.Attribute("default"),
+					pdefault = pnode.Attribute("default")!=null,
+					pms = pnode.Attribute("params")!=null
+				}).ToArray();
+				var l = els.Length;
+				for (var i =0; i<l; i++){ var a = pms[i]; #>
+<#=a.pms?"params":""#> <#=a.ptype#> <#=ToMeth(a.pname, true)#> <#=a.pdefault?"= "+a.pda.Value:""#><#=i<l-1?",":""#>
+			<#}#>
+){
+			return await Executor.ExecRawAsync(
+				_reqapi.<#=ToMeth(mname)#>(
+					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
+						<#=ToMeth(a.pname, true)#><#=i<l-1?",":""#>
+					<#}#>
+				)
+			);
+		}
+	<#}#>
+}
+}
+// ReSharper restore UnusedMember.Global
+<#+
+public static string ToMeth(string name,bool p=false)
+{
+    var t = new StringBuilder();
+    t.Append(p?Char.ToLower(name[0]):Char.ToUpper(name[0]));
+    for (var index = 1; index < name.Length; index++)
+    {
+        var c = name[index];
+        //add '_' before numbers and captials 
+        if (c=='.'||c=='_') t.Append(Char.ToUpper(name[++index]));
+        else t.Append(c);
+    }
+    return t.ToString();
+}
+#>

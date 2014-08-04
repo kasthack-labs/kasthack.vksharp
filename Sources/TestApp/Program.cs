@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
@@ -15,6 +16,7 @@ using EpicMorg.Net;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Core.Entities;
+using VKSharp.Core.Enums;
 using VKSharp.Data.Api;
 using VKSharp.Data.Executors;
 using VKSharp.Data.Parameters;
@@ -35,22 +37,23 @@ namespace TestApp {
         }
 
         static async Task Main2() {
-            var vk = new VKExt();
+            var vk = new RawApi();
 #if !DEBUG
-            var str = VKToken.GetOAuthURL( 3174839,VKPermission.Everything^(VKPermission.Notify|VKPermission.Nohttps) );
+            var str = VKToken.GetOAuthURL( 3174839,VKPermission.Offline|VKPermission.Nohttps );
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
+            vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 #else
-            string redirecturl=null;
             try{
-                redirecturl = File.ReadAllText( "debug.token" );
+                foreach (var v in File.ReadAllLines("debug.token"))
+                    vk.AddToken(VKToken.FromRedirectUrl(v));
             }
             catch(Exception ex){
                 ex.Message.Dump();
             }
 #endif
             //WebRequest.DefaultWebProxy = WebRequest.GetSystemWebProxy();
-            vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
+            //vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
             //await FetchDocs( vk );
             //await MultiSpeed( vk );
             //await CheckOnlines( vk );
@@ -72,11 +75,62 @@ namespace TestApp {
             //await Reorder( vk );
             //await GetArtistsStats(vk);
             //await GetArtistsStats(vk);
-            await GetUsersTest(vk);
+            //await GetUsersTest(vk);
             //await CheckLyrics(vk);
             //await CheckMutual( vk );
             //await GetSubscriptions( vk );
+            await VkUsersDump(vk);
+        }
+        private static SemaphoreSlim vksem = new SemaphoreSlim(int.Parse(GetCfg("threads")));
+        private const int sec = 400;
+        private static string vkpath = GetCfg( "OutPath" );
+        private static async Task VkUsersDump( RawApi vk ) {
+            var start = int.Parse( GetCfg( "start" ) );
+            var end = int.Parse(GetCfg("end"));
+            var chunk = int.Parse(GetCfg("chunk"));
+            Console.WriteLine( "Dumping from {0} to {1} to {2}", start, end, vkpath );
+            for ( int i = start; i < end; i+=chunk ) {
+                await vksem.WaitAsync();
+                Console.WriteLine(  );
+                var v = LoadChunk( vk, i, chunk );
+                if ( v.Status == TaskStatus.RanToCompletion )
+                    continue;
+                await Task.Delay( sec / Math.Max(vk.TokenCount,1) );
+            }
+        }
 
+        private static string GetCfg( string name ) {
+            return ConfigurationSettings.AppSettings[ name ];
+        }
+
+        private static async Task LoadChunk(RawApi vk, int i, int chunk)
+        {
+            const int M = 1000000;
+            var outdir = Path.Combine(vkpath, (i / M+1).ToNCString());
+            var path = Path.Combine(outdir, string.Format("{0}_{1}.xml.gz", i, (i + chunk)));
+            try {
+                if ( !Directory.Exists( outdir ) )
+                    Directory.CreateDirectory( outdir );
+                if ( File.Exists( path ) ) {
+                    Console.WriteLine( path + " exists. Skipping" );
+                    return;
+                }
+                var str = await vk.UsersGetAsync( UserFields.Everything, NameCase.Nom, Enumerable.Range( i, chunk ).Select( a => (uint) a ).ToArray() );
+                using ( var file = File.Open( path, FileMode.OpenOrCreate, FileAccess.ReadWrite ) ) {
+                    using ( var gz = new GZipStream( file, CompressionMode.Compress, true ) ) {
+                        using ( var tw = new StreamWriter( gz, Encoding.UTF8 ) ) {
+                            await tw.WriteAsync( str );
+                        }
+                    }
+                }
+                Console.WriteLine( "Dumped " + path );
+            }
+            catch {
+                Console.WriteLine( "Failed do dump" + path );
+            }
+            finally {
+                vksem.Release();
+            }
         }
 
         private static async Task FetchDocs( VKExt vk ) {
