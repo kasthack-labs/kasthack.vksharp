@@ -3,7 +3,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using EpicMorg.Net;
@@ -67,9 +69,11 @@ namespace VKSharp.Helpers
         /// <returns><c>true</c>, if enum was parsed, <c>false</c> otherwise.</returns>
         /// <param name="s">Input string</param>
         /// <param name="value">Output value</param>
-        private static bool ParseEnum<TEnum, TBase>(string s, out TEnum value) where TEnum:struct {
+        private static bool ParseEnum<TEnum, TBase>(string s, out TEnum value) where TEnum:struct{
             long i;
             var ret = long.TryParse( s, out i );
+            //trim to prevent oveflow exception
+            i &= ( -1L ^ ( 1L << 63 ) ) >> ( 63 - ( Marshal.SizeOf<TBase>() * 8 ) );
             if ( ret )
                 value =  (TEnum) Convert.ChangeType( i, typeof(TBase) );
             else ret = Enum.TryParse( s, true, out value );
