@@ -6,5 +6,7 @@ namespace VKSharp.Data.Executors {
     public interface IExecutor {
         Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>;
         Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T>;
+
+        VKResponse<T> Parse<T>( string input ) where T : IVKEntity<T>;
     }
 }

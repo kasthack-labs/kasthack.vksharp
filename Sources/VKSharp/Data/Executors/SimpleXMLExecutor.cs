@@ -180,6 +180,10 @@ namespace VKSharp.Data.Executors {
             return await ParserHelper.ExecRawAsync( request, ReqExt );
         }
 
+        public VKResponse<T> Parse<T>( string input ) where T : IVKEntity<T> {
+            return ParseResponse<T>( input );
+        }
+
         public VKResponse<T> ParseResponse<T>( string input ) where T : IVKEntity<T> {
             return ParseResponseXml<T>( XDocument.Parse( input ) );
         }
