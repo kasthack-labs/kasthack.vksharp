@@ -8,11 +8,10 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public override bool UpdateFromFragment (XElement node, StandInLife entity) {
             if ( node.Name != "langs" )
                 return base.UpdateFromFragment( node, entity );
-            else
-                entity.Langs = GetP<SimpleEntity<String>>()
-                    .ParseAllFromXml( node.Elements() )
-                    .Select( a => a.Data )
-                    .ToArray();
+            entity.Langs = GetP<SimpleEntity<String>>()
+                .ParseAllFromXml( node.Elements() )
+                .Select( a => a.Data )
+                .ToArray();
             return true;
         }
     }

@@ -205,7 +205,7 @@
       <param name="count" type="uint" default="100" />
     </params>
   </method>
-  <!--Auth-->
+  <!--Auth^signup-->
   <method name="auth.checkPhone">
     <request type="StructEntity&lt;bool&gt;" need_token="false" />
     <return parse="true" multiple="false" />
@@ -226,6 +226,13 @@
       <param name="password" type="string" default="&quot;&quot;" />
       <param name="test_mode" type="bool" default="false" />
       <param name="intro" type="int?" default="null" />
+    </params>
+  </method>
+  <method name="auth.restore">
+    <request type="AuthRestore" need_token="false" />
+    <return parse="true" multiple="false" />
+    <params>
+      <param name="phone" type="long" />
     </params>
   </method>
   <!--Board-->
@@ -956,7 +963,7 @@
       <param name="global" type="bool" default="false" />
     </params>
   </method>
-  <!--Users-->
+  <!--Users^search-->
   <method name="users.isAppUser">
     <request type="StructEntity&lt;bool&gt;" need_token="false" />
     <return parse="true" multiple="false" />
@@ -1096,7 +1103,7 @@
       <param name="search_query" type="string" default="&quot;&quot;" />
     </params>
   </method>
-  <!--Wall-->
+  <!--Wall^search^post^repost^getReposts^edit^getComments^addComment^editComment-->
   <method name="wall.delete">
     <request type="StructEntity&lt;bool&gt;" need_token="true" />
     <return parse="false" multiple="false" />
@@ -1177,6 +1184,31 @@
       <param name="count" type="uint" default="100" />
     </params>
   </method>
+  <method name="wall.pin">
+    <request type="StructEntity&lt;bool&gt;" need_token="true" />
+    <return parse="false" multiple="false" />
+    <params>
+      <param name="post_id" type="uint" />
+      <param name="owner_id" type="int?" default="null" />
+    </params>
+  </method>
+  <method name="wall.unpin">
+    <request type="StructEntity&lt;bool&gt;" need_token="true" />
+    <return parse="false" multiple="false" />
+    <params>
+      <param name="post_id" type="uint" />
+      <param name="owner_id" type="int?" default="null" />
+    </params>
+  </method>
+  <method name="wall.repost">
+    <request type="StructEntity&lt;bool&gt;" need_token="true" />
+    <return parse="false" multiple="false" />
+    <params>
+      <param name="post_id" type="uint" />
+      <param name="owner_id" type="int?" default="null" />
+    </params>
+  </method>
+
   <!--
 	<method name="audio.addAlbum">
 		<request type="StructEntity&lt;int&gt;" need_token="false"/>
