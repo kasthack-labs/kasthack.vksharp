@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Threading.Tasks;
 using VKSharp.Core.Enums;
 using VKSharp.Data.Parameters;
@@ -324,6 +325,15 @@ namespace VKSharp {
 											password,
 											testMode,
 											intro
+									)
+			);
+		}
+		public async Task<string> AuthRestoreAsync(
+			 long phone 
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.AuthRestore(
+											phone
 									)
 			);
 		}
@@ -739,6 +749,58 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task<string> GroupsGetByIdAsync(
+			 string[] groupIds ,
+			 GroupFields fields 
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.GroupsGetById(
+											groupIds,
+											fields
+									)
+			);
+		}
+		public async Task<string> GroupsGetByIdAsync(
+			 uint groupId ,
+			 GroupFields fields 
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.GroupsGetById(
+											groupId,
+											fields
+									)
+			);
+		}
+		public async Task<string> GroupsGetMembersAsync(
+			 uint groupId ,
+			 UserFields fields = UserFields.Everything,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.GroupsGetMembers(
+											groupId,
+											fields,
+											offset,
+											count
+									)
+			);
+		}
+		public async Task<string> GroupsGetMembersAsync(
+			 string groupId ,
+			 UserFields fields = UserFields.None,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.GroupsGetMembers(
+											groupId,
+											fields,
+											offset,
+											count
+									)
+			);
+		}
 		public async Task<string> GroupsIsMemberAsync(
 			 uint groupId ,
 			 bool extended = false,
@@ -1116,6 +1178,21 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task<string> PhotosGetChatUploadServerAsync(
+			 uint chatId ,
+			 uint? cropX = null,
+			 uint? cropY = null,
+			 uint? cropWidth = null
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.PhotosGetChatUploadServer(
+											chatId,
+											cropX,
+											cropY,
+											cropWidth
+									)
+			);
+		}
 		public async Task<string> PhotosReorderAlbumsAsync(
 			 long albumId ,
 			 int? ownerId = null,
@@ -1147,7 +1224,7 @@ namespace VKSharp {
 			);
 		}
 		public async Task<string> PhotosMoveAsync(
-			 int targetAlbumId ,
+			 long targetAlbumId ,
 			 long photoId ,
 			 int? ownerId = null
 			){
@@ -1409,6 +1486,31 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task<string> UsersGetNearbyAsync(
+			 double latitude ,
+			 double longitude ,
+			 uint? accuracy = null,
+			 uint? timeout = null,
+			 byte? radius = null,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.UsersGetNearby(
+											latitude,
+											longitude,
+											accuracy,
+											timeout,
+											radius,
+											fields,
+											nameCase,
+											offset,
+											count
+									)
+			);
+		}
 		public async Task<string> UtilsCheckLinkAsync(
 			 string url = ""
 			){
@@ -1621,6 +1723,40 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task<string> WallPinAsync(
+			 uint postId ,
+			 int? ownerId = null
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.WallPin(
+											postId,
+											ownerId
+									)
+			);
+		}
+		public async Task<string> WallUnpinAsync(
+			 uint postId ,
+			 int? ownerId = null
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.WallUnpin(
+											postId,
+											ownerId
+									)
+			);
+		}
+		public async Task<string> WallRepostAsync(
+			 string @object ,
+			 string message = "",
+			 uint? groupId = null
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.WallRepost(
+											@object,
+											message,
+											groupId
+									)
+			);
+		}
 	}
 }
-// ReSharper restore UnusedMember.Global

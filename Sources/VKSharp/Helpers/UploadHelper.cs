@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -40,12 +39,8 @@ namespace VKSharp.Helpers
                     ret.AddRange( await _api.PhotosSaveAsync( (int)pr.aid, pr.server, pr.photos_list, pr.hash ));
                 }
                 finally {
-                    foreach ( var stream in streams ) {
-                        try {
-                            stream.Close();
-                        }
-                        catch {}
-                    }
+                    foreach ( var stream in streams )
+                        try { stream.Close(); } catch {}
                 }
             }
             return ret;

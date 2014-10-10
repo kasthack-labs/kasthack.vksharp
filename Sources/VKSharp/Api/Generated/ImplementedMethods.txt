@@ -1,4 +1,4 @@
-﻿Implemented 131 methods
+﻿Implemented 141 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -29,6 +29,7 @@
 * Auth
 	* auth.checkPhone
 	* auth.confirm
+	* auth.restore
 * Board
 	* board.closeTopic
 	* board.deleteComment
@@ -68,6 +69,10 @@
 	* friends.getSuggestions
 * Groups
 	* groups.getBanned
+	* groups.getById
+	* groups.getById
+	* groups.getMembers
+	* groups.getMembers
 	* groups.isMember
 	* groups.join
 	* groups.leave
@@ -105,6 +110,7 @@
 	* photos.getAlbums
 	* photos.getAlbumsCount
 	* photos.getAll
+	* photos.getChatUploadServer
 	* photos.getOwnerPhotoUploadServer
 	* photos.getUploadServer
 	* photos.makeCover
@@ -126,6 +132,7 @@
 * Users
 	* users.get
 	* users.getFollowers
+	* users.getNearby
 	* users.getSubscriptions
 	* users.isAppUser
 	* users.report
@@ -146,7 +153,10 @@
 	* wall.get
 	* wall.getById
 	* wall.getById
+	* wall.pin
 	* wall.reportComment
 	* wall.reportPost
+	* wall.repost
 	* wall.restore
 	* wall.restoreComment
+	* wall.unpin

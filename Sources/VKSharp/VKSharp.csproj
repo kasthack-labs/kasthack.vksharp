@@ -53,15 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\Generated\RawApi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RawApi.tt</DependentUpon>
+    </Compile>
     <Compile Include="Api\Generated\RequestApi1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RequestApi.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Api\Generated\RawApi.cs">
-      <DependentUpon>RawApi.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Api\Generated\VkApi.cs">
       <AutoGen>True</AutoGen>
@@ -77,6 +77,7 @@
     <Compile Include="Core\ResponseEntities\AuthRestore.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
+    <Compile Include="Data\Parameters\GroupFields.cs" />
     <Compile Include="Data\Parameters\SpecialAlbum.cs" />
     <Compile Include="Core\Entities\Counter.cs" />
     <Compile Include="Core\Entities\PhotoLikes.cs" />
@@ -108,7 +109,7 @@
     <Compile Include="Core\EntityParsers\Xml\DefaultParser.cs" />
     <Compile Include="Core\Interfaces\IXmlVKEntityParser.cs" />
     <Compile Include="Data\Parameters\SearchSortOrder.cs" />
-    <Compile Include="Api\Users.cs" />
+    <Compile Include="Api\HandCoded\VKApi.cs" />
     <Compile Include="Core\Entities\BanInfo.cs" />
     <Compile Include="Core\Entities\EntityList.cs" />
     <Compile Include="Core\EntityParsers\Xml\EntityListParser.cs" />
@@ -206,6 +207,10 @@
     <None Include="Api\Generated\RawApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RawApi.cs</LastGenOutput>
+    </None>
+    <None Include="Api\Generated\SharedFuncs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SharedFuncs.cs</LastGenOutput>
     </None>
     <None Include="Api\Generated\VkApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

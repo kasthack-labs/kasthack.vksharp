@@ -1,5 +1,4 @@
-﻿using System;
-using VKSharp.Data.Api;
+﻿using VKSharp.Data.Api;
 using VKSharp.Data.Executors;
 
 namespace VKSharp {

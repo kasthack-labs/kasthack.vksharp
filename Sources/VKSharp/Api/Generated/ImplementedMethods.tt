@@ -7,14 +7,14 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ output extension=".txt" #>
 <#
-string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
-var d = XDocument.Load( inputFile );
-var nms = d.Root.Elements().Select(a=>a.Attribute("name").Value).ToArray();
-var ti = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
+    string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
+    var d = XDocument.Load( inputFile );
+    var nms = d.Root.Elements().Select(a=>a.Attribute("name").Value).ToArray();
+    var ti = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
 #>
 Implemented <#=nms.Length#> methods
 <#
-foreach (var v in nms.GroupBy(a=>a.Split('.').First())){
+    foreach (var v in nms.GroupBy(a=>a.Split('.').First())) {
 #>
 * <#=ti.ToTitleCase(v.Key)#>
 <#	foreach ( var c in v.OrderBy(a=>a) ) {#>

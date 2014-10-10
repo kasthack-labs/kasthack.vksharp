@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
@@ -328,6 +329,15 @@ namespace VKSharp {
 											password,
 											testMode,
 											intro
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<AuthRestore> AuthRestoreAsync(
+			 long phone 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.AuthRestore(
+											phone
 									)
 			)).Data.FirstOrDefault();
 		}
@@ -743,6 +753,58 @@ namespace VKSharp {
 									)
 			)).Data;
 		}
+		public async Task<Group[]> GroupsGetByIdAsync(
+			 string[] groupIds ,
+			 GroupFields fields 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.GroupsGetById(
+											groupIds,
+											fields
+									)
+			)).Data;
+		}
+		public async Task<Group[]> GroupsGetByIdAsync(
+			 uint groupId ,
+			 GroupFields fields 
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.GroupsGetById(
+											groupId,
+											fields
+									)
+			)).Data;
+		}
+		public async Task<EntityList<User>> GroupsGetMembersAsync(
+			 uint groupId ,
+			 UserFields fields = UserFields.Everything,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.GroupsGetMembers(
+											groupId,
+											fields,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
+		}
+		public async Task<EntityList<User>> GroupsGetMembersAsync(
+			 string groupId ,
+			 UserFields fields = UserFields.None,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.GroupsGetMembers(
+											groupId,
+											fields,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
+		}
 		public async Task<MemberShip[]> GroupsIsMemberAsync(
 			 uint groupId ,
 			 bool extended = false,
@@ -1120,6 +1182,21 @@ namespace VKSharp {
 									)
 			)).Data.FirstOrDefault();
 		}
+		public async Task<PhotosUploadServer> PhotosGetChatUploadServerAsync(
+			 uint chatId ,
+			 uint? cropX = null,
+			 uint? cropY = null,
+			 uint? cropWidth = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.PhotosGetChatUploadServer(
+											chatId,
+											cropX,
+											cropY,
+											cropWidth
+									)
+			)).Data.FirstOrDefault();
+		}
 		public async Task PhotosReorderAlbumsAsync(
 			 long albumId ,
 			 int? ownerId = null,
@@ -1151,7 +1228,7 @@ namespace VKSharp {
 			);
 		}
 		public async Task PhotosMoveAsync(
-			 int targetAlbumId ,
+			 long targetAlbumId ,
 			 long photoId ,
 			 int? ownerId = null
 			){
@@ -1413,6 +1490,31 @@ namespace VKSharp {
 									)
 			)).Data.FirstOrDefault();
 		}
+		public async Task<EntityList<User>> UsersGetNearbyAsync(
+			 double latitude ,
+			 double longitude ,
+			 uint? accuracy = null,
+			 uint? timeout = null,
+			 byte? radius = null,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.UsersGetNearby(
+											latitude,
+											longitude,
+											accuracy,
+											timeout,
+											radius,
+											fields,
+											nameCase,
+											offset,
+											count
+									)
+			)).Data.FirstOrDefault();
+		}
 		public async Task<LinkCheckResult> UtilsCheckLinkAsync(
 			 string url = ""
 			){
@@ -1625,6 +1727,40 @@ namespace VKSharp {
 									)
 			)).Data.FirstOrDefault();
 		}
+		public async Task WallPinAsync(
+			 uint postId ,
+			 int? ownerId = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.WallPin(
+											postId,
+											ownerId
+									)
+			);
+		}
+		public async Task WallUnpinAsync(
+			 uint postId ,
+			 int? ownerId = null
+			){
+			await Executor.ExecAsync(
+				_reqapi.WallUnpin(
+											postId,
+											ownerId
+									)
+			);
+		}
+		public async Task<RepostInfo> WallRepostAsync(
+			 string @object ,
+			 string message = "",
+			 uint? groupId = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.WallRepost(
+											@object,
+											message,
+											groupId
+									)
+			)).Data.FirstOrDefault();
+		}
 	}
 }
-// ReSharper restore UnusedMember.Global

@@ -10,6 +10,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ output extension=".cs" #>
+<#@ include file="SharedFuncs.tt"#>
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace VKSharp {
 				MethodName = "<#=mname#>",
 				Parameters = new Dictionary<string, string> {
 					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
-{ "<#=a.pname#>", <#=a.custom==null?Stringify(ToMeth(a.pname, true), a.ptype):a.custom.Replace("#name",ToMeth(a.pname,true))#> }<#=i<l-1?",":""#>
+{ "<#=a.pname.Replace("@","")#>", <#=a.custom==null?Stringify(ToMeth(a.pname, true), a.ptype):a.custom.Replace("#name",ToMeth(a.pname,true))#> }<#=i<l-1?",":""#>
 			<#}#>
 	}
 			};
@@ -74,43 +75,3 @@ namespace VKSharp {
 	<#}#>
 }
 }
-
-// ReSharper restore UseObjectOrCollectionInitializer
-// ReSharper restore UnusedMember.Global
-<#+
-public static string ToMeth(string name,bool p=false)
-{
-    var t = new StringBuilder();
-    t.Append(p?Char.ToLower(name[0]):Char.ToUpper(name[0]));
-    for (var index = 1; index < name.Length; index++)
-    {
-        var c = name[index];
-        //add '_' before numbers and captials 
-        if (c=='.'||c=='_') t.Append(Char.ToUpper(name[++index]));
-        else t.Append(c);
-    }
-    return t.ToString();
-}
-public static string Stringify(string name, string type){
-	if (type=="string")
-		return name;
-	if (type=="bool")
-		return "("+name+"?1:0).ToNCString()";
-	if (type=="bool?")
-		return name=" != null ? ( "+name+".Value ? 1 : 0 ).ToNCString() : \"\"";
-	var nums = "int,uint,byte,sbyte,short,ushort,long,ulong,double".Split(',');
-	if (nums.Any(a=>a==type))
-		return name+".ToNCString()";
-	if (nums.Any(a=>type==a+"?"))
-		return "MiscTools.NullableString("+name+")";
-	if (nums.Any(a=>type==a+"[]"))
-		return "("+name+"??new "+type+"{}).ToNCStringA()";
-	if (type=="string[]")
-		return "String.Join(\",\","+name+")";
-	if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))
-		return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
-	if (type=="UserFields")
-		return "String.Join( \",\", MiscTools.GetUserFields( "+name+" ) )";
-	return "";
-}
-#>

@@ -1,10 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
-using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
@@ -13,7 +13,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
-	public partial class RequestApi {
+    public partial class RequestApi {
 		public VKRequest<StructEntity<bool>> AccountSetNameInMenu(
 			 string name 
 			){
@@ -450,6 +450,20 @@ namespace VKSharp {
 			};
 				req.Token = CurrentToken;
 			
+			return req;
+		}
+		public VKRequest<AuthRestore> AuthRestore(
+			 long phone 
+			){
+			var req = new VKRequest<AuthRestore>{
+				MethodName = "auth.restore",
+				Parameters = new Dictionary<string, string> {
+					{ "phone", phone.ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
 			return req;
 		}
 		public VKRequest<StructEntity<bool>> BoardCloseTopic(
@@ -1016,6 +1030,76 @@ namespace VKSharp {
 			
 			return req;
 		}
+		public VKRequest<Group> GroupsGetById(
+			 string[] groupIds ,
+			 GroupFields fields 
+			){
+			var req = new VKRequest<Group>{
+				MethodName = "groups.getById",
+				Parameters = new Dictionary<string, string> {
+					{ "group_ids", String.Join(",",groupIds) },
+			{ "fields", String.Join( ",", MiscTools.GetGroupFields( fields ) ) }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<Group> GroupsGetById(
+			 uint groupId ,
+			 GroupFields fields 
+			){
+			var req = new VKRequest<Group>{
+				MethodName = "groups.getById",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() },
+			{ "fields", String.Join( ",", MiscTools.GetGroupFields( fields ) ) }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
+		public VKRequest<EntityList<User>> GroupsGetMembers(
+			 uint groupId ,
+			 UserFields fields = UserFields.Everything,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<EntityList<User>>{
+				MethodName = "groups.getMembers",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId.ToNCString() },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<EntityList<User>> GroupsGetMembers(
+			 string groupId ,
+			 UserFields fields = UserFields.None,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<EntityList<User>>{
+				MethodName = "groups.getMembers",
+				Parameters = new Dictionary<string, string> {
+					{ "group_id", groupId },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
 		public VKRequest<MemberShip> GroupsIsMember(
 			 uint groupId ,
 			 bool extended = false,
@@ -1528,6 +1612,25 @@ namespace VKSharp {
 			
 			return req;
 		}
+		public VKRequest<PhotosUploadServer> PhotosGetChatUploadServer(
+			 uint chatId ,
+			 uint? cropX = null,
+			 uint? cropY = null,
+			 uint? cropWidth = null
+			){
+			var req = new VKRequest<PhotosUploadServer>{
+				MethodName = "photos.getChatUploadServer",
+				Parameters = new Dictionary<string, string> {
+					{ "chat_id", chatId.ToNCString() },
+			{ "crop_x", MiscTools.NullableString(cropX) },
+			{ "crop_y", MiscTools.NullableString(cropY) },
+			{ "crop_width", MiscTools.NullableString(cropWidth) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
 		public VKRequest<StructEntity<bool>> PhotosReorderAlbums(
 			 long albumId ,
 			 int? ownerId = null,
@@ -1567,7 +1670,7 @@ namespace VKSharp {
 			return req;
 		}
 		public VKRequest<StructEntity<bool>> PhotosMove(
-			 int targetAlbumId ,
+			 long targetAlbumId ,
 			 long photoId ,
 			 int? ownerId = null
 			){
@@ -1910,6 +2013,36 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<EntityList<User>> UsersGetNearby(
+			 double latitude ,
+			 double longitude ,
+			 uint? accuracy = null,
+			 uint? timeout = null,
+			 byte? radius = null,
+			 UserFields fields = UserFields.None,
+			 NameCase nameCase = NameCase.Nom,
+			 uint offset = 0,
+			 uint count = 100
+			){
+			var req = new VKRequest<EntityList<User>>{
+				MethodName = "users.getNearby",
+				Parameters = new Dictionary<string, string> {
+					{ "latitude", latitude.ToNCString() },
+			{ "longitude", longitude.ToNCString() },
+			{ "accuracy", MiscTools.NullableString(accuracy) },
+			{ "timeout", MiscTools.NullableString(timeout) },
+			{ "radius", MiscTools.NullableString(radius) },
+			{ "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+			{ "name_case", nameCase.ToNClString() },
+			{ "offset", offset.ToNCString() },
+			{ "count", count.ToNCString() }
+				}
+			};
+			if (IsLogged){
+				req.Token = CurrentToken;
+			}
+			return req;
+		}
 		public VKRequest<LinkCheckResult> UtilsCheckLink(
 			 string url = ""
 			){
@@ -2197,8 +2330,52 @@ namespace VKSharp {
 			}
 			return req;
 		}
+		public VKRequest<StructEntity<bool>> WallPin(
+			 uint postId ,
+			 int? ownerId = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "wall.pin",
+				Parameters = new Dictionary<string, string> {
+					{ "post_id", postId.ToNCString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<bool>> WallUnpin(
+			 uint postId ,
+			 int? ownerId = null
+			){
+			var req = new VKRequest<StructEntity<bool>>{
+				MethodName = "wall.unpin",
+				Parameters = new Dictionary<string, string> {
+					{ "post_id", postId.ToNCString() },
+			{ "owner_id", MiscTools.NullableString(ownerId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<RepostInfo> WallRepost(
+			 string @object ,
+			 string message = "",
+			 uint? groupId = null
+			){
+			var req = new VKRequest<RepostInfo>{
+				MethodName = "wall.repost",
+				Parameters = new Dictionary<string, string> {
+					{ "object", @object },
+			{ "message", message },
+			{ "group_id", MiscTools.NullableString(groupId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
 	}
 }
-
-// ReSharper restore UseObjectOrCollectionInitializer
-// ReSharper restore UnusedMember.Global

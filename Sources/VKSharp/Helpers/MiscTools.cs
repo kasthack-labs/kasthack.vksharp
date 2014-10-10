@@ -5,6 +5,15 @@ using VKSharp.Data.Parameters;
 
 namespace VKSharp.Helpers {
     public static class MiscTools {
+        public static string[] GetGroupFields( GroupFields fields ) {
+            var s = Enum.GetValues( typeof(GroupFields) )
+               .OfType<GroupFields>()
+               .Where( a => a != GroupFields.Everything && a != GroupFields.None )
+               .Where( a => ( fields & a ) == a )
+               .Select( a => a.ToNCString().ToSnake() )
+               .ToArray();
+            return s;
+        }
         public static string[] GetUserFields(UserFields fields) {
             var s = Enum.GetValues( typeof( UserFields ) )
                 .OfType<UserFields>()
@@ -18,7 +27,7 @@ namespace VKSharp.Helpers {
             var s = Enum.GetValues( typeof( FriendSuggestionFilters ) )
                 .OfType<FriendSuggestionFilters>()
                 .Where( a => a != FriendSuggestionFilters.Everything )
-                .Where( a => fields.HasFlag( a ) )
+                .Where( a => ( fields & a ) == a )
                 .Select( a => a.ToNClString().ToSnake() )
                 .ToArray();
             return s;

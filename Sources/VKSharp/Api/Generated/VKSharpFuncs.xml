@@ -531,6 +531,43 @@
       <param name="count" type="uint" default="100" />
     </params>
   </method>
+  <!-- bug: fields.none -> vk returnsn array of ids -->
+  <method name="groups.getById">
+    <request need_token="false" type="Group"/>
+    <return multiple="true" parse="true"></return>
+    <params>
+      <param name="group_ids" type="string[]"/>
+      <param name="fields" type="GroupFields"></param>
+    </params>
+  </method>
+  <method name="groups.getById">
+    <request need_token="false" type="Group"/>
+    <return multiple="true" parse="true"></return>
+    <params>
+      <param name="group_id" type="uint"/>
+      <param name="fields" type="GroupFields"></param>
+    </params>
+  </method>
+  <method name="groups.getMembers">
+    <request type="EntityList&lt;User&gt;" need_token="true" />
+    <return parse="true" multiple="false" />
+    <params>
+      <param name="group_id" type="uint" />
+      <param name="fields" type="UserFields" default="UserFields.Everything" />
+      <param name="offset" type="uint" default="0" />
+      <param name="count" type="uint" default="100" />
+    </params>
+  </method>
+  <method name="groups.getMembers">
+    <request type="EntityList&lt;User&gt;" need_token="true" />
+    <return parse="true" multiple="false" />
+    <params>
+      <param name="group_id" type="string" />
+      <param name="fields" type="UserFields" default="UserFields.None" />
+      <param name="offset" type="uint" default="0" />
+      <param name="count" type="uint" default="100" />
+    </params>
+  </method>
   <method name="groups.isMember">
     <request type="MemberShip" need_token="false" />
     <return parse="true" multiple="true" />
@@ -810,6 +847,16 @@
       <param name="group_id" type="uint?" default="null" />
     </params>
   </method>
+  <method name="photos.getChatUploadServer">
+    <request type="PhotosUploadServer" need_token="true" />
+    <return parse="true" multiple="false" />
+    <params>
+      <param name="chat_id" type="uint" />
+      <param name="crop_x" type="uint?" default="null" />
+      <param name="crop_y" type="uint?" default="null" />
+      <param name="crop_width" type="uint?" default="null" />
+    </params>
+  </method>
   <method name="photos.reorderAlbums">
     <request type="StructEntity&lt;bool&gt;" need_token="true" />
     <return parse="false" multiple="false" />
@@ -834,7 +881,7 @@
     <request type="StructEntity&lt;bool&gt;" need_token="true" />
     <return parse="false" multiple="false" />
     <params>
-      <param name="target_album_id" type="int" />
+      <param name="target_album_id" type="long" />
       <param name="photo_id" type="long" />
       <param name="owner_id" type="int?" default="null" />
     </params>
@@ -1019,7 +1066,7 @@
       <param name="longitude" type="double"/>
       <param name="accuracy" type="uint?" default="null"/>
       <param name="timeout" type="uint?" default="null"/>
-      <param name="radius" type="byte" default="null"/><!--TODO: enum mapping-->
+      <param name="radius" type="byte?" default="null"/><!--TODO: enum mapping-->
       <param name="fields" type="UserFields" default="UserFields.None" />
       <param name="name_case" type="NameCase" default="NameCase.Nom"
              custom="#name.ToNClString()" />
@@ -1103,7 +1150,7 @@
       <param name="search_query" type="string" default="&quot;&quot;" />
     </params>
   </method>
-  <!--Wall^search^post^repost^getReposts^edit^getComments^addComment^editComment-->
+  <!--Wall^search^post^getReposts^edit^getComments^addComment^editComment-->
   <method name="wall.delete">
     <request type="StructEntity&lt;bool&gt;" need_token="true" />
     <return parse="false" multiple="false" />
@@ -1201,14 +1248,15 @@
     </params>
   </method>
   <method name="wall.repost">
-    <request type="StructEntity&lt;bool&gt;" need_token="true" />
-    <return parse="false" multiple="false" />
+    <request type="RepostInfo" need_token="true" />
+    <return parse="true" multiple="false" />
     <params>
-      <param name="post_id" type="uint" />
-      <param name="owner_id" type="int?" default="null" />
+      <param name="@object" type="string" />
+      <param name="message" type="string" default="&quot;&quot;" />
+      <param name="group_id" type="uint?" default="null" />
     </params>
   </method>
-
+  
   <!--
 	<method name="audio.addAlbum">
 		<request type="StructEntity&lt;int&gt;" need_token="false"/>
