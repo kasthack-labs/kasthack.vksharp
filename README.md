@@ -177,3 +177,5 @@ VKSharp
 	* wall.reportPost
 	* wall.restore
 	* wall.restoreComment
+
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=kasthack&url=https://github.com/kasthack/VKSharp&title=VKSharp&language=&tags=github&category=software)
