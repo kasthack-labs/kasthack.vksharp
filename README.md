@@ -55,6 +55,7 @@ VKSharp
 * Auth
 	* auth.checkPhone
 	* auth.confirm
+	* auth.restore
 * Board
 	* board.closeTopic
 	* board.deleteComment
@@ -94,6 +95,10 @@ VKSharp
 	* friends.getSuggestions
 * Groups
 	* groups.getBanned
+	* groups.getById
+	* groups.getById
+	* groups.getMembers
+	* groups.getMembers
 	* groups.isMember
 	* groups.join
 	* groups.leave
@@ -131,6 +136,7 @@ VKSharp
 	* photos.getAlbums
 	* photos.getAlbumsCount
 	* photos.getAll
+	* photos.getChatUploadServer
 	* photos.getOwnerPhotoUploadServer
 	* photos.getUploadServer
 	* photos.makeCover
@@ -149,13 +155,14 @@ VKSharp
 	* storage.get
 	* storage.getKeys
 	* storage.set
-* Users [*^search]
+* Users
 	* users.get
 	* users.getFollowers
+	* users.getNearby
 	* users.getSubscriptions
 	* users.isAppUser
 	* users.report
-	* users.getNearby
+	* users.search
 * Utils
 	* utils.checkLink
 	* utils.getServerTime
@@ -173,9 +180,12 @@ VKSharp
 	* wall.get
 	* wall.getById
 	* wall.getById
+	* wall.pin
 	* wall.reportComment
 	* wall.reportPost
+	* wall.repost
 	* wall.restore
 	* wall.restoreComment
+	* wall.unpin
 
 [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=kasthack&url=https://github.com/kasthack/VKSharp&title=VKSharp&language=&tags=github&category=software)
