@@ -189,7 +189,7 @@ namespace VKSharp {
 			 ulong[] audioIds = null,
 			 bool needUser = false,
 			 uint offset = 0,
-			 uint count = 0
+			 uint count = 100
 			){
 			return (await Executor.ExecAsync(
 				_reqapi.AudioGet(
