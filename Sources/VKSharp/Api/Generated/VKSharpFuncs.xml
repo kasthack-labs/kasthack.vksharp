@@ -134,7 +134,7 @@
       <param name="audio_ids" type="ulong[]" default="null" />
       <param name="need_user" type="bool" default="false" />
       <param name="offset" type="uint" default="0" />
-      <param name="count" type="uint" default="0" />
+      <param name="count" type="uint" default="100" />
     </params>
   </method>
   <method name="audio.getById">

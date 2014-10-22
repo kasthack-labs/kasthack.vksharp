@@ -9,7 +9,8 @@ namespace VKSharp.Data.Api {
         Friends = 1 << 4,
         Groups = 1 << 5,
         Messages = 1 << 6,
-        Nohttps = 1 << 7,
+        //Nohttps = 1 << 7,
+        //fuck nohttps
         Notes = 1 << 8,
         Notifications = 1 << 9,
         Notify = 1 << 10,

@@ -3,18 +3,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-using EpicMorg.Net;
 using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 
 namespace VKSharp.Helpers
 {
-    public static class ParserHelper
-    {
+    public static class ParserHelper {
+        private static readonly HttpClient Client = new HttpClient();
         /// <summary>
         /// Dictionary with generated parsers
         /// key: typeof(TEntity) value: Func&lt;string,TEntity&gt;
@@ -187,51 +187,18 @@ namespace VKSharp.Helpers
         /// <param name="format">Response format(json|xml)</param>
         /// <returns>Response</returns>
         public static async Task<string> ExecRawAsync<T>(VKRequest<T> request, string format)
-            where T : IVKEntity<T>
-        {
-            var bId = BuiltInData.Instance;
-            var vk = bId.VKDomain;
-            var query = String.Join("&", request
-                    .Parameters
-                    .Where(a => a.Value != "")
-                    .Select(a => a.Key + "=" + Uri.EscapeDataString( a.Value)
-#if COMMAS
-                        .Replace("%2C",",")
-#endif
-                    )
-            );
-            var queryB = new StringBuilder();
-            queryB.Append("/method/");
-            queryB.Append(request.MethodName);
-            queryB.Append(@".");
-            queryB.Append(format);
-            if (request.Token != null)
-            {
-                queryB.Append("?access_token=");
-                queryB.Append(request.Token.Token);
-                queryB.Append("&v=5.21");
-                if (new Uri(vk).Scheme != "https")
-                    queryB.Append(
-                        "&sig="
-                        + BitConverter.ToString(
-                            bId.Hasher.ComputeHash(
-                                bId.TextEncoding
-                                .GetBytes(queryB + "&" + query + request.Token.Sign))
-                        )
-                        .Replace("-", "")
-                        .ToLower());
-            }
-            queryB.Insert(0, vk);
-            var e = string.IsNullOrEmpty(query);
-            return await AWC.DownloadStringAsync(
-                queryB.ToString(),
-                bId.TextEncoding,
-                null,
-                null,
-                e ? AWC.RequestMethod.Get : AWC.RequestMethod.Post,
-                e ? null : query,
-                40000
-            );
+            where T : IVKEntity<T> {
+
+                var ps = request.Parameters.ToList();
+                ps.Add(new KeyValuePair<string, string>("v", "5.21"));
+                ps.Add(new KeyValuePair<string, string>("https", "1"));
+                var path = "/method/" + request.MethodName + "." + format;
+                if (request.Token != null)
+                    ps.Add(new KeyValuePair<string, string>("access_token", request.Token.Token));
+                return await (await Client.PostAsync(
+                    new Uri(BuiltInData.Instance.VKDomain + path),
+                    new FormUrlEncodedContent(ps)
+                )).Content.ReadAsStringAsync();
         }
         /// <summary>
         /// Get parsers for TEntity
