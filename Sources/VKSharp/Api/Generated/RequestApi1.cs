@@ -244,8 +244,8 @@ namespace VKSharp {
 			{ "artist", artist },
 			{ "title", title },
 			{ "text", text },
-			{ "genre_id", genreId.ToString() },
-			{ "no_search",  noSearch!= null ? ( noSearch.Value ? 1 : 0 ).ToNCString() : "" }
+			{ "genre_id", (genreId!=null?((int)(genreId)).ToString():String.Empty) },
+			{ "no_search", (noSearch != null ? ( noSearch.Value ? 1 : 0 ).ToNCString() : "") }
 				}
 			};
 				req.Token = CurrentToken;

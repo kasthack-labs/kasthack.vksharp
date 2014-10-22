@@ -33,9 +33,6 @@ namespace VKSharp {
 		var n = d.Root;
 		foreach ( var node in n.Elements() ) {
 			var rn = node.Element( "request" );
-			var retn = node.Element( "return" );
-			var parse = bool.Parse(retn.Attribute("parse").Value);
-			var multiple = bool.Parse(retn.Attribute("multiple").Value);
 			var type = rn.Attribute("type").Value;
 			var needToken = bool.Parse(rn.Attribute( "need_token" ).Value);
 			var mname = node.Attribute("name").Value;
