@@ -5,6 +5,7 @@ using System.Linq;
 using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
+using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
@@ -13,7 +14,7 @@ using VKSharp.Helpers.PrimitiveEntities;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
-    public partial class RequestApi {
+	public partial class RequestApi {
 		public VKRequest<StructEntity<bool>> AccountSetNameInMenu(
 			 string name 
 			){
@@ -220,6 +221,31 @@ namespace VKSharp {
 				Parameters = new Dictionary<string, string> {
 					{ "audio_id", audioId.ToNCString() },
 			{ "owner_id", MiscTools.NullableString(ownerId) }
+				}
+			};
+				req.Token = CurrentToken;
+			
+			return req;
+		}
+		public VKRequest<StructEntity<int>> AudioEdit(
+			 int ownerId ,
+			 long audioId ,
+			 string artist = "",
+			 string title = "",
+			 string text = "",
+			 AudioGenre? genreId = null,
+			 bool? noSearch = null
+			){
+			var req = new VKRequest<StructEntity<int>>{
+				MethodName = "audio.edit",
+				Parameters = new Dictionary<string, string> {
+					{ "owner_id", ownerId.ToNCString() },
+			{ "audio_id", audioId.ToNCString() },
+			{ "artist", artist },
+			{ "title", title },
+			{ "text", text },
+			{ "genre_id", genreId.ToString() },
+			{ "no_search",  noSearch!= null ? ( noSearch.Value ? 1 : 0 ).ToNCString() : "" }
 				}
 			};
 				req.Token = CurrentToken;

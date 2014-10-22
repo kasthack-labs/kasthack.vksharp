@@ -63,6 +63,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RequestApi.tt</DependentUpon>
     </Compile>
+    <Compile Include="Api\Generated\SharedFuncs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SharedFuncs.tt</DependentUpon>
+    </Compile>
     <Compile Include="Api\Generated\VkApi.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

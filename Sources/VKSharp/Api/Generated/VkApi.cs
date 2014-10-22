@@ -162,6 +162,27 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task<StructEntity<int>> AudioEditAsync(
+			 int ownerId ,
+			 long audioId ,
+			 string artist = "",
+			 string title = "",
+			 string text = "",
+			 AudioGenre? genreId = null,
+			 bool? noSearch = null
+			){
+			return (await Executor.ExecAsync(
+				_reqapi.AudioEdit(
+											ownerId,
+											audioId,
+											artist,
+											title,
+											text,
+											genreId,
+											noSearch
+									)
+			)).Data.FirstOrDefault();
+		}
 		public async Task<EntityList<Audio>> AudioGetAsync(
 			 int? ownerId = null,
 			 long? albumId = null,

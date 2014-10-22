@@ -158,6 +158,27 @@ namespace VKSharp {
 									)
 			);
 		}
+		public async Task<string> AudioEditAsync(
+			 int ownerId ,
+			 long audioId ,
+			 string artist = "",
+			 string title = "",
+			 string text = "",
+			 AudioGenre? genreId = null,
+			 bool? noSearch = null
+			){
+			return await Executor.ExecRawAsync(
+				_reqapi.AudioEdit(
+											ownerId,
+											audioId,
+											artist,
+											title,
+											text,
+											genreId,
+											noSearch
+									)
+			);
+		}
 		public async Task<string> AudioGetAsync(
 			 int? ownerId = null,
 			 long? albumId = null,

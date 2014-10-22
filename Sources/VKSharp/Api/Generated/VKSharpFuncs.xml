@@ -112,6 +112,19 @@
       <param name="owner_id" type="int?" default="null" />
     </params>
   </method>
+  <method name="audio.edit">
+    <request need_token="true" type="StructEntity&lt;int&gt;" />
+    <return multiple="false" parse="true"/>
+    <params>
+      <param name="owner_id" type="int"/>
+      <param name="audio_id" type="long"/>
+      <param name="artist" type="string" default="&quot;&quot;"/>
+      <param name="title" type="string" default="&quot;&quot;"/>
+      <param name="text" type="string" default="&quot;&quot;"/>
+      <param name="genre_id" type="AudioGenre?" default="null"/>
+      <param name="no_search" type="bool?" default="null"/>
+    </params>
+  </method>
   <method name="audio.get">
     <request type="EntityList&lt;Audio&gt;" need_token="false" />
     <return parse="true" multiple="false" />
@@ -531,7 +544,7 @@
       <param name="count" type="uint" default="100" />
     </params>
   </method>
-  <!-- bug: fields.none -> vk returnsn array of ids -->
+  <!-- bug: fields.none -> vk returns array of ids -->
   <method name="groups.getById">
     <request need_token="false" type="Group"/>
     <return multiple="true" parse="true"></return>

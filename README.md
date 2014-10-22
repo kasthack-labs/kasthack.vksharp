@@ -42,6 +42,7 @@ VKSharp
 	* audio.addAlbum
 	* audio.delete
 	* audio.deleteAlbum
+	* audio.edit
 	* audio.get
 	* audio.getById
 	* audio.getById

@@ -1,4 +1,4 @@
-﻿Implemented 141 methods
+﻿Implemented 142 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -16,6 +16,7 @@
 	* audio.addAlbum
 	* audio.delete
 	* audio.deleteAlbum
+	* audio.edit
 	* audio.get
 	* audio.getById
 	* audio.getById
