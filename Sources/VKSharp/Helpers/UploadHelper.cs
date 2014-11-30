@@ -25,7 +25,7 @@ namespace VKSharp.Helpers
             foreach ( var fileg in files.Select( (path,index)=>new{path,index} ).GroupBy( a=>a.index/5 ) ) {
                 FileStream[] streams = null;
                 try {
-                    var us = await _api.PhotosGetUploadServerAsync( albumId, gid == 0 ? null : gid );
+                    var us = await _api.Photos.GetUploadServerAsync( albumId, gid == 0 ? null : gid );
                     var ul = fileg.Select( a => a.path ).ToArray();
                     streams = ul.Select( File.OpenRead ).ToArray();
                     VkPhotoUploadResponse pr;
@@ -36,7 +36,7 @@ namespace VKSharp.Helpers
                         var respjson = await upl.Content.ReadAsStringAsync();
                         pr = JsonConvert.DeserializeObject<VkPhotoUploadResponse>( respjson );
                     }
-                    ret.AddRange( await _api.PhotosSaveAsync( (int)pr.aid, pr.server, pr.photos_list, pr.hash ));
+                    ret.AddRange( await _api.Photos.SaveAsync( (int)pr.aid, pr.server, pr.photos_list, pr.hash ));
                 }
                 finally {
                     foreach ( var stream in streams )

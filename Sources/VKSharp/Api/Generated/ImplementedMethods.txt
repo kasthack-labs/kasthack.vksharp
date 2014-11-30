@@ -1,4 +1,5 @@
-﻿Implemented 142 methods
+﻿
+Implemented 142 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions

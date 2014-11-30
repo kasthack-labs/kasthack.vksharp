@@ -64,7 +64,7 @@ public static string GetParamsString(Method node){
 	);
 }
 public static Method[] GetMethods(string file){
-    file = file??"VKSharpFuncs.xml";
+    file = file;
     using (var f = File.OpenRead(file))
         return (Method[])new XmlSerializer(typeof(Method[])).Deserialize(f);
 }

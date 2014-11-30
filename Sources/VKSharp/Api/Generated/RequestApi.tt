@@ -31,32 +31,15 @@ namespace VKSharp {
         var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
         foreach ( var node in ms ) { #>
     public VKRequest<<#=node.Request.Type#>> <#=ToMeth(node.Name)#>(
-            <#
-                var l = node.Params.Length;
-                for (var i =0; i<l; i++){
-                    var a = node.Params[i]; #>
-                    <#=a.Params?"params":""#>//params
-                    <#=a.Type#>//paramter type
-                    <#=ToMeth(a.Name, true)#>//parameter name
-                    <#=a.Default!=null?"= "+a.Default:""#>//default value
-                    <#=i<l-1?",":""#>//parameter separator
-            <#}#>
+            <#=GetParamsString(node)#>
 ){
             var req = new VKRequest<<#=node.Request.Type#>>{
                 MethodName = "<#=node.Name#>",
                 Parameters = new Dictionary<string, string> {
-                    <#for (var i =0; i<l; i++){
+                    <#for (var i =0; i<node.Params.Length; i++){
                         var a = node.Params[i]; #>
-                        {
-                            "<#=a.Name.Replace("@","")#>",//key
-                            <#=
-                                a.Custom==null
-                                    ?Stringify(ToMeth(a.Name, true), a.Type)
-                                    :a.Custom.Replace("#name",ToMeth(a.Name,true))
-                            #>//value
-                        }
-                        <#=i<l-1?",":""#>//element separator
-            <#}#>
+                        { "<#=a.Name.Replace("@","")#>", <#=a.Custom==null?Stringify(ToMeth(a.Name, true), a.Type) :a.Custom.Replace("#name",ToMeth(a.Name,true))#> }<#=i<node.Params.Length-1?",":""#>
+					<#}#>
     }
             };
     <#if (!node.Request.NeedToken){#>
