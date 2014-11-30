@@ -26,49 +26,46 @@ using VKSharp.Helpers.PrimitiveEntities;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
-	public partial class RequestApi {
-	<#
-		string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
-		var d = XDocument.Load( inputFile );
-		var n = d.Root;
-		foreach ( var node in n.Elements() ) {
-			var rn = node.Element( "request" );
-			var type = rn.Attribute("type").Value;
-			var needToken = bool.Parse(rn.Attribute( "need_token" ).Value);
-			var mname = node.Attribute("name").Value;
-	#>
-	public <#=("VKRequest<"+type+">")#> <#=ToMeth(mname)#>(
-			<#
-				var pn = node.Element("params")??new XElement("params");
-				var els = pn.Elements().ToArray();
-				var pms = els.Select(pnode=>new{
-					ptype = pnode.Attribute("type").Value,
-					pname= pnode.Attribute("name").Value,
-					pda = pnode.Attribute("default"),
-					pdefault = pnode.Attribute("default")!=null,
-					pms = pnode.Attribute("params")!=null,
-					custom = pnode.Attribute("custom")!=null?pnode.Attribute("custom").Value:null
-				}).ToArray();
-				var l = els.Length;
-				for (var i =0; i<l; i++){ var a = pms[i]; #>
-<#=a.pms?"params":""#> <#=a.ptype#> <#=ToMeth(a.pname, true)#> <#=a.pdefault?"= "+a.pda.Value:""#><#=i<l-1?",":""#>
-			<#}#>
+    public partial class RequestApi {
+    <#
+        var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
+        foreach ( var node in ms ) { #>
+    public VKRequest<<#=node.Request.Type#>> <#=ToMeth(node.Name)#>(
+            <#
+                var l = node.Params.Length;
+                for (var i =0; i<l; i++){
+                    var a = node.Params[i]; #>
+                    <#=a.Params?"params":""#>//params
+                    <#=a.Type#>//paramter type
+                    <#=ToMeth(a.Name, true)#>//parameter name
+                    <#=a.Default!=null?"= "+a.Default:""#>//default value
+                    <#=i<l-1?",":""#>//parameter separator
+            <#}#>
 ){
-			var req = new VKRequest<<#=type#>>{
-				MethodName = "<#=mname#>",
-				Parameters = new Dictionary<string, string> {
-					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
-{ "<#=a.pname.Replace("@","")#>", <#=a.custom==null?Stringify(ToMeth(a.pname, true), a.ptype):a.custom.Replace("#name",ToMeth(a.pname,true))#> }<#=i<l-1?",":""#>
-			<#}#>
-	}
-			};
-	<#if (!needToken){#>
-		if (IsLogged){
-	<#}#>
-			req.Token = CurrentToken;
-			<#=!needToken?"}":""#>
-			return req;
-		}
-	<#}#>
+            var req = new VKRequest<<#=node.Request.Type#>>{
+                MethodName = "<#=node.Name#>",
+                Parameters = new Dictionary<string, string> {
+                    <#for (var i =0; i<l; i++){
+                        var a = node.Params[i]; #>
+                        {
+                            "<#=a.Name.Replace("@","")#>",//key
+                            <#=
+                                a.Custom==null
+                                    ?Stringify(ToMeth(a.Name, true), a.Type)
+                                    :a.Custom.Replace("#name",ToMeth(a.Name,true))
+                            #>//value
+                        }
+                        <#=i<l-1?",":""#>//element separator
+            <#}#>
+    }
+            };
+    <#if (!node.Request.NeedToken){#>
+        if (IsLogged){
+    <#}#>
+            req.Token = CurrentToken;
+            <#=!node.Request.NeedToken?"}":""#>
+            return req;
+        }
+    <#}#>
 }
 }

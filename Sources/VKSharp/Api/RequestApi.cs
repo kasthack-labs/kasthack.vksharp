@@ -6,12 +6,8 @@ namespace VKSharp {
     public partial class RequestApi {
         private readonly List<VKToken> _tokens = new List<VKToken>();
         private uint _reqCounter;
-        public uint ReqCounter
-        {
-            get {
-                return _reqCounter++;
-            }
-        }
+        public uint ReqCounter => _reqCounter++;
+
         public VKToken CurrentToken {
             get {
                 if ( _tokens.Count == 0 )
@@ -25,10 +21,6 @@ namespace VKSharp {
             IsLogged = true;
         }
         public bool IsLogged { get; set; }
-        public int TokenCount {
-            get {
-                return _tokens.Count;
-            }
-        }
+        public int TokenCount => _tokens.Count;
     }
 }

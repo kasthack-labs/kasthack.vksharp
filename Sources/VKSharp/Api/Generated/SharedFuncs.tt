@@ -1,15 +1,73 @@
-﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System" #>
 <#@ assembly Name="System.Configuration" #>
+<#@ assembly name="System.Core" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
-<#@ assembly name="System" #>
+<#@ assembly name="System.Xml.Serialization" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
-<#@ import namespace="System.Xml.Linq" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Xml.Serialization" #>
 <#+
+[Serializable]
+public class Method {
+    [XmlAttributeAttribute]
+	public string Name {get;set;}
+	public Request Request {get;set;}
+	public Return Return {get;set;}
+	public Param[] Params {get;set;}
+}
+[Serializable]
+public class Request {
+    [XmlAttributeAttribute]
+	public string Type {get;set;}
+    [XmlAttributeAttribute]
+	public bool NeedToken {get;set;}
+}
+[Serializable]
+public class Return {
+    [XmlAttributeAttribute]
+	public bool Parse {get;set;}
+    [XmlAttributeAttribute]
+	public bool Multiple {get;set;}
+}
+[Serializable]
+public class Param {
+    [XmlAttributeAttribute]
+	public string Name {get;set;}
+    [XmlAttributeAttribute]
+	public string Type {get;set;}
+    [XmlAttributeAttribute]
+	public string Default {get;set;}
+    [XmlAttributeAttribute]
+	public string Custom {get;set;}
+    [XmlAttributeAttribute]
+	public bool Params {get;set;}
+}
+public static string GetParamsString(Method node){
+    return String.Join(
+		",",
+		node.Params.Select(a=>
+			String.Format(
+				"{0} {1} {2} {3}",
+				a.Params?"params":"",
+				a.Type,
+				ToMeth(a.Name, true),
+				a.Default!=null?"= "+a.Default:""
+			)
+		)
+	);
+}
+public static Method[] GetMethods(string file){
+    file = file??"VKSharpFuncs.xml";
+    using (var f = File.OpenRead(file))
+        return (Method[])new XmlSerializer(typeof(Method[])).Deserialize(f);
+}
 public static string ToMeth(string name,bool p=false)
 {
     var t = new StringBuilder();

@@ -23,43 +23,51 @@ using VKSharp.Helpers.PrimitiveEntities;
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
 	public partial class VKApi {
-	<#
-		string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
-		var d = XDocument.Load( inputFile );
-		var n = d.Root;
-		foreach ( var node in n.Elements() ) {
-			var rn = node.Element( "request" );
-			var retn = node.Element( "return" );
-			var parse = bool.Parse(retn.Attribute("parse").Value);
-			var multiple = bool.Parse(retn.Attribute("multiple").Value);
-			var type = rn.Attribute("type").Value;
-			var needToken = bool.Parse(rn.Attribute( "need_token" ).Value);
-			var mname = node.Attribute("name").Value;
-	#>
-	public async Task<#=parse?("<"+type+(multiple?"[]":"")+">"):""#> <#=ToMeth(mname)#>Async(
-			<#
-				var pn = node.Element("params")??new XElement("params");
-				var els = pn.Elements().ToArray();
-				var pms = els.Select(pnode=>new{
-					ptype = pnode.Attribute("type").Value,
-					pname= pnode.Attribute("name").Value,
-					pda = pnode.Attribute("default"),
-					pdefault = pnode.Attribute("default")!=null,
-					pms = pnode.Attribute("params")!=null
-				}).ToArray();
-				var l = els.Length;
-				for (var i =0; i<l; i++){ var a = pms[i]; #>
-<#=a.pms?"params":""#> <#=a.ptype#> <#=ToMeth(a.pname, true)#> <#=a.pdefault?"= "+a.pda.Value:""#><#=i<l-1?",":""#>
-			<#}#>
-){
-			<#if(parse){#>return (<#}#>await Executor.ExecAsync(
-				_reqapi.<#=ToMeth(mname)#>(
-					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
-						<#=ToMeth(a.pname, true)#><#=i<l-1?",":""#>
-					<#}#>
-				)
-			)<#if(parse){#>).Data<#=!multiple?".FirstOrDefault()":""#><#}#>;
-		}
-	<#}#>
-}
+		<#
+			var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));				//method descriptions
+			var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();	//method groups
+            #>
+            private void InitializeMethodGroups(){
+            <#foreach (var methodGroup in gs){#>
+                this.<#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+methodGroup.Key#>(this);
+            <#}#>
+            }
+			<#foreach (var methodGroup in gs){
+				var cln = "MethodGroup_"+methodGroup.Key;
+		#>
+				public <#=cln#> <#=ToMeth(methodGroup.Key)#> {get; private set;}
+				public partial class <#=cln#> {
+					private readonly VKApi _parent;
+					internal <#=cln#>(VKApi parent){_parent=parent;}
+					<#
+						foreach ( var node in methodGroup ) {
+							var returnType =node.Return.Parse
+								?String.Format(
+										"<{0}{1}>",
+										node.Request.Type,
+										node.Return.Multiple?"[]":""
+									)
+								:"";//don't parse
+					#>
+							public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>Async( <#=GetParamsString(node)#> ){
+								<#if(node.Return.Parse){#>
+									return (
+								<#}#>
+								await _parent.Executor.ExecAsync(
+								_parent._reqapi.<#=ToMeth(node.Name)#>(
+									<#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#>
+								)
+								)
+								<#if(node.Return.Parse){#>
+									).Data<#=!node.Return.Multiple?".FirstOrDefault()":""#>
+								<#}#>;
+							}
+					<#
+						}
+					#>
+				}
+		<#
+			}
+		#>
+	}
 }

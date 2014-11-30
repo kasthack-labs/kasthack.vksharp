@@ -1,17 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.IO.Compression;
 using System.Threading.Tasks;
 using kasthack.Tools;
 using VKSharp;
-using VKSharp.Core.Entities;
-using VKSharp.Core.Interfaces;
 using VKSharp.Data.Api;
-using VKSharp.Data.Executors;
-using VKSharp.Data.Parameters;
-using VKSharp.Data.Request;
 
-namespace TestApp {
+namespace TestApp
+{
     partial class Program {
         private static void Main() {
             try{
@@ -33,6 +28,7 @@ namespace TestApp {
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 #else
             try{
+                
                 foreach (var v in File.ReadAllLines("debug.token"))
                     vk.AddToken(VKToken.FromRedirectUrl(v));
             }
