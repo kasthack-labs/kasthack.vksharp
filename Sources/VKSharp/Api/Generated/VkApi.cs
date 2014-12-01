@@ -1,4 +1,5 @@
-﻿using System;
+﻿///
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
@@ -12,33 +13,33 @@ using VKSharp.Helpers.PrimitiveEntities;
 namespace VKSharp {
     public partial class VKApi {
         private void InitializeMethodGroups() {
-            this.Account = new MethodGroup_account( this );
-            this.Audio = new MethodGroup_audio( this );
-            this.Auth = new MethodGroup_auth( this );
-            this.Board = new MethodGroup_board( this );
-            this.Database = new MethodGroup_database( this );
-            this.Docs = new MethodGroup_docs( this );
-            this.Friends = new MethodGroup_friends( this );
-            this.Groups = new MethodGroup_groups( this );
-            this.Messages = new MethodGroup_messages( this );
-            this.Newsfeed = new MethodGroup_newsfeed( this );
-            this.Notes = new MethodGroup_notes( this );
-            this.Notifications = new MethodGroup_notifications( this );
-            this.Pages = new MethodGroup_pages( this );
-            this.Photos = new MethodGroup_photos( this );
-            this.Status = new MethodGroup_status( this );
-            this.Storage = new MethodGroup_storage( this );
-            this.Users = new MethodGroup_users( this );
-            this.Utils = new MethodGroup_utils( this );
-            this.Video = new MethodGroup_video( this );
-            this.Wall = new MethodGroup_wall( this );
+            Account = new MethodGroupAccount( this );
+            Audio = new MethodGroup_audio( this );
+            Auth = new MethodGroup_auth( this );
+            Board = new MethodGroup_board( this );
+            Database = new MethodGroup_database( this );
+            Docs = new MethodGroup_docs( this );
+            Friends = new MethodGroup_friends( this );
+            Groups = new MethodGroup_groups( this );
+            Messages = new MethodGroup_messages( this );
+            Newsfeed = new MethodGroup_newsfeed( this );
+            Notes = new MethodGroup_notes( this );
+            Notifications = new MethodGroup_notifications( this );
+            Pages = new MethodGroup_pages( this );
+            Photos = new MethodGroup_photos( this );
+            Status = new MethodGroup_status( this );
+            Storage = new MethodGroup_storage( this );
+            Users = new MethodGroup_users( this );
+            Utils = new MethodGroup_utils( this );
+            Video = new MethodGroup_video( this );
+            Wall = new MethodGroup_wall( this );
         }
 
-        public MethodGroup_account Account { get; private set; }
+        public MethodGroupAccount Account { get; private set; }
 
-        public partial class MethodGroup_account {
+        public partial class MethodGroupAccount {
             private readonly VKApi _parent;
-            internal MethodGroup_account( VKApi parent ) { _parent = parent; }
+            internal MethodGroupAccount( VKApi parent ) { _parent = parent; }
 
             public async Task SetNameInMenuAsync( string name ) {
                 await _parent.Executor.ExecAsync( _parent._reqapi.AccountSetNameInMenu( name ) );

@@ -6,22 +6,18 @@ namespace VKSharp {
 
         protected IExecutor _executor = new SimpleXMLExecutor();
         private readonly RequestApi _reqapi = new RequestApi();
-        public IExecutor Executor { get { return _executor; } }
-        protected uint ReqCounter { get { return _reqapi.ReqCounter; } }
+        public IExecutor Executor => _executor;
+        protected uint ReqCounter => _reqapi.ReqCounter;
 
-        protected VKToken CurrentToken { get { return _reqapi.CurrentToken; } }
+        protected VKToken CurrentToken => _reqapi.CurrentToken;
 
-        public void AddToken( VKToken token ) { _reqapi.AddToken( token ); }
+        public void AddToken( VKToken token ) => _reqapi.AddToken( token );
 
         public bool IsLogged {
             get { return _reqapi.IsLogged; }
             protected set{ _reqapi.IsLogged = value ; }
         }
 
-        public int TokenCount {
-            get {
-                return _reqapi.TokenCount;
-            }
-        }
+        public int TokenCount => _reqapi.TokenCount;
     }
 }

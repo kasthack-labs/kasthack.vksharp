@@ -25,25 +25,14 @@ namespace VKSharp.Data.Executors {
         }
 
         private class TypeIfacePair {
-            private readonly Type _iface;
-            private readonly Type _type;
-
             public TypeIfacePair( Type type, Type iface ) {
-                _type = type;
-                _iface = iface;
+                Type = type;
+                Iface = iface;
             }
 
-            public Type Type {
-                get {
-                    return _type;
-                }
-            }
+            public Type Type { get; }
 
-            public Type Iface {
-                get {
-                    return _iface;
-                }
-            }
+            public Type Iface { get; }
         }
         #endregion
 

@@ -5,39 +5,23 @@ using System.Text;
 
 namespace VKSharp.Helpers {
     class BuiltInData {
-        private static Lazy<BuiltInData> _lazy = new Lazy<BuiltInData>(()=>new BuiltInData());
+        private static readonly Lazy<BuiltInData> Lazy = new Lazy<BuiltInData>(()=>new BuiltInData());
 
-        internal static BuiltInData Instance {
-            get {
-                return _lazy.Value;
-            }
-        }
+        internal static BuiltInData Instance => Lazy.Value;
 
-        public string VKDomain {
-            get { return _vkDomain; }
-        }
-        public string OAuthURL {
-            get { return _oAuthURL; }
-        }
-        public Encoding TextEncoding {
-            get { return _textEncoding; }
-        }
-        public MD5 Hasher {
-            get { return _hasher; }
-        }
+        public string VkDomain { get; }
 
-        public CultureInfo NC {
-            get { return _culture; }
-        }
+        public string OAuthURL { get; }
 
-        private readonly string _vkDomain;
-        private readonly string _oAuthURL;
-        private readonly Encoding _textEncoding = Encoding.UTF8;
-        private readonly MD5 _hasher = MD5.Create();
-        private readonly CultureInfo _culture = CultureInfo.InvariantCulture;
+        public Encoding TextEncoding { get; } = Encoding.UTF8;
+
+        public MD5 Hasher { get; } = MD5.Create();
+
+        public CultureInfo NC { get; } = CultureInfo.InvariantCulture;
+
         private BuiltInData() {
-            _vkDomain = "https://api.vk.com";
-            _oAuthURL = "https://oauth.vk.com/authorize?client_id={0}&scope={1}&redirect_uri={2}&response_type=token";
+            VkDomain = "https://api.vk.com";
+            OAuthURL = "https://oauth.vk.com/authorize?client_id={0}&scope={1}&redirect_uri={2}&response_type=token";
         }
     }
 }

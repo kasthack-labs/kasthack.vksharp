@@ -7,49 +7,47 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.Text.RegularExpressions" #>
 <#@ output extension=".cs" #>
 <#@ include file="SharedFuncs.tt"#>
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
+using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
+using VKSharp.Helpers.PrimitiveEntities;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
-	public partial class RawApi {
-	<#
-		string inputFile = Host.ResolvePath("VKSharpFuncs.xml");
+    public partial class RawApi {
+<#
+    var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));                //method descriptions
+    var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();    //method groups
+#>
+        private void InitializeMethodGroups(){
+<#foreach (var methodGroup in gs){#>
 
-		var d = XDocument.Load( inputFile );
-		var n = d.Root;
-		foreach ( var node in n.Elements() ) {
-			var mname = node.Attribute("name").Value;
-	#>
-	public async Task<string> <#=ToMeth(mname)#>Async(
-			<#
-				var pn = node.Element("params")??new XElement("params");
-				var els = pn.Elements().ToArray();
-				var pms = els.Select(pnode=>new{
-					ptype = pnode.Attribute("type").Value,
-					pname= pnode.Attribute("name").Value,
-					pda = pnode.Attribute("default"),
-					pdefault = pnode.Attribute("default")!=null,
-					pms = pnode.Attribute("params")!=null
-				}).ToArray();
-				var l = els.Length;
-				for (var i =0; i<l; i++){ var a = pms[i]; #>
-<#=a.pms?"params":""#> <#=a.ptype#> <#=ToMeth(a.pname, true)#> <#=a.pdefault?"= "+a.pda.Value:""#><#=i<l-1?",":""#>
-			<#}#>
-){
-			return await Executor.ExecRawAsync(
-				_reqapi.<#=ToMeth(mname)#>(
-					<#for (var i =0; i<l; i++){ var a = pms[i]; #>
-						<#=ToMeth(a.pname, true)#><#=i<l-1?",":""#>
-					<#}#>
-				)
-			);
-		}
-	<#}#>
-}
+        <#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+methodGroup.Key#>(this);
+    <#}#>
+    }
+<#foreach (var methodGroup in gs){ var cln = "MethodGroup_"+methodGroup.Key; #>
+
+        public <#=cln#> <#=ToMeth(methodGroup.Key)#> {get; private set;}
+        public partial class <#=cln#> {
+            private readonly RawApi _parent;
+            internal <#=cln#>(RawApi parent){_parent=parent;}
+<# foreach ( var node in methodGroup ) { #>
+
+            public async Task<string> <#=ToMeth(node.Name.Split('.').Last())#>Async( <#=GetParamsString(node)#> ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.<#=ToMeth(node.Name)#>( <#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#> ) );
+            }
+                    <# } #>
+                }
+        <#
+            }
+        #>
+    }
 }

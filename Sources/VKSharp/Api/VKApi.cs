@@ -18,8 +18,7 @@ namespace VKSharp {
         }
 
         public VKApi() {
-            this.InitializeMethodGroups();
-            
+            InitializeMethodGroups();
         }
     }
 }
