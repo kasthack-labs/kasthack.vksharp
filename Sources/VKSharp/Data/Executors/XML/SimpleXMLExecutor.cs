@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -8,18 +9,34 @@ using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.Exceptions;
+/*
+    How does parser generation work.
 
+    STEP 1: Init
+        1. Loads all types implementing IXmlVKEntityParser<T> from VKSharp.Core.EntityParsers.Xml 
+        2. If T is generic -> add parser generic definition to GenericStor
+           else create instanse of parser via reflection, attach it to current Executor & add it ParserStor
+    STEP 2. On request( GetParser<T>)
+        1. We have requested parser?
+            Yes -> return
+        2. T is generic?
+            No -> throw "No such parser"
+        3. We have generic parser definition for T<>?
+            No -> throw "No such parser"
+        4. Generate Parser<T<T2>> & add to ParserStor
+        5. return
+*/
 namespace VKSharp.Data.Executors {
     public class SimpleXMLExecutor : IExecutor {
         #region Helper classes
         //parser generator for subentities
         private class PropertyMapper<TProperty> where TProperty : IVKEntity<TProperty> {
             internal Action<TParentEntity, XElement> GetPropertyParser<TParentEntity>( PropertyInfo p, SimpleXMLExecutor context ) {
-                var tp = typeof( TProperty );
+                var tp = typeof(TProperty);
                 if ( tp != p.PropertyType ) throw new InvalidOperationException( "Wrong TProperty type" );
                 var parser = context.GetParser<TProperty>();
                 var sd = (Action<TParentEntity, TProperty>)
-                    Delegate.CreateDelegate( typeof( Action<TParentEntity, TProperty> ), null, p.GetSetMethod() );
+                    Delegate.CreateDelegate( typeof(Action<TParentEntity, TProperty>), null, p.GetSetMethod() );
                 return ( item, node ) => sd( item, parser.ParseFromXml( node ) );
             }
         }
@@ -39,34 +56,32 @@ namespace VKSharp.Data.Executors {
         //extension for raw reqs to vk
         private const string ReqExt = "xml";
         //current assembly
-        private static readonly Lazy<Assembly> CurrentAssemblyLazy =
-            new Lazy<Assembly>( () => Assembly.GetAssembly( typeof( SimpleXMLExecutor ) ) );
+        private static readonly Lazy<Assembly> CurrentAssemblyLazy = new Lazy<Assembly>( () => Assembly.GetAssembly( typeof(SimpleXMLExecutor) ) );
 
         //definitons of generic parser
         //key : generic type def
         //value : generic parser def
         private Dictionary<Type, Type> _parserGenericStor;
         //parsers
+        //key: target type
+        //value: parser<T>
         private Dictionary<Type, object> _parserStor;
 
         #region Parser loader
         //lock object for init
-        private static readonly object locker = (uint?) 0;
+        private static readonly object Locker = new object();
         //loads parsers
         //fills _parserGenericStor & _parserStor
         private void LoadParsers() {
             //reflection magic
-            lock ( locker ) {
+            lock (Locker) {
                 try {
                     // Get all classes impelmenting IXmlVKEntityParser<T>
                     // with public constructore
                     // from VKSharp.Core.EntityParsers.Xml namespase
-                    var typesXml = GetTypesXml();
-                    var typesParser = GetTypesParser( typesXml );
-                    var types = typesParser;
+                    var types = GetTypesParser( GetTypesXml() );
                     // add generic parsers to stor
-                    _parserGenericStor =
-                        types.Where( a => a.Iface.IsGenericType && a.Iface.GenericTypeArguments[ 0 ].IsGenericType )
+                    _parserGenericStor = types.Where( a => a.Iface.IsGenericType && a.Iface.GenericTypeArguments[ 0 ].IsGenericType )
                              .ToDictionary(
                                  a => a.Iface.GenericTypeArguments[ 0 ].GetGenericTypeDefinition(),
                                  a => a.Type.GetGenericTypeDefinition() );
@@ -88,64 +103,40 @@ namespace VKSharp.Data.Executors {
             }
         }
 
-        private static IEnumerable<TypeIfacePair> GetTypesParser( IEnumerable<Type> typesXml ) {
-            return
-                typesXml.Select( a => new TypeIfacePair( a, a.GetInterface( "IXmlVKEntityParser`1" ) ) )
-                        .Where( a => a.Iface != null )
-                        .ToArray();
-        }
+        private static IEnumerable<TypeIfacePair> GetTypesParser( IEnumerable<Type> typesXml ) =>
+            typesXml.Select( a => new TypeIfacePair( a, a.GetInterface( "IXmlVKEntityParser`1" ) ) ).Where( a => a.Iface != null ).ToArray();
 
-        private static IEnumerable<Type> GetTypesXml() {
-            return CurrentAssemblyLazy.Value.GetTypes()
-                .Where( t => String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) )
-                .ToArray();
-        }
+        private static IEnumerable<Type> GetTypesXml() =>
+            CurrentAssemblyLazy.Value.GetTypes().Where( t => String.Equals( t.Namespace, "VKSharp.Core.EntityParsers.Xml", StringComparison.Ordinal ) ).ToArray();
         #endregion
 
         //wrappers
         private Dictionary<Type, object> ParserStor {
             get {
-                if ( _parserStor == null )
-                    LoadParsers();
+                if ( _parserStor == null ) LoadParsers();
                 return _parserStor;
             }
         }
-
+        //generic parser definitions
         private Dictionary<Type, Type> ParserGenericStor {
             get {
-                if ( _parserGenericStor == null )
-                    LoadParsers();
+                if ( _parserGenericStor == null ) LoadParsers();
                 return _parserGenericStor;
             }
-        }
-
-        //private Dictionary<> 
-        //get subentity parsers
-        //TODO:implement GetSubentityParsers
-        public Dictionary<string, Action<TParentEntity, XElement>> GetSubentityParsers<TParentEntity>()
-            where TParentEntity : IVKEntity<TParentEntity> {
-            var ti = typeof( TParentEntity );
-
-            var props = ti.GetProperties( BindingFlags.Instance | BindingFlags.Public );
-
-            var pm = typeof( PropertyMapper<> ).GetGenericTypeDefinition().MakeGenericType( ti );
-
-            throw new NotImplementedException();
         }
 
         //takes parser instanse from ParserStor
         //if parser is generic => creates instanse of it
         public IXmlVKEntityParser<T> GetParser<T>() where T : IVKEntity<T> {
             object parser;
-            var ti = typeof( T );
+            var ti = typeof(T);
             IXmlVKEntityParser<T> p2;
-            if ( GetParserForT<T>( ti, out parser ) ) {
+            if ( !GetParserForT<T>( ti, out parser ) ) p2 = (IXmlVKEntityParser<T>) parser;
+            else {
                 p2 = (IXmlVKEntityParser<T>) parser;
                 p2.Executor = p2.Executor ?? this;
                 ParserStor.Add( ti, p2 );
             }
-            else
-                p2 = (IXmlVKEntityParser<T>) parser;
             return p2;
         }
 
@@ -160,22 +151,27 @@ namespace VKSharp.Data.Executors {
             return true;
         }
 
+        private static readonly HttpClient Client = new HttpClient();
+        private static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string format )
+            where T : IVKEntity<T> {
+
+            var ps = request.Parameters.ToList();
+            ps.Add( new KeyValuePair<string, string>( "v", "5.21" ) );
+            ps.Add( new KeyValuePair<string, string>( "https", "1" ) );
+            var path = "/method/" + request.MethodName + "." + format;
+            if ( request.Token != null )
+                ps.Add( new KeyValuePair<string, string>( "access_token", request.Token.Token ) );
+            return await ( await Client.PostAsync(
+                new Uri( BuiltInData.Instance.VkDomain + path ),
+                new FormUrlEncodedContent( ps )
+            ) ).Content.ReadAsStringAsync();
+        }
         #region IExecutor
-        public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
-            return ParseResponse<T>( await ExecRawAsync( request ) );
-        }
+        public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> => ParseResponse<T>( await ExecRawAsync( request ) );
+        public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> => await ExecRawAsync( request, ReqExt );
+        public VKResponse<T> Parse<T>( string input ) where T : IVKEntity<T> => ParseResponse<T>( input );
 
-        public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) where T : IVKEntity<T> {
-            return await ParserHelper.ExecRawAsync( request, ReqExt );
-        }
-
-        public VKResponse<T> Parse<T>( string input ) where T : IVKEntity<T> {
-            return ParseResponse<T>( input );
-        }
-
-        public VKResponse<T> ParseResponse<T>( string input ) where T : IVKEntity<T> {
-            return ParseResponseXml<T>( XDocument.Parse( input ) );
-        }
+        public VKResponse<T> ParseResponse<T>( string input ) where T : IVKEntity<T> => ParseResponseXml<T>( XDocument.Parse( input ) );
 
         public VKResponse<T> ParseResponseXml<T>( XDocument doc ) where T : IVKEntity<T> {
             var rootNode = doc.Root;
@@ -186,12 +182,13 @@ namespace VKSharp.Data.Executors {
             //list=true||1 element => std parser, else fragments
             var uarr = ( lattr != null && lattr.Value == "true" ) || rootNode.Elements().Take( 2 ).Count() == 1;
             return new VKResponse<T> {
-                Data = uarr ? parser.ParseAllFromXml( rootNode.Elements() ) : new[] { parser.ParseFromXmlFragments( rootNode.Elements() ) },
+                Data = uarr ? parser.ParseAllFromXml( rootNode.Elements() ) : new[ ] { parser.ParseFromXmlFragments( rootNode.Elements() ) },
                 Status = null
             };
         }
 
-        public void AttachParser<T>( T defaultParser ) where T : IXmlVKEntityParser { throw new NotImplementedException(); }
+
+        public void AttachParser<T>( T defaultParser ) where T : IXmlVKEntityParser => defaultParser.Executor = this;
         #endregion
     }
 }

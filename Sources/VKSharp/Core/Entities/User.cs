@@ -89,7 +89,5 @@ namespace VKSharp.Core.Entities {
         }
     }
     [AttributeUsage(AttributeTargets.Property)]
-    public class FlatMap : Attribute {
-        
-    }
+    public class FlatMap : Attribute { }
 }

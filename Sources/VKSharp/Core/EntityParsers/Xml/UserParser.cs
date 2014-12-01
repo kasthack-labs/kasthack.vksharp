@@ -7,12 +7,8 @@ using VKSharp.Core.EntityFragments;
 
 namespace VKSharp.Core.EntityParsers.Xml {
     public class UserParser : DefaultParser<User> {
-        public override User ParseFromXml( XElement node ) {
-            return //String.CompareOrdinal( node.Name.ToString(), "user" ) != 0
-                //? null
-                //:
-                ParseFromXmlFragments(node.Elements());
-        }
+        public override User ParseFromXml( XElement node ) => ParseFromXmlFragments(node.Elements());
+
         public override User ParseFromXmlFragments(IEnumerable<XElement> nodes) {
             var u = new User {
                 ProfilePhotos = new ProfilePhotos(),
@@ -31,8 +27,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 parser(entity, node.Value);
                 return true;
             }
-            if ( GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos )
-                 || GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ) )
+            if ( GetP<ProfilePhotos>().UpdateFromFragment( node, entity.ProfilePhotos ) || GetP<SiteProfiles>().UpdateFromFragment( node, entity.Connections ) )
                 return true;
             var changed = true;
             switch ( nodeName ) {
@@ -48,9 +43,6 @@ namespace VKSharp.Core.EntityParsers.Xml {
                 case "lists":
                     entity.Lists = node.Value.Split( ',' ).Select( uint.Parse ).ToArray();
                     break;
-                //case "ban_info":
-                //    this.GetP<BanInfo>().FillFromXml( node.Elements(), entity. );
-                //    break;
                 case "exports":
                     entity.Exports = GetP<Exports>().ParseFromXml( node );
                     break;

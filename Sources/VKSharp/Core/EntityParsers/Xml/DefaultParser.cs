@@ -11,12 +11,8 @@ namespace VKSharp.Core.EntityParsers.Xml {
         private SimpleXMLExecutor _executor;
 
         public IExecutor Executor {
-            get {
-                return _executor;
-            }
-            set {
-                _executor = value as SimpleXMLExecutor;
-            }
+            get { return _executor; }
+            set { _executor = value as SimpleXMLExecutor; }
         }
 
         //primitives
@@ -25,24 +21,16 @@ namespace VKSharp.Core.EntityParsers.Xml {
         //subentities
         protected Dictionary<string, Action<T, XElement>> SubentityParsers;
 
-        protected static Dictionary<string, Action<T, string>> GeneratedParsers {
-            get {
-                return GeneratedParsersLazy.Value;
-            }
-        }
+        protected static Dictionary<string, Action<T, string>> GeneratedParsers => GeneratedParsersLazy.Value;
 
         public virtual void FillFromXml( IEnumerable<XElement> nodes, T entity ) {
             foreach ( var cn in nodes )
                 UpdateFromFragment( cn, entity );
         }
 
-        public virtual T ParseFromXml( XElement node ) {
-            return ParseFromXmlFragments( node.Elements() );
-        }
+        public virtual T ParseFromXml( XElement node ) => ParseFromXmlFragments( node.Elements() );
 
-        public virtual T[] ParseAllFromXml( IEnumerable<XElement> nodes ) {
-            return nodes.Select( ParseFromXml ).Where( a => a != null ).ToArray();
-        }
+        public virtual T[] ParseAllFromXml( IEnumerable<XElement> nodes ) => nodes.Select( ParseFromXml ).Where( a => a != null ).ToArray();
 
         public virtual T ParseFromXmlFragments( IEnumerable<XElement> nodes ) {
             var sc = new T();
@@ -71,15 +59,8 @@ namespace VKSharp.Core.EntityParsers.Xml {
             return true;
         }
 
-        public virtual void Attach() {
-            var simpleXMLExecutor = Executor as SimpleXMLExecutor;
-            if ( simpleXMLExecutor != null ) simpleXMLExecutor.AttachParser( this );
-        }
+        public virtual void Attach() => ( Executor as SimpleXMLExecutor )?.AttachParser( this );
 
-
-        protected IXmlVKEntityParser<TEntity> GetP<TEntity>() where TEntity : IVKEntity<TEntity>
-        {
-            return ((SimpleXMLExecutor)Executor).GetParser<TEntity>();
-        }
+        protected IXmlVKEntityParser<TEntity> GetP<TEntity>() where TEntity : IVKEntity<TEntity> => _executor.GetParser<TEntity>();
     }
 }

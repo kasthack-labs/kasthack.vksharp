@@ -3,21 +3,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
-using VKSharp.Core.Interfaces;
-using VKSharp.Data.Request;
 
 namespace VKSharp.Helpers
 {
     public static class ParserHelper {
-        private static readonly HttpClient Client = new HttpClient();
         /// <summary>
         /// Dictionary with generated parsers
-        /// key: typeof(TEntity) value: Func&lt;string,TEntity&gt;
+        /// key: typeof(TEntity)
+        /// value: Func&lt;string,TEntity&gt;
         /// Most of them are built in runtime
         /// </summary>
         private static readonly Dictionary<Type, object> Parsers = new Dictionary<Type, object> {
@@ -47,20 +43,22 @@ namespace VKSharp.Helpers
         /// MethodInfo for ParserHelper.BuildNullableTryParse&lt;TEntity&gt;
         /// </summary>
         private static readonly Lazy<MethodInfo> GetNullableTryParseBuilderLazy = new Lazy<MethodInfo>(
-            () => HelperType.GetMethod("BuildNullableTryParse", BindingFlags.Static | BindingFlags.NonPublic));
+            () => HelperType.GetMethod(nameof(BuildNullableTryParse), BindingFlags.Static | BindingFlags.NonPublic));
         private static readonly Lazy<MethodInfo> GetParsersBuilderLazy = new Lazy<MethodInfo>(
-            () => HelperType.GetMethod("GetParsers", BindingFlags.Static | BindingFlags.NonPublic));
+            () => HelperType.GetMethod(nameof(GetParsers), BindingFlags.Static | BindingFlags.NonPublic));
         private static readonly Lazy<MethodInfo> ParseEnumFromIntStringLazy = new Lazy<MethodInfo>(
-            () => HelperType.GetMethod("ParseEnum", BindingFlags.Static | BindingFlags.NonPublic));
+            () => HelperType.GetMethod(nameof(ParseEnum), BindingFlags.Static | BindingFlags.NonPublic));
         /// <summary>
         /// Wrapper for GetNullableTryParseBuilderLazy
         /// </summary>
-        private static MethodInfo GetNullableTryParseBuilder { get { return GetNullableTryParseBuilderLazy.Value; } }
+        private static MethodInfo GetNullableTryParseBuilder => GetNullableTryParseBuilderLazy.Value;
+
         /// <summary>
         /// Wrapper for GetParsersBuilderLazy
         /// </summary>
-        private static MethodInfo GetParsersBuilder { get { return GetParsersBuilderLazy.Value; } }
-        private static MethodInfo ParseEnumMethod { get { return ParseEnumFromIntStringLazy.Value; } }
+        private static MethodInfo GetParsersBuilder => GetParsersBuilderLazy.Value;
+
+        private static MethodInfo ParseEnumMethod => ParseEnumFromIntStringLazy.Value;
         #endregion
         /// <summary>
         /// Parses the enum from int string/Enum string.
@@ -106,8 +104,7 @@ namespace VKSharp.Helpers
                 throw;
             }
 #endif
-            if ( tryParseMethod == null ) return null;
-            return (GenericTryParse<T>)tryParseMethod.CreateDelegate(typeof(GenericTryParse<T>));
+            return (GenericTryParse<T>) tryParseMethod?.CreateDelegate(typeof(GenericTryParse<T>));
         }
         /// <summary>
         /// Build TryParse method for TEntity
@@ -147,11 +144,11 @@ namespace VKSharp.Helpers
             if (!Parsers.TryGetValue(propertyType, out o)) {
                 //Tentity is TEntity? -> build nullable parserInfo
                 if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == NullableType) {
-                    var targetInnerType = propertyType.GetGenericArguments()[0];                     // TEntity? -> TEntity
-                    var gntpInfo = GetNullableTryParseBuilder.MakeGenericMethod(targetInnerType);    // =MethodInfo(BuildNullableTryParse<TEntity>)
-                    var gntpType = typeof(Func<Func<string, TProperty>>);                            // BuildNullableTryParse<TEntity> delegate type
-                    var buildFunc = (Func<Func<string, TProperty>>)gntpInfo.CreateDelegate(gntpType);// BuildNullableTryParse<TEntity> as delegate
-                    parser = buildFunc();                                                            // generate parser
+                    var targetInnerType = propertyType.GetGenericArguments()[ 0 ];                      // TEntity? -> TEntity
+                    var gntpInfo = GetNullableTryParseBuilder.MakeGenericMethod( targetInnerType );     // =MethodInfo(BuildNullableTryParse<TEntity>)
+                    var gntpType = typeof(Func<Func<string, TProperty>>);                               // BuildNullableTryParse<TEntity> delegate type
+                    var buildFunc = (Func<Func<string, TProperty>>)gntpInfo.CreateDelegate( gntpType ); // BuildNullableTryParse<TEntity> as delegate
+                    parser = buildFunc();                                                               // generate parser
                 }
                 else parser = BuildTryParse<TProperty>();
                 if (parser == null) return null;         //Failed to build parser -> null
@@ -170,8 +167,7 @@ namespace VKSharp.Helpers
         /// <typeparam name="TProperty"></typeparam>
         /// <param name="ret"></param>
         /// <param name="props"></param>
-        private static void GetParsers<TEntity, TProperty>(IDictionary<string, Action<TEntity, string>> ret,
-            IReadOnlyDictionary<Type, PropertyInfo[]> props) {
+        private static void GetParsers<TEntity, TProperty>(IDictionary<string, Action<TEntity, string>> ret, IReadOnlyDictionary<Type, PropertyInfo[]> props) {
             var propertyType = typeof(TProperty);
             if (!props.ContainsKey(propertyType)) return; //no properties of this type -> return
             foreach (var pi in props[propertyType]) {//build updater delegates for each property of this type
@@ -180,26 +176,7 @@ namespace VKSharp.Helpers
                 //key: property name converted to snake_case, value: delegate which updates property
             }
         }
-        /// <summary>
-        /// Execute VKRequest & get response string
-        /// </summary>
-        /// <param name="request">Request targetInnerType execute</param>
-        /// <param name="format">Response format(json|xml)</param>
-        /// <returns>Response</returns>
-        public static async Task<string> ExecRawAsync<T>(VKRequest<T> request, string format)
-            where T : IVKEntity<T> {
-
-                var ps = request.Parameters.ToList();
-                ps.Add(new KeyValuePair<string, string>("v", "5.21"));
-                ps.Add(new KeyValuePair<string, string>("https", "1"));
-                var path = "/method/" + request.MethodName + "." + format;
-                if (request.Token != null)
-                    ps.Add(new KeyValuePair<string, string>("access_token", request.Token.Token));
-                return await (await Client.PostAsync(
-                    new Uri(BuiltInData.Instance.VKDomain + path),
-                    new FormUrlEncodedContent(ps)
-                )).Content.ReadAsStringAsync();
-        }
+       
         /// <summary>
         /// Get parsers for TEntity
         /// </summary>
@@ -234,16 +211,13 @@ namespace VKSharp.Helpers
         /// </summary>
         /// <param name="name">Name for converting</param>
         /// <returns>Converted string</returns>
-        public static string ToSnake(this string name)
-        {
+        public static string ToSnake(this string name) {
             var t = new StringBuilder();
             t.Append(Char.ToLower(name[0]));
-            for (var index = 1; index < name.Length; index++)
-            {
+            for (var index = 1; index < name.Length; index++) {
                 var c = name[index];
                 //add '_' before numbers and captials 
-                if (Char.IsUpper(c) || (Char.IsNumber(c) && !Char.IsNumber(name[index - 1])))
-                {
+                if (Char.IsUpper(c) || (Char.IsNumber(c) && !Char.IsNumber(name[index - 1]))) {
                     t.Append('_');
                     t.Append(Char.ToLower(c));
                 }
