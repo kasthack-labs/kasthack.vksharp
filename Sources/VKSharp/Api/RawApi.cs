@@ -4,7 +4,7 @@ using VKSharp.Data.Executors;
 namespace VKSharp {
     public partial class RawApi {
 
-        protected IExecutor _executor = new SimpleXMLExecutor();
+        protected IExecutor _executor = new JsonExecutor();
         private readonly RequestApi _reqapi = new RequestApi();
         public IExecutor Executor => _executor;
         protected uint ReqCounter => _reqapi.ReqCounter;

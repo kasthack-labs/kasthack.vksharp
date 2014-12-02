@@ -13,8 +13,5 @@ namespace VKSharp.Core.Interfaces {
         T ParseFromXmlFragments( IEnumerable<XElement> nodes );
         //update
         bool UpdateFromFragment( XElement node, T entity );
-        //bad name but I have no better idea
-        //used to add parsers for subentities
-        void Attach();
     }
 }

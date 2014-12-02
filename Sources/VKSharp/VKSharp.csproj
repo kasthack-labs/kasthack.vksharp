@@ -74,12 +74,10 @@
     <Compile Include="Api\RawApi.cs" />
     <Compile Include="Core\Entities\Onlines.cs" />
     <Compile Include="Core\Entities\Status.cs" />
-    <Compile Include="Core\EntityParsers\Xml\EmptyParsers.cs" />
-    <Compile Include="Core\EntityParsers\Xml\OnlinesParser.cs" />
     <Compile Include="Core\ResponseEntities\AuthRestore.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
-    <Compile Include="Data\Executors\XML\SimpleXmlExecutorParsers.cs" />
+    <Compile Include="Data\Executors\JsonExecutor.cs" />
     <Compile Include="Data\Parameters\GroupFields.cs" />
     <Compile Include="Data\Parameters\SpecialAlbum.cs" />
     <Compile Include="Core\Entities\Counter.cs" />
@@ -95,11 +93,6 @@
     <Compile Include="Core\Entities\MemberShip.cs" />
     <Compile Include="Core\Entities\StorageEntry.cs" />
     <Compile Include="Core\Entities\UserSubscriptions.cs" />
-    <Compile Include="Core\EntityParsers\Xml\LinkCheckResultParser.cs" />
-    <Compile Include="Core\EntityParsers\Xml\LastSeenParser.cs" />
-    <Compile Include="Core\EntityParsers\Xml\SimpleEntityParser.cs" />
-    <Compile Include="Core\EntityParsers\Xml\StructEntityParser.cs" />
-    <Compile Include="Core\EntityParsers\Xml\UserSubscriptionsParser.cs" />
     <Compile Include="Core\Enums\ComplaintType.cs" />
     <Compile Include="Core\Enums\Deleted.cs" />
     <Compile Include="Core\Enums\LinkCheckStatus.cs" />
@@ -109,13 +102,11 @@
     <Compile Include="Core\Enums\RelativeType.cs" />
     <Compile Include="Core\EntityFragments\LastSeen.cs" />
     <Compile Include="Core\EntityFragments\Exports.cs" />
-    <Compile Include="Core\EntityParsers\Xml\DefaultParser.cs" />
     <Compile Include="Core\Interfaces\IXmlVKEntityParser.cs" />
     <Compile Include="Data\Parameters\SearchSortOrder.cs" />
     <Compile Include="Api\HandCoded\VKApi.cs" />
     <Compile Include="Core\Entities\BanInfo.cs" />
     <Compile Include="Core\Entities\EntityList.cs" />
-    <Compile Include="Core\EntityParsers\Xml\EntityListParser.cs" />
     <Compile Include="Data\Api\VKPermission.cs" />
     <Compile Include="Data\Executors\IExecutor.cs" />
     <Compile Include="Data\Parameters\FriendSuggestionFilters.cs" />
@@ -123,7 +114,6 @@
     <Compile Include="Data\Request\ResponseStatus.cs" />
     <Compile Include="Data\Request\VKResponse.cs" />
     <Compile Include="Data\Parameters\NameCase.cs" />
-    <Compile Include="Data\Executors\XML\SimpleXMLExecutor.cs" />
     <Compile Include="Data\Parameters\UserFields.cs" />
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
@@ -149,21 +139,16 @@
     <Compile Include="Core\Entities\PostLikes.cs" />
     <Compile Include="Core\Entities\PostReposts.cs" />
     <Compile Include="Core\Entities\PostSource.cs" />
-    <Compile Include="Core\EntityParsers\Xml\PhotoAlbumParser.cs" />
     <Compile Include="Core\Enums\PrivacyType.cs" />
-    <Compile Include="Core\EntityParsers\Xml\AttachmentParser.cs" />
     <Compile Include="Core\Enums\AttachmentType.cs" />
     <Compile Include="Core\Enums\PostSourceInfo.cs" />
     <Compile Include="Core\Entities\Privacy.cs" />
     <Compile Include="Core\Entities\Video.cs" />
-    <Compile Include="Core\EntityParsers\Xml\AudioParser.cs" />
-    <Compile Include="Core\EntityParsers\Xml\PostParser.cs" />
     <Compile Include="Core\Enums\AudioGenre.cs" />
     <Compile Include="Core\Entities\Group.cs" />
     <Compile Include="Core\Entities\Photo.cs" />
     <Compile Include="Core\EntityFragments\GroupCounters.cs" />
     <Compile Include="Core\Entities\Place.cs" />
-    <Compile Include="Core\EntityParsers\Xml\PhotoParser.cs" />
     <Compile Include="Core\Enums\GroupAdminLevel.cs" />
     <Compile Include="Core\Enums\PageType.cs" />
     <Compile Include="Core\Enums\PostSourceType.cs" />
@@ -177,7 +162,6 @@
     <Compile Include="Helpers\DataTypes\Date.cs" />
     <Compile Include="Core\Enums\Sex.cs" />
     <Compile Include="Core\Entities\User.cs" />
-    <Compile Include="Core\EntityParsers\Xml\UserParser.cs" />
     <Compile Include="Helpers\BuiltInData.cs" />
     <Compile Include="Core\Interfaces\OwnedEntity.cs" />
     <Compile Include="Core\Interfaces\IVKEntity.cs" />
@@ -193,7 +177,6 @@
     <Compile Include="Core\Enums\PeopleMain.cs" />
     <Compile Include="Core\Enums\LifeMain.cs" />
     <Compile Include="Core\Enums\Attitude.cs" />
-    <Compile Include="Core\EntityParsers\Xml\StandInLifeParser.cs" />
     <Compile Include="Core\ResponseEntities\ConfirmResult.cs" />
     <Compile Include="Core\Entities\Link.cs" />
   </ItemGroup>
