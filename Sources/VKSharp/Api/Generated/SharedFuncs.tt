@@ -101,6 +101,23 @@ public static string Stringify(string name, string type){
 			return "((int)" + name + ").ToString()";
 		case "AudioGenre?":
 			return string.Format( "({0}!=null?((int)({0})).ToString():String.Empty)", name );
+        case "AudioSortOrder":
+            return "((int)"+name+").ToNCString()";
+        case "UserSortOrder":
+        case "NameCase":
+        case "SpecialAlbum":
+        case "ComplaintType":
+            return name+".ToNClString()";
+        case "WallPostFilter":
+            return name+".ToNClString().ToSnake()";
+        case "FriendSuggestionFilters":
+            return String.Format("String.Join( \",\", MiscTools.GetFilterFields( {0} ) )", name);
+        case "ReportReason?":
+            return String.Format("{0} == null ? \"\" : ( (int){0} ).ToNCString()", name);
+        case "PrivacyType?":
+            return String.Format("MiscTools.NullableString( (byte?){0} )", name);
+        case "FeedType?":
+            return String.Format("MiscTools.NullableString( {0} )",name);
 	}
 
 	//numbers, numbers?, numbers[]

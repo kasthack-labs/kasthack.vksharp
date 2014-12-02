@@ -211,7 +211,7 @@
       <Param Name="auto_complete" Type="bool" Default="true" Params="false" />
       <Param Name="lyrics" Type="bool" Default="false" Params="false" />
       <Param Name="performer_only" Type="bool" Default="false" Params="false" />
-      <Param Name="sort" Type="AudioSortOrder" Default="AudioSortOrder.ByRating" Custom="((int)#name).ToNCString()" Params="false" />
+      <Param Name="sort" Type="AudioSortOrder" Default="AudioSortOrder.ByRating" Params="false" />
       <Param Name="search_own" Type="bool" Default="false" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
@@ -451,8 +451,8 @@
       <Param Name="user_id" Type="uint?" Default="null" Params="false" />
       <Param Name="list_id" Type="uint?" Default="null" Params="false" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" Params="false" />
-      <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" Custom="#name.ToNClString()" Params="false" />
-      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" Params="false" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>
@@ -461,9 +461,9 @@
     <Request Type="EntityList&lt;User&gt;" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
-      <Param Name="filters" Type="FriendSuggestionFilters" Default="FriendSuggestionFilters.Everything" Custom="String.Join( &quot;,&quot;, MiscTools.GetFilterFields( #name ) )" Params="false" />
+      <Param Name="filters" Type="FriendSuggestionFilters" Default="FriendSuggestionFilters.Everything" Params="false" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" Params="false" />
-      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>
@@ -732,7 +732,7 @@
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
-      <Param Name="reason" Type="ReportReason?" Default="null" Custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()" Params="false" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="photos.deleteAlbum">
@@ -775,7 +775,7 @@
     <Params>
       <Param Name="photo_id" Type="long" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
-      <Param Name="reason" Type="ReportReason?" Default="null" Custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()" Params="false" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="photos.copy">
@@ -811,8 +811,8 @@
       <Param Name="title" Type="string" Params="false" />
       <Param Name="description" Type="string" Default="&quot;&quot;" Params="false" />
       <Param Name="group_id" Type="uint?" Default="null" Params="false" />
-      <Param Name="privacy" Type="PrivacyType?" Default="null" Custom="MiscTools.NullableString( (byte?)#name )" Params="false" />
-      <Param Name="comment_privacy" Type="PrivacyType?" Default="null" Custom="MiscTools.NullableString( (byte?)#name )" Params="false" />
+      <Param Name="privacy" Type="PrivacyType?" Default="null" Params="false" />
+      <Param Name="comment_privacy" Type="PrivacyType?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="photos.editAlbum">
@@ -823,8 +823,8 @@
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
       <Param Name="title" Type="string" Default="&quot;&quot;" Params="false" />
       <Param Name="description" Type="string" Default="&quot;&quot;" Params="false" />
-      <Param Name="privacy" Type="PrivacyType?" Default="null" Custom="MiscTools.NullableString( (byte?)#name )" Params="false" />
-      <Param Name="comment_privacy" Type="PrivacyType?" Default="null" Custom="MiscTools.NullableString( (byte?)#name )" Params="false" />
+      <Param Name="privacy" Type="PrivacyType?" Default="null" Params="false" />
+      <Param Name="comment_privacy" Type="PrivacyType?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="photos.getOwnerPhotoUploadServer">
@@ -908,7 +908,7 @@
       <Param Name="photo_ids" Type="int[]" Default="null" Params="false" />
       <Param Name="rev" Type="bool" Default="true" Params="false" />
       <Param Name="extended" Type="bool" Default="false" Params="false" />
-      <Param Name="feed_type" Type="FeedType?" Default="null" Custom="MiscTools.NullableString( #name )" Params="false" />
+      <Param Name="feed_type" Type="FeedType?" Default="null" Params="false" />
       <Param Name="feed" Type="uint?" Default="null" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
@@ -918,12 +918,12 @@
     <Request Type="EntityList&lt;Photo&gt;" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
-      <Param Name="album_id" Type="SpecialAlbum" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="album_id" Type="SpecialAlbum" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
       <Param Name="photo_ids" Type="int[]" Default="null" Params="false" />
       <Param Name="rev" Type="bool" Default="true" Params="false" />
       <Param Name="extended" Type="bool" Default="false" Params="false" />
-      <Param Name="feed_type" Type="FeedType?" Default="null" Custom="MiscTools.NullableString( #name )" Params="false" />
+      <Param Name="feed_type" Type="FeedType?" Default="null" Params="false" />
       <Param Name="feed" Type="uint?" Default="null" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
@@ -1011,7 +1011,7 @@
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
-      <Param Name="type" Type="ComplaintType" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="type" Type="ComplaintType" Params="false" />
       <Param Name="comment" Type="string" Params="false" />
     </Params>
   </Method>
@@ -1029,7 +1029,7 @@
     <Return Parse="true" Multiple="true" />
     <Params>
       <Param Name="fields" Type="UserFields" Default="UserFields.None" Params="false" />
-      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Params="false" />
       <Param Name="user_ids" Type="uint[]" Params="true" />
     </Params>
   </Method>
@@ -1039,7 +1039,7 @@
     <Params>
       <Param Name="user_id" Type="uint?" Default="null" Params="false" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" Params="false" />
-      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>
@@ -1054,7 +1054,7 @@
       <Param Name="timeout" Type="uint?" Default="null" Params="false" />
       <Param Name="radius" Type="byte?" Default="null" Params="false" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" Params="false" />
-      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Custom="#name.ToNClString()" Params="false" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>
@@ -1093,7 +1093,7 @@
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
-      <Param Name="reason" Type="ReportReason?" Default="null" Custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()" Params="false" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="video.deleteAlbum">
@@ -1127,7 +1127,7 @@
     <Params>
       <Param Name="video_id" Type="ulong" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
-      <Param Name="reason" Type="ReportReason?" Default="null" Custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()" Params="false" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Params="false" />
       <Param Name="comment" Type="string" Default="&quot;&quot;" Params="false" />
       <Param Name="search_query" Type="string" Default="&quot;&quot;" Params="false" />
     </Params>
@@ -1170,7 +1170,7 @@
     <Params>
       <Param Name="post_id" Type="uint" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
-      <Param Name="reason" Type="ReportReason?" Default="null" Custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()" Params="false" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="wall.reportComment">
@@ -1179,7 +1179,7 @@
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
-      <Param Name="reason" Type="ReportReason?" Default="null" Custom="#name == null ? &quot;&quot; : ( (int)#name ).ToNCString()" Params="false" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="wall.getById">
@@ -1204,7 +1204,7 @@
     <Params>
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
       <Param Name="domain" Type="string" Default="&quot;&quot;" Params="false" />
-      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" Custom="#name.ToNClString().ToSnake()" Params="false" />
+      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" Params="false" />
       <Param Name="offset" Type="uint" Default="0" Params="false" />
       <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>

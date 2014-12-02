@@ -4,6 +4,7 @@ using VKSharp.Core.Interfaces;
 namespace VKSharp.Core.Entities {
     public class Post : OwnedEntity<Post> {
         public int FromId { get; set; }
+        public bool IsPinned { get; set; }
         public uint Date { get; set; }
         public string Text { get; set; }
         public int? ReplyOwnerId { get; set; }
