@@ -568,6 +568,10 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.PhotosGet( albumId,ownerId,photoIds,rev,extended,feedType,feed,offset,count ) );
             }
                     
+            public async Task<string> GetByIdAsync( params ContentId[] photos  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.PhotosGetById( photos ) );
+            }
+                    
             public async Task<string> GetAlbumsAsync(  int? ownerId = null, bool needSystem = true, bool needCovers = true, uint offset = 0, uint count = 100,params long[] albumIds  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.PhotosGetAlbums( ownerId,needSystem,needCovers,offset,count,albumIds ) );
             }

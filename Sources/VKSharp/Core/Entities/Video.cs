@@ -2,6 +2,7 @@
 
 namespace VKSharp.Core.Entities {
     public class Video : OwnedEntity<Video> {
+        public string AccessKey { get; set; }
         public string Title { get; set; }
         public uint Duration { get; set; }
         public string Description { get; set; }

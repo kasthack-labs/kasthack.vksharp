@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -31,9 +32,17 @@ namespace VKSharp.Data.Executors {
         public Task<string> ExecRawAsync<T>( VKRequest<T> request ) => ExecRawAsync( request, ReqExt );
         #endregion
         #region Serialization
-        private static readonly JsonSerializer Jsonser = new JsonSerializer { ContractResolver = new SnakeCaseContractResolver() };
+        private static readonly JsonSerializer Jsonser;
 
-        internal class SnakeCaseContractResolver : DefaultContractResolver { protected override string ResolvePropertyName( string propertyName ) => propertyName.ToSnake(); }
+        static JsonExecutor() {
+            var snakeCaseContractResolver = new SnakeCaseContractResolver();
+            snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
+            Jsonser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
+        }
+
+        internal class SnakeCaseContractResolver : DefaultContractResolver {
+            protected override string ResolvePropertyName( string propertyName ) => propertyName.ToSnake();
+        }
 
         public VKResponse<T> Parse<T>( string input ) {
             using ( var sr = new StringReader( input ) )

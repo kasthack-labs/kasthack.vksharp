@@ -1,5 +1,4 @@
-﻿
-Implemented 142 methods
+﻿Implemented 143 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -112,6 +111,7 @@ Implemented 142 methods
 	* photos.getAlbums
 	* photos.getAlbumsCount
 	* photos.getAll
+	* photos.getById
 	* photos.getChatUploadServer
 	* photos.getOwnerPhotoUploadServer
 	* photos.getUploadServer

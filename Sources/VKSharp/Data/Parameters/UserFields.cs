@@ -54,7 +54,11 @@ namespace VKSharp.Data.Parameters {
         WallComments = 1UL << 48,
         ScreenName = 1UL << 49,
         Occupation = 1UL << 50,
+        Anything = 1UL << 51,
+        MaidenName = 1UL << 52,
+        PhotoId = 1UL << 53,
         Everything = ~0UL,
         None = 0UL
+            //photo_id
     }
 }

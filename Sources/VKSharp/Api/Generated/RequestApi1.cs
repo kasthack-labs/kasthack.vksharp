@@ -1631,6 +1631,20 @@ namespace VKSharp {
             }
             return req;
         }
+        public VKRequest<Photo[]> PhotosGetById(
+            params ContentId[] photos 
+){
+            var req = new VKRequest<Photo[]>{
+                MethodName = "photos.getById",
+                Parameters = new Dictionary<string, string> {
+                                            { "photos", photos.ToString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
         public VKRequest<EntityList<PhotoAlbum>> PhotosGetAlbums(
              int? ownerId = null, bool needSystem = true, bool needCovers = true, uint offset = 0, uint count = 100,params long[] albumIds 
 ){

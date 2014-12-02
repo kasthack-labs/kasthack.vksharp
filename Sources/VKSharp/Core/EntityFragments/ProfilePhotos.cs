@@ -9,7 +9,6 @@ namespace VKSharp.Core.EntityFragments {
         public string Photo400Orig { get; set; }
         public string Photo200Orig { get; set; }
         public string PhotoMaxOrig { get; set; }
-
-        
+        public string PhotoId { get; set; }
     }
 }

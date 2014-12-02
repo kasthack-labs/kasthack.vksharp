@@ -1077,6 +1077,16 @@ namespace VKSharp {
 																	).Response
 								;
 							}
+												public async Task <Photo[]>GetByIdAsync( params ContentId[] photos  ){
+																	return (
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.PhotosGetById(
+									photos
+								)
+								)
+																	).Response
+								;
+							}
 												public async Task <EntityList<PhotoAlbum>>GetAlbumsAsync(  int? ownerId = null, bool needSystem = true, bool needCovers = true, uint offset = 0, uint count = 100,params long[] albumIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(

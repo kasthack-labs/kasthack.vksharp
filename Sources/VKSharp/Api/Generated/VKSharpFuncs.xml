@@ -929,6 +929,13 @@
       <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>
   </Method>
+  <Method Name="photos.getById">
+      <Request NeedToken="false" Type="Photo"></Request>
+      <Return Multiple="true" Parse="true"/>
+      <Params>
+          <Param Name="photos" Type="ContentId[]" Params="true"/>
+      </Params>
+  </Method>
   <Method Name="photos.getAlbums">
     <Request Type="EntityList&lt;PhotoAlbum&gt;" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
