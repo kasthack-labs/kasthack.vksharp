@@ -1,33 +1,33 @@
 <?xml version="1.0"?>
 <ArrayOfMethod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Method Name="account.setNameInMenu">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="name" Type="string" Params="false" />
     </Params>
   </Method>
   <Method Name="account.setOnline">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="voip" Type="bool" Default="true" Params="false" />
     </Params>
   </Method>
   <Method Name="account.setOffline">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params />
   </Method>
   <Method Name="account.unregisterDevice">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="token" Type="string" Params="false" />
     </Params>
   </Method>
   <Method Name="account.setSilenceMode">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="token" Type="string" Params="false" />
@@ -38,21 +38,21 @@
     </Params>
   </Method>
   <Method Name="account.getAppPermissions">
-    <Request Type="StructEntity&lt;long&gt;" NeedToken="false" />
+    <Request Type="long" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="account.banUser">
-    <Request Type="StructEntity&lt;long&gt;" NeedToken="true" />
+    <Request Type="long" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
     </Params>
   </Method>
   <Method Name="account.unbanUser">
-    <Request Type="StructEntity&lt;long&gt;" NeedToken="true" />
+    <Request Type="long" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -67,7 +67,7 @@
     </Params>
   </Method>
   <Method Name="account.setInfo">
-    <Request Type="StructEntity&lt;long&gt;" NeedToken="true" />
+    <Request Type="long" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="intro" Type="uint?" Default="null" Params="false" />
@@ -79,7 +79,7 @@
     <Params />
   </Method>
   <Method Name="audio.addAlbum">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="title" Type="string" Params="false" />
@@ -87,7 +87,7 @@
     </Params>
   </Method>
   <Method Name="audio.add">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="owner_id" Type="int" Params="false" />
@@ -96,7 +96,7 @@
     </Params>
   </Method>
   <Method Name="audio.deleteAlbum">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -104,7 +104,7 @@
     </Params>
   </Method>
   <Method Name="audio.delete">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="audio_id" Type="long" Params="false" />
@@ -112,7 +112,7 @@
     </Params>
   </Method>
   <Method Name="audio.edit">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="owner_id" Type="int" Params="false" />
@@ -153,7 +153,7 @@
     </Params>
   </Method>
   <Method Name="audio.getCount">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="false" />
+    <Request Type="int" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="owner_id" Type="int?" Default="null" Params="false" />
@@ -167,7 +167,7 @@
     </Params>
   </Method>
   <Method Name="audio.getUploadServer">
-    <Request Type="SimpleEntity&lt;string&gt;" NeedToken="false" />
+    <Request Type="string" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -175,7 +175,7 @@
     </Params>
   </Method>
   <Method Name="audio.reorder">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="audio_id" Type="long" Params="false" />
@@ -218,7 +218,7 @@
     </Params>
   </Method>
   <Method Name="auth.checkPhone">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="false" />
+    <Request Type="bool" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="phone" Type="string" Params="false" />
@@ -247,7 +247,7 @@
     </Params>
   </Method>
   <Method Name="board.closeTopic">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -255,7 +255,7 @@
     </Params>
   </Method>
   <Method Name="board.deleteComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -264,7 +264,7 @@
     </Params>
   </Method>
   <Method Name="board.deleteTopic">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -272,7 +272,7 @@
     </Params>
   </Method>
   <Method Name="board.fixTopic">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -280,7 +280,7 @@
     </Params>
   </Method>
   <Method Name="board.unfixTopic">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -288,7 +288,7 @@
     </Params>
   </Method>
   <Method Name="board.restoreComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -389,7 +389,7 @@
     </Params>
   </Method>
   <Method Name="docs.add">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="doc_id" Type="long" Params="false" />
@@ -398,7 +398,7 @@
     </Params>
   </Method>
   <Method Name="docs.delete">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="doc_id" Type="long" Params="false" />
@@ -406,14 +406,14 @@
     </Params>
   </Method>
   <Method Name="docs.getUploadServer">
-    <Request Type="SimpleEntity&lt;string&gt;" NeedToken="true" />
+    <Request Type="string" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="docs.getWallUploadServer">
-    <Request Type="SimpleEntity&lt;string&gt;" NeedToken="true" />
+    <Request Type="string" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint?" Default="null" Params="false" />
@@ -477,7 +477,7 @@
     </Params>
   </Method>
   <Method Name="friends.add">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -485,38 +485,38 @@
     </Params>
   </Method>
   <Method Name="friends.deleteAllRequests">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params />
   </Method>
   <Method Name="friends.getRecent">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="true" />
     <Params>
       <Param Name="count" Type="uint" Default="20" Params="false" />
     </Params>
   </Method>
   <Method Name="friends.delete">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
     </Params>
   </Method>
   <Method Name="friends.deleteList">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="list_id" Type="uint" Params="false" />
     </Params>
   </Method>
   <Method Name="friends.getAppUsers">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="false" />
+    <Request Type="int" NeedToken="false" />
     <Return Parse="true" Multiple="true" />
     <Params />
   </Method>
   <Method Name="friends.getMutual">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="false" />
+    <Request Type="int" NeedToken="false" />
     <Return Parse="true" Multiple="true" />
     <Params>
       <Param Name="target_uid" Type="uint" Params="false" />
@@ -581,7 +581,7 @@
     </Params>
   </Method>
   <Method Name="groups.join">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -589,14 +589,14 @@
     </Params>
   </Method>
   <Method Name="groups.leave">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
     </Params>
   </Method>
   <Method Name="groups.unbanUser">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="group_id" Type="uint" Params="false" />
@@ -604,7 +604,7 @@
     </Params>
   </Method>
   <Method Name="messages.addChatUser">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -612,7 +612,7 @@
     </Params>
   </Method>
   <Method Name="messages.removeChatUser">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -620,14 +620,14 @@
     </Params>
   </Method>
   <Method Name="messages.delete">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="message_ids" Type="int[]" Params="true" />
     </Params>
   </Method>
   <Method Name="messages.markAsRead">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -636,14 +636,14 @@
     </Params>
   </Method>
   <Method Name="messages.restore">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="message_id" Type="int" Params="false" />
     </Params>
   </Method>
   <Method Name="messages.deleteDialog">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -652,7 +652,7 @@
     </Params>
   </Method>
   <Method Name="messages.markAsImportant">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="important" Type="bool" Params="false" />
@@ -660,7 +660,7 @@
     </Params>
   </Method>
   <Method Name="newsfeed.addBan">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_ids" Type="uint[]" Default="null" Params="false" />
@@ -668,7 +668,7 @@
     </Params>
   </Method>
   <Method Name="newsfeed.deleteBan">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_ids" Type="uint[]" Default="null" Params="false" />
@@ -676,14 +676,14 @@
     </Params>
   </Method>
   <Method Name="notes.delete">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="note_id" Type="uint" Params="false" />
     </Params>
   </Method>
   <Method Name="notes.deleteComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -691,7 +691,7 @@
     </Params>
   </Method>
   <Method Name="notes.restoreComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -699,19 +699,19 @@
     </Params>
   </Method>
   <Method Name="notifications.markAsViewed">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params />
   </Method>
   <Method Name="pages.clearCache">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="false" />
+    <Request Type="bool" NeedToken="false" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="url" Type="string" Params="false" />
     </Params>
   </Method>
   <Method Name="photos.deleteComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -719,7 +719,7 @@
     </Params>
   </Method>
   <Method Name="photos.restoreComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -727,7 +727,7 @@
     </Params>
   </Method>
   <Method Name="photos.reportComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -736,7 +736,7 @@
     </Params>
   </Method>
   <Method Name="photos.deleteAlbum">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -744,7 +744,7 @@
     </Params>
   </Method>
   <Method Name="photos.delete">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="photo_id" Type="long" Params="false" />
@@ -752,7 +752,7 @@
     </Params>
   </Method>
   <Method Name="photos.confirmTag">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="tag_id" Type="uint" Params="false" />
@@ -761,7 +761,7 @@
     </Params>
   </Method>
   <Method Name="photos.removeTag">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="tag_id" Type="uint" Params="false" />
@@ -770,7 +770,7 @@
     </Params>
   </Method>
   <Method Name="photos.report">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="photo_id" Type="long" Params="false" />
@@ -779,7 +779,7 @@
     </Params>
   </Method>
   <Method Name="photos.copy">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="photo_id" Type="long" Params="false" />
@@ -788,7 +788,7 @@
     </Params>
   </Method>
   <Method Name="photos.edit">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="photo_id" Type="long" Params="false" />
@@ -797,7 +797,7 @@
     </Params>
   </Method>
   <Method Name="photos.getAlbumsCount">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="false" />
+    <Request Type="int" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint?" Default="null" Params="false" />
@@ -816,7 +816,7 @@
     </Params>
   </Method>
   <Method Name="photos.editAlbum">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -828,7 +828,7 @@
     </Params>
   </Method>
   <Method Name="photos.getOwnerPhotoUploadServer">
-    <Request Type="SimpleEntity&lt;string&gt;" NeedToken="true" />
+    <Request Type="string" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
     <Params />
   </Method>
@@ -851,7 +851,7 @@
     </Params>
   </Method>
   <Method Name="photos.reorderAlbums">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -861,7 +861,7 @@
     </Params>
   </Method>
   <Method Name="photos.reorderPhotos">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="photo_id" Type="long" Params="false" />
@@ -871,7 +871,7 @@
     </Params>
   </Method>
   <Method Name="photos.move">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="target_album_id" Type="long" Params="false" />
@@ -880,7 +880,7 @@
     </Params>
   </Method>
   <Method Name="photos.makeCover">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -964,7 +964,7 @@
     </Params>
   </Method>
   <Method Name="status.set">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="true" />
     <Params>
       <Param Name="text" Type="string" Params="false" />
@@ -980,7 +980,7 @@
     </Params>
   </Method>
   <Method Name="storage.getKeys">
-    <Request Type="SimpleEntity&lt;string&gt;" NeedToken="false" />
+    <Request Type="string" NeedToken="false" />
     <Return Parse="true" Multiple="true" />
     <Params>
       <Param Name="user_id" Type="uint?" Default="null" Params="false" />
@@ -1000,14 +1000,14 @@
     </Params>
   </Method>
   <Method Name="users.isAppUser">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="false" />
+    <Request Type="bool" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint?" Default="null" Params="false" />
     </Params>
   </Method>
   <Method Name="users.report">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="user_id" Type="uint" Params="false" />
@@ -1067,12 +1067,12 @@
     </Params>
   </Method>
   <Method Name="utils.getServerTime">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="false" />
+    <Request Type="int" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params />
   </Method>
   <Method Name="video.deleteComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -1080,7 +1080,7 @@
     </Params>
   </Method>
   <Method Name="video.restoreComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -1088,7 +1088,7 @@
     </Params>
   </Method>
   <Method Name="video.reportComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -1097,7 +1097,7 @@
     </Params>
   </Method>
   <Method Name="video.deleteAlbum">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="album_id" Type="long" Params="false" />
@@ -1105,7 +1105,7 @@
     </Params>
   </Method>
   <Method Name="video.delete">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="video_id" Type="ulong" Params="false" />
@@ -1113,7 +1113,7 @@
     </Params>
   </Method>
   <Method Name="video.removeTag">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="video_id" Type="ulong" Params="false" />
@@ -1122,7 +1122,7 @@
     </Params>
   </Method>
   <Method Name="video.report">
-    <Request Type="StructEntity&lt;int&gt;" NeedToken="true" />
+    <Request Type="int" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="video_id" Type="ulong" Params="false" />
@@ -1133,7 +1133,7 @@
     </Params>
   </Method>
   <Method Name="wall.delete">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="post_id" Type="uint" Params="false" />
@@ -1141,7 +1141,7 @@
     </Params>
   </Method>
   <Method Name="wall.restore">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="post_id" Type="uint" Params="false" />
@@ -1149,7 +1149,7 @@
     </Params>
   </Method>
   <Method Name="wall.deleteComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -1157,7 +1157,7 @@
     </Params>
   </Method>
   <Method Name="wall.restoreComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -1165,7 +1165,7 @@
     </Params>
   </Method>
   <Method Name="wall.reportPost">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="post_id" Type="uint" Params="false" />
@@ -1174,7 +1174,7 @@
     </Params>
   </Method>
   <Method Name="wall.reportComment">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="comment_id" Type="uint" Params="false" />
@@ -1210,7 +1210,7 @@
     </Params>
   </Method>
   <Method Name="wall.pin">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="post_id" Type="uint" Params="false" />
@@ -1218,7 +1218,7 @@
     </Params>
   </Method>
   <Method Name="wall.unpin">
-    <Request Type="StructEntity&lt;bool&gt;" NeedToken="true" />
+    <Request Type="bool" NeedToken="true" />
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="post_id" Type="uint" Params="false" />

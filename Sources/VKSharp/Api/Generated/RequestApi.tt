@@ -21,7 +21,6 @@ using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
-using VKSharp.Helpers.PrimitiveEntities;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
@@ -29,11 +28,16 @@ namespace VKSharp {
     public partial class RequestApi {
     <#
         var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
-        foreach ( var node in ms ) { #>
-    public VKRequest<<#=node.Request.Type#>> <#=ToMeth(node.Name)#>(
+        foreach ( var node in ms ) {
+        var returnType =String.Format(
+										"{0}{1}",
+										node.Request.Type,
+										node.Return.Multiple?"[]":""
+									);#>
+    public VKRequest<<#=returnType#>> <#=ToMeth(node.Name)#>(
             <#=GetParamsString(node)#>
 ){
-            var req = new VKRequest<<#=node.Request.Type#>>{
+            var req = new VKRequest<<#=returnType#>>{
                 MethodName = "<#=node.Name#>",
                 Parameters = new Dictionary<string, string> {
                     <#for (var i =0; i<node.Params.Length; i++){

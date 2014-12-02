@@ -9,16 +9,15 @@ using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
-using VKSharp.Helpers.PrimitiveEntities;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
     public partial class RequestApi {
-        public VKRequest<StructEntity<bool>> AccountSetNameInMenu(
+        public VKRequest<bool> AccountSetNameInMenu(
              string name 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.setNameInMenu",
                 Parameters = new Dictionary<string, string> {
                                             { "name", name }
@@ -28,10 +27,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> AccountSetOnline(
+        public VKRequest<bool> AccountSetOnline(
              bool voip = true
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.setOnline",
                 Parameters = new Dictionary<string, string> {
                                             { "voip", (voip?1:0).ToNCString() }
@@ -41,10 +40,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> AccountSetOffline(
+        public VKRequest<bool> AccountSetOffline(
             
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.setOffline",
                 Parameters = new Dictionary<string, string> {
                         }
@@ -53,10 +52,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> AccountUnregisterDevice(
+        public VKRequest<bool> AccountUnregisterDevice(
              string token 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.unregisterDevice",
                 Parameters = new Dictionary<string, string> {
                                             { "token", token }
@@ -66,10 +65,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> AccountSetSilenceMode(
+        public VKRequest<bool> AccountSetSilenceMode(
              string token , int time , uint? chatId = null, uint? userId = null, int sound = 0
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.setSilenceMode",
                 Parameters = new Dictionary<string, string> {
                                             { "token", token },
@@ -83,10 +82,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<long>> AccountGetAppPermissions(
+        public VKRequest<long> AccountGetAppPermissions(
              uint? userId = null
 ){
-            var req = new VKRequest<StructEntity<long>>{
+            var req = new VKRequest<long>{
                 MethodName = "account.getAppPermissions",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) }
@@ -97,10 +96,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<long>> AccountBanUser(
+        public VKRequest<long> AccountBanUser(
              uint userId 
 ){
-            var req = new VKRequest<StructEntity<long>>{
+            var req = new VKRequest<long>{
                 MethodName = "account.banUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() }
@@ -110,10 +109,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<long>> AccountUnbanUser(
+        public VKRequest<long> AccountUnbanUser(
              uint userId 
 ){
-            var req = new VKRequest<StructEntity<long>>{
+            var req = new VKRequest<long>{
                 MethodName = "account.unbanUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() }
@@ -123,10 +122,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<User> AccountGetBanned(
+        public VKRequest<User[]> AccountGetBanned(
              uint offset = 0, uint count = 20
 ){
-            var req = new VKRequest<User>{
+            var req = new VKRequest<User[]>{
                 MethodName = "account.getBanned",
                 Parameters = new Dictionary<string, string> {
                                             { "offset", offset.ToNCString() },
@@ -137,10 +136,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<long>> AccountSetInfo(
+        public VKRequest<long> AccountSetInfo(
              uint? intro = null
 ){
-            var req = new VKRequest<StructEntity<long>>{
+            var req = new VKRequest<long>{
                 MethodName = "account.setInfo",
                 Parameters = new Dictionary<string, string> {
                                             { "intro", MiscTools.NullableString(intro) }
@@ -162,10 +161,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> AudioAddAlbum(
+        public VKRequest<int> AudioAddAlbum(
              string title , uint? groupId = 0
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "audio.addAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "title", title },
@@ -176,10 +175,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> AudioAdd(
+        public VKRequest<int> AudioAdd(
              int ownerId , long audioId , uint? groupId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "audio.add",
                 Parameters = new Dictionary<string, string> {
                                             { "owner_id", ownerId.ToNCString() },
@@ -191,10 +190,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> AudioDeleteAlbum(
+        public VKRequest<int> AudioDeleteAlbum(
              long albumId , uint? groupId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "audio.deleteAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -205,10 +204,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> AudioDelete(
+        public VKRequest<int> AudioDelete(
              long audioId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "audio.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "audio_id", audioId.ToNCString() },
@@ -219,10 +218,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> AudioEdit(
+        public VKRequest<int> AudioEdit(
              int ownerId , long audioId , string artist = "", string title = "", string text = "", AudioGenre? genreId = null, bool? noSearch = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "audio.edit",
                 Parameters = new Dictionary<string, string> {
                                             { "owner_id", ownerId.ToNCString() },
@@ -257,10 +256,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Audio> AudioGetById(
+        public VKRequest<Audio[]> AudioGetById(
              bool itunes = false,params string[] audios 
 ){
-            var req = new VKRequest<Audio>{
+            var req = new VKRequest<Audio[]>{
                 MethodName = "audio.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "itunes", (itunes?1:0).ToNCString() },
@@ -272,10 +271,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Audio> AudioGetById(
+        public VKRequest<Audio[]> AudioGetById(
              bool itunes = false,params Tuple<int, long>[] audios 
 ){
-            var req = new VKRequest<Audio>{
+            var req = new VKRequest<Audio[]>{
                 MethodName = "audio.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "itunes", (itunes?1:0).ToNCString() },
@@ -287,10 +286,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<int>> AudioGetCount(
+        public VKRequest<int> AudioGetCount(
              int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "audio.getCount",
                 Parameters = new Dictionary<string, string> {
                                             { "owner_id", MiscTools.NullableString(ownerId) }
@@ -315,10 +314,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<SimpleEntity<string>> AudioGetUploadServer(
+        public VKRequest<string> AudioGetUploadServer(
              long albumId , uint? groupId = null
 ){
-            var req = new VKRequest<SimpleEntity<string>>{
+            var req = new VKRequest<string>{
                 MethodName = "audio.getUploadServer",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -330,10 +329,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> AudioReorder(
+        public VKRequest<bool> AudioReorder(
              long audioId , int? ownerId = null, long? before = null, long? after = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "audio.reorder",
                 Parameters = new Dictionary<string, string> {
                                             { "audio_id", audioId.ToNCString() },
@@ -360,10 +359,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<Audio> AudioSave(
+        public VKRequest<Audio[]> AudioSave(
              string server , string audio , string hash , string artist = "", string title = ""
 ){
-            var req = new VKRequest<Audio>{
+            var req = new VKRequest<Audio[]>{
                 MethodName = "audio.save",
                 Parameters = new Dictionary<string, string> {
                                             { "server", server },
@@ -398,10 +397,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> AuthCheckPhone(
+        public VKRequest<bool> AuthCheckPhone(
              string phone , string clientSecret , int? clientId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "auth.checkPhone",
                 Parameters = new Dictionary<string, string> {
                                             { "phone", phone },
@@ -447,10 +446,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> BoardCloseTopic(
+        public VKRequest<bool> BoardCloseTopic(
              uint groupId , uint topicId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "board.closeTopic",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -461,10 +460,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> BoardDeleteComment(
+        public VKRequest<bool> BoardDeleteComment(
              uint groupId , uint topicId , uint commentId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "board.deleteComment",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -476,10 +475,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> BoardDeleteTopic(
+        public VKRequest<bool> BoardDeleteTopic(
              uint groupId , uint topicId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "board.deleteTopic",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -490,10 +489,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> BoardFixTopic(
+        public VKRequest<bool> BoardFixTopic(
              uint groupId , uint topicId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "board.fixTopic",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -504,10 +503,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> BoardUnfixTopic(
+        public VKRequest<bool> BoardUnfixTopic(
              uint groupId , uint topicId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "board.unfixTopic",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -518,10 +517,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> BoardRestoreComment(
+        public VKRequest<bool> BoardRestoreComment(
              uint groupId , uint topicId , uint commentId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "board.restoreComment",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -567,10 +566,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<DatabaseEntry> DatabaseGetStreetsById(
+        public VKRequest<DatabaseEntry[]> DatabaseGetStreetsById(
             params uint[] streetIds 
 ){
-            var req = new VKRequest<DatabaseEntry>{
+            var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getStreetsById",
                 Parameters = new Dictionary<string, string> {
                                             { "street_ids", (streetIds??new uint[]{}).ToNCStringA() }
@@ -581,10 +580,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetCountriesById(
+        public VKRequest<EntityList<DatabaseEntry>[]> DatabaseGetCountriesById(
             params uint[] countryIds 
 ){
-            var req = new VKRequest<EntityList<DatabaseEntry>>{
+            var req = new VKRequest<EntityList<DatabaseEntry>[]>{
                 MethodName = "database.getCountriesById",
                 Parameters = new Dictionary<string, string> {
                                             { "country_ids", (countryIds??new uint[]{}).ToNCStringA() }
@@ -595,10 +594,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<DatabaseCity> DatabaseGetCitiesById(
+        public VKRequest<DatabaseCity[]> DatabaseGetCitiesById(
             params uint[] cityIds 
 ){
-            var req = new VKRequest<DatabaseCity>{
+            var req = new VKRequest<DatabaseCity[]>{
                 MethodName = "database.getCitiesById",
                 Parameters = new Dictionary<string, string> {
                                             { "city_ids", (cityIds??new uint[]{}).ToNCStringA() }
@@ -609,10 +608,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<DatabaseCity> DatabaseGetCities(
+        public VKRequest<DatabaseCity[]> DatabaseGetCities(
              uint countryId , uint? regionId = null, string q = "", bool needAll = false, uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<DatabaseCity>{
+            var req = new VKRequest<DatabaseCity[]>{
                 MethodName = "database.getCities",
                 Parameters = new Dictionary<string, string> {
                                             { "country_id", countryId.ToNCString() },
@@ -628,10 +627,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<DatabaseEntry> DatabaseGetUniversities(
+        public VKRequest<DatabaseEntry[]> DatabaseGetUniversities(
              uint? countryId = null, uint? cityId = null, string q = "", uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<DatabaseEntry>{
+            var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getUniversities",
                 Parameters = new Dictionary<string, string> {
                                             { "country_id", MiscTools.NullableString(countryId) },
@@ -646,10 +645,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<DatabaseEntry> DatabaseGetSchools(
+        public VKRequest<DatabaseEntry[]> DatabaseGetSchools(
              uint? cityId = null, string q = "", uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<DatabaseEntry>{
+            var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getSchools",
                 Parameters = new Dictionary<string, string> {
                                             { "city_id", MiscTools.NullableString(cityId) },
@@ -695,10 +694,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<int>> DocsAdd(
+        public VKRequest<int> DocsAdd(
              long docId , int ownerId , string accessKey = ""
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "docs.add",
                 Parameters = new Dictionary<string, string> {
                                             { "doc_id", docId.ToNCString() },
@@ -710,10 +709,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> DocsDelete(
+        public VKRequest<bool> DocsDelete(
              long docId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "docs.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "doc_id", docId.ToNCString() },
@@ -724,10 +723,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<SimpleEntity<string>> DocsGetUploadServer(
+        public VKRequest<string> DocsGetUploadServer(
              uint? groupId = null
 ){
-            var req = new VKRequest<SimpleEntity<string>>{
+            var req = new VKRequest<string>{
                 MethodName = "docs.getUploadServer",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", MiscTools.NullableString(groupId) }
@@ -737,10 +736,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<SimpleEntity<string>> DocsGetWallUploadServer(
+        public VKRequest<string> DocsGetWallUploadServer(
              uint? groupId = null
 ){
-            var req = new VKRequest<SimpleEntity<string>>{
+            var req = new VKRequest<string>{
                 MethodName = "docs.getWallUploadServer",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", MiscTools.NullableString(groupId) }
@@ -766,10 +765,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Document> DocsGetById(
+        public VKRequest<Document[]> DocsGetById(
             params Tuple<int,int>[] docs 
 ){
-            var req = new VKRequest<Document>{
+            var req = new VKRequest<Document[]>{
                 MethodName = "docs.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "docs", String.Join(",",docs.Select(a=>a.Item1 +"_" +a.Item2)) }
@@ -780,10 +779,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Document> DocsSave(
+        public VKRequest<Document[]> DocsSave(
              string file , string title ,params string[] tags 
 ){
-            var req = new VKRequest<Document>{
+            var req = new VKRequest<Document[]>{
                 MethodName = "docs.save",
                 Parameters = new Dictionary<string, string> {
                                             { "file", file },
@@ -832,10 +831,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<User> FriendsGetByPhones(
+        public VKRequest<User[]> FriendsGetByPhones(
              UserFields fields = UserFields.None, ulong[] phones = null
 ){
-            var req = new VKRequest<User>{
+            var req = new VKRequest<User[]>{
                 MethodName = "friends.getByPhones",
                 Parameters = new Dictionary<string, string> {
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
@@ -847,10 +846,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<int>> FriendsAdd(
+        public VKRequest<int> FriendsAdd(
              uint userId , string text = ""
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "friends.add",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -861,10 +860,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> FriendsDeleteAllRequests(
+        public VKRequest<bool> FriendsDeleteAllRequests(
             
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "friends.deleteAllRequests",
                 Parameters = new Dictionary<string, string> {
                         }
@@ -873,10 +872,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> FriendsGetRecent(
+        public VKRequest<int[]> FriendsGetRecent(
              uint count = 20
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int[]>{
                 MethodName = "friends.getRecent",
                 Parameters = new Dictionary<string, string> {
                                             { "count", count.ToNCString() }
@@ -886,10 +885,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> FriendsDelete(
+        public VKRequest<int> FriendsDelete(
              uint userId 
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "friends.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() }
@@ -899,10 +898,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> FriendsDeleteList(
+        public VKRequest<bool> FriendsDeleteList(
              uint listId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "friends.deleteList",
                 Parameters = new Dictionary<string, string> {
                                             { "list_id", listId.ToNCString() }
@@ -912,10 +911,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> FriendsGetAppUsers(
+        public VKRequest<int[]> FriendsGetAppUsers(
             
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int[]>{
                 MethodName = "friends.getAppUsers",
                 Parameters = new Dictionary<string, string> {
                         }
@@ -925,10 +924,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<int>> FriendsGetMutual(
+        public VKRequest<int[]> FriendsGetMutual(
              uint targetUid , uint? sourceUid = null, bool order = false, uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int[]>{
                 MethodName = "friends.getMutual",
                 Parameters = new Dictionary<string, string> {
                                             { "target_uid", targetUid.ToNCString() },
@@ -943,10 +942,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<User> GroupsGetBanned(
+        public VKRequest<User[]> GroupsGetBanned(
              uint groupId , uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<User>{
+            var req = new VKRequest<User[]>{
                 MethodName = "groups.getBanned",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -958,10 +957,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<Group> GroupsGetById(
+        public VKRequest<Group[]> GroupsGetById(
              string[] groupIds , GroupFields fields 
 ){
-            var req = new VKRequest<Group>{
+            var req = new VKRequest<Group[]>{
                 MethodName = "groups.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "group_ids", String.Join(",",groupIds) },
@@ -973,10 +972,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Group> GroupsGetById(
+        public VKRequest<Group[]> GroupsGetById(
              uint groupId , GroupFields fields 
 ){
-            var req = new VKRequest<Group>{
+            var req = new VKRequest<Group[]>{
                 MethodName = "groups.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -1020,10 +1019,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<MemberShip> GroupsIsMember(
+        public VKRequest<MemberShip[]> GroupsIsMember(
              uint groupId , bool extended = false,params uint[] userIds 
 ){
-            var req = new VKRequest<MemberShip>{
+            var req = new VKRequest<MemberShip[]>{
                 MethodName = "groups.isMember",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -1036,10 +1035,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> GroupsJoin(
+        public VKRequest<bool> GroupsJoin(
              uint groupId , bool notSure = false
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "groups.join",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -1050,10 +1049,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> GroupsLeave(
+        public VKRequest<bool> GroupsLeave(
              uint groupId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "groups.leave",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() }
@@ -1063,10 +1062,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> GroupsUnbanUser(
+        public VKRequest<bool> GroupsUnbanUser(
              uint groupId , uint userId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "groups.unbanUser",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
@@ -1077,10 +1076,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesAddChatUser(
+        public VKRequest<bool> MessagesAddChatUser(
              uint userId , uint? chatId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.addChatUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -1091,10 +1090,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesRemoveChatUser(
+        public VKRequest<bool> MessagesRemoveChatUser(
              uint userId , uint chatId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.removeChatUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -1105,10 +1104,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesDelete(
+        public VKRequest<bool> MessagesDelete(
             params int[] messageIds 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "message_ids", (messageIds??new int[]{}).ToNCStringA() }
@@ -1118,10 +1117,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesMarkAsRead(
+        public VKRequest<bool> MessagesMarkAsRead(
              uint userId , uint? startMessageId = null,params int[] messageIds 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.markAsRead",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -1133,10 +1132,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesRestore(
+        public VKRequest<bool> MessagesRestore(
              int messageId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.restore",
                 Parameters = new Dictionary<string, string> {
                                             { "message_id", messageId.ToNCString() }
@@ -1146,10 +1145,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesDeleteDialog(
+        public VKRequest<bool> MessagesDeleteDialog(
              uint userId , uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.deleteDialog",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -1161,10 +1160,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> MessagesMarkAsImportant(
+        public VKRequest<bool> MessagesMarkAsImportant(
              bool important ,params int[] messageIds 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.markAsImportant",
                 Parameters = new Dictionary<string, string> {
                                             { "important", (important?1:0).ToNCString() },
@@ -1175,10 +1174,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> NewsfeedAddBan(
+        public VKRequest<bool> NewsfeedAddBan(
              uint[] userIds = null, uint[] groupIds = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "newsfeed.addBan",
                 Parameters = new Dictionary<string, string> {
                                             { "user_ids", (userIds??new uint[]{}).ToNCStringA() },
@@ -1189,10 +1188,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> NewsfeedDeleteBan(
+        public VKRequest<bool> NewsfeedDeleteBan(
              uint[] userIds = null, uint[] groupIds = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "newsfeed.deleteBan",
                 Parameters = new Dictionary<string, string> {
                                             { "user_ids", (userIds??new uint[]{}).ToNCStringA() },
@@ -1203,10 +1202,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> NotesDelete(
+        public VKRequest<bool> NotesDelete(
              uint noteId 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "notes.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "note_id", noteId.ToNCString() }
@@ -1216,10 +1215,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> NotesDeleteComment(
+        public VKRequest<bool> NotesDeleteComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "notes.deleteComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1230,10 +1229,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> NotesRestoreComment(
+        public VKRequest<bool> NotesRestoreComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "notes.restoreComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1244,10 +1243,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> NotificationsMarkAsViewed(
+        public VKRequest<bool> NotificationsMarkAsViewed(
             
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "notifications.markAsViewed",
                 Parameters = new Dictionary<string, string> {
                         }
@@ -1256,10 +1255,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PagesClearCache(
+        public VKRequest<bool> PagesClearCache(
              string url 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "pages.clearCache",
                 Parameters = new Dictionary<string, string> {
                                             { "url", url }
@@ -1270,10 +1269,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosDeleteComment(
+        public VKRequest<bool> PhotosDeleteComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.deleteComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1284,10 +1283,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosRestoreComment(
+        public VKRequest<bool> PhotosRestoreComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.restoreComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1298,10 +1297,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosReportComment(
+        public VKRequest<bool> PhotosReportComment(
              uint commentId , int? ownerId = null, ReportReason? reason = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.reportComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1313,10 +1312,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosDeleteAlbum(
+        public VKRequest<bool> PhotosDeleteAlbum(
              long albumId , uint? groupId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.deleteAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1327,10 +1326,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosDelete(
+        public VKRequest<bool> PhotosDelete(
              long photoId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "photo_id", photoId.ToNCString() },
@@ -1341,10 +1340,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosConfirmTag(
+        public VKRequest<bool> PhotosConfirmTag(
              uint tagId , long photoId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.confirmTag",
                 Parameters = new Dictionary<string, string> {
                                             { "tag_id", tagId.ToNCString() },
@@ -1356,10 +1355,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosRemoveTag(
+        public VKRequest<bool> PhotosRemoveTag(
              uint tagId , long photoId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.removeTag",
                 Parameters = new Dictionary<string, string> {
                                             { "tag_id", tagId.ToNCString() },
@@ -1371,10 +1370,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosReport(
+        public VKRequest<bool> PhotosReport(
              long photoId , int? ownerId = null, ReportReason? reason = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.report",
                 Parameters = new Dictionary<string, string> {
                                             { "photo_id", photoId.ToNCString() },
@@ -1386,10 +1385,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosCopy(
+        public VKRequest<bool> PhotosCopy(
              long photoId , int? ownerId = null, string accessKey = ""
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.copy",
                 Parameters = new Dictionary<string, string> {
                                             { "photo_id", photoId.ToNCString() },
@@ -1401,10 +1400,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosEdit(
+        public VKRequest<bool> PhotosEdit(
              long photoId , int? ownerId = null, string caption = ""
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.edit",
                 Parameters = new Dictionary<string, string> {
                                             { "photo_id", photoId.ToNCString() },
@@ -1416,10 +1415,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> PhotosGetAlbumsCount(
+        public VKRequest<int> PhotosGetAlbumsCount(
              uint? userId = null, uint? groupId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "photos.getAlbumsCount",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) },
@@ -1448,10 +1447,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosEditAlbum(
+        public VKRequest<bool> PhotosEditAlbum(
              long albumId , int? ownerId = null, string title = "", string description = "", PrivacyType? privacy = null, PrivacyType? commentPrivacy = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.editAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1466,10 +1465,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<SimpleEntity<string>> PhotosGetOwnerPhotoUploadServer(
+        public VKRequest<string> PhotosGetOwnerPhotoUploadServer(
             
 ){
-            var req = new VKRequest<SimpleEntity<string>>{
+            var req = new VKRequest<string>{
                 MethodName = "photos.getOwnerPhotoUploadServer",
                 Parameters = new Dictionary<string, string> {
                         }
@@ -1508,10 +1507,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosReorderAlbums(
+        public VKRequest<bool> PhotosReorderAlbums(
              long albumId , int? ownerId = null, long? before = null, long? after = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.reorderAlbums",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1524,10 +1523,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosReorderPhotos(
+        public VKRequest<bool> PhotosReorderPhotos(
              long photoId , int? ownerId = null, long? before = null, long? after = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.reorderPhotos",
                 Parameters = new Dictionary<string, string> {
                                             { "photo_id", photoId.ToNCString() },
@@ -1540,10 +1539,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosMove(
+        public VKRequest<bool> PhotosMove(
              long targetAlbumId , long photoId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.move",
                 Parameters = new Dictionary<string, string> {
                                             { "target_album_id", targetAlbumId.ToNCString() },
@@ -1555,10 +1554,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> PhotosMakeCover(
+        public VKRequest<bool> PhotosMakeCover(
              long albumId , long photoId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "photos.makeCover",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1651,10 +1650,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Photo> PhotosSave(
+        public VKRequest<Photo[]> PhotosSave(
              long albumId , string server , string photosList , string hash , uint? groupId = null, double? latitude = null, double? longitude = null, string caption = "", string description = ""
 ){
-            var req = new VKRequest<Photo>{
+            var req = new VKRequest<Photo[]>{
                 MethodName = "photos.save",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1673,10 +1672,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Status> StatusGet(
+        public VKRequest<Status[]> StatusGet(
              int? userId = null
 ){
-            var req = new VKRequest<Status>{
+            var req = new VKRequest<Status[]>{
                 MethodName = "status.get",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) }
@@ -1687,10 +1686,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> StatusSet(
+        public VKRequest<bool[]> StatusSet(
              string text 
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool[]>{
                 MethodName = "status.set",
                 Parameters = new Dictionary<string, string> {
                                             { "text", text }
@@ -1700,10 +1699,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StorageEntry> StorageGet(
+        public VKRequest<StorageEntry[]> StorageGet(
              uint? userId = null, bool global = false,params string[] keys 
 ){
-            var req = new VKRequest<StorageEntry>{
+            var req = new VKRequest<StorageEntry[]>{
                 MethodName = "storage.get",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) },
@@ -1716,10 +1715,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<SimpleEntity<string>> StorageGetKeys(
+        public VKRequest<string[]> StorageGetKeys(
              uint? userId = null, bool global = false, uint offset = 0, uint count = 100
 ){
-            var req = new VKRequest<SimpleEntity<string>>{
+            var req = new VKRequest<string[]>{
                 MethodName = "storage.getKeys",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) },
@@ -1733,10 +1732,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StorageEntry> StorageSet(
+        public VKRequest<StorageEntry[]> StorageSet(
              string key , string value , uint? userId = null, bool global = false
 ){
-            var req = new VKRequest<StorageEntry>{
+            var req = new VKRequest<StorageEntry[]>{
                 MethodName = "storage.set",
                 Parameters = new Dictionary<string, string> {
                                             { "key", key },
@@ -1750,10 +1749,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> UsersIsAppUser(
+        public VKRequest<bool> UsersIsAppUser(
              uint? userId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "users.isAppUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) }
@@ -1764,10 +1763,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<int>> UsersReport(
+        public VKRequest<int> UsersReport(
              uint userId , ComplaintType type , string comment 
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "users.report",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -1795,10 +1794,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<User> UsersGet(
+        public VKRequest<User[]> UsersGet(
              UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params uint[] userIds 
 ){
-            var req = new VKRequest<User>{
+            var req = new VKRequest<User[]>{
                 MethodName = "users.get",
                 Parameters = new Dictionary<string, string> {
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
@@ -1865,10 +1864,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<int>> UtilsGetServerTime(
+        public VKRequest<int> UtilsGetServerTime(
             
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "utils.getServerTime",
                 Parameters = new Dictionary<string, string> {
                         }
@@ -1878,10 +1877,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> VideoDeleteComment(
+        public VKRequest<bool> VideoDeleteComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.deleteComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1892,10 +1891,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> VideoRestoreComment(
+        public VKRequest<bool> VideoRestoreComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.restoreComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1906,10 +1905,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> VideoReportComment(
+        public VKRequest<bool> VideoReportComment(
              uint commentId , int? ownerId = null, ReportReason? reason = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.reportComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -1921,10 +1920,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> VideoDeleteAlbum(
+        public VKRequest<int> VideoDeleteAlbum(
              long albumId , uint? groupId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "video.deleteAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1935,10 +1934,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> VideoDelete(
+        public VKRequest<int> VideoDelete(
              ulong videoId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "video.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "video_id", videoId.ToNCString() },
@@ -1949,10 +1948,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> VideoRemoveTag(
+        public VKRequest<int> VideoRemoveTag(
              ulong videoId , uint tagId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "video.removeTag",
                 Parameters = new Dictionary<string, string> {
                                             { "video_id", videoId.ToNCString() },
@@ -1964,10 +1963,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<int>> VideoReport(
+        public VKRequest<int> VideoReport(
              ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "", string searchQuery = ""
 ){
-            var req = new VKRequest<StructEntity<int>>{
+            var req = new VKRequest<int>{
                 MethodName = "video.report",
                 Parameters = new Dictionary<string, string> {
                                             { "video_id", videoId.ToNCString() },
@@ -1981,10 +1980,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallDelete(
+        public VKRequest<bool> WallDelete(
              uint postId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },
@@ -1995,10 +1994,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallRestore(
+        public VKRequest<bool> WallRestore(
              uint postId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.restore",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },
@@ -2009,10 +2008,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallDeleteComment(
+        public VKRequest<bool> WallDeleteComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.deleteComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -2023,10 +2022,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallRestoreComment(
+        public VKRequest<bool> WallRestoreComment(
              uint commentId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.restoreComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -2037,10 +2036,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallReportPost(
+        public VKRequest<bool> WallReportPost(
              uint postId , int? ownerId = null, ReportReason? reason = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.reportPost",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },
@@ -2052,10 +2051,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallReportComment(
+        public VKRequest<bool> WallReportComment(
              uint commentId , int? ownerId = null, ReportReason? reason = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.reportComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
@@ -2067,10 +2066,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<Post> WallGetById(
+        public VKRequest<Post[]> WallGetById(
              uint copyHistoryDepth = 2,params string[] posts 
 ){
-            var req = new VKRequest<Post>{
+            var req = new VKRequest<Post[]>{
                 MethodName = "wall.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "copy_history_depth", copyHistoryDepth.ToNCString() },
@@ -2081,10 +2080,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<Post> WallGetById(
+        public VKRequest<Post[]> WallGetById(
              uint copyHistoryDepth = 2,params Tuple<int,uint>[] posts 
 ){
-            var req = new VKRequest<Post>{
+            var req = new VKRequest<Post[]>{
                 MethodName = "wall.getById",
                 Parameters = new Dictionary<string, string> {
                                             { "copy_history_depth", copyHistoryDepth.ToNCString() },
@@ -2113,10 +2112,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallPin(
+        public VKRequest<bool> WallPin(
              uint postId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.pin",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },
@@ -2127,10 +2126,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<StructEntity<bool>> WallUnpin(
+        public VKRequest<bool> WallUnpin(
              uint postId , int? ownerId = null
 ){
-            var req = new VKRequest<StructEntity<bool>>{
+            var req = new VKRequest<bool>{
                 MethodName = "wall.unpin",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },

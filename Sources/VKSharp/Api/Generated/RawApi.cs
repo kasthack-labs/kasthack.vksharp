@@ -1,7 +1,10 @@
 ﻿
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
+using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
 
 // ReSharper disable UnusedMember.Global

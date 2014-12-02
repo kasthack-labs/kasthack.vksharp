@@ -41,62 +41,62 @@ namespace VKSharp.Data.Parameters {
             GroupId = groupId;
         }
 
-        public string Query { get; private set; }
+        public string Query { get; }
 
-        public SearchSortOrder Sort { get; private set; }
+        public SearchSortOrder Sort { get; }
 
-        public ushort? Offset { get; private set; }
+        public ushort? Offset { get; }
 
-        public ushort? Count { get; private set; }
+        public ushort? Count { get; }
 
-        public UserFields Fields { get; private set; }
+        public UserFields Fields { get; }
 
-        public uint? CityId { get; private set; }
+        public uint? CityId { get; }
 
-        public uint? CountryId { get; private set; }
+        public uint? CountryId { get; }
 
-        public string Hometown { get; private set; }
+        public string Hometown { get; }
 
-        public uint? UniversityCountryId { get; private set; }
+        public uint? UniversityCountryId { get; }
 
-        public uint? UniversityId { get; private set; }
+        public uint? UniversityId { get; }
 
-        public uint? UniversityYear { get; private set; }
+        public uint? UniversityYear { get; }
 
-        public Sex? Sex { get; private set; }
+        public Sex? Sex { get; }
 
-        public Relation? Relation { get; private set; }
+        public Relation? Relation { get; }
 
-        public byte? AgeFrom { get; private set; }
+        public byte? AgeFrom { get; }
 
-        public byte? AgeTo { get; private set; }
+        public byte? AgeTo { get; }
 
-        public byte? BirthDay { get; private set; }
+        public byte? BirthDay { get; }
 
-        public byte? BirthMonth { get; private set; }
+        public byte? BirthMonth { get; }
 
-        public ushort? BirthYear { get; private set; }
+        public ushort? BirthYear { get; }
 
-        public bool? Online { get; private set; }
+        public bool? Online { get; }
 
-        public bool? HasPhoto { get; private set; }
+        public bool? HasPhoto { get; }
 
-        public uint? SchoolCountryId { get; private set; }
+        public uint? SchoolCountryId { get; }
 
-        public uint? SchoolCityId { get; private set; }
+        public uint? SchoolCityId { get; }
 
-        public uint? SchoolId { get; private set; }
+        public uint? SchoolId { get; }
 
-        public uint? SchoolYear { get; private set; }
+        public uint? SchoolYear { get; }
 
-        public string Religion { get; private set; }
+        public string Religion { get; }
 
-        public string Interests { get; private set; }
+        public string Interests { get; }
 
-        public string Company { get; private set; }
+        public string Company { get; }
 
-        public string Position { get; private set; }
+        public string Position { get; }
 
-        public uint? GroupId { get; private set; }
+        public uint? GroupId { get; }
     }
 }

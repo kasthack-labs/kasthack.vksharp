@@ -1,6 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace VKSharp.Helpers.DataTypes {
+    [JsonConverter(typeof(DateConverter))]
     public struct Date {
         public int? Year { get; set; }
         public int Month { get; set; }
@@ -25,13 +28,6 @@ namespace VKSharp.Helpers.DataTypes {
                 Day=int.Parse(spl[--l]),
             };
         }
-
-        /// <summary>
-        /// Возвращает строку, которая представляет текущий объект.
-        /// </summary>
-        /// <returns>
-        /// Строка, представляющая текущий объект.
-        /// </returns>
         public override string ToString() {
             return String.Format(
                 Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}",
@@ -40,5 +36,21 @@ namespace VKSharp.Helpers.DataTypes {
                 Year
             );
         }
+    }
+
+    
+    public class DateConverter : JsonConverter {
+        private static readonly Type Type = typeof( Date );
+
+        public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
+            throw new NotImplementedException();
+        }
+
+        public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
+            if ( reader.TokenType == JsonToken.None ) return default(Date);
+            Date p;
+            return Date.TryParse( reader.Value.ToString(), out p ) ? p : default( Date );
+        }
+        public override bool CanConvert( Type objectType ) { return Type == objectType; }
     }
 }

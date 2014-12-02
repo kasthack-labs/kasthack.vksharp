@@ -1,4 +1,4 @@
-namespace VKSharp
+namespace VKSharp.Data.Parameters
 {
     public enum WallPostFilter
 	{
