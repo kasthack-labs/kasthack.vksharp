@@ -14,6 +14,6 @@ namespace VKSharp.Core.Entities {
         public ushort? YearFrom { get; set; }
         public ushort? YearTo { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

@@ -20,5 +20,9 @@ namespace VKSharp {
         public VKApi() {
             InitializeMethodGroups();
         }
+
+        public RawApi GetRawApi() {
+            return new RawApi(_reqapi);
+        }
     }
 }

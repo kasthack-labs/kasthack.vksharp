@@ -6,6 +6,6 @@ namespace VKSharp.Core.Entities {
         public bool? UserLikes { get; set; }
         public bool? CanLike { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

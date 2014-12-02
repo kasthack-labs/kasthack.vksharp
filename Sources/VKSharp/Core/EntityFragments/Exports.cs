@@ -6,6 +6,6 @@ namespace VKSharp.Core.EntityFragments {
         public bool? Facebook { get; set; }
         public bool? LiveJournal { get; set; }
         public bool? Instagram { get; set; }
-        public VKApi Context { get; set; }
+        
     }
 }

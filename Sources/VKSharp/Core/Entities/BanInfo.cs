@@ -8,6 +8,6 @@ namespace VKSharp.Core.Entities {
         public string Reason { get; set; }
         public string Comment { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

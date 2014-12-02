@@ -6,6 +6,6 @@ namespace VKSharp.Core.Entities {
         public PostSourceType SourceType { get; set; }
         public PostSourceInfo? Data { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

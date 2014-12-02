@@ -5,6 +5,6 @@ namespace VKSharp.Core.Entities {
     public class Attachment:IVKEntity<Attachment> {
         public AttachmentType? Type { get; set; }
         public object AttachmentBody { get; set; }
-        public VKApi Context { get; set; }
+        
     }
 }

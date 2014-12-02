@@ -16,12 +16,12 @@ namespace VKSharp.Core.EntityParsers.Xml {
         }
 
         //primitives
-        protected static readonly Lazy<Dictionary<string, Action<T, string>>> GeneratedParsersLazy =
-            new Lazy<Dictionary<string, Action<T, string>>>( SimpleXMLExecutor.GetStringParsers<T> );
+        //protected static readonly Lazy<Dictionary<string, Action<T, string>>> GeneratedParsersLazy =
+        //    new Lazy<Dictionary<string, Action<T, string>>>( SimpleXMLExecutor.GetStringParsers<T> );
         //subentities
         protected Dictionary<string, Action<T, XElement>> SubentityParsers;
 
-        protected static Dictionary<string, Action<T, string>> GeneratedParsers => GeneratedParsersLazy.Value;
+        protected static Dictionary<string, Action<T, string>> GeneratedParsers => null;//GeneratedParsersLazy.Value;
 
         public virtual void FillFromXml( IEnumerable<XElement> nodes, T entity ) {
             foreach ( var cn in nodes )
@@ -61,6 +61,6 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         public virtual void Attach() => ( Executor as SimpleXMLExecutor )?.AttachParser( this );
 
-        protected IXmlVKEntityParser<TEntity> GetP<TEntity>() where TEntity : IVKEntity<TEntity> => _executor.GetParser<TEntity>();
+        protected IXmlVKEntityParser<TEntity> GetP<TEntity>() where TEntity : IVKEntity<TEntity> => null;// _executor.GetParser<TEntity>();
     }
 }

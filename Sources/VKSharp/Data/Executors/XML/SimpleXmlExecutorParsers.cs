@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using VKSharp.Core.Entities;
 using VKSharp.Core.Interfaces;
 using VKSharp.Helpers;
 
@@ -171,12 +172,24 @@ namespace VKSharp.Data.Executors{
         }
 
         public static T ParseXml<T>( string input ) {
-            var doc = XDocument.Parse( input );
-            foreach ( var descendant in doc.Descendants() ) {
-                descendant.Name = ToMeth( descendant.Name.ToString() );
-            }
-            var cs = doc.ToString();
-            using ( var sr = new StringReader( cs ) ) {
+            //using ( var f = File.OpenWrite( @"C:\_Temp\testser" ) ) {
+            //    Ser<EntityList<Post>>.Serializer.Serialize( f, new EntityList<Post>() {
+            //        Items = new List<Post>() {
+            //            new Post() {
+            //                Text = "Ololo"
+            //            }
+            //        },
+            //        TotalCount = 1488
+            //    } );
+            //}
+
+            //var doc = XDocument.Parse( input );
+            //foreach ( var descendant in doc.Descendants() ) {
+            //    descendant.Name = ToMeth( descendant.Name.ToString() );
+            //}
+            //var cs = doc.ToString();
+            //using ( var sr = new StringReader( cs ) ) {
+            using ( var sr = new StreamReader( @"C:\_Temp\pic2.txt" )) {
                 return (T) Ser<T>.Serializer.Deserialize( sr );
             }
         }

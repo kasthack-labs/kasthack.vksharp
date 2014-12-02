@@ -17,6 +17,6 @@ namespace VKSharp.Core.EntityFragments {
         public uint? Subscriptions { get; set; }
         public uint? Pages { get; set; }    //???
 
-        public VKApi Context { get; set; }
+        
     }
 }

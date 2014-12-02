@@ -8,6 +8,6 @@ namespace VKSharp.Core.Entities {
         public uint Votes { get; set; }
         public uint AnswerId { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

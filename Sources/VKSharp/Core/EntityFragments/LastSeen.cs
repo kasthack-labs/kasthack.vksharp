@@ -6,6 +6,6 @@ namespace VKSharp.Core.EntityFragments {
         public uint Time { get; set; }
         public VKPlatform Platform { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

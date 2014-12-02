@@ -5,6 +5,6 @@ namespace VKSharp.Core.Entities {
         public uint Count { get; set; }
         public bool? CanPost { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

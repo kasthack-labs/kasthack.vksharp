@@ -8,6 +8,6 @@ namespace VKSharp.Core.EntityFragments {
         public uint? Videos { get; set; }
         public uint? Topics { get; set; }
         public uint? Docs { get; set; }
-        public VKApi Context { get; set; }
+        
     }
 }

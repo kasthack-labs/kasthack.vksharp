@@ -2,7 +2,7 @@
 
 namespace VKSharp.Core.Entities {
     public class Lyrics:IVKEntity<Lyrics> {
-        public VKApi Context { get; set; }
+        
 
         public string Text { get; set; }
 

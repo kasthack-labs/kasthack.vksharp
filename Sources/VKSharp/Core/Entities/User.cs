@@ -66,7 +66,7 @@ namespace VKSharp.Core.Entities {
         public uint[] Lists { get; set; }
         public University[] Universities { get; set; }
         public ushort? Graduation { get; set; }
-        public VKApi Context { get; set; }
+        
         public bool Equals( User other ) {
             return !ReferenceEquals( other, null ) && Id == other.Id;
         }

@@ -57,14 +57,15 @@ namespace VKSharp.Data.Executors {
             var rootNode = doc.Root;
             if ( rootNode.Name.ToString() == "error" )
                 throw new VKException( rootNode.Element( "error_msg" ).Value );
-            var parser = GetParser<T>();
-            var lattr = rootNode.Attribute( "list" );
-            //list=true||1 element => std parser, else fragments
-            var uarr = ( lattr != null && lattr.Value == "true" ) || rootNode.Elements().Take( 2 ).Count() == 1;
-            return new VKResponse<T> {
-                Data = uarr ? parser.ParseAllFromXml( rootNode.Elements() ) : new[ ] { parser.ParseFromXmlFragments( rootNode.Elements() ) },
-                Status = null
-            };
+            //var parser = GetParser<T>();
+            //var lattr = rootNode.Attribute( "list" );
+            ////list=true||1 element => std parser, else fragments
+            //var uarr = ( lattr != null && lattr.Value == "true" ) || rootNode.Elements().Take( 2 ).Count() == 1;
+            //return new VKResponse<T> {
+            //    Data = uarr ? parser.ParseAllFromXml( rootNode.Elements() ) : new[ ] { parser.ParseFromXmlFragments( rootNode.Elements() ) },
+            //    Status = null
+            //};
+            return null;
         }
 
 

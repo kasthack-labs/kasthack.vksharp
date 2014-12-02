@@ -8,9 +8,9 @@ namespace VKSharp.Core.EntityParsers.Xml {
         public override bool UpdateFromFragment( XElement node, EntityList<T> entity ) {
             switch ( node.Name.ToString() ) {
                 case "items":
-                    entity.Items =  ( (SimpleXMLExecutor) Executor )
-                        .GetParser<T>()
-                        .ParseAllFromXml(node.Elements());
+                    //entity.Items =  ( (SimpleXMLExecutor) Executor )
+                    //    .GetParser<T>()
+                    //    .ParseAllFromXml(node.Elements());
                     break;
                 default:
                     return base.UpdateFromFragment( node, entity );

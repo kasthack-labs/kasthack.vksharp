@@ -6,9 +6,6 @@ namespace VKSharp.Core.EntityFragments {
         public uint Id {get;set;}
         public string Name {get;set;}
         public OccupationType Type { get; set;}
-        #region IVKEntity implementation
-        public VKApi Context { get; set;}
-        #endregion
     }
 }
 

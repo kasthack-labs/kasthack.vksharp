@@ -33,6 +33,6 @@ namespace VKSharp.Core.Entities {
         public uint? PostId { get; set; }
         public uint? StartDate { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

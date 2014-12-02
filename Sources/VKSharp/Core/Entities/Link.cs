@@ -8,7 +8,6 @@ namespace VKSharp.Core.Entities {
         public string ImageSrc { get; set; }
         public string PreviewPage { get; set; }
         public string PreviewUrl { get; set; }
-        public VKApi Context { get; set;}
     }
 }
 

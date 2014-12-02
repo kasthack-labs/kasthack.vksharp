@@ -2,7 +2,7 @@
 
 namespace VKSharp.Core.Entities {
     public class MemberShip : IVKEntity<MemberShip> {
-        public VKApi Context { get; set; }
+        
 
         public uint UserId { get; set; }
         public bool Member { get; set; }

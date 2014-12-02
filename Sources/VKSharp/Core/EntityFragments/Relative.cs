@@ -6,6 +6,6 @@ namespace VKSharp.Core.EntityFragments {
         public int? Id { get; set; }
         public string Name { get; set; }
         public RelativeType Type;
-        public VKApi Context { get; set; }
+        
     }
 }

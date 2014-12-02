@@ -11,6 +11,6 @@ namespace VKSharp.Core.Entities {
         public uint City { get; set; }
         public string Address { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

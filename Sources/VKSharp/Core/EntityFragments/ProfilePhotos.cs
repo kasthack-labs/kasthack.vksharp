@@ -10,6 +10,6 @@ namespace VKSharp.Core.EntityFragments {
         public string Photo200Orig { get; set; }
         public string PhotoMaxOrig { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

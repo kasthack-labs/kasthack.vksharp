@@ -9,6 +9,6 @@ namespace VKSharp.Core.EntityFragments {
         public string Instagram { get; set; }
         public string LiveJournal { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

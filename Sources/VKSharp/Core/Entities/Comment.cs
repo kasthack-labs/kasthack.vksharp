@@ -13,6 +13,6 @@ namespace VKSharp.Core.Entities {
         public uint Id{ get; set; }
         public uint ReplyToCId{ get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

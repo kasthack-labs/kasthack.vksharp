@@ -19,5 +19,11 @@ namespace VKSharp {
         }
 
         public int TokenCount => _reqapi.TokenCount;
+
+        public RawApi() {
+            InitializeMethodGroups();
+        }
+
+        internal RawApi( RequestApi api ) :this() { _reqapi = api; }
     }
 }

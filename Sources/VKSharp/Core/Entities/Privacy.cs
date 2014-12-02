@@ -9,6 +9,6 @@ namespace VKSharp.Core.Entities {
         public uint[] Users { get; set; }
         public uint[] ExceptUsers { get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }

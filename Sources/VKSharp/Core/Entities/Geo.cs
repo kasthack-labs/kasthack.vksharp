@@ -10,6 +10,6 @@ namespace VKSharp.Core.Entities {
         public uint CountryId{ get; set; }
         public uint PlaceId{ get; set; }
 
-        public VKApi Context { get; set; }
+        
     }
 }
