@@ -17,7 +17,7 @@ namespace VKSharp.Core.EntityParsers.Xml {
 
         //primitives
         protected static readonly Lazy<Dictionary<string, Action<T, string>>> GeneratedParsersLazy =
-            new Lazy<Dictionary<string, Action<T, string>>>( ParserHelper.GetStringParsers<T> );
+            new Lazy<Dictionary<string, Action<T, string>>>( SimpleXMLExecutor.GetStringParsers<T> );
         //subentities
         protected Dictionary<string, Action<T, XElement>> SubentityParsers;
 

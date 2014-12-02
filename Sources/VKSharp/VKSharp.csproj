@@ -79,6 +79,7 @@
     <Compile Include="Core\ResponseEntities\AuthRestore.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
+    <Compile Include="Data\Executors\XML\SimpleXmlExecutorParsers.cs" />
     <Compile Include="Data\Parameters\GroupFields.cs" />
     <Compile Include="Data\Parameters\SpecialAlbum.cs" />
     <Compile Include="Core\Entities\Counter.cs" />
@@ -122,12 +123,11 @@
     <Compile Include="Data\Request\ResponseStatus.cs" />
     <Compile Include="Data\Request\VKResponse.cs" />
     <Compile Include="Data\Parameters\NameCase.cs" />
-    <Compile Include="Data\Executors\SimpleXMLExecutor.cs" />
+    <Compile Include="Data\Executors\XML\SimpleXMLExecutor.cs" />
     <Compile Include="Data\Parameters\UserFields.cs" />
     <Compile Include="Helpers\DataTypes\UInt40.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
-    <Compile Include="Helpers\ParserHelper.cs" />
     <Compile Include="Helpers\PrimitiveEntities\SimpleEntity.cs" />
     <Compile Include="Helpers\PrimitiveEntities\StructEntity.cs" />
     <Compile Include="Helpers\Parsers\PrimitiveParser.cs" />
