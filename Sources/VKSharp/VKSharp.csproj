@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -72,8 +68,10 @@
     </Compile>
     <Compile Include="Api\RequestApi.cs" />
     <Compile Include="Api\RawApi.cs" />
+    <Compile Include="Core\Entities\AudioAlbum.cs" />
     <Compile Include="Core\Entities\Onlines.cs" />
     <Compile Include="Core\Entities\Status.cs" />
+    <Compile Include="Core\ResponseEntities\AccountInfo.cs" />
     <Compile Include="Core\ResponseEntities\AuthRestore.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
@@ -103,9 +101,7 @@
     <Compile Include="Core\Enums\RelativeType.cs" />
     <Compile Include="Core\EntityFragments\LastSeen.cs" />
     <Compile Include="Core\EntityFragments\Exports.cs" />
-    <Compile Include="Core\Interfaces\IXmlVKEntityParser.cs" />
     <Compile Include="Data\Parameters\SearchSortOrder.cs" />
-    <Compile Include="Api\HandCoded\VKApi.cs" />
     <Compile Include="Core\Entities\BanInfo.cs" />
     <Compile Include="Core\Entities\EntityList.cs" />
     <Compile Include="Data\Api\VKPermission.cs" />
@@ -162,7 +158,6 @@
     <Compile Include="Helpers\BuiltInData.cs" />
     <Compile Include="Core\Interfaces\OwnedEntity.cs" />
     <Compile Include="Core\Interfaces\IVKEntity.cs" />
-    <Compile Include="Core\Interfaces\IXmlVKEntityParserT.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Request\VKRequest.cs" />
     <Compile Include="Data\Api\VKToken.cs" />
@@ -218,6 +213,12 @@
       <DependentUpon>ImplementedMethods.tt</DependentUpon>
     </Content>
     <Content Include="Api\Generated\VkSharpFuncs.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libs\JsonNet\Newtonsoft.Json.csproj">
+      <Project>{eeea67f9-9089-481d-a4dc-0966dec9fd7d}</Project>
+      <Name>Newtonsoft.Json</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

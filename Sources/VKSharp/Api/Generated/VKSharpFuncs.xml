@@ -73,6 +73,11 @@
       <Param Name="intro" Type="uint?" Default="null" Params="false" />
     </Params>
   </Method>
+  <Method Name="account.getInfo">
+    <Request Type="AccountInfo" NeedToken="true" />
+    <Return Parse="true" Multiple="false" />
+    <Params></Params>
+  </Method>
   <Method Name="account.getProfileInfo">
     <Request Type="User" NeedToken="true" />
     <Return Parse="true" Multiple="false" />
@@ -122,6 +127,15 @@
       <Param Name="text" Type="string" Default="&quot;&quot;" Params="false" />
       <Param Name="genre_id" Type="AudioGenre?" Default="null" Params="false" />
       <Param Name="no_search" Type="bool?" Default="null" Params="false" />
+    </Params>
+  </Method>
+    <Method Name="audio.getAlbums">
+    <Request Type="EntityList&lt;AudioAlbum&gt;" NeedToken="false" />
+    <Return Parse="true" Multiple="false" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" Params="false" />
+      <Param Name="offset" Type="uint" Default="0" Params="false" />
+      <Param Name="count" Type="uint" Default="100" Params="false" />
     </Params>
   </Method>
   <Method Name="audio.get">

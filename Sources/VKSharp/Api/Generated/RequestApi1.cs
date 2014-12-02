@@ -149,6 +149,18 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<AccountInfo> AccountGetInfo(
+            
+){
+            var req = new VKRequest<AccountInfo>{
+                MethodName = "account.getInfo",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<User> AccountGetProfileInfo(
             
 ){
@@ -235,6 +247,22 @@ namespace VKSharp {
             };
                 req.Token = CurrentToken;
             
+            return req;
+        }
+        public VKRequest<EntityList<AudioAlbum>> AudioGetAlbums(
+             int? ownerId = null, uint offset = 0, uint count = 100
+){
+            var req = new VKRequest<EntityList<AudioAlbum>>{
+                MethodName = "audio.getAlbums",
+                Parameters = new Dictionary<string, string> {
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
             return req;
         }
         public VKRequest<EntityList<Audio>> AudioGet(

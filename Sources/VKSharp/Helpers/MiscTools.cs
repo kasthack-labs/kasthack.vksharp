@@ -27,6 +27,18 @@ namespace VKSharp.Helpers {
             return t.ToString();
         }
 
+        public static string ToMeth( this string name, bool p = false ) {
+            var t = new StringBuilder();
+            t.Append( p ? Char.ToLower( name[ 0 ] ) : Char.ToUpper( name[ 0 ] ) );
+            for ( var index = 1; index < name.Length; index++ ) {
+                var c = name[ index ];
+                //add '_' before numbers and capitals 
+                if ( c == '.' || c == '_' ) t.Append( Char.ToUpper( name[ ++index ] ) );
+                else t.Append( c );
+            }
+            return t.ToString();
+        }
+
         public static string[] GetGroupFields( GroupFields fields ) {
             var s =
                 Enum.GetValues( typeof( GroupFields ) )

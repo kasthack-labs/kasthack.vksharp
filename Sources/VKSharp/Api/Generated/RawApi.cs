@@ -98,6 +98,10 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountSetInfo( intro ) );
             }
                     
+            public async Task<string> GetInfoAsync(  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountGetInfo(  ) );
+            }
+                    
             public async Task<string> GetProfileInfoAsync(  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountGetProfileInfo(  ) );
             }
@@ -126,6 +130,10 @@ namespace VKSharp {
                     
             public async Task<string> EditAsync(  int ownerId , long audioId , string artist = "", string title = "", string text = "", AudioGenre? genreId = null, bool? noSearch = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioEdit( ownerId,audioId,artist,title,text,genreId,noSearch ) );
+            }
+                    
+            public async Task<string> GetAlbumsAsync(  int? ownerId = null, uint offset = 0, uint count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioGetAlbums( ownerId,offset,count ) );
             }
                     
             public async Task<string> GetAsync(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, uint offset = 0, uint count = 100 ){
