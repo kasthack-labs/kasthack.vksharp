@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace VKSharp.Data.Executors {
     public class JsonExecutor : IExecutor {
         #region IO
         private const string ReqExt = "json";
-        private static readonly HttpClient Client = new HttpClient();
+        private static readonly HttpClient Client;
         private static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string format ) {
             var ps = request.Parameters.ToList();
             ps.Add( new KeyValuePair<string, string>( "v", "5.21" ) );
@@ -35,6 +36,11 @@ namespace VKSharp.Data.Executors {
         private static readonly JsonSerializer Jsonser;
 
         static JsonExecutor() {
+            ServicePointManager.DefaultConnectionLimit = Math.Max(25, ServicePointManager.DefaultConnectionLimit);
+            var httpClientHandler = new HttpClientHandler();
+            if (httpClientHandler.SupportsAutomaticDecompression)
+                httpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            Client = new HttpClient( httpClientHandler );
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
             Jsonser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
