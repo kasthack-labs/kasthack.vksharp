@@ -14,6 +14,5 @@ namespace VKSharp.Core.Entities {
         public uint? Faculty { get; set; }
         public ushort? Graduation { get; set; }
 
-        
     }
 }

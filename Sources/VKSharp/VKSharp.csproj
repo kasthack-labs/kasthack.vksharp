@@ -69,10 +69,15 @@
     <Compile Include="Api\RequestApi.cs" />
     <Compile Include="Api\RawApi.cs" />
     <Compile Include="Core\Entities\AudioAlbum.cs" />
+    <Compile Include="Core\Entities\Chat.cs" />
     <Compile Include="Core\Entities\Onlines.cs" />
     <Compile Include="Core\Entities\Status.cs" />
+    <Compile Include="Core\Entities\VideoAlbum.cs" />
+    <Compile Include="Core\Enums\ChangeNameStatus.cs" />
     <Compile Include="Core\ResponseEntities\AccountInfo.cs" />
     <Compile Include="Core\ResponseEntities\AuthRestore.cs" />
+    <Compile Include="Core\ResponseEntities\ChangeNameRequest.cs" />
+    <Compile Include="Core\ResponseEntities\LastActivity.cs" />
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
     <Compile Include="Data\Executors\JsonExecutor.cs" />
@@ -119,7 +124,7 @@
     <Compile Include="Core\Entities\Attachment.cs" />
     <Compile Include="Core\Entities\Audio.cs" />
     <Compile Include="Core\Entities\Comment.cs" />
-    <Compile Include="Core\Entities\CommentLikes.cs" />
+    <Compile Include="Core\EntityFragments\CommentLikes.cs" />
     <Compile Include="Core\Entities\Document.cs" />
     <Compile Include="Core\Entities\Geo.cs" />
     <Compile Include="Core\Entities\Graffity.cs" />
@@ -127,7 +132,7 @@
     <Compile Include="Core\Entities\PhotoAlbum.cs" />
     <Compile Include="Core\Entities\Poll.cs" />
     <Compile Include="Core\Entities\Post.cs" />
-    <Compile Include="Core\Entities\PostComments.cs" />
+    <Compile Include="Core\EntityFragments\PostComments.cs" />
     <Compile Include="Core\Entities\PostedPhoto.cs" />
     <Compile Include="Core\Entities\PostLikes.cs" />
     <Compile Include="Core\Entities\PostReposts.cs" />

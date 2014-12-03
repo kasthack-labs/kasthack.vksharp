@@ -418,6 +418,10 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesRestore( messageId ) );
             }
                     
+            public async Task<string> GetLastActivityAsync(  int userId  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesGetLastActivity( userId ) );
+            }
+                    
             public async Task<string> DeleteDialogAsync(  uint userId , uint offset = 0, uint count = 100 ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesDeleteDialog( userId,offset,count ) );
             }

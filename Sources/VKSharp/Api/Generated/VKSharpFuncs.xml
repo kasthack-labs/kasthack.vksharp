@@ -129,7 +129,7 @@
       <Param Name="no_search" Type="bool?" Default="null" Params="false" />
     </Params>
   </Method>
-    <Method Name="audio.getAlbums">
+  <Method Name="audio.getAlbums">
     <Request Type="EntityList&lt;AudioAlbum&gt;" NeedToken="false" />
     <Return Parse="true" Multiple="false" />
     <Params>
@@ -654,6 +654,13 @@
     <Return Parse="false" Multiple="false" />
     <Params>
       <Param Name="message_id" Type="int" Params="false" />
+    </Params>
+  </Method>
+  <Method Name="messages.getLastActivity">
+    <Request Type="LastActivity" NeedToken="true" />
+    <Return Parse="false" Multiple="false" />
+    <Params>
+        <Param Name="user_id" Type="int" Params="false" />
     </Params>
   </Method>
   <Method Name="messages.deleteDialog">

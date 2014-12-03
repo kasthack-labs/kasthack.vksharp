@@ -1173,6 +1173,19 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<LastActivity> MessagesGetLastActivity(
+             int userId 
+){
+            var req = new VKRequest<LastActivity>{
+                MethodName = "messages.getLastActivity",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> MessagesDeleteDialog(
              uint userId , uint offset = 0, uint count = 100
 ){

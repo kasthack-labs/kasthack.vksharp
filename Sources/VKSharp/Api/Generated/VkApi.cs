@@ -800,6 +800,14 @@ namespace VKSharp {
 								)
 								;
 							}
+												public async Task GetLastActivityAsync(  int userId  ){
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.MessagesGetLastActivity(
+									userId
+								)
+								)
+								;
+							}
 												public async Task DeleteDialogAsync(  uint userId , uint offset = 0, uint count = 100 ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.MessagesDeleteDialog(

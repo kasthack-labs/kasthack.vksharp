@@ -18,11 +18,17 @@ using VKSharp.Helpers.Exceptions;
 namespace VKSharp.Data.Executors {
     public class JsonExecutor : IExecutor {
         static JsonExecutor() {
+            //required for parallel IO
+            //default conn limit is 2
             ServicePointManager.DefaultConnectionLimit = Math.Max( 25, ServicePointManager.DefaultConnectionLimit );
+
+            //client w compresssion
             var httpClientHandler = new HttpClientHandler();
             if ( httpClientHandler.SupportsAutomaticDecompression )
                 httpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             Client = new HttpClient( httpClientHandler );
+            
+            //snake case parsing
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
             Jsonser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
@@ -63,7 +69,6 @@ namespace VKSharp.Data.Executors {
                 return btype.IsEnum;
             }
             public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-                //base
                 var isNullable = ReflectionUtils.IsNullableType( objectType );
                 var t = isNullable ? Nullable.GetUnderlyingType( objectType ) : objectType;
                 if ( reader.TokenType == JsonToken.Null ) {
@@ -74,7 +79,8 @@ namespace VKSharp.Data.Executors {
                 try {
                     switch ( reader.TokenType ) {
                         case JsonToken.String:
-                            var enumText = reader.Value.ToString().ToMeth();
+                            var enumText = reader.Value.ToString()
+                                .ToMeth();//the only changed line
                             return EnumUtils.ParseEnumName( enumText, isNullable, t );
                         case JsonToken.Integer:
                             if ( !AllowIntegerValues )

@@ -56,7 +56,6 @@ namespace VKSharp.Core.Entities {
         public string Activities { get; set; }
         public string Books { get; set; }
         public string Domain { get; set; }
-        public string FacultyName { get; set; }
         public string FirstName { get; set; }
         public string Games { get; set; }
         public string HomePhone { get; set; }
@@ -73,19 +72,24 @@ namespace VKSharp.Core.Entities {
         public string Site { get; set; }
         public string Status { get; set; }
         public string Tv { get; set; }
-        public string UniversityName { get; set; }
         public StandInLife Personal { get; set;}
         public uint? CommonCount { get; set; }
         public uint Id { get; set; }
         public GeoEntry City { get; set; }
         public GeoEntry Country { get; set; }
+
+
+        //todo: move to education
+        public string UniversityName { get; set; }
+        public string FacultyName { get; set; }
         public uint? Faculty { get; set; }
+        public uint? University { get; set; }
+        public ushort? Graduation { get; set; }
+
         public uint? FollowersCount { get; set; }
         public uint? OnlineApp { get; set; }
-        public uint? University { get; set; }
         public uint[] Lists { get; set; }
         public University[] Universities { get; set; }
-        public ushort? Graduation { get; set; }
         
         public bool Equals( User other ) => !ReferenceEquals( other, null ) && Id == other.Id;
 
