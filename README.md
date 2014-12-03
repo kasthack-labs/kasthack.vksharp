@@ -23,12 +23,12 @@ VKSharp
 
 
 
-### Implemented methods
-
+### Implemented 146 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
 	* account.getBanned
+	* account.getInfo
 	* account.getProfileInfo
 	* account.setInfo
 	* account.setNameInMenu
@@ -44,6 +44,7 @@ VKSharp
 	* audio.deleteAlbum
 	* audio.edit
 	* audio.get
+	* audio.getAlbums
 	* audio.getById
 	* audio.getById
 	* audio.getCount
@@ -108,6 +109,7 @@ VKSharp
 	* messages.addChatUser
 	* messages.delete
 	* messages.deleteDialog
+	* messages.getLastActivity
 	* messages.markAsImportant
 	* messages.markAsRead
 	* messages.removeChatUser
@@ -137,6 +139,7 @@ VKSharp
 	* photos.getAlbums
 	* photos.getAlbumsCount
 	* photos.getAll
+	* photos.getById
 	* photos.getChatUploadServer
 	* photos.getOwnerPhotoUploadServer
 	* photos.getUploadServer
@@ -163,7 +166,6 @@ VKSharp
 	* users.getSubscriptions
 	* users.isAppUser
 	* users.report
-	* users.search
 * Utils
 	* utils.checkLink
 	* utils.getServerTime
