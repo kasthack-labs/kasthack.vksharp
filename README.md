@@ -1,5 +1,6 @@
-VKSharp
+VKSharp [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=kasthack&url=https://github.com/kasthack/VKSharp&title=VKSharp&language=&tags=github&category=software)
 =======
+
 
 ###Installation
 ```PowerShell
@@ -29,7 +30,7 @@ Install-Package kasthack.vksharp
 
 
 
-### Implemented 146 methods
+### Implemented methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -196,5 +197,3 @@ Install-Package kasthack.vksharp
 	* wall.restore
 	* wall.restoreComment
 	* wall.unpin
-
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=kasthack&url=https://github.com/kasthack/VKSharp&title=VKSharp&language=&tags=github&category=software)
