@@ -1,6 +1,12 @@
 VKSharp
 =======
 
+###Installation
+```PowerShell
+Install-Package kasthack.vksharp
+```
+
+
 ###Usage
 
 1. Create VKApi instanse
