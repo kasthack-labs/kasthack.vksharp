@@ -9,7 +9,7 @@ namespace VKSharp {
         public IExecutor Executor => _executor;
         protected uint ReqCounter => _reqapi.ReqCounter;
 
-        protected VKToken CurrentToken => _reqapi.CurrentToken;
+        public VKToken CurrentToken => _reqapi.CurrentToken;
 
         public void AddToken( VKToken token ) => _reqapi.AddToken( token );
 

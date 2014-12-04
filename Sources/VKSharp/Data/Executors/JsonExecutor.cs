@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -22,7 +23,7 @@ namespace VKSharp.Data.Executors {
             //default conn limit is 2
             ServicePointManager.DefaultConnectionLimit = Math.Max( 25, ServicePointManager.DefaultConnectionLimit );
 
-            //client w compresssion
+            //client w compresssion & proxy pooling
             var httpClientHandler = new HttpClientHandler();
             if ( httpClientHandler.SupportsAutomaticDecompression )
                 httpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
@@ -40,6 +41,14 @@ namespace VKSharp.Data.Executors {
         #region IO
         private const string ReqExt = "json";
         private static readonly HttpClient Client;
+
+        private class ProxyPoolingHttpClientHandler : HttpClientHandler {
+            protected override Task<HttpResponseMessage> SendAsync( HttpRequestMessage request, CancellationToken cancellationToken ) {
+                return base.SendAsync( request, cancellationToken );
+                
+            }
+        }
+
         private static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string format ) {
             var ps = request.Parameters.ToList();
             ps.Add( new KeyValuePair<string, string>( "v", "5.21" ) );
