@@ -93,4 +93,4 @@ using System.Security;
 [assembly: AssemblyVersion("6.0.0.0")]
 [assembly: AssemblyFileVersion("6.0.6.17929")]
 [assembly: CLSCompliant(true)]
-[assembly: InternalsVisibleTo("VKSharp")]
+[assembly: InternalsVisibleTo("kasthack.VKSharp")]

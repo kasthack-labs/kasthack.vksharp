@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VKSharp</RootNamespace>
-    <AssemblyName>VKSharp</AssemblyName>
+    <AssemblyName>kasthack.VKSharp</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -201,6 +201,7 @@
       <LastGenOutput>VkApi.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="VKSharp.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -214,12 +215,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Api\Generated\ImplementedMethods.txt">
+    <None Include="Api\Generated\ImplementedMethods.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImplementedMethods.tt</DependentUpon>
-    </Content>
-    <Content Include="Api\Generated\VkSharpFuncs.xml" />
+    </None>
+    <None Include="Api\Generated\VkSharpFuncs.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Libs\JsonNet\Newtonsoft.Json.csproj">

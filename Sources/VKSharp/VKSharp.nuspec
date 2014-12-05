@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>kasthack.vksharp</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://www.gnu.org/copyleft/lesser.html</licenseUrl>
+    <projectUrl>http://github.com/kasthack/VKSharp</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>
+        * Proxies &amp; pooling
+        * Removed async from from method name
+        * Public CurrentToken in VkApi and RawApi
+    </releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>vk api kasthack</tags>
+  </metadata>
+</package>
