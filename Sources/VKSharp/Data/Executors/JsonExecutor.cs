@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -24,10 +23,10 @@ namespace VKSharp.Data.Executors {
             ServicePointManager.DefaultConnectionLimit = Math.Max( 25, ServicePointManager.DefaultConnectionLimit );
 
             //client w compresssion & proxy pooling
-            var httpClientHandler = new HttpClientHandler();
-            if ( httpClientHandler.SupportsAutomaticDecompression )
-                httpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            Client = new HttpClient( httpClientHandler );
+            HttpClientHandler = new ProxyPoolingHttpClientHandler();
+            if ( HttpClientHandler.SupportsAutomaticDecompression )
+                HttpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
+            Client = new HttpClient( HttpClientHandler );
             
             //snake case parsing
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
@@ -39,16 +38,10 @@ namespace VKSharp.Data.Executors {
             } );
         }
         #region IO
+        public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
         private const string ReqExt = "json";
         private static readonly HttpClient Client;
-
-        private class ProxyPoolingHttpClientHandler : HttpClientHandler {
-            protected override Task<HttpResponseMessage> SendAsync( HttpRequestMessage request, CancellationToken cancellationToken ) {
-                return base.SendAsync( request, cancellationToken );
-                
-            }
-        }
-
+        private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
         private static async Task<string> ExecRawAsync<T>( VKRequest<T> request, string format ) {
             var ps = request.Parameters.ToList();
             ps.Add( new KeyValuePair<string, string>( "v", "5.21" ) );
@@ -66,6 +59,7 @@ namespace VKSharp.Data.Executors {
         #endregion
         #region Serialization
         private static readonly JsonSerializer Jsonser;
+
         private class SnakeCaseContractResolver : DefaultContractResolver {
             protected override string ResolvePropertyName( string propertyName ) => propertyName.ToSnake();
         }
