@@ -39,6 +39,7 @@ namespace VKSharp.Data.Executors {
         }
         #region IO
         public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
+        public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
         private const string ReqExt = "json";
         private static readonly HttpClient Client;
         private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
@@ -52,7 +53,10 @@ namespace VKSharp.Data.Executors {
                     await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) )
                 ).Content.ReadAsStringAsync();
         }
-        #endregion
+#if DEBUG
+        public async Task<string> TestProxy(string address) { return await Client.GetStringAsync( address ); }
+#endif
+#endregion
         #region IExecutor
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) => Parse<T>( await ExecRawAsync( request ) );
         public Task<string> ExecRawAsync<T>( VKRequest<T> request ) => ExecRawAsync( request, ReqExt );

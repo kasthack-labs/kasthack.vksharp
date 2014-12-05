@@ -10,16 +10,12 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace VKSharp.Helpers {
-    //Public Morozov antipattern but I don't give a fuck
-    internal class MorozovHandler : WebRequestHandler {
-        public Task<HttpResponseMessage> SendAsyncPublic( HttpRequestMessage request, CancellationToken cancellationToken ) { return base.SendAsync( request, cancellationToken ); }
-    }
     public class ProxyPoolingHttpClientHandler : HttpMessageHandler, IDisposable {
         private readonly MorozovHandler _handler;
 
         public ProxyPoolingHttpClientHandler() {
             _handler = new MorozovHandler();
-            Proxies = new List<IWebProxy>() { null };
+            Proxies = new List<IWebProxy> { null };
         }
 
         #region HttpClientHandler members
@@ -120,8 +116,8 @@ namespace VKSharp.Helpers {
 
         public IWebProxy CurrentProxy => _handler.Proxy;
 
-        public IList<IWebProxy> Proxies { get; set; }
-        private int _currentProxyIndex = 0;
+        public IList<IWebProxy> Proxies { get; }
+        private int _currentProxyIndex;
 
         protected override Task<HttpResponseMessage> SendAsync( HttpRequestMessage request, CancellationToken cancellationToken ) {
             NextProxy();

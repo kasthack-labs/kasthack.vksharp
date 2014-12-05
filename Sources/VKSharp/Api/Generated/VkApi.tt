@@ -48,7 +48,7 @@ namespace VKSharp {
 									)
 								:"";//don't parse
 					#>
-							public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>Async( <#=GetParamsString(node)#> ){
+							public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
 								<#if(node.Return.Parse){#>
 									return (
 								<#}#>
