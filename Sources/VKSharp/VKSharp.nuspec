@@ -11,9 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-        * Proxies &amp; pooling
-        * Removed async from from method name
-        * Public CurrentToken in VkApi and RawApi
+* UserFields XML serializtion fixed	
+* Proxies &amp; pooling
+* Removed async from from method name
+* Public CurrentToken in VkApi and RawApi
     </releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>vk api kasthack</tags>
