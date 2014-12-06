@@ -27,16 +27,19 @@ namespace VKSharp.Data.Executors {
             if ( HttpClientHandler.SupportsAutomaticDecompression )
                 HttpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             Client = new HttpClient( HttpClientHandler );
-            
+
+            Jsonser = GetSerializer();
+        }
+
+        public static JsonSerializer GetSerializer() {
             //snake case parsing
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
-            Jsonser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
-            Jsonser.Converters.Add( new SnakeCaseEnumConverter() {
-                AllowIntegerValues = true,
-                CamelCaseText = false
-            } );
+            var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
+            ser.Converters.Add( new SnakeCaseEnumConverter() { AllowIntegerValues = true, CamelCaseText = false } );
+            return ser;
         }
+
         #region IO
         public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
         public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
@@ -47,13 +50,10 @@ namespace VKSharp.Data.Executors {
             var ps = request.Parameters.ToList();
             ps.Add( new KeyValuePair<string, string>( "v", "5.21" ) );
             ps.Add( new KeyValuePair<string, string>( "https", "1" ) );
-            var path = "/method/" + request.MethodName + "." + format;
+            var path = string.Format( "/method/{0}.{1}", request.MethodName, format );
             if ( request.Token != null ) ps.Add( new KeyValuePair<string, string>( "access_token", request.Token.Token ) );
             return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) )).Content;
         }
-#if DEBUG
-        public async Task<string> TestProxy(string address) { return await Client.GetStringAsync( address ); }
-#endif
         #endregion
         #region IExecutor
         public async Task<Stream> ExecRawStreamAsync<T>( VKRequest<T> request ) => await( await InternalExecRawAsync( request, ReqExt ) ).ReadAsStreamAsync();
