@@ -19,7 +19,6 @@ public class Method {
     [XmlAttributeAttribute]
 	public string Name {get;set;}
 	public Request Request {get;set;}
-	public Return Return {get;set;}
 	public Param[] Params {get;set;}
 }
 [Serializable]
@@ -28,13 +27,8 @@ public class Request {
 	public string Type {get;set;}
     [XmlAttributeAttribute]
 	public bool NeedToken {get;set;}
-}
-[Serializable]
-public class Return {
     [XmlAttributeAttribute]
 	public bool Parse {get;set;}
-    [XmlAttributeAttribute]
-	public bool Multiple {get;set;}
 }
 [Serializable]
 public class Param {
@@ -64,7 +58,6 @@ public static string GetParamsString(Method node){
 	);
 }
 public static Method[] GetMethods(string file){
-    file = file;
     using (var f = File.OpenRead(file))
         return (Method[])new XmlSerializer(typeof(Method[])).Deserialize(f);
 }

@@ -608,10 +608,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<EntityList<DatabaseEntry>[]> DatabaseGetCountriesById(
+        public VKRequest<DatabaseEntry[]> DatabaseGetCountriesById(
             params uint[] countryIds 
 ){
-            var req = new VKRequest<EntityList<DatabaseEntry>[]>{
+            var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getCountriesById",
                 Parameters = new Dictionary<string, string> {
                                             { "country_ids", (countryIds??new uint[]{}).ToNCStringA() }
@@ -1741,10 +1741,22 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<bool[]> StatusSet(
+        public VKRequest<int> StatsTrackVisitor(
+            
+){
+            var req = new VKRequest<int>{
+                MethodName = "stats.trackVisitor",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> StatusSet(
              string text 
 ){
-            var req = new VKRequest<bool[]>{
+            var req = new VKRequest<bool>{
                 MethodName = "status.set",
                 Parameters = new Dictionary<string, string> {
                                             { "text", text }

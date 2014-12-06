@@ -26,6 +26,7 @@ namespace VKSharp {
                             this.Pages = new MethodGroup_pages(this);
                             this.Photos = new MethodGroup_photos(this);
                             this.Status = new MethodGroup_status(this);
+                            this.Stats = new MethodGroup_stats(this);
                             this.Storage = new MethodGroup_storage(this);
                             this.Users = new MethodGroup_users(this);
                             this.Utils = new MethodGroup_utils(this);
@@ -422,7 +423,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<DatabaseEntry>[]>GetCountriesById( params uint[] countryIds  ){
+												public async Task <DatabaseEntry[]>GetCountriesById( params uint[] countryIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetCountriesById(
@@ -1156,6 +1157,21 @@ namespace VKSharp {
 									text
 								)
 								)
+								;
+							}
+									}
+						public MethodGroup_stats Stats {get; private set;}
+				public partial class MethodGroup_stats {
+					private readonly VKApi _parent;
+					internal MethodGroup_stats(VKApi parent){_parent=parent;}
+												public async Task <int>TrackVisitor(  ){
+																	return (
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.StatsTrackVisitor(
+									
+								)
+								)
+																	).Response
 								;
 							}
 									}

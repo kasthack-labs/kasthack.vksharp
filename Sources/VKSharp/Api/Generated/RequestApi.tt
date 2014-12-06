@@ -29,11 +29,7 @@ namespace VKSharp {
     <#
         var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
         foreach ( var node in ms ) {
-        var returnType =String.Format(
-										"{0}{1}",
-										node.Request.Type,
-										node.Return.Multiple?"[]":""
-									);#>
+        var returnType =node.Request.Type;#>
     public VKRequest<<#=returnType#>> <#=ToMeth(node.Name)#>(
             <#=GetParamsString(node)#>
 ){

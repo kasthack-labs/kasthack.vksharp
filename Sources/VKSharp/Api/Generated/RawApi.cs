@@ -42,6 +42,8 @@ namespace VKSharp {
     
         Status = new MethodGroup_status(this);
     
+        Stats = new MethodGroup_stats(this);
+    
         Storage = new MethodGroup_storage(this);
     
         Users = new MethodGroup_users(this);
@@ -604,6 +606,16 @@ namespace VKSharp {
                     
             public async Task<string> Set(  string text  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.StatusSet( text ) );
+            }
+                                    }
+        
+        public MethodGroup_stats Stats {get; private set;}
+        public partial class MethodGroup_stats {
+            private readonly RawApi _parent;
+            internal MethodGroup_stats(RawApi parent){_parent=parent;}
+
+            public async Task<string> TrackVisitor(  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.StatsTrackVisitor(  ) );
             }
                                     }
         

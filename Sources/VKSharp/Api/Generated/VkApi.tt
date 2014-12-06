@@ -40,16 +40,10 @@ namespace VKSharp {
 					internal <#=cln#>(VKApi parent){_parent=parent;}
 					<#
 						foreach ( var node in methodGroup ) {
-							var returnType =node.Return.Parse
-								?String.Format(
-										"<{0}{1}>",
-										node.Request.Type,
-										node.Return.Multiple?"[]":""
-									)
-								:"";//don't parse
+							var returnType =node.Request.Parse?String.Format("<{0}>",node.Request.Type):"";
 					#>
 							public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
-								<#if(node.Return.Parse){#>
+								<#if(node.Request.Parse){#>
 									return (
 								<#}#>
 								await _parent.Executor.ExecAsync(
@@ -57,7 +51,7 @@ namespace VKSharp {
 									<#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#>
 								)
 								)
-								<#if(node.Return.Parse){#>
+								<#if(node.Request.Parse){#>
 									).Response
 								<#}#>;
 							}

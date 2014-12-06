@@ -1,5 +1,5 @@
 ﻿
-Implemented 146 methods
+Implemented 147 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -131,6 +131,8 @@ Implemented 146 methods
 * Status
 	* status.get
 	* status.set
+* Stats
+	* stats.trackVisitor
 * Storage
 	* storage.get
 	* storage.getKeys
