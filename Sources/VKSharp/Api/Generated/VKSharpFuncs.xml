@@ -65,7 +65,7 @@
   </Method>
   <Method Name="account.getInfo">
     <Request Type="AccountInfo" NeedToken="true" Parse="true" />
-    <Params></Params>
+    <Params/>
   </Method>
   <Method Name="account.getProfileInfo">
     <Request Type="User" NeedToken="true" Parse="true" />
@@ -878,7 +878,7 @@
   </Method>
   <Method Name="stats.trackVisitor">
       <Request NeedToken="true" Type="int" Parse ="true"/>
-      <Params></Params>
+      <Params/>
   </Method>
   <Method Name="status.set">
     <Request Type="bool" NeedToken="true" Parse="false"/>
