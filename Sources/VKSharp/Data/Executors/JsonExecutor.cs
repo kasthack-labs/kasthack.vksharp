@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -8,9 +8,7 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Utilities;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.Exceptions;
@@ -36,7 +34,12 @@ namespace VKSharp.Data.Executors {
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
-            ser.Converters.Add( new SnakeCaseEnumConverter() { AllowIntegerValues = true, CamelCaseText = false } );
+            ser.Converters.Add( new SnakeCaseEnumConverter { AllowIntegerValues = true, CamelCaseText = false } );
+            ser.Error += ( sender, args ) => {
+                //Debug.WriteLine( "Goddamn! JSON parsing fail {0}: {1}", args.ErrorContext.Path, args.ErrorContext.Error );
+                var ec = args.ErrorContext;
+                if ( ec.Member.ToString() == "personal" ) ec.Handled = true;
+            };
             return ser;
         }
 
@@ -67,41 +70,7 @@ namespace VKSharp.Data.Executors {
             protected override string ResolvePropertyName( string propertyName ) => propertyName.ToSnake();
         }
         //todo:implement
-        private class SnakeCaseEnumConverter : StringEnumConverter {
-            public override bool CanConvert( Type objectType ) {
-                var btype = objectType;
-                if ( objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof( Nullable<> ) )
-                    btype = Nullable.GetUnderlyingType( objectType );
-                return btype.IsEnum;
-            }
-            public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-                var isNullable = ReflectionUtils.IsNullableType( objectType );
-                var t = isNullable ? Nullable.GetUnderlyingType( objectType ) : objectType;
-                if ( reader.TokenType == JsonToken.Null ) {
-                    if ( !ReflectionUtils.IsNullableType( objectType ) )
-                        throw JsonSerializationException.Create( reader, "Cannot convert null value to {0}.".FormatWith( CultureInfo.InvariantCulture, objectType ) );
-                    return null;
-                }
-                try {
-                    switch ( reader.TokenType ) {
-                        case JsonToken.String:
-                            var enumText = reader.Value.ToString()
-                                .ToMeth();//the only changed line
-                            return EnumUtils.ParseEnumName( enumText, isNullable, t );
-                        case JsonToken.Integer:
-                            if ( !AllowIntegerValues )
-                                throw JsonSerializationException.Create( reader, "Integer value {0} is not allowed.".FormatWith( CultureInfo.InvariantCulture, reader.Value ) );
-                            return ConvertUtils.ConvertOrCast( reader.Value, CultureInfo.InvariantCulture, t );
-                    }
-                }
-                catch ( Exception ex ) {
-                    throw JsonSerializationException.Create( reader, "Error converting value {0} to type '{1}'.".FormatWith( CultureInfo.InvariantCulture, MiscellaneousUtils.FormatValueForPrint( reader.Value ), objectType ), ex );
-                }
-                // we don't actually expect to get here.
-                throw JsonSerializationException.Create( reader, "Unexpected token {0} when parsing enum.".FormatWith( CultureInfo.InvariantCulture, reader.TokenType ) );
-            }
-        }
-
+        
         public VKResponse<T> Parse<T>( string input ) {
             using ( TextReader sr = new StringReader( input ) )
                 return ParseStreamReader<T>( sr );
