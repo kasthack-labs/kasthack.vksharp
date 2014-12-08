@@ -71,6 +71,13 @@
     <Request Type="User" NeedToken="true" Parse="true" />
     <Params />
   </Method>
+  <Method Name="ads.deleteClients">
+    <Request Type="int[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="account_id" Type="ulong" Params="false" />
+      <Param Name="ids" Type="ulong[]" Params="true" />
+    </Params>
+  </Method>
   <Method Name="audio.addAlbum">
     <Request Type="int" NeedToken="true" Parse="true" />
     <Params>

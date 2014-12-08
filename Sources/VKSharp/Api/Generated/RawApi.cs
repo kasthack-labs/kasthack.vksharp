@@ -14,6 +14,8 @@ namespace VKSharp {
 
         Account = new MethodGroup_account(this);
     
+        Ads = new MethodGroup_ads(this);
+    
         Audio = new MethodGroup_audio(this);
     
         Auth = new MethodGroup_auth(this);
@@ -106,6 +108,16 @@ namespace VKSharp {
                     
             public async Task<string> GetProfileInfo(  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountGetProfileInfo(  ) );
+            }
+                                    }
+        
+        public MethodGroup_ads Ads {get; private set;}
+        public partial class MethodGroup_ads {
+            private readonly RawApi _parent;
+            internal MethodGroup_ads(RawApi parent){_parent=parent;}
+
+            public async Task<string> DeleteClients(  ulong accountId ,params ulong[] ids  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AdsDeleteClients( accountId,ids ) );
             }
                                     }
         

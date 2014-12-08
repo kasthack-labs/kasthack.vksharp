@@ -12,6 +12,7 @@ namespace VKSharp {
 	public partial class VKApi {
 		            private void InitializeMethodGroups(){
                             this.Account = new MethodGroup_account(this);
+                            this.Ads = new MethodGroup_ads(this);
                             this.Audio = new MethodGroup_audio(this);
                             this.Auth = new MethodGroup_auth(this);
                             this.Board = new MethodGroup_board(this);
@@ -136,6 +137,21 @@ namespace VKSharp {
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountGetProfileInfo(
 									
+								)
+								)
+																	).Response
+								;
+							}
+									}
+						public MethodGroup_ads Ads {get; private set;}
+				public partial class MethodGroup_ads {
+					private readonly VKApi _parent;
+					internal MethodGroup_ads(VKApi parent){_parent=parent;}
+												public async Task <int[]>DeleteClients(  ulong accountId ,params ulong[] ids  ){
+																	return (
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.AdsDeleteClients(
+									accountId,ids
 								)
 								)
 																	).Response

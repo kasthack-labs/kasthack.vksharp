@@ -1,5 +1,5 @@
 ﻿
-Implemented 147 methods
+Implemented 148 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -13,6 +13,8 @@ Implemented 147 methods
 	* account.setSilenceMode
 	* account.unbanUser
 	* account.unregisterDevice
+* Ads
+	* ads.deleteClients
 * Audio
 	* audio.add
 	* audio.addAlbum

@@ -173,6 +173,21 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<int[]> AdsDeleteClients(
+             ulong accountId ,params ulong[] ids 
+){
+            var req = new VKRequest<int[]>{
+                MethodName = "ads.deleteClients",
+                Parameters = new Dictionary<string, string> {
+                                            { "account_id", accountId.ToNCString() },
+					                        { "ids", (ids??new ulong[]{}).ToNCStringA() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
         public VKRequest<int> AudioAddAlbum(
              string title , uint? groupId = 0
 ){
