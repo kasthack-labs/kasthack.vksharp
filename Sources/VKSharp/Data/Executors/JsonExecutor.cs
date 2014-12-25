@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -35,11 +34,13 @@ namespace VKSharp.Data.Executors {
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
             ser.Converters.Add( new SnakeCaseEnumConverter { AllowIntegerValues = true, CamelCaseText = false } );
+
             ser.Error += ( sender, args ) => {
                 //Debug.WriteLine( "Goddamn! JSON parsing fail {0}: {1}", args.ErrorContext.Path, args.ErrorContext.Error );
                 var ec = args.ErrorContext;
                 if ( ec.Member.ToString() == "personal" ) ec.Handled = true;
             };
+
             return ser;
         }
 

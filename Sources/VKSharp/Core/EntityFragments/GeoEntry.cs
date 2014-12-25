@@ -1,10 +1,7 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.EntityFragments
+﻿namespace VKSharp.Core.EntityFragments
 {
-    public class GeoEntry : IVKEntity<GeoEntry> {
-        public uint Id { get; set; }
+    public class GeoEntry  {
+        public int Id { get; set; }
         public string Title { get; set; }
-        
     }
 }

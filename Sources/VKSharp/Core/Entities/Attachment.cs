@@ -1,8 +1,7 @@
 ﻿using VKSharp.Core.Enums;
-using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Attachment : IVKEntity<Attachment> {
+    public class Attachment  {
         public AttachmentType? Type { get; set; }
         public Photo Photo { get; set; }
         public PostedPhoto PostedPhoto { get; set; }

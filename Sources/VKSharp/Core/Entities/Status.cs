@@ -1,8 +1,6 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities
+﻿namespace VKSharp.Core.Entities
 {
-    public class Status : IVKEntity<Status> {
+    public class Status  {
         
         public string Text { get; set; }
     }

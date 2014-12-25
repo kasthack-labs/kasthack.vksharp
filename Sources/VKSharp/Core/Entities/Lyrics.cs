@@ -1,7 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities {
-    public class Lyrics:IVKEntity<Lyrics> {
+﻿namespace VKSharp.Core.Entities {
+    public class Lyrics{
         
 
         public string Text { get; set; }

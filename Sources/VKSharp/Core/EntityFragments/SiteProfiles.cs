@@ -1,7 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.EntityFragments {
-    public class SiteProfiles : IVKEntity<SiteProfiles> {
+﻿namespace VKSharp.Core.EntityFragments {
+    public class SiteProfiles  {
         public string Skype { get; set; }
         public ulong? Facebook { get; set; }
         public string FacebookName { get; set; }

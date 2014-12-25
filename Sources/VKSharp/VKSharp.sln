@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "..\TestApp\TestA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json", "..\..\Libs\JsonNet\Newtonsoft.Json.csproj", "{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merger", "..\..\..\..\Teams\Startups\Data\DataSorting\Merger\Merger.csproj", "{9AD51390-7767-474F-B40E-32FB8D606AEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

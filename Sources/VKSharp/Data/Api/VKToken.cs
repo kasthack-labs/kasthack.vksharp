@@ -7,9 +7,9 @@ namespace VKSharp.Data.Api {
     public class VKToken {
         public string Token { get; private set; }
         public string Sign { get; private set; }
-        public uint UserId { get; private set; }
+        public int UserId { get; private set; }
 
-        public VKToken( string token, string sign = null, uint userId = 0 ) {
+        public VKToken( string token, string sign = null, int userId = 0 ) {
             Token = token;
             Sign = sign;
             UserId = userId;
@@ -57,7 +57,7 @@ namespace VKSharp.Data.Api {
                     query.ContainsKey( signPn )
                         ? query[ signPn ]
                         : "",
-                    uint.Parse( query[ useridPn ] )
+                    int.Parse( query[ useridPn ] )
                 );
             if ( query.ContainsKey(errorPn))
                 throw new AuthenticationException(

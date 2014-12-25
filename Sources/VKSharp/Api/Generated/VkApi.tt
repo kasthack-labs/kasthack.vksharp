@@ -4,11 +4,6 @@
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ assembly name="System" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Xml.Linq" #>
-<#@ import namespace="System.Collections.Generic" #>
-<#@ import namespace="System.Text.RegularExpressions" #>
 <#@ output extension=".cs" #>
 <#@ include file="SharedFuncs.tt"#>
 using System;

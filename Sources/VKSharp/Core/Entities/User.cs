@@ -1,11 +1,11 @@
 ﻿using System;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
-using VKSharp.Core.Interfaces;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
-    public class User : IVKEntity<User>, IEquatable<User> {
+    public class User : IEquatable<User> {
+        private StandInLife _personal;
         public Audio StatusAudio { get; set; }
         public bool? Blacklisted { get; set; }
         public bool? CanPost { get; set; }
@@ -72,7 +72,16 @@ namespace VKSharp.Core.Entities {
         public string Site { get; set; }
         public string Status { get; set; }
         public string Tv { get; set; }
-        public StandInLife Personal { get; set;}
+
+        public StandInLife Personal {
+            get {
+                return _personal;
+            }
+            set {
+                _personal = value;
+            }
+        }
+
         public uint? CommonCount { get; set; }
         public uint Id { get; set; }
         public GeoEntry City { get; set; }
@@ -82,13 +91,13 @@ namespace VKSharp.Core.Entities {
         //todo: move to education
         public string UniversityName { get; set; }
         public string FacultyName { get; set; }
-        public uint? Faculty { get; set; }
-        public uint? University { get; set; }
+        public int? Faculty { get; set; }
+        public int? University { get; set; }
         public ushort? Graduation { get; set; }
 
-        public uint? FollowersCount { get; set; }
-        public uint? OnlineApp { get; set; }
-        public uint[] Lists { get; set; }
+        public int? FollowersCount { get; set; }
+        public int? OnlineApp { get; set; }
+        public int[] Lists { get; set; }
         public University[] Universities { get; set; }
         
         public bool Equals( User other ) => !ReferenceEquals( other, null ) && Id == other.Id;

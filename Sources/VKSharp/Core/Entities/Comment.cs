@@ -1,11 +1,10 @@
 ﻿using VKSharp.Core.EntityFragments;
-using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Comment : IVKEntity<Comment> {
+    public class Comment {
         public long Id{ get; set; }
         public int FromId{ get; set; }
-        public uint Date { get; set; }
+        public int Date { get; set; }
         public string Text { get; set; }
         public int ReplyToUser{ get; set; }
         public long ReplyToComment { get; set; }

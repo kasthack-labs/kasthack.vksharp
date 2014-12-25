@@ -10,10 +10,10 @@ namespace VKSharp.Core.Entities {
         public string Photo807 { get; set; }
         public string Photo1280 { get; set; }
         public string Photo2560 { get; set; }
-        public uint Width { get; set; }
-        public uint Height { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
         public string Text { get; set; }
-        public uint Date { get; set; }
+        public int Date { get; set; }
         public bool? CanComment { get; set; }
         public PhotoLikes Likes { get; set; }
         public Counter Tags { get; set; }

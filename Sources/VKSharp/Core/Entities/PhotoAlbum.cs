@@ -3,13 +3,13 @@
 namespace VKSharp.Core.Entities {
 
     public class PhotoAlbum : OwnedEntity<PhotoAlbum> {
-        public uint ThumbId { get; set; }
+        public int ThumbId { get; set; }
         public string ThumbSrc { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public uint Created { get; set; }
-        public uint Updated { get; set; }
-        public uint Size { get; set; }
+        public int Created { get; set; }
+        public int Updated { get; set; }
+        public int Size { get; set; }
         public bool CanUpload { get; set; }
         public Privacy PrivacyView { get; set; }
         public Privacy PrivacyComment { get; set; }

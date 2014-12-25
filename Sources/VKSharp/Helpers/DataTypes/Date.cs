@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace VKSharp.Helpers.DataTypes {
     [JsonConverter(typeof(DateConverter))]

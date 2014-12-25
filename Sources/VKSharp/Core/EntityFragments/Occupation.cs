@@ -1,9 +1,8 @@
-﻿using VKSharp.Core.Interfaces;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 
 namespace VKSharp.Core.EntityFragments {
-    public class Occupation : IVKEntity<Occupation> {
-        public uint Id {get;set;}
+    public class Occupation  {
+        public int Id {get;set;}
         public string Name {get;set;}
         public OccupationType Type { get; set;}
     }

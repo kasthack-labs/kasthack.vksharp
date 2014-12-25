@@ -1,13 +1,11 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.EntityFragments {
-    public class GroupCounters : IVKEntity<GroupCounters> {
-        public uint? Photos { get; set; }
-        public uint? Albums { get; set; }
-        public uint? Audios { get; set; }
-        public uint? Videos { get; set; }
-        public uint? Topics { get; set; }
-        public uint? Docs { get; set; }
+﻿namespace VKSharp.Core.EntityFragments {
+    public class GroupCounters {
+        public int? Photos { get; set; }
+        public int? Albums { get; set; }
+        public int? Audios { get; set; }
+        public int? Videos { get; set; }
+        public int? Topics { get; set; }
+        public int? Docs { get; set; }
         
     }
 }

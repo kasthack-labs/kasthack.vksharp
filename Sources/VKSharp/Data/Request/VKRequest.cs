@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using VKSharp.Core.Interfaces;
 using VKSharp.Data.Api;
 
 namespace VKSharp.Data.Request {

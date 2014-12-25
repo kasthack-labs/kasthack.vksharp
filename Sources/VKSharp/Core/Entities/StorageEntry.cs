@@ -1,7 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities {
-    public class StorageEntry : IVKEntity<StorageEntry> {
+﻿namespace VKSharp.Core.Entities {
+    public class StorageEntry{
         
 
         public string Value { get; set; }

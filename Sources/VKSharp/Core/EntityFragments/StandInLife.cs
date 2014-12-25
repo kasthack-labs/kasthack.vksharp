@@ -1,8 +1,8 @@
-﻿using VKSharp.Core.Interfaces;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 
 namespace VKSharp.Core.EntityFragments {
-    public class StandInLife : IVKEntity<StandInLife> {
+    //[JsonArray]
+    public class StandInLife {
         public PoliticalPreferences Political { get; set; }
         public string[] Langs { get; set; }
         public string Religion { get; set; }

@@ -1,13 +1,9 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities {
-    public class Poll:IVKEntity<Poll> {
+﻿namespace VKSharp.Core.Entities {
+    public class Poll {
         public int OwnerId { get; set; }
-        public uint PollId { get; set; }
-        public uint Created { get; set; }
-        public uint Votes { get; set; }
-        public uint AnswerId { get; set; }
-
-        
+        public int PollId { get; set; }
+        public int Created { get; set; }
+        public int Votes { get; set; }
+        public int AnswerId { get; set; }
     }
 }

@@ -1,7 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities {
-    public class Link :IVKEntity<Link> {
+﻿namespace VKSharp.Core.Entities {
+    public class Link  {
         public string Url { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }

@@ -1,7 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.EntityFragments {
-    public class ProfilePhotos : IVKEntity<ProfilePhotos> {
+﻿namespace VKSharp.Core.EntityFragments {
+    public class ProfilePhotos  {
         public string Photo50 { get; set; }
         public string Photo100 { get; set; }
         public string Photo200 { get; set; }

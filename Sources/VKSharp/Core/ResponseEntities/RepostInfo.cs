@@ -1,8 +1,6 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.ResponseEntities
+﻿namespace VKSharp.Core.ResponseEntities
 {
-    public class RepostInfo : IVKEntity<RepostInfo> {
+    public class RepostInfo  {
         
         public bool Success { get; set; }
         public int PostId { get; set; }

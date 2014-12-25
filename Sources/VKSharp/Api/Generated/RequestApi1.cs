@@ -66,7 +66,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> AccountSetSilenceMode(
-             string token , int time , uint? chatId = null, uint? userId = null, int sound = 0
+             string token , int time , int? chatId = null, int? userId = null, int sound = 0
 ){
             var req = new VKRequest<bool>{
                 MethodName = "account.setSilenceMode",
@@ -83,7 +83,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<long> AccountGetAppPermissions(
-             uint? userId = null
+             int? userId = null
 ){
             var req = new VKRequest<long>{
                 MethodName = "account.getAppPermissions",
@@ -97,7 +97,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<long> AccountBanUser(
-             uint userId 
+             int userId 
 ){
             var req = new VKRequest<long>{
                 MethodName = "account.banUser",
@@ -110,7 +110,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<long> AccountUnbanUser(
-             uint userId 
+             int userId 
 ){
             var req = new VKRequest<long>{
                 MethodName = "account.unbanUser",
@@ -123,7 +123,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<User[]> AccountGetBanned(
-             uint offset = 0, uint count = 20
+             int offset = 0, int count = 20
 ){
             var req = new VKRequest<User[]>{
                 MethodName = "account.getBanned",
@@ -137,7 +137,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<long> AccountSetInfo(
-             uint? intro = null
+             int? intro = null
 ){
             var req = new VKRequest<long>{
                 MethodName = "account.setInfo",
@@ -189,7 +189,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> AudioAddAlbum(
-             string title , uint? groupId = 0
+             string title , int? groupId = 0
 ){
             var req = new VKRequest<int>{
                 MethodName = "audio.addAlbum",
@@ -203,7 +203,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> AudioAdd(
-             int ownerId , long audioId , uint? groupId = null
+             int ownerId , long audioId , int? groupId = null
 ){
             var req = new VKRequest<int>{
                 MethodName = "audio.add",
@@ -218,7 +218,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> AudioDeleteAlbum(
-             long albumId , uint? groupId = null
+             long albumId , int? groupId = null
 ){
             var req = new VKRequest<int>{
                 MethodName = "audio.deleteAlbum",
@@ -265,7 +265,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<AudioAlbum>> AudioGetAlbums(
-             int? ownerId = null, uint offset = 0, uint count = 100
+             int? ownerId = null, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<AudioAlbum>>{
                 MethodName = "audio.getAlbums",
@@ -281,7 +281,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Audio>> AudioGet(
-             int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, uint offset = 0, uint count = 100
+             int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Audio>>{
                 MethodName = "audio.get",
@@ -358,7 +358,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<string> AudioGetUploadServer(
-             long albumId , uint? groupId = null
+             long albumId , int? groupId = null
 ){
             var req = new VKRequest<string>{
                 MethodName = "audio.getUploadServer",
@@ -420,7 +420,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Audio>> AudioSearch(
-             string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false, uint offset = 0, uint count = 100
+             string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Audio>>{
                 MethodName = "audio.search",
@@ -457,7 +457,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<ConfirmResult> AuthConfirm(
-             uint clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false, int? intro = null
+             int clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false, int? intro = null
 ){
             var req = new VKRequest<ConfirmResult>{
                 MethodName = "auth.confirm",
@@ -490,7 +490,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> BoardCloseTopic(
-             uint groupId , uint topicId 
+             int groupId , int topicId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "board.closeTopic",
@@ -504,7 +504,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> BoardDeleteComment(
-             uint groupId , uint topicId , uint commentId 
+             int groupId , int topicId , int commentId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "board.deleteComment",
@@ -519,7 +519,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> BoardDeleteTopic(
-             uint groupId , uint topicId 
+             int groupId , int topicId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "board.deleteTopic",
@@ -533,7 +533,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> BoardFixTopic(
-             uint groupId , uint topicId 
+             int groupId , int topicId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "board.fixTopic",
@@ -547,7 +547,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> BoardUnfixTopic(
-             uint groupId , uint topicId 
+             int groupId , int topicId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "board.unfixTopic",
@@ -561,7 +561,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> BoardRestoreComment(
-             uint groupId , uint topicId , uint commentId 
+             int groupId , int topicId , int commentId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "board.restoreComment",
@@ -576,7 +576,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<DatabaseEntry>> DatabaseGetCountries(
-             string code = "", bool needAll = false, uint offset = 0, uint count = 100
+             string code = "", bool needAll = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<DatabaseEntry>>{
                 MethodName = "database.getCountries",
@@ -593,7 +593,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<DatabaseEntry>> DatabaseGetRegions(
-             uint countryId , string q = "", uint offset = 0, uint count = 100
+             int countryId , string q = "", int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<DatabaseEntry>>{
                 MethodName = "database.getRegions",
@@ -610,12 +610,12 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<DatabaseEntry[]> DatabaseGetStreetsById(
-            params uint[] streetIds 
+            params int[] streetIds 
 ){
             var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getStreetsById",
                 Parameters = new Dictionary<string, string> {
-                                            { "street_ids", (streetIds??new uint[]{}).ToNCStringA() }
+                                            { "street_ids", (streetIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -624,12 +624,12 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<DatabaseEntry[]> DatabaseGetCountriesById(
-            params uint[] countryIds 
+            params int[] countryIds 
 ){
             var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getCountriesById",
                 Parameters = new Dictionary<string, string> {
-                                            { "country_ids", (countryIds??new uint[]{}).ToNCStringA() }
+                                            { "country_ids", (countryIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -638,12 +638,12 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<DatabaseCity[]> DatabaseGetCitiesById(
-            params uint[] cityIds 
+            params int[] cityIds 
 ){
             var req = new VKRequest<DatabaseCity[]>{
                 MethodName = "database.getCitiesById",
                 Parameters = new Dictionary<string, string> {
-                                            { "city_ids", (cityIds??new uint[]{}).ToNCStringA() }
+                                            { "city_ids", (cityIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -652,7 +652,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<DatabaseCity[]> DatabaseGetCities(
-             uint countryId , uint? regionId = null, string q = "", bool needAll = false, uint offset = 0, uint count = 100
+             int countryId , int? regionId = null, string q = "", bool needAll = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<DatabaseCity[]>{
                 MethodName = "database.getCities",
@@ -671,7 +671,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<DatabaseEntry[]> DatabaseGetUniversities(
-             uint? countryId = null, uint? cityId = null, string q = "", uint offset = 0, uint count = 100
+             int? countryId = null, int? cityId = null, string q = "", int offset = 0, int count = 100
 ){
             var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getUniversities",
@@ -689,7 +689,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<DatabaseEntry[]> DatabaseGetSchools(
-             uint? cityId = null, string q = "", uint offset = 0, uint count = 100
+             int? cityId = null, string q = "", int offset = 0, int count = 100
 ){
             var req = new VKRequest<DatabaseEntry[]>{
                 MethodName = "database.getSchools",
@@ -706,7 +706,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<DatabaseEntry>> DatabaseGetFaculties(
-             uint universityId , uint offset = 0, uint count = 100
+             int universityId , int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<DatabaseEntry>>{
                 MethodName = "database.getFaculties",
@@ -722,7 +722,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<DatabaseEntry>> DatabaseGetChairs(
-             uint facultyId , uint offset = 0, uint count = 100
+             int facultyId , int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<DatabaseEntry>>{
                 MethodName = "database.getChairs",
@@ -767,7 +767,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<string> DocsGetUploadServer(
-             uint? groupId = null
+             int? groupId = null
 ){
             var req = new VKRequest<string>{
                 MethodName = "docs.getUploadServer",
@@ -780,7 +780,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<string> DocsGetWallUploadServer(
-             uint? groupId = null
+             int? groupId = null
 ){
             var req = new VKRequest<string>{
                 MethodName = "docs.getWallUploadServer",
@@ -793,7 +793,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Document>> DocsGet(
-             int? ownerId = null, uint offset = 0, uint count = 100
+             int? ownerId = null, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Document>>{
                 MethodName = "docs.get",
@@ -838,7 +838,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> FriendsGet(
-             uint? userId = null, uint? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100
+             int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "friends.get",
@@ -858,7 +858,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> FriendsGetSuggestions(
-             FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100
+             FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "friends.getSuggestions",
@@ -890,7 +890,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> FriendsAdd(
-             uint userId , string text = ""
+             int userId , string text = ""
 ){
             var req = new VKRequest<int>{
                 MethodName = "friends.add",
@@ -916,7 +916,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int[]> FriendsGetRecent(
-             uint count = 20
+             int count = 20
 ){
             var req = new VKRequest<int[]>{
                 MethodName = "friends.getRecent",
@@ -929,7 +929,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> FriendsDelete(
-             uint userId 
+             int userId 
 ){
             var req = new VKRequest<int>{
                 MethodName = "friends.delete",
@@ -942,7 +942,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> FriendsDeleteList(
-             uint listId 
+             int listId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "friends.deleteList",
@@ -968,7 +968,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int[]> FriendsGetMutual(
-             uint targetUid , uint? sourceUid = null, bool order = false, uint offset = 0, uint count = 100
+             int targetUid , int? sourceUid = null, bool order = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<int[]>{
                 MethodName = "friends.getMutual",
@@ -986,7 +986,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<User[]> GroupsGetBanned(
-             uint groupId , uint offset = 0, uint count = 100
+             int groupId , int offset = 0, int count = 100
 ){
             var req = new VKRequest<User[]>{
                 MethodName = "groups.getBanned",
@@ -1016,7 +1016,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<Group[]> GroupsGetById(
-             uint groupId , GroupFields fields 
+             int groupId , GroupFields fields 
 ){
             var req = new VKRequest<Group[]>{
                 MethodName = "groups.getById",
@@ -1031,7 +1031,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> GroupsGetMembers(
-             uint groupId , UserFields fields = UserFields.Everything, uint offset = 0, uint count = 100
+             int groupId , UserFields fields = UserFields.Everything, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "groups.getMembers",
@@ -1047,7 +1047,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> GroupsGetMembers(
-             string groupId , UserFields fields = UserFields.None, uint offset = 0, uint count = 100
+             string groupId , UserFields fields = UserFields.None, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "groups.getMembers",
@@ -1063,14 +1063,14 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<MemberShip[]> GroupsIsMember(
-             uint groupId , bool extended = false,params uint[] userIds 
+             int groupId , bool extended = false,params int[] userIds 
 ){
             var req = new VKRequest<MemberShip[]>{
                 MethodName = "groups.isMember",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
 					                        { "extended", (extended?1:0).ToNCString() },
-					                        { "user_ids", (userIds??new uint[]{}).ToNCStringA() }
+					                        { "user_ids", (userIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -1079,7 +1079,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> GroupsJoin(
-             uint groupId , bool notSure = false
+             int groupId , bool notSure = false
 ){
             var req = new VKRequest<bool>{
                 MethodName = "groups.join",
@@ -1093,7 +1093,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> GroupsLeave(
-             uint groupId 
+             int groupId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "groups.leave",
@@ -1106,7 +1106,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> GroupsUnbanUser(
-             uint groupId , uint userId 
+             int groupId , int userId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "groups.unbanUser",
@@ -1120,7 +1120,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> MessagesAddChatUser(
-             uint userId , uint? chatId = null
+             int userId , int? chatId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "messages.addChatUser",
@@ -1134,7 +1134,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> MessagesRemoveChatUser(
-             uint userId , uint chatId 
+             int userId , int chatId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "messages.removeChatUser",
@@ -1161,7 +1161,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> MessagesMarkAsRead(
-             uint userId , uint? startMessageId = null,params int[] messageIds 
+             int userId , int? startMessageId = null,params int[] messageIds 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "messages.markAsRead",
@@ -1202,7 +1202,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> MessagesDeleteDialog(
-             uint userId , uint offset = 0, uint count = 100
+             int userId , int offset = 0, int count = 100
 ){
             var req = new VKRequest<bool>{
                 MethodName = "messages.deleteDialog",
@@ -1231,13 +1231,13 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> NewsfeedAddBan(
-             uint[] userIds = null, uint[] groupIds = null
+             int[] userIds = null, int[] groupIds = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "newsfeed.addBan",
                 Parameters = new Dictionary<string, string> {
-                                            { "user_ids", (userIds??new uint[]{}).ToNCStringA() },
-					                        { "group_ids", (groupIds??new uint[]{}).ToNCStringA() }
+                                            { "user_ids", (userIds??new int[]{}).ToNCStringA() },
+					                        { "group_ids", (groupIds??new int[]{}).ToNCStringA() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -1245,13 +1245,13 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> NewsfeedDeleteBan(
-             uint[] userIds = null, uint[] groupIds = null
+             int[] userIds = null, int[] groupIds = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "newsfeed.deleteBan",
                 Parameters = new Dictionary<string, string> {
-                                            { "user_ids", (userIds??new uint[]{}).ToNCStringA() },
-					                        { "group_ids", (groupIds??new uint[]{}).ToNCStringA() }
+                                            { "user_ids", (userIds??new int[]{}).ToNCStringA() },
+					                        { "group_ids", (groupIds??new int[]{}).ToNCStringA() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -1259,7 +1259,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> NotesDelete(
-             uint noteId 
+             int noteId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "notes.delete",
@@ -1272,7 +1272,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> NotesDeleteComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "notes.deleteComment",
@@ -1286,7 +1286,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> NotesRestoreComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "notes.restoreComment",
@@ -1326,7 +1326,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> PhotosDeleteComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "photos.deleteComment",
@@ -1340,7 +1340,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> PhotosRestoreComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "photos.restoreComment",
@@ -1354,7 +1354,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> PhotosReportComment(
-             uint commentId , int? ownerId = null, ReportReason? reason = null
+             int commentId , int? ownerId = null, ReportReason? reason = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "photos.reportComment",
@@ -1369,7 +1369,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> PhotosDeleteAlbum(
-             long albumId , uint? groupId = null
+             long albumId , int? groupId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "photos.deleteAlbum",
@@ -1397,7 +1397,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> PhotosConfirmTag(
-             uint tagId , long photoId , int? ownerId = null
+             int tagId , long photoId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "photos.confirmTag",
@@ -1412,7 +1412,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> PhotosRemoveTag(
-             uint tagId , long photoId , int? ownerId = null
+             int tagId , long photoId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "photos.removeTag",
@@ -1472,7 +1472,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> PhotosGetAlbumsCount(
-             uint? userId = null, uint? groupId = null
+             int? userId = null, int? groupId = null
 ){
             var req = new VKRequest<int>{
                 MethodName = "photos.getAlbumsCount",
@@ -1487,7 +1487,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<PhotoAlbum> PhotosCreateAlbum(
-             string title , string description = "", uint? groupId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null
+             string title , string description = "", int? groupId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null
 ){
             var req = new VKRequest<PhotoAlbum>{
                 MethodName = "photos.createAlbum",
@@ -1534,7 +1534,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<PhotosUploadServer> PhotosGetUploadServer(
-             long albumId , uint? groupId = null
+             long albumId , int? groupId = null
 ){
             var req = new VKRequest<PhotosUploadServer>{
                 MethodName = "photos.getUploadServer",
@@ -1548,7 +1548,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<PhotosUploadServer> PhotosGetChatUploadServer(
-             uint chatId , uint? cropX = null, uint? cropY = null, uint? cropWidth = null
+             int chatId , int? cropX = null, int? cropY = null, int? cropWidth = null
 ){
             var req = new VKRequest<PhotosUploadServer>{
                 MethodName = "photos.getChatUploadServer",
@@ -1626,7 +1626,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Photo>> PhotosGetAll(
-             int? ownerId = null, bool extended = false, bool noServiceAlbums = false, uint offset = 0, uint count = 100
+             int? ownerId = null, bool extended = false, bool noServiceAlbums = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Photo>>{
                 MethodName = "photos.getAll",
@@ -1644,7 +1644,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Photo>> PhotosGet(
-             long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, uint? feed = null, uint offset = 0, uint count = 100
+             long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Photo>>{
                 MethodName = "photos.get",
@@ -1666,7 +1666,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Photo>> PhotosGet(
-             SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, uint? feed = null, uint offset = 0, uint count = 100
+             SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Photo>>{
                 MethodName = "photos.get",
@@ -1702,7 +1702,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<PhotoAlbum>> PhotosGetAlbums(
-             int? ownerId = null, bool needSystem = true, bool needCovers = true, uint offset = 0, uint count = 100,params long[] albumIds 
+             int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100,params long[] albumIds 
 ){
             var req = new VKRequest<EntityList<PhotoAlbum>>{
                 MethodName = "photos.getAlbums",
@@ -1721,7 +1721,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<Photo[]> PhotosSave(
-             long albumId , string server , string photosList , string hash , uint? groupId = null, double? latitude = null, double? longitude = null, string caption = "", string description = ""
+             long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "", string description = ""
 ){
             var req = new VKRequest<Photo[]>{
                 MethodName = "photos.save",
@@ -1782,7 +1782,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<StorageEntry[]> StorageGet(
-             uint? userId = null, bool global = false,params string[] keys 
+             int? userId = null, bool global = false,params string[] keys 
 ){
             var req = new VKRequest<StorageEntry[]>{
                 MethodName = "storage.get",
@@ -1798,7 +1798,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<string[]> StorageGetKeys(
-             uint? userId = null, bool global = false, uint offset = 0, uint count = 100
+             int? userId = null, bool global = false, int offset = 0, int count = 100
 ){
             var req = new VKRequest<string[]>{
                 MethodName = "storage.getKeys",
@@ -1815,7 +1815,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<StorageEntry[]> StorageSet(
-             string key , string value , uint? userId = null, bool global = false
+             string key , string value , int? userId = null, bool global = false
 ){
             var req = new VKRequest<StorageEntry[]>{
                 MethodName = "storage.set",
@@ -1832,7 +1832,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> UsersIsAppUser(
-             uint? userId = null
+             int? userId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "users.isAppUser",
@@ -1846,7 +1846,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> UsersReport(
-             uint userId , ComplaintType type , string comment 
+             int userId , ComplaintType type , string comment 
 ){
             var req = new VKRequest<int>{
                 MethodName = "users.report",
@@ -1861,7 +1861,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<UserSubscriptions> UsersGetSubscriptions(
-             uint? userId = null, uint offset = 0, uint count = 100
+             int? userId = null, int offset = 0, int count = 100
 ){
             var req = new VKRequest<UserSubscriptions>{
                 MethodName = "users.getSubscriptions",
@@ -1877,14 +1877,14 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<User[]> UsersGet(
-             UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params uint[] userIds 
+             UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds 
 ){
             var req = new VKRequest<User[]>{
                 MethodName = "users.get",
                 Parameters = new Dictionary<string, string> {
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
 					                        { "name_case", nameCase.ToNClString() },
-					                        { "user_ids", (userIds??new uint[]{}).ToNCStringA() }
+					                        { "user_ids", (userIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -1893,7 +1893,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> UsersGetFollowers(
-             uint? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100
+             int? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "users.getFollowers",
@@ -1911,7 +1911,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> UsersGetNearby(
-             double latitude , double longitude , uint? accuracy = null, uint? timeout = null, byte? radius = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100
+             double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "users.getNearby",
@@ -1960,7 +1960,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> VideoDeleteComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "video.deleteComment",
@@ -1974,7 +1974,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> VideoRestoreComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "video.restoreComment",
@@ -1988,7 +1988,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> VideoReportComment(
-             uint commentId , int? ownerId = null, ReportReason? reason = null
+             int commentId , int? ownerId = null, ReportReason? reason = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "video.reportComment",
@@ -2003,7 +2003,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> VideoDeleteAlbum(
-             long albumId , uint? groupId = null
+             long albumId , int? groupId = null
 ){
             var req = new VKRequest<int>{
                 MethodName = "video.deleteAlbum",
@@ -2031,7 +2031,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<int> VideoRemoveTag(
-             ulong videoId , uint tagId , int? ownerId = null
+             ulong videoId , int tagId , int? ownerId = null
 ){
             var req = new VKRequest<int>{
                 MethodName = "video.removeTag",
@@ -2063,7 +2063,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallDelete(
-             uint postId , int? ownerId = null
+             int postId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.delete",
@@ -2077,7 +2077,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallRestore(
-             uint postId , int? ownerId = null
+             int postId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.restore",
@@ -2091,7 +2091,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallDeleteComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.deleteComment",
@@ -2105,7 +2105,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallRestoreComment(
-             uint commentId , int? ownerId = null
+             int commentId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.restoreComment",
@@ -2119,7 +2119,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallReportPost(
-             uint postId , int? ownerId = null, ReportReason? reason = null
+             int postId , int? ownerId = null, ReportReason? reason = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.reportPost",
@@ -2134,7 +2134,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallReportComment(
-             uint commentId , int? ownerId = null, ReportReason? reason = null
+             int commentId , int? ownerId = null, ReportReason? reason = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.reportComment",
@@ -2149,7 +2149,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<Post[]> WallGetById(
-             uint copyHistoryDepth = 2,params string[] posts 
+             int copyHistoryDepth = 2,params string[] posts 
 ){
             var req = new VKRequest<Post[]>{
                 MethodName = "wall.getById",
@@ -2163,7 +2163,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<Post[]> WallGetById(
-             uint copyHistoryDepth = 2,params Tuple<int,uint>[] posts 
+             int copyHistoryDepth = 2,params Tuple<int,int>[] posts 
 ){
             var req = new VKRequest<Post[]>{
                 MethodName = "wall.getById",
@@ -2177,7 +2177,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<Post>> WallGet(
-             int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, uint offset = 0, uint count = 100
+             int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<Post>>{
                 MethodName = "wall.get",
@@ -2195,7 +2195,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallPin(
-             uint postId , int? ownerId = null
+             int postId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.pin",
@@ -2209,7 +2209,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> WallUnpin(
-             uint postId , int? ownerId = null
+             int postId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "wall.unpin",
@@ -2223,7 +2223,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<RepostInfo> WallRepost(
-             string @object , string message = "", uint? groupId = null
+             string @object , string message = "", int? groupId = null
 ){
             var req = new VKRequest<RepostInfo>{
                 MethodName = "wall.repost",

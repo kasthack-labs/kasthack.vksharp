@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using VKSharp.Core.Interfaces;
 using VKSharp.Data.Request;
 
 namespace VKSharp.Data.Executors {

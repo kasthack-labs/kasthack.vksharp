@@ -1,9 +1,8 @@
 ﻿using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
-using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Group:IVKEntity<Group> {
+    public class Group {
         
         public bool IsAdmin { get; set; }
         public bool IsClosed { get; set; }
@@ -30,15 +29,15 @@ namespace VKSharp.Core.Entities {
         public string Site { get; set; }
         public string Status { get; set; }
         public string WikiPage { get; set; }
-        public uint Id { get; set; }
-        public uint? City { get; set; }
-        public uint? Country { get; set; }
-        public uint? EndDate { get; set; }
-        public uint? MembersCount { get; set; }
-        public uint? PostId { get; set; }
-        public uint? StartDate { get; set; }
-        public uint? FinishDate { get; set; }
-        public uint? FixedPost { get; set; }
+        public int Id { get; set; }
+        public int? City { get; set; }
+        public int? Country { get; set; }
+        public int? EndDate { get; set; }
+        public int? MembersCount { get; set; }
+        public int? PostId { get; set; }
+        public int? StartDate { get; set; }
+        public int? FinishDate { get; set; }
+        public int? FixedPost { get; set; }
         public long? MainAlbumId { get; set; }
 
 

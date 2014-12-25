@@ -1,10 +1,8 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities
+﻿namespace VKSharp.Core.Entities
 {
-    public class UserSubscriptions : IVKEntity<UserSubscriptions> {
+    public class UserSubscriptions {
         
-        public EntityList<uint> Users { get; set; }
-        public EntityList<uint> Groups { get; set; }
+        public EntityList<int> Users { get; set; }
+        public EntityList<int> Groups { get; set; }
     }
 }

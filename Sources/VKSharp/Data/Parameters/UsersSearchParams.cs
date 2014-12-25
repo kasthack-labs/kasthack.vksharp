@@ -4,12 +4,12 @@ namespace VKSharp.Data.Parameters {
     public class UsersSearchParams {
         public UsersSearchParams( string query = "", SearchSortOrder sort = SearchSortOrder.ByRating,
                                   ushort? offset = null, ushort? count = null, UserFields fields = UserFields.None,
-                                  uint? cityId = null, uint? countryId = null, string hometown = "", uint? universityCountryId = null,
-                                  uint? universityId = null, uint? universityYear = null, Sex? sex = null, Relation? relation = null,
+                                  int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null,
+                                  int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null,
                                   byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null,
-                                  ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, uint? schoolCountryId = null,
-                                  uint? schoolCityId = null, uint? schoolId = null, uint? schoolYear = null, string religion = "",
-                                  string interests = "", string company = "", string position = "", uint? groupId = null ) {
+                                  ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null,
+                                  int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "",
+                                  string interests = "", string company = "", string position = "", int? groupId = null ) {
             Query = query;
             Sort = sort;
             Offset = offset;
@@ -51,17 +51,17 @@ namespace VKSharp.Data.Parameters {
 
         public UserFields Fields { get; }
 
-        public uint? CityId { get; }
+        public int? CityId { get; }
 
-        public uint? CountryId { get; }
+        public int? CountryId { get; }
 
         public string Hometown { get; }
 
-        public uint? UniversityCountryId { get; }
+        public int? UniversityCountryId { get; }
 
-        public uint? UniversityId { get; }
+        public int? UniversityId { get; }
 
-        public uint? UniversityYear { get; }
+        public int? UniversityYear { get; }
 
         public Sex? Sex { get; }
 
@@ -81,13 +81,13 @@ namespace VKSharp.Data.Parameters {
 
         public bool? HasPhoto { get; }
 
-        public uint? SchoolCountryId { get; }
+        public int? SchoolCountryId { get; }
 
-        public uint? SchoolCityId { get; }
+        public int? SchoolCityId { get; }
 
-        public uint? SchoolId { get; }
+        public int? SchoolId { get; }
 
-        public uint? SchoolYear { get; }
+        public int? SchoolYear { get; }
 
         public string Religion { get; }
 
@@ -97,6 +97,6 @@ namespace VKSharp.Data.Parameters {
 
         public string Position { get; }
 
-        public uint? GroupId { get; }
+        public int? GroupId { get; }
     }
 }

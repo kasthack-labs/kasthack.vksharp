@@ -70,7 +70,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task SetSilenceMode(  string token , int time , uint? chatId = null, uint? userId = null, int sound = 0 ){
+												public async Task SetSilenceMode(  string token , int time , int? chatId = null, int? userId = null, int sound = 0 ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountSetSilenceMode(
 									token,time,chatId,userId,sound
@@ -78,7 +78,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <long>GetAppPermissions(  uint? userId = null ){
+												public async Task <long>GetAppPermissions(  int? userId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountGetAppPermissions(
@@ -88,7 +88,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task BanUser(  uint userId  ){
+												public async Task BanUser(  int userId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountBanUser(
 									userId
@@ -96,7 +96,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task UnbanUser(  uint userId  ){
+												public async Task UnbanUser(  int userId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountUnbanUser(
 									userId
@@ -104,7 +104,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <User[]>GetBanned(  uint offset = 0, uint count = 20 ){
+												public async Task <User[]>GetBanned(  int offset = 0, int count = 20 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountGetBanned(
@@ -114,7 +114,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task SetInfo(  uint? intro = null ){
+												public async Task SetInfo(  int? intro = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AccountSetInfo(
 									intro
@@ -162,7 +162,7 @@ namespace VKSharp {
 				public partial class MethodGroup_audio {
 					private readonly VKApi _parent;
 					internal MethodGroup_audio(VKApi parent){_parent=parent;}
-												public async Task <int>AddAlbum(  string title , uint? groupId = 0 ){
+												public async Task <int>AddAlbum(  string title , int? groupId = 0 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioAddAlbum(
@@ -172,7 +172,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <int>Add(  int ownerId , long audioId , uint? groupId = null ){
+												public async Task <int>Add(  int ownerId , long audioId , int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioAdd(
@@ -182,7 +182,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task DeleteAlbum(  long albumId , uint? groupId = null ){
+												public async Task DeleteAlbum(  long albumId , int? groupId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioDeleteAlbum(
 									albumId,groupId
@@ -208,7 +208,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<AudioAlbum>>GetAlbums(  int? ownerId = null, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<AudioAlbum>>GetAlbums(  int? ownerId = null, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioGetAlbums(
@@ -218,7 +218,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<Audio>>Get(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Audio>>Get(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioGet(
@@ -268,7 +268,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <string>GetUploadServer(  long albumId , uint? groupId = null ){
+												public async Task <string>GetUploadServer(  long albumId , int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioGetUploadServer(
@@ -306,7 +306,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<Audio>>Search(  string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Audio>>Search(  string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AudioSearch(
@@ -331,7 +331,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <ConfirmResult>Confirm(  uint clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false, int? intro = null ){
+												public async Task <ConfirmResult>Confirm(  int clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false, int? intro = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.AuthConfirm(
@@ -356,7 +356,7 @@ namespace VKSharp {
 				public partial class MethodGroup_board {
 					private readonly VKApi _parent;
 					internal MethodGroup_board(VKApi parent){_parent=parent;}
-												public async Task CloseTopic(  uint groupId , uint topicId  ){
+												public async Task CloseTopic(  int groupId , int topicId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.BoardCloseTopic(
 									groupId,topicId
@@ -364,7 +364,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteComment(  uint groupId , uint topicId , uint commentId  ){
+												public async Task DeleteComment(  int groupId , int topicId , int commentId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.BoardDeleteComment(
 									groupId,topicId,commentId
@@ -372,7 +372,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteTopic(  uint groupId , uint topicId  ){
+												public async Task DeleteTopic(  int groupId , int topicId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.BoardDeleteTopic(
 									groupId,topicId
@@ -380,7 +380,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task FixTopic(  uint groupId , uint topicId  ){
+												public async Task FixTopic(  int groupId , int topicId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.BoardFixTopic(
 									groupId,topicId
@@ -388,7 +388,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task UnfixTopic(  uint groupId , uint topicId  ){
+												public async Task UnfixTopic(  int groupId , int topicId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.BoardUnfixTopic(
 									groupId,topicId
@@ -396,7 +396,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RestoreComment(  uint groupId , uint topicId , uint commentId  ){
+												public async Task RestoreComment(  int groupId , int topicId , int commentId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.BoardRestoreComment(
 									groupId,topicId,commentId
@@ -409,7 +409,7 @@ namespace VKSharp {
 				public partial class MethodGroup_database {
 					private readonly VKApi _parent;
 					internal MethodGroup_database(VKApi parent){_parent=parent;}
-												public async Task <EntityList<DatabaseEntry>>GetCountries(  string code = "", bool needAll = false, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<DatabaseEntry>>GetCountries(  string code = "", bool needAll = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetCountries(
@@ -419,7 +419,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<DatabaseEntry>>GetRegions(  uint countryId , string q = "", uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<DatabaseEntry>>GetRegions(  int countryId , string q = "", int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetRegions(
@@ -429,7 +429,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <DatabaseEntry[]>GetStreetsById( params uint[] streetIds  ){
+												public async Task <DatabaseEntry[]>GetStreetsById( params int[] streetIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetStreetsById(
@@ -439,7 +439,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <DatabaseEntry[]>GetCountriesById( params uint[] countryIds  ){
+												public async Task <DatabaseEntry[]>GetCountriesById( params int[] countryIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetCountriesById(
@@ -449,7 +449,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <DatabaseCity[]>GetCitiesById( params uint[] cityIds  ){
+												public async Task <DatabaseCity[]>GetCitiesById( params int[] cityIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetCitiesById(
@@ -459,7 +459,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <DatabaseCity[]>GetCities(  uint countryId , uint? regionId = null, string q = "", bool needAll = false, uint offset = 0, uint count = 100 ){
+												public async Task <DatabaseCity[]>GetCities(  int countryId , int? regionId = null, string q = "", bool needAll = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetCities(
@@ -469,7 +469,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <DatabaseEntry[]>GetUniversities(  uint? countryId = null, uint? cityId = null, string q = "", uint offset = 0, uint count = 100 ){
+												public async Task <DatabaseEntry[]>GetUniversities(  int? countryId = null, int? cityId = null, string q = "", int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetUniversities(
@@ -479,7 +479,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <DatabaseEntry[]>GetSchools(  uint? cityId = null, string q = "", uint offset = 0, uint count = 100 ){
+												public async Task <DatabaseEntry[]>GetSchools(  int? cityId = null, string q = "", int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetSchools(
@@ -489,7 +489,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<DatabaseEntry>>GetFaculties(  uint universityId , uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<DatabaseEntry>>GetFaculties(  int universityId , int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetFaculties(
@@ -499,7 +499,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<DatabaseEntry>>GetChairs(  uint facultyId , uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<DatabaseEntry>>GetChairs(  int facultyId , int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DatabaseGetChairs(
@@ -532,7 +532,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <string>GetUploadServer(  uint? groupId = null ){
+												public async Task <string>GetUploadServer(  int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DocsGetUploadServer(
@@ -542,7 +542,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <string>GetWallUploadServer(  uint? groupId = null ){
+												public async Task <string>GetWallUploadServer(  int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DocsGetWallUploadServer(
@@ -552,7 +552,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<Document>>Get(  int? ownerId = null, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Document>>Get(  int? ownerId = null, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.DocsGet(
@@ -587,7 +587,7 @@ namespace VKSharp {
 				public partial class MethodGroup_friends {
 					private readonly VKApi _parent;
 					internal MethodGroup_friends(VKApi parent){_parent=parent;}
-												public async Task <EntityList<User>>Get(  uint? userId = null, uint? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<User>>Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsGet(
@@ -597,7 +597,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<User>>GetSuggestions(  FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<User>>GetSuggestions(  FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsGetSuggestions(
@@ -617,7 +617,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <int>Add(  uint userId , string text = "" ){
+												public async Task <int>Add(  int userId , string text = "" ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsAdd(
@@ -635,7 +635,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <int[]>GetRecent(  uint count = 20 ){
+												public async Task <int[]>GetRecent(  int count = 20 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsGetRecent(
@@ -645,7 +645,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <int>Delete(  uint userId  ){
+												public async Task <int>Delete(  int userId  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsDelete(
@@ -655,7 +655,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task DeleteList(  uint listId  ){
+												public async Task DeleteList(  int listId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsDeleteList(
 									listId
@@ -673,7 +673,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <int[]>GetMutual(  uint targetUid , uint? sourceUid = null, bool order = false, uint offset = 0, uint count = 100 ){
+												public async Task <int[]>GetMutual(  int targetUid , int? sourceUid = null, bool order = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsGetMutual(
@@ -688,7 +688,7 @@ namespace VKSharp {
 				public partial class MethodGroup_groups {
 					private readonly VKApi _parent;
 					internal MethodGroup_groups(VKApi parent){_parent=parent;}
-												public async Task <User[]>GetBanned(  uint groupId , uint offset = 0, uint count = 100 ){
+												public async Task <User[]>GetBanned(  int groupId , int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsGetBanned(
@@ -708,7 +708,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <Group[]>GetById(  uint groupId , GroupFields fields  ){
+												public async Task <Group[]>GetById(  int groupId , GroupFields fields  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsGetById(
@@ -718,7 +718,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<User>>GetMembers(  uint groupId , UserFields fields = UserFields.Everything, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<User>>GetMembers(  int groupId , UserFields fields = UserFields.Everything, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsGetMembers(
@@ -728,7 +728,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<User>>GetMembers(  string groupId , UserFields fields = UserFields.None, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<User>>GetMembers(  string groupId , UserFields fields = UserFields.None, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsGetMembers(
@@ -738,7 +738,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <MemberShip[]>IsMember(  uint groupId , bool extended = false,params uint[] userIds  ){
+												public async Task <MemberShip[]>IsMember(  int groupId , bool extended = false,params int[] userIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsIsMember(
@@ -748,7 +748,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task Join(  uint groupId , bool notSure = false ){
+												public async Task Join(  int groupId , bool notSure = false ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsJoin(
 									groupId,notSure
@@ -756,7 +756,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task Leave(  uint groupId  ){
+												public async Task Leave(  int groupId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsLeave(
 									groupId
@@ -764,7 +764,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task UnbanUser(  uint groupId , uint userId  ){
+												public async Task UnbanUser(  int groupId , int userId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.GroupsUnbanUser(
 									groupId,userId
@@ -777,7 +777,7 @@ namespace VKSharp {
 				public partial class MethodGroup_messages {
 					private readonly VKApi _parent;
 					internal MethodGroup_messages(VKApi parent){_parent=parent;}
-												public async Task AddChatUser(  uint userId , uint? chatId = null ){
+												public async Task AddChatUser(  int userId , int? chatId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.MessagesAddChatUser(
 									userId,chatId
@@ -785,7 +785,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RemoveChatUser(  uint userId , uint chatId  ){
+												public async Task RemoveChatUser(  int userId , int chatId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.MessagesRemoveChatUser(
 									userId,chatId
@@ -801,7 +801,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task MarkAsRead(  uint userId , uint? startMessageId = null,params int[] messageIds  ){
+												public async Task MarkAsRead(  int userId , int? startMessageId = null,params int[] messageIds  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.MessagesMarkAsRead(
 									userId,startMessageId,messageIds
@@ -825,7 +825,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteDialog(  uint userId , uint offset = 0, uint count = 100 ){
+												public async Task DeleteDialog(  int userId , int offset = 0, int count = 100 ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.MessagesDeleteDialog(
 									userId,offset,count
@@ -846,7 +846,7 @@ namespace VKSharp {
 				public partial class MethodGroup_newsfeed {
 					private readonly VKApi _parent;
 					internal MethodGroup_newsfeed(VKApi parent){_parent=parent;}
-												public async Task AddBan(  uint[] userIds = null, uint[] groupIds = null ){
+												public async Task AddBan(  int[] userIds = null, int[] groupIds = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NewsfeedAddBan(
 									userIds,groupIds
@@ -854,7 +854,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteBan(  uint[] userIds = null, uint[] groupIds = null ){
+												public async Task DeleteBan(  int[] userIds = null, int[] groupIds = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NewsfeedDeleteBan(
 									userIds,groupIds
@@ -867,7 +867,7 @@ namespace VKSharp {
 				public partial class MethodGroup_notes {
 					private readonly VKApi _parent;
 					internal MethodGroup_notes(VKApi parent){_parent=parent;}
-												public async Task Delete(  uint noteId  ){
+												public async Task Delete(  int noteId  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NotesDelete(
 									noteId
@@ -875,7 +875,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteComment(  uint commentId , int? ownerId = null ){
+												public async Task DeleteComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NotesDeleteComment(
 									commentId,ownerId
@@ -883,7 +883,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RestoreComment(  uint commentId , int? ownerId = null ){
+												public async Task RestoreComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NotesRestoreComment(
 									commentId,ownerId
@@ -922,7 +922,7 @@ namespace VKSharp {
 				public partial class MethodGroup_photos {
 					private readonly VKApi _parent;
 					internal MethodGroup_photos(VKApi parent){_parent=parent;}
-												public async Task DeleteComment(  uint commentId , int? ownerId = null ){
+												public async Task DeleteComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosDeleteComment(
 									commentId,ownerId
@@ -930,7 +930,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RestoreComment(  uint commentId , int? ownerId = null ){
+												public async Task RestoreComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosRestoreComment(
 									commentId,ownerId
@@ -938,7 +938,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task ReportComment(  uint commentId , int? ownerId = null, ReportReason? reason = null ){
+												public async Task ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosReportComment(
 									commentId,ownerId,reason
@@ -946,7 +946,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteAlbum(  long albumId , uint? groupId = null ){
+												public async Task DeleteAlbum(  long albumId , int? groupId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosDeleteAlbum(
 									albumId,groupId
@@ -962,7 +962,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task ConfirmTag(  uint tagId , long photoId , int? ownerId = null ){
+												public async Task ConfirmTag(  int tagId , long photoId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosConfirmTag(
 									tagId,photoId,ownerId
@@ -970,7 +970,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RemoveTag(  uint tagId , long photoId , int? ownerId = null ){
+												public async Task RemoveTag(  int tagId , long photoId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosRemoveTag(
 									tagId,photoId,ownerId
@@ -1002,7 +1002,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <int>GetAlbumsCount(  uint? userId = null, uint? groupId = null ){
+												public async Task <int>GetAlbumsCount(  int? userId = null, int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGetAlbumsCount(
@@ -1012,7 +1012,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <PhotoAlbum>CreateAlbum(  string title , string description = "", uint? groupId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null ){
+												public async Task <PhotoAlbum>CreateAlbum(  string title , string description = "", int? groupId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosCreateAlbum(
@@ -1040,7 +1040,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <PhotosUploadServer>GetUploadServer(  long albumId , uint? groupId = null ){
+												public async Task <PhotosUploadServer>GetUploadServer(  long albumId , int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGetUploadServer(
@@ -1050,7 +1050,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <PhotosUploadServer>GetChatUploadServer(  uint chatId , uint? cropX = null, uint? cropY = null, uint? cropWidth = null ){
+												public async Task <PhotosUploadServer>GetChatUploadServer(  int chatId , int? cropX = null, int? cropY = null, int? cropWidth = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGetChatUploadServer(
@@ -1092,7 +1092,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <EntityList<Photo>>GetAll(  int? ownerId = null, bool extended = false, bool noServiceAlbums = false, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Photo>>GetAll(  int? ownerId = null, bool extended = false, bool noServiceAlbums = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGetAll(
@@ -1102,7 +1102,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<Photo>>Get(  long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, uint? feed = null, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Photo>>Get(  long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGet(
@@ -1112,7 +1112,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<Photo>>Get(  SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, uint? feed = null, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Photo>>Get(  SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGet(
@@ -1132,7 +1132,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<PhotoAlbum>>GetAlbums(  int? ownerId = null, bool needSystem = true, bool needCovers = true, uint offset = 0, uint count = 100,params long[] albumIds  ){
+												public async Task <EntityList<PhotoAlbum>>GetAlbums(  int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100,params long[] albumIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosGetAlbums(
@@ -1142,7 +1142,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <Photo[]>Save(  long albumId , string server , string photosList , string hash , uint? groupId = null, double? latitude = null, double? longitude = null, string caption = "", string description = "" ){
+												public async Task <Photo[]>Save(  long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "", string description = "" ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.PhotosSave(
@@ -1195,7 +1195,7 @@ namespace VKSharp {
 				public partial class MethodGroup_storage {
 					private readonly VKApi _parent;
 					internal MethodGroup_storage(VKApi parent){_parent=parent;}
-												public async Task <StorageEntry[]>Get(  uint? userId = null, bool global = false,params string[] keys  ){
+												public async Task <StorageEntry[]>Get(  int? userId = null, bool global = false,params string[] keys  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.StorageGet(
@@ -1205,7 +1205,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <string[]>GetKeys(  uint? userId = null, bool global = false, uint offset = 0, uint count = 100 ){
+												public async Task <string[]>GetKeys(  int? userId = null, bool global = false, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.StorageGetKeys(
@@ -1215,7 +1215,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <StorageEntry[]>Set(  string key , string value , uint? userId = null, bool global = false ){
+												public async Task <StorageEntry[]>Set(  string key , string value , int? userId = null, bool global = false ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.StorageSet(
@@ -1230,7 +1230,7 @@ namespace VKSharp {
 				public partial class MethodGroup_users {
 					private readonly VKApi _parent;
 					internal MethodGroup_users(VKApi parent){_parent=parent;}
-												public async Task <bool>IsAppUser(  uint? userId = null ){
+												public async Task <bool>IsAppUser(  int? userId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UsersIsAppUser(
@@ -1240,7 +1240,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task Report(  uint userId , ComplaintType type , string comment  ){
+												public async Task Report(  int userId , ComplaintType type , string comment  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UsersReport(
 									userId,type,comment
@@ -1248,7 +1248,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <UserSubscriptions>GetSubscriptions(  uint? userId = null, uint offset = 0, uint count = 100 ){
+												public async Task <UserSubscriptions>GetSubscriptions(  int? userId = null, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UsersGetSubscriptions(
@@ -1258,7 +1258,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <User[]>Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params uint[] userIds  ){
+												public async Task <User[]>Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UsersGet(
@@ -1268,7 +1268,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<User>>GetFollowers(  uint? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<User>>GetFollowers(  int? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UsersGetFollowers(
@@ -1278,7 +1278,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<User>>GetNearby(  double latitude , double longitude , uint? accuracy = null, uint? timeout = null, byte? radius = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<User>>GetNearby(  double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UsersGetNearby(
@@ -1318,7 +1318,7 @@ namespace VKSharp {
 				public partial class MethodGroup_video {
 					private readonly VKApi _parent;
 					internal MethodGroup_video(VKApi parent){_parent=parent;}
-												public async Task DeleteComment(  uint commentId , int? ownerId = null ){
+												public async Task DeleteComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.VideoDeleteComment(
 									commentId,ownerId
@@ -1326,7 +1326,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RestoreComment(  uint commentId , int? ownerId = null ){
+												public async Task RestoreComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.VideoRestoreComment(
 									commentId,ownerId
@@ -1334,7 +1334,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task ReportComment(  uint commentId , int? ownerId = null, ReportReason? reason = null ){
+												public async Task ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.VideoReportComment(
 									commentId,ownerId,reason
@@ -1342,7 +1342,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteAlbum(  long albumId , uint? groupId = null ){
+												public async Task DeleteAlbum(  long albumId , int? groupId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.VideoDeleteAlbum(
 									albumId,groupId
@@ -1358,7 +1358,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RemoveTag(  ulong videoId , uint tagId , int? ownerId = null ){
+												public async Task RemoveTag(  ulong videoId , int tagId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.VideoRemoveTag(
 									videoId,tagId,ownerId
@@ -1379,7 +1379,7 @@ namespace VKSharp {
 				public partial class MethodGroup_wall {
 					private readonly VKApi _parent;
 					internal MethodGroup_wall(VKApi parent){_parent=parent;}
-												public async Task Delete(  uint postId , int? ownerId = null ){
+												public async Task Delete(  int postId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallDelete(
 									postId,ownerId
@@ -1387,7 +1387,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task Restore(  uint postId , int? ownerId = null ){
+												public async Task Restore(  int postId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallRestore(
 									postId,ownerId
@@ -1395,7 +1395,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteComment(  uint commentId , int? ownerId = null ){
+												public async Task DeleteComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallDeleteComment(
 									commentId,ownerId
@@ -1403,7 +1403,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task RestoreComment(  uint commentId , int? ownerId = null ){
+												public async Task RestoreComment(  int commentId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallRestoreComment(
 									commentId,ownerId
@@ -1411,7 +1411,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task ReportPost(  uint postId , int? ownerId = null, ReportReason? reason = null ){
+												public async Task ReportPost(  int postId , int? ownerId = null, ReportReason? reason = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallReportPost(
 									postId,ownerId,reason
@@ -1419,7 +1419,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task ReportComment(  uint commentId , int? ownerId = null, ReportReason? reason = null ){
+												public async Task ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallReportComment(
 									commentId,ownerId,reason
@@ -1427,7 +1427,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <Post[]>GetById(  uint copyHistoryDepth = 2,params string[] posts  ){
+												public async Task <Post[]>GetById(  int copyHistoryDepth = 2,params string[] posts  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallGetById(
@@ -1437,7 +1437,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <Post[]>GetById(  uint copyHistoryDepth = 2,params Tuple<int,uint>[] posts  ){
+												public async Task <Post[]>GetById(  int copyHistoryDepth = 2,params Tuple<int,int>[] posts  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallGetById(
@@ -1447,7 +1447,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <EntityList<Post>>Get(  int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, uint offset = 0, uint count = 100 ){
+												public async Task <EntityList<Post>>Get(  int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100 ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallGet(
@@ -1457,7 +1457,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task Pin(  uint postId , int? ownerId = null ){
+												public async Task Pin(  int postId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallPin(
 									postId,ownerId
@@ -1465,7 +1465,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task Unpin(  uint postId , int? ownerId = null ){
+												public async Task Unpin(  int postId , int? ownerId = null ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallUnpin(
 									postId,ownerId
@@ -1473,7 +1473,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task <RepostInfo>Repost(  string @object , string message = "", uint? groupId = null ){
+												public async Task <RepostInfo>Repost(  string @object , string message = "", int? groupId = null ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.WallRepost(

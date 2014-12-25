@@ -1,8 +1,6 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.ResponseEntities {
-    public class ConfirmResult : IVKEntity<ConfirmResult>{
-        public uint Uid { get; set;}
+﻿namespace VKSharp.Core.ResponseEntities {
+    public class ConfirmResult {
+        public int Uid { get; set;}
         public bool Success { get; set; }
         
     }

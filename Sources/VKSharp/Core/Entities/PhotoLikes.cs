@@ -1,7 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
-
-namespace VKSharp.Core.Entities {
-    public class PhotoLikes : Counter, IVKEntity<PhotoLikes> {
+﻿namespace VKSharp.Core.Entities {
+    public class PhotoLikes : Counter {
         public bool UserLikes { get; set; }
     }
 }
