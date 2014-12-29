@@ -11,12 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>
-* UserFields XML serializtion fixed	
-* Proxies &amp; pooling
-* Removed async from from method name
-* Public CurrentToken in VkApi and RawApi
+* signed -> unsigned(VK developers are fags) _BREAKING_
+* IVKEntity -> /dev/null
     </releaseNotes>
-    <copyright>Copyright 2014</copyright>
+    <copyright>Copyright kasthack 2014</copyright>
     <tags>vk api kasthack</tags>
   </metadata>
 </package>

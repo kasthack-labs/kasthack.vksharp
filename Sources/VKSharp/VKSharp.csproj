@@ -81,6 +81,7 @@
     <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
     <Compile Include="Data\Executors\JsonExecutor.cs" />
+    <Compile Include="Helpers\JsonConverters.cs" />
     <Compile Include="Helpers\SnakeCaseEnumConverter.cs" />
     <Compile Include="Data\Parameters\ContentId.cs" />
     <Compile Include="Data\Parameters\GroupFields.cs" />

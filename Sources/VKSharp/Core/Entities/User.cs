@@ -1,6 +1,9 @@
 ﻿using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
+using VKSharp.Helpers;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
@@ -72,7 +75,7 @@ namespace VKSharp.Core.Entities {
         public string Site { get; set; }
         public string Status { get; set; }
         public string Tv { get; set; }
-
+        [JsonConverter(typeof(PersonalConverter))]
         public StandInLife Personal {
             get {
                 return _personal;

@@ -7,7 +7,6 @@ using System.Net.Http;
 using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
 using VKSharp.Helpers.Exceptions;
@@ -33,18 +32,22 @@ namespace VKSharp.Data.Executors {
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
+
             ser.Converters.Add( new SnakeCaseEnumConverter { AllowIntegerValues = true, CamelCaseText = false } );
+            ser.Converters.Add( new CustomIntConverter());
 
             ser.Error += ( sender, args ) => {
-                //Debug.WriteLine( "Goddamn! JSON parsing fail {0}: {1}", args.ErrorContext.Path, args.ErrorContext.Error );
                 var ec = args.ErrorContext;
-                if ( ec.Member.ToString() == "personal" ) ec.Handled = true;
+                //if ( ec.Member.ToString() == "personal" ) ec.Handled = true;
+#if !DEBUG
+                //ec.Handled = true;//never fall on release
+#endif
             };
 
             return ser;
         }
 
-        #region IO
+#region IO
         public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
         public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
         private const string ReqExt = "json";
@@ -58,20 +61,14 @@ namespace VKSharp.Data.Executors {
             if ( request.Token != null ) ps.Add( new KeyValuePair<string, string>( "access_token", request.Token.Token ) );
             return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) )).Content;
         }
-        #endregion
-        #region IExecutor
+#endregion
+#region IExecutor
         public async Task<Stream> ExecRawStreamAsync<T>( VKRequest<T> request ) => await( await InternalExecRawAsync( request, ReqExt ) ).ReadAsStreamAsync();
         public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) => Parse<T>( await ExecRawAsync( request ) );
         public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) => await (await InternalExecRawAsync( request, ReqExt )).ReadAsStringAsync();
-        #endregion
-        #region Serialization
+#endregion
+#region Serialization
         private static readonly JsonSerializer Jsonser;
-
-        private class SnakeCaseContractResolver : DefaultContractResolver {
-            protected override string ResolvePropertyName( string propertyName ) => propertyName.ToSnake();
-        }
-        //todo:implement
-        
         public VKResponse<T> Parse<T>( string input ) {
             using ( TextReader sr = new StringReader( input ) )
                 return ParseStreamReader<T>( sr );
@@ -89,6 +86,6 @@ namespace VKSharp.Data.Executors {
         public VKResponse<T> ParseStream<T>( Stream input ) {
             using ( TextReader sr = new StreamReader( input ) ) return ParseStreamReader<T>( sr );
         }
-        #endregion
+#endregion
     }
 }
