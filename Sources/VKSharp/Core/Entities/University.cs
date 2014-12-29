@@ -10,7 +10,7 @@
         public int Id { get; set; }
         public int? Chair { get; set; }
         public int? Faculty { get; set; }
-        public ushort? Graduation { get; set; }
+        public int? Graduation { get; set; }
 
     }
 }

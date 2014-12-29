@@ -8,7 +8,6 @@ using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
     public class User : IEquatable<User> {
-        private StandInLife _personal;
         public Audio StatusAudio { get; set; }
         public bool? Blacklisted { get; set; }
         public bool? CanPost { get; set; }
@@ -76,27 +75,54 @@ namespace VKSharp.Core.Entities {
         public string Status { get; set; }
         public string Tv { get; set; }
         [JsonConverter(typeof(PersonalConverter))]
-        public StandInLife Personal {
-            get {
-                return _personal;
-            }
-            set {
-                _personal = value;
-            }
-        }
-
+        public StandInLife Personal { get; set; }
         public uint? CommonCount { get; set; }
-        public uint Id { get; set; }
+        public int Id { get; set; }
         public GeoEntry City { get; set; }
         public GeoEntry Country { get; set; }
 
-
-        //todo: move to education
-        public string UniversityName { get; set; }
-        public string FacultyName { get; set; }
-        public int? Faculty { get; set; }
-        public int? University { get; set; }
-        public ushort? Graduation { get; set; }
+        public University MainUniversity { get; set; } = new University();
+        private string UniversityName {
+            get {
+                return MainUniversity.Name;
+            }
+            set {
+                MainUniversity.Name = value;
+            }
+        }
+        private string FacultyName {
+            get {
+                return MainUniversity.FacultyName;
+            }
+            set {
+                MainUniversity.FacultyName = value;
+            }
+        }
+        private int? Faculty {
+            get {
+                return MainUniversity.Faculty;
+            }
+            set {
+                MainUniversity.Faculty = value;
+            }
+        }
+        private int? University {
+            get {
+                return MainUniversity?.Id;
+            }
+            set {
+                if (value!=null)
+                    MainUniversity.Id = (int) value;
+            }
+        }
+        private int? Graduation {
+            get {
+                return MainUniversity.Graduation;
+            }
+            set {
+                MainUniversity.Graduation = value;
+            }
+        }
 
         public int? FollowersCount { get; set; }
         public int? OnlineApp { get; set; }
@@ -111,7 +137,7 @@ namespace VKSharp.Core.Entities {
 
         public static bool operator !=( User a, User b ) => !( a == b );
 
-        public override int GetHashCode() => unchecked( (int) ( 0 + Id ) );
+        public override int GetHashCode() => Id;
         public override string ToString() => "ID :" + Id;
     }
     [AttributeUsage(AttributeTargets.Property)]

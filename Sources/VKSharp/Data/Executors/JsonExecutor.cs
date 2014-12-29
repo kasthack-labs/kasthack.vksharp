@@ -31,6 +31,7 @@ namespace VKSharp.Data.Executors {
             //snake case parsing
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
+
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
 
             ser.Converters.Add( new SnakeCaseEnumConverter { AllowIntegerValues = true, CamelCaseText = false } );
@@ -38,7 +39,6 @@ namespace VKSharp.Data.Executors {
 
             ser.Error += ( sender, args ) => {
                 var ec = args.ErrorContext;
-                //if ( ec.Member.ToString() == "personal" ) ec.Handled = true;
 #if !DEBUG
                 //ec.Handled = true;//never fall on release
 #endif
