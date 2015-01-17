@@ -82,6 +82,7 @@ namespace VKSharp.Core.Entities {
         public GeoEntry Country { get; set; }
 
         public University MainUniversity { get; set; } = new University();
+        #region Main university
         private string UniversityName {
             get {
                 return MainUniversity.Name;
@@ -123,7 +124,7 @@ namespace VKSharp.Core.Entities {
                 MainUniversity.Graduation = value;
             }
         }
-
+        #endregion
         public int? FollowersCount { get; set; }
         public int? OnlineApp { get; set; }
         public int[] Lists { get; set; }

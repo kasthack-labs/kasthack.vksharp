@@ -40,7 +40,7 @@ namespace VKSharp.Data.Executors {
             ser.Error += ( sender, args ) => {
                 var ec = args.ErrorContext;
 #if !DEBUG
-                //ec.Handled = true;//never fall on release
+                ec.Handled = true;//never fall on release
 #endif
             };
 
