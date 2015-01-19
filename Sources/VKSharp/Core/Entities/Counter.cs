@@ -1,5 +1,5 @@
 ﻿namespace VKSharp.Core.Entities {
     public class Counter {
-        public uint Count { get; set; }
+        public int Count { get; set; }
     }
 }

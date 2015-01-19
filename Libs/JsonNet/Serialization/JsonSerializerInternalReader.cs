@@ -338,34 +338,14 @@ namespace Newtonsoft.Json.Serialization
 
         private JsonConverter GetConverter(JsonContract contract, JsonConverter memberConverter, JsonContainerContract containerContract, JsonProperty containerProperty)
         {
-            JsonConverter converter = null;
-            if (memberConverter != null)
-            {
-                // member attribute converter
-                converter = memberConverter;
-            }
-            else if (containerProperty != null && containerProperty.ItemConverter != null)
-            {
-                converter = containerProperty.ItemConverter;
-            }
-            else if (containerContract != null && containerContract.ItemConverter != null)
-            {
-                converter = containerContract.ItemConverter;
-            }
-            else if (contract != null)
-            {
-                JsonConverter matchingConverter;
-                if (contract.Converter != null)
-                    // class attribute converter
-                    converter = contract.Converter;
-                else if ((matchingConverter = Serializer.GetMatchingConverter(contract.UnderlyingType)) != null)
-                    // passed in converters
-                    converter = matchingConverter;
-                else if (contract.InternalConverter != null)
-                    // internally specified converter
-                    converter = contract.InternalConverter;
-            }
-            return converter;
+            return
+                    memberConverter ??                                          // member attribute converter
+                    containerProperty?.ItemConverter ??
+                    containerContract?.ItemConverter??
+                    ((contract==null)?null :
+                    contract.Converter ??                                       // class attribute converter
+                    Serializer.GetMatchingConverter( contract.UnderlyingType ) ??// passed in converters
+                    contract.InternalConverter);                                // internally specified converter
         }
 
         private object CreateObject(JsonReader reader, Type objectType, JsonContract contract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerMember, object existingValue)

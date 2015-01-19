@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Utilities;
 using VKSharp.Core.EntityFragments;
+using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Helpers {
 
@@ -14,9 +15,7 @@ namespace VKSharp.Helpers {
     }
     //https://stackoverflow.com/questions/17745866
     internal class CustomIntConverter : JsonConverter {
-        public override bool CanConvert( Type objectType ) {
-            return ( objectType == typeof(int) );
-        }
+        public override bool CanConvert( Type objectType ) => objectType == typeof(int);
 
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
             var jsonValue = serializer.Deserialize<JValue>( reader );
@@ -33,20 +32,20 @@ namespace VKSharp.Helpers {
 
         public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) => JObject.FromObject( value ).WriteTo( writer );
     }
-
-    internal class PersonalConverter : JsonConverter {
+    internal class ObjectArrConverter<T>:JsonConverter {
         public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) => JObject.FromObject( value ).WriteTo( writer );
 
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-            if ( reader.TokenType == JsonToken.StartArray ) {
-                reader.Skip();
-                reader.Skip();
-                return existingValue;
-            }
-            return serializer.Deserialize<StandInLife>( reader );
+            if ( reader.TokenType != JsonToken.StartArray )
+                return serializer.Deserialize<T>( reader );
+            reader.Skip();
+            reader.Skip();
+            return existingValue;
         }
-        public override bool CanConvert( Type objectType ) => objectType == typeof( StandInLife );
+        public override bool CanConvert( Type objectType ) => objectType == typeof(T);
     }
+
+    internal class PersonalConverter : ObjectArrConverter<StandInLife> { }
 
     internal class SnakeCaseEnumConverter : StringEnumConverter {
         public override bool CanConvert( Type objectType ) {
@@ -57,7 +56,6 @@ namespace VKSharp.Helpers {
         }
 
         public override bool CanWrite => true;
-
         public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
             base.WriteJson( writer, value, serializer );
         }
@@ -88,5 +86,21 @@ namespace VKSharp.Helpers {
             // we don't actually expect to get here.
             throw JsonSerializationException.Create( reader, "Unexpected token {0} when parsing enum.".FormatWith( CultureInfo.InvariantCulture, reader.TokenType ) );
         }
+    }
+    public class DateConverter : JsonConverter {
+        private static readonly Type Type = typeof(Date);
+
+        public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
+            throw new NotImplementedException();
+        }
+
+        public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
+            if ( reader.TokenType == JsonToken.None ) return default(Date);
+            Date p;
+            return Date.TryParse( reader.Value.ToString(), out p ) ? p : default(Date);
+        }
+        public override bool CanConvert( Type objectType ) => Type == objectType;
+
+        public override bool CanWrite => false;
     }
 }

@@ -116,7 +116,7 @@ namespace VKSharp.Core.Entities {
                     MainUniversity.Id = (int) value;
             }
         }
-        private int? Graduation {
+        private ushort? Graduation {
             get {
                 return MainUniversity.Graduation;
             }

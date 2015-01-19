@@ -36,20 +36,4 @@ namespace VKSharp.Helpers.DataTypes {
             );
         }
     }
-
-    
-    public class DateConverter : JsonConverter {
-        private static readonly Type Type = typeof( Date );
-
-        public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
-            throw new NotImplementedException();
-        }
-
-        public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-            if ( reader.TokenType == JsonToken.None ) return default(Date);
-            Date p;
-            return Date.TryParse( reader.Value.ToString(), out p ) ? p : default( Date );
-        }
-        public override bool CanConvert( Type objectType ) { return Type == objectType; }
-    }
 }
