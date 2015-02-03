@@ -44,9 +44,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="EpicMorg.Net.AWC">
-      <HintPath>..\..\Libs\EpicMorg.Net.AWC.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />

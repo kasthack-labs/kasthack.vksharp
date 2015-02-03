@@ -10,10 +10,7 @@
     <projectUrl>http://github.com/kasthack/VKSharp</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>
-* signed -> unsigned(VK developers are fags) _BREAKING_
-* IVKEntity -> /dev/null
-    </releaseNotes>
+    <releaseNotes></releaseNotes>
     <copyright>Copyright kasthack 2014</copyright>
     <tags>vk api kasthack</tags>
   </metadata>

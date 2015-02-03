@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VKSharp</RootNamespace>
     <AssemblyName>kasthack.VKSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>776c69f6</NuGetPackageImportStamp>
@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -69,116 +71,117 @@
     </Compile>
     <Compile Include="Api\RequestApi.cs" />
     <Compile Include="Api\RawApi.cs" />
-    <Compile Include="Core\Entities\AudioAlbum.cs" />
-    <Compile Include="Core\Entities\Chat.cs" />
-    <Compile Include="Core\Entities\Onlines.cs" />
-    <Compile Include="Core\Entities\Status.cs" />
-    <Compile Include="Core\Entities\VideoAlbum.cs" />
-    <Compile Include="Core\Enums\ChangeNameStatus.cs" />
-    <Compile Include="Core\ResponseEntities\AccountInfo.cs" />
-    <Compile Include="Core\ResponseEntities\AuthRestore.cs" />
-    <Compile Include="Core\ResponseEntities\ChangeNameRequest.cs" />
-    <Compile Include="Core\ResponseEntities\LastActivity.cs" />
-    <Compile Include="Core\ResponseEntities\PhotosUploadServer.cs" />
-    <Compile Include="Core\ResponseEntities\RepostInfo.cs" />
-    <Compile Include="Data\Executors\JsonExecutor.cs" />
+    <Compile Include="Core\Parameters\ImActivity.cs" />
+    <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
+    <Compile Include="ReturnTypes\Entities\Chat.cs" />
+    <Compile Include="ReturnTypes\Entities\Onlines.cs" />
+    <Compile Include="ReturnTypes\Entities\Status.cs" />
+    <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
+    <Compile Include="ReturnTypes\Enums\ChangeNameStatus.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\AccountInfo.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\AuthRestore.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\ChangeNameRequest.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\LastActivity.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\PhotosUploadServer.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\RepostInfo.cs" />
+    <Compile Include="Core\Executors\JsonExecutor.cs" />
     <Compile Include="Helpers\JsonConverters.cs" />
-    <Compile Include="Data\Parameters\ContentId.cs" />
-    <Compile Include="Data\Parameters\GroupFields.cs" />
-    <Compile Include="Data\Parameters\SpecialAlbum.cs" />
-    <Compile Include="Core\Entities\Counter.cs" />
-    <Compile Include="Core\Entities\PhotoLikes.cs" />
-    <Compile Include="Data\Parameters\FeedType.cs" />
-    <Compile Include="Core\EntityFragments\GeoEntry.cs" />
-    <Compile Include="Data\Parameters\UsersSearchParams.cs" />
-    <Compile Include="Data\Parameters\AudioSortOrder.cs" />
-    <Compile Include="Core\Entities\City.cs" />
-    <Compile Include="Core\Entities\DatabaseEntry.cs" />
-    <Compile Include="Core\Entities\LinkCheckResult.cs" />
-    <Compile Include="Core\Entities\Lyrics.cs" />
-    <Compile Include="Core\Entities\MemberShip.cs" />
-    <Compile Include="Core\Entities\StorageEntry.cs" />
-    <Compile Include="Core\Entities\UserSubscriptions.cs" />
-    <Compile Include="Core\Enums\ComplaintType.cs" />
-    <Compile Include="Core\Enums\Deleted.cs" />
-    <Compile Include="Core\Enums\LinkCheckStatus.cs" />
-    <Compile Include="Core\Enums\ReportReason.cs" />
-    <Compile Include="Core\Enums\VKPlatform.cs" />
-    <Compile Include="Core\EntityFragments\Relative.cs" />
-    <Compile Include="Core\Enums\RelativeType.cs" />
-    <Compile Include="Core\EntityFragments\LastSeen.cs" />
-    <Compile Include="Core\EntityFragments\Exports.cs" />
-    <Compile Include="Data\Parameters\SearchSortOrder.cs" />
-    <Compile Include="Core\Entities\BanInfo.cs" />
-    <Compile Include="Core\Entities\EntityList.cs" />
-    <Compile Include="Data\Api\VKPermission.cs" />
-    <Compile Include="Data\Executors\IExecutor.cs" />
-    <Compile Include="Data\Parameters\FriendSuggestionFilters.cs" />
-    <Compile Include="Data\Parameters\UserSortOrder.cs" />
-    <Compile Include="Data\Request\ResponseStatus.cs" />
-    <Compile Include="Data\Request\VKResponse.cs" />
-    <Compile Include="Data\Parameters\NameCase.cs" />
-    <Compile Include="Data\Parameters\UserFields.cs" />
+    <Compile Include="Core\Parameters\ContentId.cs" />
+    <Compile Include="Core\Parameters\GroupFields.cs" />
+    <Compile Include="Core\Parameters\SpecialAlbum.cs" />
+    <Compile Include="ReturnTypes\Entities\Counter.cs" />
+    <Compile Include="ReturnTypes\Entities\PhotoLikes.cs" />
+    <Compile Include="Core\Parameters\FeedType.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\GeoEntry.cs" />
+    <Compile Include="Core\Parameters\UsersSearchParams.cs" />
+    <Compile Include="Core\Parameters\AudioSortOrder.cs" />
+    <Compile Include="ReturnTypes\Entities\City.cs" />
+    <Compile Include="ReturnTypes\Entities\DatabaseEntry.cs" />
+    <Compile Include="ReturnTypes\Entities\LinkCheckResult.cs" />
+    <Compile Include="ReturnTypes\Entities\Lyrics.cs" />
+    <Compile Include="ReturnTypes\Entities\MemberShip.cs" />
+    <Compile Include="ReturnTypes\Entities\StorageEntry.cs" />
+    <Compile Include="ReturnTypes\Entities\UserSubscriptions.cs" />
+    <Compile Include="ReturnTypes\Enums\ComplaintType.cs" />
+    <Compile Include="ReturnTypes\Enums\Deleted.cs" />
+    <Compile Include="ReturnTypes\Enums\LinkCheckStatus.cs" />
+    <Compile Include="ReturnTypes\Enums\ReportReason.cs" />
+    <Compile Include="ReturnTypes\Enums\VKPlatform.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\Relative.cs" />
+    <Compile Include="ReturnTypes\Enums\RelativeType.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\LastSeen.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\Exports.cs" />
+    <Compile Include="Core\Parameters\SearchSortOrder.cs" />
+    <Compile Include="ReturnTypes\Entities\BanInfo.cs" />
+    <Compile Include="ReturnTypes\Entities\EntityList.cs" />
+    <Compile Include="Core\Api\VKPermission.cs" />
+    <Compile Include="Core\Executors\IExecutor.cs" />
+    <Compile Include="Core\Parameters\FriendSuggestionFilters.cs" />
+    <Compile Include="Core\Parameters\UserSortOrder.cs" />
+    <Compile Include="Core\Request\ResponseStatus.cs" />
+    <Compile Include="Core\Request\VKResponse.cs" />
+    <Compile Include="Core\Parameters\NameCase.cs" />
+    <Compile Include="Core\Parameters\UserFields.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
     <Compile Include="Helpers\HttpClientHandler.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
     <Compile Include="Helpers\MorozovHandler.cs" />
     <Compile Include="Helpers\UploadHelper.cs" />
     <Compile Include="Api\VKApi.cs" />
-    <Compile Include="Core\Entities\Attachment.cs" />
-    <Compile Include="Core\Entities\Audio.cs" />
-    <Compile Include="Core\Entities\Comment.cs" />
-    <Compile Include="Core\EntityFragments\CommentLikes.cs" />
-    <Compile Include="Core\Entities\Document.cs" />
-    <Compile Include="Core\Entities\Geo.cs" />
-    <Compile Include="Core\Entities\Graffity.cs" />
-    <Compile Include="Core\Entities\Note.cs" />
-    <Compile Include="Core\Entities\PhotoAlbum.cs" />
-    <Compile Include="Core\Entities\Poll.cs" />
-    <Compile Include="Core\Entities\Post.cs" />
-    <Compile Include="Core\EntityFragments\PostComments.cs" />
-    <Compile Include="Core\Entities\PostedPhoto.cs" />
-    <Compile Include="Core\Entities\PostLikes.cs" />
-    <Compile Include="Core\Entities\PostReposts.cs" />
-    <Compile Include="Core\Entities\PostSource.cs" />
-    <Compile Include="Core\Enums\PrivacyType.cs" />
-    <Compile Include="Core\Enums\AttachmentType.cs" />
-    <Compile Include="Core\Enums\PostSourceInfo.cs" />
-    <Compile Include="Core\Entities\Privacy.cs" />
-    <Compile Include="Core\Entities\Video.cs" />
-    <Compile Include="Core\Enums\AudioGenre.cs" />
-    <Compile Include="Core\Entities\Group.cs" />
-    <Compile Include="Core\Entities\Photo.cs" />
-    <Compile Include="Core\EntityFragments\GroupCounters.cs" />
-    <Compile Include="Core\Entities\Place.cs" />
-    <Compile Include="Core\Enums\GroupAdminLevel.cs" />
-    <Compile Include="Core\Enums\PageType.cs" />
-    <Compile Include="Core\Enums\PostSourceType.cs" />
-    <Compile Include="Core\Enums\PostType.cs" />
-    <Compile Include="Core\Enums\Relation.cs" />
-    <Compile Include="Core\EntityFragments\ProfileCounters.cs" />
-    <Compile Include="Core\EntityFragments\SiteProfiles.cs" />
-    <Compile Include="Core\EntityFragments\ProfilePhotos.cs" />
-    <Compile Include="Core\Entities\School.cs" />
-    <Compile Include="Core\Entities\University.cs" />
+    <Compile Include="ReturnTypes\Entities\Attachment.cs" />
+    <Compile Include="ReturnTypes\Entities\Audio.cs" />
+    <Compile Include="ReturnTypes\Entities\Comment.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\CommentLikes.cs" />
+    <Compile Include="ReturnTypes\Entities\Document.cs" />
+    <Compile Include="ReturnTypes\Entities\Geo.cs" />
+    <Compile Include="ReturnTypes\Entities\Graffity.cs" />
+    <Compile Include="ReturnTypes\Entities\Note.cs" />
+    <Compile Include="ReturnTypes\Entities\PhotoAlbum.cs" />
+    <Compile Include="ReturnTypes\Entities\Poll.cs" />
+    <Compile Include="ReturnTypes\Entities\Post.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\PostComments.cs" />
+    <Compile Include="ReturnTypes\Entities\PostedPhoto.cs" />
+    <Compile Include="ReturnTypes\Entities\PostLikes.cs" />
+    <Compile Include="ReturnTypes\Entities\PostReposts.cs" />
+    <Compile Include="ReturnTypes\Entities\PostSource.cs" />
+    <Compile Include="ReturnTypes\Enums\PrivacyType.cs" />
+    <Compile Include="ReturnTypes\Enums\AttachmentType.cs" />
+    <Compile Include="ReturnTypes\Enums\PostSourceInfo.cs" />
+    <Compile Include="ReturnTypes\Entities\Privacy.cs" />
+    <Compile Include="ReturnTypes\Entities\Video.cs" />
+    <Compile Include="ReturnTypes\Enums\AudioGenre.cs" />
+    <Compile Include="ReturnTypes\Entities\Group.cs" />
+    <Compile Include="ReturnTypes\Entities\Photo.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\GroupCounters.cs" />
+    <Compile Include="ReturnTypes\Entities\Place.cs" />
+    <Compile Include="ReturnTypes\Enums\GroupAdminLevel.cs" />
+    <Compile Include="ReturnTypes\Enums\PageType.cs" />
+    <Compile Include="ReturnTypes\Enums\PostSourceType.cs" />
+    <Compile Include="ReturnTypes\Enums\PostType.cs" />
+    <Compile Include="ReturnTypes\Enums\Relation.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\ProfileCounters.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\SiteProfiles.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\ProfilePhotos.cs" />
+    <Compile Include="ReturnTypes\Entities\School.cs" />
+    <Compile Include="ReturnTypes\Entities\University.cs" />
     <Compile Include="Helpers\DataTypes\Date.cs" />
-    <Compile Include="Core\Enums\Sex.cs" />
-    <Compile Include="Core\Entities\User.cs" />
+    <Compile Include="ReturnTypes\Enums\Sex.cs" />
+    <Compile Include="ReturnTypes\Entities\User.cs" />
     <Compile Include="Helpers\BuiltInData.cs" />
-    <Compile Include="Core\Interfaces\OwnedEntity.cs" />
+    <Compile Include="ReturnTypes\Interfaces\OwnedEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\Request\VKRequest.cs" />
-    <Compile Include="Data\Api\VKToken.cs" />
-    <Compile Include="Data\Parameters\WallPostFilter.cs" />
-    <Compile Include="Core\EntityFragments\Occupation.cs" />
-    <Compile Include="Core\Enums\OccupationType.cs" />
-    <Compile Include="Core\EntityFragments\StandInLife.cs" />
-    <Compile Include="Core\Enums\PoliticalPreferences.cs" />
-    <Compile Include="Core\Enums\PeopleMain.cs" />
-    <Compile Include="Core\Enums\LifeMain.cs" />
-    <Compile Include="Core\Enums\Attitude.cs" />
-    <Compile Include="Core\ResponseEntities\ConfirmResult.cs" />
-    <Compile Include="Core\Entities\Link.cs" />
+    <Compile Include="Core\Request\VKRequest.cs" />
+    <Compile Include="Core\Api\VKToken.cs" />
+    <Compile Include="Core\Parameters\WallPostFilter.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\Occupation.cs" />
+    <Compile Include="ReturnTypes\Enums\OccupationType.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\StandInLife.cs" />
+    <Compile Include="ReturnTypes\Enums\PoliticalPreferences.cs" />
+    <Compile Include="ReturnTypes\Enums\PeopleMain.cs" />
+    <Compile Include="ReturnTypes\Enums\LifeMain.cs" />
+    <Compile Include="ReturnTypes\Enums\Attitude.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\ConfirmResult.cs" />
+    <Compile Include="ReturnTypes\Entities\Link.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Api\Generated\ImplementedMethods.tt">
@@ -202,7 +205,9 @@
       <LastGenOutput>VkApi.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="VKSharp.nuspec" />
+    <None Include="VKSharp.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -229,11 +234,18 @@
       <Name>Newtonsoft.Json</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Api\Generated\SortMethods.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SortMethods.txt</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Api\Generated\SortMethods.txt">
+      <DependentUpon>SortMethods.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+  </ItemGroup>
   <Import Project="..\..\..\..\Teams\Startups\Data\GroupDumper\Source\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\..\Teams\Startups\Data\GroupDumper\Source\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\Teams\Startups\Data\GroupDumper\Source\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\Teams\Startups\Data\GroupDumper\Source\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
 </Project>

@@ -14,68 +14,13 @@ using VKSharp.Helpers;
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
     public partial class RequestApi {
-        public VKRequest<bool> AccountSetNameInMenu(
-             string name 
+        public VKRequest<long> AccountBanUser(
+             int userId 
 ){
-            var req = new VKRequest<bool>{
-                MethodName = "account.setNameInMenu",
+            var req = new VKRequest<long>{
+                MethodName = "account.banUser",
                 Parameters = new Dictionary<string, string> {
-                                            { "name", name }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> AccountSetOnline(
-             bool voip = true
-){
-            var req = new VKRequest<bool>{
-                MethodName = "account.setOnline",
-                Parameters = new Dictionary<string, string> {
-                                            { "voip", (voip?1:0).ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> AccountSetOffline(
-            
-){
-            var req = new VKRequest<bool>{
-                MethodName = "account.setOffline",
-                Parameters = new Dictionary<string, string> {
-                        }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> AccountUnregisterDevice(
-             string token 
-){
-            var req = new VKRequest<bool>{
-                MethodName = "account.unregisterDevice",
-                Parameters = new Dictionary<string, string> {
-                                            { "token", token }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> AccountSetSilenceMode(
-             string token , int time , int? chatId = null, int? userId = null, int sound = 0
-){
-            var req = new VKRequest<bool>{
-                MethodName = "account.setSilenceMode",
-                Parameters = new Dictionary<string, string> {
-                                            { "token", token },
-					                        { "time", time.ToNCString() },
-					                        { "chat_id", MiscTools.NullableString(chatId) },
-					                        { "user_id", MiscTools.NullableString(userId) },
-					                        { "sound", sound.ToNCString() }
+                                            { "user_id", userId.ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -96,32 +41,6 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<long> AccountBanUser(
-             int userId 
-){
-            var req = new VKRequest<long>{
-                MethodName = "account.banUser",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<long> AccountUnbanUser(
-             int userId 
-){
-            var req = new VKRequest<long>{
-                MethodName = "account.unbanUser",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
         public VKRequest<User[]> AccountGetBanned(
              int offset = 0, int count = 20
 ){
@@ -130,19 +49,6 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                                             { "offset", offset.ToNCString() },
 					                        { "count", count.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<long> AccountSetInfo(
-             int? intro = null
-){
-            var req = new VKRequest<long>{
-                MethodName = "account.setInfo",
-                Parameters = new Dictionary<string, string> {
-                                            { "intro", MiscTools.NullableString(intro) }
 					    }
             };
                 req.Token = CurrentToken;
@@ -173,6 +79,100 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<long> AccountSetInfo(
+             int? intro = null
+){
+            var req = new VKRequest<long>{
+                MethodName = "account.setInfo",
+                Parameters = new Dictionary<string, string> {
+                                            { "intro", MiscTools.NullableString(intro) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> AccountSetNameInMenu(
+             string name 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "account.setNameInMenu",
+                Parameters = new Dictionary<string, string> {
+                                            { "name", name }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> AccountSetOffline(
+            
+){
+            var req = new VKRequest<bool>{
+                MethodName = "account.setOffline",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> AccountSetOnline(
+             bool voip = true
+){
+            var req = new VKRequest<bool>{
+                MethodName = "account.setOnline",
+                Parameters = new Dictionary<string, string> {
+                                            { "voip", (voip?1:0).ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> AccountSetSilenceMode(
+             string token , int time , int? chatId = null, int? userId = null, int sound = 0
+){
+            var req = new VKRequest<bool>{
+                MethodName = "account.setSilenceMode",
+                Parameters = new Dictionary<string, string> {
+                                            { "token", token },
+					                        { "time", time.ToNCString() },
+					                        { "chat_id", MiscTools.NullableString(chatId) },
+					                        { "user_id", MiscTools.NullableString(userId) },
+					                        { "sound", sound.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<long> AccountUnbanUser(
+             int userId 
+){
+            var req = new VKRequest<long>{
+                MethodName = "account.unbanUser",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> AccountUnregisterDevice(
+             string token 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "account.unregisterDevice",
+                Parameters = new Dictionary<string, string> {
+                                            { "token", token }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<int[]> AdsDeleteClients(
              ulong accountId ,params ulong[] ids 
 ){
@@ -186,20 +186,6 @@ namespace VKSharp {
             if (IsLogged){
                 req.Token = CurrentToken;
             }
-            return req;
-        }
-        public VKRequest<int> AudioAddAlbum(
-             string title , int? groupId = 0
-){
-            var req = new VKRequest<int>{
-                MethodName = "audio.addAlbum",
-                Parameters = new Dictionary<string, string> {
-                                            { "title", title },
-					                        { "group_id", MiscTools.NullableString(groupId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
             return req;
         }
         public VKRequest<int> AudioAdd(
@@ -217,13 +203,13 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> AudioDeleteAlbum(
-             long albumId , int? groupId = null
+        public VKRequest<int> AudioAddAlbum(
+             string title , int? groupId = 0
 ){
             var req = new VKRequest<int>{
-                MethodName = "audio.deleteAlbum",
+                MethodName = "audio.addAlbum",
                 Parameters = new Dictionary<string, string> {
-                                            { "album_id", albumId.ToNCString() },
+                                            { "title", title },
 					                        { "group_id", MiscTools.NullableString(groupId) }
 					    }
             };
@@ -239,6 +225,20 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                                             { "audio_id", audioId.ToNCString() },
 					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<int> AudioDeleteAlbum(
+             long albumId , int? groupId = null
+){
+            var req = new VKRequest<int>{
+                MethodName = "audio.deleteAlbum",
+                Parameters = new Dictionary<string, string> {
+                                            { "album_id", albumId.ToNCString() },
+					                        { "group_id", MiscTools.NullableString(groupId) }
 					    }
             };
                 req.Token = CurrentToken;
@@ -264,22 +264,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<EntityList<AudioAlbum>> AudioGetAlbums(
-             int? ownerId = null, int offset = 0, int count = 100
-){
-            var req = new VKRequest<EntityList<AudioAlbum>>{
-                MethodName = "audio.getAlbums",
-                Parameters = new Dictionary<string, string> {
-                                            { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
         public VKRequest<EntityList<Audio>> AudioGet(
              int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, int offset = 0, int count = 100
 ){
@@ -290,6 +274,22 @@ namespace VKSharp {
 					                        { "album_id", MiscTools.NullableString(albumId) },
 					                        { "audio_ids", (audioIds??new ulong[]{}).ToNCStringA() },
 					                        { "need_user", (needUser?1:0).ToNCString() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<AudioAlbum>> AudioGetAlbums(
+             int? ownerId = null, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<AudioAlbum>>{
+                MethodName = "audio.getAlbums",
+                Parameters = new Dictionary<string, string> {
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
 					                        { "offset", offset.ToNCString() },
 					                        { "count", count.ToNCString() }
 					    }
@@ -546,20 +546,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> BoardUnfixTopic(
-             int groupId , int topicId 
-){
-            var req = new VKRequest<bool>{
-                MethodName = "board.unfixTopic",
-                Parameters = new Dictionary<string, string> {
-                                            { "group_id", groupId.ToNCString() },
-					                        { "topic_id", topicId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
         public VKRequest<bool> BoardRestoreComment(
              int groupId , int topicId , int commentId 
 ){
@@ -575,75 +561,29 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetCountries(
-             string code = "", bool needAll = false, int offset = 0, int count = 100
+        public VKRequest<bool> BoardUnfixTopic(
+             int groupId , int topicId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "board.unfixTopic",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", groupId.ToNCString() },
+					                        { "topic_id", topicId.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetChairs(
+             int facultyId , int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<DatabaseEntry>>{
-                MethodName = "database.getCountries",
+                MethodName = "database.getChairs",
                 Parameters = new Dictionary<string, string> {
-                                            { "code", code },
-					                        { "need_all", (needAll?1:0).ToNCString() },
+                                            { "faculty_id", facultyId.ToNCString() },
 					                        { "offset", offset.ToNCString() },
 					                        { "count", count.ToNCString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetRegions(
-             int countryId , string q = "", int offset = 0, int count = 100
-){
-            var req = new VKRequest<EntityList<DatabaseEntry>>{
-                MethodName = "database.getRegions",
-                Parameters = new Dictionary<string, string> {
-                                            { "country_id", countryId.ToNCString() },
-					                        { "q", q },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<DatabaseEntry[]> DatabaseGetStreetsById(
-            params int[] streetIds 
-){
-            var req = new VKRequest<DatabaseEntry[]>{
-                MethodName = "database.getStreetsById",
-                Parameters = new Dictionary<string, string> {
-                                            { "street_ids", (streetIds??new int[]{}).ToNCStringA() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<DatabaseEntry[]> DatabaseGetCountriesById(
-            params int[] countryIds 
-){
-            var req = new VKRequest<DatabaseEntry[]>{
-                MethodName = "database.getCountriesById",
-                Parameters = new Dictionary<string, string> {
-                                            { "country_ids", (countryIds??new int[]{}).ToNCStringA() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<DatabaseCity[]> DatabaseGetCitiesById(
-            params int[] cityIds 
-){
-            var req = new VKRequest<DatabaseCity[]>{
-                MethodName = "database.getCitiesById",
-                Parameters = new Dictionary<string, string> {
-                                            { "city_ids", (cityIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -670,14 +610,74 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<DatabaseEntry[]> DatabaseGetUniversities(
-             int? countryId = null, int? cityId = null, string q = "", int offset = 0, int count = 100
+        public VKRequest<DatabaseCity[]> DatabaseGetCitiesById(
+            params int[] cityIds 
+){
+            var req = new VKRequest<DatabaseCity[]>{
+                MethodName = "database.getCitiesById",
+                Parameters = new Dictionary<string, string> {
+                                            { "city_ids", (cityIds??new int[]{}).ToNCStringA() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetCountries(
+             string code = "", bool needAll = false, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<DatabaseEntry>>{
+                MethodName = "database.getCountries",
+                Parameters = new Dictionary<string, string> {
+                                            { "code", code },
+					                        { "need_all", (needAll?1:0).ToNCString() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<DatabaseEntry[]> DatabaseGetCountriesById(
+            params int[] countryIds 
 ){
             var req = new VKRequest<DatabaseEntry[]>{
-                MethodName = "database.getUniversities",
+                MethodName = "database.getCountriesById",
                 Parameters = new Dictionary<string, string> {
-                                            { "country_id", MiscTools.NullableString(countryId) },
-					                        { "city_id", MiscTools.NullableString(cityId) },
+                                            { "country_ids", (countryIds??new int[]{}).ToNCStringA() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetFaculties(
+             int universityId , int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<DatabaseEntry>>{
+                MethodName = "database.getFaculties",
+                Parameters = new Dictionary<string, string> {
+                                            { "university_id", universityId.ToNCString() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetRegions(
+             int countryId , string q = "", int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<DatabaseEntry>>{
+                MethodName = "database.getRegions",
+                Parameters = new Dictionary<string, string> {
+                                            { "country_id", countryId.ToNCString() },
 					                        { "q", q },
 					                        { "offset", offset.ToNCString() },
 					                        { "count", count.ToNCString() }
@@ -705,15 +705,13 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetFaculties(
-             int universityId , int offset = 0, int count = 100
+        public VKRequest<DatabaseEntry[]> DatabaseGetStreetsById(
+            params int[] streetIds 
 ){
-            var req = new VKRequest<EntityList<DatabaseEntry>>{
-                MethodName = "database.getFaculties",
+            var req = new VKRequest<DatabaseEntry[]>{
+                MethodName = "database.getStreetsById",
                 Parameters = new Dictionary<string, string> {
-                                            { "university_id", universityId.ToNCString() },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
+                                            { "street_ids", (streetIds??new int[]{}).ToNCStringA() }
 					    }
             };
             if (IsLogged){
@@ -721,13 +719,15 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<EntityList<DatabaseEntry>> DatabaseGetChairs(
-             int facultyId , int offset = 0, int count = 100
+        public VKRequest<DatabaseEntry[]> DatabaseGetUniversities(
+             int? countryId = null, int? cityId = null, string q = "", int offset = 0, int count = 100
 ){
-            var req = new VKRequest<EntityList<DatabaseEntry>>{
-                MethodName = "database.getChairs",
+            var req = new VKRequest<DatabaseEntry[]>{
+                MethodName = "database.getUniversities",
                 Parameters = new Dictionary<string, string> {
-                                            { "faculty_id", facultyId.ToNCString() },
+                                            { "country_id", MiscTools.NullableString(countryId) },
+					                        { "city_id", MiscTools.NullableString(cityId) },
+					                        { "q", q },
 					                        { "offset", offset.ToNCString() },
 					                        { "count", count.ToNCString() }
 					    }
@@ -766,32 +766,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<string> DocsGetUploadServer(
-             int? groupId = null
-){
-            var req = new VKRequest<string>{
-                MethodName = "docs.getUploadServer",
-                Parameters = new Dictionary<string, string> {
-                                            { "group_id", MiscTools.NullableString(groupId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<string> DocsGetWallUploadServer(
-             int? groupId = null
-){
-            var req = new VKRequest<string>{
-                MethodName = "docs.getWallUploadServer",
-                Parameters = new Dictionary<string, string> {
-                                            { "group_id", MiscTools.NullableString(groupId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
         public VKRequest<EntityList<Document>> DocsGet(
              int? ownerId = null, int offset = 0, int count = 100
 ){
@@ -822,6 +796,32 @@ namespace VKSharp {
             }
             return req;
         }
+        public VKRequest<string> DocsGetUploadServer(
+             int? groupId = null
+){
+            var req = new VKRequest<string>{
+                MethodName = "docs.getUploadServer",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<string> DocsGetWallUploadServer(
+             int? groupId = null
+){
+            var req = new VKRequest<string>{
+                MethodName = "docs.getWallUploadServer",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<Document[]> DocsSave(
              string file , string title ,params string[] tags 
 ){
@@ -831,6 +831,58 @@ namespace VKSharp {
                                             { "file", file },
 					                        { "title", title },
 					                        { "tags", String.Join(",",tags) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<int> FriendsAdd(
+             int userId , string text = ""
+){
+            var req = new VKRequest<int>{
+                MethodName = "friends.add",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+					                        { "text", text }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<int> FriendsDelete(
+             int userId 
+){
+            var req = new VKRequest<int>{
+                MethodName = "friends.delete",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> FriendsDeleteAllRequests(
+            
+){
+            var req = new VKRequest<bool>{
+                MethodName = "friends.deleteAllRequests",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> FriendsDeleteList(
+             int listId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "friends.deleteList",
+                Parameters = new Dictionary<string, string> {
+                                            { "list_id", listId.ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -857,21 +909,17 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<EntityList<User>> FriendsGetSuggestions(
-             FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
-){
-            var req = new VKRequest<EntityList<User>>{
-                MethodName = "friends.getSuggestions",
-                Parameters = new Dictionary<string, string> {
-                                            { "filters", String.Join( ",", MiscTools.GetFilterFields( filters ) ) },
-					                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
-					                        { "name_case", nameCase.ToNClString() },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
+        public VKRequest<int[]> FriendsGetAppUsers(
             
+){
+            var req = new VKRequest<int[]>{
+                MethodName = "friends.getAppUsers",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
             return req;
         }
         public VKRequest<User[]> FriendsGetByPhones(
@@ -883,84 +931,6 @@ namespace VKSharp {
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
 					                        { "phones", String.Join( ",", phones.Select( a => "+" + a ) ) }
 					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<int> FriendsAdd(
-             int userId , string text = ""
-){
-            var req = new VKRequest<int>{
-                MethodName = "friends.add",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() },
-					                        { "text", text }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> FriendsDeleteAllRequests(
-            
-){
-            var req = new VKRequest<bool>{
-                MethodName = "friends.deleteAllRequests",
-                Parameters = new Dictionary<string, string> {
-                        }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<int[]> FriendsGetRecent(
-             int count = 20
-){
-            var req = new VKRequest<int[]>{
-                MethodName = "friends.getRecent",
-                Parameters = new Dictionary<string, string> {
-                                            { "count", count.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<int> FriendsDelete(
-             int userId 
-){
-            var req = new VKRequest<int>{
-                MethodName = "friends.delete",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> FriendsDeleteList(
-             int listId 
-){
-            var req = new VKRequest<bool>{
-                MethodName = "friends.deleteList",
-                Parameters = new Dictionary<string, string> {
-                                            { "list_id", listId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<int[]> FriendsGetAppUsers(
-            
-){
-            var req = new VKRequest<int[]>{
-                MethodName = "friends.getAppUsers",
-                Parameters = new Dictionary<string, string> {
-                        }
             };
             if (IsLogged){
                 req.Token = CurrentToken;
@@ -983,6 +953,36 @@ namespace VKSharp {
             if (IsLogged){
                 req.Token = CurrentToken;
             }
+            return req;
+        }
+        public VKRequest<int[]> FriendsGetRecent(
+             int count = 20
+){
+            var req = new VKRequest<int[]>{
+                MethodName = "friends.getRecent",
+                Parameters = new Dictionary<string, string> {
+                                            { "count", count.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<EntityList<User>> FriendsGetSuggestions(
+             FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<User>>{
+                MethodName = "friends.getSuggestions",
+                Parameters = new Dictionary<string, string> {
+                                            { "filters", String.Join( ",", MiscTools.GetFilterFields( filters ) ) },
+					                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+					                        { "name_case", nameCase.ToNClString() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
             return req;
         }
         public VKRequest<User[]> GroupsGetBanned(
@@ -1133,20 +1133,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> MessagesRemoveChatUser(
-             int userId , int chatId 
-){
-            var req = new VKRequest<bool>{
-                MethodName = "messages.removeChatUser",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() },
-					                        { "chat_id", chatId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
         public VKRequest<bool> MessagesDelete(
             params int[] messageIds 
 ){
@@ -1154,47 +1140,6 @@ namespace VKSharp {
                 MethodName = "messages.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "message_ids", (messageIds??new int[]{}).ToNCStringA() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> MessagesMarkAsRead(
-             int userId , int? startMessageId = null,params int[] messageIds 
-){
-            var req = new VKRequest<bool>{
-                MethodName = "messages.markAsRead",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() },
-					                        { "start_message_id", MiscTools.NullableString(startMessageId) },
-					                        { "message_ids", (messageIds??new int[]{}).ToNCStringA() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> MessagesRestore(
-             int messageId 
-){
-            var req = new VKRequest<bool>{
-                MethodName = "messages.restore",
-                Parameters = new Dictionary<string, string> {
-                                            { "message_id", messageId.ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<LastActivity> MessagesGetLastActivity(
-             int userId 
-){
-            var req = new VKRequest<LastActivity>{
-                MethodName = "messages.getLastActivity",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -1216,6 +1161,33 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<LastActivity> MessagesGetLastActivity(
+             int userId 
+){
+            var req = new VKRequest<LastActivity>{
+                MethodName = "messages.getLastActivity",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<LastActivity> MessagesSetActivity(
+             int userId , ImActivity type = ImActivity.Typing
+){
+            var req = new VKRequest<LastActivity>{
+                MethodName = "messages.setActivity",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+					                        { "type", type.ToNClString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> MessagesMarkAsImportant(
              bool important ,params int[] messageIds 
 ){
@@ -1224,6 +1196,48 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                                             { "important", (important?1:0).ToNCString() },
 					                        { "message_ids", (messageIds??new int[]{}).ToNCStringA() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> MessagesMarkAsRead(
+             int userId , int? startMessageId = null,params int[] messageIds 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "messages.markAsRead",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+					                        { "start_message_id", MiscTools.NullableString(startMessageId) },
+					                        { "message_ids", (messageIds??new int[]{}).ToNCStringA() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> MessagesRemoveChatUser(
+             int userId , int chatId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "messages.removeChatUser",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+					                        { "chat_id", chatId.ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> MessagesRestore(
+             int messageId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "messages.restore",
+                Parameters = new Dictionary<string, string> {
+                                            { "message_id", messageId.ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -1325,77 +1339,6 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<bool> PhotosDeleteComment(
-             int commentId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.deleteComment",
-                Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosRestoreComment(
-             int commentId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.restoreComment",
-                Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosReportComment(
-             int commentId , int? ownerId = null, ReportReason? reason = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.reportComment",
-                Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosDeleteAlbum(
-             long albumId , int? groupId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.deleteAlbum",
-                Parameters = new Dictionary<string, string> {
-                                            { "album_id", albumId.ToNCString() },
-					                        { "group_id", MiscTools.NullableString(groupId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosDelete(
-             long photoId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.delete",
-                Parameters = new Dictionary<string, string> {
-                                            { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
         public VKRequest<bool> PhotosConfirmTag(
              int tagId , long photoId , int? ownerId = null
 ){
@@ -1405,36 +1348,6 @@ namespace VKSharp {
                                             { "tag_id", tagId.ToNCString() },
 					                        { "photo_id", photoId.ToNCString() },
 					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosRemoveTag(
-             int tagId , long photoId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.removeTag",
-                Parameters = new Dictionary<string, string> {
-                                            { "tag_id", tagId.ToNCString() },
-					                        { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosReport(
-             long photoId , int? ownerId = null, ReportReason? reason = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.report",
-                Parameters = new Dictionary<string, string> {
-                                            { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -1456,36 +1369,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> PhotosEdit(
-             long photoId , int? ownerId = null, string caption = ""
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.edit",
-                Parameters = new Dictionary<string, string> {
-                                            { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "caption", caption }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<int> PhotosGetAlbumsCount(
-             int? userId = null, int? groupId = null
-){
-            var req = new VKRequest<int>{
-                MethodName = "photos.getAlbumsCount",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", MiscTools.NullableString(userId) },
-					                        { "group_id", MiscTools.NullableString(groupId) }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
         public VKRequest<PhotoAlbum> PhotosCreateAlbum(
              string title , string description = "", int? groupId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null
 ){
@@ -1497,6 +1380,63 @@ namespace VKSharp {
 					                        { "group_id", MiscTools.NullableString(groupId) },
 					                        { "privacy", MiscTools.NullableString( (byte?)privacy ) },
 					                        { "comment_privacy", MiscTools.NullableString( (byte?)commentPrivacy ) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosDelete(
+             long photoId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.delete",
+                Parameters = new Dictionary<string, string> {
+                                            { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosDeleteAlbum(
+             long albumId , int? groupId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.deleteAlbum",
+                Parameters = new Dictionary<string, string> {
+                                            { "album_id", albumId.ToNCString() },
+					                        { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosDeleteComment(
+             int commentId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.deleteComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "comment_id", commentId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosEdit(
+             long photoId , int? ownerId = null, string caption = ""
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.edit",
+                Parameters = new Dictionary<string, string> {
+                                            { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "caption", caption }
 					    }
             };
                 req.Token = CurrentToken;
@@ -1519,128 +1459,6 @@ namespace VKSharp {
             };
                 req.Token = CurrentToken;
             
-            return req;
-        }
-        public VKRequest<string> PhotosGetOwnerPhotoUploadServer(
-            
-){
-            var req = new VKRequest<string>{
-                MethodName = "photos.getOwnerPhotoUploadServer",
-                Parameters = new Dictionary<string, string> {
-                        }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<PhotosUploadServer> PhotosGetUploadServer(
-             long albumId , int? groupId = null
-){
-            var req = new VKRequest<PhotosUploadServer>{
-                MethodName = "photos.getUploadServer",
-                Parameters = new Dictionary<string, string> {
-                                            { "album_id", albumId.ToNCString() },
-					                        { "group_id", MiscTools.NullableString(groupId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<PhotosUploadServer> PhotosGetChatUploadServer(
-             int chatId , int? cropX = null, int? cropY = null, int? cropWidth = null
-){
-            var req = new VKRequest<PhotosUploadServer>{
-                MethodName = "photos.getChatUploadServer",
-                Parameters = new Dictionary<string, string> {
-                                            { "chat_id", chatId.ToNCString() },
-					                        { "crop_x", MiscTools.NullableString(cropX) },
-					                        { "crop_y", MiscTools.NullableString(cropY) },
-					                        { "crop_width", MiscTools.NullableString(cropWidth) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosReorderAlbums(
-             long albumId , int? ownerId = null, long? before = null, long? after = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.reorderAlbums",
-                Parameters = new Dictionary<string, string> {
-                                            { "album_id", albumId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "before", MiscTools.NullableString(before) },
-					                        { "after", MiscTools.NullableString(after) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosReorderPhotos(
-             long photoId , int? ownerId = null, long? before = null, long? after = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.reorderPhotos",
-                Parameters = new Dictionary<string, string> {
-                                            { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "before", MiscTools.NullableString(before) },
-					                        { "after", MiscTools.NullableString(after) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosMove(
-             long targetAlbumId , long photoId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.move",
-                Parameters = new Dictionary<string, string> {
-                                            { "target_album_id", targetAlbumId.ToNCString() },
-					                        { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> PhotosMakeCover(
-             long albumId , long photoId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "photos.makeCover",
-                Parameters = new Dictionary<string, string> {
-                                            { "album_id", albumId.ToNCString() },
-					                        { "photo_id", photoId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<EntityList<Photo>> PhotosGetAll(
-             int? ownerId = null, bool extended = false, bool noServiceAlbums = false, int offset = 0, int count = 100
-){
-            var req = new VKRequest<EntityList<Photo>>{
-                MethodName = "photos.getAll",
-                Parameters = new Dictionary<string, string> {
-                                            { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "extended", (extended?1:0).ToNCString() },
-					                        { "no_service_albums", (noServiceAlbums?1:0).ToNCString() },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
             return req;
         }
         public VKRequest<EntityList<Photo>> PhotosGet(
@@ -1687,20 +1505,6 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<Photo[]> PhotosGetById(
-            params ContentId[] photos 
-){
-            var req = new VKRequest<Photo[]>{
-                MethodName = "photos.getById",
-                Parameters = new Dictionary<string, string> {
-                                            { "photos", photos.ToString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
         public VKRequest<EntityList<PhotoAlbum>> PhotosGetAlbums(
              int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100,params long[] albumIds 
 ){
@@ -1718,6 +1522,216 @@ namespace VKSharp {
             if (IsLogged){
                 req.Token = CurrentToken;
             }
+            return req;
+        }
+        public VKRequest<int> PhotosGetAlbumsCount(
+             int? userId = null, int? groupId = null
+){
+            var req = new VKRequest<int>{
+                MethodName = "photos.getAlbumsCount",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", MiscTools.NullableString(userId) },
+					                        { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<Photo>> PhotosGetAll(
+             int? ownerId = null, bool extended = false, bool noServiceAlbums = false, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Photo>>{
+                MethodName = "photos.getAll",
+                Parameters = new Dictionary<string, string> {
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "extended", (extended?1:0).ToNCString() },
+					                        { "no_service_albums", (noServiceAlbums?1:0).ToNCString() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<Photo[]> PhotosGetById(
+            params ContentId[] photos 
+){
+            var req = new VKRequest<Photo[]>{
+                MethodName = "photos.getById",
+                Parameters = new Dictionary<string, string> {
+                                            { "photos", photos.ToString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<PhotosUploadServer> PhotosGetChatUploadServer(
+             int chatId , int? cropX = null, int? cropY = null, int? cropWidth = null
+){
+            var req = new VKRequest<PhotosUploadServer>{
+                MethodName = "photos.getChatUploadServer",
+                Parameters = new Dictionary<string, string> {
+                                            { "chat_id", chatId.ToNCString() },
+					                        { "crop_x", MiscTools.NullableString(cropX) },
+					                        { "crop_y", MiscTools.NullableString(cropY) },
+					                        { "crop_width", MiscTools.NullableString(cropWidth) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<string> PhotosGetOwnerPhotoUploadServer(
+            
+){
+            var req = new VKRequest<string>{
+                MethodName = "photos.getOwnerPhotoUploadServer",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<PhotosUploadServer> PhotosGetUploadServer(
+             long albumId , int? groupId = null
+){
+            var req = new VKRequest<PhotosUploadServer>{
+                MethodName = "photos.getUploadServer",
+                Parameters = new Dictionary<string, string> {
+                                            { "album_id", albumId.ToNCString() },
+					                        { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosMakeCover(
+             long albumId , long photoId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.makeCover",
+                Parameters = new Dictionary<string, string> {
+                                            { "album_id", albumId.ToNCString() },
+					                        { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosMove(
+             long targetAlbumId , long photoId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.move",
+                Parameters = new Dictionary<string, string> {
+                                            { "target_album_id", targetAlbumId.ToNCString() },
+					                        { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosRemoveTag(
+             int tagId , long photoId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.removeTag",
+                Parameters = new Dictionary<string, string> {
+                                            { "tag_id", tagId.ToNCString() },
+					                        { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosReorderAlbums(
+             long albumId , int? ownerId = null, long? before = null, long? after = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.reorderAlbums",
+                Parameters = new Dictionary<string, string> {
+                                            { "album_id", albumId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "before", MiscTools.NullableString(before) },
+					                        { "after", MiscTools.NullableString(after) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosReorderPhotos(
+             long photoId , int? ownerId = null, long? before = null, long? after = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.reorderPhotos",
+                Parameters = new Dictionary<string, string> {
+                                            { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "before", MiscTools.NullableString(before) },
+					                        { "after", MiscTools.NullableString(after) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosReport(
+             long photoId , int? ownerId = null, ReportReason? reason = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.report",
+                Parameters = new Dictionary<string, string> {
+                                            { "photo_id", photoId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosReportComment(
+             int commentId , int? ownerId = null, ReportReason? reason = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.reportComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "comment_id", commentId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> PhotosRestoreComment(
+             int commentId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "photos.restoreComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "comment_id", commentId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
             return req;
         }
         public VKRequest<Photo[]> PhotosSave(
@@ -1742,6 +1756,18 @@ namespace VKSharp {
             }
             return req;
         }
+        public VKRequest<int> StatsTrackVisitor(
+            
+){
+            var req = new VKRequest<int>{
+                MethodName = "stats.trackVisitor",
+                Parameters = new Dictionary<string, string> {
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<Status[]> StatusGet(
              int? userId = null
 ){
@@ -1754,18 +1780,6 @@ namespace VKSharp {
             if (IsLogged){
                 req.Token = CurrentToken;
             }
-            return req;
-        }
-        public VKRequest<int> StatsTrackVisitor(
-            
-){
-            var req = new VKRequest<int>{
-                MethodName = "stats.trackVisitor",
-                Parameters = new Dictionary<string, string> {
-                        }
-            };
-                req.Token = CurrentToken;
-            
             return req;
         }
         public VKRequest<bool> StatusSet(
@@ -1831,51 +1845,6 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<bool> UsersIsAppUser(
-             int? userId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "users.isAppUser",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", MiscTools.NullableString(userId) }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<int> UsersReport(
-             int userId , ComplaintType type , string comment 
-){
-            var req = new VKRequest<int>{
-                MethodName = "users.report",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() },
-					                        { "type", type.ToNClString() },
-					                        { "comment", comment }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<UserSubscriptions> UsersGetSubscriptions(
-             int? userId = null, int offset = 0, int count = 100
-){
-            var req = new VKRequest<UserSubscriptions>{
-                MethodName = "users.getSubscriptions",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", MiscTools.NullableString(userId) },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
         public VKRequest<User[]> UsersGet(
              UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds 
 ){
@@ -1932,6 +1901,51 @@ namespace VKSharp {
             }
             return req;
         }
+        public VKRequest<UserSubscriptions> UsersGetSubscriptions(
+             int? userId = null, int offset = 0, int count = 100
+){
+            var req = new VKRequest<UserSubscriptions>{
+                MethodName = "users.getSubscriptions",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", MiscTools.NullableString(userId) },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<bool> UsersIsAppUser(
+             int? userId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "users.isAppUser",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", MiscTools.NullableString(userId) }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<int> UsersReport(
+             int userId , ComplaintType type , string comment 
+){
+            var req = new VKRequest<int>{
+                MethodName = "users.report",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+					                        { "type", type.ToNClString() },
+					                        { "comment", comment }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<LinkCheckResult> UtilsCheckLink(
              string url = ""
 ){
@@ -1959,43 +1973,14 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<bool> VideoDeleteComment(
-             int commentId , int? ownerId = null
+        public VKRequest<int> VideoDelete(
+             ulong videoId , int? ownerId = null
 ){
-            var req = new VKRequest<bool>{
-                MethodName = "video.deleteComment",
+            var req = new VKRequest<int>{
+                MethodName = "video.delete",
                 Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
+                                            { "video_id", videoId.ToNCString() },
 					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> VideoRestoreComment(
-             int commentId , int? ownerId = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "video.restoreComment",
-                Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> VideoReportComment(
-             int commentId , int? ownerId = null, ReportReason? reason = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "video.reportComment",
-                Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -2016,13 +2001,13 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> VideoDelete(
-             ulong videoId , int? ownerId = null
+        public VKRequest<bool> VideoDeleteComment(
+             int commentId , int? ownerId = null
 ){
-            var req = new VKRequest<int>{
-                MethodName = "video.delete",
+            var req = new VKRequest<bool>{
+                MethodName = "video.deleteComment",
                 Parameters = new Dictionary<string, string> {
-                                            { "video_id", videoId.ToNCString() },
+                                            { "comment_id", commentId.ToNCString() },
 					                        { "owner_id", MiscTools.NullableString(ownerId) }
 					    }
             };
@@ -2062,13 +2047,28 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> WallDelete(
-             int postId , int? ownerId = null
+        public VKRequest<bool> VideoReportComment(
+             int commentId , int? ownerId = null, ReportReason? reason = null
 ){
             var req = new VKRequest<bool>{
-                MethodName = "wall.delete",
+                MethodName = "video.reportComment",
                 Parameters = new Dictionary<string, string> {
-                                            { "post_id", postId.ToNCString() },
+                                            { "comment_id", commentId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> VideoRestoreComment(
+             int commentId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "video.restoreComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "comment_id", commentId.ToNCString() },
 					                        { "owner_id", MiscTools.NullableString(ownerId) }
 					    }
             };
@@ -2076,11 +2076,11 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> WallRestore(
+        public VKRequest<bool> WallDelete(
              int postId , int? ownerId = null
 ){
             var req = new VKRequest<bool>{
-                MethodName = "wall.restore",
+                MethodName = "wall.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },
 					                        { "owner_id", MiscTools.NullableString(ownerId) }
@@ -2104,48 +2104,22 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> WallRestoreComment(
-             int commentId , int? ownerId = null
+        public VKRequest<EntityList<Post>> WallGet(
+             int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
 ){
-            var req = new VKRequest<bool>{
-                MethodName = "wall.restoreComment",
+            var req = new VKRequest<EntityList<Post>>{
+                MethodName = "wall.get",
                 Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "domain", domain },
+					                        { "filter", filter.ToNClString().ToSnake() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
 					    }
             };
+            if (IsLogged){
                 req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> WallReportPost(
-             int postId , int? ownerId = null, ReportReason? reason = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "wall.reportPost",
-                Parameters = new Dictionary<string, string> {
-                                            { "post_id", postId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
-        public VKRequest<bool> WallReportComment(
-             int commentId , int? ownerId = null, ReportReason? reason = null
-){
-            var req = new VKRequest<bool>{
-                MethodName = "wall.reportComment",
-                Parameters = new Dictionary<string, string> {
-                                            { "comment_id", commentId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
+            }
             return req;
         }
         public VKRequest<Post[]> WallGetById(
@@ -2176,24 +2150,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<EntityList<Post>> WallGet(
-             int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
-){
-            var req = new VKRequest<EntityList<Post>>{
-                MethodName = "wall.get",
-                Parameters = new Dictionary<string, string> {
-                                            { "owner_id", MiscTools.NullableString(ownerId) },
-					                        { "domain", domain },
-					                        { "filter", filter.ToNClString().ToSnake() },
-					                        { "offset", offset.ToNCString() },
-					                        { "count", count.ToNCString() }
-					    }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
         public VKRequest<bool> WallPin(
              int postId , int? ownerId = null
 ){
@@ -2208,14 +2164,30 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> WallUnpin(
-             int postId , int? ownerId = null
+        public VKRequest<bool> WallReportComment(
+             int commentId , int? ownerId = null, ReportReason? reason = null
 ){
             var req = new VKRequest<bool>{
-                MethodName = "wall.unpin",
+                MethodName = "wall.reportComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "comment_id", commentId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> WallReportPost(
+             int postId , int? ownerId = null, ReportReason? reason = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "wall.reportPost",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },
-					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "reason", reason == null ? "" : ( (int)reason ).ToNCString() }
 					    }
             };
                 req.Token = CurrentToken;
@@ -2231,6 +2203,48 @@ namespace VKSharp {
                                             { "object", @object },
 					                        { "message", message },
 					                        { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> WallRestore(
+             int postId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "wall.restore",
+                Parameters = new Dictionary<string, string> {
+                                            { "post_id", postId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> WallRestoreComment(
+             int commentId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "wall.restoreComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "comment_id", commentId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> WallUnpin(
+             int postId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "wall.unpin",
+                Parameters = new Dictionary<string, string> {
+                                            { "post_id", postId.ToNCString() },
+					                        { "owner_id", MiscTools.NullableString(ownerId) }
 					    }
             };
                 req.Token = CurrentToken;

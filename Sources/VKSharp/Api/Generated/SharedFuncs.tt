@@ -43,6 +43,7 @@ public class Param {
     [XmlAttributeAttribute]
 	public bool Params {get;set;}
 }
+private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Method[]));
 public static string GetParamsString(Method node){
     return String.Join(
 		",",
@@ -59,7 +60,11 @@ public static string GetParamsString(Method node){
 }
 public static Method[] GetMethods(string file){
     using (var f = File.OpenRead(file))
-        return (Method[])new XmlSerializer(typeof(Method[])).Deserialize(f);
+        return (Method[])Serializer.Deserialize(f);
+}
+public static void SaveMethods( string file, Method[] methods ) {
+    using (var f = File.OpenWrite(file))
+        Serializer.Serialize( f, methods );
 }
 public static string ToMeth(string name,bool p=false)
 {
@@ -100,6 +105,7 @@ public static string Stringify(string name, string type){
         case "NameCase":
         case "SpecialAlbum":
         case "ComplaintType":
+        case "ImActivity":
             return name+".ToNClString()";
         case "WallPostFilter":
             return name+".ToNClString().ToSnake()";

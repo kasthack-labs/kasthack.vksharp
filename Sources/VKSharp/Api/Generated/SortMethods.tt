@@ -1,0 +1,12 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ include file="SharedFuncs.tt"#>
+<#@ output extension=".txt" #>
+<#
+    SaveMethods( Host.ResolvePath( "VKSharpFuncs.xml" ), GetMethods( Host.ResolvePath( "VKSharpFuncs.xml" ) ).OrderBy( a=>a.Name ).ToArray() );
+#>
