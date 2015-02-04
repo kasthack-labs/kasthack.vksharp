@@ -643,7 +643,7 @@ namespace VKSharp {
 																	).Response
 								;
 							}
-												public async Task <User[]>GetByPhones(  UserFields fields = UserFields.None, ulong[] phones = null ){
+												public async Task <User[]>GetByPhones(  UserFields fields = UserFields.None,params ulong[] phones  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.FriendsGetByPhones(
@@ -809,14 +809,6 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task SetActivity(  int userId , ImActivity type = ImActivity.Typing ){
-																await _parent.Executor.ExecAsync(
-								_parent._reqapi.MessagesSetActivity(
-									userId,type
-								)
-								)
-								;
-							}
 												public async Task MarkAsImportant(  bool important ,params int[] messageIds  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.MessagesMarkAsImportant(
@@ -849,12 +841,20 @@ namespace VKSharp {
 								)
 								;
 							}
+												public async Task SetActivity(  int userId , ImActivity type = ImActivity.Typing ){
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.MessagesSetActivity(
+									userId,type
+								)
+								)
+								;
+							}
 									}
 						public MethodGroup_newsfeed Newsfeed {get; private set;}
 				public partial class MethodGroup_newsfeed {
 					private readonly VKApi _parent;
 					internal MethodGroup_newsfeed(VKApi parent){_parent=parent;}
-												public async Task AddBan(  int[] userIds = null, int[] groupIds = null ){
+												public async Task AddBan(  int[] userIds = null,params int[] groupIds  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NewsfeedAddBan(
 									userIds,groupIds
@@ -862,7 +862,7 @@ namespace VKSharp {
 								)
 								;
 							}
-												public async Task DeleteBan(  int[] userIds = null, int[] groupIds = null ){
+												public async Task DeleteBan(  int[] userIds = null,params int[] groupIds  ){
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.NewsfeedDeleteBan(
 									userIds,groupIds

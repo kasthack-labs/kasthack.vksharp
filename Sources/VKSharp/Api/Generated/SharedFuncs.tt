@@ -38,24 +38,40 @@ public class Param {
 	public string Type {get;set;}
     [XmlAttributeAttribute]
 	public string Default {get;set;}
+    [XmlIgnore]
+    public bool DefaultSpecified { get { return Default != null; } }
     [XmlAttributeAttribute]
 	public string Custom {get;set;}
-    [XmlAttributeAttribute]
-	public bool Params {get;set;}
+    [XmlIgnore]
+    public bool CustomSpecified { get { return Custom != null; } }
 }
+
 private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Method[]));
 public static string GetParamsString(Method node){
     return String.Join(
 		",",
-		node.Params.Select(a=>
+		node.Params
+        .Reverse().Skip(1).Reverse()//shitty way to skip last
+        .Select(a=>
 			String.Format(
-				"{0} {1} {2} {3}",
-				a.Params?"params":"",
+				" {0} {1} {2}",
 				a.Type,
 				ToMeth(a.Name, true),
-				a.Default!=null?"= "+a.Default:""
+				!string.IsNullOrWhiteSpace(a.Default)?"= "+a.Default:""
 			)
-		)
+		).Concat(
+            node.Params.Reverse().Take(1).Select(
+                a =>{
+                var isparams = a.Type.EndsWith( "[]" );
+                    return String.Format(
+                        "{0} {1} {2} {3}",
+                        isparams? "params" : "",
+                        a.Type,
+                        ToMeth( a.Name, true ),
+                        !isparams && !string.IsNullOrWhiteSpace(a.Default) ? "= " + a.Default : "" );
+                }
+            )
+        )
 	);
 }
 public static Method[] GetMethods(string file){

@@ -1,5 +1,5 @@
 ﻿
-Implemented 148 methods
+Implemented 149 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -92,6 +92,7 @@ Implemented 148 methods
 	* messages.markAsRead
 	* messages.removeChatUser
 	* messages.restore
+	* messages.setActivity
 * Newsfeed
 	* newsfeed.addBan
 	* newsfeed.deleteBan
@@ -130,11 +131,11 @@ Implemented 148 methods
 	* photos.reportComment
 	* photos.restoreComment
 	* photos.save
+* Stats
+	* stats.trackVisitor
 * Status
 	* status.get
 	* status.set
-* Stats
-	* stats.trackVisitor
 * Storage
 	* storage.get
 	* storage.getKeys

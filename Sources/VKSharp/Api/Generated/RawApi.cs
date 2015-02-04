@@ -348,7 +348,7 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsGetAppUsers(  ) );
             }
                     
-            public async Task<string> GetByPhones(  UserFields fields = UserFields.None, ulong[] phones = null ){
+            public async Task<string> GetByPhones(  UserFields fields = UserFields.None,params ulong[] phones  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsGetByPhones( fields,phones ) );
             }
                     
@@ -428,10 +428,6 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesGetLastActivity( userId ) );
             }
                     
-            public async Task<string> SetActivity(  int userId , ImActivity type = ImActivity.Typing ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesSetActivity( userId,type ) );
-            }
-                    
             public async Task<string> MarkAsImportant(  bool important ,params int[] messageIds  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesMarkAsImportant( important,messageIds ) );
             }
@@ -447,6 +443,10 @@ namespace VKSharp {
             public async Task<string> Restore(  int messageId  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesRestore( messageId ) );
             }
+                    
+            public async Task<string> SetActivity(  int userId , ImActivity type = ImActivity.Typing ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.MessagesSetActivity( userId,type ) );
+            }
                                     }
         
         public MethodGroup_newsfeed Newsfeed {get; private set;}
@@ -454,11 +454,11 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_newsfeed(RawApi parent){_parent=parent;}
 
-            public async Task<string> AddBan(  int[] userIds = null, int[] groupIds = null ){
+            public async Task<string> AddBan(  int[] userIds = null,params int[] groupIds  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.NewsfeedAddBan( userIds,groupIds ) );
             }
                     
-            public async Task<string> DeleteBan(  int[] userIds = null, int[] groupIds = null ){
+            public async Task<string> DeleteBan(  int[] userIds = null,params int[] groupIds  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.NewsfeedDeleteBan( userIds,groupIds ) );
             }
                                     }

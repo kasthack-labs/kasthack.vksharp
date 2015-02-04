@@ -923,7 +923,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<User[]> FriendsGetByPhones(
-             UserFields fields = UserFields.None, ulong[] phones = null
+             UserFields fields = UserFields.None,params ulong[] phones 
 ){
             var req = new VKRequest<User[]>{
                 MethodName = "friends.getByPhones",
@@ -1174,20 +1174,6 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<LastActivity> MessagesSetActivity(
-             int userId , ImActivity type = ImActivity.Typing
-){
-            var req = new VKRequest<LastActivity>{
-                MethodName = "messages.setActivity",
-                Parameters = new Dictionary<string, string> {
-                                            { "user_id", userId.ToNCString() },
-					                        { "type", type.ToNClString() }
-					    }
-            };
-                req.Token = CurrentToken;
-            
-            return req;
-        }
         public VKRequest<bool> MessagesMarkAsImportant(
              bool important ,params int[] messageIds 
 ){
@@ -1244,8 +1230,22 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<LastActivity> MessagesSetActivity(
+             int userId , ImActivity type = ImActivity.Typing
+){
+            var req = new VKRequest<LastActivity>{
+                MethodName = "messages.setActivity",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+					                        { "type", type.ToNClString() }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> NewsfeedAddBan(
-             int[] userIds = null, int[] groupIds = null
+             int[] userIds = null,params int[] groupIds 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "newsfeed.addBan",
@@ -1259,7 +1259,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> NewsfeedDeleteBan(
-             int[] userIds = null, int[] groupIds = null
+             int[] userIds = null,params int[] groupIds 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "newsfeed.deleteBan",

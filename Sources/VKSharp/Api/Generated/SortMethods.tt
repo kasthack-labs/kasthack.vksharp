@@ -8,5 +8,8 @@
 <#@ include file="SharedFuncs.tt"#>
 <#@ output extension=".txt" #>
 <#
-    SaveMethods( Host.ResolvePath( "VKSharpFuncs.xml" ), GetMethods( Host.ResolvePath( "VKSharpFuncs.xml" ) ).OrderBy( a=>a.Name ).ToArray() );
+    var xmlpath =  Host.ResolvePath( "VKSharpFuncs.xml" );
+    var outpath = Path.Combine( Path.GetDirectoryName( xmlpath ), "VKSharpFuncs2.xml" );
+    SaveMethods( outpath, GetMethods(xmlpath ).OrderBy( a=>a.Name ).ToArray() );
 #>
+Nothing to see here
