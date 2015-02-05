@@ -1301,7 +1301,7 @@ namespace VKSharp {
 				public partial class MethodGroup_utils {
 					private readonly VKApi _parent;
 					internal MethodGroup_utils(VKApi parent){_parent=parent;}
-												public async Task <LinkCheckResult>CheckLink(  string url = "" ){
+												public async Task <LinkCheckResult>CheckLink(  string url  ){
 																	return (
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UtilsCheckLink(
@@ -1316,6 +1316,16 @@ namespace VKSharp {
 																await _parent.Executor.ExecAsync(
 								_parent._reqapi.UtilsGetServerTime(
 									
+								)
+								)
+																	).Response
+								;
+							}
+												public async Task <ResolveResult>ResolveScreenName(  string sreenName  ){
+																	return (
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.UtilsResolveScreenName(
+									sreenName
 								)
 								)
 																	).Response

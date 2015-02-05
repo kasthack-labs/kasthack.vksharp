@@ -74,7 +74,7 @@ namespace VKSharp.Core.Entities {
         public string Site { get; set; }
         public string Status { get; set; }
         public string Tv { get; set; }
-        [JsonConverter(typeof(PersonalConverter))]
+        [JsonConverter(typeof(ObjectArrConverter<StandInLife>))]
         public StandInLife Personal { get; set; }
         public uint? CommonCount { get; set; }
         public int Id { get; set; }

@@ -9,11 +9,13 @@ using VKSharp.Core.EntityFragments;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Helpers {
-
+    //snake case property mapping UserId->"user_id"
     internal class SnakeCaseContractResolver : DefaultContractResolver {
         protected override string ResolvePropertyName( string propertyName ) => propertyName.ToSnake();
     }
+    
     //https://stackoverflow.com/questions/17745866
+    //converts doubles|strings -> ints
     internal class CustomIntConverter : JsonConverter {
         public override bool CanConvert( Type objectType ) => objectType == typeof(int);
 
@@ -32,7 +34,12 @@ namespace VKSharp.Helpers {
 
         public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) => JObject.FromObject( value ).WriteTo( writer );
     }
-    internal class ObjectArrConverter<T>:JsonConverter {
+
+    /*
+        [] -> null
+        {...} -> parse
+    */
+    internal class ObjectArrConverter<T> : JsonConverter {
         public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) => JObject.FromObject( value ).WriteTo( writer );
 
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
@@ -44,9 +51,7 @@ namespace VKSharp.Helpers {
         }
         public override bool CanConvert( Type objectType ) => objectType == typeof(T);
     }
-
-    internal class PersonalConverter : ObjectArrConverter<StandInLife> { }
-
+    // "enum_value" -> Enum.EnumValue
     internal class SnakeCaseEnumConverter : StringEnumConverter {
         public override bool CanConvert( Type objectType ) {
             var btype = objectType;
@@ -87,6 +92,8 @@ namespace VKSharp.Helpers {
             throw JsonSerializationException.Create( reader, "Unexpected token {0} when parsing enum.".FormatWith( CultureInfo.InvariantCulture, reader.TokenType ) );
         }
     }
+
+    //vk's date converter
     public class DateConverter : JsonConverter {
         private static readonly Type Type = typeof(Date);
 

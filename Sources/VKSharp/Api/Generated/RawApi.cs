@@ -688,12 +688,16 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_utils(RawApi parent){_parent=parent;}
 
-            public async Task<string> CheckLink(  string url = "" ){
+            public async Task<string> CheckLink(  string url  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UtilsCheckLink( url ) );
             }
                     
             public async Task<string> GetServerTime(  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UtilsGetServerTime(  ) );
+            }
+                    
+            public async Task<string> ResolveScreenName(  string sreenName  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.UtilsResolveScreenName( sreenName ) );
             }
                                     }
         

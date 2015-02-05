@@ -1,5 +1,5 @@
 ﻿
-Implemented 149 methods
+Implemented 150 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -150,6 +150,7 @@ Implemented 149 methods
 * Utils
 	* utils.checkLink
 	* utils.getServerTime
+	* utils.resolveScreenName
 * Video
 	* video.delete
 	* video.deleteAlbum

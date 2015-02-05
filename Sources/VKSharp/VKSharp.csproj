@@ -75,9 +75,11 @@
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
     <Compile Include="ReturnTypes\Entities\Onlines.cs" />
+    <Compile Include="ReturnTypes\Entities\ResolveResult.cs" />
     <Compile Include="ReturnTypes\Entities\Status.cs" />
     <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
     <Compile Include="ReturnTypes\Enums\ChangeNameStatus.cs" />
+    <Compile Include="ReturnTypes\Enums\ResolvedItemType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AccountInfo.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AuthRestore.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangeNameRequest.cs" />

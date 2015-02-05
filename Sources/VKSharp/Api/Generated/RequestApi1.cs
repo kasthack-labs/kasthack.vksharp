@@ -1947,7 +1947,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<LinkCheckResult> UtilsCheckLink(
-             string url = ""
+             string url 
 ){
             var req = new VKRequest<LinkCheckResult>{
                 MethodName = "utils.checkLink",
@@ -1967,6 +1967,20 @@ namespace VKSharp {
                 MethodName = "utils.getServerTime",
                 Parameters = new Dictionary<string, string> {
                         }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<ResolveResult> UtilsResolveScreenName(
+             string sreenName 
+){
+            var req = new VKRequest<ResolveResult>{
+                MethodName = "utils.resolveScreenName",
+                Parameters = new Dictionary<string, string> {
+                                            { "sreen_name", sreenName }
+					    }
             };
             if (IsLogged){
                 req.Token = CurrentToken;
