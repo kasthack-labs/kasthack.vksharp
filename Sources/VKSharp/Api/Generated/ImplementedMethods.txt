@@ -1,5 +1,5 @@
 ﻿
-Implemented 150 methods
+Implemented 151 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -147,6 +147,7 @@ Implemented 150 methods
 	* users.getSubscriptions
 	* users.isAppUser
 	* users.report
+	* users.search
 * Utils
 	* utils.checkLink
 	* utils.getServerTime

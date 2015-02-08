@@ -1946,6 +1946,47 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<EntityList<User>> UsersSearch(
+             string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, ushort? offset = null, ushort? count = null, UserFields fields = UserFields.None, uint? cityId = null, uint? countryId = null, string hometown = "", uint? universityCountryId = null, uint? universityId = null, uint? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, uint? schoolCountryId = null, uint? schoolCityId = null, uint? schoolId = null, uint? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", uint? groupId = null
+){
+            var req = new VKRequest<EntityList<User>>{
+                MethodName = "users.search",
+                Parameters = new Dictionary<string, string> {
+                                            { "query", query },
+					                        { "sort", sort.ToString() },
+					                        { "offset", MiscTools.NullableString(offset) },
+					                        { "count", MiscTools.NullableString(count) },
+					                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+					                        { "cityId", MiscTools.NullableString(cityId) },
+					                        { "countryId", MiscTools.NullableString(countryId) },
+					                        { "hometown", hometown },
+					                        { "universityCountryId", MiscTools.NullableString(universityCountryId) },
+					                        { "universityId", MiscTools.NullableString(universityId) },
+					                        { "universityYear", MiscTools.NullableString(universityYear) },
+					                        { "sex", sex.ToString() },
+					                        { "relation", relation.ToString() },
+					                        { "ageFrom", MiscTools.NullableString(ageFrom) },
+					                        { "ageTo", MiscTools.NullableString(ageTo) },
+					                        { "birthDay", MiscTools.NullableString(birthDay) },
+					                        { "birthMonth", MiscTools.NullableString(birthMonth) },
+					                        { "birthYear", MiscTools.NullableString(birthYear) },
+					                        { "online", (online != null ? ( online.Value ? 1 : 0 ).ToNCString() : "") },
+					                        { "hasPhoto", (hasPhoto != null ? ( hasPhoto.Value ? 1 : 0 ).ToNCString() : "") },
+					                        { "schoolCountryId", MiscTools.NullableString(schoolCountryId) },
+					                        { "schoolCityId", MiscTools.NullableString(schoolCityId) },
+					                        { "schoolId", MiscTools.NullableString(schoolId) },
+					                        { "schoolYear", MiscTools.NullableString(schoolYear) },
+					                        { "religion", religion },
+					                        { "interests", interests },
+					                        { "company", company },
+					                        { "position", position },
+					                        { "groupId", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<LinkCheckResult> UtilsCheckLink(
              string url 
 ){

@@ -980,6 +980,40 @@
             <Param Name="comment" Type="string" />
         </Params>
     </Method>
+    <Method Name="users.search">
+        <Request Type="EntityList&lt;User&gt;" NeedToken="true" Parse="true" />
+        <Params>
+            <Param Name="query" Type="string" Default="&quot;&quot;" />
+            <Param Name="sort" Type="SearchSortOrder" Default="SearchSortOrder.ByRating" />
+            <Param Name="offset" Type="ushort?" Default="null" />
+            <Param Name="count" Type="ushort?" Default="null" />
+            <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+            <Param Name="cityId" Type="uint?" Default="null" />
+            <Param Name="countryId" Type="uint?" Default="null" />
+            <Param Name="hometown" Type="string" Default="&quot;&quot;" />
+            <Param Name="universityCountryId" Type="uint?" Default="null" />
+            <Param Name="universityId" Type="uint?" Default="null" />
+            <Param Name="universityYear" Type="uint?" Default="null" />
+            <Param Name="sex" Type="Sex?" Default="null" />
+            <Param Name="relation" Type="Relation?" Default="null" />
+            <Param Name="ageFrom" Type="byte?" Default="null" />
+            <Param Name="ageTo" Type="byte?" Default="null" />
+            <Param Name="birthDay" Type="byte?" Default="null" />
+            <Param Name="birthMonth" Type="byte?" Default="null" />
+            <Param Name="birthYear" Type="ushort?" Default="null" />
+            <Param Name="online" Type="bool?" Default="null" />
+            <Param Name="hasPhoto" Type="bool?" Default="null" />
+            <Param Name="schoolCountryId" Type="uint?" Default="null" />
+            <Param Name="schoolCityId" Type="uint?" Default="null" />
+            <Param Name="schoolId" Type="uint?" Default="null" />
+            <Param Name="schoolYear" Type="uint?" Default="null" />
+            <Param Name="religion" Type="string" Default="&quot;&quot;" />
+            <Param Name="interests" Type="string" Default="&quot;&quot;" />
+            <Param Name="company" Type="string" Default="&quot;&quot;" />
+            <Param Name="position" Type="string" Default="&quot;&quot;" />
+            <Param Name="groupId" Type="uint?" Default="null" />
+        </Params>
+    </Method>
     <Method Name="utils.checkLink">
         <Request Type="LinkCheckResult" NeedToken="false" Parse="true" />
         <Params>

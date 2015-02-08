@@ -1296,6 +1296,16 @@ namespace VKSharp {
 								)
 								;
 							}
+												public async Task <EntityList<User>>Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, ushort? offset = null, ushort? count = null, UserFields fields = UserFields.None, uint? cityId = null, uint? countryId = null, string hometown = "", uint? universityCountryId = null, uint? universityId = null, uint? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, uint? schoolCountryId = null, uint? schoolCityId = null, uint? schoolId = null, uint? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", uint? groupId = null ){
+																	return (
+																await _parent.Executor.ExecAsync(
+								_parent._reqapi.UsersSearch(
+									query,sort,offset,count,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId
+								)
+								)
+																	).Response
+								;
+							}
 									}
 						public MethodGroup_utils Utils {get; private set;}
 				public partial class MethodGroup_utils {
