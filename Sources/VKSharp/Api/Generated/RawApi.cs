@@ -340,6 +340,10 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsAdd( userId,text ) );
             }
                     
+            public async Task<string> AreFriends(  bool needSign = false,params int[] userIds  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsAreFriends( needSign,userIds ) );
+            }
+                    
             public async Task<string> Delete(  int userId  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsDelete( userId ) );
             }
@@ -350,6 +354,14 @@ namespace VKSharp {
                     
             public async Task<string> DeleteList(  int listId  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsDeleteList( listId ) );
+            }
+                    
+            public async Task<string> Edit(  int userId ,params long[] listIds  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsEdit( userId,listIds ) );
+            }
+                    
+            public async Task<string> EditList(  long listId , string name = "", int[] userIds = null, int[] addUserIds = null,params int[] deleteUserIds  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsEditList( listId,name,userIds,addUserIds,deleteUserIds ) );
             }
                     
             public async Task<string> Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
@@ -366,6 +378,10 @@ namespace VKSharp {
                     
             public async Task<string> GetMutual(  int targetUid , int? sourceUid = null, bool order = false, int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsGetMutual( targetUid,sourceUid,order,offset,count ) );
+            }
+                    
+            public async Task<string> GetOnline(  int? userId = null, int? listId = null, UserSortOrder? order = null, int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FriendsGetOnline( userId,listId,order,offset,count ) );
             }
                     
             public async Task<string> GetRecent(  int count = 20 ){
@@ -694,7 +710,7 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UsersReport( userId,type,comment ) );
             }
                     
-            public async Task<string> Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, ushort? offset = null, ushort? count = null, UserFields fields = UserFields.None, uint? cityId = null, uint? countryId = null, string hometown = "", uint? universityCountryId = null, uint? universityId = null, uint? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, uint? schoolCountryId = null, uint? schoolCityId = null, uint? schoolId = null, uint? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", uint? groupId = null ){
+            public async Task<string> Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, ushort? offset = null, ushort? count = null, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UsersSearch( query,sort,offset,count,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId ) );
             }
                                     }
@@ -748,6 +764,10 @@ namespace VKSharp {
                     
             public async Task<string> RestoreComment(  int commentId , int? ownerId = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoRestoreComment( commentId,ownerId ) );
+            }
+                    
+            public async Task<string> Restore(  long videoId , int? ownerId = null ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoRestore( videoId,ownerId ) );
             }
                                     }
         

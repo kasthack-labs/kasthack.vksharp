@@ -16,9 +16,9 @@ Implemented <#=nms.Length#> methods
     foreach (var v in nms.GroupBy(a=>a.Split('.').First())) {
 #>
 * <#=ti.ToTitleCase(v.Key)#>
-<#	foreach ( var c in v.OrderBy(a=>a) ) {#>
-	* <#=c#>
+<#    foreach ( var c in v.OrderBy(a=>a) ) {#>
+    * <#=c#>
 <#
-	}
+    }
 }
 #>

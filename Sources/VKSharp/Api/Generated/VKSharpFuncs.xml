@@ -444,6 +444,13 @@
             <Param Name="text" Type="string" Default="&quot;&quot;" />
         </Params>
     </Method>
+    <Method Name="friends.areFriends">
+        <Request Type="FriendshipStatus[]" NeedToken="true" Parse="true" />
+        <Params>
+            <Param Name="need_sign" Type="bool" Default="false" />
+            <Param Name="user_ids" Type="int[]" />
+        </Params>
+    </Method>
     <Method Name="friends.delete">
         <Request Type="int" NeedToken="true" Parse="true" />
         <Params>
@@ -458,6 +465,23 @@
         <Request Type="bool" NeedToken="true" Parse="false" />
         <Params>
             <Param Name="list_id" Type="int" />
+        </Params>
+    </Method>
+    <Method Name="friends.edit">
+        <Request Type="bool" NeedToken="true" Parse="false" />
+        <Params>
+            <Param Name="user_id" Type="int"/>
+            <Param Name="list_ids" Type="long[]" />
+        </Params>
+    </Method>
+    <Method Name="friends.editList">
+        <Request Type="bool" NeedToken="true" Parse="false" />
+        <Params>
+            <Param Name="list_id" Type="long"/>
+            <Param Name="name" Type="string" Default="&quot;&quot;"/>
+            <Param Name="user_ids" Type="int[]" Default="null"/>
+            <Param Name="add_user_ids" Type="int[]" Default="null"/>
+            <Param Name="delete_user_ids" Type="int[]" Default="null"/>
         </Params>
     </Method>
     <Method Name="friends.get">
@@ -489,6 +513,16 @@
             <Param Name="target_uid" Type="int" />
             <Param Name="source_uid" Type="int?" Default="null" />
             <Param Name="order" Type="bool" Default="false" Custom="#name ? &quot;random&quot; : &quot;&quot;" />
+            <Param Name="offset" Type="int" Default="0" />
+            <Param Name="count" Type="int" Default="100" />
+        </Params>
+    </Method>
+    <Method Name="friends.getOnline">
+        <Request Type="int[]" NeedToken="false" Parse="true" />
+        <Params>
+            <Param Name="user_id" Type="int?" Default="null" />
+            <Param Name="list_id" Type="int?" Default="null" />
+            <Param Name="order" Type="UserSortOrder?" Default="null" />
             <Param Name="offset" Type="int" Default="0" />
             <Param Name="count" Type="int" Default="100" />
         </Params>
@@ -1014,12 +1048,12 @@
             <Param Name="offset" Type="ushort?" Default="null" />
             <Param Name="count" Type="ushort?" Default="null" />
             <Param Name="fields" Type="UserFields" Default="UserFields.None" />
-            <Param Name="city_id" Type="uint?" Default="null" />
-            <Param Name="country_id" Type="uint?" Default="null" />
+            <Param Name="city_id" Type="int?" Default="null" />
+            <Param Name="country_id" Type="int?" Default="null" />
             <Param Name="hometown" Type="string" Default="&quot;&quot;" />
-            <Param Name="university_country_id" Type="uint?" Default="null" />
-            <Param Name="university_id" Type="uint?" Default="null" />
-            <Param Name="university_year" Type="uint?" Default="null" />
+            <Param Name="university_country_id" Type="int?" Default="null" />
+            <Param Name="university_id" Type="int?" Default="null" />
+            <Param Name="university_year" Type="int?" Default="null" />
             <Param Name="sex" Type="Sex?" Default="null" />
             <Param Name="relation" Type="Relation?" Default="null" />
             <Param Name="age_from" Type="byte?" Default="null" />
@@ -1029,15 +1063,15 @@
             <Param Name="birth_year" Type="ushort?" Default="null" />
             <Param Name="online" Type="bool?" Default="null" />
             <Param Name="has_photo" Type="bool?" Default="null" />
-            <Param Name="school_country_id" Type="uint?" Default="null" />
-            <Param Name="school_city_id" Type="uint?" Default="null" />
-            <Param Name="school_id" Type="uint?" Default="null" />
-            <Param Name="school_year" Type="uint?" Default="null" />
+            <Param Name="school_country_id" Type="int?" Default="null" />
+            <Param Name="school_city_id" Type="int?" Default="null" />
+            <Param Name="school_id" Type="int?" Default="null" />
+            <Param Name="school_year" Type="int?" Default="null" />
             <Param Name="religion" Type="string" Default="&quot;&quot;" />
             <Param Name="interests" Type="string" Default="&quot;&quot;" />
             <Param Name="company" Type="string" Default="&quot;&quot;" />
             <Param Name="position" Type="string" Default="&quot;&quot;" />
-            <Param Name="group_id" Type="uint?" Default="null" />
+            <Param Name="group_id" Type="int?" Default="null" />
         </Params>
     </Method>
     <Method Name="utils.checkLink">
@@ -1107,6 +1141,13 @@
         <Request Type="bool" NeedToken="true" Parse="false" />
         <Params>
             <Param Name="comment_id" Type="int" />
+            <Param Name="owner_id" Type="int?" Default="null" />
+        </Params>
+    </Method>
+    <Method Name="video.restore">
+        <Request Type="bool" NeedToken="true" Parse="false" />
+        <Params>
+            <Param Name="video_id" Type="long" />
             <Param Name="owner_id" Type="int?" Default="null" />
         </Params>
     </Method>

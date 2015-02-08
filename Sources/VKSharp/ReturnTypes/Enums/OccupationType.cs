@@ -5,6 +5,6 @@ namespace VKSharp.Core.Enums
         Work = 1,
         School = 2,
         University = 3
-	}
+    }
 }
 

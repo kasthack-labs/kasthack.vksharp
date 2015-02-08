@@ -83,6 +83,7 @@
     <Compile Include="ReturnTypes\ResponseEntities\AccountInfo.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AuthRestore.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangeNameRequest.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\FriendshipStatus.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\LastActivity.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\RepostInfo.cs" />

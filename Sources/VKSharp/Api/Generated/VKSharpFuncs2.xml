@@ -1,0 +1,1149 @@
+<?xml version="1.0"?>
+<ArrayOfMethod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Method Name="account.banUser">
+    <Request Type="long" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="account.getAppPermissions">
+    <Request Type="long" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="account.getBanned">
+    <Request Type="User[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="20" />
+    </Params>
+  </Method>
+  <Method Name="account.getInfo">
+    <Request Type="AccountInfo" NeedToken="true" Parse="true" />
+    <Params />
+  </Method>
+  <Method Name="account.getProfileInfo">
+    <Request Type="User" NeedToken="true" Parse="true" />
+    <Params />
+  </Method>
+  <Method Name="account.setInfo">
+    <Request Type="long" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="intro" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="account.setNameInMenu">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="name" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="account.setOffline">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params />
+  </Method>
+  <Method Name="account.setOnline">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="voip" Type="bool" Default="true" />
+    </Params>
+  </Method>
+  <Method Name="account.setSilenceMode">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="token" Type="string" />
+      <Param Name="time" Type="int" />
+      <Param Name="chat_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="sound" Type="int" Default="0" />
+    </Params>
+  </Method>
+  <Method Name="account.unbanUser">
+    <Request Type="long" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="account.unregisterDevice">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="token" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="ads.deleteClients">
+    <Request Type="int[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="account_id" Type="ulong" />
+      <Param Name="ids" Type="ulong[]" />
+    </Params>
+  </Method>
+  <Method Name="audio.add">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int" />
+      <Param Name="audio_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.addAlbum">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="title" Type="string" />
+      <Param Name="group_id" Type="int?" Default="0" />
+    </Params>
+  </Method>
+  <Method Name="audio.delete">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="audio_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.deleteAlbum">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.edit">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int" />
+      <Param Name="audio_id" Type="long" />
+      <Param Name="artist" Type="string" Default="&quot;&quot;" />
+      <Param Name="title" Type="string" Default="&quot;&quot;" />
+      <Param Name="text" Type="string" Default="&quot;&quot;" />
+      <Param Name="genre_id" Type="AudioGenre?" Default="null" />
+      <Param Name="no_search" Type="bool?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.get">
+    <Request Type="EntityList&lt;Audio&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="album_id" Type="long?" Default="null" />
+      <Param Name="audio_ids" Type="ulong[]" Default="null" />
+      <Param Name="need_user" Type="bool" Default="false" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="audio.getAlbums">
+    <Request Type="EntityList&lt;AudioAlbum&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="audio.getById">
+    <Request Type="Audio[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="itunes" Type="bool" Default="false" />
+      <Param Name="audios" Type="string[]" />
+    </Params>
+  </Method>
+  <Method Name="audio.getById">
+    <Request Type="Audio[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="itunes" Type="bool" Default="false" />
+      <Param Name="audios" Type="Tuple&lt;int, long&gt;[]" />
+    </Params>
+  </Method>
+  <Method Name="audio.getCount">
+    <Request Type="int" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.getLyrics">
+    <Request Type="Lyrics" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="lyrics_id" Type="long" />
+    </Params>
+  </Method>
+  <Method Name="audio.getUploadServer">
+    <Request Type="string" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.reorder">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="audio_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="before" Type="long?" Default="null" />
+      <Param Name="after" Type="long?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.restore">
+    <Request Type="Audio" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="audio_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="audio.save">
+    <Request Type="Audio[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="server" Type="string" />
+      <Param Name="audio" Type="string" />
+      <Param Name="hash" Type="string" />
+      <Param Name="artist" Type="string" Default="&quot;&quot;" />
+      <Param Name="title" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="audio.search">
+    <Request Type="EntityList&lt;Audio&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="q" Type="string" />
+      <Param Name="auto_complete" Type="bool" Default="true" />
+      <Param Name="lyrics" Type="bool" Default="false" />
+      <Param Name="performer_only" Type="bool" Default="false" />
+      <Param Name="sort" Type="AudioSortOrder" Default="AudioSortOrder.ByRating" />
+      <Param Name="search_own" Type="bool" Default="false" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="auth.checkPhone">
+    <Request Type="bool" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="phone" Type="string" />
+      <Param Name="client_secret" Type="string" />
+      <Param Name="client_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="auth.confirm">
+    <Request Type="ConfirmResult" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="client_id" Type="int" />
+      <Param Name="client_secret" Type="string" />
+      <Param Name="phone" Type="string" />
+      <Param Name="code" Type="string" />
+      <Param Name="password" Type="string" Default="&quot;&quot;" />
+      <Param Name="test_mode" Type="bool" Default="false" />
+      <Param Name="intro" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="auth.restore">
+    <Request Type="AuthRestore" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="phone" Type="long" />
+    </Params>
+  </Method>
+  <Method Name="board.closeTopic">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="topic_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="board.deleteComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="topic_id" Type="int" />
+      <Param Name="comment_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="board.deleteTopic">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="topic_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="board.fixTopic">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="topic_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="board.restoreComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="topic_id" Type="int" />
+      <Param Name="comment_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="board.unfixTopic">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="topic_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="database.getChairs">
+    <Request Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="faculty_id" Type="int" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="database.getCities">
+    <Request Type="DatabaseCity[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="country_id" Type="int" />
+      <Param Name="region_id" Type="int?" Default="null" />
+      <Param Name="q" Type="string" Default="&quot;&quot;" />
+      <Param Name="need_all" Type="bool" Default="false" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="database.getCitiesById">
+    <Request Type="DatabaseCity[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="city_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="database.getCountries">
+    <Request Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="code" Type="string" Default="&quot;&quot;" />
+      <Param Name="need_all" Type="bool" Default="false" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="database.getCountriesById">
+    <Request Type="DatabaseEntry[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="country_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="database.getFaculties">
+    <Request Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="university_id" Type="int" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="database.getRegions">
+    <Request Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="country_id" Type="int" />
+      <Param Name="q" Type="string" Default="&quot;&quot;" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="database.getSchools">
+    <Request Type="DatabaseEntry[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="city_id" Type="int?" Default="null" />
+      <Param Name="q" Type="string" Default="&quot;&quot;" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="database.getStreetsById">
+    <Request Type="DatabaseEntry[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="street_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="database.getUniversities">
+    <Request Type="DatabaseEntry[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="country_id" Type="int?" Default="null" />
+      <Param Name="city_id" Type="int?" Default="null" />
+      <Param Name="q" Type="string" Default="&quot;&quot;" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="docs.add">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="doc_id" Type="long" />
+      <Param Name="owner_id" Type="int" />
+      <Param Name="access_key" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="docs.delete">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="doc_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="docs.get">
+    <Request Type="EntityList&lt;Document&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="docs.getById">
+    <Request Type="Document[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="docs" Type="Tuple&lt;int,int&gt;[]" />
+    </Params>
+  </Method>
+  <Method Name="docs.getUploadServer">
+    <Request Type="string" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="docs.getWallUploadServer">
+    <Request Type="string" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="docs.save">
+    <Request Type="Document[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="file" Type="string" />
+      <Param Name="title" Type="string" />
+      <Param Name="tags" Type="string[]" />
+    </Params>
+  </Method>
+  <Method Name="friends.add">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="text" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="friends.delete">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="friends.deleteAllRequests">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params />
+  </Method>
+  <Method Name="friends.deleteList">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="list_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="friends.get">
+    <Request Type="EntityList&lt;User&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="list_id" Type="int?" Default="null" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="friends.getAppUsers">
+    <Request Type="int[]" NeedToken="false" Parse="true" />
+    <Params />
+  </Method>
+  <Method Name="friends.getByPhones">
+    <Request Type="User[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="phones" Type="ulong[]" Default="null" Custom="String.Join( &quot;,&quot;, #name.Select( a =&gt; &quot;+&quot; + a ) )" />
+    </Params>
+  </Method>
+  <Method Name="friends.getMutual">
+    <Request Type="int[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="target_uid" Type="int" />
+      <Param Name="source_uid" Type="int?" Default="null" />
+      <Param Name="order" Type="bool" Default="false" Custom="#name ? &quot;random&quot; : &quot;&quot;" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="friends.getRecent">
+    <Request Type="int[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="count" Type="int" Default="20" />
+    </Params>
+  </Method>
+  <Method Name="friends.getSuggestions">
+    <Request Type="EntityList&lt;User&gt;" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="filters" Type="FriendSuggestionFilters" Default="FriendSuggestionFilters.Everything" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="groups.getBanned">
+    <Request Type="User[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="groups.getById">
+    <Request Type="Group[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="group_ids" Type="string[]" />
+      <Param Name="fields" Type="GroupFields" />
+    </Params>
+  </Method>
+  <Method Name="groups.getById">
+    <Request Type="Group[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="fields" Type="GroupFields" />
+    </Params>
+  </Method>
+  <Method Name="groups.getMembers">
+    <Request Type="EntityList&lt;User&gt;" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.Everything" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="groups.getMembers">
+    <Request Type="EntityList&lt;User&gt;" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="string" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="groups.isMember">
+    <Request Type="MemberShip[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="extended" Type="bool" Default="false" />
+      <Param Name="user_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="groups.join">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="not_sure" Type="bool" Default="false" />
+    </Params>
+  </Method>
+  <Method Name="groups.leave">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="groups.unbanUser">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="messages.addChatUser">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="chat_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="messages.delete">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="message_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="messages.deleteDialog">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="messages.getLastActivity">
+    <Request Type="LastActivity" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="messages.markAsImportant">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="important" Type="bool" />
+      <Param Name="message_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="messages.markAsRead">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="start_message_id" Type="int?" Default="null" />
+      <Param Name="message_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="messages.removeChatUser">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="chat_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="messages.restore">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="message_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="messages.setActivity">
+    <Request Type="LastActivity" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="type" Type="ImActivity" Default="ImActivity.Typing" />
+    </Params>
+  </Method>
+  <Method Name="newsfeed.addBan">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_ids" Type="int[]" Default="null" />
+      <Param Name="group_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="newsfeed.deleteBan">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_ids" Type="int[]" Default="null" />
+      <Param Name="group_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="notes.delete">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="note_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="notes.deleteComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="notes.restoreComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="notifications.markAsViewed">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params />
+  </Method>
+  <Method Name="pages.clearCache">
+    <Request Type="bool" NeedToken="false" Parse="false" />
+    <Params>
+      <Param Name="url" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="photos.confirmTag">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="tag_id" Type="int" />
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.copy">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="access_key" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="photos.createAlbum">
+    <Request Type="PhotoAlbum" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="title" Type="string" />
+      <Param Name="description" Type="string" Default="&quot;&quot;" />
+      <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="privacy" Type="PrivacyType?" Default="null" />
+      <Param Name="comment_privacy" Type="PrivacyType?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.delete">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.deleteAlbum">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.deleteComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.edit">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="caption" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="photos.editAlbum">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="title" Type="string" Default="&quot;&quot;" />
+      <Param Name="description" Type="string" Default="&quot;&quot;" />
+      <Param Name="privacy" Type="PrivacyType?" Default="null" />
+      <Param Name="comment_privacy" Type="PrivacyType?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.get">
+    <Request Type="EntityList&lt;Photo&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="album_id" Type="long?" Default="null" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="photo_ids" Type="int[]" Default="null" />
+      <Param Name="rev" Type="bool" Default="true" />
+      <Param Name="extended" Type="bool" Default="false" />
+      <Param Name="feed_type" Type="FeedType?" Default="null" />
+      <Param Name="feed" Type="int?" Default="null" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="photos.get">
+    <Request Type="EntityList&lt;Photo&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="album_id" Type="SpecialAlbum" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="photo_ids" Type="int[]" Default="null" />
+      <Param Name="rev" Type="bool" Default="true" />
+      <Param Name="extended" Type="bool" Default="false" />
+      <Param Name="feed_type" Type="FeedType?" Default="null" />
+      <Param Name="feed" Type="int?" Default="null" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="photos.getAlbums">
+    <Request Type="EntityList&lt;PhotoAlbum&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="need_system" Type="bool" Default="true" />
+      <Param Name="need_covers" Type="bool" Default="true" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+      <Param Name="album_ids" Type="long[]" />
+    </Params>
+  </Method>
+  <Method Name="photos.getAlbumsCount">
+    <Request Type="int" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.getAll">
+    <Request Type="EntityList&lt;Photo&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="extended" Type="bool" Default="false" />
+      <Param Name="no_service_albums" Type="bool" Default="false" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="photos.getById">
+    <Request Type="Photo[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="photos" Type="ContentId[]" />
+    </Params>
+  </Method>
+  <Method Name="photos.getChatUploadServer">
+    <Request Type="PhotosUploadServer" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="chat_id" Type="int" />
+      <Param Name="crop_x" Type="int?" Default="null" />
+      <Param Name="crop_y" Type="int?" Default="null" />
+      <Param Name="crop_width" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.getOwnerPhotoUploadServer">
+    <Request Type="string" NeedToken="true" Parse="true" />
+    <Params />
+  </Method>
+  <Method Name="photos.getUploadServer">
+    <Request Type="PhotosUploadServer" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.makeCover">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.move">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="target_album_id" Type="long" />
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.removeTag">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="tag_id" Type="int" />
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.reorderAlbums">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="before" Type="long?" Default="null" />
+      <Param Name="after" Type="long?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.reorderPhotos">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="before" Type="long?" Default="null" />
+      <Param Name="after" Type="long?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.report">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="reason" Type="ReportReason?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.reportComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="reason" Type="ReportReason?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.restoreComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="photos.save">
+    <Request Type="Photo[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="server" Type="string" />
+      <Param Name="photos_list" Type="string" />
+      <Param Name="hash" Type="string" />
+      <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="latitude" Type="double?" Default="null" />
+      <Param Name="longitude" Type="double?" Default="null" />
+      <Param Name="caption" Type="string" Default="&quot;&quot;" />
+      <Param Name="description" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="stats.trackVisitor">
+    <Request Type="int" NeedToken="true" Parse="true" />
+    <Params />
+  </Method>
+  <Method Name="status.get">
+    <Request Type="Status[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="status.set">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="text" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="storage.get">
+    <Request Type="StorageEntry[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="global" Type="bool" Default="false" />
+      <Param Name="keys" Type="string[]" />
+    </Params>
+  </Method>
+  <Method Name="storage.getKeys">
+    <Request Type="string[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="global" Type="bool" Default="false" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="storage.set">
+    <Request Type="StorageEntry[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="key" Type="string" />
+      <Param Name="value" Type="string" />
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="global" Type="bool" Default="false" />
+    </Params>
+  </Method>
+  <Method Name="users.get">
+    <Request Type="User[]" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+      <Param Name="user_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="users.getFollowers">
+    <Request Type="EntityList&lt;User&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="users.getNearby">
+    <Request Type="EntityList&lt;User&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="latitude" Type="double" />
+      <Param Name="longitude" Type="double" />
+      <Param Name="accuracy" Type="int?" Default="null" />
+      <Param Name="timeout" Type="int?" Default="null" />
+      <Param Name="radius" Type="byte?" Default="null" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="users.getSubscriptions">
+    <Request Type="UserSubscriptions" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="users.isAppUser">
+    <Request Type="bool" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="users.report">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="user_id" Type="int" />
+      <Param Name="type" Type="ComplaintType" />
+      <Param Name="comment" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="utils.checkLink">
+    <Request Type="LinkCheckResult" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="url" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="utils.getServerTime">
+    <Request Type="int" NeedToken="false" Parse="true" />
+    <Params />
+  </Method>
+  <Method Name="utils.resolveScreenName">
+    <Request Type="ResolveResult" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="sreen_name" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="video.delete">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="video_id" Type="ulong" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="video.deleteAlbum">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="video.deleteComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="video.removeTag">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="video_id" Type="ulong" />
+      <Param Name="tag_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="video.report">
+    <Request Type="int" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="video_id" Type="ulong" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="reason" Type="ReportReason?" Default="null" />
+      <Param Name="comment" Type="string" Default="&quot;&quot;" />
+      <Param Name="search_query" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="video.reportComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="reason" Type="ReportReason?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="video.restoreComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.delete">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="post_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.deleteComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.get">
+    <Request Type="EntityList&lt;Post&gt;" NeedToken="false" Parse="true" />
+    <Params>
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="domain" Type="string" Default="&quot;&quot;" />
+      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" />
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100" />
+    </Params>
+  </Method>
+  <Method Name="wall.getById">
+    <Request Type="Post[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="copy_history_depth" Type="int" Default="2" />
+      <Param Name="posts" Type="string[]" />
+    </Params>
+  </Method>
+  <Method Name="wall.getById">
+    <Request Type="Post[]" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="copy_history_depth" Type="int" Default="2" />
+      <Param Name="posts" Type="Tuple&lt;int,int&gt;[]" />
+    </Params>
+  </Method>
+  <Method Name="wall.pin">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="post_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.reportComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="reason" Type="ReportReason?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.reportPost">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="post_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="reason" Type="ReportReason?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.repost">
+    <Request Type="RepostInfo" NeedToken="true" Parse="true" />
+    <Params>
+      <Param Name="@object" Type="string" />
+      <Param Name="message" Type="string" Default="&quot;&quot;" />
+      <Param Name="group_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.restore">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="post_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.restoreComment">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="comment_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="wall.unpin">
+    <Request Type="bool" NeedToken="true" Parse="false" />
+    <Params>
+      <Param Name="post_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+</ArrayOfMethod> Parse="false" />
+    <Params>
+      <Param Name="post_id" Type="int" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
+</ArrayOfMethod>

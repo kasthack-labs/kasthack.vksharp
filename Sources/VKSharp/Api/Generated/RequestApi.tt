@@ -34,7 +34,7 @@ namespace VKSharp {
                     <#for (var i =0; i<node.Params.Length; i++){
                         var a = node.Params[i]; #>
                         { "<#=a.Name.Replace("@","")#>", <#=a.Custom==null?Stringify(ToMeth(a.Name, true), a.Type) :a.Custom.Replace("#name",ToMeth(a.Name,true))#> }<#=i<node.Params.Length-1?",":""#>
-					<#}#>
+                    <#}#>
     }
             };
     <#if (!node.Request.NeedToken){#>

@@ -17,31 +17,31 @@
 [Serializable]
 public class Method {
     [XmlAttributeAttribute]
-	public string Name {get;set;}
-	public Request Request {get;set;}
-	public Param[] Params {get;set;}
+    public string Name {get;set;}
+    public Request Request {get;set;}
+    public Param[] Params {get;set;}
 }
 [Serializable]
 public class Request {
     [XmlAttributeAttribute]
-	public string Type {get;set;}
+    public string Type {get;set;}
     [XmlAttributeAttribute]
-	public bool NeedToken {get;set;}
+    public bool NeedToken {get;set;}
     [XmlAttributeAttribute]
-	public bool Parse {get;set;}
+    public bool Parse {get;set;}
 }
 [Serializable]
 public class Param {
     [XmlAttributeAttribute]
-	public string Name {get;set;}
+    public string Name {get;set;}
     [XmlAttributeAttribute]
-	public string Type {get;set;}
+    public string Type {get;set;}
     [XmlAttributeAttribute]
-	public string Default {get;set;}
+    public string Default {get;set;}
     [XmlIgnore]
     public bool DefaultSpecified { get { return Default != null; } }
     [XmlAttributeAttribute]
-	public string Custom {get;set;}
+    public string Custom {get;set;}
     [XmlIgnore]
     public bool CustomSpecified { get { return Custom != null; } }
 }
@@ -49,17 +49,17 @@ public class Param {
 private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Method[]));
 public static string GetParamsString(Method node){
     return String.Join(
-		",",
-		node.Params
+        ",",
+        node.Params
         .Reverse().Skip(1).Reverse()//shitty way to skip last
         .Select(a=>
-			String.Format(
-				" {0} {1} {2}",
-				a.Type,
-				ToMeth(a.Name, true),
-				!string.IsNullOrWhiteSpace(a.Default)?"= "+a.Default:""
-			)
-		).Concat(
+            String.Format(
+                " {0} {1} {2}",
+                a.Type,
+                ToMeth(a.Name, true),
+                !string.IsNullOrWhiteSpace(a.Default)?"= "+a.Default:""
+            )
+        ).Concat(
             node.Params.Reverse().Take(1).Select(
                 a =>{
                 var isparams = a.Type.EndsWith( "[]" );
@@ -72,7 +72,7 @@ public static string GetParamsString(Method node){
                 }
             )
         )
-	);
+    );
 }
 public static Method[] GetMethods(string file){
     using (var f = File.OpenRead(file))
@@ -96,28 +96,28 @@ public static string ToMeth(string name,bool p=false)
     return t.ToString();
 }
 public static string Stringify(string name, string type){
-	//todo: typing
-	//common types
-	switch ( type ) {
+    //todo: typing
+    //common types
+    switch ( type ) {
         case "Audio":
-	        return "";
-		case "string":
-	        return name;
-		case "bool":
-			return "("+name+"?1:0).ToNCString()";
-		case "bool?":
-			return string.Format( "({0} != null ? ( {0}.Value ? 1 : 0 ).ToNCString() : \"\")", name );
-	    case "string[]":
-	        return "String.Join(\",\","+name+")";
-		case "UserFields":
-			return "String.Join( \",\", MiscTools.GetUserFields( "+name+" ) )";
-		case "GroupFields":
-			return "String.Join( \",\", MiscTools.GetGroupFields( "+name+" ) )";
-		case "AudioGenre":
+            return "";//todo???
+        case "string":
+            return name;
+        case "bool":
+            return "("+name+"?1:0).ToNCString()";
+        case "bool?":
+            return string.Format( "({0} != null ? ( {0}.Value ? 1 : 0 ).ToNCString() : \"\")", name );
+        case "string[]":
+            return "String.Join(\",\","+name+")";
+        case "UserFields":
+            return "String.Join( \",\", MiscTools.GetUserFields( "+name+" ) )";
+        case "GroupFields":
+            return "String.Join( \",\", MiscTools.GetGroupFields( "+name+" ) )";
+        case "AudioGenre":
         case "SearchSortOrder":
-			return "((int)" + name + ").ToString()";
-		case "AudioGenre?":
-			return string.Format( "({0}!=null?((int)({0})).ToString():String.Empty)", name );
+            return "((int)" + name + ").ToString()";
+        case "AudioGenre?":
+            return string.Format( "({0}!=null?((int)({0})).ToString():String.Empty)", name );
         case "AudioSortOrder":
             return "((int)"+name+").ToNCString()";
         case "UserSortOrder":
@@ -135,18 +135,19 @@ public static string Stringify(string name, string type){
         case "PrivacyType?":
             return String.Format("MiscTools.NullableString( (byte?){0} )", name);
         case "FeedType?":
+        case "UserSortOrder?":
             return String.Format("MiscTools.NullableString( {0} )",name);
-	}
+    }
 
-	//numbers, numbers?, numbers[]
-	var nums = "int,uint,byte,sbyte,short,ushort,long,ulong,double".Split(',');
-	if (nums.Any(a=>a==type)) return name+".ToNCString()";	
-	if (nums.Any(a=>type==a+"?")) return "MiscTools.NullableString("+name+")";
-	if (nums.Any(a=>type==a+"[]")) return string.Format( "({0}??new {1}{{}}).ToNCStringA()", name, type );
-	if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))
-		return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
+    //numbers, numbers?, numbers[]
+    var nums = "int,uint,byte,sbyte,short,ushort,long,ulong,double".Split(',');
+    if (nums.Any(a=>a==type)) return name+".ToNCString()";    
+    if (nums.Any(a=>type==a+"?")) return "MiscTools.NullableString("+name+")";
+    if (nums.Any(a=>type==a+"[]")) return string.Format( "({0}??new {1}{{}}).ToNCStringA()", name, type );
+    if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))
+        return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
 
-	//default
-	return name+".ToString()";
+    //default
+    return name+".ToString()";
 }
 #>

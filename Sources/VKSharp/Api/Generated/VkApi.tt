@@ -16,46 +16,46 @@ using VKSharp.Data.Parameters;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
-	public partial class VKApi {
-		<#
-			var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));				//method descriptions
-			var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();	//method groups
+    public partial class VKApi {
+        <#
+            var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));                //method descriptions
+            var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();    //method groups
             #>
             private void InitializeMethodGroups(){
             <#foreach (var methodGroup in gs){#>
                 this.<#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+methodGroup.Key#>(this);
             <#}#>
             }
-			<#foreach (var methodGroup in gs){
-				var cln = "MethodGroup_"+methodGroup.Key;
-		#>
-				public <#=cln#> <#=ToMeth(methodGroup.Key)#> {get; private set;}
-				public partial class <#=cln#> {
-					private readonly VKApi _parent;
-					internal <#=cln#>(VKApi parent){_parent=parent;}
-					<#
-						foreach ( var node in methodGroup ) {
-							var returnType =node.Request.Parse?String.Format("<{0}>",node.Request.Type):"";
-					#>
-							public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
-								<#if(node.Request.Parse){#>
-									return (
-								<#}#>
-								await _parent.Executor.ExecAsync(
-								_parent._reqapi.<#=ToMeth(node.Name)#>(
-									<#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#>
-								)
-								)
-								<#if(node.Request.Parse){#>
-									).Response
-								<#}#>;
-							}
-					<#
-						}
-					#>
-				}
-		<#
-			}
-		#>
-	}
+            <#foreach (var methodGroup in gs){
+                var cln = "MethodGroup_"+methodGroup.Key;
+        #>
+                public <#=cln#> <#=ToMeth(methodGroup.Key)#> {get; private set;}
+                public partial class <#=cln#> {
+                    private readonly VKApi _parent;
+                    internal <#=cln#>(VKApi parent){_parent=parent;}
+                    <#
+                        foreach ( var node in methodGroup ) {
+                            var returnType =node.Request.Parse?String.Format("<{0}>",node.Request.Type):"";
+                    #>
+                            public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
+                                <#if(node.Request.Parse){#>
+                                    return (
+                                <#}#>
+                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.<#=ToMeth(node.Name)#>(
+                                    <#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#>
+                                )
+                                )
+                                <#if(node.Request.Parse){#>
+                                    ).Response
+                                <#}#>;
+                            }
+                    <#
+                        }
+                    #>
+                }
+        <#
+            }
+        #>
+    }
 }
