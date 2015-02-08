@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json", "..\..\Li
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merger", "..\..\..\..\Teams\Startups\Data\DataSorting\Merger\Merger.csproj", "{9AD51390-7767-474F-B40E-32FB8D606AEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkNet", "..\..\Libs\vk\VkNet\VkNet.csproj", "{8B031A92-84D4-4418-8551-18F1AFEECC6C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B031A92-84D4-4418-8551-18F1AFEECC6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B031A92-84D4-4418-8551-18F1AFEECC6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B031A92-84D4-4418-8551-18F1AFEECC6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B031A92-84D4-4418-8551-18F1AFEECC6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

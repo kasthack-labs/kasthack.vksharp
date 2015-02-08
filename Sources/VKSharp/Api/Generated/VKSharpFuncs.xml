@@ -119,6 +119,14 @@
             <Param Name="no_search" Type="bool?" Default="null" />
         </Params>
     </Method>
+    <Method Name="audio.editAlbum">
+        <Request Type="bool" NeedToken="true" Parse="false" />
+        <Params>
+            <Param Name="album_id" Type="long" />
+            <Param Name="title" Type="string"/>
+            <Param Name="group_id" Type="int?" Default="null"/>
+        </Params>
+    </Method>
     <Method Name="audio.get">
         <Request Type="EntityList&lt;Audio&gt;" NeedToken="false" Parse="true" />
         <Params>
@@ -126,6 +134,24 @@
             <Param Name="album_id" Type="long?" Default="null" />
             <Param Name="audio_ids" Type="ulong[]" Default="null" />
             <Param Name="need_user" Type="bool" Default="false" />
+            <Param Name="offset" Type="int" Default="0" />
+            <Param Name="count" Type="int" Default="100" />
+        </Params>
+    </Method>
+    <Method Name="audio.getPopular">
+        <Request Type="EntityList&lt;Audio&gt;" NeedToken="false" Parse="true" />
+        <Params>
+            <Param Name="genre_id" Type="AudioGenre?" Default="null"/>
+            <Param Name="only_eng" Type="bool?" Default="null" />
+            <Param Name="offset" Type="int" Default="0" />
+            <Param Name="count" Type="int" Default="100" />
+        </Params>
+    </Method>
+    <Method Name="audio.getRecommendations">
+        <Request Type="EntityList&lt;Audio&gt;" NeedToken="false" Parse="true" />
+        <Params>
+            <Param Name="genre_id" Type="AudioGenre?" Default="null"/>
+            <Param Name="only_eng" Type="bool?" Default="null" />
             <Param Name="offset" Type="int" Default="0" />
             <Param Name="count" Type="int" Default="100" />
         </Params>

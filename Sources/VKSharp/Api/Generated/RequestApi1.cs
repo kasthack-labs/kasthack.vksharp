@@ -264,6 +264,21 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> AudioEditAlbum(
+             long albumId , string title , int? groupId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "audio.editAlbum",
+                Parameters = new Dictionary<string, string> {
+                                            { "album_id", albumId.ToNCString() },
+					                        { "title", title },
+					                        { "group_id", MiscTools.NullableString(groupId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<EntityList<Audio>> AudioGet(
              int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, int offset = 0, int count = 100
 ){
@@ -274,6 +289,40 @@ namespace VKSharp {
 					                        { "album_id", MiscTools.NullableString(albumId) },
 					                        { "audio_ids", (audioIds??new ulong[]{}).ToNCStringA() },
 					                        { "need_user", (needUser?1:0).ToNCString() },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<Audio>> AudioGetPopular(
+             AudioGenre? genreId = null, bool? onlyEng = null, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Audio>>{
+                MethodName = "audio.getPopular",
+                Parameters = new Dictionary<string, string> {
+                                            { "genre_id", (genreId!=null?((int)(genreId)).ToString():String.Empty) },
+					                        { "only_eng", (onlyEng != null ? ( onlyEng.Value ? 1 : 0 ).ToNCString() : "") },
+					                        { "offset", offset.ToNCString() },
+					                        { "count", count.ToNCString() }
+					    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<Audio>> AudioGetRecommendations(
+             AudioGenre? genreId = null, bool? onlyEng = null, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Audio>>{
+                MethodName = "audio.getRecommendations",
+                Parameters = new Dictionary<string, string> {
+                                            { "genre_id", (genreId!=null?((int)(genreId)).ToString():String.Empty) },
+					                        { "only_eng", (onlyEng != null ? ( onlyEng.Value ? 1 : 0 ).ToNCString() : "") },
 					                        { "offset", offset.ToNCString() },
 					                        { "count", count.ToNCString() }
 					    }

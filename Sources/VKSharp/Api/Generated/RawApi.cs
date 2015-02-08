@@ -146,8 +146,20 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioEdit( ownerId,audioId,artist,title,text,genreId,noSearch ) );
             }
                     
+            public async Task<string> EditAlbum(  long albumId , string title , int? groupId = null ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioEditAlbum( albumId,title,groupId ) );
+            }
+                    
             public async Task<string> Get(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioGet( ownerId,albumId,audioIds,needUser,offset,count ) );
+            }
+                    
+            public async Task<string> GetPopular(  AudioGenre? genreId = null, bool? onlyEng = null, int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioGetPopular( genreId,onlyEng,offset,count ) );
+            }
+                    
+            public async Task<string> GetRecommendations(  AudioGenre? genreId = null, bool? onlyEng = null, int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioGetRecommendations( genreId,onlyEng,offset,count ) );
             }
                     
             public async Task<string> GetAlbums(  int? ownerId = null, int offset = 0, int count = 100 ){

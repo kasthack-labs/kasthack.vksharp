@@ -1,5 +1,5 @@
 ﻿
-Implemented 152 methods
+Implemented 155 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -21,12 +21,15 @@ Implemented 152 methods
 	* audio.delete
 	* audio.deleteAlbum
 	* audio.edit
+	* audio.editAlbum
 	* audio.get
 	* audio.getAlbums
 	* audio.getById
 	* audio.getById
 	* audio.getCount
 	* audio.getLyrics
+	* audio.getPopular
+	* audio.getRecommendations
 	* audio.getUploadServer
 	* audio.reorder
 	* audio.restore

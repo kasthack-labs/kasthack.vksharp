@@ -99,6 +99,8 @@ public static string Stringify(string name, string type){
 	//todo: typing
 	//common types
 	switch ( type ) {
+        case "Audio":
+	        return "";
 		case "string":
 	        return name;
 		case "bool":
