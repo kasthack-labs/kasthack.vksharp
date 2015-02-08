@@ -2002,7 +2002,7 @@ namespace VKSharp {
                 MethodName = "users.search",
                 Parameters = new Dictionary<string, string> {
                                             { "query", query },
-					                        { "sort", sort.ToString() },
+					                        { "sort", ((int)sort).ToString() },
 					                        { "offset", MiscTools.NullableString(offset) },
 					                        { "count", MiscTools.NullableString(count) },
 					                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },

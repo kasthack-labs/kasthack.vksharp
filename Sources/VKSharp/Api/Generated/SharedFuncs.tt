@@ -114,6 +114,7 @@ public static string Stringify(string name, string type){
 		case "GroupFields":
 			return "String.Join( \",\", MiscTools.GetGroupFields( "+name+" ) )";
 		case "AudioGenre":
+        case "SearchSortOrder":
 			return "((int)" + name + ").ToString()";
 		case "AudioGenre?":
 			return string.Format( "({0}!=null?((int)({0})).ToString():String.Empty)", name );
