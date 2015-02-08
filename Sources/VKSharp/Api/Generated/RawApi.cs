@@ -768,6 +768,10 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallPin( postId,ownerId ) );
             }
                     
+            public async Task<string> Post(  string attachments , string services , int? ownerId = null, bool? friendsOnly = false, bool fromGroup = false, string message = "", bool signed = false, int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null, int? postId = null ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallPost( attachments,services,ownerId,friendsOnly,fromGroup,message,signed,publishDate,lat,@long,placeId,postId ) );
+            }
+                    
             public async Task<string> ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallReportComment( commentId,ownerId,reason ) );
             }

@@ -1,5 +1,5 @@
 ﻿
-Implemented 151 methods
+Implemented 152 methods
 * Account
 	* account.banUser
 	* account.getAppPermissions
@@ -167,6 +167,7 @@ Implemented 151 methods
 	* wall.getById
 	* wall.getById
 	* wall.pin
+	* wall.post
 	* wall.reportComment
 	* wall.reportPost
 	* wall.repost

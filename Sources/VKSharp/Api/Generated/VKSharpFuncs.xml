@@ -1129,6 +1129,24 @@
             <Param Name="owner_id" Type="int?" Default="null" />
         </Params>
     </Method>
+    <Method Name="wall.post">
+        <Request Type="bool" NeedToken="true" Parse="false" />
+        <Params>
+            <!--todo: strong typing-->
+            <Param Name="attachments" Type="string"/>
+            <Param Name="services" Type="string" />
+            <Param Name="owner_id" Type="int?" Default="null" />
+            <Param Name="friends_only" Type="bool?" Default="false"/>
+            <Param Name="from_group" Type="bool" Default="false" />
+            <Param Name="message" Type="string" Default="&quot;&quot;" />
+            <Param Name="signed" Type="bool" Default="false" />
+            <Param Name="publish_date" Type="int?" Default="null" />
+            <Param Name="lat" Type="double?" Default="null" />
+            <Param Name="@long" Type="double?" Default="null" />
+            <Param Name="place_id" Type="int?" Default="null" />
+            <Param Name="post_id" Type="int?" Default="null" />
+        </Params>
+    </Method>
     <Method Name="wall.reportComment">
         <Request Type="bool" NeedToken="true" Parse="false" />
         <Params>

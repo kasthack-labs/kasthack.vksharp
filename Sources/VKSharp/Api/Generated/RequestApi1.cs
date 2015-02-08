@@ -2219,6 +2219,30 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> WallPost(
+             string attachments , string services , int? ownerId = null, bool? friendsOnly = false, bool fromGroup = false, string message = "", bool signed = false, int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null, int? postId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "wall.post",
+                Parameters = new Dictionary<string, string> {
+                                            { "attachments", attachments },
+					                        { "services", services },
+					                        { "owner_id", MiscTools.NullableString(ownerId) },
+					                        { "friends_only", (friendsOnly != null ? ( friendsOnly.Value ? 1 : 0 ).ToNCString() : "") },
+					                        { "from_group", (fromGroup?1:0).ToNCString() },
+					                        { "message", message },
+					                        { "signed", (signed?1:0).ToNCString() },
+					                        { "publish_date", MiscTools.NullableString(publishDate) },
+					                        { "lat", MiscTools.NullableString(lat) },
+					                        { "long", MiscTools.NullableString(@long) },
+					                        { "place_id", MiscTools.NullableString(placeId) },
+					                        { "post_id", MiscTools.NullableString(postId) }
+					    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> WallReportComment(
              int commentId , int? ownerId = null, ReportReason? reason = null
 ){
