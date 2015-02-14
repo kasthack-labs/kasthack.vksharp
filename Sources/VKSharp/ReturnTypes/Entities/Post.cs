@@ -5,6 +5,9 @@ using VKSharp.Core.Interfaces;
 namespace VKSharp.Core.Entities {
     public class Post : OwnedEntity<Post> {
         public int FromId { get; set; }
+        public bool? CanEdit { get; set; }
+        public bool? CanPin { get; set; }
+        public bool? CanDelete { get; set; }
         public bool IsPinned { get; set; }
         public uint Date { get; set; }
         public string Text { get; set; }

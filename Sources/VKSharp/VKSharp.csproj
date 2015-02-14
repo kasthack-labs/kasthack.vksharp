@@ -74,6 +74,7 @@
     <Compile Include="Core\Parameters\ImActivity.cs" />
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
+    <Compile Include="ReturnTypes\Entities\Message.cs" />
     <Compile Include="ReturnTypes\Entities\Onlines.cs" />
     <Compile Include="ReturnTypes\Entities\ResolveResult.cs" />
     <Compile Include="ReturnTypes\Entities\Status.cs" />
