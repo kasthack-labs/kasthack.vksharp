@@ -1302,6 +1302,16 @@ namespace VKSharp {
                 public partial class MethodGroup_users {
                     private readonly VKApi _parent;
                     internal MethodGroup_users(VKApi parent){_parent=parent;}
+                                                public async Task <User[]>Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.UsersGet(
+                                    fields,nameCase
+                                )
+                                )
+                                                                    ).Response
+                                ;
+                            }
                                                 public async Task <User[]>Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
@@ -1533,12 +1543,24 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task Post(  string attachments , string services , int? ownerId = null, bool? friendsOnly = false, bool fromGroup = false, string message = "", bool signed = false, int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null, int? postId = null ){
+                                                public async Task <WallPostResponse>Post(  string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null ){
+                                                                    return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPost(
-                                    attachments,services,ownerId,friendsOnly,fromGroup,message,signed,publishDate,lat,@long,placeId,postId
+                                    message,attachments,ownerId,fromGroup,signed,friendsOnly,services,publishDate,lat,@long,placeId
                                 )
                                 )
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <WallPostResponse>Post(  int postId , int? ownerId = null ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.WallPost(
+                                    postId,ownerId
+                                )
+                                )
+                                                                    ).Response
                                 ;
                             }
                                                 public async Task ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){

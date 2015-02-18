@@ -54,11 +54,12 @@ namespace VKSharp.Data.Executors {
         private static readonly HttpClient Client;
         private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
         private static async Task<HttpContent> InternalExecRawAsync<T>( VKRequest<T> request, string format ) {
-            var ps = request.Parameters.ToList();
-            ps.Add( new KeyValuePair<string, string>( "v", "5.21" ) );
-            ps.Add( new KeyValuePair<string, string>( "https", "1" ) );
+            var ps = request.Parameters;
+            ps.Add(  "v", "5.21"  );
+            ps.Add(  "https", "1"  );
             var path = string.Format( "/method/{0}.{1}", request.MethodName, format );
-            if ( request.Token != null ) ps.Add( new KeyValuePair<string, string>( "access_token", request.Token.Token ) );
+            if ( request.Token != null ) ps.Add( "access_token", request.Token.Token  );
+            foreach ( var source in ps.ToArray().Where( source => string.IsNullOrEmpty( source.Value ) ) ) ps.Remove( source.Key );
             return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) )).Content;
         }
 #endregion

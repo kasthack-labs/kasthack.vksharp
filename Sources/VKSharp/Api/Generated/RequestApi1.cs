@@ -1958,6 +1958,21 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<User[]> UsersGet(
+             UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom
+){
+            var req = new VKRequest<User[]>{
+                MethodName = "users.get",
+                Parameters = new Dictionary<string, string> {
+                                            { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+                                            { "name_case", nameCase.ToNClString() }
+                        }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<User[]> UsersGet(
              UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds 
 ){
             var req = new VKRequest<User[]>{
@@ -2345,24 +2360,37 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> WallPost(
-             string attachments , string services , int? ownerId = null, bool? friendsOnly = false, bool fromGroup = false, string message = "", bool signed = false, int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null, int? postId = null
+        public VKRequest<WallPostResponse> WallPost(
+             string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null
 ){
-            var req = new VKRequest<bool>{
+            var req = new VKRequest<WallPostResponse>{
                 MethodName = "wall.post",
                 Parameters = new Dictionary<string, string> {
-                                            { "attachments", attachments },
-                                            { "services", services },
-                                            { "owner_id", MiscTools.NullableString(ownerId) },
-                                            { "friends_only", (friendsOnly != null ? ( friendsOnly.Value ? 1 : 0 ).ToNCString() : "") },
-                                            { "from_group", (fromGroup?1:0).ToNCString() },
                                             { "message", message },
+                                            { "attachments", attachments },
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
+                                            { "from_group", (fromGroup?1:0).ToNCString() },
                                             { "signed", (signed?1:0).ToNCString() },
+                                            { "friends_only", (friendsOnly != null ? ( friendsOnly.Value ? 1 : 0 ).ToNCString() : "") },
+                                            { "services", services },
                                             { "publish_date", MiscTools.NullableString(publishDate) },
                                             { "lat", MiscTools.NullableString(lat) },
                                             { "long", MiscTools.NullableString(@long) },
-                                            { "place_id", MiscTools.NullableString(placeId) },
-                                            { "post_id", MiscTools.NullableString(postId) }
+                                            { "place_id", MiscTools.NullableString(placeId) }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<WallPostResponse> WallPost(
+             int postId , int? ownerId = null
+){
+            var req = new VKRequest<WallPostResponse>{
+                MethodName = "wall.post",
+                Parameters = new Dictionary<string, string> {
+                                            { "post_id", postId.ToNCString() },
+                                            { "owner_id", MiscTools.NullableString(ownerId) }
                         }
             };
                 req.Token = CurrentToken;

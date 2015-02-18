@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
+using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {

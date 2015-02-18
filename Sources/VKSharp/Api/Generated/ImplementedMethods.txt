@@ -1,5 +1,5 @@
 ﻿
-Implemented 160 methods
+Implemented 162 methods
 * Account
     * account.banUser
     * account.getAppPermissions
@@ -149,6 +149,7 @@ Implemented 160 methods
     * storage.set
 * Users
     * users.get
+    * users.get
     * users.getFollowers
     * users.getNearby
     * users.getSubscriptions
@@ -175,6 +176,7 @@ Implemented 160 methods
     * wall.getById
     * wall.getById
     * wall.pin
+    * wall.post
     * wall.post
     * wall.reportComment
     * wall.reportPost

@@ -986,6 +986,13 @@
             <Param Name="global" Type="bool" Default="false" />
         </Params>
     </Method>
+    <!--<Method Name="users.get">
+        <Request Type="User[]" NeedToken="false" Parse="true" />
+        <Params>
+            <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+            <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+        </Params>
+    </Method>-->
     <Method Name="users.get">
         <Request Type="User[]" NeedToken="false" Parse="true" />
         <Params>
@@ -1197,21 +1204,27 @@
         </Params>
     </Method>
     <Method Name="wall.post">
-        <Request Type="bool" NeedToken="true" Parse="false" />
+        <Request Type="WallPostResponse" NeedToken="true" Parse="true" />
         <Params>
             <!--todo: strong typing-->
-            <Param Name="attachments" Type="string"/>
-            <Param Name="services" Type="string" />
-            <Param Name="owner_id" Type="int?" Default="null" />
-            <Param Name="friends_only" Type="bool?" Default="false"/>
-            <Param Name="from_group" Type="bool" Default="false" />
             <Param Name="message" Type="string" Default="&quot;&quot;" />
+            <Param Name="attachments" Type="string" Default="&quot;&quot;"/>
+            <Param Name="owner_id" Type="int?" Default="null" />
+            <Param Name="from_group" Type="bool" Default="false" />
             <Param Name="signed" Type="bool" Default="false" />
+            <Param Name="friends_only" Type="bool?" Default="false"/>
+            <Param Name="services" Type="string" Default="&quot;&quot;" />
             <Param Name="publish_date" Type="int?" Default="null" />
             <Param Name="lat" Type="double?" Default="null" />
             <Param Name="@long" Type="double?" Default="null" />
             <Param Name="place_id" Type="int?" Default="null" />
-            <Param Name="post_id" Type="int?" Default="null" />
+        </Params>
+    </Method>
+    <Method Name="wall.post">
+        <Request Type="WallPostResponse" NeedToken="true" Parse="true" />
+        <Params>
+            <Param Name="post_id" Type="int" />
+            <Param Name="owner_id" Type="int?" Default="null" />
         </Params>
     </Method>
     <Method Name="wall.reportComment">
