@@ -865,12 +865,14 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task GetLastActivity(  int userId  ){
+                                                public async Task <LastActivity>GetLastActivity(  int userId  ){
+                                                                    return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesGetLastActivity(
                                     userId
                                 )
                                 )
+                                                                    ).Response
                                 ;
                             }
                                                 public async Task MarkAsImportant(  bool important ,params int[] messageIds  ){
@@ -1002,12 +1004,14 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task Copy(  long photoId , int? ownerId = null, string accessKey = "" ){
+                                                public async Task <long>Copy(  long photoId , int? ownerId = null, string accessKey = "" ){
+                                                                    return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosCopy(
                                     photoId,ownerId,accessKey
                                 )
                                 )
+                                                                    ).Response
                                 ;
                             }
                                                 public async Task <PhotoAlbum>CreateAlbum(  string title , string description = "", int? groupId = null, PrivacyType? privacy = null, PrivacyType? commentPrivacy = null ){
@@ -1302,16 +1306,6 @@ namespace VKSharp {
                 public partial class MethodGroup_users {
                     private readonly VKApi _parent;
                     internal MethodGroup_users(VKApi parent){_parent=parent;}
-                                                public async Task <User[]>Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom ){
-                                                                    return (
-                                                                await _parent.Executor.ExecAsync(
-                                _parent._reqapi.UsersGet(
-                                    fields,nameCase
-                                )
-                                )
-                                                                    ).Response
-                                ;
-                            }
                                                 public async Task <User[]>Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(

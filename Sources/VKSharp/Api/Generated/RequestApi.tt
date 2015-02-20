@@ -24,7 +24,8 @@ namespace VKSharp {
     <#
         var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
         foreach ( var node in ms ) {
-        var returnType =node.Request.Type;#>
+        var returnType =node.Request.Type;
+            if ( returnType == "void" ) returnType = "bool";#>
     public VKRequest<<#=returnType#>> <#=ToMeth(node.Name)#>(
             <#=GetParamsString(node)#>
 ){

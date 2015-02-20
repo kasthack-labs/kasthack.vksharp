@@ -686,10 +686,6 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_users(RawApi parent){_parent=parent;}
 
-            public async Task<string> Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.UsersGet( fields,nameCase ) );
-            }
-                    
             public async Task<string> Get(  UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UsersGet( fields,nameCase,userIds ) );
             }

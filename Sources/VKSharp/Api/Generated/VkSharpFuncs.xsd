@@ -10,7 +10,6 @@
                                 <xsd:complexType>
                                     <xsd:attribute name="Type" type="xsd:string" use="required" />
                                     <xsd:attribute name="NeedToken" type="xsd:boolean" use="required" />
-                                    <xsd:attribute name="Parse" type="xsd:boolean" use="required" />
                                 </xsd:complexType>
                             </xsd:element>
                             <xsd:element name="Params">

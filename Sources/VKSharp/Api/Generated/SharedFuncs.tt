@@ -27,8 +27,6 @@ public class Request {
     public string Type {get;set;}
     [XmlAttributeAttribute]
     public bool NeedToken {get;set;}
-    [XmlAttributeAttribute]
-    public bool Parse {get;set;}
 }
 [Serializable]
 public class Param {

@@ -14,10 +14,10 @@ using VKSharp.Helpers;
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
     public partial class RequestApi {
-        public VKRequest<long> AccountBanUser(
+        public VKRequest<bool> AccountBanUser(
              int userId 
 ){
-            var req = new VKRequest<long>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.banUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() }
@@ -79,10 +79,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<long> AccountSetInfo(
+        public VKRequest<bool> AccountSetInfo(
              int? intro = null
 ){
-            var req = new VKRequest<long>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.setInfo",
                 Parameters = new Dictionary<string, string> {
                                             { "intro", MiscTools.NullableString(intro) }
@@ -147,10 +147,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<long> AccountUnbanUser(
+        public VKRequest<bool> AccountUnbanUser(
              int userId 
 ){
-            var req = new VKRequest<long>{
+            var req = new VKRequest<bool>{
                 MethodName = "account.unbanUser",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() }
@@ -217,10 +217,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> AudioDelete(
+        public VKRequest<bool> AudioDelete(
              long audioId , int? ownerId = null
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "audio.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "audio_id", audioId.ToNCString() },
@@ -231,10 +231,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> AudioDeleteAlbum(
+        public VKRequest<bool> AudioDeleteAlbum(
              long albumId , int? groupId = null
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "audio.deleteAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -1342,10 +1342,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<LastActivity> MessagesSetActivity(
+        public VKRequest<bool> MessagesSetActivity(
              int userId , ImActivity type = ImActivity.Typing
 ){
-            var req = new VKRequest<LastActivity>{
+            var req = new VKRequest<bool>{
                 MethodName = "messages.setActivity",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -1466,10 +1466,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<bool> PhotosCopy(
+        public VKRequest<long> PhotosCopy(
              long photoId , int? ownerId = null, string accessKey = ""
 ){
-            var req = new VKRequest<bool>{
+            var req = new VKRequest<long>{
                 MethodName = "photos.copy",
                 Parameters = new Dictionary<string, string> {
                                             { "photo_id", photoId.ToNCString() },
@@ -1958,21 +1958,6 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<User[]> UsersGet(
-             UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom
-){
-            var req = new VKRequest<User[]>{
-                MethodName = "users.get",
-                Parameters = new Dictionary<string, string> {
-                                            { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
-                                            { "name_case", nameCase.ToNClString() }
-                        }
-            };
-            if (IsLogged){
-                req.Token = CurrentToken;
-            }
-            return req;
-        }
-        public VKRequest<User[]> UsersGet(
              UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,params int[] userIds 
 ){
             var req = new VKRequest<User[]>{
@@ -2058,10 +2043,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<int> UsersReport(
+        public VKRequest<bool> UsersReport(
              int userId , ComplaintType type , string comment 
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "users.report",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -2155,10 +2140,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<int> VideoDelete(
+        public VKRequest<bool> VideoDelete(
              ulong videoId , int? ownerId = null
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "video_id", videoId.ToNCString() },
@@ -2169,10 +2154,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> VideoDeleteAlbum(
+        public VKRequest<bool> VideoDeleteAlbum(
              long albumId , int? groupId = null
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.deleteAlbum",
                 Parameters = new Dictionary<string, string> {
                                             { "album_id", albumId.ToNCString() },
@@ -2197,10 +2182,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> VideoRemoveTag(
+        public VKRequest<bool> VideoRemoveTag(
              ulong videoId , int tagId , int? ownerId = null
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.removeTag",
                 Parameters = new Dictionary<string, string> {
                                             { "video_id", videoId.ToNCString() },
@@ -2212,10 +2197,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> VideoReport(
+        public VKRequest<bool> VideoReport(
              ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "", string searchQuery = ""
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "video.report",
                 Parameters = new Dictionary<string, string> {
                                             { "video_id", videoId.ToNCString() },
