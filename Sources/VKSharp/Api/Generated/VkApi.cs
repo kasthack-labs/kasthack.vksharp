@@ -1399,11 +1399,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <ResolveResult>ResolveScreenName(  string sreenName  ){
+                                                public async Task <ResolveResult>ResolveScreenName(  string screenName  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UtilsResolveScreenName(
-                                    sreenName
+                                    screenName
                                 )
                                 )
                                                                     ).Response

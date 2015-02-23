@@ -2127,12 +2127,12 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<ResolveResult> UtilsResolveScreenName(
-             string sreenName 
+             string screenName 
 ){
             var req = new VKRequest<ResolveResult>{
                 MethodName = "utils.resolveScreenName",
                 Parameters = new Dictionary<string, string> {
-                                            { "sreen_name", sreenName }
+                                            { "screen_name", screenName }
                         }
             };
             if (IsLogged){

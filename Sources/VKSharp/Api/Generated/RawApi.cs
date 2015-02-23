@@ -728,8 +728,8 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UtilsGetServerTime(  ) );
             }
                     
-            public async Task<string> ResolveScreenName(  string sreenName  ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.UtilsResolveScreenName( sreenName ) );
+            public async Task<string> ResolveScreenName(  string screenName  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.UtilsResolveScreenName( screenName ) );
             }
                                     }
         

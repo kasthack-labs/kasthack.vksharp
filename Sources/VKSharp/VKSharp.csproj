@@ -211,6 +211,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VkApi.cs</LastGenOutput>
     </None>
+    <None Include="Api\Generated\VkSharpFuncs.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="VKSharp.nuspec">
       <SubType>Designer</SubType>

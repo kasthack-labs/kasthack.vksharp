@@ -1094,7 +1094,7 @@
     <Method Name="utils.resolveScreenName">
         <Request Type="ResolveResult" NeedToken="false" />
         <Params>
-            <Param Name="sreen_name" Type="string" />
+            <Param Name="screen_name" Type="string" />
         </Params>
     </Method>
     <Method Name="video.delete">
