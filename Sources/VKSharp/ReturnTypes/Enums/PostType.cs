@@ -4,6 +4,7 @@
         Copy,
         Reply,
         Postpone,
-        Suggest
+        Suggest,
+        Photo
     }
 }
