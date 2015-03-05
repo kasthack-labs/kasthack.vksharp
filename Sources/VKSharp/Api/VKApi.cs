@@ -9,8 +9,9 @@ namespace VKSharp {
         protected uint ReqCounter => _reqapi.ReqCounter;
 
         public VKToken CurrentToken => _reqapi.CurrentToken;
+        public int TokenCount => _reqapi.TokenCount;
 
-        public void AddToken( VKToken token ) { _reqapi.AddToken( token ); }
+        public void AddToken( VKToken token ) => _reqapi.AddToken( token );
 
         public bool IsLogged {
             get { return _reqapi.IsLogged; }
