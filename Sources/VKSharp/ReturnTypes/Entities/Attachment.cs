@@ -1,5 +1,4 @@
-﻿using System;
-using VKSharp.Core.Enums;
+﻿using VKSharp.Core.Enums;
 
 namespace VKSharp.Core.Entities {
     public class Attachment  {

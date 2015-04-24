@@ -21,7 +21,7 @@ namespace VKSharp.Helpers
         public async Task<IEnumerable<Photo>> UploadPhotos( long albumId, int? userId, params string[] files ) {
             var ret = new List<Photo>(files.Length);
             int? gid = 0;
-            if ( userId != null && userId < 0 ) gid = (int?)-userId;
+            if ( userId != null && userId < 0 ) gid = -userId;
             foreach ( var fileg in files.Select( (path,index)=>new{path,index} ).GroupBy( a=>a.index/5 ) ) {
                 FileStream[] streams = null;
                 try {

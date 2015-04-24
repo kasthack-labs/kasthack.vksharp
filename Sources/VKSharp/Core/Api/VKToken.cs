@@ -61,13 +61,8 @@ namespace VKSharp.Data.Api {
                 );
             if ( query.ContainsKey(errorPn))
                 throw new AuthenticationException(
-                    String.Format(
-                    "Error: {0}\r\nType:{1}\r\nMessage:{2}",
-                    query[errorPn],
-                    query[errorRPn],
-                    query[errorDescPn].Replace('+',' ')
-                )
-            );
+                    $"Error: {query[errorPn]}\r\nType:{query[errorRPn]}\r\nMessage:{query[errorDescPn].Replace('+', ' ')}"
+                    );
             throw new FormatException("Can't parse VK response from URL");
         }
         public static VKToken FromLoginPass( string login, string pass ) {

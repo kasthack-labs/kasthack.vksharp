@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VKSharp.Core.Entities;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;

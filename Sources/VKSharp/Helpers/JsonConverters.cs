@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
-using Newtonsoft.Json.Utilities;
-using VKSharp.Core.EntityFragments;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Helpers {

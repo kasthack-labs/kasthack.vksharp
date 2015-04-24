@@ -1,6 +1,5 @@
 ﻿using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Helpers;
