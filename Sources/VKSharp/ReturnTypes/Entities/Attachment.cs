@@ -19,15 +19,15 @@ namespace VKSharp.Core.Entities {
         public override string ToString() {
             switch ( Type ) {
                 case AttachmentType.Photo:
-                    return string.Format( "photo{0}_{1}", Photo.OwnerId, Photo.Id );
+                    return $"photo{Photo.OwnerId}_{Photo.Id}";
                 case AttachmentType.PostedPhoto:
-                    return string.Format( "photo{0}_{1}", PostedPhoto.OwnerId, PostedPhoto.Id );
+                    return $"photo{PostedPhoto.OwnerId}_{PostedPhoto.Id}";
                 case AttachmentType.Video:
-                    return string.Format( "video{0}_{1}", Video.OwnerId, Video.Id );
+                    return $"video{Video.OwnerId}_{Video.Id}";
                 case AttachmentType.Audio:
-                    return string.Format( "audio{0}_{1}", Audio.OwnerId, Audio.Id );
+                    return $"audio{Audio.OwnerId}_{Audio.Id}";
                 case AttachmentType.Doc:
-                    return string.Format( "doc{0}_{1}", Audio.OwnerId, Audio.Id );
+                    return $"doc{Audio.OwnerId}_{Audio.Id}";
                 case AttachmentType.Link:
                     return Link.Url;
             }

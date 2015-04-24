@@ -29,7 +29,7 @@ namespace VKSharp.Core.Entities {
         public User[] Profiles { get; set; }
 
         public override string ToString () {
-            return string.Format( "Post #{0}@{1}by{2}", Id, OwnerId, FromId );
+            return $"Post #{Id}@{OwnerId}by{FromId}";
         }
     }
 }

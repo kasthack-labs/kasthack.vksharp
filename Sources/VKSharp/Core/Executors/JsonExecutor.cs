@@ -57,7 +57,7 @@ namespace VKSharp.Data.Executors {
             var ps = request.Parameters;
             ps.Add(  "v", "5.21"  );
             ps.Add(  "https", "1"  );
-            var path = string.Format( "/method/{0}.{1}", request.MethodName, format );
+            var path = $"/method/{request.MethodName}.{format}";
             if ( request.Token != null ) ps.Add( "access_token", request.Token.Token  );
             foreach ( var source in ps.ToArray().Where( source => string.IsNullOrEmpty( source.Value ) ) ) ps.Remove( source.Key );
             return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) )).Content;
