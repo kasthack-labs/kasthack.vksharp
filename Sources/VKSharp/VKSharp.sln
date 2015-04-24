@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22310.1
+VisualStudioVersion = 14.0.22609.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSharp", "VKSharp.csproj", "{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "..\TestApp\TestApp.csproj", "{D70BC0FC-BFEC-4942-95A1-889D60F1536F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft.Json", "..\..\Libs\JsonNet\Newtonsoft.Json.csproj", "{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Merger", "..\..\..\..\Teams\Startups\Data\DataSorting\Merger\Merger.csproj", "{9AD51390-7767-474F-B40E-32FB8D606AEE}"
 EndProject
@@ -27,10 +25,6 @@ Global
 		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EEEA67F9-9089-481D-A4DC-0966DEC9FD7D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AD51390-7767-474F-B40E-32FB8D606AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU

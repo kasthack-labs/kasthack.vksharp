@@ -25,6 +25,6 @@
 Добавление метода в код:
 
 * Редактируем VkSharpFuncs.xml
-* По очереди прогоняем  SortMethods.tt, RequestApi.tt, RawApi.tt, VkApi.tt, ImplementedMethods.tt
+* По очереди прогоняем  RequestApi.tt, RawApi.tt, VkApi.tt, ImplementedMethods.tt
 * ???
 * Profit

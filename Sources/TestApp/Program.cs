@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using kasthack.Tools;
 using VKSharp;
 using VKSharp.Data.Api;
+using VKSharp.Data.Parameters;
 
 namespace TestApp
 {
@@ -21,7 +22,7 @@ namespace TestApp
 
         private static async Task Main2() {
             var vk = new VKApi();
-#if !DEBUG
+#if DEBUG
             var str = VKToken.GetOAuthURL( 3174839, VKPermission.Offline | VKPermission.Photos );
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
@@ -37,6 +38,17 @@ namespace TestApp
             }
 #endif
             await Impl( vk );
+        }
+
+        private async static Task Impl(VKApi vk)
+        {
+            await TestFriends(vk);
+        }
+
+        private static async Task TestFriends(VKApi vk)
+        {
+            var entityList = await vk.Friends.Get(8878040,fields: UserFields.Everything);
+            Console.WriteLine(entityList);
         }
     }
 }

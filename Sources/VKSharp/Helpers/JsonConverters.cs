@@ -54,42 +54,34 @@ namespace VKSharp.Helpers {
     // "enum_value" -> Enum.EnumValue
     internal class SnakeCaseEnumConverter : StringEnumConverter {
         public override bool CanConvert( Type objectType ) {
-            var btype = objectType;
-            if ( objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>) )
-                btype = Nullable.GetUnderlyingType( objectType );
-            return btype.IsEnum;
+            if ( IsNullableType(objectType) )
+                objectType = Nullable.GetUnderlyingType( objectType );
+            return objectType.IsEnum;
         }
 
         public override bool CanWrite => true;
-        public override void WriteJson( JsonWriter writer, object value, JsonSerializer serializer ) {
-            base.WriteJson( writer, value, serializer );
-        }
 
+        private static bool IsNullableType(Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == typeof (Nullable<>);
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-            var isNullable = ReflectionUtils.IsNullableType( objectType );
+            var isNullable = IsNullableType( objectType );
             var t = isNullable ? Nullable.GetUnderlyingType( objectType ) : objectType;
             if ( reader.TokenType == JsonToken.Null ) {
-                if ( !ReflectionUtils.IsNullableType( objectType ) )
-                    throw JsonSerializationException.Create( reader, "Cannot convert null value to {0}.".FormatWith( CultureInfo.InvariantCulture, objectType ) );
+                if ( !IsNullableType( objectType ) )
+                    throw new JsonSerializationException($"Cannot convert null value to {objectType}.");
                 return null;
             }
             try {
                 switch ( reader.TokenType ) {
                     case JsonToken.String:
-                        var enumText = reader.Value.ToString()
-                                             .ToMeth();//the only changed line
-                        return EnumUtils.ParseEnumName( enumText, isNullable, t );
+                        return Enum.Parse(t, reader.Value.ToString().ToMeth(), true);
                     case JsonToken.Integer:
-                        if ( !AllowIntegerValues )
-                            throw JsonSerializationException.Create( reader, "Integer value {0} is not allowed.".FormatWith( CultureInfo.InvariantCulture, reader.Value ) );
-                        return ConvertUtils.ConvertOrCast( reader.Value, CultureInfo.InvariantCulture, t );
+                        return base.ReadJson(reader, objectType, existingValue, serializer);
                 }
             }
             catch ( Exception ex ) {
-                throw JsonSerializationException.Create( reader, "Error converting value {0} to type '{1}'.".FormatWith( CultureInfo.InvariantCulture, MiscellaneousUtils.FormatValueForPrint( reader.Value ), objectType ), ex );
+                throw new JsonSerializationException($"Error converting value {reader.Value} to type '{objectType}'.", ex );
             }
-            // we don't actually expect to get here.
-            throw JsonSerializationException.Create( reader, "Unexpected token {0} when parsing enum.".FormatWith( CultureInfo.InvariantCulture, reader.TokenType ) );
+            throw new JsonSerializationException( $"Unexpected token {reader.TokenType.ToNCString()} when parsing enum.");
         }
     }
 
