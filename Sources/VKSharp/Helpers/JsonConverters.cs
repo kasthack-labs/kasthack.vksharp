@@ -55,7 +55,11 @@ namespace VKSharp.Helpers {
                 objectType = Nullable.GetUnderlyingType( objectType );
             return objectType.IsEnum;
         }
-
+        //appveyor
+        public new bool AllowIntegerValues { get { return base.AllowIntegerValues; } set
+        {
+            base.AllowIntegerValues = value;
+        } }
         public override bool CanWrite => true;
 
         private static bool IsNullableType(Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == typeof (Nullable<>);

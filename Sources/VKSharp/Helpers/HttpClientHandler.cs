@@ -110,7 +110,11 @@ namespace VKSharp.Helpers {
 
 
 
-        public void Dispose() => _handler.Dispose();
+        public new void Dispose()
+        {
+            base.Dispose();
+            _handler.Dispose();
+        }
 
         #endregion
 
