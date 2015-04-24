@@ -1,4 +1,5 @@
-VKSharp [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=kasthack&url=https://github.com/kasthack/VKSharp&title=VKSharp&language=&tags=github&category=software)
+[![Build status](https://ci.appveyor.com/api/projects/status/ufrmo018fhqr7s8r?svg=true&passingText=I%20have%20time%20to%20do%20ya%20mom%20instead%20of%20fixing%20code)](https://ci.appveyor.com/project/kasthack/vksharp)
+
 =======
 
 
