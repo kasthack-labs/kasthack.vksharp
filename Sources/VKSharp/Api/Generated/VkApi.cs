@@ -1623,7 +1623,7 @@ namespace VKSharp {
                 public partial class MethodGroup_likes {
                     private readonly VKApi _parent;
                     internal MethodGroup_likes(VKApi parent){_parent=parent;}
-                                                public async Task <EntityList<Comment>>GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = true, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<int>>GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.LikesGetList(

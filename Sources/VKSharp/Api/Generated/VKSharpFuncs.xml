@@ -1210,13 +1210,13 @@
       </Params>
     </Method>
   <Method Name="likes.getList">
-    <Request Type="EntityList&lt;Comment&gt;" NeedToken="false" />
+    <Request Type="EntityList&lt;int&gt;" NeedToken="false" />
     <Params>
       <Param Name="type" Type="string"/>
       <Param Name="filter" Type="string"/>
       <Param Name="friends_only" Type="bool"/>
       <Param Name="skip_own" Type="bool" />
-      <Param Name="extended" Type="bool" Default="true" />
+      <Param Name="extended" Type="bool" Default="false" />
       <Param Name="owner_id" Type="int?" Default="null"/>
       <Param Name="item_id" Type="int?" Default="null"/>
       <Param Name="page_url" Type="string" Default="null"/>

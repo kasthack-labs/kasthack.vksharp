@@ -2352,10 +2352,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<EntityList<Comment>> LikesGetList(
-             string type , string filter , bool friendsOnly , bool skipOwn , bool extended = true, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100
+        public VKRequest<EntityList<int>> LikesGetList(
+             string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100
 ){
-            var req = new VKRequest<EntityList<Comment>>{
+            var req = new VKRequest<EntityList<int>>{
                 MethodName = "likes.getList",
                 Parameters = new Dictionary<string, string> {
                                             { "type", type },

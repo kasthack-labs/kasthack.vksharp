@@ -844,7 +844,7 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_likes(RawApi parent){_parent=parent;}
 
-            public async Task<string> GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = true, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
+            public async Task<string> GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.LikesGetList( type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset,count ) );
             }
                                     }
