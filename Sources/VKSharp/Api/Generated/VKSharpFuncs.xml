@@ -1196,7 +1196,36 @@
             <Param Name="posts" Type="Tuple&lt;int,int&gt;[]" />
         </Params>
     </Method>
-    <Method Name="wall.pin">
+  <Method Name="wall.getComments">
+    <Request Type="EntityList&lt;Comment&gt;" NeedToken="false" />
+      <Params>
+        <Param Name="post_id" Type="int"/>
+        <Param Name="sort" Type="string"/>
+        <Param Name="preview_length" Type="int"/>
+        <Param Name="extended" Type="int" />
+        <Param Name="owner_id" Type="int?" Default="null"/>
+        <Param Name="need_likes" Type="bool" Default="false" />
+        <Param Name="offset" Type="int" Default="0" />
+        <Param Name="count" Type="int" Default="100"/>
+      </Params>
+    </Method>
+  <Method Name="likes.getList">
+    <Request Type="EntityList&lt;Comment&gt;" NeedToken="false" />
+    <Params>
+      <Param Name="type" Type="string"/>
+      <Param Name="filter" Type="string"/>
+      <Param Name="friends_only" Type="bool"/>
+      <Param Name="skip_own" Type="bool" />
+      <Param Name="extended" Type="bool" Default="true" />
+      <Param Name="owner_id" Type="int?" Default="null"/>
+      <Param Name="item_id" Type="int?" Default="null"/>
+      <Param Name="page_url" Type="string" Default="null"/>
+      <Param Name="offset" Type="int" Default="0" />
+      <Param Name="count" Type="int" Default="100"/>
+    </Params>
+  </Method>
+
+  <Method Name="wall.pin">
         <Request Type="void" NeedToken="true"/>
         <Params>
             <Param Name="post_id" Type="int" />

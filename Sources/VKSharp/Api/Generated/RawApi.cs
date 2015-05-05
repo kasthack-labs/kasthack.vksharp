@@ -55,6 +55,8 @@ namespace VKSharp {
         Video = new MethodGroup_video(this);
     
         Wall = new MethodGroup_wall(this);
+    
+        Likes = new MethodGroup_likes(this);
         }
 
         public MethodGroup_account Account {get; private set;}
@@ -796,6 +798,10 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallGetById( copyHistoryDepth,posts ) );
             }
                     
+            public async Task<string> GetComments(  int postId , string sort , int previewLength , int extended , int? ownerId = null, bool needLikes = false, int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallGetComments( postId,sort,previewLength,extended,ownerId,needLikes,offset,count ) );
+            }
+                    
             public async Task<string> Pin(  int postId , int? ownerId = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallPin( postId,ownerId ) );
             }
@@ -830,6 +836,16 @@ namespace VKSharp {
                     
             public async Task<string> Unpin(  int postId , int? ownerId = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.WallUnpin( postId,ownerId ) );
+            }
+                                    }
+        
+        public MethodGroup_likes Likes {get; private set;}
+        public partial class MethodGroup_likes {
+            private readonly RawApi _parent;
+            internal MethodGroup_likes(RawApi parent){_parent=parent;}
+
+            public async Task<string> GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = true, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.LikesGetList( type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset,count ) );
             }
                                     }
             }

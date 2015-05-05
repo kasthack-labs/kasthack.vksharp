@@ -2331,6 +2331,50 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<EntityList<Comment>> WallGetComments(
+             int postId , string sort , int previewLength , int extended , int? ownerId = null, bool needLikes = false, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Comment>>{
+                MethodName = "wall.getComments",
+                Parameters = new Dictionary<string, string> {
+                                            { "post_id", postId.ToNCString() },
+                                            { "sort", sort },
+                                            { "preview_length", previewLength.ToNCString() },
+                                            { "extended", extended.ToNCString() },
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
+                                            { "need_likes", (needLikes?1:0).ToNCString() },
+                                            { "offset", offset.ToNCString() },
+                                            { "count", count.ToNCString() }
+                        }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<Comment>> LikesGetList(
+             string type , string filter , bool friendsOnly , bool skipOwn , bool extended = true, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Comment>>{
+                MethodName = "likes.getList",
+                Parameters = new Dictionary<string, string> {
+                                            { "type", type },
+                                            { "filter", filter },
+                                            { "friends_only", (friendsOnly?1:0).ToNCString() },
+                                            { "skip_own", (skipOwn?1:0).ToNCString() },
+                                            { "extended", (extended?1:0).ToNCString() },
+                                            { "owner_id", MiscTools.NullableString(ownerId) },
+                                            { "item_id", MiscTools.NullableString(itemId) },
+                                            { "page_url", pageUrl },
+                                            { "offset", offset.ToNCString() },
+                                            { "count", count.ToNCString() }
+                        }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
         public VKRequest<bool> WallPin(
              int postId , int? ownerId = null
 ){

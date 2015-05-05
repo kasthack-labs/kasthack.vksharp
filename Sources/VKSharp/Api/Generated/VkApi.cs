@@ -33,6 +33,7 @@ namespace VKSharp {
                             this.Utils = new MethodGroup_utils(this);
                             this.Video = new MethodGroup_video(this);
                             this.Wall = new MethodGroup_wall(this);
+                            this.Likes = new MethodGroup_likes(this);
                         }
                             public MethodGroup_account Account {get; private set;}
                 public partial class MethodGroup_account {
@@ -1529,6 +1530,16 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
+                                                public async Task <EntityList<Comment>>GetComments(  int postId , string sort , int previewLength , int extended , int? ownerId = null, bool needLikes = false, int offset = 0, int count = 100 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.WallGetComments(
+                                    postId,sort,previewLength,extended,ownerId,needLikes,offset,count
+                                )
+                                )
+                                                                    ).Response
+                                ;
+                            }
                                                 public async Task Pin(  int postId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPin(
@@ -1605,6 +1616,21 @@ namespace VKSharp {
                                     postId,ownerId
                                 )
                                 )
+                                ;
+                            }
+                                    }
+                        public MethodGroup_likes Likes {get; private set;}
+                public partial class MethodGroup_likes {
+                    private readonly VKApi _parent;
+                    internal MethodGroup_likes(VKApi parent){_parent=parent;}
+                                                public async Task <EntityList<Comment>>GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = true, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.LikesGetList(
+                                    type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset,count
+                                )
+                                )
+                                                                    ).Response
                                 ;
                             }
                                     }
