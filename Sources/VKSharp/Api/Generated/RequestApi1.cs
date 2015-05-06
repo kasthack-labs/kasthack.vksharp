@@ -364,7 +364,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<Audio[]> AudioGetById(
-             bool itunes = false,params Tuple<int, long>[] audios 
+             bool itunes = false,params Tuple<int, ulong>[] audios 
 ){
             var req = new VKRequest<Audio[]>{
                 MethodName = "audio.getById",
@@ -487,6 +487,20 @@ namespace VKSharp {
             if (IsLogged){
                 req.Token = CurrentToken;
             }
+            return req;
+        }
+        public VKRequest<bool> AudioSetBroadcast(
+             Tuple<int, ulong> audio ,params int[] targetIds 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "audio.setBroadcast",
+                Parameters = new Dictionary<string, string> {
+                                            { "audio", audio.ToString() },
+                                            { "target_ids", (targetIds??new int[]{}).ToNCStringA() }
+                        }
+            };
+                req.Token = CurrentToken;
+            
             return req;
         }
         public VKRequest<bool> AuthCheckPhone(
@@ -880,6 +894,48 @@ namespace VKSharp {
                                             { "file", file },
                                             { "title", title },
                                             { "tags", String.Join(",",tags) }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<EntityList<User>> FaveGetUsers(
+             int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<User>>{
+                MethodName = "fave.getUsers",
+                Parameters = new Dictionary<string, string> {
+                                            { "offset", offset.ToNCString() },
+                                            { "count", count.ToNCString() }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<EntityList<Photo>> FaveGetPhotos(
+             int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Photo>>{
+                MethodName = "fave.getPhotos",
+                Parameters = new Dictionary<string, string> {
+                                            { "offset", offset.ToNCString() },
+                                            { "count", count.ToNCString() }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<EntityList<Video>> FaveGetVideos(
+             int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Video>>{
+                MethodName = "fave.getVideos",
+                Parameters = new Dictionary<string, string> {
+                                            { "offset", offset.ToNCString() },
+                                            { "count", count.ToNCString() }
                         }
             };
                 req.Token = CurrentToken;
@@ -2140,6 +2196,20 @@ namespace VKSharp {
             }
             return req;
         }
+        public VKRequest<bool> VideoAdd(
+             ulong videoId , int ownerId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "video.add",
+                Parameters = new Dictionary<string, string> {
+                                            { "video_id", videoId.ToNCString() },
+                                            { "owner_id", ownerId.ToNCString() }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> VideoDelete(
              ulong videoId , int? ownerId = null
 ){
@@ -2175,6 +2245,37 @@ namespace VKSharp {
                 MethodName = "video.deleteComment",
                 Parameters = new Dictionary<string, string> {
                                             { "comment_id", commentId.ToNCString() },
+                                            { "owner_id", MiscTools.NullableString(ownerId) }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> VideoEditComment(
+             string message , int commentId , int? ownerId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "video.editComment",
+                Parameters = new Dictionary<string, string> {
+                                            { "message", message },
+                                            { "comment_id", commentId.ToNCString() },
+                                            { "owner_id", MiscTools.NullableString(ownerId) }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> VideoPutTag(
+             int userId , string taggedName , ulong videoId , int? ownerId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "video.putTag",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+                                            { "tagged_name", taggedName },
+                                            { "video_id", videoId.ToNCString() },
                                             { "owner_id", MiscTools.NullableString(ownerId) }
                         }
             };

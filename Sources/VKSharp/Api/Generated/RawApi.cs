@@ -26,6 +26,8 @@ namespace VKSharp {
     
         Docs = new MethodGroup_docs(this);
     
+        Fave = new MethodGroup_fave(this);
+    
         Friends = new MethodGroup_friends(this);
     
         Groups = new MethodGroup_groups(this);
@@ -172,7 +174,7 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioGetById( itunes,audios ) );
             }
                     
-            public async Task<string> GetById(  bool itunes = false,params Tuple<int, long>[] audios  ){
+            public async Task<string> GetById(  bool itunes = false,params Tuple<int, ulong>[] audios  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioGetById( itunes,audios ) );
             }
                     
@@ -202,6 +204,10 @@ namespace VKSharp {
                     
             public async Task<string> Search(  string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false, int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioSearch( q,autoComplete,lyrics,performerOnly,sort,searchOwn,offset,count ) );
+            }
+                    
+            public async Task<string> SetBroadcast(  Tuple<int, ulong> audio ,params int[] targetIds  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AudioSetBroadcast( audio,targetIds ) );
             }
                                     }
         
@@ -330,6 +336,24 @@ namespace VKSharp {
                     
             public async Task<string> Save(  string file , string title ,params string[] tags  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.DocsSave( file,title,tags ) );
+            }
+                                    }
+        
+        public MethodGroup_fave Fave {get; private set;}
+        public partial class MethodGroup_fave {
+            private readonly RawApi _parent;
+            internal MethodGroup_fave(RawApi parent){_parent=parent;}
+
+            public async Task<string> GetUsers(  int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FaveGetUsers( offset,count ) );
+            }
+                    
+            public async Task<string> GetPhotos(  int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FaveGetPhotos( offset,count ) );
+            }
+                    
+            public async Task<string> GetVideos(  int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.FaveGetVideos( offset,count ) );
             }
                                     }
         
@@ -740,6 +764,10 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_video(RawApi parent){_parent=parent;}
 
+            public async Task<string> Add(  ulong videoId , int ownerId  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoAdd( videoId,ownerId ) );
+            }
+                    
             public async Task<string> Delete(  ulong videoId , int? ownerId = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoDelete( videoId,ownerId ) );
             }
@@ -750,6 +778,14 @@ namespace VKSharp {
                     
             public async Task<string> DeleteComment(  int commentId , int? ownerId = null ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoDeleteComment( commentId,ownerId ) );
+            }
+                    
+            public async Task<string> EditComment(  string message , int commentId , int? ownerId  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoEditComment( message,commentId,ownerId ) );
+            }
+                    
+            public async Task<string> PutTag(  int userId , string taggedName , ulong videoId , int? ownerId = null ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.VideoPutTag( userId,taggedName,videoId,ownerId ) );
             }
                     
             public async Task<string> RemoveTag(  ulong videoId , int tagId , int? ownerId = null ){

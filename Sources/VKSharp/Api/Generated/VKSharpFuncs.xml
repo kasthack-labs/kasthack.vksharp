@@ -175,7 +175,7 @@
         <Request Type="Audio[]" NeedToken="false" />
         <Params>
             <Param Name="itunes" Type="bool" Default="false" />
-            <Param Name="audios" Type="Tuple&lt;int, long&gt;[]" />
+            <Param Name="audios" Type="Tuple&lt;int, ulong&gt;[]" />
         </Params>
     </Method>
     <Method Name="audio.getCount">
@@ -236,6 +236,13 @@
             <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
+  <Method Name="audio.setBroadcast">
+      <Request Type="void" NeedToken="true"/>
+      <Params>
+        <Param Name="audio" Type="Tuple&lt;int, ulong&gt;"/>
+        <Param Name="target_ids" Type="int[]"/>
+      </Params>
+  </Method>
     <Method Name="auth.checkPhone">
         <Request Type="bool" NeedToken="false" />
         <Params>
@@ -435,6 +442,27 @@
             <Param Name="file" Type="string" />
             <Param Name="title" Type="string" />
             <Param Name="tags" Type="string[]" />
+        </Params>
+    </Method>
+  <Method Name="fave.getUsers">
+        <Request Type="EntityList&lt;User&gt;" NeedToken="true" />
+        <Params>
+            <Param Name="offset" Type="int" Default="0" />
+            <Param Name="count" Type="int" Default="100" />
+        </Params>
+    </Method>
+  <Method Name="fave.getPhotos">
+        <Request Type="EntityList&lt;Photo&gt;" NeedToken="true" />
+        <Params>
+            <Param Name="offset" Type="int" Default="0" />
+            <Param Name="count" Type="int" Default="100" />
+        </Params>
+    </Method>
+   <Method Name="fave.getVideos">
+        <Request Type="EntityList&lt;Video&gt;" NeedToken="true" />
+        <Params>
+            <Param Name="offset" Type="int" Default="0" />
+            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="friends.add">
@@ -1097,6 +1125,13 @@
             <Param Name="screen_name" Type="string" />
         </Params>
     </Method>
+  <Method Name="video.add">
+        <Request Type="void" NeedToken="true"/>
+        <Params>
+            <Param Name="video_id" Type="ulong" />
+            <Param Name="owner_id" Type="int"/>
+        </Params>
+    </Method>
     <Method Name="video.delete">
         <Request Type="void" NeedToken="true"/>
         <Params>
@@ -1115,6 +1150,23 @@
         <Request Type="void" NeedToken="true"/>
         <Params>
             <Param Name="comment_id" Type="int" />
+            <Param Name="owner_id" Type="int?" Default="null" />
+        </Params>
+    </Method>
+    <Method Name="video.editComment">
+        <Request Type="void" NeedToken="true"/>
+        <Params>
+            <Param Name="message" Type="string" />
+            <Param Name="comment_id" Type="int" />
+            <Param Name="owner_id" Type="int?"/>
+        </Params>
+    </Method>
+  <Method Name="video.putTag">
+        <Request Type="void" NeedToken="true"/>
+        <Params>
+          <Param Name="user_id" Type="int" />
+            <Param Name="tagged_name" Type="string" />
+            <Param Name="video_id" Type="ulong" />
             <Param Name="owner_id" Type="int?" Default="null" />
         </Params>
     </Method>

@@ -18,6 +18,7 @@ namespace VKSharp {
                             this.Board = new MethodGroup_board(this);
                             this.Database = new MethodGroup_database(this);
                             this.Docs = new MethodGroup_docs(this);
+                            this.Fave = new MethodGroup_fave(this);
                             this.Friends = new MethodGroup_friends(this);
                             this.Groups = new MethodGroup_groups(this);
                             this.Messages = new MethodGroup_messages(this);
@@ -267,7 +268,7 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <Audio[]>GetById(  bool itunes = false,params Tuple<int, long>[] audios  ){
+                                                public async Task <Audio[]>GetById(  bool itunes = false,params Tuple<int, ulong>[] audios  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetById(
@@ -343,6 +344,14 @@ namespace VKSharp {
                                 )
                                 )
                                                                     ).Response
+                                ;
+                            }
+                                                public async Task SetBroadcast(  Tuple<int, ulong> audio ,params int[] targetIds  ){
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.AudioSetBroadcast(
+                                    audio,targetIds
+                                )
+                                )
                                 ;
                             }
                                     }
@@ -606,6 +615,41 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsSave(
                                     file,title,tags
+                                )
+                                )
+                                                                    ).Response
+                                ;
+                            }
+                                    }
+                        public MethodGroup_fave Fave {get; private set;}
+                public partial class MethodGroup_fave {
+                    private readonly VKApi _parent;
+                    internal MethodGroup_fave(VKApi parent){_parent=parent;}
+                                                public async Task <EntityList<User>>GetUsers(  int offset = 0, int count = 100 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.FaveGetUsers(
+                                    offset,count
+                                )
+                                )
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <EntityList<Photo>>GetPhotos(  int offset = 0, int count = 100 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.FaveGetPhotos(
+                                    offset,count
+                                )
+                                )
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <EntityList<Video>>GetVideos(  int offset = 0, int count = 100 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.FaveGetVideos(
+                                    offset,count
                                 )
                                 )
                                                                     ).Response
@@ -1415,6 +1459,14 @@ namespace VKSharp {
                 public partial class MethodGroup_video {
                     private readonly VKApi _parent;
                     internal MethodGroup_video(VKApi parent){_parent=parent;}
+                                                public async Task Add(  ulong videoId , int ownerId  ){
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.VideoAdd(
+                                    videoId,ownerId
+                                )
+                                )
+                                ;
+                            }
                                                 public async Task Delete(  ulong videoId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoDelete(
@@ -1435,6 +1487,22 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoDeleteComment(
                                     commentId,ownerId
+                                )
+                                )
+                                ;
+                            }
+                                                public async Task EditComment(  string message , int commentId , int? ownerId  ){
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.VideoEditComment(
+                                    message,commentId,ownerId
+                                )
+                                )
+                                ;
+                            }
+                                                public async Task PutTag(  int userId , string taggedName , ulong videoId , int? ownerId = null ){
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.VideoPutTag(
+                                    userId,taggedName,videoId,ownerId
                                 )
                                 )
                                 ;

@@ -55,7 +55,7 @@ namespace VKSharp.Data.Executors {
         private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
         private static async Task<HttpContent> InternalExecRawAsync<T>( VKRequest<T> request, string format ) {
             var ps = request.Parameters;
-            ps.Add(  "v", "5.21"  );
+            ps.Add(  "v", "5.29"  );
             ps.Add(  "https", "1"  );
             var path = $"/method/{request.MethodName}.{format}";
             if ( request.Token != null ) ps.Add( "access_token", request.Token.Token  );

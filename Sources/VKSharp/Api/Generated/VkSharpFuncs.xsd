@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="windows-1251"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
-    <xsd:element name="ArrayOfMethod">
-        <xsd:complexType>
+  <xsd:element name="ArrayOfMethod">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" name="Method">
+          <xsd:complexType>
             <xsd:sequence>
-                <xsd:element maxOccurs="unbounded" name="Method">
-                    <xsd:complexType>
-                        <xsd:sequence>
-                            <xsd:element name="Request">
-                                <xsd:complexType>
-                                    <xsd:attribute name="Type" type="xsd:string" use="required" />
-                                    <xsd:attribute name="NeedToken" type="xsd:boolean" use="required" />
-                                </xsd:complexType>
-                            </xsd:element>
-                            <xsd:element name="Params">
-                                <xsd:complexType>
-                                    <xsd:sequence minOccurs="0">
-                                        <xsd:element maxOccurs="unbounded" name="Param">
-                                            <xsd:complexType>
-                                                <xsd:attribute name="Name" type="xsd:string" use="required" />
-                                                <xsd:attribute name="Type" type="xsd:string" use="required" />
-                                                <xsd:attribute name="Default" type="xsd:string" use="optional" />
-                                                <xsd:attribute name="Custom" type="xsd:string" use="optional" />
-                                            </xsd:complexType>
-                                        </xsd:element>
-                                    </xsd:sequence>
-                                </xsd:complexType>
-                            </xsd:element>
-                        </xsd:sequence>
+              <xsd:element name="Request">
+                <xsd:complexType>
+                  <xsd:attribute name="Type" type="xsd:string" use="required" />
+                  <xsd:attribute name="NeedToken" type="xsd:boolean" use="required" />
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="Params">
+                <xsd:complexType>
+                  <xsd:sequence minOccurs="0">
+                    <xsd:element maxOccurs="unbounded" name="Param">
+                      <xsd:complexType>
                         <xsd:attribute name="Name" type="xsd:string" use="required" />
-                    </xsd:complexType>
-                </xsd:element>
+                        <xsd:attribute name="Type" type="xsd:string" use="required" />
+                        <xsd:attribute name="Default" type="xsd:string" use="optional" />
+                        <xsd:attribute name="Custom" type="xsd:string" use="optional" />
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
             </xsd:sequence>
-        </xsd:complexType>
-    </xsd:element>
+            <xsd:attribute name="Name" type="xsd:string" use="required" />
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
 </xs:schema>
