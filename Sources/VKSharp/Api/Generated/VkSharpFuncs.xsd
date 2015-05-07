@@ -6,12 +6,6 @@
         <xsd:element maxOccurs="unbounded" name="Method">
           <xsd:complexType>
             <xsd:sequence>
-              <xsd:element name="Request">
-                <xsd:complexType>
-                  <xsd:attribute name="Type" type="xsd:string" use="required" />
-                  <xsd:attribute name="NeedToken" type="xsd:boolean" use="required" />
-                </xsd:complexType>
-              </xsd:element>
               <xsd:element name="Params">
                 <xsd:complexType>
                   <xsd:sequence minOccurs="0">
@@ -28,6 +22,8 @@
               </xsd:element>
             </xsd:sequence>
             <xsd:attribute name="Name" type="xsd:string" use="required" />
+            <xsd:attribute name="Type" type="xsd:string" use="required" />
+            <xsd:attribute name="NeedToken" type="xsd:boolean" use="required" />
           </xsd:complexType>
         </xsd:element>
       </xsd:sequence>

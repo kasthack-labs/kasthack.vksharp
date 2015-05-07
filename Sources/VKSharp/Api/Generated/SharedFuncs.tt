@@ -18,11 +18,7 @@
 public class Method {
     [XmlAttributeAttribute]
     public string Name {get;set;}
-    public Request Request {get;set;}
     public Param[] Params {get;set;}
-}
-[Serializable]
-public class Request {
     [XmlAttributeAttribute]
     public string Type {get;set;}
     [XmlAttributeAttribute]

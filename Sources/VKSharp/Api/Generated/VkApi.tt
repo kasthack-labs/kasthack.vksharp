@@ -35,8 +35,8 @@ namespace VKSharp {
                     internal <#=cln#>(VKApi parent){_parent=parent;}
                     <#
                         foreach ( var node in methodGroup ) {
-                            var parse = node.Request.Type != "void";
-                            var returnType =parse?String.Format("<{0}>",node.Request.Type):"";
+                            var parse = node.Type != "void";
+                            var returnType =parse?String.Format("<{0}>",node.Type):"";
                     #>
                             public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
                                 <#if(parse){#>

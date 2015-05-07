@@ -24,7 +24,7 @@ namespace VKSharp {
     <#
         var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
         foreach ( var node in ms ) {
-        var returnType =node.Request.Type;
+        var returnType =node.Type;
             if ( returnType == "void" ) returnType = "bool";#>
     public VKRequest<<#=returnType#>> <#=ToMeth(node.Name)#>(
             <#=GetParamsString(node)#>
@@ -38,11 +38,11 @@ namespace VKSharp {
                     <#}#>
     }
             };
-    <#if (!node.Request.NeedToken){#>
+    <#if (!node.NeedToken){#>
         if (IsLogged){
     <#}#>
             req.Token = CurrentToken;
-            <#=!node.Request.NeedToken?"}":""#>
+            <#=!node.NeedToken?"}":""#>
             return req;
         }
     <#}#>
