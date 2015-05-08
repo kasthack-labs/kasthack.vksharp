@@ -16,58 +16,89 @@
 <#+
 [Serializable]
 public class Method {
-    [XmlAttributeAttribute]
+    [XmlAttribute]
     public string Name {get;set;}
     [XmlAttributeAttribute]
     public string Type {get;set;}
-    [XmlAttributeAttribute]
+    [XmlAttribute]
     public bool NeedToken {get;set;}
-	public int? Pageable {get;set;}
+    [XmlAttribute]
+    public int Pageable {get;set;}
     public Param[] Params {get;set;}
 }
 [Serializable]
 public class Param {
-    [XmlAttributeAttribute]
+    [XmlAttribute]
     public string Name {get;set;}
-    [XmlAttributeAttribute]
+    [XmlAttribute]
     public string Type {get;set;}
-    [XmlAttributeAttribute]
+    [XmlAttribute]
     public string Default {get;set;}
     [XmlIgnore]
     public bool DefaultSpecified { get { return Default != null; } }
-    [XmlAttributeAttribute]
+    [XmlAttribute]
     public string Custom {get;set;}
     [XmlIgnore]
     public bool CustomSpecified { get { return Custom != null; } }
 }
 
 private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Method[]));
-public static string GetParamsString(Method node){
-    return String.Join(
-        ",",
-        node.Params
-        .Reverse().Skip(1).Reverse()//shitty way to skip last
-        .Select(a=>
+public static string GetCallParamsString(Method node) {
+    var last = node.Params.LastOrDefault();
+    var isparams = last != null && last.Type.EndsWith( "[]" );
+    List<string> ret = new List<string>();
+    ret.AddRange( node.Params
+        .Reverse().Skip( 1 ).Reverse()
+        .Select( a => ToMeth( a.Name, true ) ) );
+    var laststr = last!=null? ToMeth( last.Name, true ): null;
+    var pagestring = node.Pageable != 0 ? "offset, count" : null;
+    if ( isparams ) {
+        if ( pagestring != null )
+            ret.Add( pagestring );
+        ret.Add( laststr );
+    }
+    else {
+        if ( laststr != null )
+            ret.Add( laststr );
+        if ( pagestring != null )
+            ret.Add( pagestring );
+    }
+    return String.Join( ",", ret );
+}
+public static string GetParamsString(Method node) {
+    var last = node.Params.LastOrDefault();
+    var isparams = last != null && last.Type.EndsWith( "[]" );
+    List<string> ret = new List<string>();
+    ret.AddRange( node.Params
+        .Reverse().Skip( 1 ).Reverse()
+        .Select( a =>
             String.Format(
                 " {0} {1} {2}",
                 a.Type,
-                ToMeth(a.Name, true),
-                !string.IsNullOrWhiteSpace(a.Default)?"= "+a.Default:""
-            )
-        ).Concat(
-            node.Params.Reverse().Take(1).Select(
-                a =>{
-                var isparams = a.Type.EndsWith( "[]" );
-                    return String.Format(
+                ToMeth( a.Name, true ),
+                !string.IsNullOrWhiteSpace( a.Default ) ? "= " + a.Default : ""
+                )
+        ) );
+    var laststr = last!=null?
+        String.Format(
                         "{0} {1} {2} {3}",
                         isparams? "params" : "",
-                        a.Type,
-                        ToMeth( a.Name, true ),
-                        !isparams && !string.IsNullOrWhiteSpace(a.Default) ? "= " + a.Default : "" );
-                }
-            )
-        )
-    );
+                        last.Type,
+                        ToMeth( last.Name, true ),
+                        !isparams && !string.IsNullOrWhiteSpace(last.Default) ? "= " + last.Default : "" ):null;
+    var pagestring = node.Pageable != 0 ? ( "int offset = 0, int count = " + node.Pageable ) : null;
+    if ( isparams ) {
+        if ( pagestring != null )
+            ret.Add( pagestring );
+        ret.Add( laststr );
+    }
+    else {
+        if ( laststr != null )
+            ret.Add( laststr );
+        if ( pagestring != null )
+            ret.Add( pagestring );
+    }
+    return String.Join( ",", ret );
 }
 public static Method[] GetMethods(string file){
     using (var f = File.OpenRead(file))

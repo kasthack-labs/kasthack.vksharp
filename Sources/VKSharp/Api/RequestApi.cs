@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using VKSharp.Data.Api;
 
 namespace VKSharp {
@@ -13,9 +14,9 @@ namespace VKSharp {
                 if ( _tokens.Count == 0 )
                     throw new InvalidOperationException("This method requires auth!");
                 return _tokens[ (int) ( ReqCounter % _tokens.Count ) ];
+
             }
         }
-
         public void AddToken( VKToken token ) {
             _tokens.Add( token );
             IsLogged = true;

@@ -10,11 +10,8 @@
             <Param Name="user_id" Type="int?" Default="null" />
         </Params>
     </Method>
-    <Method Name="account.getBanned" Type="User[]" NeedToken="true" >
-        <Params>
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="20" />
-        </Params>
+    <Method Name="account.getBanned" Type="User[]" NeedToken="true" Pageable="20">
+        <Params/>
     </Method>
     <Method Name="account.getInfo" Type="AccountInfo" NeedToken="true" >
         <Params />
@@ -117,37 +114,29 @@
             <Param Name="group_id" Type="int?" Default="null"/>
         </Params>
     </Method>
-    <Method Name="audio.get" Type="EntityList&lt;Audio&gt;" NeedToken="false" >
+    <Method Name="audio.get" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="owner_id" Type="int?" Default="null" />
             <Param Name="album_id" Type="long?" Default="null" />
             <Param Name="audio_ids" Type="ulong[]" Default="null" />
             <Param Name="need_user" Type="bool" Default="false" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="audio.getPopular" Type="EntityList&lt;Audio&gt;" NeedToken="false" >
+    <Method Name="audio.getPopular" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100" >
         <Params>
             <Param Name="genre_id" Type="AudioGenre?" Default="null"/>
             <Param Name="only_eng" Type="bool?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="audio.getRecommendations" Type="EntityList&lt;Audio&gt;" NeedToken="false" >
+    <Method Name="audio.getRecommendations" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="genre_id" Type="AudioGenre?" Default="null"/>
             <Param Name="only_eng" Type="bool?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="audio.getAlbums" Type="EntityList&lt;AudioAlbum&gt;" NeedToken="false" >
+    <Method Name="audio.getAlbums" Type="EntityList&lt;AudioAlbum&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="owner_id" Type="int?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="audio.getById" Type="Audio[]" NeedToken="false" >
@@ -201,7 +190,7 @@
             <Param Name="title" Type="string" Default="&quot;&quot;" />
         </Params>
     </Method>
-    <Method Name="audio.search" Type="EntityList&lt;Audio&gt;" NeedToken="false" >
+    <Method Name="audio.search" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="q" Type="string" />
             <Param Name="auto_complete" Type="bool" Default="true" />
@@ -209,8 +198,6 @@
             <Param Name="performer_only" Type="bool" Default="false" />
             <Param Name="sort" Type="AudioSortOrder" Default="AudioSortOrder.ByRating" />
             <Param Name="search_own" Type="bool" Default="false" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
   <Method Name="audio.setBroadcast" Type="void" NeedToken="true">
@@ -280,21 +267,17 @@
             <Param Name="topic_id" Type="int" />
         </Params>
     </Method>
-    <Method Name="database.getChairs" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" >
+    <Method Name="database.getChairs" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="faculty_id" Type="int" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="database.getCities" Type="DatabaseCity[]" NeedToken="false" >
+    <Method Name="database.getCities" Type="DatabaseCity[]" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="country_id" Type="int" />
             <Param Name="region_id" Type="int?" Default="null" />
             <Param Name="q" Type="string" Default="&quot;&quot;" />
             <Param Name="need_all" Type="bool" Default="false" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="database.getCitiesById" Type="DatabaseCity[]" NeedToken="false" >
@@ -302,12 +285,10 @@
             <Param Name="city_ids" Type="int[]" />
         </Params>
     </Method>
-    <Method Name="database.getCountries" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" >
+    <Method Name="database.getCountries" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="code" Type="string" Default="&quot;&quot;" />
             <Param Name="need_all" Type="bool" Default="false" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="database.getCountriesById" Type="DatabaseEntry[]" NeedToken="false" >
@@ -315,27 +296,21 @@
             <Param Name="country_ids" Type="int[]" />
         </Params>
     </Method>
-    <Method Name="database.getFaculties" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" >
+    <Method Name="database.getFaculties" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="university_id" Type="int" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="database.getRegions" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" >
+    <Method Name="database.getRegions" Type="EntityList&lt;DatabaseEntry&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="country_id" Type="int" />
             <Param Name="q" Type="string" Default="&quot;&quot;" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="database.getSchools" Type="DatabaseEntry[]" NeedToken="false" >
+    <Method Name="database.getSchools" Type="DatabaseEntry[]" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="city_id" Type="int?" Default="null" />
             <Param Name="q" Type="string" Default="&quot;&quot;" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="database.getStreetsById" Type="DatabaseEntry[]" NeedToken="false" >
@@ -343,13 +318,11 @@
             <Param Name="street_ids" Type="int[]" />
         </Params>
     </Method>
-    <Method Name="database.getUniversities" Type="DatabaseEntry[]" NeedToken="false" >
+    <Method Name="database.getUniversities" Type="DatabaseEntry[]" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="country_id" Type="int?" Default="null" />
             <Param Name="city_id" Type="int?" Default="null" />
             <Param Name="q" Type="string" Default="&quot;&quot;" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="docs.add" Type="int" NeedToken="true" >
@@ -365,11 +338,9 @@
             <Param Name="owner_id" Type="int?" Default="null" />
         </Params>
     </Method>
-    <Method Name="docs.get" Type="EntityList&lt;Document&gt;" NeedToken="false" >
+    <Method Name="docs.get" Type="EntityList&lt;Document&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="owner_id" Type="int?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="docs.getById" Type="Document[]" NeedToken="false" >
@@ -394,23 +365,14 @@
             <Param Name="tags" Type="string[]" />
         </Params>
     </Method>
-  <Method Name="fave.getUsers" Type="EntityList&lt;User&gt;" NeedToken="true" >
-        <Params>
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
-        </Params>
+  <Method Name="fave.getUsers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
+        <Params/>
     </Method>
-  <Method Name="fave.getPhotos" Type="EntityList&lt;Photo&gt;" NeedToken="true" >
-        <Params>
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
-        </Params>
+  <Method Name="fave.getPhotos" Type="EntityList&lt;Photo&gt;" NeedToken="true" Pageable="100">
+        <Params/>
     </Method>
-   <Method Name="fave.getVideos" Type="EntityList&lt;Video&gt;" NeedToken="true" >
-        <Params>
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
-        </Params>
+   <Method Name="fave.getVideos" Type="EntityList&lt;Video&gt;" NeedToken="true" Pageable="100">
+        <Params/>
     </Method>
     <Method Name="friends.add" Type="int" NeedToken="true" >
         <Params>
@@ -452,15 +414,13 @@
             <Param Name="delete_user_ids" Type="int[]" Default="null"/>
         </Params>
     </Method>
-    <Method Name="friends.get" Type="EntityList&lt;User&gt;" NeedToken="false" >
+    <Method Name="friends.get" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="user_id" Type="int?" Default="null" />
             <Param Name="list_id" Type="int?" Default="null" />
             <Param Name="fields" Type="UserFields" Default="UserFields.None" />
             <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
             <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="friends.getAppUsers" Type="int[]" NeedToken="false" >
@@ -472,22 +432,18 @@
             <Param Name="phones" Type="ulong[]" Default="null" Custom="String.Join( &quot;,&quot;, #name.Select( a =&gt; &quot;+&quot; + a ) )" />
         </Params>
     </Method>
-    <Method Name="friends.getMutual" Type="int[]" NeedToken="false" >
+    <Method Name="friends.getMutual" Type="int[]" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="target_uid" Type="int" />
             <Param Name="source_uid" Type="int?" Default="null" />
             <Param Name="order" Type="bool" Default="false" Custom="#name ? &quot;random&quot; : &quot;&quot;" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="friends.getOnline" Type="int[]" NeedToken="false" >
+    <Method Name="friends.getOnline" Type="int[]" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="user_id" Type="int?" Default="null" />
             <Param Name="list_id" Type="int?" Default="null" />
             <Param Name="order" Type="UserSortOrder?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="friends.getRecent" Type="int[]" NeedToken="true" >
@@ -495,20 +451,16 @@
             <Param Name="count" Type="int" Default="20" />
         </Params>
     </Method>
-    <Method Name="friends.getSuggestions" Type="EntityList&lt;User&gt;" NeedToken="true" >
+    <Method Name="friends.getSuggestions" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
         <Params>
             <Param Name="filters" Type="FriendSuggestionFilters" Default="FriendSuggestionFilters.Everything" />
             <Param Name="fields" Type="UserFields" Default="UserFields.None" />
             <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="groups.getBanned" Type="User[]" NeedToken="true" >
+    <Method Name="groups.getBanned" Type="User[]" NeedToken="true" Pageable="100">
         <Params>
             <Param Name="group_id" Type="int" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="groups.getById" Type="Group[]" NeedToken="false" >
@@ -523,21 +475,17 @@
             <Param Name="fields" Type="GroupFields" />
         </Params>
     </Method>
-    <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" >
+    <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
         <Params>
             <Param Name="group_id" Type="int" />
             <Param Name="fields" Type="UserFields" Default="UserFields.Everything" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" >
+    <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
         <Params>
             <Param Name="group_id" Type="string" />
             <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
             <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="groups.isMember" Type="MemberShip[]" NeedToken="false" >
@@ -575,11 +523,9 @@
             <Param Name="message_ids" Type="int[]" />
         </Params>
     </Method>
-    <Method Name="messages.deleteDialog" Type="void" NeedToken="true">
+    <Method Name="messages.deleteDialog" Type="void" NeedToken="true" Pageable="100">
         <Params>
             <Param Name="user_id" Type="int" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="messages.getLastActivity" Type="LastActivity" NeedToken="true" >
@@ -712,7 +658,7 @@
             <Param Name="comment_privacy" Type="PrivacyType?" Default="null" />
         </Params>
     </Method>
-    <Method Name="photos.get" Type="EntityList&lt;Photo&gt;" NeedToken="false" >
+    <Method Name="photos.get" Type="EntityList&lt;Photo&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="album_id" Type="long?" Default="null" />
             <Param Name="owner_id" Type="int?" Default="null" />
@@ -721,11 +667,9 @@
             <Param Name="extended" Type="bool" Default="false" />
             <Param Name="feed_type" Type="FeedType?" Default="null" />
             <Param Name="feed" Type="int?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="photos.get" Type="EntityList&lt;Photo&gt;" NeedToken="false" >
+    <Method Name="photos.get" Type="EntityList&lt;Photo&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="album_id" Type="SpecialAlbum" />
             <Param Name="owner_id" Type="int?" Default="null" />
@@ -734,17 +678,13 @@
             <Param Name="extended" Type="bool" Default="false" />
             <Param Name="feed_type" Type="FeedType?" Default="null" />
             <Param Name="feed" Type="int?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="photos.getAlbums" Type="EntityList&lt;PhotoAlbum&gt;" NeedToken="false" >
+    <Method Name="photos.getAlbums" Type="EntityList&lt;PhotoAlbum&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="owner_id" Type="int?" Default="null" />
             <Param Name="need_system" Type="bool" Default="true" />
             <Param Name="need_covers" Type="bool" Default="true" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
             <Param Name="album_ids" Type="long[]" />
         </Params>
     </Method>
@@ -754,13 +694,11 @@
             <Param Name="group_id" Type="int?" Default="null" />
         </Params>
     </Method>
-    <Method Name="photos.getAll" Type="EntityList&lt;Photo&gt;" NeedToken="false" >
+    <Method Name="photos.getAll" Type="EntityList&lt;Photo&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="owner_id" Type="int?" Default="null" />
             <Param Name="extended" Type="bool" Default="false" />
             <Param Name="no_service_albums" Type="bool" Default="false" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="photos.getById" Type="Photo[]" NeedToken="false" >
@@ -875,12 +813,10 @@
             <Param Name="keys" Type="string[]" />
         </Params>
     </Method>
-    <Method Name="storage.getKeys" Type="string[]" NeedToken="false" >
+    <Method Name="storage.getKeys" Type="string[]" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="user_id" Type="int?" Default="null" />
             <Param Name="global" Type="bool" Default="false" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="storage.set" Type="StorageEntry[]" NeedToken="false" >
@@ -904,16 +840,14 @@
             <Param Name="user_ids" Type="int[]" />
         </Params>
     </Method>
-    <Method Name="users.getFollowers" Type="EntityList&lt;User&gt;" NeedToken="false" >
+    <Method Name="users.getFollowers" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="user_id" Type="int?" Default="null" />
             <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
             <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="users.getNearby" Type="EntityList&lt;User&gt;" NeedToken="false" >
+    <Method Name="users.getNearby" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="latitude" Type="double" />
             <Param Name="longitude" Type="double" />
@@ -922,15 +856,11 @@
             <Param Name="radius" Type="byte?" Default="null" />
             <Param Name="fields" Type="UserFields" Default="UserFields.None" />
             <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
-    <Method Name="users.getSubscriptions" Type="UserSubscriptions" NeedToken="false" >
+    <Method Name="users.getSubscriptions" Type="UserSubscriptions" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="user_id" Type="int?" Default="null" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="users.isAppUser" Type="bool" NeedToken="false" >
@@ -945,12 +875,10 @@
             <Param Name="comment" Type="string" />
         </Params>
     </Method>
-    <Method Name="users.search" Type="EntityList&lt;User&gt;" NeedToken="true" >
+    <Method Name="users.search" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
         <Params>
             <Param Name="query" Type="string" Default="&quot;&quot;" />
             <Param Name="sort" Type="SearchSortOrder" Default="SearchSortOrder.ByRating" />
-            <Param Name="offset" Type="ushort?" Default="null" />
-            <Param Name="count" Type="ushort?" Default="null" />
             <Param Name="fields" Type="UserFields" Default="UserFields.None" />
             <Param Name="city_id" Type="int?" Default="null" />
             <Param Name="country_id" Type="int?" Default="null" />
@@ -1077,13 +1005,11 @@
             <Param Name="owner_id" Type="int?" Default="null" />
         </Params>
     </Method>
-    <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" >
+    <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" Pageable="100">
         <Params>
             <Param Name="owner_id" Type="int?" Default="null" />
             <Param Name="domain" Type="string" Default="&quot;&quot;" />
             <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" />
-            <Param Name="offset" Type="int" Default="0" />
-            <Param Name="count" Type="int" Default="100" />
         </Params>
     </Method>
     <Method Name="wall.getById" Type="Post[]" NeedToken="true" >
@@ -1098,7 +1024,7 @@
             <Param Name="posts" Type="Tuple&lt;int,int&gt;[]" />
         </Params>
     </Method>
-  <Method Name="wall.getComments" Type="EntityList&lt;Comment&gt;" NeedToken="false" >
+  <Method Name="wall.getComments" Type="EntityList&lt;Comment&gt;" NeedToken="false" Pageable="100">
       <Params>
         <Param Name="post_id" Type="int"/>
         <Param Name="sort" Type="string"/>
@@ -1106,11 +1032,9 @@
         <Param Name="extended" Type="int" />
         <Param Name="owner_id" Type="int?" Default="null"/>
         <Param Name="need_likes" Type="bool" Default="false" />
-        <Param Name="offset" Type="int" Default="0" />
-        <Param Name="count" Type="int" Default="100"/>
       </Params>
     </Method>
-  <Method Name="likes.getList" Type="EntityList&lt;int&gt;" NeedToken="false" >
+  <Method Name="likes.getList" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
       <Param Name="type" Type="string"/>
       <Param Name="filter" Type="string"/>
@@ -1120,8 +1044,6 @@
       <Param Name="owner_id" Type="int?" Default="null"/>
       <Param Name="item_id" Type="int?" Default="null"/>
       <Param Name="page_url" Type="string" Default="null"/>
-      <Param Name="offset" Type="int" Default="0" />
-      <Param Name="count" Type="int" Default="100"/>
     </Params>
   </Method>
 

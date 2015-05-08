@@ -32,11 +32,14 @@ namespace VKSharp {
             var req = new VKRequest<<#=returnType#>>{
                 MethodName = "<#=node.Name#>",
                 Parameters = new Dictionary<string, string> {
-                    <#for (var i =0; i<node.Params.Length; i++){
-                        var a = node.Params[i]; #>
-                        { "<#=a.Name.Replace("@","")#>", <#=a.Custom==null?Stringify(ToMeth(a.Name, true), a.Type) :a.Custom.Replace("#name",ToMeth(a.Name,true))#> }<#=i<node.Params.Length-1?",":""#>
+                    <# foreach(var a in node.Params){#>
+                        { "<#=a.Name.Replace("@","")#>", <#=a.Custom==null?Stringify(ToMeth(a.Name, true), a.Type) :a.Custom.Replace("#name",ToMeth(a.Name,true))#> },
                     <#}#>
-    }
+                    <#if ( node.Pageable != 0 ) { #>
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+                    <# }#>
+        }
             };
     <#if (!node.NeedToken){#>
         if (IsLogged){

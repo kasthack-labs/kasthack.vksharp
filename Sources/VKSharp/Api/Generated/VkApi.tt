@@ -44,7 +44,7 @@ namespace VKSharp {
                                 <#}#>
                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.<#=ToMeth(node.Name)#>(
-                                    <#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#>
+                                    <#=GetCallParamsString( node )#>
                                 )
                                 )
                                 <#if(parse){#>

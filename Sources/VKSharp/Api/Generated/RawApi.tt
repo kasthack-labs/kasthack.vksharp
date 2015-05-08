@@ -36,8 +36,12 @@ namespace VKSharp {
 <# foreach ( var node in methodGroup ) { #>
 
             public async Task<string> <#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.<#=ToMeth(node.Name)#>( <#=String.Join(",", node.Params.Select(a=>ToMeth(a.Name,true)))#> ) );
-            }
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .<#=ToMeth(node.Name)#>(
+                           <#=GetCallParamsString( node )#>)
+                        );
+                }
                     <# } #>
                 }
         <#

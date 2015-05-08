@@ -58,11 +58,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <User[]>GetBanned(  int offset = 0, int count = 20 ){
+                                                public async Task <User[]>GetBanned( int offset = 0, int count = 20 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountGetBanned(
-                                    offset,count
+                                    offset, count
                                 )
                                 )
                                                                     ).Response
@@ -226,41 +226,41 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task <EntityList<Audio>>Get(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Audio>>Get(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGet(
-                                    ownerId,albumId,audioIds,needUser,offset,count
+                                    ownerId,albumId,audioIds,needUser,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Audio>>GetPopular(  AudioGenre? genreId = null, bool? onlyEng = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Audio>>GetPopular(  AudioGenre? genreId = null, bool? onlyEng = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetPopular(
-                                    genreId,onlyEng,offset,count
+                                    genreId,onlyEng,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Audio>>GetRecommendations(  AudioGenre? genreId = null, bool? onlyEng = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Audio>>GetRecommendations(  AudioGenre? genreId = null, bool? onlyEng = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetRecommendations(
-                                    genreId,onlyEng,offset,count
+                                    genreId,onlyEng,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<AudioAlbum>>GetAlbums(  int? ownerId = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<AudioAlbum>>GetAlbums(  int? ownerId = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetAlbums(
-                                    ownerId,offset,count
+                                    ownerId,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -344,11 +344,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Audio>>Search(  string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Audio>>Search(  string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating, bool searchOwn = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioSearch(
-                                    q,autoComplete,lyrics,performerOnly,sort,searchOwn,offset,count
+                                    q,autoComplete,lyrics,performerOnly,sort,searchOwn,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -455,21 +455,21 @@ namespace VKSharp {
                 public partial class MethodGroup_database {
                     private readonly VKApi _parent;
                     internal MethodGroup_database(VKApi parent){_parent=parent;}
-                                                public async Task <EntityList<DatabaseEntry>>GetChairs(  int facultyId , int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<DatabaseEntry>>GetChairs(  int facultyId ,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetChairs(
-                                    facultyId,offset,count
+                                    facultyId,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <DatabaseCity[]>GetCities(  int countryId , int? regionId = null, string q = "", bool needAll = false, int offset = 0, int count = 100 ){
+                                                public async Task <DatabaseCity[]>GetCities(  int countryId , int? regionId = null, string q = "", bool needAll = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetCities(
-                                    countryId,regionId,q,needAll,offset,count
+                                    countryId,regionId,q,needAll,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -485,11 +485,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<DatabaseEntry>>GetCountries(  string code = "", bool needAll = false, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<DatabaseEntry>>GetCountries(  string code = "", bool needAll = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetCountries(
-                                    code,needAll,offset,count
+                                    code,needAll,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -505,31 +505,31 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<DatabaseEntry>>GetFaculties(  int universityId , int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<DatabaseEntry>>GetFaculties(  int universityId ,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetFaculties(
-                                    universityId,offset,count
+                                    universityId,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<DatabaseEntry>>GetRegions(  int countryId , string q = "", int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<DatabaseEntry>>GetRegions(  int countryId , string q = "",int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetRegions(
-                                    countryId,q,offset,count
+                                    countryId,q,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <DatabaseEntry[]>GetSchools(  int? cityId = null, string q = "", int offset = 0, int count = 100 ){
+                                                public async Task <DatabaseEntry[]>GetSchools(  int? cityId = null, string q = "",int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetSchools(
-                                    cityId,q,offset,count
+                                    cityId,q,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -545,11 +545,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <DatabaseEntry[]>GetUniversities(  int? countryId = null, int? cityId = null, string q = "", int offset = 0, int count = 100 ){
+                                                public async Task <DatabaseEntry[]>GetUniversities(  int? countryId = null, int? cityId = null, string q = "",int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetUniversities(
-                                    countryId,cityId,q,offset,count
+                                    countryId,cityId,q,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -578,11 +578,11 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task <EntityList<Document>>Get(  int? ownerId = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Document>>Get(  int? ownerId = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsGet(
-                                    ownerId,offset,count
+                                    ownerId,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -633,31 +633,31 @@ namespace VKSharp {
                 public partial class MethodGroup_fave {
                     private readonly VKApi _parent;
                     internal MethodGroup_fave(VKApi parent){_parent=parent;}
-                                                public async Task <EntityList<User>>GetUsers(  int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetUsers( int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FaveGetUsers(
-                                    offset,count
+                                    offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Photo>>GetPhotos(  int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Photo>>GetPhotos( int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FaveGetPhotos(
-                                    offset,count
+                                    offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Video>>GetVideos(  int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Video>>GetVideos( int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FaveGetVideos(
-                                    offset,count
+                                    offset, count
                                 )
                                 )
                                                                     ).Response
@@ -730,11 +730,11 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task <EntityList<User>>Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGet(
-                                    userId,listId,fields,order,nameCase,offset,count
+                                    userId,listId,fields,order,nameCase,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -760,21 +760,21 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <int[]>GetMutual(  int targetUid , int? sourceUid = null, bool order = false, int offset = 0, int count = 100 ){
+                                                public async Task <int[]>GetMutual(  int targetUid , int? sourceUid = null, bool order = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetMutual(
-                                    targetUid,sourceUid,order,offset,count
+                                    targetUid,sourceUid,order,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <int[]>GetOnline(  int? userId = null, int? listId = null, UserSortOrder? order = null, int offset = 0, int count = 100 ){
+                                                public async Task <int[]>GetOnline(  int? userId = null, int? listId = null, UserSortOrder? order = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetOnline(
-                                    userId,listId,order,offset,count
+                                    userId,listId,order,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -790,11 +790,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetSuggestions(  FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetSuggestions(  FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetSuggestions(
-                                    filters,fields,nameCase,offset,count
+                                    filters,fields,nameCase,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -805,11 +805,11 @@ namespace VKSharp {
                 public partial class MethodGroup_groups {
                     private readonly VKApi _parent;
                     internal MethodGroup_groups(VKApi parent){_parent=parent;}
-                                                public async Task <User[]>GetBanned(  int groupId , int offset = 0, int count = 100 ){
+                                                public async Task <User[]>GetBanned(  int groupId ,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetBanned(
-                                    groupId,offset,count
+                                    groupId,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -835,21 +835,21 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetMembers(  int groupId , UserFields fields = UserFields.Everything, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetMembers(  int groupId , UserFields fields = UserFields.Everything,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetMembers(
-                                    groupId,fields,offset,count
+                                    groupId,fields,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetMembers(  string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetMembers(  string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetMembers(
-                                    groupId,fields,filter,offset,count
+                                    groupId,fields,filter,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -910,10 +910,10 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task DeleteDialog(  int userId , int offset = 0, int count = 100 ){
+                                                public async Task DeleteDialog(  int userId ,int offset = 0, int count = 100 ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesDeleteDialog(
-                                    userId,offset,count
+                                    userId,offset, count
                                 )
                                 )
                                 ;
@@ -1117,31 +1117,31 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task <EntityList<Photo>>Get(  long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Photo>>Get(  long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGet(
-                                    albumId,ownerId,photoIds,rev,extended,feedType,feed,offset,count
+                                    albumId,ownerId,photoIds,rev,extended,feedType,feed,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Photo>>Get(  SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Photo>>Get(  SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGet(
-                                    albumId,ownerId,photoIds,rev,extended,feedType,feed,offset,count
+                                    albumId,ownerId,photoIds,rev,extended,feedType,feed,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<PhotoAlbum>>GetAlbums(  int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100,params long[] albumIds  ){
+                                                public async Task <EntityList<PhotoAlbum>>GetAlbums(  int? ownerId = null, bool needSystem = true, bool needCovers = true,int offset = 0, int count = 100,params long[] albumIds  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetAlbums(
-                                    ownerId,needSystem,needCovers,offset,count,albumIds
+                                    ownerId,needSystem,needCovers,offset, count,albumIds
                                 )
                                 )
                                                                     ).Response
@@ -1157,11 +1157,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Photo>>GetAll(  int? ownerId = null, bool extended = false, bool noServiceAlbums = false, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Photo>>GetAll(  int? ownerId = null, bool extended = false, bool noServiceAlbums = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetAll(
-                                    ownerId,extended,noServiceAlbums,offset,count
+                                    ownerId,extended,noServiceAlbums,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -1334,11 +1334,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <string[]>GetKeys(  int? userId = null, bool global = false, int offset = 0, int count = 100 ){
+                                                public async Task <string[]>GetKeys(  int? userId = null, bool global = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StorageGetKeys(
-                                    userId,global,offset,count
+                                    userId,global,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -1369,31 +1369,31 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetFollowers(  int? userId = null, UserFields fields = UserFields.Anything, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetFollowers(  int? userId = null, UserFields fields = UserFields.Anything, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetFollowers(
-                                    userId,fields,nameCase,offset,count
+                                    userId,fields,nameCase,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetNearby(  double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetNearby(  double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetNearby(
-                                    latitude,longitude,accuracy,timeout,radius,fields,nameCase,offset,count
+                                    latitude,longitude,accuracy,timeout,radius,fields,nameCase,offset, count
                                 )
                                 )
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <UserSubscriptions>GetSubscriptions(  int? userId = null, int offset = 0, int count = 100 ){
+                                                public async Task <UserSubscriptions>GetSubscriptions(  int? userId = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetSubscriptions(
-                                    userId,offset,count
+                                    userId,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -1417,11 +1417,11 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task <EntityList<User>>Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, ushort? offset = null, ushort? count = null, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null ){
+                                                public async Task <EntityList<User>>Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersSearch(
-                                    query,sort,offset,count,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId
+                                    query,sort,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -1576,11 +1576,11 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task <EntityList<Post>>Get(  int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Post>>Get(  int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallGet(
-                                    ownerId,domain,filter,offset,count
+                                    ownerId,domain,filter,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -1606,11 +1606,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<Comment>>GetComments(  int postId , string sort , int previewLength , int extended , int? ownerId = null, bool needLikes = false, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<Comment>>GetComments(  int postId , string sort , int previewLength , int extended , int? ownerId = null, bool needLikes = false,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallGetComments(
-                                    postId,sort,previewLength,extended,ownerId,needLikes,offset,count
+                                    postId,sort,previewLength,extended,ownerId,needLikes,offset, count
                                 )
                                 )
                                                                     ).Response
@@ -1699,11 +1699,11 @@ namespace VKSharp {
                 public partial class MethodGroup_likes {
                     private readonly VKApi _parent;
                     internal MethodGroup_likes(VKApi parent){_parent=parent;}
-                                                public async Task <EntityList<int>>GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null, string pageUrl = null, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<int>>GetList(  string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null, string pageUrl = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.LikesGetList(
-                                    type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset,count
+                                    type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset, count
                                 )
                                 )
                                                                     ).Response
