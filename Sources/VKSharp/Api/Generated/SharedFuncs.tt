@@ -25,6 +25,7 @@ public class Method {
     [XmlAttribute]
     public int Pageable {get;set;}
     public Param[] Params {get;set;}
+    public KeyValuePair<string, string>[] Hardcoded{get; set; }
 }
 [Serializable]
 public class Param {

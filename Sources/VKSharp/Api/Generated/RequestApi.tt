@@ -39,6 +39,13 @@ namespace VKSharp {
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
                     <# }#>
+                    <# if ( node.Hardcoded != null ) {
+    foreach ( var pair in node.Hardcoded ) {
+        #>
+            {"<#=pair.Key#>","<#=pair.Value#>"},
+        <#
+    }
+                    }#>
         }
             };
     <#if (!node.NeedToken){#>
