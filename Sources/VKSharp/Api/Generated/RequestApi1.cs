@@ -131,12 +131,12 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> AccountSetSilenceMode(
-             string token , int time , int? chatId = null, int? userId = null, int sound = 0
+             string deviceId , int time , int? chatId = null, int? userId = null, int sound = 0
 ){
             var req = new VKRequest<bool>{
                 MethodName = "account.setSilenceMode",
                 Parameters = new Dictionary<string, string> {
-                                            { "token", token },
+                                            { "device_id", deviceId },
                                             { "time", time.ToNCString() },
                                             { "chat_id", MiscTools.NullableString(chatId) },
                                             { "user_id", MiscTools.NullableString(userId) },
@@ -160,13 +160,30 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> AccountRegisterDevice(
+             string token , string deviceId , string settings , string deviceModel = "", string systemVersion = ""
+){
+            var req = new VKRequest<bool>{
+                MethodName = "account.registerDevice",
+                Parameters = new Dictionary<string, string> {
+                                            { "token", token },
+                                            { "device_id", deviceId },
+                                            { "settings", settings },
+                                            { "device_model", deviceModel },
+                                            { "system_version", systemVersion }
+                        }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> AccountUnregisterDevice(
-             string token 
+             string deviceId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "account.unregisterDevice",
                 Parameters = new Dictionary<string, string> {
-                                            { "token", token }
+                                            { "device_id", deviceId }
                         }
             };
                 req.Token = CurrentToken;
@@ -970,10 +987,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> FriendsDelete(
+        public VKRequest<FriendsDeleteResponse> FriendsDelete(
              int userId 
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<FriendsDeleteResponse>{
                 MethodName = "friends.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() }
@@ -1215,13 +1232,14 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> GroupsGetMembers(
-             string groupId , UserFields fields = UserFields.None, int offset = 0, int count = 100
+             string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "groups.getMembers",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId },
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+                                            { "filter", filter.ToString() },
                                             { "offset", offset.ToNCString() },
                                             { "count", count.ToNCString() }
                         }
@@ -2030,7 +2048,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> UsersGetFollowers(
-             int? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+             int? userId = null, UserFields fields = UserFields.Anything, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "users.getFollowers",

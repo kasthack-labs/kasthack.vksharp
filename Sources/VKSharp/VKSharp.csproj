@@ -79,7 +79,9 @@
     </Compile>
     <Compile Include="Api\RequestApi.cs" />
     <Compile Include="Api\RawApi.cs" />
+    <Compile Include="Core\Parameters\GroupMembersFilter.cs" />
     <Compile Include="Core\Parameters\ImActivity.cs" />
+    <Compile Include="Core\Parameters\MembersSortOrder.cs" />
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
     <Compile Include="ReturnTypes\Entities\Message.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="ReturnTypes\ResponseEntities\AccountInfo.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AuthRestore.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangeNameRequest.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\FriendsDeleteResponse.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\FriendshipStatus.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\LastActivity.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\PhotosUploadServer.cs" />

@@ -18,11 +18,12 @@
 public class Method {
     [XmlAttributeAttribute]
     public string Name {get;set;}
-    public Param[] Params {get;set;}
     [XmlAttributeAttribute]
     public string Type {get;set;}
     [XmlAttributeAttribute]
     public bool NeedToken {get;set;}
+	public int? Pageable {get;set;}
+    public Param[] Params {get;set;}
 }
 [Serializable]
 public class Param {

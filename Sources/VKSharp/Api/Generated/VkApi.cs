@@ -120,10 +120,10 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task SetSilenceMode(  string token , int time , int? chatId = null, int? userId = null, int sound = 0 ){
+                                                public async Task SetSilenceMode(  string deviceId , int time , int? chatId = null, int? userId = null, int sound = 0 ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountSetSilenceMode(
-                                    token,time,chatId,userId,sound
+                                    deviceId,time,chatId,userId,sound
                                 )
                                 )
                                 ;
@@ -136,10 +136,18 @@ namespace VKSharp {
                                 )
                                 ;
                             }
-                                                public async Task UnregisterDevice(  string token  ){
+                                                public async Task RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "" ){
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.AccountRegisterDevice(
+                                    token,deviceId,settings,deviceModel,systemVersion
+                                )
+                                )
+                                ;
+                            }
+                                                public async Task UnregisterDevice(  string deviceId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountUnregisterDevice(
-                                    token
+                                    deviceId
                                 )
                                 )
                                 ;
@@ -680,7 +688,7 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <int>Delete(  int userId  ){
+                                                public async Task <FriendsDeleteResponse>Delete(  int userId  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsDelete(
@@ -837,11 +845,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetMembers(  string groupId , UserFields fields = UserFields.None, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetMembers(  string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null, int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetMembers(
-                                    groupId,fields,offset,count
+                                    groupId,fields,filter,offset,count
                                 )
                                 )
                                                                     ).Response
@@ -1361,7 +1369,7 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<User>>GetFollowers(  int? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>GetFollowers(  int? userId = null, UserFields fields = UserFields.Anything, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetFollowers(

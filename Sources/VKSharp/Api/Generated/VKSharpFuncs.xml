@@ -42,7 +42,7 @@
     </Method>
     <Method Name="account.setSilenceMode" Type="void" NeedToken="true">
         <Params>
-            <Param Name="token" Type="string" />
+            <Param Name="device_id" Type="string" />
             <Param Name="time" Type="int" />
             <Param Name="chat_id" Type="int?" Default="null" />
             <Param Name="user_id" Type="int?" Default="null" />
@@ -54,9 +54,18 @@
             <Param Name="user_id" Type="int" />
         </Params>
     </Method>
+  <Method Name="account.registerDevice" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="token" Type="string"/>
+      <Param Name="device_id" Type="string" />
+      <Param Name="settings" Type="string" /> <!--todo: serialization-->
+      <Param Name="device_model" Type="string" Default="&quot;&quot;"/>
+      <Param Name="system_version" Type="string"  Default="&quot;&quot;"/>
+    </Params>
+  </Method>
     <Method Name="account.unregisterDevice" Type="void" NeedToken="true">
         <Params>
-            <Param Name="token" Type="string" />
+            <Param Name="device_id" Type="string" />
         </Params>
     </Method>
     <Method Name="ads.deleteClients" Type="int[]" NeedToken="false" >
@@ -415,7 +424,7 @@
             <Param Name="user_ids" Type="int[]" />
         </Params>
     </Method>
-    <Method Name="friends.delete" Type="int" NeedToken="true" >
+    <Method Name="friends.delete" Type="FriendsDeleteResponse" NeedToken="true" >
         <Params>
             <Param Name="user_id" Type="int" />
         </Params>
@@ -525,7 +534,8 @@
     <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" >
         <Params>
             <Param Name="group_id" Type="string" />
-            <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+            <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
+            <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
             <Param Name="offset" Type="int" Default="0" />
             <Param Name="count" Type="int" Default="100" />
         </Params>
@@ -897,7 +907,7 @@
     <Method Name="users.getFollowers" Type="EntityList&lt;User&gt;" NeedToken="false" >
         <Params>
             <Param Name="user_id" Type="int?" Default="null" />
-            <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+            <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
             <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
             <Param Name="offset" Type="int" Default="0" />
             <Param Name="count" Type="int" Default="100" />

@@ -102,16 +102,20 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountSetOnline( voip ) );
             }
                     
-            public async Task<string> SetSilenceMode(  string token , int time , int? chatId = null, int? userId = null, int sound = 0 ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountSetSilenceMode( token,time,chatId,userId,sound ) );
+            public async Task<string> SetSilenceMode(  string deviceId , int time , int? chatId = null, int? userId = null, int sound = 0 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountSetSilenceMode( deviceId,time,chatId,userId,sound ) );
             }
                     
             public async Task<string> UnbanUser(  int userId  ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountUnbanUser( userId ) );
             }
                     
-            public async Task<string> UnregisterDevice(  string token  ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountUnregisterDevice( token ) );
+            public async Task<string> RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "" ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountRegisterDevice( token,deviceId,settings,deviceModel,systemVersion ) );
+            }
+                    
+            public async Task<string> UnregisterDevice(  string deviceId  ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.AccountUnregisterDevice( deviceId ) );
             }
                                     }
         
@@ -440,8 +444,8 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.GroupsGetMembers( groupId,fields,offset,count ) );
             }
                     
-            public async Task<string> GetMembers(  string groupId , UserFields fields = UserFields.None, int offset = 0, int count = 100 ){
-                return await _parent.Executor.ExecRawAsync( _parent._reqapi.GroupsGetMembers( groupId,fields,offset,count ) );
+            public async Task<string> GetMembers(  string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null, int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync( _parent._reqapi.GroupsGetMembers( groupId,fields,filter,offset,count ) );
             }
                     
             public async Task<string> IsMember(  int groupId , bool extended = false,params int[] userIds  ){
@@ -716,7 +720,7 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UsersGet( fields,nameCase,userIds ) );
             }
                     
-            public async Task<string> GetFollowers(  int? userId = null, UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
+            public async Task<string> GetFollowers(  int? userId = null, UserFields fields = UserFields.Anything, NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync( _parent._reqapi.UsersGetFollowers( userId,fields,nameCase,offset,count ) );
             }
                     
