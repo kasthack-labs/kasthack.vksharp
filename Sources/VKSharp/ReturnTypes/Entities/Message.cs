@@ -4,8 +4,10 @@ using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Message : OwnedEntity<Message> {
-        public DateTime? Date { get; set; }
+    public class Message {
+        public int UserId { get; set; }
+        public int Id { get; set; }
+        public int? Date { get; set; }
         public MessageReadState? ReadState { get; set; }
         public MessageType? Type { get; set; }
         public string Title { get; set; }
