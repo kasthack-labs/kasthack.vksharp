@@ -23,5 +23,6 @@ namespace VKSharp.Core.Entities {
         public int? UsersCount { get; set; }
         public long? AdminId { get; set; }
         public ProfilePhotos PhotoPreviews { get; set; }
+        public override string ToString() => $"User:{UserId}/Message:{Id} wrote: {Body}";
     }
 }
