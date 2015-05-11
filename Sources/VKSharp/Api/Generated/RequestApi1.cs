@@ -1347,6 +1347,25 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<EntityList<Message>> MessagesGet(
+             int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0, long? lastMessageId = null,int offset = 0, int count = 200
+){
+            var req = new VKRequest<EntityList<Message>>{
+                MethodName = "messages.get",
+                Parameters = new Dictionary<string, string> {
+                                            { "out", @out.ToNCString() },
+                                            { "time_offset", timeOffset.ToNCString() },
+                                            { "filters", filters.ToNCString() },
+                                            { "preview_length", previewLength.ToNCString() },
+                                            { "last_message_id", MiscTools.NullableString(lastMessageId) },
+                                                                { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+                                                }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<LastActivity> MessagesGetLastActivity(
              int userId 
 ){
@@ -1383,6 +1402,29 @@ namespace VKSharp {
                                             { "user_id", userId.ToNCString() },
                                             { "start_message_id", MiscTools.NullableString(startMessageId) },
                                             { "message_ids", (messageIds??new int[]{}).ToNCStringA() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<int> MessagesSend(
+             int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null, int? stickerId = null
+){
+            var req = new VKRequest<int>{
+                MethodName = "messages.send",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", MiscTools.NullableString(userId) },
+                                            { "user_ids", (userIds??new int[]{}).ToNCStringA() },
+                                            { "domain", domain },
+                                            { "chat_id", MiscTools.NullableString(chatId) },
+                                            { "message", message },
+                                            { "guid", MiscTools.NullableString(guid) },
+                                            { "lat", MiscTools.NullableString(lat) },
+                                            { "long", MiscTools.NullableString(@long) },
+                                            { "attachment", attachment },
+                                            { "forward_messages", forwardMessages },
+                                            { "sticker_id", MiscTools.NullableString(stickerId) },
                                                                     }
             };
                 req.Token = CurrentToken;

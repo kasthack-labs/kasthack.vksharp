@@ -15,6 +15,7 @@ namespace VKSharp.Core.Entities {
         public bool ContainsEmojiSmiles { get; set; }
         public bool IsImportant { get; set; }
         public bool? IsDeleted { get; set; }
+        public int Unread { get; set; }
         public long? ChatId { get; set; }
         public int[] ChatActiveIds { get; set; }
         public int? UsersCount { get; set; }

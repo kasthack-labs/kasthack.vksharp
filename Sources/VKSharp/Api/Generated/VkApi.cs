@@ -918,6 +918,16 @@ namespace VKSharp {
                                 )
                                 ;
                             }
+                                                public async Task <EntityList<Message>>Get(  int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0, long? lastMessageId = null,int offset = 0, int count = 200 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.MessagesGet(
+                                    @out,timeOffset,filters,previewLength,lastMessageId,offset, count
+                                )
+                                )
+                                                                    ).Response
+                                ;
+                            }
                                                 public async Task <LastActivity>GetLastActivity(  int userId  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
@@ -942,6 +952,16 @@ namespace VKSharp {
                                     userId,startMessageId,messageIds
                                 )
                                 )
+                                ;
+                            }
+                                                public async Task <int>Send(  int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null, int? stickerId = null ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.MessagesSend(
+                                    userId,userIds,domain,chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                                )
+                                )
+                                                                    ).Response
                                 ;
                             }
                                                 public async Task RemoveChatUser(  int userId , int chatId  ){

@@ -1,5 +1,5 @@
 ﻿
-Implemented 171 methods
+Implemented 173 methods
 * Account
     * account.banUser
     * account.getAppPermissions
@@ -100,11 +100,13 @@ Implemented 171 methods
     * messages.addChatUser
     * messages.delete
     * messages.deleteDialog
+    * messages.get
     * messages.getLastActivity
     * messages.markAsImportant
     * messages.markAsRead
     * messages.removeChatUser
     * messages.restore
+    * messages.send
     * messages.setActivity
 * Newsfeed
     * newsfeed.addBan
