@@ -21,12 +21,15 @@ namespace TestApp
         }
 
         private static async Task Main2() {
-            var vk = new VKApi();
+           
+                var vk = new VKApi();
 #if DEBUG
             var str = VKToken.GetOAuthURL( 3174839, VKPermission.Offline | VKPermission.Photos );
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
-            vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
+            try
+            {
+                vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
 #else
             try{
                 
@@ -37,7 +40,13 @@ namespace TestApp
                 ex.Message.Dump();
             }
 #endif
-            await Impl( vk );
+           
+                await Impl( vk );
+            }
+            catch (Exception ex)
+            {
+                ex.Message.Dump();
+            }
         }
 
         private async static Task Impl(VKApi vk)
