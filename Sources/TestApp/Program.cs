@@ -23,14 +23,14 @@ namespace TestApp
         private static async Task Main2() {
            
                 var vk = new VKApi();
-#if DEBUG
+//#if DEBUG
             var str = VKToken.GetOAuthURL( 3174839, VKPermission.Offline | VKPermission.Photos );
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
             try
             {
                 vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
-#else
+//#else
             try{
                 
                 foreach (var v in File.ReadAllLines("debug.token"))
@@ -39,7 +39,7 @@ namespace TestApp
             catch(Exception ex){
                 ex.Message.Dump();
             }
-#endif
+//#endif
            
                 await Impl( vk );
             }
