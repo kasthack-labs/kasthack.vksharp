@@ -33,5 +33,10 @@ namespace vk.groups.sample.UI
                     break;
             }
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

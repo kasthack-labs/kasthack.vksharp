@@ -36,11 +36,11 @@
             this.gbProfile = new System.Windows.Forms.GroupBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.gBGroups = new System.Windows.Forms.GroupBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.lvGroups = new System.Windows.Forms.ListView();
             this.ilImages = new System.Windows.Forms.ImageList(this.components);
             this.gBsettings = new System.Windows.Forms.GroupBox();
             this.cbxGroupsView = new System.Windows.Forms.ComboBox();
-            this.txtSearch = new System.Windows.Forms.TextBox();
             this.gbProfile.SuspendLayout();
             this.gBGroups.SuspendLayout();
             this.gBsettings.SuspendLayout();
@@ -64,9 +64,9 @@
             this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblUser.Location = new System.Drawing.Point(6, 20);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(87, 16);
+            this.lblUser.Size = new System.Drawing.Size(98, 16);
             this.lblUser.TabIndex = 1;
-            this.lblUser.Text = "Ivan Ivanoff";
+            this.lblUser.Text = "Dmitri Ivanoff";
             // 
             // gBGroups
             // 
@@ -81,6 +81,16 @@
             this.gBGroups.TabIndex = 0;
             this.gBGroups.TabStop = false;
             this.gBGroups.Text = "Groups you are managed";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSearch.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSearch.Location = new System.Drawing.Point(9, 19);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(485, 20);
+            this.txtSearch.TabIndex = 1;
             // 
             // lvGroups
             // 
@@ -133,16 +143,6 @@
             this.cbxGroupsView.Size = new System.Drawing.Size(204, 21);
             this.cbxGroupsView.TabIndex = 0;
             this.cbxGroupsView.SelectedIndexChanged += new System.EventHandler(this.cbxGroupsView_SelectedIndexChanged);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.BackColor = System.Drawing.SystemColors.Control;
-            this.txtSearch.Location = new System.Drawing.Point(9, 19);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(485, 20);
-            this.txtSearch.TabIndex = 1;
             // 
             // FrmProfile
             // 

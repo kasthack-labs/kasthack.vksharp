@@ -51,6 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\FrmBanedit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmBanedit.Designer.cs">
+      <DependentUpon>FrmBanedit.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UI\FrmBanedit.resx">
+      <DependentUpon>FrmBanedit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmGroup.resx">
       <DependentUpon>FrmGroup.cs</DependentUpon>
     </EmbeddedResource>
