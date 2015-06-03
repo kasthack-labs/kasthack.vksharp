@@ -35,6 +35,9 @@
     <LangVersion>6</LangVersion>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ConTools">
       <HintPath>..\..\Libs\ConTools.dll</HintPath>
@@ -59,6 +62,9 @@
       <Project>{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}</Project>
       <Name>VKSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

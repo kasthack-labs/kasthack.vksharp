@@ -1,10 +1,19 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22609.0
+VisualStudioVersion = 14.0.22823.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSharp", "VKSharp.csproj", "{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "..\TestApp\TestApp.csproj", "{D70BC0FC-BFEC-4942-95A1-889D60F1536F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vk.groups.sample", "..\Samples\vk.groups.sample\vk.groups.sample.csproj", "{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{FB5C64BC-1C1E-4255-839C-6F43BB106B15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{87E352ED-238A-4767-8B69-8CC4F64E9E8B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "New", "New", "{5C95B5AE-256F-4632-9F3A-F35C042BDEEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,9 +29,19 @@ Global
 		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D70BC0FC-BFEC-4942-95A1-889D60F1536F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D70BC0FC-BFEC-4942-95A1-889D60F1536F} = {87E352ED-238A-4767-8B69-8CC4F64E9E8B}
+		{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC} = {5C95B5AE-256F-4632-9F3A-F35C042BDEEA}
+		{87E352ED-238A-4767-8B69-8CC4F64E9E8B} = {FB5C64BC-1C1E-4255-839C-6F43BB106B15}
+		{5C95B5AE-256F-4632-9F3A-F35C042BDEEA} = {FB5C64BC-1C1E-4255-839C-6F43BB106B15}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ..\TestApp\TestApp.csproj
