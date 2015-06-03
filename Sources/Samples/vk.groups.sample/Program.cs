@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System; 
 using System.Windows.Forms;
+using vk.groups.sample.UI;
 
 namespace vk.groups.sample
 {
@@ -16,7 +14,7 @@ namespace vk.groups.sample
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmLogin());
+            Application.Run(new FrmGroup());
         }
     }
 }

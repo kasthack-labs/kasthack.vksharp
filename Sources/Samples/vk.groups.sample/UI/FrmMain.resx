@@ -117,6 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblInfo.Text" xml:space="preserve">
+    <value>Данное приложение не подходит для продакшн-решений, оно лишь демонстрирует работу VK#, как обертки для официальных Vk.Api. 
+
+Для продакшен-решений напишите свое приложение, используя VK#.
+
+Данный пример показывает как использовать методы относящиеся к группам: просмотр, управление (если вы являетесь руководителем), с ипользованием VK#.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
