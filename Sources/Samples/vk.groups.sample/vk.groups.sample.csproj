@@ -63,6 +63,12 @@
     <Compile Include="UI\FrmGroup.Designer.cs">
       <DependentUpon>FrmGroup.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\FrmLinkEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FrmLinkEdit.Designer.cs">
+      <DependentUpon>FrmLinkEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmGroup.resx">
       <DependentUpon>FrmGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FrmLinkEdit.resx">
+      <DependentUpon>FrmLinkEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
