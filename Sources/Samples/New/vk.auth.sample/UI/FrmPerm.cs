@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace vk.auth.sample.UI
@@ -15,6 +8,26 @@ namespace vk.auth.sample.UI
         public FrmPerm()
         {
             InitializeComponent();
+        }
+
+        private void rbPerm_CheckedChanged(object sender, EventArgs e)
+        { 
+            CheckRb();
+        }
+
+        private void CheckRb()
+        {
+            clPerm.Enabled = rbPerm.Checked | !rbNone.Checked;
+        }
+
+        private void rbNone_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckRb();
+        }
+
+        private void FrmPerm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

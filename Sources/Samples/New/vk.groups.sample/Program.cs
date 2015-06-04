@@ -14,7 +14,7 @@ namespace vk.groups.sample
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmGroup());
+            Application.Run(new FrmLogin());
         }
     }
 }

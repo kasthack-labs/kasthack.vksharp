@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using vk.auth.sample.UI;
 using vk.groups.sample.UI;
 
 namespace vk.auth.sample
@@ -17,7 +18,7 @@ namespace vk.auth.sample
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            Application.Run(new FrmAction());
         }
     }
 }

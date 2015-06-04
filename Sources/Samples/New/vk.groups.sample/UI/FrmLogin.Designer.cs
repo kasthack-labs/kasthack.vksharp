@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.txtUrl = new System.Windows.Forms.TextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // webBrowser
@@ -42,25 +44,43 @@
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.ScriptErrorsSuppressed = true;
-            this.webBrowser.Size = new System.Drawing.Size(818, 526);
+            this.webBrowser.Size = new System.Drawing.Size(818, 501);
             this.webBrowser.TabIndex = 0;
             this.webBrowser.Url = new System.Uri("https://vk.com/", System.UriKind.Absolute);
             this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.webBrowser_Navigating);
             // 
             // txtUrl
             // 
-            this.txtUrl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtUrl.Location = new System.Drawing.Point(0, 0);
+            this.txtUrl.Location = new System.Drawing.Point(50, 2);
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.ReadOnly = true;
-            this.txtUrl.Size = new System.Drawing.Size(818, 20);
+            this.txtUrl.Size = new System.Drawing.Size(756, 20);
             this.txtUrl.TabIndex = 1;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 530);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(818, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "URL:";
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 552);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.txtUrl);
             this.Controls.Add(this.webBrowser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -77,6 +97,8 @@
 
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.TextBox txtUrl;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

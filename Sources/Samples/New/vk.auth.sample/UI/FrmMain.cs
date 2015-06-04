@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Windows.Forms;
+using vk.auth.sample.UI;
 
 namespace vk.groups.sample.UI
 {
@@ -22,10 +23,10 @@ namespace vk.groups.sample.UI
 
         private void btnNext_Click(object sender, System.EventArgs e)
         {
-            //var frmLogin = new FrmLogin();
-            //Hide();
-            //frmLogin.ShowDialog();
-            //Close();
+            var frmPerm = new FrmPerm();
+            Hide();
+            frmPerm.ShowDialog();
+            Close();
 
         }
     }
