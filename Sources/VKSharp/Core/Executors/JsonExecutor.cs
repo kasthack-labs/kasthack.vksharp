@@ -30,7 +30,9 @@ namespace VKSharp.Data.Executors {
         public static JsonSerializer GetSerializer() {
             //snake case parsing
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
+#pragma warning disable 618
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
+#pragma warning restore 618
 
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
 

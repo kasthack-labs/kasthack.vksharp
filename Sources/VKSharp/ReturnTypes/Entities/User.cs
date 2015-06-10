@@ -6,7 +6,9 @@ using VKSharp.Helpers;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
+#pragma warning disable 660,661
     public class User : IEquatable<User> {
+#pragma warning restore 660,661
         public Audio StatusAudio { get; set; }
         public bool? Blacklisted { get; set; }
         public bool? CanPost { get; set; }
