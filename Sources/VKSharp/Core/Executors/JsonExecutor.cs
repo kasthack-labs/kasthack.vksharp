@@ -12,7 +12,14 @@ using VKSharp.Helpers;
 using VKSharp.Helpers.Exceptions;
 
 namespace VKSharp.Data.Executors {
-    public class JsonExecutor : IExecutor {
+    public class JsonExecutor : IExecutor
+    {
+        private const string ReqExt = "json";
+        private static readonly HttpClient Client;
+        private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
+        public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
+        public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
+
         static JsonExecutor() {
             //required for parallel IO
             //default conn limit is 2
@@ -50,11 +57,6 @@ namespace VKSharp.Data.Executors {
         }
 
 #region IO
-        public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
-        public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
-        private const string ReqExt = "json";
-        private static readonly HttpClient Client;
-        private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
         private static async Task<HttpContent> InternalExecRawAsync<T>( VKRequest<T> request, string format ) {
             var ps = request.Parameters;
             ps.Add(  "v", "5.29"  );
@@ -66,18 +68,18 @@ namespace VKSharp.Data.Executors {
         }
 #endregion
 #region IExecutor
-        public async Task<Stream> ExecRawStreamAsync<T>( VKRequest<T> request ) => await( await InternalExecRawAsync( request, ReqExt ) ).ReadAsStreamAsync();
-        public async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) => Parse<T>( await ExecRawAsync( request ) );
-        public async Task<string> ExecRawAsync<T>( VKRequest<T> request ) => await (await InternalExecRawAsync( request, ReqExt )).ReadAsStringAsync();
+        public virtual async Task<Stream> ExecRawStreamAsync<T>( VKRequest<T> request ) => await( await InternalExecRawAsync( request, ReqExt ) ).ReadAsStreamAsync();
+        public virtual async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) => Parse<T>( await ExecRawAsync( request ) );
+        public virtual async Task<string> ExecRawAsync<T>( VKRequest<T> request ) => await (await InternalExecRawAsync( request, ReqExt )).ReadAsStringAsync();
 #endregion
 #region Serialization
         private static readonly JsonSerializer Jsonser;
-        public VKResponse<T> Parse<T>( string input ) {
+        public virtual VKResponse<T> Parse<T>( string input ) {
             using ( TextReader sr = new StringReader( input ) )
                 return ParseStreamReader<T>( sr );
         }
 
-        private static VKResponse<T> ParseStreamReader<T>( TextReader sr ) {
+        protected static VKResponse<T> ParseStreamReader<T>( TextReader sr ) {
             using ( var jr = new JsonTextReader( sr ) ) {
                 var vkResponse = Jsonser.Deserialize<VKResponse<T>>( jr );
                 var vkError = vkResponse.Error;
@@ -86,7 +88,7 @@ namespace VKSharp.Data.Executors {
             }
         }
 
-        public VKResponse<T> ParseStream<T>( Stream input ) {
+        public virtual VKResponse<T> ParseStream<T>( Stream input ) {
             using ( TextReader sr = new StreamReader( input ) ) return ParseStreamReader<T>( sr );
         }
 #endregion

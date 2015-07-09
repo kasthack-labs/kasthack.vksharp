@@ -42,7 +42,7 @@ namespace VKSharp {
                     <# if ( node.Hardcoded != null ) {
     foreach ( var pair in node.Hardcoded ) {
         #>
-            {"<#=pair.Key#>","<#=pair.Value#>"},
+            {"<#=pair.Name#>","<#=pair.Value#>"},
         <#
     }
                     }#>

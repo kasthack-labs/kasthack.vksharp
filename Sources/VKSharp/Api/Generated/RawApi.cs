@@ -674,6 +674,14 @@ namespace VKSharp {
                         );
                 }
                     
+            public async Task<string> Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .FriendsGet(
+                           userId,listId,fields,order,nameCase,offset, count)
+                        );
+                }
+                    
             public async Task<string> Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi

@@ -1057,9 +1057,29 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> FriendsGet(
-             int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100
+             int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
+                MethodName = "friends.get",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", MiscTools.NullableString(userId) },
+                                            { "list_id", MiscTools.NullableString(listId) },
+                                            { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
+                                            { "order", order.ToNClString() },
+                                            { "name_case", nameCase.ToNClString() },
+                                                                { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+                                                }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<EntityList<int>> FriendsGet(
+             int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<int>>{
                 MethodName = "friends.get",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", MiscTools.NullableString(userId) },

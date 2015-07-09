@@ -419,10 +419,20 @@
     <Params>
       <Param Name="user_id" Type="int?" Default="null" />
       <Param Name="list_id" Type="int?" Default="null" />
-      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
       <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
+  </Method>
+  <Method Name="friends.get" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="list_id" Type="int?" Default="null" />
+      <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
+    </Params>
+    <Hardcoded>
+        <HardcodedParam Name="UserFields" Value=""/>
+    </Hardcoded>
   </Method>
   <Method Name="friends.getAppUsers" Type="int[]" NeedToken="false" >
     <Params />
