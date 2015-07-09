@@ -740,11 +740,11 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <EntityList<int>>Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.None, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<int>>Get(  int? userId = null, int? listId = null, UserSortOrder order = UserSortOrder.ById,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGet(
-                                    userId,listId,fields,order,nameCase,offset, count
+                                    userId,listId,order,offset, count
                                 )
                                 )
                                                                     ).Response

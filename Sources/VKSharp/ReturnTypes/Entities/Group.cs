@@ -19,8 +19,18 @@ namespace VKSharp.Core.Entities {
         public GroupCounters Counters { get; set; }
         public PageType PageType { get; set; }
         public Place Place { get; set; }
-        public ProfilePhotos Photos { get; set; }
-        //todo: photos mapping(50,100,200)
+        public ProfilePhotos ProfilePhotos { get; set; } = new ProfilePhotos();
+
+        #region ProfilePhotos proxies
+        private string Photo50 { get { return ProfilePhotos.Photo50; } set { ProfilePhotos.Photo50 = value; } }
+        private string Photo100 { get { return ProfilePhotos.Photo100; } set { ProfilePhotos.Photo100 = value; } }
+        private string Photo200 { get { return ProfilePhotos.Photo200; } set { ProfilePhotos.Photo200 = value; } }
+        private string PhotoMax { get { return ProfilePhotos.PhotoMax; } set { ProfilePhotos.PhotoMax = value; } }
+        private string Photo400Orig { get { return ProfilePhotos.Photo400Orig; } set { ProfilePhotos.Photo400Orig = value; } }
+        private string Photo200Orig { get { return ProfilePhotos.Photo200Orig; } set { ProfilePhotos.Photo200Orig = value; } }
+        private string PhotoMaxOrig { get { return ProfilePhotos.PhotoMaxOrig; } set { ProfilePhotos.PhotoMaxOrig = value; } }
+        private string PhotoId { get { return ProfilePhotos.PhotoId; } set { ProfilePhotos.PhotoId = value; } }
+        #endregion
         public string Contacts { get; set; }
         public string Description { get; set; }
         public string Links { get; set; }
@@ -39,7 +49,6 @@ namespace VKSharp.Core.Entities {
         public int? FinishDate { get; set; }
         public int? FixedPost { get; set; }
         public long? MainAlbumId { get; set; }
-
 
     }
 }

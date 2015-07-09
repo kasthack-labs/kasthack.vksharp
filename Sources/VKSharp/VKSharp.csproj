@@ -85,6 +85,7 @@
     <Compile Include="Core\Parameters\GroupMembersFilter.cs" />
     <Compile Include="Core\Parameters\ImActivity.cs" />
     <Compile Include="Core\Parameters\MembersSortOrder.cs" />
+    <Compile Include="Helpers\ProxyPoolingHttpClientHandler.cs" />
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
     <Compile Include="ReturnTypes\Entities\Message.cs" />
@@ -143,7 +144,6 @@
     <Compile Include="Core\Parameters\NameCase.cs" />
     <Compile Include="Core\Parameters\UserFields.cs" />
     <Compile Include="Helpers\Exceptions\VKException.cs" />
-    <Compile Include="Helpers\HttpClientHandler.cs" />
     <Compile Include="Helpers\MiscTools.cs" />
     <Compile Include="Helpers\MorozovHandler.cs" />
     <Compile Include="Helpers\UploadHelper.cs" />

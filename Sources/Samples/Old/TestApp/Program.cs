@@ -45,9 +45,8 @@ namespace TestApp
             await TestFriends(vk);
         }
 
-        private static async Task TestFriends(VKApi vk)
-        {
-            var entityList = await vk.Friends.Get(8878040,fields: UserFields.Everything);
+        private static async Task TestFriends(VKApi vk) {
+            var entityList = await vk.Friends.Get( 8878040, null, UserSortOrder.ById, 0, 100 );
             Console.WriteLine(entityList);
         }
     }

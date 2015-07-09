@@ -30,6 +30,7 @@ namespace VKSharp.Core.Entities {
         public ProfileCounters Counters { get; set; } = new ProfileCounters();
         [FlatMap]
         public ProfilePhotos ProfilePhotos { get; set; } = new ProfilePhotos();
+
         #region ProfilePhotos proxies
         private string Photo50 { get { return ProfilePhotos.Photo50; } set { ProfilePhotos.Photo50 = value; } }
         private string Photo100 { get { return ProfilePhotos.Photo100; } set { ProfilePhotos.Photo100 = value; } }
@@ -40,13 +41,16 @@ namespace VKSharp.Core.Entities {
         private string PhotoMaxOrig { get { return ProfilePhotos.PhotoMaxOrig; } set { ProfilePhotos.PhotoMaxOrig = value; } }
         private string PhotoId { get { return ProfilePhotos.PhotoId; } set { ProfilePhotos.PhotoId = value; } }
         #endregion
+
         public Relation? Relation { get; set; }
         public Relative[] Relatives { get; set; }
         public School[] Schools { get; set; }
         public Sex? Sex { get; set; }
+
         [FlatMap]
         public SiteProfiles Connections { get; set; } = new SiteProfiles();
         //todo: fix serializer & remove code
+
         #region SiteProfiles proxies
         private string Skype { get { return Connections.Skype; } set { Connections.Skype = value; } }
         private ulong? Facebook { get { return Connections.Facebook; } set { Connections.Facebook = value; } }
@@ -55,6 +59,7 @@ namespace VKSharp.Core.Entities {
         private string Instagram { get { return Connections.Instagram; } set { Connections.Instagram = value; } }
         private string LiveJournal { get { return Connections.LiveJournal; } set { Connections.LiveJournal = value; } }
         #endregion
+
         public string About { get; set; }
         public string Activities { get; set; }
         public string Books { get; set; }
