@@ -64,13 +64,13 @@ namespace VKSharp.Data.Executors {
             var path = $"/method/{request.MethodName}.{format}";
             if ( request.Token != null ) ps.Add( "access_token", request.Token.Token  );
             foreach ( var source in ps.ToArray().Where( source => string.IsNullOrEmpty( source.Value ) ) ) ps.Remove( source.Key );
-            return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) )).Content;
+            return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) ).ConfigureAwait( false )).Content;
         }
 #endregion
 #region IExecutor
-        public virtual async Task<Stream> ExecRawStreamAsync<T>( VKRequest<T> request ) => await( await InternalExecRawAsync( request, ReqExt ) ).ReadAsStreamAsync();
-        public virtual async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) => Parse<T>( await ExecRawAsync( request ) );
-        public virtual async Task<string> ExecRawAsync<T>( VKRequest<T> request ) => await (await InternalExecRawAsync( request, ReqExt )).ReadAsStringAsync();
+        public virtual async Task<Stream> ExecRawStreamAsync<T>( VKRequest<T> request ) => await( await InternalExecRawAsync( request, ReqExt ).ConfigureAwait(false)).ReadAsStreamAsync().ConfigureAwait(false);
+        public virtual async Task<VKResponse<T>> ExecAsync<T>( VKRequest<T> request ) => Parse<T>( await ExecRawAsync( request ).ConfigureAwait(false));
+        public virtual async Task<string> ExecRawAsync<T>( VKRequest<T> request ) => await (await InternalExecRawAsync( request, ReqExt ).ConfigureAwait(false)).ReadAsStringAsync().ConfigureAwait(false);
 #endregion
 #region Serialization
         private static readonly JsonSerializer Jsonser;

@@ -25,18 +25,18 @@ namespace VKSharp.Helpers
             foreach ( var fileg in files.Select( (path,index)=>new{path,index} ).GroupBy( a=>a.index/5 ) ) {
                 FileStream[] streams = null;
                 try {
-                    var us = await _api.Photos.GetUploadServer( albumId, gid == 0 ? null : gid );
+                    var us = await _api.Photos.GetUploadServer( albumId, gid == 0 ? null : gid ).ConfigureAwait(false);
                     var ul = fileg.Select( a => a.path ).ToArray();
                     streams = ul.Select( File.OpenRead ).ToArray();
                     VkPhotoUploadResponse pr;
                     using ( var content = new MultipartFormDataContent() ) {
                         for ( var index = 0; index < streams.Length; index++ )
                             content.Add( new StreamContent( streams[ index ] ), "file" + index, index + Path.GetExtension( ul[ index ] ) );
-                        var upl = await _client.PostAsync( us.UploadUrl, content );
-                        var respjson = await upl.Content.ReadAsStringAsync();
+                        var upl = await _client.PostAsync( us.UploadUrl, content ).ConfigureAwait(false);
+                        var respjson = await upl.Content.ReadAsStringAsync().ConfigureAwait(false);
                         pr = JsonConvert.DeserializeObject<VkPhotoUploadResponse>( respjson );
                     }
-                    ret.AddRange( await _api.Photos.Save( (int)pr.aid, pr.server, pr.photos_list, pr.hash ));
+                    ret.AddRange( await _api.Photos.Save( (int)pr.aid, pr.server, pr.photos_list, pr.hash ).ConfigureAwait(false));
                 }
                 finally {
                     foreach ( var stream in streams )

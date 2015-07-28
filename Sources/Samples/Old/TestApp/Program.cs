@@ -37,16 +37,16 @@ namespace TestApp
                 ex.Message.Dump();
             }
 #endif
-            await Impl( vk );
+            await Impl( vk ).ConfigureAwait(false);
         }
 
         private async static Task Impl(VKApi vk)
         {
-            await TestFriends(vk);
+            await TestFriends(vk).ConfigureAwait(false);
         }
 
         private static async Task TestFriends(VKApi vk) {
-            var entityList = await vk.Friends.Get( 8878040, null, UserSortOrder.ById, 0, 100 );
+            var entityList = await vk.Friends.Get( 8878040, null, UserSortOrder.ById, 0, 100 ).ConfigureAwait(false);
             Console.WriteLine(entityList);
         }
     }

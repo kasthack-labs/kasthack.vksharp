@@ -44,8 +44,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountBanUser(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <long>GetAppPermissions(  int? userId = null ){
@@ -53,8 +52,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountGetAppPermissions(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -63,8 +61,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountGetBanned(
                                     offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -73,8 +70,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountGetInfo(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -83,8 +79,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountGetProfileInfo(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -92,64 +87,56 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountSetInfo(
                                     intro
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task SetNameInMenu(  string name  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountSetNameInMenu(
                                     name
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task SetOffline(  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountSetOffline(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task SetOnline(  bool voip = true ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountSetOnline(
                                     voip
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task SetSilenceMode(  string deviceId , int time , int? chatId = null, int? userId = null, int sound = 0 ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountSetSilenceMode(
                                     deviceId,time,chatId,userId,sound
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task UnbanUser(  int userId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountUnbanUser(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "" ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountRegisterDevice(
                                     token,deviceId,settings,deviceModel,systemVersion
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task UnregisterDevice(  string deviceId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountUnregisterDevice(
                                     deviceId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -162,8 +149,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AdsDeleteClients(
                                     accountId,ids
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -177,8 +163,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioAdd(
                                     ownerId,audioId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -187,8 +172,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioAddAlbum(
                                     title,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -196,16 +180,14 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioDelete(
                                     audioId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteAlbum(  long albumId , int? groupId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioDeleteAlbum(
                                     albumId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <int>Edit(  int ownerId , long audioId , string artist = "", string title = "", string text = "", AudioGenre? genreId = null, bool? noSearch = null ){
@@ -213,8 +195,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioEdit(
                                     ownerId,audioId,artist,title,text,genreId,noSearch
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -222,8 +203,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioEditAlbum(
                                     albumId,title,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<Audio>>Get(  int? ownerId = null, long? albumId = null, ulong[] audioIds = null, bool needUser = false,int offset = 0, int count = 100 ){
@@ -231,8 +211,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGet(
                                     ownerId,albumId,audioIds,needUser,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -241,8 +220,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetPopular(
                                     genreId,onlyEng,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -251,8 +229,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetRecommendations(
                                     genreId,onlyEng,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -261,8 +238,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetAlbums(
                                     ownerId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -271,8 +247,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetById(
                                     itunes,audios
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -281,8 +256,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetById(
                                     itunes,audios
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -291,8 +265,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetCount(
                                     ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -301,8 +274,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetLyrics(
                                     lyricsId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -311,8 +283,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioGetUploadServer(
                                     albumId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -320,8 +291,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioReorder(
                                     audioId,ownerId,before,after
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <Audio>Restore(  long audioId , int? ownerId = null ){
@@ -329,8 +299,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioRestore(
                                     audioId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -339,8 +308,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioSave(
                                     server,audio,hash,artist,title
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -349,8 +317,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioSearch(
                                     q,autoComplete,lyrics,performerOnly,sort,searchOwn,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -358,8 +325,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioSetBroadcast(
                                     audio,targetIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -372,8 +338,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AuthCheckPhone(
                                     phone,clientSecret,clientId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -382,8 +347,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AuthConfirm(
                                     clientId,clientSecret,phone,code,password,testMode,intro
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -392,8 +356,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AuthRestore(
                                     phone
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -406,48 +369,42 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.BoardCloseTopic(
                                     groupId,topicId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteComment(  int groupId , int topicId , int commentId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.BoardDeleteComment(
                                     groupId,topicId,commentId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteTopic(  int groupId , int topicId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.BoardDeleteTopic(
                                     groupId,topicId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task FixTopic(  int groupId , int topicId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.BoardFixTopic(
                                     groupId,topicId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RestoreComment(  int groupId , int topicId , int commentId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.BoardRestoreComment(
                                     groupId,topicId,commentId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task UnfixTopic(  int groupId , int topicId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.BoardUnfixTopic(
                                     groupId,topicId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -460,8 +417,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetChairs(
                                     facultyId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -470,8 +426,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetCities(
                                     countryId,regionId,q,needAll,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -480,8 +435,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetCitiesById(
                                     cityIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -490,8 +444,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetCountries(
                                     code,needAll,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -500,8 +453,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetCountriesById(
                                     countryIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -510,8 +462,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetFaculties(
                                     universityId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -520,8 +471,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetRegions(
                                     countryId,q,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -530,8 +480,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetSchools(
                                     cityId,q,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -540,8 +489,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetStreetsById(
                                     streetIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -550,8 +498,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DatabaseGetUniversities(
                                     countryId,cityId,q,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -565,8 +512,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsAdd(
                                     docId,ownerId,accessKey
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -574,8 +520,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsDelete(
                                     docId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<Document>>Get(  int? ownerId = null,int offset = 0, int count = 100 ){
@@ -583,8 +528,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsGet(
                                     ownerId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -593,8 +537,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsGetById(
                                     docs
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -603,8 +546,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsGetUploadServer(
                                     groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -613,8 +555,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsGetWallUploadServer(
                                     groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -623,8 +564,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.DocsSave(
                                     file,title,tags
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -638,8 +578,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FaveGetUsers(
                                     offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -648,8 +587,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FaveGetPhotos(
                                     offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -658,8 +596,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FaveGetVideos(
                                     offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -673,8 +610,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsAdd(
                                     userId,text
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -683,8 +619,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsAreFriends(
                                     needSign,userIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -693,8 +628,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsDelete(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -702,32 +636,28 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsDeleteAllRequests(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteList(  int listId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsDeleteList(
                                     listId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Edit(  int userId ,params long[] listIds  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsEdit(
                                     userId,listIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task EditList(  long listId , string name = "", int[] userIds = null, int[] addUserIds = null,params int[] deleteUserIds  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsEditList(
                                     listId,name,userIds,addUserIds,deleteUserIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<User>>Get(  int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100 ){
@@ -735,8 +665,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGet(
                                     userId,listId,fields,order,nameCase,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -745,8 +674,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGet(
                                     userId,listId,order,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -755,8 +683,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetAppUsers(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -765,8 +692,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetByPhones(
                                     fields,phones
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -775,8 +701,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetMutual(
                                     targetUid,sourceUid,order,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -785,8 +710,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetOnline(
                                     userId,listId,order,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -795,8 +719,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetRecent(
                                     count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -805,8 +728,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsGetSuggestions(
                                     filters,fields,nameCase,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -820,8 +742,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetBanned(
                                     groupId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -830,8 +751,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetById(
                                     groupIds,fields
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -840,8 +760,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetById(
                                     groupId,fields
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -850,8 +769,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetMembers(
                                     groupId,fields,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -860,8 +778,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsGetMembers(
                                     groupId,fields,filter,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -870,8 +787,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsIsMember(
                                     groupId,extended,userIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -879,24 +795,21 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsJoin(
                                     groupId,notSure
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Leave(  int groupId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsLeave(
                                     groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task UnbanUser(  int groupId , int userId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsUnbanUser(
                                     groupId,userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -908,24 +821,21 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesAddChatUser(
                                     userId,chatId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Delete( params int[] messageIds  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesDelete(
                                     messageIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteDialog(  int userId ,int offset = 0, int count = 100 ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesDeleteDialog(
                                     userId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<Message>>Get(  int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0, long? lastMessageId = null,int offset = 0, int count = 200 ){
@@ -933,8 +843,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesGet(
                                     @out,timeOffset,filters,previewLength,lastMessageId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -943,8 +852,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesGetLastActivity(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -952,16 +860,14 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesMarkAsImportant(
                                     important,messageIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task MarkAsRead(  int userId , int? startMessageId = null,params int[] messageIds  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesMarkAsRead(
                                     userId,startMessageId,messageIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <int>Send(  int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null, int? stickerId = null ){
@@ -969,8 +875,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesSend(
                                     userId,userIds,domain,chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -978,24 +883,21 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesRemoveChatUser(
                                     userId,chatId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Restore(  int messageId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesRestore(
                                     messageId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task SetActivity(  int userId , ImActivity type = ImActivity.Typing ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.MessagesSetActivity(
                                     userId,type
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1007,16 +909,14 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.NewsfeedAddBan(
                                     userIds,groupIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteBan(  int[] userIds = null,params int[] groupIds  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.NewsfeedDeleteBan(
                                     userIds,groupIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1028,24 +928,21 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.NotesDelete(
                                     noteId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.NotesDeleteComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RestoreComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.NotesRestoreComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1057,8 +954,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.NotificationsMarkAsViewed(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1070,8 +966,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PagesClearCache(
                                     url
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1083,8 +978,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosConfirmTag(
                                     tagId,photoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <long>Copy(  long photoId , int? ownerId = null, string accessKey = "" ){
@@ -1092,8 +986,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosCopy(
                                     photoId,ownerId,accessKey
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1102,8 +995,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosCreateAlbum(
                                     title,description,groupId,privacy,commentPrivacy
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1111,40 +1003,35 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosDelete(
                                     photoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteAlbum(  long albumId , int? groupId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosDeleteAlbum(
                                     albumId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosDeleteComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Edit(  long photoId , int? ownerId = null, string caption = "" ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosEdit(
                                     photoId,ownerId,caption
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task EditAlbum(  long albumId , int? ownerId = null, string title = "", string description = "", PrivacyType? privacy = null, PrivacyType? commentPrivacy = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosEditAlbum(
                                     albumId,ownerId,title,description,privacy,commentPrivacy
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<Photo>>Get(  long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null, int? feed = null,int offset = 0, int count = 100 ){
@@ -1152,8 +1039,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGet(
                                     albumId,ownerId,photoIds,rev,extended,feedType,feed,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1162,8 +1048,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGet(
                                     albumId,ownerId,photoIds,rev,extended,feedType,feed,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1172,8 +1057,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetAlbums(
                                     ownerId,needSystem,needCovers,offset, count,albumIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1182,8 +1066,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetAlbumsCount(
                                     userId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1192,8 +1075,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetAll(
                                     ownerId,extended,noServiceAlbums,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1202,8 +1084,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetById(
                                     photos
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1212,8 +1093,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetChatUploadServer(
                                     chatId,cropX,cropY,cropWidth
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1222,8 +1102,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetOwnerPhotoUploadServer(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1232,8 +1111,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosGetUploadServer(
                                     albumId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1241,64 +1119,56 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosMakeCover(
                                     albumId,photoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Move(  long targetAlbumId , long photoId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosMove(
                                     targetAlbumId,photoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RemoveTag(  int tagId , long photoId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosRemoveTag(
                                     tagId,photoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task ReorderAlbums(  long albumId , int? ownerId = null, long? before = null, long? after = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosReorderAlbums(
                                     albumId,ownerId,before,after
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task ReorderPhotos(  long photoId , int? ownerId = null, long? before = null, long? after = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosReorderPhotos(
                                     photoId,ownerId,before,after
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Report(  long photoId , int? ownerId = null, ReportReason? reason = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosReport(
                                     photoId,ownerId,reason
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosReportComment(
                                     commentId,ownerId,reason
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RestoreComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosRestoreComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <Photo[]>Save(  long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "", string description = "" ){
@@ -1306,8 +1176,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.PhotosSave(
                                     albumId,server,photosList,hash,groupId,latitude,longitude,caption,description
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1321,8 +1190,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StatsTrackVisitor(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1336,8 +1204,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StatusGet(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1345,8 +1212,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StatusSet(
                                     text
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1359,8 +1225,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StorageGet(
                                     userId,global,keys
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1369,8 +1234,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StorageGetKeys(
                                     userId,global,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1379,8 +1243,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StorageSet(
                                     key,value,userId,global
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1394,8 +1257,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGet(
                                     fields,nameCase,userIds
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1404,8 +1266,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetFollowers(
                                     userId,fields,nameCase,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1414,8 +1275,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetNearby(
                                     latitude,longitude,accuracy,timeout,radius,fields,nameCase,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1424,8 +1284,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersGetSubscriptions(
                                     userId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1434,8 +1293,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersIsAppUser(
                                     userId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1443,8 +1301,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersReport(
                                     userId,type,comment
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<User>>Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
@@ -1452,8 +1309,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersSearch(
                                     query,sort,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1467,8 +1323,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UtilsCheckLink(
                                     url
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1477,8 +1332,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UtilsGetServerTime(
                                     
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1487,8 +1341,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UtilsResolveScreenName(
                                     screenName
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1501,88 +1354,77 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoAdd(
                                     videoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Delete(  ulong videoId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoDelete(
                                     videoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteAlbum(  long albumId , int? groupId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoDeleteAlbum(
                                     albumId,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoDeleteComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task EditComment(  string message , int commentId , int? ownerId  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoEditComment(
                                     message,commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task PutTag(  int userId , string taggedName , ulong videoId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoPutTag(
                                     userId,taggedName,videoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RemoveTag(  ulong videoId , int tagId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoRemoveTag(
                                     videoId,tagId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Report(  ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "", string searchQuery = "" ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoReport(
                                     videoId,ownerId,reason,comment,searchQuery
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task ReportComment(  int commentId , int? ownerId = null, ReportReason? reason = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoReportComment(
                                     commentId,ownerId,reason
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RestoreComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoRestoreComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Restore(  long videoId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.VideoRestore(
                                     videoId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1594,16 +1436,14 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallDelete(
                                     postId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task DeleteComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallDeleteComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <EntityList<Post>>Get(  int? ownerId = null, string domain = "", WallPostFilter filter = WallPostFilter.All,int offset = 0, int count = 100 ){
@@ -1611,8 +1451,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallGet(
                                     ownerId,domain,filter,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1621,8 +1460,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallGetById(
                                     copyHistoryDepth,posts
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1631,8 +1469,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallGetById(
                                     copyHistoryDepth,posts
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1641,8 +1478,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallGetComments(
                                     postId,sort,previewLength,extended,ownerId,needLikes,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1650,8 +1486,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPin(
                                     postId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <WallPostResponse>Post(  string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null ){
@@ -1659,8 +1494,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPost(
                                     message,attachments,ownerId,fromGroup,signed,friendsOnly,services,publishDate,lat,@long,placeId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1669,8 +1503,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPost(
                                     postId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1678,16 +1511,14 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallReportComment(
                                     commentId,ownerId,reason
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task ReportPost(  int postId , int? ownerId = null, ReportReason? reason = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallReportPost(
                                     postId,ownerId,reason
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task <RepostInfo>Repost(  string @object , string message = "", int? groupId = null ){
@@ -1695,8 +1526,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallRepost(
                                     @object,message,groupId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }
@@ -1704,24 +1534,21 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallRestore(
                                     postId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task RestoreComment(  int commentId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallRestoreComment(
                                     commentId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                                 public async Task Unpin(  int postId , int? ownerId = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallUnpin(
                                     postId,ownerId
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                 ;
                             }
                                     }
@@ -1734,8 +1561,7 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.LikesGetList(
                                     type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset, count
-                                )
-                                )
+                                ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
                             }

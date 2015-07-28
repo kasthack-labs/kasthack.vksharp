@@ -39,8 +39,9 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
                         .<#=ToMeth(node.Name)#>(
-                           <#=GetCallParamsString( node )#>)
-                        );
+                           <#=GetCallParamsString( node )#>
+                           )
+                        ).ConfigureAwait(false);
                 }
                     <# } #>
                 }
