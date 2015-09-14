@@ -1,5 +1,5 @@
 ﻿
-Implemented 173 methods
+Implemented 174 methods
 * Account
     * account.banUser
     * account.getAppPermissions
@@ -79,6 +79,7 @@ Implemented 173 methods
     * friends.deleteList
     * friends.edit
     * friends.editList
+    * friends.get
     * friends.get
     * friends.getAppUsers
     * friends.getByPhones

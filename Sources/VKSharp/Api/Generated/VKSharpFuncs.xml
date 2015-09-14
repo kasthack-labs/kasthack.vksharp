@@ -912,7 +912,7 @@
   </Method>
   <Method Name="users.search" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
     <Params>
-      <Param Name="query" Type="string" Default="&quot;&quot;" />
+      <Param Name="q" Type="string" Default="&quot;&quot;" />
       <Param Name="sort" Type="SearchSortOrder" Default="SearchSortOrder.ByRating" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" />
       <Param Name="city_id" Type="int?" Default="null" />
@@ -921,7 +921,7 @@
       <Param Name="university_country_id" Type="int?" Default="null" />
       <Param Name="university_id" Type="int?" Default="null" />
       <Param Name="university_year" Type="int?" Default="null" />
-      <Param Name="sex" Type="Sex?" Default="null" />
+      <Param Name="sex" Type="Sex?" Default="null" Custom="((int)#name).ToNCString()"/>
       <Param Name="relation" Type="Relation?" Default="null" />
       <Param Name="age_from" Type="byte?" Default="null" />
       <Param Name="age_to" Type="byte?" Default="null" />

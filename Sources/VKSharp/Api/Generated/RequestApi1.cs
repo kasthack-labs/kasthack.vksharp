@@ -2193,12 +2193,12 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> UsersSearch(
-             string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100
+             string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "users.search",
                 Parameters = new Dictionary<string, string> {
-                                            { "query", query },
+                                            { "q", q },
                                             { "sort", ((int)sort).ToString() },
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
                                             { "city_id", MiscTools.NullableString(cityId) },
@@ -2207,7 +2207,7 @@ namespace VKSharp {
                                             { "university_country_id", MiscTools.NullableString(universityCountryId) },
                                             { "university_id", MiscTools.NullableString(universityId) },
                                             { "university_year", MiscTools.NullableString(universityYear) },
-                                            { "sex", sex.ToString() },
+                                            { "sex", ((int)sex).ToNCString() },
                                             { "relation", relation.ToString() },
                                             { "age_from", MiscTools.NullableString(ageFrom) },
                                             { "age_to", MiscTools.NullableString(ageTo) },

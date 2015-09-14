@@ -1467,11 +1467,11 @@ namespace VKSharp {
                         ).ConfigureAwait(false);
                 }
                     
-            public async Task<string> Search(  string query = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
+            public async Task<string> Search(  string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
                         .UsersSearch(
-                           query,sort,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId,offset, count
+                           q,sort,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId,offset, count
                            )
                         ).ConfigureAwait(false);
                 }
