@@ -16,6 +16,8 @@ namespace VKSharp {
     
         Ads = new MethodGroup_ads(this);
     
+        Apps = new MethodGroup_apps(this);
+    
         Audio = new MethodGroup_audio(this);
     
         Auth = new MethodGroup_auth(this);
@@ -194,6 +196,21 @@ namespace VKSharp {
                     _parent._reqapi
                         .AdsDeleteClients(
                            accountId,ids
+                           )
+                        ).ConfigureAwait(false);
+                }
+                                    }
+        
+        public MethodGroup_apps Apps {get; private set;}
+        public partial class MethodGroup_apps {
+            private readonly RawApi _parent;
+            internal MethodGroup_apps(RawApi parent){_parent=parent;}
+
+            public async Task<string> DeleteAppRequests(  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .AppsDeleteAppRequests(
+                           
                            )
                         ).ConfigureAwait(false);
                 }
@@ -674,6 +691,33 @@ namespace VKSharp {
                            )
                         ).ConfigureAwait(false);
                 }
+                    
+            public async Task<string> RemoveUser(  int userId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .FaveRemoveUser(
+                           userId
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> RemoveLink(  int linkId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .FaveRemoveLink(
+                           linkId
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> RemoveGroup(  int groupId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .FaveRemoveGroup(
+                           groupId
+                           )
+                        ).ConfigureAwait(false);
+                }
                                     }
         
         public MethodGroup_friends Friends {get; private set;}
@@ -822,6 +866,15 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_groups(RawApi parent){_parent=parent;}
 
+            public async Task<string> DeleteLink(  int groupId , int linkId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .GroupsDeleteLink(
+                           groupId,linkId
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
             public async Task<string> GetBanned(  int groupId ,int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
@@ -902,6 +955,15 @@ namespace VKSharp {
                            )
                         ).ConfigureAwait(false);
                 }
+                    
+            public async Task<string> RemoveUser(  int groupId , int userId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .GroupsRemoveUser(
+                           groupId,userId
+                           )
+                        ).ConfigureAwait(false);
+                }
                                     }
         
         public MethodGroup_messages Messages {get; private set;}
@@ -927,11 +989,20 @@ namespace VKSharp {
                         ).ConfigureAwait(false);
                 }
                     
-            public async Task<string> DeleteDialog(  int userId ,int offset = 0, int count = 100 ){
+            public async Task<string> DeleteChatPhoto(  int chatId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .MessagesDeleteChatPhoto(
+                           chatId
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> DeleteDialog(  int userId  ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
                         .MessagesDeleteDialog(
-                           userId,offset, count
+                           userId
                            )
                         ).ConfigureAwait(false);
                 }
@@ -1028,6 +1099,15 @@ namespace VKSharp {
                     _parent._reqapi
                         .NewsfeedDeleteBan(
                            userIds,groupIds
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> DeleteList(  int listId  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .NewsfeedDeleteList(
+                           listId
                            )
                         ).ConfigureAwait(false);
                 }

@@ -1,5 +1,5 @@
 ﻿
-Implemented 174 methods
+Implemented 182 methods
 * Account
     * account.banUser
     * account.getAppPermissions
@@ -16,6 +16,8 @@ Implemented 174 methods
     * account.unregisterDevice
 * Ads
     * ads.deleteClients
+* Apps
+    * apps.deleteAppRequests
 * Audio
     * audio.add
     * audio.addAlbum
@@ -71,6 +73,9 @@ Implemented 174 methods
     * fave.getPhotos
     * fave.getUsers
     * fave.getVideos
+    * fave.removeGroup
+    * fave.removeLink
+    * fave.removeUser
 * Friends
     * friends.add
     * friends.areFriends
@@ -88,6 +93,7 @@ Implemented 174 methods
     * friends.getRecent
     * friends.getSuggestions
 * Groups
+    * groups.deleteLink
     * groups.getBanned
     * groups.getById
     * groups.getById
@@ -96,10 +102,12 @@ Implemented 174 methods
     * groups.isMember
     * groups.join
     * groups.leave
+    * groups.removeUser
     * groups.unbanUser
 * Messages
     * messages.addChatUser
     * messages.delete
+    * messages.deleteChatPhoto
     * messages.deleteDialog
     * messages.get
     * messages.getLastActivity
@@ -112,6 +120,7 @@ Implemented 174 methods
 * Newsfeed
     * newsfeed.addBan
     * newsfeed.deleteBan
+    * newsfeed.deleteList
 * Notes
     * notes.delete
     * notes.deleteComment

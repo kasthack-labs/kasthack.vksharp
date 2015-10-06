@@ -72,6 +72,9 @@
       <Param Name="ids" Type="ulong[]" />
     </Params>
   </Method>
+  <Method Name="apps.deleteAppRequests" Type="void" NeedToken="true" >
+    <Params />
+  </Method>
   <Method Name="audio.add" Type="int" NeedToken="true" >
     <Params>
       <Param Name="owner_id" Type="int" />
@@ -375,6 +378,21 @@
   <Method Name="fave.getVideos" Type="EntityList&lt;Video&gt;" NeedToken="true" Pageable="100">
     <Params/>
   </Method>
+  <Method Name="fave.removeUser" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="fave.removeLink" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="link_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="fave.removeGroup" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+    </Params>
+  </Method>
   <Method Name="friends.add" Type="int" NeedToken="true" >
     <Params>
       <Param Name="user_id" Type="int" />
@@ -469,6 +487,12 @@
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
   </Method>
+  <Method Name="groups.deleteLink" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="link_id" Type="int" />
+    </Params>
+  </Method>
   <Method Name="groups.getBanned" Type="User[]" NeedToken="true" Pageable="100">
     <Params>
       <Param Name="group_id" Type="int" />
@@ -523,6 +547,12 @@
       <Param Name="user_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="groups.removeUser" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
   <Method Name="messages.addChatUser" Type="void" NeedToken="true">
     <Params>
       <Param Name="user_id" Type="int" />
@@ -534,7 +564,12 @@
       <Param Name="message_ids" Type="int[]" />
     </Params>
   </Method>
-  <Method Name="messages.deleteDialog" Type="void" NeedToken="true" Pageable="100">
+  <Method Name="messages.deleteChatPhoto" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="chat_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="messages.deleteDialog" Type="void" NeedToken="true">
     <Params>
       <Param Name="user_id" Type="int" />
     </Params>
@@ -608,6 +643,11 @@
     <Params>
       <Param Name="user_ids" Type="int[]" Default="null" />
       <Param Name="group_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="newsfeed.deleteList" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="list_id" Type="int" />
     </Params>
   </Method>
   <Method Name="notes.delete" Type="void" NeedToken="true">

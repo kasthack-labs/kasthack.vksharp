@@ -205,6 +205,18 @@ namespace VKSharp {
             }
             return req;
         }
+        public VKRequest<bool> AppsDeleteAppRequests(
+            
+){
+            var req = new VKRequest<bool>{
+                MethodName = "apps.deleteAppRequests",
+                Parameters = new Dictionary<string, string> {
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<int> AudioAdd(
              int ownerId , long audioId , int? groupId = null
 ){
@@ -959,6 +971,45 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> FaveRemoveUser(
+             int userId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "fave.removeUser",
+                Parameters = new Dictionary<string, string> {
+                                            { "user_id", userId.ToNCString() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> FaveRemoveLink(
+             int linkId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "fave.removeLink",
+                Parameters = new Dictionary<string, string> {
+                                            { "link_id", linkId.ToNCString() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> FaveRemoveGroup(
+             int groupId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "fave.removeGroup",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", groupId.ToNCString() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<int> FriendsAdd(
              int userId , string text = ""
 ){
@@ -1188,6 +1239,20 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> GroupsDeleteLink(
+             int groupId , int linkId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "groups.deleteLink",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", groupId.ToNCString() },
+                                            { "link_id", linkId.ToNCString() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<User[]> GroupsGetBanned(
              int groupId ,int offset = 0, int count = 100
 ){
@@ -1323,6 +1388,20 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> GroupsRemoveUser(
+             int groupId , int userId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "groups.removeUser",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", groupId.ToNCString() },
+                                            { "user_id", userId.ToNCString() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> MessagesAddChatUser(
              int userId , int? chatId = null
 ){
@@ -1350,16 +1429,27 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> MessagesDeleteChatPhoto(
+             int chatId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "messages.deleteChatPhoto",
+                Parameters = new Dictionary<string, string> {
+                                            { "chat_id", chatId.ToNCString() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
         public VKRequest<bool> MessagesDeleteDialog(
-             int userId ,int offset = 0, int count = 100
+             int userId 
 ){
             var req = new VKRequest<bool>{
                 MethodName = "messages.deleteDialog",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
-                                                                { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
-                                                }
+                                                                    }
             };
                 req.Token = CurrentToken;
             
@@ -1512,6 +1602,19 @@ namespace VKSharp {
                 Parameters = new Dictionary<string, string> {
                                             { "user_ids", (userIds??new int[]{}).ToNCStringA() },
                                             { "group_ids", (groupIds??new int[]{}).ToNCStringA() },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<bool> NewsfeedDeleteList(
+             int listId 
+){
+            var req = new VKRequest<bool>{
+                MethodName = "newsfeed.deleteList",
+                Parameters = new Dictionary<string, string> {
+                                            { "list_id", listId.ToNCString() },
                                                                     }
             };
                 req.Token = CurrentToken;
