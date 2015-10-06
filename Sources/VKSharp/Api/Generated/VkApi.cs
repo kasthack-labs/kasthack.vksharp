@@ -6,6 +6,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
+using VKSharp.Helpers.DataTypes;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
@@ -48,6 +49,24 @@ namespace VKSharp {
                                 ) ).ConfigureAwait(false)
                                 ;
                             }
+                                                public async Task <ChangePassword>ChangePassword(  string restoreSid , string changePasswordHash , string oldPassword , string newPassword  ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.AccountChangePassword(
+                                    restoreSid,changePasswordHash,oldPassword,newPassword
+                                ) ).ConfigureAwait(false)
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <EntityList<Offer>>GetAppPermissions( int offset = 0, int count = 100 ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.AccountGetAppPermissions(
+                                    offset, count
+                                ) ).ConfigureAwait(false)
+                                                                    ).Response
+                                ;
+                            }
                                                 public async Task <long>GetAppPermissions(  int? userId = null ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
@@ -71,6 +90,15 @@ namespace VKSharp {
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountGetInfo(
                                     
+                                ) ).ConfigureAwait(false)
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <SaveProfileInfo>SaveProfileInfo(  string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null, string status = "" ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.AccountSaveProfileInfo(
+                                    firstName,lastName,maidenName,screenName,sex,relation,relationPartnerId,bdate,countryId,cityId,status
                                 ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
@@ -657,7 +685,7 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <FriendsDeleteResponse>Delete(  int userId  ){
+                                                public async Task <FriendsDelete>Delete(  int userId  ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsDelete(
@@ -1366,11 +1394,11 @@ namespace VKSharp {
                                 ) ).ConfigureAwait(false)
                                 ;
                             }
-                                                public async Task <EntityList<User>>Search(  string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
+                                                public async Task <EntityList<User>>Search(  string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.UsersSearch(
-                                    q,sort,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId,offset, count
+                                    q,sort,fields,city,country,hometown,universityCountry,university,universityYear,sex,status,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountry,schoolCity,schoolClass,school,schoolYear,religion,interests,company,position,groupId,offset, count
                                 ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;
@@ -1551,7 +1579,7 @@ namespace VKSharp {
                                 ) ).ConfigureAwait(false)
                                 ;
                             }
-                                                public async Task <WallPostResponse>Post(  string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null ){
+                                                public async Task <WallPost>Post(  string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPost(
@@ -1560,7 +1588,7 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <WallPostResponse>Post(  int postId , int? ownerId = null ){
+                                                public async Task <WallPost>Post(  int postId , int? ownerId = null ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.WallPost(

@@ -16,6 +16,7 @@ using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
+using VKSharp.Helpers.DataTypes;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer

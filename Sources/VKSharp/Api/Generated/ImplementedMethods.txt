@@ -1,12 +1,15 @@
 ﻿
-Implemented 182 methods
+Implemented 185 methods
 * Account
     * account.banUser
+    * account.changePassword
+    * account.getAppPermissions
     * account.getAppPermissions
     * account.getBanned
     * account.getInfo
     * account.getProfileInfo
     * account.registerDevice
+    * account.saveProfileInfo
     * account.setInfo
     * account.setNameInMenu
     * account.setOffline

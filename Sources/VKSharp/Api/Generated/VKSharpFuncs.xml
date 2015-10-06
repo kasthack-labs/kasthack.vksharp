@@ -5,6 +5,17 @@
       <Param Name="user_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="account.changePassword" Type="ChangePassword" NeedToken="true">
+    <Params>
+      <Param Name="restore_sid" Type="string" />
+      <Param Name="change_password_hash" Type="string" />
+      <Param Name="old_password" Type="string" />
+      <Param Name="new_password" Type="string" />
+    </Params>
+  </Method>
+  <Method Name="account.getAppPermissions" Type="EntityList&lt;Offer&gt;" True="false" Pageable="100" >
+    <Params />
+  </Method>
   <Method Name="account.getAppPermissions" Type="long" NeedToken="false" >
     <Params>
       <Param Name="user_id" Type="int?" Default="null" />
@@ -13,8 +24,28 @@
   <Method Name="account.getBanned" Type="User[]" NeedToken="true" Pageable="20">
     <Params/>
   </Method>
+  <!--<Method Name="account.getCounters" Type="ProfileCounters" NeedToken="true">
+    <Params>
+      <Param Name="filter" Type="CounterFields"></Param>
+    </Params>
+  </Method>-->
   <Method Name="account.getInfo" Type="AccountInfo" NeedToken="true" >
     <Params />
+  </Method>
+  <Method Name="account.saveProfileInfo" Type="SaveProfileInfo" NeedToken="true">
+    <Params>
+      <Param Name="first_name" Type="string" Default="&quot;&quot;"/>
+      <Param Name="last_name" Type="string" Default="&quot;&quot;"/>
+      <Param Name="maiden_name" Type="string" Default="&quot;&quot;"/>
+      <Param Name="screen_name" Type="string" Default="&quot;&quot;"/>
+      <Param Name="sex" Type="Sex?" Default="null"/>
+      <Param Name="relation" Type="Relation?" Default="null"/>
+      <Param Name="relation_partner_id" Type="int?" Default="null"/>
+      <Param Name="bdate" Type="Date?" Default="null"/>
+      <Param Name="country_id" Type="int?" Default="null"/>
+      <Param Name="city_id" Type="int?" Default="null"/>
+      <Param Name="status" Type="string" Default="&quot;&quot;"/>
+    </Params>
   </Method>
   <Method Name="account.getProfileInfo" Type="User" NeedToken="true" >
     <Params />
@@ -405,7 +436,7 @@
       <Param Name="user_ids" Type="int[]" />
     </Params>
   </Method>
-  <Method Name="friends.delete" Type="FriendsDeleteResponse" NeedToken="true" >
+  <Method Name="friends.delete" Type="FriendsDelete" NeedToken="true" >
     <Params>
       <Param Name="user_id" Type="int" />
     </Params>
@@ -955,14 +986,14 @@
       <Param Name="q" Type="string" Default="&quot;&quot;" />
       <Param Name="sort" Type="SearchSortOrder" Default="SearchSortOrder.ByRating" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" />
-      <Param Name="city_id" Type="int?" Default="null" />
-      <Param Name="country_id" Type="int?" Default="null" />
+      <Param Name="city" Type="int?" Default="null" />
+      <Param Name="country" Type="int?" Default="null" />
       <Param Name="hometown" Type="string" Default="&quot;&quot;" />
-      <Param Name="university_country_id" Type="int?" Default="null" />
-      <Param Name="university_id" Type="int?" Default="null" />
+      <Param Name="university_country" Type="int?" Default="null" />
+      <Param Name="university" Type="int?" Default="null" />
       <Param Name="university_year" Type="int?" Default="null" />
-      <Param Name="sex" Type="Sex?" Default="null" Custom="((int)#name).ToNCString()"/>
-      <Param Name="relation" Type="Relation?" Default="null" />
+      <Param Name="sex" Type="Sex?" Default="null"/>
+      <Param Name="status" Type="Relation?" Default="null" />
       <Param Name="age_from" Type="byte?" Default="null" />
       <Param Name="age_to" Type="byte?" Default="null" />
       <Param Name="birth_day" Type="byte?" Default="null" />
@@ -970,9 +1001,10 @@
       <Param Name="birth_year" Type="ushort?" Default="null" />
       <Param Name="online" Type="bool?" Default="null" />
       <Param Name="has_photo" Type="bool?" Default="null" />
-      <Param Name="school_country_id" Type="int?" Default="null" />
-      <Param Name="school_city_id" Type="int?" Default="null" />
-      <Param Name="school_id" Type="int?" Default="null" />
+      <Param Name="school_country" Type="int?" Default="null" />
+      <Param Name="school_city" Type="int?" Default="null" />
+      <Param Name="school_class" Type="int?" Default="null" />
+      <Param Name="school" Type="int?" Default="null" />
       <Param Name="school_year" Type="int?" Default="null" />
       <Param Name="religion" Type="string" Default="&quot;&quot;" />
       <Param Name="interests" Type="string" Default="&quot;&quot;" />
@@ -1128,7 +1160,7 @@
       <Param Name="owner_id" Type="int?" Default="null" />
     </Params>
   </Method>
-  <Method Name="wall.post" Type="WallPostResponse" NeedToken="true" >
+  <Method Name="wall.post" Type="WallPost" NeedToken="true" >
     <Params>
       <!--todo: strong typing-->
       <Param Name="message" Type="string" Default="&quot;&quot;" />
@@ -1144,7 +1176,7 @@
       <Param Name="place_id" Type="int?" Default="null" />
     </Params>
   </Method>
-  <Method Name="wall.post" Type="WallPostResponse" NeedToken="true" >
+  <Method Name="wall.post" Type="WallPost" NeedToken="true" >
     <Params>
       <Param Name="post_id" Type="int" />
       <Param Name="owner_id" Type="int?" Default="null" />

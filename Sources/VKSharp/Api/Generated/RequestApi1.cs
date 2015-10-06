@@ -9,6 +9,7 @@ using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
 using VKSharp.Data.Request;
 using VKSharp.Helpers;
+using VKSharp.Helpers.DataTypes;
 
 // ReSharper disable UnusedMember.Global
 // ReSharper disable UseObjectOrCollectionInitializer
@@ -25,6 +26,37 @@ namespace VKSharp {
             };
                 req.Token = CurrentToken;
             
+            return req;
+        }
+        public VKRequest<ChangePassword> AccountChangePassword(
+             string restoreSid , string changePasswordHash , string oldPassword , string newPassword 
+){
+            var req = new VKRequest<ChangePassword>{
+                MethodName = "account.changePassword",
+                Parameters = new Dictionary<string, string> {
+                                            { "restore_sid", restoreSid },
+                                            { "change_password_hash", changePasswordHash },
+                                            { "old_password", oldPassword },
+                                            { "new_password", newPassword },
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<EntityList<Offer>> AccountGetAppPermissions(
+            int offset = 0, int count = 100
+){
+            var req = new VKRequest<EntityList<Offer>>{
+                MethodName = "account.getAppPermissions",
+                Parameters = new Dictionary<string, string> {
+                                                                { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+                                                }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
             return req;
         }
         public VKRequest<long> AccountGetAppPermissions(
@@ -61,6 +93,29 @@ namespace VKSharp {
             var req = new VKRequest<AccountInfo>{
                 MethodName = "account.getInfo",
                 Parameters = new Dictionary<string, string> {
+                                                                    }
+            };
+                req.Token = CurrentToken;
+            
+            return req;
+        }
+        public VKRequest<SaveProfileInfo> AccountSaveProfileInfo(
+             string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null, string status = ""
+){
+            var req = new VKRequest<SaveProfileInfo>{
+                MethodName = "account.saveProfileInfo",
+                Parameters = new Dictionary<string, string> {
+                                            { "first_name", firstName },
+                                            { "last_name", lastName },
+                                            { "maiden_name", maidenName },
+                                            { "screen_name", screenName },
+                                            { "sex", MiscTools.NullableString((int?)sex) },
+                                            { "relation", MiscTools.NullableString((int?)relation) },
+                                            { "relation_partner_id", MiscTools.NullableString(relationPartnerId) },
+                                            { "bdate", bdate.ToString() },
+                                            { "country_id", MiscTools.NullableString(countryId) },
+                                            { "city_id", MiscTools.NullableString(cityId) },
+                                            { "status", status },
                                                                     }
             };
                 req.Token = CurrentToken;
@@ -1038,10 +1093,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<FriendsDeleteResponse> FriendsDelete(
+        public VKRequest<FriendsDelete> FriendsDelete(
              int userId 
 ){
-            var req = new VKRequest<FriendsDeleteResponse>{
+            var req = new VKRequest<FriendsDelete>{
                 MethodName = "friends.delete",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -2296,7 +2351,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<EntityList<User>> UsersSearch(
-             string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100
+             string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100
 ){
             var req = new VKRequest<EntityList<User>>{
                 MethodName = "users.search",
@@ -2304,14 +2359,14 @@ namespace VKSharp {
                                             { "q", q },
                                             { "sort", ((int)sort).ToString() },
                                             { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) ) },
-                                            { "city_id", MiscTools.NullableString(cityId) },
-                                            { "country_id", MiscTools.NullableString(countryId) },
+                                            { "city", MiscTools.NullableString(city) },
+                                            { "country", MiscTools.NullableString(country) },
                                             { "hometown", hometown },
-                                            { "university_country_id", MiscTools.NullableString(universityCountryId) },
-                                            { "university_id", MiscTools.NullableString(universityId) },
+                                            { "university_country", MiscTools.NullableString(universityCountry) },
+                                            { "university", MiscTools.NullableString(university) },
                                             { "university_year", MiscTools.NullableString(universityYear) },
-                                            { "sex", ((int)sex).ToNCString() },
-                                            { "relation", relation.ToString() },
+                                            { "sex", MiscTools.NullableString((int?)sex) },
+                                            { "status", MiscTools.NullableString((int?)status) },
                                             { "age_from", MiscTools.NullableString(ageFrom) },
                                             { "age_to", MiscTools.NullableString(ageTo) },
                                             { "birth_day", MiscTools.NullableString(birthDay) },
@@ -2319,9 +2374,10 @@ namespace VKSharp {
                                             { "birth_year", MiscTools.NullableString(birthYear) },
                                             { "online", (online != null ? ( online.Value ? 1 : 0 ).ToNCString() : "") },
                                             { "has_photo", (hasPhoto != null ? ( hasPhoto.Value ? 1 : 0 ).ToNCString() : "") },
-                                            { "school_country_id", MiscTools.NullableString(schoolCountryId) },
-                                            { "school_city_id", MiscTools.NullableString(schoolCityId) },
-                                            { "school_id", MiscTools.NullableString(schoolId) },
+                                            { "school_country", MiscTools.NullableString(schoolCountry) },
+                                            { "school_city", MiscTools.NullableString(schoolCity) },
+                                            { "school_class", MiscTools.NullableString(schoolClass) },
+                                            { "school", MiscTools.NullableString(school) },
                                             { "school_year", MiscTools.NullableString(schoolYear) },
                                             { "religion", religion },
                                             { "interests", interests },
@@ -2671,10 +2727,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<WallPostResponse> WallPost(
+        public VKRequest<WallPost> WallPost(
              string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null, int? placeId = null
 ){
-            var req = new VKRequest<WallPostResponse>{
+            var req = new VKRequest<WallPost>{
                 MethodName = "wall.post",
                 Parameters = new Dictionary<string, string> {
                                             { "message", message },
@@ -2694,10 +2750,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<WallPostResponse> WallPost(
+        public VKRequest<WallPost> WallPost(
              int postId , int? ownerId = null
 ){
-            var req = new VKRequest<WallPostResponse>{
+            var req = new VKRequest<WallPost>{
                 MethodName = "wall.post",
                 Parameters = new Dictionary<string, string> {
                                             { "post_id", postId.ToNCString() },

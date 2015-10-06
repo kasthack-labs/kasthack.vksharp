@@ -6,6 +6,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
+using VKSharp.Helpers.DataTypes;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
@@ -77,6 +78,24 @@ namespace VKSharp {
                         ).ConfigureAwait(false);
                 }
                     
+            public async Task<string> ChangePassword(  string restoreSid , string changePasswordHash , string oldPassword , string newPassword  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .AccountChangePassword(
+                           restoreSid,changePasswordHash,oldPassword,newPassword
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> GetAppPermissions( int offset = 0, int count = 100 ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .AccountGetAppPermissions(
+                           offset, count
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
             public async Task<string> GetAppPermissions(  int? userId = null ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
@@ -100,6 +119,15 @@ namespace VKSharp {
                     _parent._reqapi
                         .AccountGetInfo(
                            
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> SaveProfileInfo(  string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null, string status = "" ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .AccountSaveProfileInfo(
+                           firstName,lastName,maidenName,screenName,sex,relation,relationPartnerId,bdate,countryId,cityId,status
                            )
                         ).ConfigureAwait(false);
                 }
@@ -1547,11 +1575,11 @@ namespace VKSharp {
                         ).ConfigureAwait(false);
                 }
                     
-            public async Task<string> Search(  string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? cityId = null, int? countryId = null, string hometown = "", int? universityCountryId = null, int? universityId = null, int? universityYear = null, Sex? sex = null, Relation? relation = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountryId = null, int? schoolCityId = null, int? schoolId = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
+            public async Task<string> Search(  string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,int offset = 0, int count = 100 ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
                         .UsersSearch(
-                           q,sort,fields,cityId,countryId,hometown,universityCountryId,universityId,universityYear,sex,relation,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountryId,schoolCityId,schoolId,schoolYear,religion,interests,company,position,groupId,offset, count
+                           q,sort,fields,city,country,hometown,universityCountry,university,universityYear,sex,status,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountry,schoolCity,schoolClass,school,schoolYear,religion,interests,company,position,groupId,offset, count
                            )
                         ).ConfigureAwait(false);
                 }

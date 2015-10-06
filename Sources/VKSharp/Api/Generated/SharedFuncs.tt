@@ -147,6 +147,14 @@ public static string Stringify(string name, string type){
             return "String.Join( \",\", MiscTools.GetUserFields( "+name+" ) )";
         case "GroupFields":
             return "String.Join( \",\", MiscTools.GetGroupFields( "+name+" ) )";
+        case "Relation":
+            return "((int)"+name+").ToNCString()";
+        case "Relation?":
+            return "MiscTools.NullableString((int?)"+name+")";
+        case "Sex":
+            return "((int)"+name+").ToNCString()";
+        case "Sex?":
+            return "MiscTools.NullableString((int?)"+name+")";
         case "AudioGenre":
         case "SearchSortOrder":
             return "((int)" + name + ").ToString()";

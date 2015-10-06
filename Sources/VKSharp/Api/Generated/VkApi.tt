@@ -13,6 +13,7 @@ using VKSharp.Core.Entities;
 using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
+using VKSharp.Helpers.DataTypes;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {

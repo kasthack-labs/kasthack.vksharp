@@ -89,18 +89,24 @@
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
     <Compile Include="ReturnTypes\Entities\Message.cs" />
+    <Compile Include="ReturnTypes\Entities\Offer.cs" />
     <Compile Include="ReturnTypes\Entities\Onlines.cs" />
     <Compile Include="ReturnTypes\Entities\ResolveResult.cs" />
     <Compile Include="ReturnTypes\Entities\Status.cs" />
     <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\ChangePassword.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\NameRequest.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\SaveProfileInfo.cs" />
     <Compile Include="ReturnTypes\Enums\ChangeNameStatus.cs" />
+    <Compile Include="ReturnTypes\Enums\CounterFields.cs" />
     <Compile Include="ReturnTypes\Enums\MessageReadState.cs" />
     <Compile Include="ReturnTypes\Enums\MessageType.cs" />
+    <Compile Include="ReturnTypes\Enums\NameRequestStatus.cs" />
     <Compile Include="ReturnTypes\Enums\ResolvedItemType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AccountInfo.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AuthRestore.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangeNameRequest.cs" />
-    <Compile Include="ReturnTypes\ResponseEntities\FriendsDeleteResponse.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\FriendsDelete.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\FriendshipStatus.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\LastActivity.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\PhotosUploadServer.cs" />
@@ -202,7 +208,7 @@
     <Compile Include="ReturnTypes\Enums\Attitude.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ConfirmResult.cs" />
     <Compile Include="ReturnTypes\Entities\Link.cs" />
-    <Compile Include="ReturnTypes\ResponseEntities\WallPostResponse.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\WallPost.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Api\Generated\ImplementedMethods.tt">
@@ -224,6 +230,9 @@
     <None Include="Api\Generated\VkApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>VkApi.cs</LastGenOutput>
+    </None>
+    <None Include="Api\Generated\VkSharpFuncs.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="VKSharp.nuspec">

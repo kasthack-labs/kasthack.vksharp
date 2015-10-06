@@ -61,6 +61,11 @@ namespace VKSharp.Helpers {
             return s;
         }
 
+        //public static string[] GetEnumFlags<TEnum>( TEnum value, TEnum everything, TEnum none ) where TEnum: Enum
+        //{
+            
+        //}
+
         public static string[] GetFilterFields( FriendSuggestionFilters fields ) {
             var s =
                 Enum.GetValues( typeof( FriendSuggestionFilters ) )
