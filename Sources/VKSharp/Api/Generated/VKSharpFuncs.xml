@@ -90,6 +90,7 @@
       <!--todo: serialization-->
       <Param Name="device_model" Type="string" Default="&quot;&quot;"/>
       <Param Name="system_version" Type="string"  Default="&quot;&quot;"/>
+      <Param Name="sandbox" Type="bool?" Default="null"/>
     </Params>
   </Method>
   <Method Name="account.unregisterDevice" Type="void" NeedToken="true">
@@ -480,7 +481,7 @@
       <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
     </Params>
     <Hardcoded>
-        <HardcodedParam Name="UserFields" Value=""/>
+        <HardcodedParam Name="fields" Value=""/>
     </Hardcoded>
   </Method>
   <Method Name="friends.getAppUsers" Type="int[]" NeedToken="false" >
@@ -554,10 +555,28 @@
       <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
     </Params>
   </Method>
+  <Method Name="groups.isMember" Type="bool" NeedToken="false" >
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="user_id" Type="int?" Default="null"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="0"/>
+    </Hardcoded>
+  </Method>
+  <Method Name="groups.isMember" Type="MemberShip" NeedToken="false" >
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="user_id" Type="int?" Default="null"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="1"/>
+    </Hardcoded>
+  </Method>
   <Method Name="groups.isMember" Type="MemberShip[]" NeedToken="false" >
     <Params>
       <Param Name="group_id" Type="int" />
-      <Param Name="extended" Type="bool" Default="false" />
+      <!--<Param Name="extended" Type="bool" Default="false" />-->
       <Param Name="user_ids" Type="int[]" />
     </Params>
   </Method>

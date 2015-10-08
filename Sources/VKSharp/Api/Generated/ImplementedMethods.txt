@@ -1,5 +1,5 @@
 ﻿
-Implemented 185 methods
+Implemented 187 methods
 * Account
     * account.banUser
     * account.changePassword
@@ -102,6 +102,8 @@ Implemented 185 methods
     * groups.getById
     * groups.getMembers
     * groups.getMembers
+    * groups.isMember
+    * groups.isMember
     * groups.isMember
     * groups.join
     * groups.leave

@@ -154,10 +154,10 @@ namespace VKSharp {
                                 ) ).ConfigureAwait(false)
                                 ;
                             }
-                                                public async Task RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "" ){
+                                                public async Task RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "", bool? sandbox = null ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AccountRegisterDevice(
-                                    token,deviceId,settings,deviceModel,systemVersion
+                                    token,deviceId,settings,deviceModel,systemVersion,sandbox
                                 ) ).ConfigureAwait(false)
                                 ;
                             }
@@ -851,11 +851,29 @@ namespace VKSharp {
                                                                     ).Response
                                 ;
                             }
-                                                public async Task <MemberShip[]>IsMember(  int groupId , bool extended = false,params int[] userIds  ){
+                                                public async Task <bool>IsMember(  int groupId , int? userId = null ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.GroupsIsMember(
-                                    groupId,extended,userIds
+                                    groupId,userId
+                                ) ).ConfigureAwait(false)
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <MemberShip> GroupsIsMemberExtended(  int groupId , int? userId = null ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.GroupsIsMemberExtended(
+                                    groupId,userId
+                                ) ).ConfigureAwait(false)
+                                                                    ).Response
+                                ;
+                            }
+                                                public async Task <MemberShip[]>IsMember(  int groupId ,params int[] userIds  ){
+                                                                    return (
+                                                                await _parent.Executor.ExecAsync(
+                                _parent._reqapi.GroupsIsMember(
+                                    groupId,userIds
                                 ) ).ConfigureAwait(false)
                                                                     ).Response
                                 ;

@@ -195,11 +195,11 @@ namespace VKSharp {
                         ).ConfigureAwait(false);
                 }
                     
-            public async Task<string> RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "" ){
+            public async Task<string> RegisterDevice(  string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "", bool? sandbox = null ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
                         .AccountRegisterDevice(
-                           token,deviceId,settings,deviceModel,systemVersion
+                           token,deviceId,settings,deviceModel,systemVersion,sandbox
                            )
                         ).ConfigureAwait(false);
                 }
@@ -948,11 +948,29 @@ namespace VKSharp {
                         ).ConfigureAwait(false);
                 }
                     
-            public async Task<string> IsMember(  int groupId , bool extended = false,params int[] userIds  ){
+            public async Task<string> IsMember(  int groupId , int? userId = null ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi
                         .GroupsIsMember(
-                           groupId,extended,userIds
+                           groupId,userId
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> GroupsIsMemberExtended(  int groupId , int? userId = null ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .GroupsIsMemberExtended(
+                           groupId,userId
+                           )
+                        ).ConfigureAwait(false);
+                }
+                    
+            public async Task<string> IsMember(  int groupId ,params int[] userIds  ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi
+                        .GroupsIsMember(
+                           groupId,userIds
                            )
                         ).ConfigureAwait(false);
                 }

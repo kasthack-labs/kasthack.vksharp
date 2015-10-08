@@ -216,7 +216,7 @@ namespace VKSharp {
             return req;
         }
         public VKRequest<bool> AccountRegisterDevice(
-             string token , string deviceId , string settings , string deviceModel = "", string systemVersion = ""
+             string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "", bool? sandbox = null
 ){
             var req = new VKRequest<bool>{
                 MethodName = "account.registerDevice",
@@ -226,6 +226,7 @@ namespace VKSharp {
                                             { "settings", settings },
                                             { "device_model", deviceModel },
                                             { "system_version", systemVersion },
+                                            { "sandbox", (sandbox != null ? ( sandbox.Value ? 1 : 0 ).ToNCString() : "") },
                                                                     }
             };
                 req.Token = CurrentToken;
@@ -1386,14 +1387,43 @@ namespace VKSharp {
             
             return req;
         }
+        public VKRequest<bool> GroupsIsMember(
+             int groupId , int? userId = null
+){
+            var req = new VKRequest<bool>{
+                MethodName = "groups.isMember",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", groupId.ToNCString() },
+                                            { "user_id", MiscTools.NullableString(userId) },
+                                                                    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
+        public VKRequest<MemberShip> GroupsIsMemberExtended(
+             int groupId , int? userId = null
+){
+            var req = new VKRequest<MemberShip>{
+                MethodName = "groups.isMember",
+                Parameters = new Dictionary<string, string> {
+                                            { "group_id", groupId.ToNCString() },
+                                            { "user_id", MiscTools.NullableString(userId) },
+                                                                    }
+            };
+            if (IsLogged){
+                req.Token = CurrentToken;
+            }
+            return req;
+        }
         public VKRequest<MemberShip[]> GroupsIsMember(
-             int groupId , bool extended = false,params int[] userIds 
+             int groupId ,params int[] userIds 
 ){
             var req = new VKRequest<MemberShip[]>{
                 MethodName = "groups.isMember",
                 Parameters = new Dictionary<string, string> {
                                             { "group_id", groupId.ToNCString() },
-                                            { "extended", (extended?1:0).ToNCString() },
                                             { "user_ids", (userIds??new int[]{}).ToNCStringA() },
                                                                     }
             };
