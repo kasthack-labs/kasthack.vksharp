@@ -106,7 +106,7 @@
   <Method Name="apps.deleteAppRequests" Type="void" NeedToken="true" >
     <Params />
   </Method>
-  <Method Name="audio.add" Type="int" NeedToken="true" >
+  <Method Name="audio.add" Type="AddAlbum" NeedToken="true" >
     <Params>
       <Param Name="owner_id" Type="int" />
       <Param Name="audio_id" Type="long" />
@@ -424,7 +424,7 @@
       <Param Name="group_id" Type="int" />
     </Params>
   </Method>
-  <Method Name="friends.add" Type="int" NeedToken="true" >
+  <Method Name="friends.add" Type="AddFriendResult" NeedToken="true" >
     <Params>
       <Param Name="user_id" Type="int" />
       <Param Name="text" Type="string" Default="&quot;&quot;" />
@@ -899,7 +899,7 @@
       <Param Name="description" Type="string" Default="&quot;&quot;" />
     </Params>
   </Method>
-  <Method Name="stats.trackVisitor" Type="int" NeedToken="true" >
+  <Method Name="stats.trackVisitor" Type="void" NeedToken="true" >
     <Params />
   </Method>
   <Method Name="status.get" Type="Status[]" NeedToken="false" >

@@ -272,10 +272,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> AudioAdd(
+        public VKRequest<AddAlbum> AudioAdd(
              int ownerId , long audioId , int? groupId = null
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<AddAlbum>{
                 MethodName = "audio.add",
                 Parameters = new Dictionary<string, string> {
                                             { "owner_id", ownerId.ToNCString() },
@@ -1065,10 +1065,10 @@ namespace VKSharp {
             
             return req;
         }
-        public VKRequest<int> FriendsAdd(
+        public VKRequest<AddFriendResult> FriendsAdd(
              int userId , string text = ""
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<AddFriendResult>{
                 MethodName = "friends.add",
                 Parameters = new Dictionary<string, string> {
                                             { "user_id", userId.ToNCString() },
@@ -2160,10 +2160,10 @@ namespace VKSharp {
             }
             return req;
         }
-        public VKRequest<int> StatsTrackVisitor(
+        public VKRequest<bool> StatsTrackVisitor(
             
 ){
-            var req = new VKRequest<int>{
+            var req = new VKRequest<bool>{
                 MethodName = "stats.trackVisitor",
                 Parameters = new Dictionary<string, string> {
                                                                     }

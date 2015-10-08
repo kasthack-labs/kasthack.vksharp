@@ -94,6 +94,8 @@
     <Compile Include="ReturnTypes\Entities\ResolveResult.cs" />
     <Compile Include="ReturnTypes\Entities\Status.cs" />
     <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
+    <Compile Include="ReturnTypes\Enums\AddFriendResult.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\AddAlbum.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangePassword.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\NameRequest.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\SaveProfileInfo.cs" />

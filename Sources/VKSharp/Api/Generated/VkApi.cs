@@ -199,7 +199,7 @@ namespace VKSharp {
                 public partial class MethodGroup_audio {
                     private readonly VKApi _parent;
                     internal MethodGroup_audio(VKApi parent){_parent=parent;}
-                                                public async Task <int>Add(  int ownerId , long audioId , int? groupId = null ){
+                                                public async Task <AddAlbum>Add(  int ownerId , long audioId , int? groupId = null ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.AudioAdd(
@@ -667,7 +667,7 @@ namespace VKSharp {
                 public partial class MethodGroup_friends {
                     private readonly VKApi _parent;
                     internal MethodGroup_friends(VKApi parent){_parent=parent;}
-                                                public async Task <int>Add(  int userId , string text = "" ){
+                                                public async Task <AddFriendResult>Add(  int userId , string text = "" ){
                                                                     return (
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.FriendsAdd(
@@ -1275,13 +1275,11 @@ namespace VKSharp {
                 public partial class MethodGroup_stats {
                     private readonly VKApi _parent;
                     internal MethodGroup_stats(VKApi parent){_parent=parent;}
-                                                public async Task <int>TrackVisitor(  ){
-                                                                    return (
+                                                public async Task TrackVisitor(  ){
                                                                 await _parent.Executor.ExecAsync(
                                 _parent._reqapi.StatsTrackVisitor(
                                     
                                 ) ).ConfigureAwait(false)
-                                                                    ).Response
                                 ;
                             }
                                     }
