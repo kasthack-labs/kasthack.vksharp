@@ -24,23 +24,27 @@ namespace VKSharp {
 #>
         private void InitializeMethodGroups(){
 <#foreach (var methodGroup in gs){#>
-
-        <#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+methodGroup.Key#>(this);
+        
+        <#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+ToMeth(methodGroup.Key)#>(this);
     <#}#>
     }
-<#foreach (var methodGroup in gs){ var cln = "MethodGroup_"+methodGroup.Key; #>
+<#foreach (var methodGroup in gs){
+var group = ToMeth(methodGroup.Key);
+var cln = "MethodGroup_"+group;
+#>
 
-        public <#=cln#> <#=ToMeth(methodGroup.Key)#> {get; private set;}
+        public <#=cln#> <#=group#> {get; private set;}
         public partial class <#=cln#> {
             private readonly RawApi _parent;
             internal <#=cln#>(RawApi parent){_parent=parent;}
-<# foreach ( var node in methodGroup ) { #>
+<# foreach ( var method in methodGroup ) {
+        var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
+#>
 
-            public async Task<string> <#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
+            public async Task<string> <#=methodName#>( <#=GetParamsString(method)#> ){
                 return await _parent.Executor.ExecRawAsync(
-                    _parent._reqapi
-                        .<#=ToMeth(node.Name)#>(
-                           <#=GetCallParamsString( node )#>
+                    _parent._reqapi.<#=group#>.<#=methodName#>(
+                           <#=GetCallParamsString( method )#>
                            )
                         ).ConfigureAwait(false);
                 }

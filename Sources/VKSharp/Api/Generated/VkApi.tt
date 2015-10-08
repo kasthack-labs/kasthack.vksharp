@@ -18,34 +18,37 @@ using VKSharp.Helpers.DataTypes;
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
     public partial class VKApi {
-        <#
-            var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));                //method descriptions
-            var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();    //method groups
-            #>
+<#
+            var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
+            var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();
+#>
             private void InitializeMethodGroups(){
             <#foreach (var methodGroup in gs){#>
-                this.<#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+methodGroup.Key#>(this);
+                this.<#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+ToMeth(methodGroup.Key)#>(this);
             <#}#>
             }
+
             <#foreach (var methodGroup in gs){
-                var cln = "MethodGroup_"+methodGroup.Key;
-        #>
-                public <#=cln#> <#=ToMeth(methodGroup.Key)#> {get; private set;}
+                var group = ToMeth(methodGroup.Key);
+                var cln = "MethodGroup_"+group;
+            #>
+                public <#=cln#> <#=group#> {get; private set;}
                 public partial class <#=cln#> {
                     private readonly VKApi _parent;
                     internal <#=cln#>(VKApi parent){_parent=parent;}
                     <#
-                        foreach ( var node in methodGroup ) {
-                            var parse = node.Type != "void";
-                            var returnType =parse?String.Format("<{0}>",node.Type):"";
+                        foreach ( var method in methodGroup ) {
+                            var parse = method.Type != "void";
+                            var returnType =parse?String.Format("<{0}>",method.Type):"";
+                            var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
                     #>
-                            public async Task <#=returnType#><#=ToMeth(node.Name.Split('.').Last())#>( <#=GetParamsString(node)#> ){
+                            public async Task <#=returnType#><#=methodName#>( <#=GetParamsString(method)#> ){
                                 <#if(parse){#>
                                     return (
                                 <#}#>
                                 await _parent.Executor.ExecAsync(
-                                _parent._reqapi.<#=ToMeth(node.Name)#>(
-                                    <#=GetCallParamsString( node )#>
+                                _parent._reqapi.<#=group#>.<#=methodName#>(
+                                    <#=GetCallParamsString( method )#>
                                 ) ).ConfigureAwait(false)
                                 <#if(parse){#>
                                     ).Response

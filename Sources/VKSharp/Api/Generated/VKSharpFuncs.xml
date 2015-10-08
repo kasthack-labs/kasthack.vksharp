@@ -564,7 +564,7 @@
       <HardcodedParam Name="extended" Value="0"/>
     </Hardcoded>
   </Method>
-  <Method Name="groups.isMember" Type="MemberShip" NeedToken="false" >
+  <Method Name="groups.isMember" NameSuffix="Extended" Type="MemberShip" NeedToken="false" >
     <Params>
       <Param Name="group_id" Type="int" />
       <Param Name="user_id" Type="int?" Default="null"/>

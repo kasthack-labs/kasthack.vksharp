@@ -22,40 +22,69 @@ using VKSharp.Helpers.DataTypes;
 // ReSharper disable UseObjectOrCollectionInitializer
 namespace VKSharp {
     public partial class RequestApi {
-    <#
+<#
         var ms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml"));
-        foreach ( var node in ms ) {
-        var returnType =node.Type;
-            if ( returnType == "void" ) returnType = "bool";#>
-    public VKRequest<<#=returnType#>> <#=ToMeth(node.Name)#>(
-            <#=GetParamsString(node)#>
-){
-            var req = new VKRequest<<#=returnType#>>{
-                MethodName = "<#=node.Name#>",
-                Parameters = new Dictionary<string, string> {
-                    <# foreach(var a in node.Params){#>
-                        { "<#=a.Name.Replace("@","")#>", <#=a.Custom==null?Stringify(ToMeth(a.Name, true), a.Type) :a.Custom.Replace("#name",ToMeth(a.Name,true))#> },
-                    <#}#>
-                    <#if ( node.Pageable != 0 ) { #>
+        var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();
+#>
+        private void InitializeMethodGroups(){
+    <#foreach (var methodGroup in gs){#>
+        this.<#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+methodGroup.Key#>(this);
+    <#}#>
+    }
+<#
+foreach ( var methodGroup in gs ) {
+    var cln = "MethodGroup_" + methodGroup.Key;
+    #>
+        public <#=cln #> <#=ToMeth( methodGroup.Key ) #> {get; private set;}
+        public partial class <#=cln #> {
+            private readonly RequestApi _parent;
+            internal <#=cln#>(RequestApi parent){_parent=parent;}
+<#
+    foreach ( var method in methodGroup ) {
+        var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
+        var returnType = method.Type;
+        if ( returnType == "void" ) returnType = "bool";
+#>
+
+            public VKRequest<<#=returnType #>> <#=methodName #>(
+                <#=GetParamsString( method ) #>
+            ) {
+                var req = new VKRequest<<#=returnType #>>{
+                    MethodName = "<#=method.Name #>",
+                    Parameters = new Dictionary<string, string> {
+
+<#
+foreach ( var parameter in method.Params ) {
+#>
+                        { "<#=parameter.Name.Replace( "@", "" ) #>", <#if ( parameter.Custom == null ) { #><#=Stringify( ToMeth( parameter.Name, true ), parameter.Type ) #><# }
+else { #> <#=parameter.Custom.Replace( "#name", ToMeth( parameter.Name, true ) ) #> <# } #>},
+<# } #>
+<#
+foreach ( var parameter in method.Hardcoded??new HardcodedParameter[]{} ) {
+#>
+                        {"<#=parameter.Name.ToString() #>","<#=parameter.Value #>"},
+<#
+}
+#>
+<#if ( method.Pageable != 0 ) { #>
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
-                    <# }#>
-                    <# if ( node.Hardcoded != null ) {
-    foreach ( var pair in node.Hardcoded ) {
-        #>
-            {"<#=pair.Name#>","<#=pair.Value#>"},
-        <#
+<# } #>
+
+                    }
+                };
+<#if ( !method.NeedToken ) { #>
+                if (_parent.IsLogged)
+<# } #>
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+<#
     }
-                    }#>
+#>
         }
-            };
-    <#if (!node.NeedToken){#>
-        if (IsLogged){
-    <#}#>
-            req.Token = CurrentToken;
-            <#=!node.NeedToken?"}":""#>
-            return req;
-        }
-    <#}#>
+<#
 }
+#>
+    }
 }

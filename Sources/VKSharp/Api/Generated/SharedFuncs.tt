@@ -15,6 +15,7 @@
 <#@ import namespace="System.Xml.Serialization" #>
 <#+
 [Serializable]
+[XmlType("HardcodedParam")]
 public class HardcodedParameter{
     [XmlAttribute]
     public string Name {get;set;}
@@ -29,6 +30,8 @@ public class Method {
     public string Type {get;set;}
     [XmlAttribute]
     public bool NeedToken {get;set;}
+    [XmlAttribute]
+    public string NameSuffix {get;set;}
     [XmlAttribute]
     public int Pageable {get;set;}
     public Param[] Params {get;set;}
