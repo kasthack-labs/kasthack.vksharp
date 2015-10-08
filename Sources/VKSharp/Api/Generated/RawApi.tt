@@ -24,10 +24,9 @@ namespace VKSharp {
 #>
         private void InitializeMethodGroups(){
 <#foreach (var methodGroup in gs){#>
-        
-        <#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+ToMeth(methodGroup.Key)#>(this);
-    <#}#>
-    }
+            <#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+ToMeth(methodGroup.Key)#>(this);
+<#}#>
+        }
 <#foreach (var methodGroup in gs){
 var group = ToMeth(methodGroup.Key);
 var cln = "MethodGroup_"+group;
@@ -41,17 +40,19 @@ var cln = "MethodGroup_"+group;
         var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
 #>
 
-            public async Task<string> <#=methodName#>( <#=GetParamsString(method)#> ){
+            public async Task<string> <#=methodName#>(
+                <#=GetParamsString(method)#>
+            ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.<#=group#>.<#=methodName#>(
                            <#=GetCallParamsString( method )#>
-                           )
-                        ).ConfigureAwait(false);
-                }
-                    <# } #>
-                }
-        <#
+                    )
+                ).ConfigureAwait(false);
             }
+                    <# } #>
+            }
+        <#
+        }
         #>
     }
 }

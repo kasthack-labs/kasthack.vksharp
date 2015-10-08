@@ -84,7 +84,7 @@ public static string GetParamsString(Method node) {
         .Reverse().Skip( 1 ).Reverse()
         .Select( a =>
             String.Format(
-                " {0} {1} {2}",
+                "{0} {1} {2}",
                 a.Type,
                 ToMeth( a.Name, true ),
                 !string.IsNullOrWhiteSpace( a.Default ) ? "= " + a.Default : ""
@@ -109,7 +109,7 @@ public static string GetParamsString(Method node) {
         if ( pagestring != null )
             ret.Add( pagestring );
     }
-    return String.Join( ",", ret );
+    return String.Join( ", ", ret );
 }
 public static Method[] GetMethods(string file){
     using (var f = File.OpenRead(file))

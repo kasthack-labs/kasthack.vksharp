@@ -1,4 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
+﻿using VKSharp.Core.EntityFragments;
+using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Photo : OwnedEntity<Photo> {
@@ -20,5 +21,6 @@ namespace VKSharp.Core.Entities {
         public PhotoLikes Likes { get; set; }
         public Counter Tags { get; set; }
         public Counter Comments { get; set; }
+        public PhotoSize[] Sizes { get; set; }
     }
 }

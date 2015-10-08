@@ -1,5 +1,5 @@
 ﻿
-Implemented 187 methods
+Implemented 188 methods
 * Account
     * account.banUser
     * account.changePassword
@@ -172,6 +172,7 @@ Implemented 187 methods
     * storage.set
 * Users
     * users.get
+    * users.getFollowers
     * users.getFollowers
     * users.getNearby
     * users.getSubscriptions

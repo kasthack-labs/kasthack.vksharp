@@ -480,9 +480,6 @@
       <Param Name="list_id" Type="int?" Default="null" />
       <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
     </Params>
-    <Hardcoded>
-        <HardcodedParam Name="fields" Value=""/>
-    </Hardcoded>
   </Method>
   <Method Name="friends.getAppUsers" Type="int[]" NeedToken="false" >
     <Params />
@@ -542,10 +539,11 @@
       <Param Name="fields" Type="GroupFields" />
     </Params>
   </Method>
-  <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
+  <Method Name="groups.getMembers" Type="EntityList&lt;int&gt;" NeedToken="true" Pageable="100">
     <Params>
-      <Param Name="group_id" Type="int" />
-      <Param Name="fields" Type="UserFields" Default="UserFields.Everything" />
+      <Param Name="group_id" Type="string" />
+      <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
+      <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
     </Params>
   </Method>
   <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
@@ -553,6 +551,7 @@
       <Param Name="group_id" Type="string" />
       <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
       <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
+      <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
     </Params>
   </Method>
   <Method Name="groups.isMember" Type="bool" NeedToken="false" >
@@ -576,7 +575,6 @@
   <Method Name="groups.isMember" Type="MemberShip[]" NeedToken="false" >
     <Params>
       <Param Name="group_id" Type="int" />
-      <!--<Param Name="extended" Type="bool" Default="false" />-->
       <Param Name="user_ids" Type="int[]" />
     </Params>
   </Method>
@@ -824,6 +822,8 @@
       <Param Name="owner_id" Type="int?" Default="null" />
       <Param Name="extended" Type="bool" Default="false" />
       <Param Name="no_service_albums" Type="bool" Default="false" />
+      <Param Name="need_hidden" Type="bool?" Default="null" />
+      <Param Name="skip_hidden" Type="bool?" Default="null" />
     </Params>
   </Method>
   <Method Name="photos.getById" Type="Photo[]" NeedToken="false" >
@@ -963,6 +963,12 @@
       <Param Name="fields" Type="UserFields" Default="UserFields.None" />
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
       <Param Name="user_ids" Type="int[]" />
+    </Params>
+  </Method>
+  <Method Name="users.getFollowers" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
   </Method>
   <Method Name="users.getFollowers" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">

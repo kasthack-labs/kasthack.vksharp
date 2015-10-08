@@ -1426,7 +1426,6 @@ namespace VKSharp {
                         { "user_id", MiscTools.NullableString(userId)},
                         { "list_id", MiscTools.NullableString(listId)},
                         { "order", order.ToNClString()},
-                        {"fields",""},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -1615,15 +1614,16 @@ namespace VKSharp {
                 return req;
             }
 
-            public VKRequest<EntityList<User>> GetMembers(
-                 int groupId , UserFields fields = UserFields.Everything,int offset = 0, int count = 100
+            public VKRequest<EntityList<int>> GetMembers(
+                 string groupId , GroupMembersFilter? filter = null, MembersSortOrder? sort = null,int offset = 0, int count = 100
             ) {
-                var req = new VKRequest<EntityList<User>>{
+                var req = new VKRequest<EntityList<int>>{
                     MethodName = "groups.getMembers",
                     Parameters = new Dictionary<string, string> {
 
-                        { "group_id", groupId.ToNCString()},
-                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
+                        { "group_id", groupId},
+                        { "filter", filter.ToString()},
+                        { "sort", sort.ToString()},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -1634,7 +1634,7 @@ namespace VKSharp {
             }
 
             public VKRequest<EntityList<User>> GetMembers(
-                 string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,int offset = 0, int count = 100
+                 string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null, MembersSortOrder? sort = null,int offset = 0, int count = 100
             ) {
                 var req = new VKRequest<EntityList<User>>{
                     MethodName = "groups.getMembers",
@@ -1643,6 +1643,7 @@ namespace VKSharp {
                         { "group_id", groupId},
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "filter", filter.ToString()},
+                        { "sort", sort.ToString()},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -2349,7 +2350,7 @@ namespace VKSharp {
             }
 
             public VKRequest<EntityList<Photo>> GetAll(
-                 int? ownerId = null, bool extended = false, bool noServiceAlbums = false,int offset = 0, int count = 100
+                 int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null, bool? skipHidden = null,int offset = 0, int count = 100
             ) {
                 var req = new VKRequest<EntityList<Photo>>{
                     MethodName = "photos.getAll",
@@ -2358,6 +2359,8 @@ namespace VKSharp {
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "extended", (extended?1:0).ToNCString()},
                         { "no_service_albums", (noServiceAlbums?1:0).ToNCString()},
+                        { "need_hidden", (needHidden != null ? ( needHidden.Value ? 1 : 0 ).ToNCString() : "")},
+                        { "skip_hidden", (skipHidden != null ? ( skipHidden.Value ? 1 : 0 ).ToNCString() : "")},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -2724,6 +2727,25 @@ namespace VKSharp {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "name_case", nameCase.ToNClString()},
                         { "user_ids", (userIds??new int[]{}).ToNCStringA()},
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<EntityList<int>> GetFollowers(
+                 int? userId = null, NameCase nameCase = NameCase.Nom,int offset = 0, int count = 100
+            ) {
+                var req = new VKRequest<EntityList<int>>{
+                    MethodName = "users.getFollowers",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "user_id", MiscTools.NullableString(userId)},
+                        { "name_case", nameCase.ToNClString()},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
 
                     }
                 };
