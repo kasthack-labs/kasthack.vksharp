@@ -19,34 +19,33 @@ Install-Package kasthack.vksharp
 1. Register app at https://vk.com/editapp?act=create
 
 2. Get OAuth authorize uri
-```C#
-var redirect_uri = VKToken.GetOAuthURL(
-    APP_ID,     // APP ID: shown on app's properties page
-    PERMISSIONS // Permissions: VKPermission.*, something like VKPermission.Offline | VKPermission.Photos
-);
-```
+
+    ```C#
+    var redirect_uri = VKToken.GetOAuthURL(
+        APP_ID,     // APP ID: shown on app's properties page
+        PERMISSIONS // Permissions: VKPermission.*, something like VKPermission.Offline | VKPermission.Photos
+    );
+    ```
 
 3. Show authorization page to user.
 
 4. Build VKToken from redirect uri.
 
-```C#
-var token = VKToken.FromRedirectUrl( REDIRECT_URL );
-```
+    ```C#
+    var token = VKToken.FromRedirectUrl( REDIRECT_URL );
+    ```
 
 5. Use token 
 
-```C#
+    ```C#
     var api = new VKApi();
     api.AddToken(token);
-```
+    ```
 
 6. Execure requests
-```C#
-
-var users = await api.Users.Get(1);
-
-```
+    ```C#
+    var users = await api.Users.Get(1);
+    ```
 7. ???
 8. Profit
 
