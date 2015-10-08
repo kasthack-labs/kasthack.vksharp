@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKSharp", "VKSharp.csproj", "{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}"
 EndProject
@@ -16,6 +16,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vk.groups.sample", "..\Samples\New\vk.groups.sample\vk.groups.sample.csproj", "{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "..\Samples\Old\TestApp\TestApp.csproj", "{D70BC0FC-BFEC-4942-95A1-889D60F1536F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB849638-90F6-4234-B9CB-0FEED6AB6785}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Contribute.ru.md = ..\..\Contribute.ru.md
+		..\..\README.md = ..\..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
