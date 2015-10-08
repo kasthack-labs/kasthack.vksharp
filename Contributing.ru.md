@@ -14,7 +14,7 @@
 1. Дёргается метод VKApi/RawApi
 2. VKApi/RawApi вызывает аналогичный метод у RequestApi, получая сформированный запрос(vkrequest<T>).
 3. Запрос передаётся Executor'у в ExecAsync/ExecRawAsync
-4. Executor(на данный момент это [JsonExecutor](Core/Executors/JsonExecutor)) строит HTTP-запрос по VKRequest'у и выполняет его.
+4. Executor(на данный момент это [JsonExecutor](Sources/Core/Executors/JsonExecutor)) строит HTTP-запрос по VKRequest'у и выполняет его.
 5. Если был вызван ExecRawAsync, Executor возвращает полученные данные в виде строке без обработки.
 6. Executor десериализует полученные данные.
 7. Если свойство Error отлично от null, бросается исключение.
@@ -24,7 +24,7 @@
 
 ### Методы
 
-Все методы API описаны в [Api/Generated/VkSharpFuncs.xml](Api/Generated/VkSharpFuncs.xml). Формат описан в [соответствующем XSD](Api/Generated/VkSharpFuncs.xml). Автокомплит в студии иногда отваливается, но проблема на их стороне.
+Все методы API описаны в [Sources/VKSharp/Api/Generated/VkSharpFuncs.xml](Sources/VKSharp/Api/Generated/VKSharpFuncs.xml). Формат описан в [соответствующем XSD](Sources/VKSharp/Api/Generated/VkSharpFuncs.xsd). Автокомплит в студии иногда отваливается, но проблема на их стороне.
 
 Пример описания метода:
 
@@ -73,10 +73,10 @@
 
 Исходный код и список готовых методов генерируется из него T4-шаблонами из той же папки:
 
-* [RequestApi.tt](Api/Generated/RequestApi.tt) - реквесты
-* [RawApi.tt](Api/Generated/RawApi.tt) - сырое апи
-* [VkApi.tt](Api/Generated/VkApi.tt) - апи с объектами
-* [ImplementedMethods.tt](Api/Generated/ImplementedMethods.tt) - список готовых методов
+* [RequestApi.tt](Sources/VKSharp/Api/Generated/RequestApi.tt) - реквесты
+* [RawApi.tt](Sources/VKSharp/Api/Generated/RawApi.tt) - сырое апи
+* [VkApi.tt](Sources/VKSharp/Api/Generated/VkApi.tt) - апи с объектами
+* [ImplementedMethods.tt](Sources/VKSharp/Api/Generated/ImplementedMethods.tt) - список готовых методов
 
 Студия запускает генератор при сохранении шаблона.
 
