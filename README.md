@@ -50,6 +50,6 @@ Install-Package kasthack.vksharp
 8. Profit
 
 ### Implemented methods
-Lurk [here](Sources/VKSharp/Api/Generated/ImplementedMethods.txt)
+Lurk [here](Sources/VKSharp/Api/Generated/ImplementedMethods.md)
 ### Contributing
 [Contributing guide(in Russian)](Contributing.ru.md)

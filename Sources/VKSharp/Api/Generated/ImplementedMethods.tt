@@ -6,19 +6,25 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#@ include file="SharedFuncs.tt"#>
-<#@ output extension=".txt" #>
+<#@ output extension=".md" #>
 <#
-    var nms = GetMethods(Host.ResolvePath("VKSharpFuncs.xml")).Select(a=>a.Name).ToArray();
+    var nms = new HashSet<string>(GetMethods(Host.ResolvePath("VKSharpFuncs.xml")).Select(a=>a.Name).Distinct());
+    var real = File.ReadLines( Host.ResolvePath( "AllMethods.txt" ) ).Distinct().OrderBy( a=>a ).ToArray();
     var ti = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
-#>
-Implemented <#=nms.Length#> methods
+#>Implemented <#=nms.Count#> methods of <#=real.Length#>:
+
 <#
-    foreach (var v in nms.GroupBy(a=>a.Split('.').First())) {
+    foreach ( var group in real.GroupBy( a=>a.Split( '.' ).FirstOrDefault() ) ) {
 #>
-* <#=ti.ToTitleCase(v.Key)#>
-<#    foreach ( var c in v.OrderBy(a=>a) ) {#>
-    * <#=c#>
+* <#=ToMeth(group.Key)#>
+<#
+        foreach ( var method in group ) {
+#>
+    - [<#=nms.Contains( method )?'x':' '#>] <#=method#>
+
+<#
+        }
+#>
 <#
     }
-}
 #>

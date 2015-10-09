@@ -215,9 +215,14 @@
     <Compile Include="ReturnTypes\ResponseEntities\WallPost.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Api\Generated\ImplementedMethods.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImplementedMethods.tt</DependentUpon>
+    </None>
     <None Include="Api\Generated\ImplementedMethods.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ImplementedMethods.txt</LastGenOutput>
+      <LastGenOutput>ImplementedMethods.md</LastGenOutput>
     </None>
     <None Include="Api\Generated\RequestApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -255,16 +260,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Api\Generated\ImplementedMethods.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ImplementedMethods.tt</DependentUpon>
-    </None>
     <None Include="Api\Generated\VkSharpFuncs.xml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Api\Generated\AllMethods.txt" />
     <Content Include="favicon.ico" />
   </ItemGroup>
   <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
