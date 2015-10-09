@@ -2,7 +2,7 @@
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Photo : OwnedEntity<Photo> {
+    public class Photo : OwnedEntity {
         public string AccessKey { get; set; }
         public int? PostId { get; set; }
         public int? UserId { get; set; }

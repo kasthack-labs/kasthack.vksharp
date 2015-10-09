@@ -2,7 +2,7 @@
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Audio : OwnedEntity<Audio> {
+    public class Audio : OwnedEntity {
         public AudioGenre GenreId { get; set; }
         public int AlbumId { get; set; }
         public int LyricsId { get; set; }

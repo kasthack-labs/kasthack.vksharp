@@ -2,7 +2,7 @@
 
 namespace VKSharp.Core.Entities {
 
-    public class PhotoAlbum : OwnedEntity<PhotoAlbum> {
+    public class PhotoAlbum : OwnedEntity {
         public int ThumbId { get; set; }
         public string ThumbSrc { get; set; }
         public string Title { get; set; }

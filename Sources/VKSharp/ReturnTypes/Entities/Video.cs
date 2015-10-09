@@ -1,7 +1,7 @@
 ﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Video : OwnedEntity<Video> {
+    public class Video : OwnedEntity {
         public string AccessKey { get; set; }
         public string Title { get; set; }
         public int Duration { get; set; }

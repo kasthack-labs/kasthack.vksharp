@@ -3,7 +3,7 @@ using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Post : OwnedEntity<Post> {
+    public class Post : OwnedEntity {
         public int FromId { get; set; }
         public bool? CanEdit { get; set; }
         public bool? CanPin { get; set; }

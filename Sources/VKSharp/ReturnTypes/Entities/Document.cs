@@ -1,7 +1,7 @@
 ﻿using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
-    public class Document : OwnedEntity<Document> {
+    public class Document : OwnedEntity {
         public string Title { get; set; }
         public int Size { get; set; }
         public string Url { get; set; }
