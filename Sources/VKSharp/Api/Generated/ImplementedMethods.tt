@@ -11,16 +11,22 @@
     var nms = new HashSet<string>(GetMethods(Host.ResolvePath("VKSharpFuncs.xml")).Select(a=>a.Name).Distinct());
     var real = File.ReadLines( Host.ResolvePath( "AllMethods.txt" ) ).Distinct().OrderBy( a=>a ).ToArray();
     var ti = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
-#>Implemented <#=nms.Count#> methods of <#=real.Length#>:
+    var grps = real
+        .Select( a=>new{value=a, implemented = nms.Contains( a )} )
+        .GroupBy( a => a.value.Split( '.' ).FirstOrDefault() )
+        .Select( a => new { Key = a.Key, value = a.ToArray() } )
+        .Select( a=>new {Key=a.Key, value=a.value, impl = a.value.Count(b => b.implemented)} )
+        .ToArray();
+#>Implemented <#=nms.Count#> methods of <#=real.Length#>, <#=100*nms.Count/real.Length#>%:
 
 <#
-    foreach ( var group in real.GroupBy( a=>a.Split( '.' ).FirstOrDefault() ) ) {
+    foreach ( var group in grps ) {
 #>
-* <#=ToMeth(group.Key)#>
+* [<#=ToMeth(group.Key)#>](https://vk.com/dev/<#=group.Key#>). Implemented <#=group.impl#> of <#=group.value.Length#>, <#=100*group.impl/group.value.Length#>%:
 <#
-        foreach ( var method in group ) {
+        foreach ( var method in group.value ) {
 #>
-    - [<#=nms.Contains( method )?'x':' '#>] <#=method#>
+    - [<#=nms.Contains( method.value )?'x':' '#>] [<#=method.value#>](https://vk.com/dev/<#=method.value#>)
 
 <#
         }

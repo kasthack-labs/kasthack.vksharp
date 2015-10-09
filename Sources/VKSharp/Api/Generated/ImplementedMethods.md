@@ -1,770 +1,770 @@
 ﻿
-Implemented 177 methods of 367:
+Implemented 177 methods of 367, 48%:
 
-* Account
-    - [x] account.banUser
+* [Account](https://vk.com/dev/account). Implemented 15 of 20, 75%:
+    - [x] [account.banUser](https://vk.com/dev/account.banUser)
 
-    - [x] account.changePassword
+    - [x] [account.changePassword](https://vk.com/dev/account.changePassword)
 
-    - [ ] account.getActiveOffers
+    - [ ] [account.getActiveOffers](https://vk.com/dev/account.getActiveOffers)
 
-    - [x] account.getAppPermissions
+    - [x] [account.getAppPermissions](https://vk.com/dev/account.getAppPermissions)
 
-    - [x] account.getBanned
+    - [x] [account.getBanned](https://vk.com/dev/account.getBanned)
 
-    - [ ] account.getCounters
+    - [ ] [account.getCounters](https://vk.com/dev/account.getCounters)
 
-    - [x] account.getInfo
+    - [x] [account.getInfo](https://vk.com/dev/account.getInfo)
 
-    - [x] account.getProfileInfo
+    - [x] [account.getProfileInfo](https://vk.com/dev/account.getProfileInfo)
 
-    - [ ] account.getPushSettings
+    - [ ] [account.getPushSettings](https://vk.com/dev/account.getPushSettings)
 
-    - [ ] account.lookupContacts
+    - [ ] [account.lookupContacts](https://vk.com/dev/account.lookupContacts)
 
-    - [x] account.registerDevice
+    - [x] [account.registerDevice](https://vk.com/dev/account.registerDevice)
 
-    - [x] account.saveProfileInfo
+    - [x] [account.saveProfileInfo](https://vk.com/dev/account.saveProfileInfo)
 
-    - [x] account.setInfo
+    - [x] [account.setInfo](https://vk.com/dev/account.setInfo)
 
-    - [x] account.setNameInMenu
+    - [x] [account.setNameInMenu](https://vk.com/dev/account.setNameInMenu)
 
-    - [x] account.setOffline
+    - [x] [account.setOffline](https://vk.com/dev/account.setOffline)
 
-    - [x] account.setOnline
+    - [x] [account.setOnline](https://vk.com/dev/account.setOnline)
 
-    - [ ] account.setPushSettings
+    - [ ] [account.setPushSettings](https://vk.com/dev/account.setPushSettings)
 
-    - [x] account.setSilenceMode
+    - [x] [account.setSilenceMode](https://vk.com/dev/account.setSilenceMode)
 
-    - [x] account.unbanUser
+    - [x] [account.unbanUser](https://vk.com/dev/account.unbanUser)
 
-    - [x] account.unregisterDevice
+    - [x] [account.unregisterDevice](https://vk.com/dev/account.unregisterDevice)
 
-* Ads
-    - [ ] ads.addOfficeUsers
+* [Ads](https://vk.com/dev/ads). Implemented 1 of 28, 3%:
+    - [ ] [ads.addOfficeUsers](https://vk.com/dev/ads.addOfficeUsers)
 
-    - [ ] ads.createAds
+    - [ ] [ads.createAds](https://vk.com/dev/ads.createAds)
 
-    - [ ] ads.createCampaigns
+    - [ ] [ads.createCampaigns](https://vk.com/dev/ads.createCampaigns)
 
-    - [ ] ads.createClients
+    - [ ] [ads.createClients](https://vk.com/dev/ads.createClients)
 
-    - [ ] ads.deleteAds
+    - [ ] [ads.deleteAds](https://vk.com/dev/ads.deleteAds)
 
-    - [ ] ads.deleteCampaigns
+    - [ ] [ads.deleteCampaigns](https://vk.com/dev/ads.deleteCampaigns)
 
-    - [x] ads.deleteClients
+    - [x] [ads.deleteClients](https://vk.com/dev/ads.deleteClients)
 
-    - [ ] ads.getAccounts
+    - [ ] [ads.getAccounts](https://vk.com/dev/ads.getAccounts)
 
-    - [ ] ads.getAds
+    - [ ] [ads.getAds](https://vk.com/dev/ads.getAds)
 
-    - [ ] ads.getAdsLayout
+    - [ ] [ads.getAdsLayout](https://vk.com/dev/ads.getAdsLayout)
 
-    - [ ] ads.getAdsTargeting
+    - [ ] [ads.getAdsTargeting](https://vk.com/dev/ads.getAdsTargeting)
 
-    - [ ] ads.getBudget
+    - [ ] [ads.getBudget](https://vk.com/dev/ads.getBudget)
 
-    - [ ] ads.getCampaigns
+    - [ ] [ads.getCampaigns](https://vk.com/dev/ads.getCampaigns)
 
-    - [ ] ads.getCategories
+    - [ ] [ads.getCategories](https://vk.com/dev/ads.getCategories)
 
-    - [ ] ads.getClients
+    - [ ] [ads.getClients](https://vk.com/dev/ads.getClients)
 
-    - [ ] ads.getDemographics
+    - [ ] [ads.getDemographics](https://vk.com/dev/ads.getDemographics)
 
-    - [ ] ads.getFloodStats
+    - [ ] [ads.getFloodStats](https://vk.com/dev/ads.getFloodStats)
 
-    - [ ] ads.getOfficeUsers
+    - [ ] [ads.getOfficeUsers](https://vk.com/dev/ads.getOfficeUsers)
 
-    - [ ] ads.getRejectionReason
+    - [ ] [ads.getRejectionReason](https://vk.com/dev/ads.getRejectionReason)
 
-    - [ ] ads.getStatistics
+    - [ ] [ads.getStatistics](https://vk.com/dev/ads.getStatistics)
 
-    - [ ] ads.getSuggestions
+    - [ ] [ads.getSuggestions](https://vk.com/dev/ads.getSuggestions)
 
-    - [ ] ads.getTargetingStats
+    - [ ] [ads.getTargetingStats](https://vk.com/dev/ads.getTargetingStats)
 
-    - [ ] ads.getUploadURL
+    - [ ] [ads.getUploadURL](https://vk.com/dev/ads.getUploadURL)
 
-    - [ ] ads.getVideoUploadURL
+    - [ ] [ads.getVideoUploadURL](https://vk.com/dev/ads.getVideoUploadURL)
 
-    - [ ] ads.removeOfficeUsers
+    - [ ] [ads.removeOfficeUsers](https://vk.com/dev/ads.removeOfficeUsers)
 
-    - [ ] ads.updateAds
+    - [ ] [ads.updateAds](https://vk.com/dev/ads.updateAds)
 
-    - [ ] ads.updateCampaigns
+    - [ ] [ads.updateCampaigns](https://vk.com/dev/ads.updateCampaigns)
 
-    - [ ] ads.updateClients
+    - [ ] [ads.updateClients](https://vk.com/dev/ads.updateClients)
 
-* Apps
-    - [x] apps.deleteAppRequests
+* [Apps](https://vk.com/dev/apps). Implemented 1 of 7, 14%:
+    - [x] [apps.deleteAppRequests](https://vk.com/dev/apps.deleteAppRequests)
 
-    - [ ] apps.get
+    - [ ] [apps.get](https://vk.com/dev/apps.get)
 
-    - [ ] apps.getCatalog
+    - [ ] [apps.getCatalog](https://vk.com/dev/apps.getCatalog)
 
-    - [ ] apps.getFriendsList
+    - [ ] [apps.getFriendsList](https://vk.com/dev/apps.getFriendsList)
 
-    - [ ] apps.getLeaderboard
+    - [ ] [apps.getLeaderboard](https://vk.com/dev/apps.getLeaderboard)
 
-    - [ ] apps.getScore
+    - [ ] [apps.getScore](https://vk.com/dev/apps.getScore)
 
-    - [ ] apps.sendRequest
+    - [ ] [apps.sendRequest](https://vk.com/dev/apps.sendRequest)
 
-* Audio
-    - [x] audio.add
+* [Audio](https://vk.com/dev/audio). Implemented 19 of 21, 90%:
+    - [x] [audio.add](https://vk.com/dev/audio.add)
 
-    - [x] audio.addAlbum
+    - [x] [audio.addAlbum](https://vk.com/dev/audio.addAlbum)
 
-    - [x] audio.delete
+    - [x] [audio.delete](https://vk.com/dev/audio.delete)
 
-    - [x] audio.deleteAlbum
+    - [x] [audio.deleteAlbum](https://vk.com/dev/audio.deleteAlbum)
 
-    - [x] audio.edit
+    - [x] [audio.edit](https://vk.com/dev/audio.edit)
 
-    - [x] audio.editAlbum
+    - [x] [audio.editAlbum](https://vk.com/dev/audio.editAlbum)
 
-    - [x] audio.get
+    - [x] [audio.get](https://vk.com/dev/audio.get)
 
-    - [x] audio.getAlbums
+    - [x] [audio.getAlbums](https://vk.com/dev/audio.getAlbums)
 
-    - [ ] audio.getBroadcastList
+    - [ ] [audio.getBroadcastList](https://vk.com/dev/audio.getBroadcastList)
 
-    - [x] audio.getById
+    - [x] [audio.getById](https://vk.com/dev/audio.getById)
 
-    - [x] audio.getCount
+    - [x] [audio.getCount](https://vk.com/dev/audio.getCount)
 
-    - [x] audio.getLyrics
+    - [x] [audio.getLyrics](https://vk.com/dev/audio.getLyrics)
 
-    - [x] audio.getPopular
+    - [x] [audio.getPopular](https://vk.com/dev/audio.getPopular)
 
-    - [x] audio.getRecommendations
+    - [x] [audio.getRecommendations](https://vk.com/dev/audio.getRecommendations)
 
-    - [x] audio.getUploadServer
+    - [x] [audio.getUploadServer](https://vk.com/dev/audio.getUploadServer)
 
-    - [ ] audio.moveToAlbum
+    - [ ] [audio.moveToAlbum](https://vk.com/dev/audio.moveToAlbum)
 
-    - [x] audio.reorder
+    - [x] [audio.reorder](https://vk.com/dev/audio.reorder)
 
-    - [x] audio.restore
+    - [x] [audio.restore](https://vk.com/dev/audio.restore)
 
-    - [x] audio.save
+    - [x] [audio.save](https://vk.com/dev/audio.save)
 
-    - [x] audio.search
+    - [x] [audio.search](https://vk.com/dev/audio.search)
 
-    - [x] audio.setBroadcast
+    - [x] [audio.setBroadcast](https://vk.com/dev/audio.setBroadcast)
 
-* Auth
-    - [x] auth.checkPhone
+* [Auth](https://vk.com/dev/auth). Implemented 3 of 4, 75%:
+    - [x] [auth.checkPhone](https://vk.com/dev/auth.checkPhone)
 
-    - [x] auth.confirm
+    - [x] [auth.confirm](https://vk.com/dev/auth.confirm)
 
-    - [x] auth.restore
+    - [x] [auth.restore](https://vk.com/dev/auth.restore)
 
-    - [ ] auth.signup
+    - [ ] [auth.signup](https://vk.com/dev/auth.signup)
 
-* Board
-    - [ ] board.addComment
+* [Board](https://vk.com/dev/board). Implemented 6 of 13, 46%:
+    - [ ] [board.addComment](https://vk.com/dev/board.addComment)
 
-    - [ ] board.addTopic
+    - [ ] [board.addTopic](https://vk.com/dev/board.addTopic)
 
-    - [x] board.closeTopic
+    - [x] [board.closeTopic](https://vk.com/dev/board.closeTopic)
 
-    - [x] board.deleteComment
+    - [x] [board.deleteComment](https://vk.com/dev/board.deleteComment)
 
-    - [x] board.deleteTopic
+    - [x] [board.deleteTopic](https://vk.com/dev/board.deleteTopic)
 
-    - [ ] board.editComment
+    - [ ] [board.editComment](https://vk.com/dev/board.editComment)
 
-    - [ ] board.editTopic
+    - [ ] [board.editTopic](https://vk.com/dev/board.editTopic)
 
-    - [x] board.fixTopic
+    - [x] [board.fixTopic](https://vk.com/dev/board.fixTopic)
 
-    - [ ] board.getComments
+    - [ ] [board.getComments](https://vk.com/dev/board.getComments)
 
-    - [ ] board.getTopics
+    - [ ] [board.getTopics](https://vk.com/dev/board.getTopics)
 
-    - [ ] board.openTopic
+    - [ ] [board.openTopic](https://vk.com/dev/board.openTopic)
 
-    - [x] board.restoreComment
+    - [x] [board.restoreComment](https://vk.com/dev/board.restoreComment)
 
-    - [x] board.unfixTopic
+    - [x] [board.unfixTopic](https://vk.com/dev/board.unfixTopic)
 
-* Database
-    - [x] database.getChairs
+* [Database](https://vk.com/dev/database). Implemented 10 of 11, 90%:
+    - [x] [database.getChairs](https://vk.com/dev/database.getChairs)
 
-    - [x] database.getCities
+    - [x] [database.getCities](https://vk.com/dev/database.getCities)
 
-    - [x] database.getCitiesById
+    - [x] [database.getCitiesById](https://vk.com/dev/database.getCitiesById)
 
-    - [x] database.getCountries
+    - [x] [database.getCountries](https://vk.com/dev/database.getCountries)
 
-    - [x] database.getCountriesById
+    - [x] [database.getCountriesById](https://vk.com/dev/database.getCountriesById)
 
-    - [x] database.getFaculties
+    - [x] [database.getFaculties](https://vk.com/dev/database.getFaculties)
 
-    - [x] database.getRegions
+    - [x] [database.getRegions](https://vk.com/dev/database.getRegions)
 
-    - [ ] database.getSchoolClasses
+    - [ ] [database.getSchoolClasses](https://vk.com/dev/database.getSchoolClasses)
 
-    - [x] database.getSchools
+    - [x] [database.getSchools](https://vk.com/dev/database.getSchools)
 
-    - [x] database.getStreetsById
+    - [x] [database.getStreetsById](https://vk.com/dev/database.getStreetsById)
 
-    - [x] database.getUniversities
+    - [x] [database.getUniversities](https://vk.com/dev/database.getUniversities)
 
-* Docs
-    - [x] docs.add
+* [Docs](https://vk.com/dev/docs). Implemented 7 of 7, 100%:
+    - [x] [docs.add](https://vk.com/dev/docs.add)
 
-    - [x] docs.delete
+    - [x] [docs.delete](https://vk.com/dev/docs.delete)
 
-    - [x] docs.get
+    - [x] [docs.get](https://vk.com/dev/docs.get)
 
-    - [x] docs.getById
+    - [x] [docs.getById](https://vk.com/dev/docs.getById)
 
-    - [x] docs.getUploadServer
+    - [x] [docs.getUploadServer](https://vk.com/dev/docs.getUploadServer)
 
-    - [x] docs.getWallUploadServer
+    - [x] [docs.getWallUploadServer](https://vk.com/dev/docs.getWallUploadServer)
 
-    - [x] docs.save
+    - [x] [docs.save](https://vk.com/dev/docs.save)
 
-* Execute
-    - [ ] execute
+* [Execute](https://vk.com/dev/execute). Implemented 0 of 1, 0%:
+    - [ ] [execute](https://vk.com/dev/execute)
 
-* Fave
-    - [ ] fave.addGroup
+* [Fave](https://vk.com/dev/fave). Implemented 6 of 11, 54%:
+    - [ ] [fave.addGroup](https://vk.com/dev/fave.addGroup)
 
-    - [ ] fave.addLink
+    - [ ] [fave.addLink](https://vk.com/dev/fave.addLink)
 
-    - [ ] fave.addUser
+    - [ ] [fave.addUser](https://vk.com/dev/fave.addUser)
 
-    - [ ] fave.getLinks
+    - [ ] [fave.getLinks](https://vk.com/dev/fave.getLinks)
 
-    - [x] fave.getPhotos
+    - [x] [fave.getPhotos](https://vk.com/dev/fave.getPhotos)
 
-    - [ ] fave.getPosts
+    - [ ] [fave.getPosts](https://vk.com/dev/fave.getPosts)
 
-    - [x] fave.getUsers
+    - [x] [fave.getUsers](https://vk.com/dev/fave.getUsers)
 
-    - [x] fave.getVideos
+    - [x] [fave.getVideos](https://vk.com/dev/fave.getVideos)
 
-    - [x] fave.removeGroup
+    - [x] [fave.removeGroup](https://vk.com/dev/fave.removeGroup)
 
-    - [x] fave.removeLink
+    - [x] [fave.removeLink](https://vk.com/dev/fave.removeLink)
 
-    - [x] fave.removeUser
+    - [x] [fave.removeUser](https://vk.com/dev/fave.removeUser)
 
-* Friends
-    - [x] friends.add
+* [Friends](https://vk.com/dev/friends). Implemented 14 of 19, 73%:
+    - [x] [friends.add](https://vk.com/dev/friends.add)
 
-    - [ ] friends.addList
+    - [ ] [friends.addList](https://vk.com/dev/friends.addList)
 
-    - [x] friends.areFriends
+    - [x] [friends.areFriends](https://vk.com/dev/friends.areFriends)
 
-    - [x] friends.delete
+    - [x] [friends.delete](https://vk.com/dev/friends.delete)
 
-    - [x] friends.deleteAllRequests
+    - [x] [friends.deleteAllRequests](https://vk.com/dev/friends.deleteAllRequests)
 
-    - [x] friends.deleteList
+    - [x] [friends.deleteList](https://vk.com/dev/friends.deleteList)
 
-    - [x] friends.edit
+    - [x] [friends.edit](https://vk.com/dev/friends.edit)
 
-    - [x] friends.editList
+    - [x] [friends.editList](https://vk.com/dev/friends.editList)
 
-    - [x] friends.get
+    - [x] [friends.get](https://vk.com/dev/friends.get)
 
-    - [x] friends.getAppUsers
+    - [x] [friends.getAppUsers](https://vk.com/dev/friends.getAppUsers)
 
-    - [ ] friends.getAvailableForCall
+    - [ ] [friends.getAvailableForCall](https://vk.com/dev/friends.getAvailableForCall)
 
-    - [x] friends.getByPhones
+    - [x] [friends.getByPhones](https://vk.com/dev/friends.getByPhones)
 
-    - [ ] friends.getLists
+    - [ ] [friends.getLists](https://vk.com/dev/friends.getLists)
 
-    - [x] friends.getMutual
+    - [x] [friends.getMutual](https://vk.com/dev/friends.getMutual)
 
-    - [x] friends.getOnline
+    - [x] [friends.getOnline](https://vk.com/dev/friends.getOnline)
 
-    - [x] friends.getRecent
+    - [x] [friends.getRecent](https://vk.com/dev/friends.getRecent)
 
-    - [ ] friends.getRequests
+    - [ ] [friends.getRequests](https://vk.com/dev/friends.getRequests)
 
-    - [x] friends.getSuggestions
+    - [x] [friends.getSuggestions](https://vk.com/dev/friends.getSuggestions)
 
-    - [ ] friends.search
+    - [ ] [friends.search](https://vk.com/dev/friends.search)
 
-* Gifts
-    - [ ] gifts.get
+* [Gifts](https://vk.com/dev/gifts). Implemented 0 of 1, 0%:
+    - [ ] [gifts.get](https://vk.com/dev/gifts.get)
 
-* Groups
-    - [ ] groups.addLink
+* [Groups](https://vk.com/dev/groups). Implemented 9 of 25, 36%:
+    - [ ] [groups.addLink](https://vk.com/dev/groups.addLink)
 
-    - [ ] groups.approveRequest
+    - [ ] [groups.approveRequest](https://vk.com/dev/groups.approveRequest)
 
-    - [ ] groups.banUser
+    - [ ] [groups.banUser](https://vk.com/dev/groups.banUser)
 
-    - [ ] groups.create
+    - [ ] [groups.create](https://vk.com/dev/groups.create)
 
-    - [x] groups.deleteLink
+    - [x] [groups.deleteLink](https://vk.com/dev/groups.deleteLink)
 
-    - [ ] groups.edit
+    - [ ] [groups.edit](https://vk.com/dev/groups.edit)
 
-    - [ ] groups.editLink
+    - [ ] [groups.editLink](https://vk.com/dev/groups.editLink)
 
-    - [ ] groups.editManager
+    - [ ] [groups.editManager](https://vk.com/dev/groups.editManager)
 
-    - [ ] groups.editPlace
+    - [ ] [groups.editPlace](https://vk.com/dev/groups.editPlace)
 
-    - [ ] groups.get
+    - [ ] [groups.get](https://vk.com/dev/groups.get)
 
-    - [x] groups.getBanned
+    - [x] [groups.getBanned](https://vk.com/dev/groups.getBanned)
 
-    - [x] groups.getById
+    - [x] [groups.getById](https://vk.com/dev/groups.getById)
 
-    - [ ] groups.getInvitedUsers
+    - [ ] [groups.getInvitedUsers](https://vk.com/dev/groups.getInvitedUsers)
 
-    - [ ] groups.getInvites
+    - [ ] [groups.getInvites](https://vk.com/dev/groups.getInvites)
 
-    - [x] groups.getMembers
+    - [x] [groups.getMembers](https://vk.com/dev/groups.getMembers)
 
-    - [ ] groups.getRequests
+    - [ ] [groups.getRequests](https://vk.com/dev/groups.getRequests)
 
-    - [ ] groups.getSettings
+    - [ ] [groups.getSettings](https://vk.com/dev/groups.getSettings)
 
-    - [ ] groups.invite
+    - [ ] [groups.invite](https://vk.com/dev/groups.invite)
 
-    - [x] groups.isMember
+    - [x] [groups.isMember](https://vk.com/dev/groups.isMember)
 
-    - [x] groups.join
+    - [x] [groups.join](https://vk.com/dev/groups.join)
 
-    - [x] groups.leave
+    - [x] [groups.leave](https://vk.com/dev/groups.leave)
 
-    - [x] groups.removeUser
+    - [x] [groups.removeUser](https://vk.com/dev/groups.removeUser)
 
-    - [ ] groups.reorderLink
+    - [ ] [groups.reorderLink](https://vk.com/dev/groups.reorderLink)
 
-    - [ ] groups.search
+    - [ ] [groups.search](https://vk.com/dev/groups.search)
 
-    - [x] groups.unbanUser
+    - [x] [groups.unbanUser](https://vk.com/dev/groups.unbanUser)
 
-* Leads
-    - [ ] leads.checkUser
+* [Leads](https://vk.com/dev/leads). Implemented 0 of 6, 0%:
+    - [ ] [leads.checkUser](https://vk.com/dev/leads.checkUser)
 
-    - [ ] leads.complete
+    - [ ] [leads.complete](https://vk.com/dev/leads.complete)
 
-    - [ ] leads.getStats
+    - [ ] [leads.getStats](https://vk.com/dev/leads.getStats)
 
-    - [ ] leads.getUsers
+    - [ ] [leads.getUsers](https://vk.com/dev/leads.getUsers)
 
-    - [ ] leads.metricHit
+    - [ ] [leads.metricHit](https://vk.com/dev/leads.metricHit)
 
-    - [ ] leads.start
+    - [ ] [leads.start](https://vk.com/dev/leads.start)
 
-* Likes
-    - [ ] likes.add
+* [Likes](https://vk.com/dev/likes). Implemented 1 of 4, 25%:
+    - [ ] [likes.add](https://vk.com/dev/likes.add)
 
-    - [ ] likes.delete
+    - [ ] [likes.delete](https://vk.com/dev/likes.delete)
 
-    - [x] likes.getList
+    - [x] [likes.getList](https://vk.com/dev/likes.getList)
 
-    - [ ] likes.isLiked
+    - [ ] [likes.isLiked](https://vk.com/dev/likes.isLiked)
 
-* Messages
-    - [x] messages.addChatUser
+* [Messages](https://vk.com/dev/messages). Implemented 12 of 24, 50%:
+    - [x] [messages.addChatUser](https://vk.com/dev/messages.addChatUser)
 
-    - [ ] messages.createChat
+    - [ ] [messages.createChat](https://vk.com/dev/messages.createChat)
 
-    - [x] messages.delete
+    - [x] [messages.delete](https://vk.com/dev/messages.delete)
 
-    - [x] messages.deleteChatPhoto
+    - [x] [messages.deleteChatPhoto](https://vk.com/dev/messages.deleteChatPhoto)
 
-    - [x] messages.deleteDialog
+    - [x] [messages.deleteDialog](https://vk.com/dev/messages.deleteDialog)
 
-    - [ ] messages.editChat
+    - [ ] [messages.editChat](https://vk.com/dev/messages.editChat)
 
-    - [x] messages.get
+    - [x] [messages.get](https://vk.com/dev/messages.get)
 
-    - [ ] messages.getById
+    - [ ] [messages.getById](https://vk.com/dev/messages.getById)
 
-    - [ ] messages.getChat
+    - [ ] [messages.getChat](https://vk.com/dev/messages.getChat)
 
-    - [ ] messages.getChatUsers
+    - [ ] [messages.getChatUsers](https://vk.com/dev/messages.getChatUsers)
 
-    - [ ] messages.getDialogs
+    - [ ] [messages.getDialogs](https://vk.com/dev/messages.getDialogs)
 
-    - [ ] messages.getHistory
+    - [ ] [messages.getHistory](https://vk.com/dev/messages.getHistory)
 
-    - [x] messages.getLastActivity
+    - [x] [messages.getLastActivity](https://vk.com/dev/messages.getLastActivity)
 
-    - [ ] messages.getLongPollHistory
+    - [ ] [messages.getLongPollHistory](https://vk.com/dev/messages.getLongPollHistory)
 
-    - [ ] messages.getLongPollServer
+    - [ ] [messages.getLongPollServer](https://vk.com/dev/messages.getLongPollServer)
 
-    - [x] messages.markAsImportant
+    - [x] [messages.markAsImportant](https://vk.com/dev/messages.markAsImportant)
 
-    - [x] messages.markAsRead
+    - [x] [messages.markAsRead](https://vk.com/dev/messages.markAsRead)
 
-    - [x] messages.removeChatUser
+    - [x] [messages.removeChatUser](https://vk.com/dev/messages.removeChatUser)
 
-    - [x] messages.restore
+    - [x] [messages.restore](https://vk.com/dev/messages.restore)
 
-    - [ ] messages.search
+    - [ ] [messages.search](https://vk.com/dev/messages.search)
 
-    - [ ] messages.searchDialogs
+    - [ ] [messages.searchDialogs](https://vk.com/dev/messages.searchDialogs)
 
-    - [x] messages.send
+    - [x] [messages.send](https://vk.com/dev/messages.send)
 
-    - [x] messages.setActivity
+    - [x] [messages.setActivity](https://vk.com/dev/messages.setActivity)
 
-    - [ ] messages.setChatPhoto
+    - [ ] [messages.setChatPhoto](https://vk.com/dev/messages.setChatPhoto)
 
-* Newsfeed
-    - [x] newsfeed.addBan
+* [Newsfeed](https://vk.com/dev/newsfeed). Implemented 3 of 15, 20%:
+    - [x] [newsfeed.addBan](https://vk.com/dev/newsfeed.addBan)
 
-    - [x] newsfeed.deleteBan
+    - [x] [newsfeed.deleteBan](https://vk.com/dev/newsfeed.deleteBan)
 
-    - [x] newsfeed.deleteList
+    - [x] [newsfeed.deleteList](https://vk.com/dev/newsfeed.deleteList)
 
-    - [ ] newsfeed.get
+    - [ ] [newsfeed.get](https://vk.com/dev/newsfeed.get)
 
-    - [ ] newsfeed.getBanned
+    - [ ] [newsfeed.getBanned](https://vk.com/dev/newsfeed.getBanned)
 
-    - [ ] newsfeed.getComments
+    - [ ] [newsfeed.getComments](https://vk.com/dev/newsfeed.getComments)
 
-    - [ ] newsfeed.getLists
+    - [ ] [newsfeed.getLists](https://vk.com/dev/newsfeed.getLists)
 
-    - [ ] newsfeed.getMentions
+    - [ ] [newsfeed.getMentions](https://vk.com/dev/newsfeed.getMentions)
 
-    - [ ] newsfeed.getRecommended
+    - [ ] [newsfeed.getRecommended](https://vk.com/dev/newsfeed.getRecommended)
 
-    - [ ] newsfeed.getSuggestedSources
+    - [ ] [newsfeed.getSuggestedSources](https://vk.com/dev/newsfeed.getSuggestedSources)
 
-    - [ ] newsfeed.ignoreItem
+    - [ ] [newsfeed.ignoreItem](https://vk.com/dev/newsfeed.ignoreItem)
 
-    - [ ] newsfeed.saveList
+    - [ ] [newsfeed.saveList](https://vk.com/dev/newsfeed.saveList)
 
-    - [ ] newsfeed.search
+    - [ ] [newsfeed.search](https://vk.com/dev/newsfeed.search)
 
-    - [ ] newsfeed.unignoreItem
+    - [ ] [newsfeed.unignoreItem](https://vk.com/dev/newsfeed.unignoreItem)
 
-    - [ ] newsfeed.unsubscribe
+    - [ ] [newsfeed.unsubscribe](https://vk.com/dev/newsfeed.unsubscribe)
 
-* Notes
-    - [ ] notes.add
+* [Notes](https://vk.com/dev/notes). Implemented 3 of 11, 27%:
+    - [ ] [notes.add](https://vk.com/dev/notes.add)
 
-    - [ ] notes.createComment
+    - [ ] [notes.createComment](https://vk.com/dev/notes.createComment)
 
-    - [x] notes.delete
+    - [x] [notes.delete](https://vk.com/dev/notes.delete)
 
-    - [x] notes.deleteComment
+    - [x] [notes.deleteComment](https://vk.com/dev/notes.deleteComment)
 
-    - [ ] notes.edit
+    - [ ] [notes.edit](https://vk.com/dev/notes.edit)
 
-    - [ ] notes.editComment
+    - [ ] [notes.editComment](https://vk.com/dev/notes.editComment)
 
-    - [ ] notes.get
+    - [ ] [notes.get](https://vk.com/dev/notes.get)
 
-    - [ ] notes.getById
+    - [ ] [notes.getById](https://vk.com/dev/notes.getById)
 
-    - [ ] notes.getComments
+    - [ ] [notes.getComments](https://vk.com/dev/notes.getComments)
 
-    - [ ] notes.getFriendsNotes
+    - [ ] [notes.getFriendsNotes](https://vk.com/dev/notes.getFriendsNotes)
 
-    - [x] notes.restoreComment
+    - [x] [notes.restoreComment](https://vk.com/dev/notes.restoreComment)
 
-* Notifications
-    - [ ] notifications.get
+* [Notifications](https://vk.com/dev/notifications). Implemented 1 of 2, 50%:
+    - [ ] [notifications.get](https://vk.com/dev/notifications.get)
 
-    - [x] notifications.markAsViewed
+    - [x] [notifications.markAsViewed](https://vk.com/dev/notifications.markAsViewed)
 
-* Pages
-    - [x] pages.clearCache
+* [Pages](https://vk.com/dev/pages). Implemented 1 of 8, 12%:
+    - [x] [pages.clearCache](https://vk.com/dev/pages.clearCache)
 
-    - [ ] pages.get
+    - [ ] [pages.get](https://vk.com/dev/pages.get)
 
-    - [ ] pages.getHistory
+    - [ ] [pages.getHistory](https://vk.com/dev/pages.getHistory)
 
-    - [ ] pages.getTitles
+    - [ ] [pages.getTitles](https://vk.com/dev/pages.getTitles)
 
-    - [ ] pages.getVersion
+    - [ ] [pages.getVersion](https://vk.com/dev/pages.getVersion)
 
-    - [ ] pages.parseWiki
+    - [ ] [pages.parseWiki](https://vk.com/dev/pages.parseWiki)
 
-    - [ ] pages.save
+    - [ ] [pages.save](https://vk.com/dev/pages.save)
 
-    - [ ] pages.saveAccess
+    - [ ] [pages.saveAccess](https://vk.com/dev/pages.saveAccess)
 
-* Photos
-    - [x] photos.confirmTag
+* [Photos](https://vk.com/dev/photos). Implemented 25 of 40, 62%:
+    - [x] [photos.confirmTag](https://vk.com/dev/photos.confirmTag)
 
-    - [x] photos.copy
+    - [x] [photos.copy](https://vk.com/dev/photos.copy)
 
-    - [x] photos.createAlbum
+    - [x] [photos.createAlbum](https://vk.com/dev/photos.createAlbum)
 
-    - [ ] photos.createComment
+    - [ ] [photos.createComment](https://vk.com/dev/photos.createComment)
 
-    - [x] photos.delete
+    - [x] [photos.delete](https://vk.com/dev/photos.delete)
 
-    - [x] photos.deleteAlbum
+    - [x] [photos.deleteAlbum](https://vk.com/dev/photos.deleteAlbum)
 
-    - [x] photos.deleteComment
+    - [x] [photos.deleteComment](https://vk.com/dev/photos.deleteComment)
 
-    - [x] photos.edit
+    - [x] [photos.edit](https://vk.com/dev/photos.edit)
 
-    - [x] photos.editAlbum
+    - [x] [photos.editAlbum](https://vk.com/dev/photos.editAlbum)
 
-    - [ ] photos.editComment
+    - [ ] [photos.editComment](https://vk.com/dev/photos.editComment)
 
-    - [x] photos.get
+    - [x] [photos.get](https://vk.com/dev/photos.get)
 
-    - [x] photos.getAlbums
+    - [x] [photos.getAlbums](https://vk.com/dev/photos.getAlbums)
 
-    - [x] photos.getAlbumsCount
+    - [x] [photos.getAlbumsCount](https://vk.com/dev/photos.getAlbumsCount)
 
-    - [x] photos.getAll
+    - [x] [photos.getAll](https://vk.com/dev/photos.getAll)
 
-    - [ ] photos.getAllComments
+    - [ ] [photos.getAllComments](https://vk.com/dev/photos.getAllComments)
 
-    - [x] photos.getById
+    - [x] [photos.getById](https://vk.com/dev/photos.getById)
 
-    - [x] photos.getChatUploadServer
+    - [x] [photos.getChatUploadServer](https://vk.com/dev/photos.getChatUploadServer)
 
-    - [ ] photos.getComments
+    - [ ] [photos.getComments](https://vk.com/dev/photos.getComments)
 
-    - [ ] photos.getMessagesUploadServer
+    - [ ] [photos.getMessagesUploadServer](https://vk.com/dev/photos.getMessagesUploadServer)
 
-    - [ ] photos.getNewTags
+    - [ ] [photos.getNewTags](https://vk.com/dev/photos.getNewTags)
 
-    - [x] photos.getOwnerPhotoUploadServer
+    - [x] [photos.getOwnerPhotoUploadServer](https://vk.com/dev/photos.getOwnerPhotoUploadServer)
 
-    - [ ] photos.getTags
+    - [ ] [photos.getTags](https://vk.com/dev/photos.getTags)
 
-    - [x] photos.getUploadServer
+    - [x] [photos.getUploadServer](https://vk.com/dev/photos.getUploadServer)
 
-    - [ ] photos.getUserPhotos
+    - [ ] [photos.getUserPhotos](https://vk.com/dev/photos.getUserPhotos)
 
-    - [ ] photos.getWallUploadServer
+    - [ ] [photos.getWallUploadServer](https://vk.com/dev/photos.getWallUploadServer)
 
-    - [x] photos.makeCover
+    - [x] [photos.makeCover](https://vk.com/dev/photos.makeCover)
 
-    - [x] photos.move
+    - [x] [photos.move](https://vk.com/dev/photos.move)
 
-    - [ ] photos.putTag
+    - [ ] [photos.putTag](https://vk.com/dev/photos.putTag)
 
-    - [x] photos.removeTag
+    - [x] [photos.removeTag](https://vk.com/dev/photos.removeTag)
 
-    - [x] photos.reorderAlbums
+    - [x] [photos.reorderAlbums](https://vk.com/dev/photos.reorderAlbums)
 
-    - [x] photos.reorderPhotos
+    - [x] [photos.reorderPhotos](https://vk.com/dev/photos.reorderPhotos)
 
-    - [x] photos.report
+    - [x] [photos.report](https://vk.com/dev/photos.report)
 
-    - [x] photos.reportComment
+    - [x] [photos.reportComment](https://vk.com/dev/photos.reportComment)
 
-    - [ ] photos.restore
+    - [ ] [photos.restore](https://vk.com/dev/photos.restore)
 
-    - [x] photos.restoreComment
+    - [x] [photos.restoreComment](https://vk.com/dev/photos.restoreComment)
 
-    - [x] photos.save
+    - [x] [photos.save](https://vk.com/dev/photos.save)
 
-    - [ ] photos.saveMessagesPhoto
+    - [ ] [photos.saveMessagesPhoto](https://vk.com/dev/photos.saveMessagesPhoto)
 
-    - [ ] photos.saveOwnerPhoto
+    - [ ] [photos.saveOwnerPhoto](https://vk.com/dev/photos.saveOwnerPhoto)
 
-    - [ ] photos.saveWallPhoto
+    - [ ] [photos.saveWallPhoto](https://vk.com/dev/photos.saveWallPhoto)
 
-    - [ ] photos.search
+    - [ ] [photos.search](https://vk.com/dev/photos.search)
 
-* Places
-    - [ ] places.add
+* [Places](https://vk.com/dev/places). Implemented 0 of 6, 0%:
+    - [ ] [places.add](https://vk.com/dev/places.add)
 
-    - [ ] places.checkin
+    - [ ] [places.checkin](https://vk.com/dev/places.checkin)
 
-    - [ ] places.getById
+    - [ ] [places.getById](https://vk.com/dev/places.getById)
 
-    - [ ] places.getCheckins
+    - [ ] [places.getCheckins](https://vk.com/dev/places.getCheckins)
 
-    - [ ] places.getTypes
+    - [ ] [places.getTypes](https://vk.com/dev/places.getTypes)
 
-    - [ ] places.search
+    - [ ] [places.search](https://vk.com/dev/places.search)
 
-* Polls
-    - [ ] polls.addVote
+* [Polls](https://vk.com/dev/polls). Implemented 0 of 6, 0%:
+    - [ ] [polls.addVote](https://vk.com/dev/polls.addVote)
 
-    - [ ] polls.create
+    - [ ] [polls.create](https://vk.com/dev/polls.create)
 
-    - [ ] polls.deleteVote
+    - [ ] [polls.deleteVote](https://vk.com/dev/polls.deleteVote)
 
-    - [ ] polls.edit
+    - [ ] [polls.edit](https://vk.com/dev/polls.edit)
 
-    - [ ] polls.getById
+    - [ ] [polls.getById](https://vk.com/dev/polls.getById)
 
-    - [ ] polls.getVoters
+    - [ ] [polls.getVoters](https://vk.com/dev/polls.getVoters)
 
-* Search
-    - [ ] search.getHints
+* [Search](https://vk.com/dev/search). Implemented 0 of 1, 0%:
+    - [ ] [search.getHints](https://vk.com/dev/search.getHints)
 
-* Secure
-    - [ ] secure.addAppEvent
+* [Secure](https://vk.com/dev/secure). Implemented 0 of 10, 0%:
+    - [ ] [secure.addAppEvent](https://vk.com/dev/secure.addAppEvent)
 
-    - [ ] secure.checkToken
+    - [ ] [secure.checkToken](https://vk.com/dev/secure.checkToken)
 
-    - [ ] secure.getAppBalance
+    - [ ] [secure.getAppBalance](https://vk.com/dev/secure.getAppBalance)
 
-    - [ ] secure.getSMSHistory
+    - [ ] [secure.getSMSHistory](https://vk.com/dev/secure.getSMSHistory)
 
-    - [ ] secure.getTransactionsHistory
+    - [ ] [secure.getTransactionsHistory](https://vk.com/dev/secure.getTransactionsHistory)
 
-    - [ ] secure.getUserLevel
+    - [ ] [secure.getUserLevel](https://vk.com/dev/secure.getUserLevel)
 
-    - [ ] secure.sendNotification
+    - [ ] [secure.sendNotification](https://vk.com/dev/secure.sendNotification)
 
-    - [ ] secure.sendSMSNotification
+    - [ ] [secure.sendSMSNotification](https://vk.com/dev/secure.sendSMSNotification)
 
-    - [ ] secure.setCounter
+    - [ ] [secure.setCounter](https://vk.com/dev/secure.setCounter)
 
-    - [ ] secure.setUserLevel
+    - [ ] [secure.setUserLevel](https://vk.com/dev/secure.setUserLevel)
 
-* Stats
-    - [ ] stats.get
+* [Stats](https://vk.com/dev/stats). Implemented 1 of 3, 33%:
+    - [ ] [stats.get](https://vk.com/dev/stats.get)
 
-    - [ ] stats.getPostReach
+    - [ ] [stats.getPostReach](https://vk.com/dev/stats.getPostReach)
 
-    - [x] stats.trackVisitor
+    - [x] [stats.trackVisitor](https://vk.com/dev/stats.trackVisitor)
 
-* Status
-    - [x] status.get
+* [Status](https://vk.com/dev/status). Implemented 2 of 2, 100%:
+    - [x] [status.get](https://vk.com/dev/status.get)
 
-    - [x] status.set
+    - [x] [status.set](https://vk.com/dev/status.set)
 
-* Storage
-    - [x] storage.get
+* [Storage](https://vk.com/dev/storage). Implemented 3 of 3, 100%:
+    - [x] [storage.get](https://vk.com/dev/storage.get)
 
-    - [x] storage.getKeys
+    - [x] [storage.getKeys](https://vk.com/dev/storage.getKeys)
 
-    - [x] storage.set
+    - [x] [storage.set](https://vk.com/dev/storage.set)
 
-* Users
-    - [x] users.get
+* [Users](https://vk.com/dev/users). Implemented 7 of 7, 100%:
+    - [x] [users.get](https://vk.com/dev/users.get)
 
-    - [x] users.getFollowers
+    - [x] [users.getFollowers](https://vk.com/dev/users.getFollowers)
 
-    - [x] users.getNearby
+    - [x] [users.getNearby](https://vk.com/dev/users.getNearby)
 
-    - [x] users.getSubscriptions
+    - [x] [users.getSubscriptions](https://vk.com/dev/users.getSubscriptions)
 
-    - [x] users.isAppUser
+    - [x] [users.isAppUser](https://vk.com/dev/users.isAppUser)
 
-    - [x] users.report
+    - [x] [users.report](https://vk.com/dev/users.report)
 
-    - [x] users.search
+    - [x] [users.search](https://vk.com/dev/users.search)
 
-* Utils
-    - [x] utils.checkLink
+* [Utils](https://vk.com/dev/utils). Implemented 3 of 3, 100%:
+    - [x] [utils.checkLink](https://vk.com/dev/utils.checkLink)
 
-    - [x] utils.getServerTime
+    - [x] [utils.getServerTime](https://vk.com/dev/utils.getServerTime)
 
-    - [x] utils.resolveScreenName
+    - [x] [utils.resolveScreenName](https://vk.com/dev/utils.resolveScreenName)
 
-* Video
-    - [x] video.add
+* [Video](https://vk.com/dev/video). Implemented 11 of 28, 39%:
+    - [x] [video.add](https://vk.com/dev/video.add)
 
-    - [ ] video.addAlbum
+    - [ ] [video.addAlbum](https://vk.com/dev/video.addAlbum)
 
-    - [ ] video.addToAlbum
+    - [ ] [video.addToAlbum](https://vk.com/dev/video.addToAlbum)
 
-    - [ ] video.createCommentC
+    - [ ] [video.createCommentC](https://vk.com/dev/video.createCommentC)
 
-    - [x] video.delete
+    - [x] [video.delete](https://vk.com/dev/video.delete)
 
-    - [x] video.deleteAlbum
+    - [x] [video.deleteAlbum](https://vk.com/dev/video.deleteAlbum)
 
-    - [x] video.deleteComment
+    - [x] [video.deleteComment](https://vk.com/dev/video.deleteComment)
 
-    - [ ] video.edit
+    - [ ] [video.edit](https://vk.com/dev/video.edit)
 
-    - [ ] video.editAlbum
+    - [ ] [video.editAlbum](https://vk.com/dev/video.editAlbum)
 
-    - [x] video.editComment
+    - [x] [video.editComment](https://vk.com/dev/video.editComment)
 
-    - [ ] video.get
+    - [ ] [video.get](https://vk.com/dev/video.get)
 
-    - [ ] video.getAlbumById
+    - [ ] [video.getAlbumById](https://vk.com/dev/video.getAlbumById)
 
-    - [ ] video.getAlbums
+    - [ ] [video.getAlbums](https://vk.com/dev/video.getAlbums)
 
-    - [ ] video.getAlbumsByVideo
+    - [ ] [video.getAlbumsByVideo](https://vk.com/dev/video.getAlbumsByVideo)
 
-    - [ ] video.getComments
+    - [ ] [video.getComments](https://vk.com/dev/video.getComments)
 
-    - [ ] video.getNewTags
+    - [ ] [video.getNewTags](https://vk.com/dev/video.getNewTags)
 
-    - [ ] video.getTags
+    - [ ] [video.getTags](https://vk.com/dev/video.getTags)
 
-    - [ ] video.getUserVideos
+    - [ ] [video.getUserVideos](https://vk.com/dev/video.getUserVideos)
 
-    - [x] video.putTag
+    - [x] [video.putTag](https://vk.com/dev/video.putTag)
 
-    - [ ] video.removeFromAlbum
+    - [ ] [video.removeFromAlbum](https://vk.com/dev/video.removeFromAlbum)
 
-    - [x] video.removeTag
+    - [x] [video.removeTag](https://vk.com/dev/video.removeTag)
 
-    - [ ] video.reorderAlbums
+    - [ ] [video.reorderAlbums](https://vk.com/dev/video.reorderAlbums)
 
-    - [x] video.report
+    - [x] [video.report](https://vk.com/dev/video.report)
 
-    - [x] video.reportComment
+    - [x] [video.reportComment](https://vk.com/dev/video.reportComment)
 
-    - [x] video.restore
+    - [x] [video.restore](https://vk.com/dev/video.restore)
 
-    - [x] video.restoreComment
+    - [x] [video.restoreComment](https://vk.com/dev/video.restoreComment)
 
-    - [ ] video.save
+    - [ ] [video.save](https://vk.com/dev/video.save)
 
-    - [ ] video.search
+    - [ ] [video.search](https://vk.com/dev/video.search)
 
-* Wall
-    - [ ] wall.addComment
+* [Wall](https://vk.com/dev/wall). Implemented 13 of 18, 72%:
+    - [ ] [wall.addComment](https://vk.com/dev/wall.addComment)
 
-    - [x] wall.delete
+    - [x] [wall.delete](https://vk.com/dev/wall.delete)
 
-    - [x] wall.deleteComment
+    - [x] [wall.deleteComment](https://vk.com/dev/wall.deleteComment)
 
-    - [ ] wall.edit
+    - [ ] [wall.edit](https://vk.com/dev/wall.edit)
 
-    - [ ] wall.editComment
+    - [ ] [wall.editComment](https://vk.com/dev/wall.editComment)
 
-    - [x] wall.get
+    - [x] [wall.get](https://vk.com/dev/wall.get)
 
-    - [x] wall.getById
+    - [x] [wall.getById](https://vk.com/dev/wall.getById)
 
-    - [x] wall.getComments
+    - [x] [wall.getComments](https://vk.com/dev/wall.getComments)
 
-    - [ ] wall.getReposts
+    - [ ] [wall.getReposts](https://vk.com/dev/wall.getReposts)
 
-    - [x] wall.pin
+    - [x] [wall.pin](https://vk.com/dev/wall.pin)
 
-    - [x] wall.post
+    - [x] [wall.post](https://vk.com/dev/wall.post)
 
-    - [x] wall.reportComment
+    - [x] [wall.reportComment](https://vk.com/dev/wall.reportComment)
 
-    - [x] wall.reportPost
+    - [x] [wall.reportPost](https://vk.com/dev/wall.reportPost)
 
-    - [x] wall.repost
+    - [x] [wall.repost](https://vk.com/dev/wall.repost)
 
-    - [x] wall.restore
+    - [x] [wall.restore](https://vk.com/dev/wall.restore)
 
-    - [x] wall.restoreComment
+    - [x] [wall.restoreComment](https://vk.com/dev/wall.restoreComment)
 
-    - [ ] wall.search
+    - [ ] [wall.search](https://vk.com/dev/wall.search)
 
-    - [x] wall.unpin
+    - [x] [wall.unpin](https://vk.com/dev/wall.unpin)
 
-* Widgets
-    - [ ] widgets.getComments
+* [Widgets](https://vk.com/dev/widgets). Implemented 0 of 2, 0%:
+    - [ ] [widgets.getComments](https://vk.com/dev/widgets.getComments)
 
-    - [ ] widgets.getPages
+    - [ ] [widgets.getPages](https://vk.com/dev/widgets.getPages)
 
