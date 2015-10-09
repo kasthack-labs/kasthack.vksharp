@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using VKSharp.Data.Api;
 
 namespace VKSharp {
@@ -8,6 +7,10 @@ namespace VKSharp {
         private readonly List<VKToken> _tokens = new List<VKToken>();
         private uint _reqCounter;
         public uint ReqCounter => _reqCounter++;
+
+        public RequestApi() {
+            InitializeMethodGroups();
+        }
 
         public VKToken CurrentToken {
             get {
