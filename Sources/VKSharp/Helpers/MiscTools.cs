@@ -78,7 +78,7 @@ namespace VKSharp.Helpers {
         }
 
         public static string NullableString<T>( T? input ) where T : struct, IFormattable {
-            return input.HasValue ? input.Value.ToNCString() : "";
+            return input.HasValue ? input.Value.ToNCString() : String.Empty;
         }
 
         public static string ToNCString<T>( this T value ) where T : IFormattable {
