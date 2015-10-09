@@ -29,6 +29,7 @@ namespace VKSharp {
             Notifications = new MethodGroup_Notifications(this);
             Pages = new MethodGroup_Pages(this);
             Photos = new MethodGroup_Photos(this);
+            Polls = new MethodGroup_Polls(this);
             Stats = new MethodGroup_Stats(this);
             Status = new MethodGroup_Status(this);
             Storage = new MethodGroup_Storage(this);
@@ -235,6 +236,16 @@ namespace VKSharp {
                     )
                 ).ConfigureAwait(false);
             }
+                    
+            public async Task<string> GetScore(
+                
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Apps.GetScore(
+                           
+                    )
+                ).ConfigureAwait(false);
+            }
                                 }
         
         public MethodGroup_Audio Audio {get; private set;}
@@ -298,6 +309,16 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.EditAlbum(
                            albumId,title,groupId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> MoveToAlbum(
+                long albumId , int? groupId = null, params ulong[] audioIds 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Audio.MoveToAlbum(
+                           albumId,groupId,audioIds
                     )
                 ).ConfigureAwait(false);
             }
@@ -918,6 +939,26 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetAvailableForCall(
+                
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Friends.GetAvailableForCall(
+                           
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetAvailableForCall(
+                UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Friends.GetAvailableForCall(
+                           fields,nameCase
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> Get(
                 int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
             ){
@@ -987,6 +1028,16 @@ namespace VKSharp {
                     )
                 ).ConfigureAwait(false);
             }
+                    
+            public async Task<string> Search(
+                int userId , string q = "",  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 20
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Friends.Search(
+                           userId,q,nameCase,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
                                 }
         
         public MethodGroup_Groups Groups {get; private set;}
@@ -994,6 +1045,26 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_Groups(RawApi parent){_parent=parent;}
 
+            public async Task<string> AddLink(
+                int groupId , string link ,  string text = ""
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.AddLink(
+                           groupId,link,text
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> ApproveRequest(
+                int groupId ,  int userId 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.ApproveRequest(
+                           groupId,userId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> DeleteLink(
                 int groupId ,  int linkId 
             ){
@@ -1059,6 +1130,16 @@ namespace VKSharp {
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.IsMember(
+                           groupId,userId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> Invite(
+                int groupId ,  int userId 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.Invite(
                            groupId,userId
                     )
                 ).ConfigureAwait(false);
@@ -1610,12 +1691,48 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> Restore(
+                int ownerId ,  long photoId 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Photos.Restore(
+                           ownerId,photoId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> Save(
                 long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "",  string description = ""
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Photos.Save(
                            albumId,server,photosList,hash,groupId,latitude,longitude,caption,description
+                    )
+                ).ConfigureAwait(false);
+            }
+                                }
+        
+        public MethodGroup_Polls Polls {get; private set;}
+        public partial class MethodGroup_Polls {
+            private readonly RawApi _parent;
+            internal MethodGroup_Polls(RawApi parent){_parent=parent;}
+
+            public async Task<string> AddVote(
+                long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Polls.AddVote(
+                           pollId,answerId,ownerId,isBoard
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> DeleteVote(
+                long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Polls.DeleteVote(
+                           pollId,answerId,ownerId,isBoard
                     )
                 ).ConfigureAwait(false);
             }
@@ -1775,11 +1892,11 @@ namespace VKSharp {
             }
                     
             public async Task<string> Search(
-                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "",  int? groupId = null, int offset = 0, int count = 100
+                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int offset = 0, int count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.Search(
-                           q,sort,fields,city,country,hometown,universityCountry,university,universityYear,sex,status,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountry,schoolCity,schoolClass,school,schoolYear,religion,interests,company,position,groupId,offset, count
+                           q,sort,fields,city,country,hometown,universityCountry,university,universityYear,sex,status,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountry,schoolCity,schoolClass,school,schoolYear,religion,interests,company,position,groupId,fromList,offset, count
                     )
                 ).ConfigureAwait(false);
             }

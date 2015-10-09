@@ -1,5 +1,5 @@
 ﻿
-Implemented 181 methods of 367, 49%:
+Implemented 191 methods of 367, 52%:
 
 * [Account](https://vk.com/dev/account). Implemented 15 of 20, 75%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -99,7 +99,7 @@ Implemented 181 methods of 367, 49%:
 
     - [ ] [ads.updateClients](https://vk.com/dev/ads.updateClients)
 
-* [Apps](https://vk.com/dev/apps). Implemented 1 of 7, 14%:
+* [Apps](https://vk.com/dev/apps). Implemented 2 of 7, 28%:
     - [x] [apps.deleteAppRequests](https://vk.com/dev/apps.deleteAppRequests)
 
     - [ ] [apps.get](https://vk.com/dev/apps.get)
@@ -110,11 +110,11 @@ Implemented 181 methods of 367, 49%:
 
     - [ ] [apps.getLeaderboard](https://vk.com/dev/apps.getLeaderboard)
 
-    - [ ] [apps.getScore](https://vk.com/dev/apps.getScore)
+    - [x] [apps.getScore](https://vk.com/dev/apps.getScore)
 
     - [ ] [apps.sendRequest](https://vk.com/dev/apps.sendRequest)
 
-* [Audio](https://vk.com/dev/audio). Implemented 19 of 21, 90%:
+* [Audio](https://vk.com/dev/audio). Implemented 20 of 21, 95%:
     - [x] [audio.add](https://vk.com/dev/audio.add)
 
     - [x] [audio.addAlbum](https://vk.com/dev/audio.addAlbum)
@@ -145,7 +145,7 @@ Implemented 181 methods of 367, 49%:
 
     - [x] [audio.getUploadServer](https://vk.com/dev/audio.getUploadServer)
 
-    - [ ] [audio.moveToAlbum](https://vk.com/dev/audio.moveToAlbum)
+    - [x] [audio.moveToAlbum](https://vk.com/dev/audio.moveToAlbum)
 
     - [x] [audio.reorder](https://vk.com/dev/audio.reorder)
 
@@ -257,7 +257,7 @@ Implemented 181 methods of 367, 49%:
 
     - [x] [fave.removeUser](https://vk.com/dev/fave.removeUser)
 
-* [Friends](https://vk.com/dev/friends). Implemented 14 of 19, 73%:
+* [Friends](https://vk.com/dev/friends). Implemented 16 of 19, 84%:
     - [x] [friends.add](https://vk.com/dev/friends.add)
 
     - [ ] [friends.addList](https://vk.com/dev/friends.addList)
@@ -278,7 +278,7 @@ Implemented 181 methods of 367, 49%:
 
     - [x] [friends.getAppUsers](https://vk.com/dev/friends.getAppUsers)
 
-    - [ ] [friends.getAvailableForCall](https://vk.com/dev/friends.getAvailableForCall)
+    - [x] [friends.getAvailableForCall](https://vk.com/dev/friends.getAvailableForCall)
 
     - [x] [friends.getByPhones](https://vk.com/dev/friends.getByPhones)
 
@@ -294,15 +294,15 @@ Implemented 181 methods of 367, 49%:
 
     - [x] [friends.getSuggestions](https://vk.com/dev/friends.getSuggestions)
 
-    - [ ] [friends.search](https://vk.com/dev/friends.search)
+    - [x] [friends.search](https://vk.com/dev/friends.search)
 
 * [Gifts](https://vk.com/dev/gifts). Implemented 0 of 1, 0%:
     - [ ] [gifts.get](https://vk.com/dev/gifts.get)
 
-* [Groups](https://vk.com/dev/groups). Implemented 9 of 25, 36%:
-    - [ ] [groups.addLink](https://vk.com/dev/groups.addLink)
+* [Groups](https://vk.com/dev/groups). Implemented 12 of 25, 48%:
+    - [x] [groups.addLink](https://vk.com/dev/groups.addLink)
 
-    - [ ] [groups.approveRequest](https://vk.com/dev/groups.approveRequest)
+    - [x] [groups.approveRequest](https://vk.com/dev/groups.approveRequest)
 
     - [ ] [groups.banUser](https://vk.com/dev/groups.banUser)
 
@@ -334,7 +334,7 @@ Implemented 181 methods of 367, 49%:
 
     - [ ] [groups.getSettings](https://vk.com/dev/groups.getSettings)
 
-    - [ ] [groups.invite](https://vk.com/dev/groups.invite)
+    - [x] [groups.invite](https://vk.com/dev/groups.invite)
 
     - [x] [groups.isMember](https://vk.com/dev/groups.isMember)
 
@@ -497,7 +497,7 @@ Implemented 181 methods of 367, 49%:
 
     - [ ] [pages.saveAccess](https://vk.com/dev/pages.saveAccess)
 
-* [Photos](https://vk.com/dev/photos). Implemented 25 of 40, 62%:
+* [Photos](https://vk.com/dev/photos). Implemented 26 of 40, 65%:
     - [x] [photos.confirmTag](https://vk.com/dev/photos.confirmTag)
 
     - [x] [photos.copy](https://vk.com/dev/photos.copy)
@@ -564,7 +564,7 @@ Implemented 181 methods of 367, 49%:
 
     - [x] [photos.reportComment](https://vk.com/dev/photos.reportComment)
 
-    - [ ] [photos.restore](https://vk.com/dev/photos.restore)
+    - [x] [photos.restore](https://vk.com/dev/photos.restore)
 
     - [x] [photos.restoreComment](https://vk.com/dev/photos.restoreComment)
 
@@ -591,12 +591,12 @@ Implemented 181 methods of 367, 49%:
 
     - [ ] [places.search](https://vk.com/dev/places.search)
 
-* [Polls](https://vk.com/dev/polls). Implemented 0 of 6, 0%:
-    - [ ] [polls.addVote](https://vk.com/dev/polls.addVote)
+* [Polls](https://vk.com/dev/polls). Implemented 2 of 6, 33%:
+    - [x] [polls.addVote](https://vk.com/dev/polls.addVote)
 
     - [ ] [polls.create](https://vk.com/dev/polls.create)
 
-    - [ ] [polls.deleteVote](https://vk.com/dev/polls.deleteVote)
+    - [x] [polls.deleteVote](https://vk.com/dev/polls.deleteVote)
 
     - [ ] [polls.edit](https://vk.com/dev/polls.edit)
 

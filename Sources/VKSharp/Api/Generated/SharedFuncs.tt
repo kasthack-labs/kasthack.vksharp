@@ -167,7 +167,7 @@ public static string Stringify(string name, string type){
         case "SpecialAlbum":
         case "UserSortOrder":
         case "WallPostFilter":
-            return name+".ToSnake()";
+            return name+".ToNCString().ToSnake()";
         case "AudioGenre?":
         case "PrivacyType?":
         case "Relation?":

@@ -96,6 +96,7 @@
     <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
     <Compile Include="ReturnTypes\EntityFragments\PhotoSize.cs" />
     <Compile Include="ReturnTypes\Enums\AddFriendResult.cs" />
+    <Compile Include="ReturnTypes\Enums\FriendshipType.cs" />
     <Compile Include="ReturnTypes\Enums\PhotoSizeType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AddAlbum.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangePassword.cs" />

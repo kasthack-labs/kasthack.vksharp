@@ -107,6 +107,9 @@
   <Method Name="apps.deleteAppRequests" Type="void" NeedToken="true" >
     <Params />
   </Method>
+  <Method Name="apps.getScore" Type="long" NeedToken="true" >
+    <Params />
+  </Method>
   <Method Name="audio.add" Type="int" NeedToken="true" >
     <Params>
       <Param Name="owner_id" Type="int" />
@@ -148,6 +151,13 @@
       <Param Name="album_id" Type="long" />
       <Param Name="title" Type="string"/>
       <Param Name="group_id" Type="int?" Default="null"/>
+    </Params>
+  </Method>
+  <Method Name="audio.moveToAlbum" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="album_id" Type="long" />
+      <Param Name="group_id" Type="int?" Default="null"/>
+      <Param Name="audio_ids" Type="ulong[]" />
     </Params>
   </Method>
   <Method Name="audio.get" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100">
@@ -493,6 +503,15 @@
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
   </Method>
+  <Method Name="friends.getAvailableForCall" Type="EntityList&lt;int&gt;" NeedToken="false">
+    <Params/>
+  </Method>
+  <Method Name="friends.getAvailableForCall" Type="EntityList&lt;User&gt;" NeedToken="false">
+    <Params>
+      <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+    </Params>
+  </Method>
   <Method Name="friends.get" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
       <Param Name="user_id" Type="int?" Default="null" />
@@ -533,6 +552,26 @@
       <Param Name="filters" Type="FriendSuggestionFilters" Default="FriendSuggestionFilters.Everything" />
       <Param Name="fields" Type="UserFields" Default="UserFields.None" />
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+    </Params>
+  </Method>
+  <Method Name="friends.search" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="20">
+    <Params>
+      <Param Name="user_id" Type="int"/>
+      <Param Name="q" Type="string" Default="&quot;&quot;" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+    </Params>
+  </Method>
+  <Method Name="groups.addLink" Type="Link" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="link" Type="string" />
+      <Param Name="text" Type="string" Default="&quot;&quot;"/>
+    </Params>
+  </Method>
+  <Method Name="groups.approveRequest" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="user_id" Type="int" />
     </Params>
   </Method>
   <Method Name="groups.deleteLink" Type="void" NeedToken="true">
@@ -581,6 +620,12 @@
     <Hardcoded>
       <HardcodedParam Name="extended" Value="0"/>
     </Hardcoded>
+  </Method>
+  <Method Name="groups.invite" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="user_id" Type="int" />
+    </Params>
   </Method>
   <Method Name="groups.isMember" NameSuffix="Extended" Type="MemberShip" NeedToken="false" >
     <Params>
@@ -924,6 +969,12 @@
       <Param Name="owner_id" Type="int?" Default="null" />
     </Params>
   </Method>
+  <Method Name="photos.restore" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="owner_id" Type="int"/>
+      <Param Name="photo_id" Type="long" />
+    </Params>
+  </Method>
   <Method Name="photos.save" Type="Photo[]" NeedToken="false" >
     <Params>
       <Param Name="album_id" Type="long" />
@@ -935,6 +986,22 @@
       <Param Name="longitude" Type="double?" Default="null" />
       <Param Name="caption" Type="string" Default="&quot;&quot;" />
       <Param Name="description" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="polls.addVote" Type="bool" NeedToken="true">
+    <Params>
+      <Param Name="poll_id" Type="long" />
+      <Param Name="answer_id" Type="int" />
+      <Param Name="owner_id" Type="int?"  Default="null" />
+      <Param Name="is_board" Type="bool?" Default="null" />
+    </Params>
+  </Method>
+  <Method Name="polls.deleteVote" Type="bool" NeedToken="true">
+    <Params>
+      <Param Name="poll_id" Type="long" />
+      <Param Name="answer_id" Type="int" />
+      <Param Name="owner_id" Type="int?"  Default="null" />
+      <Param Name="is_board" Type="bool?" Default="null" />
     </Params>
   </Method>
   <Method Name="stats.trackVisitor" Type="void" NeedToken="true" >
@@ -1055,6 +1122,7 @@
       <Param Name="company" Type="string" Default="&quot;&quot;" />
       <Param Name="position" Type="string" Default="&quot;&quot;" />
       <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="from_list" Type="FriendshipType?" Default="null" />
     </Params>
   </Method>
   <Method Name="utils.checkLink" Type="LinkCheckResult" NeedToken="false" >
