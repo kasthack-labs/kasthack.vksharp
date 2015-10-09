@@ -136,50 +136,46 @@ public static string Stringify(string name, string type){
     //todo: typing
     //common types
     switch ( type ) {
-        case "Audio":
-            return "";//todo???
+        //yay!
         case "string":
             return name;
+        case "string[]":
+            return "String.Join(\",\","+name+")";
+
         case "bool":
             return "("+name+"?1:0).ToNCString()";
         case "bool?":
             return string.Format( "({0} != null ? ( {0}.Value ? 1 : 0 ).ToNCString() : \"\")", name );
-        case "string[]":
-            return "String.Join(\",\","+name+")";
+
         case "UserFields":
             return "String.Join( \",\", MiscTools.GetUserFields( "+name+" ) )";
         case "GroupFields":
             return "String.Join( \",\", MiscTools.GetGroupFields( "+name+" ) )";
-        case "Relation":
-            return "((int)"+name+").ToNCString()";
-        case "Relation?":
-            return "MiscTools.NullableString((int?)"+name+")";
-        case "Sex":
-            return "((int)"+name+").ToNCString()";
-        case "Sex?":
-            return "MiscTools.NullableString((int?)"+name+")";
-        case "AudioGenre":
-        case "SearchSortOrder":
-            return "((int)" + name + ").ToString()";
-        case "AudioGenre?":
-            return string.Format( "({0}!=null?((int)({0})).ToString():String.Empty)", name );
-        case "AudioSortOrder":
-            return "((int)"+name+").ToNCString()";
-        case "UserSortOrder":
-        case "NameCase":
-        case "SpecialAlbum":
-        case "ComplaintType":
-        case "ImActivity":
-            return name+".ToNClString()";
-        case "WallPostFilter":
-            return name+".ToNClString().ToSnake()";
         case "FriendSuggestionFilters":
             return String.Format("String.Join( \",\", MiscTools.GetFilterFields( {0} ) )", name);
-        case "ReportReason?":
-            return String.Format("{0} == null ? \"\" : ( (int){0} ).ToNCString()", name);
+
+        case "AudioGenre":
+        case "AudioSortOrder":
+        case "Relation":
+        case "SearchSortOrder":
+        case "Sex":
+            return "((int)"+name+").ToNCString()";
+        case "ComplaintType":
+        case "FriendshipType":
+        case "ImActivity":
+        case "NameCase":
+        case "SpecialAlbum":
+        case "UserSortOrder":
+        case "WallPostFilter":
+            return name+".ToSnake()";
+        case "AudioGenre?":
         case "PrivacyType?":
-            return String.Format("MiscTools.NullableString( (byte?){0} )", name);
+        case "Relation?":
+        case "ReportReason?":
+        case "Sex?":
+            return String.Format("MiscTools.NullableString( (int?){0} )", name);
         case "FeedType?":
+        case "FriendshipType?":
         case "UserSortOrder?":
             return String.Format("MiscTools.NullableString( {0} )",name);
     }
@@ -189,6 +185,7 @@ public static string Stringify(string name, string type){
     if (nums.Any(a=>a==type)) return name+".ToNCString()";    
     if (nums.Any(a=>type==a+"?")) return "MiscTools.NullableString("+name+")";
     if (nums.Any(a=>type==a+"[]")) return string.Format( "({0}??new {1}{{}}).ToNCStringA()", name, type );
+
     if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))
         return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
 
