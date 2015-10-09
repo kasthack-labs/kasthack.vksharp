@@ -273,7 +273,7 @@ namespace VKSharp {
                 private readonly VKApi _parent;
                 internal MethodGroup_Audio(VKApi parent){_parent=parent;}
 
-                public async Task <AddAlbum> Add(
+                public async Task <int> Add(
                     int ownerId , long audioId ,  int? groupId = null
                 ) {
                     return (
@@ -285,7 +285,7 @@ namespace VKSharp {
                     ).Response;
                 }
 
-                public async Task <int> AddAlbum(
+                public async Task <AddAlbum> AddAlbum(
                     string title ,  int? groupId = 0
                 ) {
                     return (
@@ -848,6 +848,18 @@ namespace VKSharp {
                 private readonly VKApi _parent;
                 internal MethodGroup_Fave(VKApi parent){_parent=parent;}
 
+                public async Task <EntityList<Link>> GetLinks(
+                    int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Fave.GetLinks(
+                                offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task <EntityList<User>> GetUsers(
                     int offset = 0, int count = 100
                 ) {
@@ -912,6 +924,39 @@ namespace VKSharp {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Fave.RemoveGroup(
                                 groupId
+                            )
+                        ).ConfigureAwait(false)
+                    ;
+                }
+
+                public async Task  AddGroup(
+                     int groupId 
+                ) {
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Fave.AddGroup(
+                                groupId
+                            )
+                        ).ConfigureAwait(false)
+                    ;
+                }
+
+                public async Task  AddUser(
+                     int userId 
+                ) {
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Fave.AddUser(
+                                userId
+                            )
+                        ).ConfigureAwait(false)
+                    ;
+                }
+
+                public async Task  AddLink(
+                    string link ,  string text = ""
+                ) {
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Fave.AddLink(
+                                link,text
                             )
                         ).ConfigureAwait(false)
                     ;

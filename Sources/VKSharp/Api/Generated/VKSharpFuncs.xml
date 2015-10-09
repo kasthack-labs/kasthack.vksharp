@@ -107,14 +107,14 @@
   <Method Name="apps.deleteAppRequests" Type="void" NeedToken="true" >
     <Params />
   </Method>
-  <Method Name="audio.add" Type="AddAlbum" NeedToken="true" >
+  <Method Name="audio.add" Type="int" NeedToken="true" >
     <Params>
       <Param Name="owner_id" Type="int" />
       <Param Name="audio_id" Type="long" />
       <Param Name="group_id" Type="int?" Default="null" />
     </Params>
   </Method>
-  <Method Name="audio.addAlbum" Type="int" NeedToken="true" >
+  <Method Name="audio.addAlbum" Type="AddAlbum" NeedToken="true" >
     <Params>
       <Param Name="title" Type="string" />
       <Param Name="group_id" Type="int?" Default="0" />
@@ -401,6 +401,9 @@
       <Param Name="tags" Type="string[]" />
     </Params>
   </Method>
+  <Method Name="fave.getLinks" Type="EntityList&lt;Link&gt;" NeedToken="true" Pageable="100">
+    <Params/>
+  </Method>
   <Method Name="fave.getUsers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
     <Params/>
   </Method>
@@ -423,6 +426,22 @@
   <Method Name="fave.removeGroup" Type="void" NeedToken="true">
     <Params>
       <Param Name="group_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="fave.addGroup" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="fave.addUser" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="user_id" Type="int" />
+    </Params>
+  </Method>
+  <Method Name="fave.addLink" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="link" Type="string" />
+      <Param Name="text" Type="string" Default="&quot;&quot;"/>
     </Params>
   </Method>
   <Method Name="friends.add" Type="AddFriendResult" NeedToken="true" >

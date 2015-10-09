@@ -16,6 +16,7 @@ namespace VKSharp.Core.Entities {
         //todo:wikipage
         public PhotoAlbum Album { get; set; }
 
+
         public override string ToString() {
             switch ( Type ) {
                 case AttachmentType.Photo:
@@ -27,11 +28,34 @@ namespace VKSharp.Core.Entities {
                 case AttachmentType.Audio:
                     return $"audio{Audio.OwnerId}_{Audio.Id}";
                 case AttachmentType.Doc:
-                    return $"doc{Audio.OwnerId}_{Audio.Id}";
+                    return $"doc{Doc.OwnerId}_{Doc.Id}";
                 case AttachmentType.Link:
                     return Link.Url;
+                //case AttachmentType.Graffiti:
+                    //break;
+                case AttachmentType.Note:
+                    return $"note{Note.OwnerId}_{Note.Id}";
+                //case AttachmentType.App:
+                //    break;
+                case AttachmentType.Poll:
+                    return $"poll{Poll.OwnerId}_{Poll.Id}";
+                //case AttachmentType.Page:
+                //    break;
+                case AttachmentType.Album:
+                    return $"album{Album.OwnerId}_{Album.Id}";
+                //case AttachmentType.PhotosList:
+                    //break;
+                //case AttachmentType.Wall:
+                    //return $"wall{Album.OwnerId}_{Album.Id}";
+                //case AttachmentType.WallReply:
+                    //break;
+                //case null:
+                    //break;
+                default:
+                    return $"Attached {Type}";
             }
-            return "Attached "+Type;
         }
+
     }
+
 }

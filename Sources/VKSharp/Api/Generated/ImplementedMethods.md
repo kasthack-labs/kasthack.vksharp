@@ -1,5 +1,5 @@
 ﻿
-Implemented 177 methods of 367, 48%:
+Implemented 181 methods of 367, 49%:
 
 * [Account](https://vk.com/dev/account). Implemented 15 of 20, 75%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -234,14 +234,14 @@ Implemented 177 methods of 367, 48%:
 * [Execute](https://vk.com/dev/execute). Implemented 0 of 1, 0%:
     - [ ] [execute](https://vk.com/dev/execute)
 
-* [Fave](https://vk.com/dev/fave). Implemented 6 of 11, 54%:
-    - [ ] [fave.addGroup](https://vk.com/dev/fave.addGroup)
+* [Fave](https://vk.com/dev/fave). Implemented 10 of 11, 90%:
+    - [x] [fave.addGroup](https://vk.com/dev/fave.addGroup)
 
-    - [ ] [fave.addLink](https://vk.com/dev/fave.addLink)
+    - [x] [fave.addLink](https://vk.com/dev/fave.addLink)
 
-    - [ ] [fave.addUser](https://vk.com/dev/fave.addUser)
+    - [x] [fave.addUser](https://vk.com/dev/fave.addUser)
 
-    - [ ] [fave.getLinks](https://vk.com/dev/fave.getLinks)
+    - [x] [fave.getLinks](https://vk.com/dev/fave.getLinks)
 
     - [x] [fave.getPhotos](https://vk.com/dev/fave.getPhotos)
 

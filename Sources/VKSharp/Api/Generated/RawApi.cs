@@ -732,6 +732,16 @@ namespace VKSharp {
             private readonly RawApi _parent;
             internal MethodGroup_Fave(RawApi parent){_parent=parent;}
 
+            public async Task<string> GetLinks(
+                int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Fave.GetLinks(
+                           offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetUsers(
                 int offset = 0, int count = 100
             ){
@@ -788,6 +798,36 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Fave.RemoveGroup(
                            groupId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> AddGroup(
+                 int groupId 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Fave.AddGroup(
+                           groupId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> AddUser(
+                 int userId 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Fave.AddUser(
+                           userId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> AddLink(
+                string link ,  string text = ""
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Fave.AddLink(
+                           link,text
                     )
                 ).ConfigureAwait(false);
             }
