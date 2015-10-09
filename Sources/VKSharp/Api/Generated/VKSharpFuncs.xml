@@ -420,6 +420,9 @@
   <Method Name="fave.getPhotos" Type="EntityList&lt;Photo&gt;" NeedToken="true" Pageable="100">
     <Params/>
   </Method>
+  <Method Name="fave.getPosts" Type="EntityList&lt;Post&gt;" NeedToken="true" Pageable="100">
+    <Params/>
+  </Method>
   <Method Name="fave.getVideos" Type="EntityList&lt;Video&gt;" NeedToken="true" Pageable="100">
     <Params/>
   </Method>

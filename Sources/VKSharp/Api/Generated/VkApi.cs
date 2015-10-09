@@ -908,6 +908,18 @@ namespace VKSharp {
                     ).Response;
                 }
 
+                public async Task <EntityList<Post>> GetPosts(
+                    int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Fave.GetPosts(
+                                offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task <EntityList<Video>> GetVideos(
                     int offset = 0, int count = 100
                 ) {

@@ -1265,6 +1265,22 @@ namespace VKSharp {
                 return req;
             }
 
+            public VKRequest<EntityList<Post>> GetPosts(
+                int offset = 0, int count = 100
+            ) {
+                var req = new VKRequest<EntityList<Post>>{
+                    MethodName = "fave.getPosts",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public VKRequest<EntityList<Video>> GetVideos(
                 int offset = 0, int count = 100
             ) {

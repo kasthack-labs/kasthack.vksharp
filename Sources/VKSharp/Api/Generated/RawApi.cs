@@ -783,6 +783,16 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetPosts(
+                int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Fave.GetPosts(
+                           offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetVideos(
                 int offset = 0, int count = 100
             ){
