@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using kasthack.Tools;
 using VKSharp;
@@ -15,6 +15,7 @@ namespace TestApp
     partial class Program {
         private static void Main() {
             try{
+                Console.OutputEncoding = Encoding.Unicode;
                 Console.WriteLine("Starting..");
                 var t = Main2();
                 t.Wait();
@@ -46,11 +47,23 @@ namespace TestApp
 
         private async static Task Impl(VKApi vk)
         {
-            await DeleteLikes(vk).ConfigureAwait(false);
+            //await DeleteLikes(vk).ConfigureAwait(false);
+            await CheckWall( vk ).ConfigureAwait( false );
         }
 
         private static async Task CheckWall( VKApi vk ) {
-            
+            var posts = await vk.Wall.Get( 8895502 ).ConfigureAwait( false );
+            foreach ( var post in posts ) {
+                Console.WriteLine( new string( '#', 79 ) );
+                Console.WriteLine( $"post {post.Id} by {post.OwnerId} on {post.Date.LocalDateTime}" );
+                Console.WriteLine(new string('#', 79));
+                Console.WriteLine( post.Text );
+                Console.WriteLine(new string('#', 79));
+                Console.WriteLine( "Attachments:" );
+                foreach ( var attachment in post.Attachments ?? new Attachment[] {} ) {
+                    Console.WriteLine( $"   Attached {attachment.Type}: {attachment.ToString()}" );
+                }
+            }
         }
 
         private static async Task DeleteLikes( VKApi vk ) {
