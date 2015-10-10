@@ -1,5 +1,6 @@
 using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace VKSharp.Helpers {
 
@@ -28,18 +29,23 @@ namespace VKSharp.Helpers {
         }
 
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
-            switch ( reader.TokenType ) {
-                case JsonToken.Integer:
-                    var dto = DateTimeOffset.FromUnixTimeSeconds( (long) reader.Value );
+            var jsonValue = serializer.Deserialize<JValue>(reader);
+            switch ( jsonValue.Type ) {
+                case JTokenType.Integer:
+                    var dto = DateTimeOffset.FromUnixTimeSeconds( jsonValue.Value<long>() );
                     if ( objectType == DateTimeOffsetType || ( objectType.IsNullable() && Nullable.GetUnderlyingType( objectType ) == DateTimeOffsetType ) )
                         return dto;
-                    return dto.DateTime;
-                case JsonToken.Null:
+                    return dto.LocalDateTime;
+                case JTokenType.Date:
+                    if ( objectType == DateTimeOffsetType || (objectType.IsNullable() && Nullable.GetUnderlyingType(objectType) == DateTimeOffsetType))
+                        return jsonValue.Value<DateTimeOffset>();
+                    return jsonValue.Value<DateTime>();
+                case JTokenType.Null:
                     if ( objectType.IsNullable() )
                         return null;
                     throw new JsonSerializationException( $"Can't deserialize null value to non-nullable type" );
                 default:
-                    throw new JsonSerializationException( $"Unexpected token {reader.TokenType.ToNCString()} when parsing a date." );
+                    throw new JsonSerializationException( $"Unexpected token {jsonValue.Type} when parsing a date." );
             }
         }
 

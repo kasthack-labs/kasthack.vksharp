@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace VKSharp.Core.Entities {
+    [JsonObject]
     public class EntityList<T> : IEnumerable<T> {
         public int Count { get; set; }
         public T[] Items { get; set; }
