@@ -55,7 +55,5 @@ namespace VKSharp.Core.Entities {
                     return $"Attached {Type}";
             }
         }
-
     }
-
 }

@@ -44,7 +44,17 @@ namespace VKSharp.Data.Executors {
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };
 
             ser.Converters.Add( new SnakeCaseEnumConverter { AllowIntegerValues = true, CamelCaseText = false } );
-            ser.Converters.Add( new CustomIntConverter());
+            ser.Converters.Add(new UnixTimeConverter());
+
+            ser.Converters.Add(new NumberConverter<int>(a=>int.Parse( a )));
+            ser.Converters.Add(new NumberConverter<long>(a => long.Parse(a)));
+            ser.Converters.Add(new NumberConverter<uint>(a => uint.Parse(a)));
+            ser.Converters.Add(new NumberConverter<ulong>(a => ulong.Parse(a)));
+            ser.Converters.Add(new NumberConverter<short>(a => short.Parse(a)));
+            ser.Converters.Add(new NumberConverter<ushort>(a => ushort.Parse(a)));
+            ser.Converters.Add(new NumberConverter<byte>(a => byte.Parse(a)));
+            ser.Converters.Add(new NumberConverter<sbyte>(a => sbyte.Parse(a)));
+
 
             ser.Error += ( sender, args ) => {
                 var ec = args.ErrorContext;

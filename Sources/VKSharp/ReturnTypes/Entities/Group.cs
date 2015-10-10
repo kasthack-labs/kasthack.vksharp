@@ -1,4 +1,5 @@
-﻿using VKSharp.Core.EntityFragments;
+﻿using System;
+using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 
 namespace VKSharp.Core.Entities {
@@ -42,11 +43,11 @@ namespace VKSharp.Core.Entities {
         public int Id { get; set; }
         public int? City { get; set; }
         public int? Country { get; set; }
-        public int? EndDate { get; set; }
+        public DateTimeOffset? EndDate { get; set; }
         public int? MembersCount { get; set; }
         public int? PostId { get; set; }
-        public int? StartDate { get; set; }
-        public int? FinishDate { get; set; }
+        public DateTimeOffset? StartDate { get; set; }
+        public DateTimeOffset? FinishDate { get; set; }
         public int? FixedPost { get; set; }
         public long? MainAlbumId { get; set; }
 

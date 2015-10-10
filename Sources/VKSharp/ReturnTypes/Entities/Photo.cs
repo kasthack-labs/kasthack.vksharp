@@ -1,4 +1,5 @@
-﻿using VKSharp.Core.EntityFragments;
+﻿using System;
+using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
@@ -17,10 +18,10 @@ namespace VKSharp.Core.Entities {
         public int Width { get; set; }
         public int Height { get; set; }
         public string Text { get; set; }
-        public int Date { get; set; }
+        public DateTimeOffset Date { get; set; }
         public bool? CanComment { get; set; }
         public PhotoLikes Likes { get; set; }
-        public Counter Tags { get; set; }
+        //public Counter Tags { get; set; }
         public Counter Comments { get; set; }
         public PhotoSize[] Sizes { get; set; }
         public static implicit operator Attachment( Photo photo ) => new Attachment { Photo = photo, Type = AttachmentType.Photo };

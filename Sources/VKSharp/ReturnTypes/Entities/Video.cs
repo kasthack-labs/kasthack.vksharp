@@ -1,4 +1,5 @@
-﻿using VKSharp.Core.Interfaces;
+﻿using System;
+using VKSharp.Core.Interfaces;
 
 namespace VKSharp.Core.Entities {
     public class Video : OwnedEntity {
@@ -10,7 +11,7 @@ namespace VKSharp.Core.Entities {
         public string Photo130 { get; set; }
         public string Photo320 { get; set; }
         public string Photo640 { get; set; }
-        public int Date { get; set; }
+        public DateTimeOffset Date { get; set; }
         public int Views { get; set; }
         public int Comments { get; set; }
         public string Player { get; set; }

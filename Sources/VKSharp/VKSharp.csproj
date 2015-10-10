@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>VKSharp</RootNamespace>
     <AssemblyName>kasthack.VKSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <NuGetPackageImportStamp>689d4565</NuGetPackageImportStamp>
@@ -85,6 +85,12 @@
     <Compile Include="Core\Parameters\GroupMembersFilter.cs" />
     <Compile Include="Core\Parameters\ImActivity.cs" />
     <Compile Include="Core\Parameters\MembersSortOrder.cs" />
+    <Compile Include="Helpers\Converters\ConverterHelpers.cs" />
+    <Compile Include="Helpers\Converters\UnixTimeConverter.cs" />
+    <Compile Include="Helpers\Converters\NumberConverter.cs" />
+    <Compile Include="Helpers\Converters\ObjectArrConverter.cs" />
+    <Compile Include="Helpers\Converters\SnakeCaseContractResolver.cs" />
+    <Compile Include="Helpers\Converters\SnakeCaseEnumConverter.cs" />
     <Compile Include="Helpers\ProxyPoolingHttpClientHandler.cs" />
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
@@ -102,7 +108,6 @@
     <Compile Include="ReturnTypes\ResponseEntities\ChangePassword.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\NameRequest.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\SaveProfileInfo.cs" />
-    <Compile Include="ReturnTypes\Enums\ChangeNameStatus.cs" />
     <Compile Include="ReturnTypes\Enums\CounterFields.cs" />
     <Compile Include="ReturnTypes\Enums\MessageReadState.cs" />
     <Compile Include="ReturnTypes\Enums\MessageType.cs" />
@@ -110,14 +115,13 @@
     <Compile Include="ReturnTypes\Enums\ResolvedItemType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AccountInfo.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AuthRestore.cs" />
-    <Compile Include="ReturnTypes\ResponseEntities\ChangeNameRequest.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\FriendsDelete.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\FriendshipStatus.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\LastActivity.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\PhotosUploadServer.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\RepostInfo.cs" />
     <Compile Include="Core\Executors\JsonExecutor.cs" />
-    <Compile Include="Helpers\JsonConverters.cs" />
+    <Compile Include="Helpers\Converters\DateConverter.cs" />
     <Compile Include="Core\Parameters\ContentId.cs" />
     <Compile Include="Core\Parameters\GroupFields.cs" />
     <Compile Include="Core\Parameters\SpecialAlbum.cs" />

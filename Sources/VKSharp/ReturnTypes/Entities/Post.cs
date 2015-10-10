@@ -1,4 +1,5 @@
-﻿using VKSharp.Core.EntityFragments;
+﻿using System;
+using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
 using VKSharp.Core.Interfaces;
 
@@ -9,7 +10,7 @@ namespace VKSharp.Core.Entities {
         public bool? CanPin { get; set; }
         public bool? CanDelete { get; set; }
         public bool IsPinned { get; set; }
-        public uint Date { get; set; }
+        public DateTimeOffset Date { get; set; }
         public string Text { get; set; }
         public int? ReplyOwnerId { get; set; }
         public uint? ReplyPostId { get; set; }
