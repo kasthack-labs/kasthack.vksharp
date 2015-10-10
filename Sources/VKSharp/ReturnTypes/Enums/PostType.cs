@@ -5,6 +5,7 @@
         Reply,
         Postpone,
         Suggest,
-        Photo
+        Photo,
+        Video
     }
 }
