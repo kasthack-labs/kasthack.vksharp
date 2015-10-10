@@ -1,10 +1,14 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using kasthack.Tools;
 using VKSharp;
+using VKSharp.Core.Entities;
 using VKSharp.Data.Api;
 using VKSharp.Data.Parameters;
+using VKSharp.Data.Request;
+using VKSharp.Helpers;
 
 namespace TestApp
 {
@@ -23,7 +27,7 @@ namespace TestApp
         private static async Task Main2() {
             var vk = new VKApi();
 #if DEBUG
-            var str = VKToken.GetOAuthURL( 3174839, VKPermission.Offline | VKPermission.Photos );
+            var str = VKToken.GetOAuthURL( 3174839, VKPermission.Everything );
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
             vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
@@ -42,7 +46,35 @@ namespace TestApp
 
         private async static Task Impl(VKApi vk)
         {
-            await TestFriends(vk).ConfigureAwait(false);
+            await DeleteLikes(vk).ConfigureAwait(false);
+        }
+
+        private static async Task CheckWall( VKApi vk ) {
+            
+        }
+
+        private static async Task DeleteLikes( VKApi vk ) {
+            EntityList<Post> posts = await vk.Fave.GetPosts().ConfigureAwait(false);
+            foreach (var post in posts)
+            {
+                try
+                {
+                    var t = Task.Delay(350);
+                    var ret = await vk.Executor.ExecRawAsync(
+                        new VKRequest<int>()
+                        {
+                            MethodName = "likes.delete",
+                            Parameters = new Dictionary<string, string>() { { "type", "post" }, { "owner_id", post.OwnerId.ToNCString() }, { "item_id", post.Id.ToNCString() } },
+                            Token = vk.CurrentToken
+                        }).ConfigureAwait(false);
+                    Console.WriteLine( ret );
+                    await t.ConfigureAwait(false);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
         }
 
         private static async Task TestFriends(VKApi vk) {
