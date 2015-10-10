@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using kasthack.Tools;
@@ -51,19 +52,32 @@ namespace TestApp
             await CheckWall( vk ).ConfigureAwait( false );
         }
 
-        private static async Task CheckWall( VKApi vk ) {
-            var posts = await vk.Wall.Get( 8895502 ).ConfigureAwait( false );
-            foreach ( var post in posts ) {
-                Console.WriteLine( new string( '#', 79 ) );
-                Console.WriteLine( $"post {post.Id} by {post.OwnerId} on {post.Date.LocalDateTime}" );
-                Console.WriteLine(new string('#', 79));
-                Console.WriteLine( post.Text );
-                Console.WriteLine(new string('#', 79));
-                Console.WriteLine( "Attachments:" );
-                foreach ( var attachment in post.Attachments ?? new Attachment[] {} ) {
-                    Console.WriteLine( $"   Attached {attachment.Type}: {attachment.ToString()}" );
-                }
+        private static async Task CheckWall( VKApi vk )
+        {
+            var mox = 8895502;
+            var count = (await vk.Wall.Get( mox, count: 0 ).ConfigureAwait( false )).Count;
+            var chunk = 100;
+            List<Post> posts = new List<Post>(count);
+            for ( int i = 0; i < count; i+=chunk ) {
+                var t = Task.Delay( 350 ).ConfigureAwait( false );
+                posts.AddRange( await vk.Wall.Get( mox, count: chunk, offset: i ).ConfigureAwait( false ) );
+                await t;
             }
+            posts.Sum( a=>a.Text?.Length??0 ).Dump();
+            Console.WriteLine(  );
+            //File.WriteAllText(@"C:\Temp\mox\posts.json", JsonConvert.SerializeObject( posts, Formatting.Indented ));
+
+            //foreach ( var post in posts ) {
+            //    Console.WriteLine( new string( '#', 79 ) );
+            //    Console.WriteLine( $"post {post.Id} by {post.OwnerId} on {post.Date.LocalDateTime}" );
+            //    Console.WriteLine(new string('#', 79));
+            //    Console.WriteLine( post.Text );
+            //    Console.WriteLine(new string('#', 79));
+            //    Console.WriteLine( "Attachments:" );
+            //    foreach ( var attachment in post.Attachments ?? new Attachment[] {} ) {
+            //        Console.WriteLine( $"   Attached {attachment.Type}: {attachment.ToString()}" );
+            //    }
+            //}
         }
 
         private static async Task DeleteLikes( VKApi vk ) {
