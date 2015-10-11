@@ -50,6 +50,6 @@ namespace VKSharp.Core.Entities {
         public DateTimeOffset? FinishDate { get; set; }
         public int? FixedPost { get; set; }
         public long? MainAlbumId { get; set; }
-
+        public Audio StatusAudio { get; set; }
     }
 }

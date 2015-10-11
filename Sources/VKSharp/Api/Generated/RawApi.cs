@@ -333,6 +333,26 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetBroadcastListGroups(
+                 bool active = true, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Audio.GetBroadcastListGroups(
+                           active,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetBroadcastListUsers(
+                 bool active = true, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Audio.GetBroadcastListUsers(
+                           active,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetPopular(
                 AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
             ){

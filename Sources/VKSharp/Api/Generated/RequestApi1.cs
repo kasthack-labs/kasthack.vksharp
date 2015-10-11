@@ -512,6 +512,44 @@ namespace VKSharp {
                 return req;
             }
 
+            public VKRequest<Group[]> GetBroadcastListGroups(
+                 bool active = true, int offset = 0, int count = 100
+            ) {
+                var req = new VKRequest<Group[]>{
+                    MethodName = "audio.getBroadcastList",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "active", (active?1:0).ToNCString()},
+                        {"filter","groups"},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<User[]> GetBroadcastListUsers(
+                 bool active = true, int offset = 0, int count = 100
+            ) {
+                var req = new VKRequest<User[]>{
+                    MethodName = "audio.getBroadcastList",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "active", (active?1:0).ToNCString()},
+                        {"filter","friends"},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public VKRequest<EntityList<Audio>> GetPopular(
                 AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
             ) {

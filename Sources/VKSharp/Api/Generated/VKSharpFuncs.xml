@@ -168,6 +168,22 @@
       <Param Name="need_user" Type="bool" Default="false" />
     </Params>
   </Method>
+  <Method Name="audio.getBroadcastList" NameSuffix="Groups" Type="Group[]" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="active" Type="bool" Default="true"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="filter" Value="groups"/>
+    </Hardcoded>
+  </Method>
+  <Method Name="audio.getBroadcastList" NameSuffix="Users" Type="User[]" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="active" Type="bool" Default="true"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="filter" Value="friends"/>
+    </Hardcoded>
+  </Method>
   <Method Name="audio.getPopular" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100" >
     <Params>
       <Param Name="genre_id" Type="AudioGenre?" Default="null"/>
