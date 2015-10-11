@@ -1,5 +1,5 @@
 ﻿
-Implemented 192 methods of 367, 52%:
+Implemented 194 methods of 367, 52%:
 
 * [Account](https://vk.com/dev/account). Implemented 15 of 20, 75%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -114,7 +114,7 @@ Implemented 192 methods of 367, 52%:
 
     - [ ] [apps.sendRequest](https://vk.com/dev/apps.sendRequest)
 
-* [Audio](https://vk.com/dev/audio). Implemented 20 of 21, 95%:
+* [Audio](https://vk.com/dev/audio). Implemented 21 of 21, 100%:
     - [x] [audio.add](https://vk.com/dev/audio.add)
 
     - [x] [audio.addAlbum](https://vk.com/dev/audio.addAlbum)
@@ -131,7 +131,7 @@ Implemented 192 methods of 367, 52%:
 
     - [x] [audio.getAlbums](https://vk.com/dev/audio.getAlbums)
 
-    - [ ] [audio.getBroadcastList](https://vk.com/dev/audio.getBroadcastList)
+    - [x] [audio.getBroadcastList](https://vk.com/dev/audio.getBroadcastList)
 
     - [x] [audio.getById](https://vk.com/dev/audio.getById)
 
@@ -299,7 +299,7 @@ Implemented 192 methods of 367, 52%:
 * [Gifts](https://vk.com/dev/gifts). Implemented 0 of 1, 0%:
     - [ ] [gifts.get](https://vk.com/dev/gifts.get)
 
-* [Groups](https://vk.com/dev/groups). Implemented 12 of 25, 48%:
+* [Groups](https://vk.com/dev/groups). Implemented 13 of 25, 52%:
     - [x] [groups.addLink](https://vk.com/dev/groups.addLink)
 
     - [x] [groups.approveRequest](https://vk.com/dev/groups.approveRequest)
@@ -344,7 +344,7 @@ Implemented 192 methods of 367, 52%:
 
     - [x] [groups.removeUser](https://vk.com/dev/groups.removeUser)
 
-    - [ ] [groups.reorderLink](https://vk.com/dev/groups.reorderLink)
+    - [x] [groups.reorderLink](https://vk.com/dev/groups.reorderLink)
 
     - [ ] [groups.search](https://vk.com/dev/groups.search)
 
