@@ -1447,6 +1447,22 @@ namespace VKSharp {
                 return req;
             }
 
+            public VKRequest<AddFriendsList> AddList(
+                string name , params int[] userIds 
+            ) {
+                var req = new VKRequest<AddFriendsList>{
+                    MethodName = "friends.addList",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "name", name},
+                        { "user_ids", (userIds??new int[]{}).ToNCStringA()},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public VKRequest<FriendshipStatus[]> AreFriends(
                 bool needSign = false, params int[] userIds 
             ) {
@@ -1538,6 +1554,23 @@ namespace VKSharp {
 
                     }
                 };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<EntityList<FriendsList>> GetLists(
+                int? userId = null,  bool returnSystem = true
+            ) {
+                var req = new VKRequest<EntityList<FriendsList>>{
+                    MethodName = "friends.getLists",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "user_id", MiscTools.NullableString(userId)},
+                        { "return_system", (returnSystem?1:0).ToNCString()},
+
+                    }
+                };
+                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }

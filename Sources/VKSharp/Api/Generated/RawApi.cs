@@ -899,6 +899,16 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> AddList(
+                string name , params int[] userIds 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Friends.AddList(
+                           name,userIds
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> AreFriends(
                 bool needSign = false, params int[] userIds 
             ){
@@ -955,6 +965,16 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.EditList(
                            listId,name,userIds,addUserIds,deleteUserIds
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetLists(
+                int? userId = null,  bool returnSystem = true
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Friends.GetLists(
+                           userId,returnSystem
                     )
                 ).ConfigureAwait(false);
             }

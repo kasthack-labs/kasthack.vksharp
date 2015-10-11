@@ -94,6 +94,7 @@
     <Compile Include="Helpers\ProxyPoolingHttpClientHandler.cs" />
     <Compile Include="ReturnTypes\Entities\AudioAlbum.cs" />
     <Compile Include="ReturnTypes\Entities\Chat.cs" />
+    <Compile Include="ReturnTypes\Entities\FriendsList.cs" />
     <Compile Include="ReturnTypes\Entities\Message.cs" />
     <Compile Include="ReturnTypes\Entities\Offer.cs" />
     <Compile Include="ReturnTypes\Entities\Onlines.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ReturnTypes\Enums\FriendshipType.cs" />
     <Compile Include="ReturnTypes\Enums\PhotoSizeType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AddAlbum.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\AddFriendsList.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangePassword.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\NameRequest.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\SaveProfileInfo.cs" />

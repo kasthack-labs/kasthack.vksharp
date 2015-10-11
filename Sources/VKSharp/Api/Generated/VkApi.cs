@@ -1041,6 +1041,18 @@ namespace VKSharp {
                     ).Response;
                 }
 
+                public async Task <AddFriendsList> AddList(
+                    string name , params int[] userIds 
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Friends.AddList(
+                                name,userIds
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task <FriendshipStatus[]> AreFriends(
                     bool needSign = false, params int[] userIds 
                 ) {
@@ -1107,6 +1119,18 @@ namespace VKSharp {
                             )
                         ).ConfigureAwait(false)
                     ;
+                }
+
+                public async Task <EntityList<FriendsList>> GetLists(
+                    int? userId = null,  bool returnSystem = true
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Friends.GetLists(
+                                userId,returnSystem
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
                 }
 
                 public async Task <EntityList<User>> Get(

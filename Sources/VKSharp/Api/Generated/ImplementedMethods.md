@@ -1,5 +1,5 @@
 ﻿
-Implemented 194 methods of 367, 52%:
+Implemented 196 methods of 367, 53%:
 
 * [Account](https://vk.com/dev/account). Implemented 15 of 20, 75%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -257,10 +257,10 @@ Implemented 194 methods of 367, 52%:
 
     - [x] [fave.removeUser](https://vk.com/dev/fave.removeUser)
 
-* [Friends](https://vk.com/dev/friends). Implemented 16 of 19, 84%:
+* [Friends](https://vk.com/dev/friends). Implemented 18 of 19, 94%:
     - [x] [friends.add](https://vk.com/dev/friends.add)
 
-    - [ ] [friends.addList](https://vk.com/dev/friends.addList)
+    - [x] [friends.addList](https://vk.com/dev/friends.addList)
 
     - [x] [friends.areFriends](https://vk.com/dev/friends.areFriends)
 
@@ -282,7 +282,7 @@ Implemented 194 methods of 367, 52%:
 
     - [x] [friends.getByPhones](https://vk.com/dev/friends.getByPhones)
 
-    - [ ] [friends.getLists](https://vk.com/dev/friends.getLists)
+    - [x] [friends.getLists](https://vk.com/dev/friends.getLists)
 
     - [x] [friends.getMutual](https://vk.com/dev/friends.getMutual)
 

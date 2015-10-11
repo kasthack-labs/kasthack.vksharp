@@ -479,6 +479,12 @@
       <Param Name="text" Type="string" Default="&quot;&quot;" />
     </Params>
   </Method>
+  <Method Name="friends.addList" Type="AddFriendsList" NeedToken="true" >
+    <Params>
+      <Param Name="name" Type="string" />
+      <Param Name="user_ids" Type="int[]" />
+    </Params>
+  </Method>
   <Method Name="friends.areFriends" Type="FriendshipStatus[]" NeedToken="true" >
     <Params>
       <Param Name="need_sign" Type="bool" Default="false" />
@@ -511,6 +517,12 @@
       <Param Name="user_ids" Type="int[]" Default="null"/>
       <Param Name="add_user_ids" Type="int[]" Default="null"/>
       <Param Name="delete_user_ids" Type="int[]" Default="null"/>
+    </Params>
+  </Method>
+  <Method Name="friends.getLists" Type="EntityList&lt;FriendsList&gt;" NeedToken="false">
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="return_system" Type="bool" Default="true"/>
     </Params>
   </Method>
   <Method Name="friends.get" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
