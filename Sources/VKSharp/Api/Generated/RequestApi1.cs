@@ -1979,6 +1979,23 @@ namespace VKSharp {
                     req.Token = _parent.CurrentToken;
                 return req;
             }
+
+            public VKRequest<bool> ReorderLink(
+                int groupId , long linkId ,  long after = 0
+            ) {
+                var req = new VKRequest<bool>{
+                    MethodName = "groups.reorderLink",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId.ToNCString()},
+                        { "link_id", linkId.ToNCString()},
+                        { "after", after.ToNCString()},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
         }
         public MethodGroup_messages Messages {get; private set;}
         public partial class MethodGroup_messages {

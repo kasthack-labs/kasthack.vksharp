@@ -1214,6 +1214,16 @@ namespace VKSharp {
                     )
                 ).ConfigureAwait(false);
             }
+                    
+            public async Task<string> ReorderLink(
+                int groupId , long linkId ,  long after = 0
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.ReorderLink(
+                           groupId,linkId,after
+                    )
+                ).ConfigureAwait(false);
+            }
                                 }
         
         public MethodGroup_Messages Messages {get; private set;}

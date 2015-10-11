@@ -668,6 +668,13 @@
       <Param Name="user_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="groups.reorderLink" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="link_id" Type="long" />
+      <Param Name="after" Type="long" Default="0" />
+    </Params>
+  </Method>
   <Method Name="messages.addChatUser" Type="void" NeedToken="true">
     <Params>
       <Param Name="user_id" Type="int" />

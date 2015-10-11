@@ -1408,6 +1408,17 @@ namespace VKSharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+
+                public async Task  ReorderLink(
+                    int groupId , long linkId ,  long after = 0
+                ) {
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.ReorderLink(
+                                groupId,linkId,after
+                            )
+                        ).ConfigureAwait(false)
+                    ;
+                }
             }
 
             public MethodGroup_Messages Messages {get; private set;}
