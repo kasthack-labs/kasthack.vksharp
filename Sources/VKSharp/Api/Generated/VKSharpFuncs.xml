@@ -13,10 +13,10 @@
       <Param Name="new_password" Type="string" />
     </Params>
   </Method>
-  <Method Name="account.getAppPermissions" Type="EntityList&lt;Offer&gt;" True="false" Pageable="100" >
+  <Method Name="account.getActiveOffers" Type="EntityList&lt;Offer&gt;" NeedToken="false" Pageable="100" >
     <Params />
   </Method>
-  <Method Name="account.getAppPermissions" Type="long" NeedToken="false" >
+  <Method Name="account.getAppPermissions" Type="VKPermission" NeedToken="false" >
     <Params>
       <Param Name="user_id" Type="int?" Default="null" />
     </Params>

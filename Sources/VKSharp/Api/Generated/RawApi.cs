@@ -65,11 +65,11 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
-            public async Task<string> GetAppPermissions(
+            public async Task<string> GetActiveOffers(
                 int offset = 0, int count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
-                    _parent._reqapi.Account.GetAppPermissions(
+                    _parent._reqapi.Account.GetActiveOffers(
                            offset, count
                     )
                 ).ConfigureAwait(false);

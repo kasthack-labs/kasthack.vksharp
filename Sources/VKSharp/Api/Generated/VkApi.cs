@@ -7,6 +7,7 @@ using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
 using VKSharp.Helpers.DataTypes;
+using VKSharp.Data.Api;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {
@@ -70,19 +71,19 @@ namespace VKSharp {
                     ).Response;
                 }
 
-                public async Task <EntityList<Offer>> GetAppPermissions(
+                public async Task <EntityList<Offer>> GetActiveOffers(
                     int offset = 0, int count = 100
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
-                            _parent._reqapi.Account.GetAppPermissions(
+                            _parent._reqapi.Account.GetActiveOffers(
                                 offset, count
                             )
                         ).ConfigureAwait(false)
                     ).Response;
                 }
 
-                public async Task <long> GetAppPermissions(
+                public async Task <VKPermission> GetAppPermissions(
                      int? userId = null
                 ) {
                     return (

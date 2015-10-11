@@ -1,12 +1,12 @@
 ﻿
-Implemented 196 methods of 367, 53%:
+Implemented 197 methods of 367, 53%:
 
-* [Account](https://vk.com/dev/account). Implemented 15 of 20, 75%:
+* [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
 
     - [x] [account.changePassword](https://vk.com/dev/account.changePassword)
 
-    - [ ] [account.getActiveOffers](https://vk.com/dev/account.getActiveOffers)
+    - [x] [account.getActiveOffers](https://vk.com/dev/account.getActiveOffers)
 
     - [x] [account.getAppPermissions](https://vk.com/dev/account.getAppPermissions)
 

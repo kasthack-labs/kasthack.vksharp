@@ -14,6 +14,7 @@ using VKSharp.Core.Enums;
 using VKSharp.Core.ResponseEntities;
 using VKSharp.Data.Parameters;
 using VKSharp.Helpers.DataTypes;
+using VKSharp.Data.Api;
 
 // ReSharper disable UnusedMember.Global
 namespace VKSharp {

@@ -81,11 +81,11 @@ namespace VKSharp {
                 return req;
             }
 
-            public VKRequest<EntityList<Offer>> GetAppPermissions(
+            public VKRequest<EntityList<Offer>> GetActiveOffers(
                 int offset = 0, int count = 100
             ) {
                 var req = new VKRequest<EntityList<Offer>>{
-                    MethodName = "account.getAppPermissions",
+                    MethodName = "account.getActiveOffers",
                     Parameters = new Dictionary<string, string> {
 
                         { "offset", offset.ToNCString() },
@@ -98,10 +98,10 @@ namespace VKSharp {
                 return req;
             }
 
-            public VKRequest<long> GetAppPermissions(
+            public VKRequest<VKPermission> GetAppPermissions(
                  int? userId = null
             ) {
-                var req = new VKRequest<long>{
+                var req = new VKRequest<VKPermission>{
                     MethodName = "account.getAppPermissions",
                     Parameters = new Dictionary<string, string> {
 
