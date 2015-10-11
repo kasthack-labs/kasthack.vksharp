@@ -86,6 +86,7 @@
     <Compile Include="Core\Parameters\ImActivity.cs" />
     <Compile Include="Core\Parameters\MembersSortOrder.cs" />
     <Compile Include="Helpers\Converters\ConverterHelpers.cs" />
+    <Compile Include="Helpers\Converters\OneTwoFUConverter.cs" />
     <Compile Include="Helpers\Converters\UnixTimeConverter.cs" />
     <Compile Include="Helpers\Converters\NumberConverter.cs" />
     <Compile Include="Helpers\Converters\ObjectArrConverter.cs" />
@@ -101,9 +102,14 @@
     <Compile Include="ReturnTypes\Entities\ResolveResult.cs" />
     <Compile Include="ReturnTypes\Entities\Status.cs" />
     <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\Career.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\CropPhoto.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\Military.cs" />
     <Compile Include="ReturnTypes\EntityFragments\PhotoSize.cs" />
+    <Compile Include="ReturnTypes\EntityFragments\Rect.cs" />
     <Compile Include="ReturnTypes\Enums\AddFriendResult.cs" />
     <Compile Include="ReturnTypes\Enums\FriendshipType.cs" />
+    <Compile Include="ReturnTypes\Enums\FriendshipStatusEnum.cs" />
     <Compile Include="ReturnTypes\Enums\PhotoSizeType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AddAlbum.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AddFriendsList.cs" />

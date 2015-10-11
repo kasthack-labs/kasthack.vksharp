@@ -2,7 +2,9 @@
 using Newtonsoft.Json;
 using VKSharp.Core.EntityFragments;
 using VKSharp.Core.Enums;
+using VKSharp.Core.ResponseEntities;
 using VKSharp.Helpers;
+using VKSharp.Helpers.Converters;
 using VKSharp.Helpers.DataTypes;
 
 namespace VKSharp.Core.Entities {
@@ -90,8 +92,10 @@ namespace VKSharp.Core.Entities {
         public University MainUniversity { get; set; } = new University();
         #region Main university
         private string UniversityName {
-            get {
-                return MainUniversity.Name;
+            get
+            {
+                CreateUniversityIfNotExists();
+                return MainUniversity?.Name;
             }
             set {
                 MainUniversity.Name = value;
@@ -99,17 +103,21 @@ namespace VKSharp.Core.Entities {
         }
         private string FacultyName {
             get {
-                return MainUniversity.FacultyName;
+                return MainUniversity?.FacultyName;
             }
-            set {
+            set
+            {
+                CreateUniversityIfNotExists();
                 MainUniversity.FacultyName = value;
             }
         }
         private int? Faculty {
             get {
-                return MainUniversity.Faculty;
+                return MainUniversity?.Faculty;
             }
-            set {
+            set
+            {
+                CreateUniversityIfNotExists();
                 MainUniversity.Faculty = value;
             }
         }
@@ -117,25 +125,44 @@ namespace VKSharp.Core.Entities {
             get {
                 return MainUniversity?.Id;
             }
-            set {
-                if (value!=null)
-                    MainUniversity.Id = (int) value;
+            set
+            {
+                if ( value == null) {
+                    MainUniversity = null;
+                    return;
+                }
+                CreateUniversityIfNotExists();
+                MainUniversity.Id = (int) value;
             }
         }
         private ushort? Graduation {
             get {
-                return MainUniversity.Graduation;
+                return MainUniversity?.Graduation;
             }
-            set {
+            set
+            {
+                CreateUniversityIfNotExists();
                 MainUniversity.Graduation = value;
             }
         }
         #endregion
+        public Career[] Career { get; set; }
+        public Military[] Military { get; set; }
         public int? FollowersCount { get; set; }
         public int? OnlineApp { get; set; }
         public int[] Lists { get; set; }
         public University[] Universities { get; set; }
-        
+        public bool? IsFavorite { get; set; }
+        public CropPhoto CropPhoto { get; set; }
+        [JsonConverter(typeof(OneTwoFUConverter))]
+        public bool? IsFriend { get; set; }//todo:converter
+        public FriendshipStatusEnum FriendStatus { get; set; }
+
+        private void CreateUniversityIfNotExists() {
+            if (MainUniversity == null)
+                MainUniversity = new University();
+        }
+
         public bool Equals( User other ) => !ReferenceEquals( other, null ) && Id == other.Id;
 
         public static bool operator ==( User a, User b ) => ReferenceEquals( a, null )

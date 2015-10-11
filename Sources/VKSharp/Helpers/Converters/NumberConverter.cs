@@ -8,19 +8,18 @@ namespace VKSharp.Helpers {
     // "1" -> 1
     // 1.0 -> 1
     // 1 -> 1
-    internal class NumberConverter<T> : JsonConverter {
+    internal class NumberConverter<T> : JsonConverter where T:struct {
 
         private readonly Func<string, T> _parse;
 
+        private static readonly Type NullableNumberType = typeof(T?);
         private static readonly Type NumberType = typeof(T);
         private static readonly TypeCode NumberTypeCode = Type.GetTypeCode( NumberType );
 
         public NumberConverter( Func<string, T> parse ) { _parse = parse; }
 
         public override bool CanConvert( Type objectType ) {
-            if ( objectType.IsNullable() )
-                objectType = Nullable.GetUnderlyingType( objectType );
-            return objectType == NumberType;
+            return objectType == NumberType || objectType == NullableNumberType;
         }
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
             var jsonValue = serializer.Deserialize<JValue>( reader );
@@ -32,7 +31,7 @@ namespace VKSharp.Helpers {
                 case JTokenType.String:
                     return _parse( jsonValue.Value<string>() );
                 case JTokenType.Null:
-                    if ( !objectType.IsNullable() )
+                    if ( objectType!=NullableNumberType )
                         throw new JsonSerializationException($"Cannot convert null value to {objectType}.");
                     return null;
                 default:
