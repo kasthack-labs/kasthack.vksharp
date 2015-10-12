@@ -59,12 +59,11 @@ namespace VKSharp.Data.Parameters {
         PhotoId = 1L << 53,
         Military = 1L << 54,
         CropPhoto = 1L << 55,
-        IsFriend = 1L << 56,//converter!!! 1=true, 2=false
+        IsFriend = 1L << 56,
         FriendStatus = 1L << 57,
         Career = 1L << 58,
         IsFavorite = 1L << 59,
         Everything = ~0L,
         None = 0L
-            //photo_id
     }
 }

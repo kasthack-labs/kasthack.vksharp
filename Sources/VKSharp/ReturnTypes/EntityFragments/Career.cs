@@ -9,7 +9,7 @@
         public string Position { get; set; }
         public string Company { get; set; }
         public int? GroupId { get; set; }
-
+        public string CityName { get; set; }
     }
 
 }
