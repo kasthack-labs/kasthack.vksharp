@@ -944,6 +944,13 @@
   <Method Name="photos.getOwnerPhotoUploadServer" Type="string" NeedToken="true" >
     <Params />
   </Method>
+  <Method Name="photos.getTags" Type="PhotoTag[]" NeedToken="false">
+    <Params>
+      <Param Name="photo_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="access_key" Type="string" Default="&quot;&quot;"/>
+    </Params>
+  </Method>
   <Method Name="photos.getUploadServer" Type="PhotosUploadServer" NeedToken="true" >
     <Params>
       <Param Name="album_id" Type="long" />
@@ -1205,6 +1212,12 @@
       <Param Name="message" Type="string" />
       <Param Name="comment_id" Type="int" />
       <Param Name="owner_id" Type="int?"/>
+    </Params>
+  </Method>
+  <Method Name="video.getTags" Type="Tag[]" NeedToken="false">
+    <Params>
+      <Param Name="video_id" Type="long" />
+      <Param Name="owner_id" Type="int?" Default="null" />
     </Params>
   </Method>
   <Method Name="video.putTag" Type="void" NeedToken="true">

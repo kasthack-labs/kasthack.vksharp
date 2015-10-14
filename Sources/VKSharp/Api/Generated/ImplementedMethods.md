@@ -1,5 +1,5 @@
 ﻿
-Implemented 197 methods of 367, 53%:
+Implemented 199 methods of 367, 54%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -497,7 +497,7 @@ Implemented 197 methods of 367, 53%:
 
     - [ ] [pages.saveAccess](https://vk.com/dev/pages.saveAccess)
 
-* [Photos](https://vk.com/dev/photos). Implemented 26 of 40, 65%:
+* [Photos](https://vk.com/dev/photos). Implemented 27 of 40, 67%:
     - [x] [photos.confirmTag](https://vk.com/dev/photos.confirmTag)
 
     - [x] [photos.copy](https://vk.com/dev/photos.copy)
@@ -540,7 +540,7 @@ Implemented 197 methods of 367, 53%:
 
     - [x] [photos.getOwnerPhotoUploadServer](https://vk.com/dev/photos.getOwnerPhotoUploadServer)
 
-    - [ ] [photos.getTags](https://vk.com/dev/photos.getTags)
+    - [x] [photos.getTags](https://vk.com/dev/photos.getTags)
 
     - [x] [photos.getUploadServer](https://vk.com/dev/photos.getUploadServer)
 
@@ -669,7 +669,7 @@ Implemented 197 methods of 367, 53%:
 
     - [x] [utils.resolveScreenName](https://vk.com/dev/utils.resolveScreenName)
 
-* [Video](https://vk.com/dev/video). Implemented 11 of 28, 39%:
+* [Video](https://vk.com/dev/video). Implemented 12 of 28, 42%:
     - [x] [video.add](https://vk.com/dev/video.add)
 
     - [ ] [video.addAlbum](https://vk.com/dev/video.addAlbum)
@@ -702,7 +702,7 @@ Implemented 197 methods of 367, 53%:
 
     - [ ] [video.getNewTags](https://vk.com/dev/video.getNewTags)
 
-    - [ ] [video.getTags](https://vk.com/dev/video.getTags)
+    - [x] [video.getTags](https://vk.com/dev/video.getTags)
 
     - [ ] [video.getUserVideos](https://vk.com/dev/video.getUserVideos)
 

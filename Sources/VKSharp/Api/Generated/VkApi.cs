@@ -1920,6 +1920,18 @@ namespace VKSharp {
                     ).Response;
                 }
 
+                public async Task <PhotoTag[]> GetTags(
+                    long photoId , int? ownerId = null,  string accessKey = ""
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Photos.GetTags(
+                                photoId,ownerId,accessKey
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task <PhotosUploadServer> GetUploadServer(
                     long albumId ,  int? groupId = null
                 ) {
@@ -2370,6 +2382,18 @@ namespace VKSharp {
                             )
                         ).ConfigureAwait(false)
                     ;
+                }
+
+                public async Task <Tag[]> GetTags(
+                    long videoId ,  int? ownerId = null
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Video.GetTags(
+                                videoId,ownerId
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
                 }
 
                 public async Task  PutTag(

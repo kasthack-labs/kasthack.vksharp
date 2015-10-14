@@ -2718,6 +2718,24 @@ namespace VKSharp {
                 return req;
             }
 
+            public VKRequest<PhotoTag[]> GetTags(
+                long photoId , int? ownerId = null,  string accessKey = ""
+            ) {
+                var req = new VKRequest<PhotoTag[]>{
+                    MethodName = "photos.getTags",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "photo_id", photoId.ToNCString()},
+                        { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "access_key", accessKey},
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public VKRequest<PhotosUploadServer> GetUploadServer(
                 long albumId ,  int? groupId = null
             ) {
@@ -3384,6 +3402,23 @@ namespace VKSharp {
 
                     }
                 };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<Tag[]> GetTags(
+                long videoId ,  int? ownerId = null
+            ) {
+                var req = new VKRequest<Tag[]>{
+                    MethodName = "video.getTags",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "video_id", videoId.ToNCString()},
+                        { "owner_id", MiscTools.NullableString(ownerId)},
+
+                    }
+                };
+                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }

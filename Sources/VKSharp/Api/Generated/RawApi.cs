@@ -1661,6 +1661,16 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetTags(
+                long photoId , int? ownerId = null,  string accessKey = ""
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Photos.GetTags(
+                           photoId,ownerId,accessKey
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetUploadServer(
                 long albumId ,  int? groupId = null
             ){
@@ -2049,6 +2059,16 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.EditComment(
                            message,commentId,ownerId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetTags(
+                long videoId ,  int? ownerId = null
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Video.GetTags(
+                           videoId,ownerId
                     )
                 ).ConfigureAwait(false);
             }

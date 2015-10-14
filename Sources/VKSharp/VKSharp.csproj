@@ -101,6 +101,7 @@
     <Compile Include="ReturnTypes\Entities\Onlines.cs" />
     <Compile Include="ReturnTypes\Entities\ResolveResult.cs" />
     <Compile Include="ReturnTypes\Entities\Status.cs" />
+    <Compile Include="ReturnTypes\Entities\Tag.cs" />
     <Compile Include="ReturnTypes\Entities\VideoAlbum.cs" />
     <Compile Include="ReturnTypes\EntityFragments\Career.cs" />
     <Compile Include="ReturnTypes\EntityFragments\CropPhoto.cs" />
