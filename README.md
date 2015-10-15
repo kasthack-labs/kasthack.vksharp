@@ -1,4 +1,4 @@
-# VKSharp
+# kasthack.vksharp
 
 
 [![Build status](https://ci.appveyor.com/api/projects/status/ufrmo018fhqr7s8r?svg=true&passingText=I%20have%20time%20to%20do%20ya%20mom%20instead%20of%20fixing%20code)](https://ci.appveyor.com/project/kasthack/vksharp)
@@ -21,7 +21,7 @@ Install-Package kasthack.vksharp
 2. Get OAuth authorize uri
 
     ```C#
-    var redirect_uri = VKToken.GetOAuthURL(
+    var redirect_uri = Token.GetOAuthURL(
         APP_ID,     // APP ID: shown on app's properties page
         PERMISSIONS // Permissions: VKPermission.*, something like VKPermission.Offline | VKPermission.Photos
     );
@@ -29,16 +29,16 @@ Install-Package kasthack.vksharp
 
 3. Show authorization page to user.
 
-4. Build VKToken from redirect uri.
+4. Build token from redirect uri.
 
     ```C#
-    var token = VKToken.FromRedirectUrl( REDIRECT_URL );
+    var token = Token.FromRedirectUrl( REDIRECT_URL );
     ```
 
 5. Use token 
 
     ```C#
-    var api = new VKApi();
+    var api = new Api();
     api.AddToken(token);
     ```
 
@@ -50,6 +50,6 @@ Install-Package kasthack.vksharp
 8. Profit
 
 ### Implemented methods
-Lurk [here](Sources/kastjack.vksharp/Generated/ImplementedMethods.md)
+Lurk [here](Sources/kasthack.vksharp/Generated/ImplementedMethods.md)
 ### Contributing
 [Contributing guide(in Russian)](Contributing.ru.md)
