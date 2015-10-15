@@ -9,19 +9,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Old", "Old", "{87E352ED-238
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "New", "New", "{5C95B5AE-256F-4632-9F3A-F35C042BDEEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vk.auth.sample", "..\Samples\New\vk.auth.sample\vk.auth.sample.csproj", "{F3E5E7F5-75F0-4354-BC55-1D7BC18C72B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vk.auth.sample", "Samples\New\vk.auth.sample\vk.auth.sample.csproj", "{F3E5E7F5-75F0-4354-BC55-1D7BC18C72B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vk.groups.sample", "..\Samples\New\vk.groups.sample\vk.groups.sample.csproj", "{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vk.groups.sample", "Samples\New\vk.groups.sample\vk.groups.sample.csproj", "{A7BEA1EE-0CB5-4291-A15D-644BC5F8E9DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "..\Samples\Old\TestApp\TestApp.csproj", "{D70BC0FC-BFEC-4942-95A1-889D60F1536F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "Samples\Old\TestApp\TestApp.csproj", "{D70BC0FC-BFEC-4942-95A1-889D60F1536F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FB849638-90F6-4234-B9CB-0FEED6AB6785}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\Contributing.ru.md = ..\..\Contributing.ru.md
-		..\..\README.md = ..\..\README.md
+		..\Contributing.ru.md = ..\Contributing.ru.md
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kasthack.vksharp", "..\kasthack.vksharp\kasthack.vksharp.csproj", "{068610CF-40E5-4F50-820C-AFF9C8C51F49}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kasthack.vksharp", "kasthack.vksharp\kasthack.vksharp.csproj", "{068610CF-40E5-4F50-820C-AFF9C8C51F49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -29,10 +29,10 @@ namespace TestApp
         private static async Task Main2() {
             var vk = new Api();
 #if DEBUG
-            var str = VKToken.GetOAuthURL( 3174839, VKPermission.Everything );
+            var str = Token.GetOAuthURL( 3174839, Permission.Everything );
             str.Dump();
             var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
-            vk.AddToken( VKToken.FromRedirectUrl( redirecturl ) );
+            vk.AddToken( Token.FromRedirectUrl( redirecturl ) );
 #else
             try{
                 

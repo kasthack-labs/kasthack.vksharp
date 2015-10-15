@@ -7,7 +7,7 @@
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://www.gnu.org/copyleft/lesser.html</licenseUrl>
-    <projectUrl>http://github.com/kasthack/VKSharp</projectUrl>
+    <projectUrl>http://github.com/kasthack/kasthack.vksharp</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes></releaseNotes>
