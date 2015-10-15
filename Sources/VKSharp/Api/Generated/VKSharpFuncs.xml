@@ -98,12 +98,6 @@
       <Param Name="device_id" Type="string" />
     </Params>
   </Method>
-  <Method Name="ads.deleteClients" Type="int[]" NeedToken="false" >
-    <Params>
-      <Param Name="account_id" Type="ulong" />
-      <Param Name="ids" Type="ulong[]" />
-    </Params>
-  </Method>
   <Method Name="apps.deleteAppRequests" Type="void" NeedToken="true" >
     <Params />
   </Method>

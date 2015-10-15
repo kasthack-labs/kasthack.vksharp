@@ -13,7 +13,6 @@ namespace VKSharp {
     public partial class RawApi {
         private void InitializeMethodGroups(){
             Account = new MethodGroup_Account(this);
-            Ads = new MethodGroup_Ads(this);
             Apps = new MethodGroup_Apps(this);
             Audio = new MethodGroup_Audio(this);
             Auth = new MethodGroup_Auth(this);
@@ -201,22 +200,6 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Account.UnregisterDevice(
                            deviceId
-                    )
-                ).ConfigureAwait(false);
-            }
-                                }
-        
-        public MethodGroup_Ads Ads {get; private set;}
-        public partial class MethodGroup_Ads {
-            private readonly RawApi _parent;
-            internal MethodGroup_Ads(RawApi parent){_parent=parent;}
-
-            public async Task<string> DeleteClients(
-                ulong accountId , params ulong[] ids 
-            ){
-                return await _parent.Executor.ExecRawAsync(
-                    _parent._reqapi.Ads.DeleteClients(
-                           accountId,ids
                     )
                 ).ConfigureAwait(false);
             }

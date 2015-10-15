@@ -14,7 +14,6 @@ namespace VKSharp {
     public partial class VKApi {
             private void InitializeMethodGroups(){
                 this.Account = new MethodGroup_Account(this);
-                this.Ads = new MethodGroup_Ads(this);
                 this.Apps = new MethodGroup_Apps(this);
                 this.Audio = new MethodGroup_Audio(this);
                 this.Auth = new MethodGroup_Auth(this);
@@ -229,25 +228,6 @@ namespace VKSharp {
                             )
                         ).ConfigureAwait(false)
                     ;
-                }
-            }
-
-            public MethodGroup_Ads Ads {get; private set;}
-
-            public partial class MethodGroup_Ads {
-                private readonly VKApi _parent;
-                internal MethodGroup_Ads(VKApi parent){_parent=parent;}
-
-                public async Task <int[]> DeleteClients(
-                    ulong accountId , params ulong[] ids 
-                ) {
-                    return (
-                        await _parent.Executor.ExecAsync(
-                            _parent._reqapi.Ads.DeleteClients(
-                                accountId,ids
-                            )
-                        ).ConfigureAwait(false)
-                    ).Response;
                 }
             }
 

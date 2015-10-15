@@ -1,5 +1,5 @@
 ﻿
-Implemented 201 methods of 367, 54%:
+Implemented 200 methods of 339, 58%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -41,63 +41,6 @@ Implemented 201 methods of 367, 54%:
     - [x] [account.unbanUser](https://vk.com/dev/account.unbanUser)
 
     - [x] [account.unregisterDevice](https://vk.com/dev/account.unregisterDevice)
-
-* [Ads](https://vk.com/dev/ads). Implemented 1 of 28, 3%:
-    - [ ] [ads.addOfficeUsers](https://vk.com/dev/ads.addOfficeUsers)
-
-    - [ ] [ads.createAds](https://vk.com/dev/ads.createAds)
-
-    - [ ] [ads.createCampaigns](https://vk.com/dev/ads.createCampaigns)
-
-    - [ ] [ads.createClients](https://vk.com/dev/ads.createClients)
-
-    - [ ] [ads.deleteAds](https://vk.com/dev/ads.deleteAds)
-
-    - [ ] [ads.deleteCampaigns](https://vk.com/dev/ads.deleteCampaigns)
-
-    - [x] [ads.deleteClients](https://vk.com/dev/ads.deleteClients)
-
-    - [ ] [ads.getAccounts](https://vk.com/dev/ads.getAccounts)
-
-    - [ ] [ads.getAds](https://vk.com/dev/ads.getAds)
-
-    - [ ] [ads.getAdsLayout](https://vk.com/dev/ads.getAdsLayout)
-
-    - [ ] [ads.getAdsTargeting](https://vk.com/dev/ads.getAdsTargeting)
-
-    - [ ] [ads.getBudget](https://vk.com/dev/ads.getBudget)
-
-    - [ ] [ads.getCampaigns](https://vk.com/dev/ads.getCampaigns)
-
-    - [ ] [ads.getCategories](https://vk.com/dev/ads.getCategories)
-
-    - [ ] [ads.getClients](https://vk.com/dev/ads.getClients)
-
-    - [ ] [ads.getDemographics](https://vk.com/dev/ads.getDemographics)
-
-    - [ ] [ads.getFloodStats](https://vk.com/dev/ads.getFloodStats)
-
-    - [ ] [ads.getOfficeUsers](https://vk.com/dev/ads.getOfficeUsers)
-
-    - [ ] [ads.getRejectionReason](https://vk.com/dev/ads.getRejectionReason)
-
-    - [ ] [ads.getStatistics](https://vk.com/dev/ads.getStatistics)
-
-    - [ ] [ads.getSuggestions](https://vk.com/dev/ads.getSuggestions)
-
-    - [ ] [ads.getTargetingStats](https://vk.com/dev/ads.getTargetingStats)
-
-    - [ ] [ads.getUploadURL](https://vk.com/dev/ads.getUploadURL)
-
-    - [ ] [ads.getVideoUploadURL](https://vk.com/dev/ads.getVideoUploadURL)
-
-    - [ ] [ads.removeOfficeUsers](https://vk.com/dev/ads.removeOfficeUsers)
-
-    - [ ] [ads.updateAds](https://vk.com/dev/ads.updateAds)
-
-    - [ ] [ads.updateCampaigns](https://vk.com/dev/ads.updateCampaigns)
-
-    - [ ] [ads.updateClients](https://vk.com/dev/ads.updateClients)
 
 * [Apps](https://vk.com/dev/apps). Implemented 3 of 7, 42%:
     - [x] [apps.deleteAppRequests](https://vk.com/dev/apps.deleteAppRequests)

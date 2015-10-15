@@ -17,7 +17,6 @@ namespace VKSharp {
     public partial class RequestApi {
         private void InitializeMethodGroups(){
             this.Account = new MethodGroup_account(this);
-            this.Ads = new MethodGroup_ads(this);
             this.Apps = new MethodGroup_apps(this);
             this.Audio = new MethodGroup_audio(this);
             this.Auth = new MethodGroup_auth(this);
@@ -307,28 +306,6 @@ namespace VKSharp {
 
                     }
                 };
-                    req.Token = _parent.CurrentToken;
-                return req;
-            }
-        }
-        public MethodGroup_ads Ads {get; private set;}
-        public partial class MethodGroup_ads {
-            private readonly RequestApi _parent;
-            internal MethodGroup_ads(RequestApi parent){_parent=parent;}
-
-            public VKRequest<int[]> DeleteClients(
-                ulong accountId , params ulong[] ids 
-            ) {
-                var req = new VKRequest<int[]>{
-                    MethodName = "ads.deleteClients",
-                    Parameters = new Dictionary<string, string> {
-
-                        { "account_id", accountId.ToNCString()},
-                        { "ids", (ids??new ulong[]{}).ToNCStringA()},
-
-                    }
-                };
-                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }
