@@ -1,0 +1,70 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly Name="System.Configuration" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System" #>
+<#@ output extension=".cs" #>
+<#@ include file="SharedFuncs.tt"#>
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using kasthack.vksharp.DataTypes;
+using kasthack.vksharp.DataTypes.ResponseEntities;
+using kasthack.vksharp.DataTypes.Entities;
+using kasthack.vksharp.DataTypes.Enums;
+using kasthack.vksharp.DataTypes.EntityFragments;
+using kasthack.vksharp.DataTypes.Interfaces;
+
+// ReSharper disable UnusedMember.Global
+namespace kasthack.vksharp {
+    public partial class Api {
+<#
+            var ms = GetMethods(Host.ResolvePath("Methods.xml"));
+            var gs = ms.GroupBy(a=>a.Name.Split('.').FirstOrDefault()).ToArray();
+#>
+            private void InitializeMethodGroups(){
+        <#foreach (var methodGroup in gs){#>
+        this.<#=ToMeth(methodGroup.Key)#> = new <#="MethodGroup_"+ToMeth(methodGroup.Key)#>(this);
+        <#}#>
+    }
+
+<#foreach (var methodGroup in gs){
+    var group = ToMeth(methodGroup.Key);
+    var cln = "MethodGroup_"+group;
+#>
+
+            public <#=cln#> <#=group#> {get; private set;}
+
+            public partial class <#=cln#> {
+                private readonly Api _parent;
+                internal <#=cln#>(Api parent){_parent=parent;}
+<#
+foreach ( var method in methodGroup ) {
+var parse = method.Type != "void";
+var returnType =parse?String.Format("<{0}>",method.Type):"";
+var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
+#>
+
+                public async Task <#=returnType#> <#=methodName#>(
+                    <#=GetParamsString(method)#>
+                ) {
+<#if(parse){#>
+                    return (
+<#}#>
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.<#=group#>.<#=methodName#>(
+                                <#=GetCallParamsString( method )#>
+                            )
+                        ).ConfigureAwait(false)
+                    <#if(parse){#>).Response<#}#>;
+                }
+<#
+                }
+#>
+            }
+<#
+}
+#>
+    }
+}

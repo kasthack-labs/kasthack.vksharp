@@ -1,0 +1,36 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ include file="SharedFuncs.tt"#>
+<#@ output extension=".md" #>
+<#
+    var nms = new HashSet<string>(GetMethods(Host.ResolvePath("Methods.xml")).Select(a=>a.Name).Distinct());
+    var real = File.ReadLines( Host.ResolvePath( "AllMethods.txt" ) ).Distinct().OrderBy( a=>a ).ToArray();
+    var ti = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo;
+    var grps = real
+        .Select( a=>new{value=a, implemented = nms.Contains( a )} )
+        .GroupBy( a => a.value.Split( '.' ).FirstOrDefault() )
+        .Select( a => new { Key = a.Key, value = a.ToArray() } )
+        .Select( a=>new {Key=a.Key, value=a.value, impl = a.value.Count(b => b.implemented)} )
+        .ToArray();
+#>Implemented <#=nms.Count#> methods of <#=real.Length#>, <#=100*nms.Count/real.Length#>%:
+
+<#
+    foreach ( var group in grps ) {
+#>
+* [<#=ToMeth(group.Key)#>](https://vk.com/dev/<#=group.Key#>). Implemented <#=group.impl#> of <#=group.value.Length#>, <#=100*group.impl/group.value.Length#>%:
+<#
+        foreach ( var method in group.value ) {
+#>
+    - [<#=nms.Contains( method.value )?'x':' '#>] [<#=method.value#>](https://vk.com/dev/<#=method.value#>)
+
+<#
+        }
+#>
+<#
+    }
+#>
