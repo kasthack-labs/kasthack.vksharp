@@ -2093,6 +2093,16 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetNewTags(
+                int offset = 0, int count = 20
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Video.GetNewTags(
+                           offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetTags(
                 long videoId ,  int? ownerId = null
             ){

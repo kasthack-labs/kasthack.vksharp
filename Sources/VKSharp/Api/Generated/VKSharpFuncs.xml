@@ -1241,6 +1241,9 @@
       <Param Name="owner_id" Type="int?"/>
     </Params>
   </Method>
+  <Method Name="video.getNewTags" Type="EntityList&lt;TaggedVideo&gt;" NeedToken="true" Pageable="20">
+    <Params/>
+  </Method>
   <Method Name="video.getTags" Type="Tag[]" NeedToken="false">
     <Params>
       <Param Name="video_id" Type="long" />

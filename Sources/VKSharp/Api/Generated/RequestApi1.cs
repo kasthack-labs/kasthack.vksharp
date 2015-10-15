@@ -3459,6 +3459,22 @@ namespace VKSharp {
                 return req;
             }
 
+            public VKRequest<EntityList<TaggedVideo>> GetNewTags(
+                int offset = 0, int count = 20
+            ) {
+                var req = new VKRequest<EntityList<TaggedVideo>>{
+                    MethodName = "video.getNewTags",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public VKRequest<Tag[]> GetTags(
                 long videoId ,  int? ownerId = null
             ) {

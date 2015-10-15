@@ -2420,6 +2420,18 @@ namespace VKSharp {
                     ;
                 }
 
+                public async Task <EntityList<TaggedVideo>> GetNewTags(
+                    int offset = 0, int count = 20
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Video.GetNewTags(
+                                offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task <Tag[]> GetTags(
                     long videoId ,  int? ownerId = null
                 ) {

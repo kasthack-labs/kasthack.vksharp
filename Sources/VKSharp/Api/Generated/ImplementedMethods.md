@@ -1,5 +1,5 @@
 ﻿
-Implemented 200 methods of 367, 54%:
+Implemented 201 methods of 367, 54%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -669,7 +669,7 @@ Implemented 200 methods of 367, 54%:
 
     - [x] [utils.resolveScreenName](https://vk.com/dev/utils.resolveScreenName)
 
-* [Video](https://vk.com/dev/video). Implemented 12 of 28, 42%:
+* [Video](https://vk.com/dev/video). Implemented 13 of 28, 46%:
     - [x] [video.add](https://vk.com/dev/video.add)
 
     - [ ] [video.addAlbum](https://vk.com/dev/video.addAlbum)
@@ -700,7 +700,7 @@ Implemented 200 methods of 367, 54%:
 
     - [ ] [video.getComments](https://vk.com/dev/video.getComments)
 
-    - [ ] [video.getNewTags](https://vk.com/dev/video.getNewTags)
+    - [x] [video.getNewTags](https://vk.com/dev/video.getNewTags)
 
     - [x] [video.getTags](https://vk.com/dev/video.getTags)
 

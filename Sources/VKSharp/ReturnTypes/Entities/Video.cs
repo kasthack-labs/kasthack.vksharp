@@ -23,4 +23,11 @@ namespace VKSharp.Core.Entities {
         public int? LikesCount { get; set; }
         public bool? PlaybackLooped { get; set; }
     }
+
+    public class TaggedVideo : Video{
+        public int TagId { get; set; }
+        public int PlacerId { get; set; }
+        public DateTimeOffset TagCreated { get; set; }
+    }
+
 }
