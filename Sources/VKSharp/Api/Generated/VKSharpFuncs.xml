@@ -623,6 +623,13 @@
       <Param Name="link_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="groups.editLink" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="link_id" Type="int" />
+      <Param Name="text" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
   <Method Name="groups.getBanned" Type="User[]" NeedToken="true" Pageable="100">
     <Params>
       <Param Name="group_id" Type="int" />

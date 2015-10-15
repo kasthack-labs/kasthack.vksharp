@@ -1128,6 +1128,16 @@ namespace VKSharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> EditLink(
+                int groupId , int linkId ,  string text = ""
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.EditLink(
+                           groupId,linkId,text
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetBanned(
                  int groupId , int offset = 0, int count = 100
             ){

@@ -1840,6 +1840,23 @@ namespace VKSharp {
                 return req;
             }
 
+            public VKRequest<bool> EditLink(
+                int groupId , int linkId ,  string text = ""
+            ) {
+                var req = new VKRequest<bool>{
+                    MethodName = "groups.editLink",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId.ToNCString()},
+                        { "link_id", linkId.ToNCString()},
+                        { "text", text},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public VKRequest<User[]> GetBanned(
                  int groupId , int offset = 0, int count = 100
             ) {
