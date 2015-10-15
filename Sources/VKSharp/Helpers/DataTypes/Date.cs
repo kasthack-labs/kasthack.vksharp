@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace VKSharp.Helpers.DataTypes {
     [JsonConverter(typeof(DateConverter))]
-    public struct Date {
+    public struct Date : IFormattable{
         public int? Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
@@ -35,5 +35,16 @@ namespace VKSharp.Helpers.DataTypes {
                 Year
             );
         }
+
+        public string ToString( string format, IFormatProvider formatProvider ) {
+            return String.Format(
+                formatProvider,
+                Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}",
+                Day,
+                Month,
+                Year
+            );
+        }
+
     }
 }

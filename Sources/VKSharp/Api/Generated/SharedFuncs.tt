@@ -166,12 +166,17 @@ public static string Stringify(string name, string type){
         case "SpecialAlbum":
         case "UserSortOrder":
         case "WallPostFilter":
+        case "LeaderBoardType":
+        case "GroupMembersFilter":
+        case "MembersSortOrder":
             return name+".ToNCString().ToSnake()";
         case "AudioGenre?":
         case "PrivacyType?":
         case "Relation?":
         case "ReportReason?":
         case "Sex?":
+        case "GroupMembersFilter?":
+        case "MembersSortOrder?":
             return String.Format("MiscTools.NullableString( (int?){0} )", name);
         case "FeedType?":
         case "FriendshipType?":
@@ -180,15 +185,17 @@ public static string Stringify(string name, string type){
     }
 
     //numbers, numbers?, numbers[]
-    var nums = "int,uint,byte,sbyte,short,ushort,long,ulong,double".Split(',');
+    var nums = "int,uint,byte,sbyte,short,ushort,long,ulong,double,ContentId,Date".Split(',');
     if (nums.Any(a=>a==type)) return name+".ToNCString()";    
     if (nums.Any(a=>type==a+"?")) return "MiscTools.NullableString("+name+")";
     if (nums.Any(a=>type==a+"[]")) return string.Format( "({0}??new {1}{{}}).ToNCStringA()", name, type );
 
-    if (Regex.IsMatch(type, @"Tuple<\w+\,[ ]*\w+>\[\]"))
+    if ( Regex.IsMatch( type, @"^Tuple<\w+\,[ ]*\w+>$" ) )
+        return String.Format("{0}.Item1.ToNCString() +\"_\" + {0}.Item2.ToNCString()",name);
+    if (Regex.IsMatch(type, @"^Tuple<\w+\,[ ]*\w+>\[\]$"))
         return "String.Join(\",\","+ name+".Select(a=>a.Item1 +\"_\" +a.Item2))";
-
     //default
+    throw new NotSupportedException("Unknown type:"+type);
     return name+".ToString()";
 }
 #>

@@ -157,7 +157,7 @@ namespace VKSharp.Core.Entities {
         [JsonConverter(typeof(OneTwoFUConverter))]
         public bool? IsFriend { get; set; }//todo:converter
         public FriendshipStatusEnum FriendStatus { get; set; }
-
+        public GroupRole? Role { get; set; }
         private void CreateUniversityIfNotExists() {
             if (MainUniversity == null)
                 MainUniversity = new University();

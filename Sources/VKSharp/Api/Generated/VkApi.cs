@@ -279,6 +279,30 @@ namespace VKSharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+
+                public async Task <EntityList<User>> GetLeaderboardExtended(
+                    LeaderBoardType type ,  bool global = true
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Apps.GetLeaderboardExtended(
+                                type,global
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public async Task <EntityList<int>> GetLeaderboard(
+                    LeaderBoardType type ,  bool global = true
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Apps.GetLeaderboard(
+                                type,global
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
             }
 
             public MethodGroup_Audio Audio {get; private set;}
@@ -1350,6 +1374,18 @@ namespace VKSharp {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Groups.GetMembers(
                                 groupId,filter,sort,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public async Task <EntityList<GroupManager>> GetMembersManagers(
+                    string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.GetMembersManagers(
+                                groupId,sort,offset, count
                             )
                         ).ConfigureAwait(false)
                     ).Response;

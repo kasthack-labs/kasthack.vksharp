@@ -1,5 +1,5 @@
 ﻿
-Implemented 199 methods of 367, 54%:
+Implemented 200 methods of 367, 54%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -99,7 +99,7 @@ Implemented 199 methods of 367, 54%:
 
     - [ ] [ads.updateClients](https://vk.com/dev/ads.updateClients)
 
-* [Apps](https://vk.com/dev/apps). Implemented 2 of 7, 28%:
+* [Apps](https://vk.com/dev/apps). Implemented 3 of 7, 42%:
     - [x] [apps.deleteAppRequests](https://vk.com/dev/apps.deleteAppRequests)
 
     - [ ] [apps.get](https://vk.com/dev/apps.get)
@@ -108,7 +108,7 @@ Implemented 199 methods of 367, 54%:
 
     - [ ] [apps.getFriendsList](https://vk.com/dev/apps.getFriendsList)
 
-    - [ ] [apps.getLeaderboard](https://vk.com/dev/apps.getLeaderboard)
+    - [x] [apps.getLeaderboard](https://vk.com/dev/apps.getLeaderboard)
 
     - [x] [apps.getScore](https://vk.com/dev/apps.getScore)
 

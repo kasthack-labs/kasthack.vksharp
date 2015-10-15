@@ -110,6 +110,24 @@
   <Method Name="apps.getScore" Type="long" NeedToken="true" >
     <Params />
   </Method>
+  <Method Name="apps.getLeaderboard" NameSuffix="Extended" Type="EntityList&lt;User&gt;" NeedToken="true" >
+    <Params>
+      <Param Name="type" Type="LeaderBoardType"/>
+      <Param Name="global" Type="bool" Default="true"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="1"/>
+    </Hardcoded>
+  </Method>
+  <Method Name="apps.getLeaderboard" Type="EntityList&lt;int&gt;" NeedToken="true" >
+    <Params>
+      <Param Name="type" Type="LeaderBoardType"/>
+      <Param Name="global" Type="bool" Default="true"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="0"/>
+    </Hardcoded>
+  </Method>
   <Method Name="audio.add" Type="int" NeedToken="true" >
     <Params>
       <Param Name="owner_id" Type="int" />
@@ -634,6 +652,15 @@
       <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
       <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
     </Params>
+  </Method>
+  <Method Name="groups.getMembers" NameSuffix="Managers" Type="EntityList&lt;GroupManager&gt;" NeedToken="true" Pageable="100">
+    <Params>
+      <Param Name="group_id" Type="string" />
+      <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="filter" Value="managers"/>
+    </Hardcoded>
   </Method>
   <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
     <Params>

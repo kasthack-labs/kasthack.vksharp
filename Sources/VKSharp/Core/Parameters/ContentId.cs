@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace VKSharp.Data.Parameters {
-    public class ContentId {
+    public class ContentId : IFormattable{
         public ContentId( long id, int ownerId, string accessKey = "" ) {
             Id = id;
             OwnerId = ownerId;
@@ -15,5 +15,8 @@ namespace VKSharp.Data.Parameters {
         public string AccessKey { get; }
 
         public override string ToString() { return String.Format( AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey ); }
+
+        public string ToString( string format, IFormatProvider formatProvider ) { return String.Format(format, AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey); }
+
     }
 }

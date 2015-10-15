@@ -158,7 +158,7 @@ namespace VKSharp {
                         { "sex", MiscTools.NullableString( (int?)sex )},
                         { "relation", MiscTools.NullableString( (int?)relation )},
                         { "relation_partner_id", MiscTools.NullableString(relationPartnerId)},
-                        { "bdate", bdate.ToString()},
+                        { "bdate", MiscTools.NullableString(bdate)},
                         { "country_id", MiscTools.NullableString(countryId)},
                         { "city_id", MiscTools.NullableString(cityId)},
                         { "status", status},
@@ -359,6 +359,40 @@ namespace VKSharp {
                     MethodName = "apps.getScore",
                     Parameters = new Dictionary<string, string> {
 
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<EntityList<User>> GetLeaderboardExtended(
+                LeaderBoardType type ,  bool global = true
+            ) {
+                var req = new VKRequest<EntityList<User>>{
+                    MethodName = "apps.getLeaderboard",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "type", type.ToNCString().ToSnake()},
+                        { "global", (global?1:0).ToNCString()},
+                        {"extended","1"},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<EntityList<int>> GetLeaderboard(
+                LeaderBoardType type ,  bool global = true
+            ) {
+                var req = new VKRequest<EntityList<int>>{
+                    MethodName = "apps.getLeaderboard",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "type", type.ToNCString().ToSnake()},
+                        { "global", (global?1:0).ToNCString()},
+                        {"extended","0"},
 
                     }
                 };
@@ -772,7 +806,7 @@ namespace VKSharp {
                     MethodName = "audio.setBroadcast",
                     Parameters = new Dictionary<string, string> {
 
-                        { "audio", audio.ToString()},
+                        { "audio", audio.Item1.ToNCString() +"_" + audio.Item2.ToNCString()},
                         { "target_ids", (targetIds??new int[]{}).ToNCStringA()},
 
                     }
@@ -1888,8 +1922,27 @@ namespace VKSharp {
                     Parameters = new Dictionary<string, string> {
 
                         { "group_id", groupId},
-                        { "filter", filter.ToString()},
-                        { "sort", sort.ToString()},
+                        { "filter", MiscTools.NullableString( (int?)filter )},
+                        { "sort", MiscTools.NullableString( (int?)sort )},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public VKRequest<EntityList<GroupManager>> GetMembersManagers(
+                string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ) {
+                var req = new VKRequest<EntityList<GroupManager>>{
+                    MethodName = "groups.getMembers",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId},
+                        { "sort", MiscTools.NullableString( (int?)sort )},
+                        {"filter","managers"},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -1908,8 +1961,8 @@ namespace VKSharp {
 
                         { "group_id", groupId},
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
-                        { "filter", filter.ToString()},
-                        { "sort", sort.ToString()},
+                        { "filter", MiscTools.NullableString( (int?)filter )},
+                        { "sort", MiscTools.NullableString( (int?)sort )},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -2677,7 +2730,7 @@ namespace VKSharp {
                     MethodName = "photos.getById",
                     Parameters = new Dictionary<string, string> {
 
-                        { "photos", photos.ToString()},
+                        { "photos", (photos??new ContentId[]{}).ToNCStringA()},
 
                     }
                 };

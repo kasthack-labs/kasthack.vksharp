@@ -246,6 +246,26 @@ namespace VKSharp {
                     )
                 ).ConfigureAwait(false);
             }
+                    
+            public async Task<string> GetLeaderboardExtended(
+                LeaderBoardType type ,  bool global = true
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Apps.GetLeaderboardExtended(
+                           type,global
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetLeaderboard(
+                LeaderBoardType type ,  bool global = true
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Apps.GetLeaderboard(
+                           type,global
+                    )
+                ).ConfigureAwait(false);
+            }
                                 }
         
         public MethodGroup_Audio Audio {get; private set;}
@@ -1161,6 +1181,16 @@ namespace VKSharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembers(
                            groupId,filter,sort,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetMembersManagers(
+                string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.GetMembersManagers(
+                           groupId,sort,offset, count
                     )
                 ).ConfigureAwait(false);
             }

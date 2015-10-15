@@ -111,10 +111,13 @@
     <Compile Include="ReturnTypes\Enums\AddFriendResult.cs" />
     <Compile Include="ReturnTypes\Enums\FriendshipType.cs" />
     <Compile Include="ReturnTypes\Enums\FriendshipStatusEnum.cs" />
+    <Compile Include="ReturnTypes\Enums\GroupRole.cs" />
+    <Compile Include="ReturnTypes\Enums\LeaderBoardType.cs" />
     <Compile Include="ReturnTypes\Enums\PhotoSizeType.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AddAlbum.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\AddFriendsList.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\ChangePassword.cs" />
+    <Compile Include="ReturnTypes\ResponseEntities\GroupManager.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\NameRequest.cs" />
     <Compile Include="ReturnTypes\ResponseEntities\SaveProfileInfo.cs" />
     <Compile Include="ReturnTypes\Enums\CounterFields.cs" />
