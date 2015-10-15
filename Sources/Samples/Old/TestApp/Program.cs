@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using kasthack.Tools;
-using VKSharp;
-using VKSharp.Core.Entities;
-using VKSharp.Data.Api;
-using VKSharp.Data.Parameters;
-using VKSharp.Data.Request;
-using VKSharp.Helpers;
+using kasthack.vksharp;
+using kasthack.vksharp.DataTypes.Entities;
+using kasthack.vksharp.DataTypes.Enums;
+using kasthack.vksharp.Implementation;
+using kasthack.vksharp.Internal;
 
 namespace TestApp
 {
@@ -28,7 +27,7 @@ namespace TestApp
         }
 
         private static async Task Main2() {
-            var vk = new VKApi();
+            var vk = new Api();
 #if DEBUG
             var str = VKToken.GetOAuthURL( 3174839, VKPermission.Everything );
             str.Dump();
@@ -38,7 +37,7 @@ namespace TestApp
             try{
                 
                 foreach (var v in File.ReadAllLines("debug.token"))
-                    vk.AddToken(VKToken.FromRedirectUrl(v));
+                    vk.AddToken(Token.FromRedirectUrl(v));
             }
             catch(Exception ex){
                 ex.Message.Dump();
@@ -47,13 +46,13 @@ namespace TestApp
             await Impl( vk ).ConfigureAwait(false);
         }
 
-        private async static Task Impl(VKApi vk)
+        private async static Task Impl(Api vk)
         {
             //await DeleteLikes(vk).ConfigureAwait(false);
             await CheckWall( vk ).ConfigureAwait( false );
         }
 
-        private static async Task CheckWall( VKApi vk )
+        private static async Task CheckWall( Api vk )
         {
             var mox = 8895502;
             var count = (await vk.Wall.Get( mox, count: 0 ).ConfigureAwait( false )).Count;
@@ -81,7 +80,7 @@ namespace TestApp
             //}
         }
 
-        private static async Task DeleteLikes( VKApi vk ) {
+        private static async Task DeleteLikes( Api vk ) {
             EntityList<Post> posts = await vk.Fave.GetPosts().ConfigureAwait(false);
             foreach (var post in posts)
             {
@@ -89,7 +88,7 @@ namespace TestApp
                 {
                     var t = Task.Delay(350);
                     var ret = await vk.Executor.ExecRawAsync(
-                        new VKRequest<int>()
+                        new Request<int>()
                         {
                             MethodName = "likes.delete",
                             Parameters = new Dictionary<string, string>() { { "type", "post" }, { "owner_id", post.OwnerId.ToNCString() }, { "item_id", post.Id.ToNCString() } },
@@ -105,7 +104,7 @@ namespace TestApp
             }
         }
 
-        private static async Task TestFriends(VKApi vk) {
+        private static async Task TestFriends(Api vk) {
             var entityList = await vk.Friends.Get( 8878040, null, UserSortOrder.ById, 0, 100 ).ConfigureAwait(false);
             Console.WriteLine(entityList);
         }

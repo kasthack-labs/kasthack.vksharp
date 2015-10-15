@@ -261,7 +261,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="VKSharp.nuspec">
+    <None Include="kasthack.vksharp.nuspec">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

@@ -22,12 +22,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>
+    </DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -212,10 +216,11 @@
     <Compile Include="RequestApi.cs" />
     <Compile Include="Api.cs" />
     <Compile Include="VkException.cs" />
-    <Compile Include="VKPermission.cs" />
+    <Compile Include="Permission.cs" />
     <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="Generated\AllMethods.txt" />
     <None Include="Generated\Methods.xml">
       <SubType>Designer</SubType>
@@ -246,6 +251,9 @@
       <LastGenOutput>ImplementedMethods.md</LastGenOutput>
     </None>
     <None Include="Generated\Methods.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="kasthack.vksharp.nuspec">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />

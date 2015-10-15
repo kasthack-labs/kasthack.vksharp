@@ -64,13 +64,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\VKSharp\VKSharp.csproj">
-      <Project>{E30B8CEF-DC6F-4A66-B92E-CB608D5DADE8}</Project>
-      <Name>VKSharp</Name>
-    </ProjectReference>
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
+    <ProjectReference Include="..\..\..\kasthack.vksharp\kasthack.vksharp.csproj">
+      <Project>{068610CF-40E5-4F50-820C-AFF9C8C51F49}</Project>
+      <Name>kasthack.vksharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
