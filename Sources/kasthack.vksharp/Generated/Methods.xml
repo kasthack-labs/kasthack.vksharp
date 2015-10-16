@@ -387,6 +387,11 @@
       <Param Name="q" Type="string" Default="&quot;&quot;" />
     </Params>
   </Method>
+  <Method Name="database.getSchoolClasses" Type="DatabaseClass[]" NeedToken="false">
+    <Params>
+      <Param Name="country_id" Type="int" />
+    </Params>
+  </Method>
   <Method Name="database.getStreetsById" Type="DatabaseEntry[]" NeedToken="false" >
     <Params>
       <Param Name="street_ids" Type="int[]" />

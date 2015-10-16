@@ -97,6 +97,7 @@
     <Compile Include="DataTypes\EntityFragments\Career.cs" />
     <Compile Include="DataTypes\EntityFragments\CommentLikes.cs" />
     <Compile Include="DataTypes\EntityFragments\CropPhoto.cs" />
+    <Compile Include="DataTypes\EntityFragments\DatabaseClass.cs" />
     <Compile Include="DataTypes\EntityFragments\Exports.cs" />
     <Compile Include="DataTypes\EntityFragments\GeoEntry.cs" />
     <Compile Include="DataTypes\EntityFragments\GroupCounters.cs" />
@@ -200,6 +201,7 @@
     <Compile Include="Implementation\Request.cs" />
     <Compile Include="Implementation\VkResponse.cs" />
     <Compile Include="Internal\BuiltInData.cs" />
+    <Compile Include="Internal\Converters\ArrConverter.cs" />
     <Compile Include="Internal\Converters\ConverterHelpers.cs" />
     <Compile Include="Internal\Converters\DateConverter.cs" />
     <Compile Include="Internal\Converters\NumberConverter.cs" />

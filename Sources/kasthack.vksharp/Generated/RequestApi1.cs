@@ -1106,6 +1106,22 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<DatabaseClass[]> GetSchoolClasses(
+                 int countryId 
+            ) {
+                var req = new Request<DatabaseClass[]>{
+                    MethodName = "database.getSchoolClasses",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "country_id", countryId.ToNCString()},
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<DatabaseEntry[]> GetStreetsById(
                 params int[] streetIds 
             ) {

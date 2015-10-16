@@ -1,5 +1,5 @@
 ﻿
-Implemented 202 methods of 339, 59%:
+Implemented 203 methods of 339, 59%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -136,7 +136,7 @@ Implemented 202 methods of 339, 59%:
 
     - [x] [board.unfixTopic](https://vk.com/dev/board.unfixTopic)
 
-* [Database](https://vk.com/dev/database). Implemented 10 of 11, 90%:
+* [Database](https://vk.com/dev/database). Implemented 11 of 11, 100%:
     - [x] [database.getChairs](https://vk.com/dev/database.getChairs)
 
     - [x] [database.getCities](https://vk.com/dev/database.getCities)
@@ -151,7 +151,7 @@ Implemented 202 methods of 339, 59%:
 
     - [x] [database.getRegions](https://vk.com/dev/database.getRegions)
 
-    - [ ] [database.getSchoolClasses](https://vk.com/dev/database.getSchoolClasses)
+    - [x] [database.getSchoolClasses](https://vk.com/dev/database.getSchoolClasses)
 
     - [x] [database.getSchools](https://vk.com/dev/database.getSchools)
 

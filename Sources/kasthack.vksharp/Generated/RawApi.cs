@@ -674,6 +674,16 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetSchoolClasses(
+                 int countryId 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Database.GetSchoolClasses(
+                           countryId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetStreetsById(
                 params int[] streetIds 
             ){
