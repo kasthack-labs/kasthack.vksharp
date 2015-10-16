@@ -1300,6 +1300,18 @@ namespace kasthack.vksharp {
                     ;
                 }
 
+                public async Task <Group> Create(
+                    string title , PageType type = PageType.Group, PageSubtype? subtype = null,  string description = ""
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.Create(
+                                title,type,subtype,description
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task  DeleteLink(
                     int groupId ,  int linkId 
                 ) {

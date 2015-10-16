@@ -617,6 +617,14 @@
       <Param Name="user_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="groups.create" Type="Group" NeedToken="true">
+    <Params>
+      <Param Name="title" Type="string" />
+      <Param Name="type" Type="PageType" Default="PageType.Group"/>
+      <Param Name="subtype" Type="PageSubtype?" Default="null"/>
+      <Param Name="description" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
   <Method Name="groups.deleteLink" Type="void" NeedToken="true">
     <Params>
       <Param Name="group_id" Type="int" />

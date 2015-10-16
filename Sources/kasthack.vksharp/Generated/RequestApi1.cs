@@ -1824,6 +1824,24 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<Group> Create(
+                string title , PageType type = PageType.Group, PageSubtype? subtype = null,  string description = ""
+            ) {
+                var req = new Request<Group>{
+                    MethodName = "groups.create",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "title", title},
+                        { "type", type.ToNCString().ToSnake()},
+                        { "subtype", MiscTools.NullableString( (int?)subtype )},
+                        { "description", description},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<bool> DeleteLink(
                 int groupId ,  int linkId 
             ) {

@@ -138,6 +138,7 @@
     <Compile Include="DataTypes\Enums\NameCase.cs" />
     <Compile Include="DataTypes\Enums\NameRequestStatus.cs" />
     <Compile Include="DataTypes\Enums\OccupationType.cs" />
+    <Compile Include="DataTypes\Enums\PageSubtype.cs" />
     <Compile Include="DataTypes\Enums\PageType.cs" />
     <Compile Include="DataTypes\Enums\PeopleMain.cs" />
     <Compile Include="DataTypes\Enums\PhotoSizeType.cs" />
