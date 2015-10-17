@@ -2613,6 +2613,18 @@ namespace kasthack.vksharp {
                     ).Response;
                 }
 
+                public async Task <EntityListExtended<Post>> GetReposts(
+                    int postId ,  int? ownerId = null, int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Wall.GetReposts(
+                                postId,ownerId,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task  Pin(
                     int postId ,  int? ownerId = null
                 ) {

@@ -1,5 +1,5 @@
 ﻿
-Implemented 204 methods of 339, 60%:
+Implemented 205 methods of 339, 60%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -669,7 +669,7 @@ Implemented 204 methods of 339, 60%:
 
     - [ ] [video.search](https://vk.com/dev/video.search)
 
-* [Wall](https://vk.com/dev/wall). Implemented 13 of 18, 72%:
+* [Wall](https://vk.com/dev/wall). Implemented 14 of 18, 77%:
     - [ ] [wall.addComment](https://vk.com/dev/wall.addComment)
 
     - [x] [wall.delete](https://vk.com/dev/wall.delete)
@@ -686,7 +686,7 @@ Implemented 204 methods of 339, 60%:
 
     - [x] [wall.getComments](https://vk.com/dev/wall.getComments)
 
-    - [ ] [wall.getReposts](https://vk.com/dev/wall.getReposts)
+    - [x] [wall.getReposts](https://vk.com/dev/wall.getReposts)
 
     - [x] [wall.pin](https://vk.com/dev/wall.pin)
 

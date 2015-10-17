@@ -3774,6 +3774,25 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<EntityListExtended<Post>> GetReposts(
+                int postId ,  int? ownerId = null, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityListExtended<Post>>{
+                    MethodName = "wall.getReposts",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "post_id", postId.ToNCString()},
+                        { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<bool> Pin(
                 int postId ,  int? ownerId = null
             ) {

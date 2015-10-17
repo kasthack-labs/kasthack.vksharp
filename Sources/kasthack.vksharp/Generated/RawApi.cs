@@ -2262,6 +2262,16 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetReposts(
+                int postId ,  int? ownerId = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Wall.GetReposts(
+                           postId,ownerId,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> Pin(
                 int postId ,  int? ownerId = null
             ){

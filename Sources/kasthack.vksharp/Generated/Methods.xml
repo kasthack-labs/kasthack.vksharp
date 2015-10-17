@@ -1390,7 +1390,12 @@
       <Param Name="page_url" Type="string" Default="null"/>
     </Params>
   </Method>
-
+  <Method Name="wall.getReposts" Type="EntityListExtended&lt;Post&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="post_id" Type="int"/>
+      <Param Name="owner_id" Type="int?" Default="null" />
+    </Params>
+  </Method>
   <Method Name="wall.pin" Type="void" NeedToken="true">
     <Params>
       <Param Name="post_id" Type="int" />
