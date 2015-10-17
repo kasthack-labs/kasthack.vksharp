@@ -1335,6 +1335,17 @@ namespace kasthack.vksharp {
                     ;
                 }
 
+                public async Task  Edit(
+                    int groupId , string title = "", string description = "", string screenName = "", string website = "", string email = "", string phone = "", string rss = "", DateTimeOffset? eventStartDate = null, DateTimeOffset? eventFinishDate = null, DateTimeOffset? eventGroupId = null, int? subject = null, int? publicCategory = null, int? publicSubcategory = null, GroupAccess? access = null, AccessType? wall = null, AccessType? topics = null, AccessType? photos = null, AccessType? video = null, AccessType? audio = null, Date? publicDate = null, bool? links = null, bool? events = null, bool? places = null,  bool? contacts = null
+                ) {
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.Edit(
+                                groupId,title,description,screenName,website,email,phone,rss,eventStartDate,eventFinishDate,eventGroupId,subject,publicCategory,publicSubcategory,access,wall,topics,photos,video,audio,publicDate,links,events,places,contacts
+                            )
+                        ).ConfigureAwait(false)
+                    ;
+                }
+
                 public async Task  EditLink(
                     int groupId , int linkId ,  string text = ""
                 ) {

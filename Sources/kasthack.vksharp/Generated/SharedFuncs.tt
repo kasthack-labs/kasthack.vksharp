@@ -171,6 +171,8 @@ public static string Stringify(string name, string type){
         case "GroupMembersFilter":
         case "MembersSortOrder":
         case "PageType":
+        case "GroupAccess":
+        case "AccessType":
             return name+".ToNCString().ToSnake()";
         case "AudioGenre?":
         case "PrivacyType?":
@@ -180,12 +182,18 @@ public static string Stringify(string name, string type){
         case "GroupMembersFilter?":
         case "MembersSortOrder?":
         case "PageSubtype?":
+        case "GroupAccess?":
+        case "AccessType?":
             return String.Format("MiscTools.NullableString( (int?){0} )", name);
         case "FeedType?":
         case "FriendshipType?":
         case "UserSortOrder?":
         case "PageType?":
             return String.Format("MiscTools.NullableString( {0} )",name);
+        case "DateTimeOffset":
+            return String.Format( "{0}.ToUnixTimeSeconds().ToNCString()", name );
+        case "DateTimeOffset?":
+            return String.Format( "MiscTools.NullableString({0}?.ToUnixTimeSeconds())", name );
     }
 
     //numbers, numbers?, numbers[]

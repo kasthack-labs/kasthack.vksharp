@@ -1874,6 +1874,45 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<bool> Edit(
+                int groupId , string title = "", string description = "", string screenName = "", string website = "", string email = "", string phone = "", string rss = "", DateTimeOffset? eventStartDate = null, DateTimeOffset? eventFinishDate = null, DateTimeOffset? eventGroupId = null, int? subject = null, int? publicCategory = null, int? publicSubcategory = null, GroupAccess? access = null, AccessType? wall = null, AccessType? topics = null, AccessType? photos = null, AccessType? video = null, AccessType? audio = null, Date? publicDate = null, bool? links = null, bool? events = null, bool? places = null,  bool? contacts = null
+            ) {
+                var req = new Request<bool>{
+                    MethodName = "groups.edit",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId.ToNCString()},
+                        { "title", title},
+                        { "description", description},
+                        { "screen_name", screenName},
+                        { "website", website},
+                        { "email", email},
+                        { "phone", phone},
+                        { "rss", rss},
+                        { "event_start_date", MiscTools.NullableString(eventStartDate?.ToUnixTimeSeconds())},
+                        { "event_finish_date", MiscTools.NullableString(eventFinishDate?.ToUnixTimeSeconds())},
+                        { "event_group_id", MiscTools.NullableString(eventGroupId?.ToUnixTimeSeconds())},
+                        { "subject", MiscTools.NullableString(subject)},
+                        { "public_category", MiscTools.NullableString(publicCategory)},
+                        { "public_subcategory", MiscTools.NullableString(publicSubcategory)},
+                        { "access", MiscTools.NullableString( (int?)access )},
+                        { "wall", MiscTools.NullableString( (int?)wall )},
+                        { "topics", MiscTools.NullableString( (int?)topics )},
+                        { "photos", MiscTools.NullableString( (int?)photos )},
+                        { "video", MiscTools.NullableString( (int?)video )},
+                        { "audio", MiscTools.NullableString( (int?)audio )},
+                        { "public_date", MiscTools.NullableString(publicDate)},
+                        { "links", (links != null ? ( links.Value ? 1 : 0 ).ToNCString() : "")},
+                        { "events", (events != null ? ( events.Value ? 1 : 0 ).ToNCString() : "")},
+                        { "places", (places != null ? ( places.Value ? 1 : 0 ).ToNCString() : "")},
+                        { "contacts", (contacts != null ? ( contacts.Value ? 1 : 0 ).ToNCString() : "")},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<bool> EditLink(
                 int groupId , int linkId ,  string text = ""
             ) {

@@ -636,6 +636,36 @@
       <Param Name="link_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="groups.edit" Type="void" NeedToken="true">
+    <Params>
+      <Param Name="group_id" Type="int"/>
+      <Param Name="title" Type="string" Default="&quot;&quot;"/>
+      <Param Name="description" Type="string" Default="&quot;&quot;"/>
+      <Param Name="screen_name" Type="string" Default="&quot;&quot;"/>
+      <Param Name="website" Type="string" Default="&quot;&quot;"/>
+      <Param Name="email" Type="string" Default="&quot;&quot;"/>
+      <Param Name="phone" Type="string" Default="&quot;&quot;"/>
+      <Param Name="rss" Type="string" Default="&quot;&quot;"/>
+      <Param Name="event_start_date" Type="DateTimeOffset?" Default="null"/>
+      <Param Name="event_finish_date" Type="DateTimeOffset?" Default="null"/>
+      <Param Name="event_group_id" Type="DateTimeOffset?" Default="null"/>
+      <!--todo:enums-->
+      <Param Name="subject" Type="int?" Default="null"/>
+      <Param Name="public_category" Type="int?" Default="null"/>
+      <Param Name="public_subcategory" Type="int?" Default="null"/>
+      <Param Name="access" Type="GroupAccess?" Default="null"/>
+      <Param Name="wall" Type="AccessType?" Default="null"/>
+      <Param Name="topics" Type="AccessType?" Default="null"/>
+      <Param Name="photos" Type="AccessType?" Default="null"/>
+      <Param Name="video" Type="AccessType?" Default="null"/>
+      <Param Name="audio" Type="AccessType?" Default="null"/>
+      <Param Name="public_date" Type="Date?" Default="null"/>
+      <Param Name="links" Type="bool?" Default="null"/>
+      <Param Name="events" Type="bool?" Default="null"/>
+      <Param Name="places" Type="bool?" Default="null"/>
+      <Param Name="contacts" Type="bool?" Default="null"/>
+    </Params>
+  </Method>
   <Method Name="groups.editLink" Type="void" NeedToken="true">
     <Params>
       <Param Name="group_id" Type="int" />

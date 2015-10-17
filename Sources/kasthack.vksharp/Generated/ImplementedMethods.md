@@ -1,5 +1,5 @@
 ﻿
-Implemented 203 methods of 339, 59%:
+Implemented 204 methods of 339, 60%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -242,7 +242,7 @@ Implemented 203 methods of 339, 59%:
 * [Gifts](https://vk.com/dev/gifts). Implemented 0 of 1, 0%:
     - [ ] [gifts.get](https://vk.com/dev/gifts.get)
 
-* [Groups](https://vk.com/dev/groups). Implemented 15 of 25, 60%:
+* [Groups](https://vk.com/dev/groups). Implemented 16 of 25, 64%:
     - [x] [groups.addLink](https://vk.com/dev/groups.addLink)
 
     - [x] [groups.approveRequest](https://vk.com/dev/groups.approveRequest)
@@ -253,7 +253,7 @@ Implemented 203 methods of 339, 59%:
 
     - [x] [groups.deleteLink](https://vk.com/dev/groups.deleteLink)
 
-    - [ ] [groups.edit](https://vk.com/dev/groups.edit)
+    - [x] [groups.edit](https://vk.com/dev/groups.edit)
 
     - [x] [groups.editLink](https://vk.com/dev/groups.editLink)
 

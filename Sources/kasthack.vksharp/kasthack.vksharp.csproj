@@ -112,6 +112,7 @@
     <Compile Include="DataTypes\EntityFragments\Relative.cs" />
     <Compile Include="DataTypes\EntityFragments\SiteProfiles.cs" />
     <Compile Include="DataTypes\EntityFragments\StandInLife.cs" />
+    <Compile Include="DataTypes\Enums\AccessType.cs" />
     <Compile Include="DataTypes\Enums\AddFriendResult.cs" />
     <Compile Include="DataTypes\Enums\AttachmentType.cs" />
     <Compile Include="DataTypes\Enums\Attitude.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="DataTypes\Enums\FriendshipStatusEnum.cs" />
     <Compile Include="DataTypes\Enums\FriendshipType.cs" />
     <Compile Include="DataTypes\Enums\FriendSuggestionFilters.cs" />
+    <Compile Include="DataTypes\Enums\GroupAccess.cs" />
     <Compile Include="DataTypes\Enums\GroupAdminLevel.cs" />
     <Compile Include="DataTypes\Enums\GroupFields.cs" />
     <Compile Include="DataTypes\Enums\GroupMembersFilter.cs" />
