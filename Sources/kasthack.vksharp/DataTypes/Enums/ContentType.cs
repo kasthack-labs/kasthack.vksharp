@@ -1,5 +1,5 @@
 ﻿namespace kasthack.vksharp.DataTypes.Enums {
-    public enum AttachmentType:byte {
+    public enum ContentType:byte {
         Photo,
         PostedPhoto,
         Video,

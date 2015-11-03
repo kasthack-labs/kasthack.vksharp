@@ -292,12 +292,12 @@ namespace kasthack.vksharp {
                 internal MethodGroup_Audio(Api parent){_parent=parent;}
 
                 public async Task <int> Add(
-                    int ownerId , long audioId ,  int? groupId = null
+                    int ownerId , long audioId , int? groupId = null,  long? albumId = null
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.Add(
-                                ownerId,audioId,groupId
+                                ownerId,audioId,groupId,albumId
                             )
                         ).ConfigureAwait(false)
                     ).Response;
@@ -372,12 +372,12 @@ namespace kasthack.vksharp {
                 }
 
                 public async Task <EntityList<Audio>> Get(
-                    int? ownerId = null, long? albumId = null, ulong[] audioIds = null,  bool needUser = false, int offset = 0, int count = 100
+                    int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.Get(
-                                ownerId,albumId,audioIds,needUser,offset, count
+                                ownerId,albumId,offset, count,audioIds
                             )
                         ).ConfigureAwait(false)
                     ).Response;
@@ -1594,6 +1594,30 @@ namespace kasthack.vksharp {
                     ).Response;
                 }
 
+                public async Task <EntityList<Message>> GetHistoryChat(
+                    int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.GetHistoryChat(
+                                chatId,rev,startMessageId,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public async Task <EntityList<Message>> GetHistoryUser(
+                    int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.GetHistoryUser(
+                                userId,rev,startMessageId,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
                 public async Task <LastActivity> GetLastActivity(
                      int userId 
                 ) {
@@ -1711,6 +1735,30 @@ namespace kasthack.vksharp {
                             )
                         ).ConfigureAwait(false)
                     ;
+                }
+
+                public async Task <NewsfeedBanned> GetBanned(
+                    
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Newsfeed.GetBanned(
+                                
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public async Task <NewsfeedBannedExtended> GetBannedExtended(
+                    UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Newsfeed.GetBannedExtended(
+                                fields,nameCase
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
                 }
             }
 
@@ -2566,12 +2614,24 @@ namespace kasthack.vksharp {
                 }
 
                 public async Task <EntityList<Post>> Get(
-                    int? ownerId = null, string domain = "",  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                    int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Wall.Get(
-                                ownerId,domain,filter,offset, count
+                                ownerId,filter,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public async Task <EntityList<Post>> Get(
+                    string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Wall.Get(
+                                domain,filter,offset, count
                             )
                         ).ConfigureAwait(false)
                     ).Response;

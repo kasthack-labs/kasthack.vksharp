@@ -152,7 +152,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public bool? IsFavorite { get; set; }
         public CropPhoto CropPhoto { get; set; }
         [JsonConverter(typeof(OneTwoFUConverter))]
-        public bool? IsFriend { get; set; }//todo:converter
+        public bool? IsFriend { get; set; }
         public FriendshipStatusEnum FriendStatus { get; set; }
         public GroupRole? Role { get; set; }
         private void CreateUniversityIfNotExists() {

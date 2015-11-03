@@ -1,5 +1,5 @@
 ﻿
-Implemented 205 methods of 339, 60%:
+Implemented 207 methods of 339, 61%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -315,7 +315,7 @@ Implemented 205 methods of 339, 60%:
 
     - [ ] [likes.isLiked](https://vk.com/dev/likes.isLiked)
 
-* [Messages](https://vk.com/dev/messages). Implemented 12 of 24, 50%:
+* [Messages](https://vk.com/dev/messages). Implemented 13 of 24, 54%:
     - [x] [messages.addChatUser](https://vk.com/dev/messages.addChatUser)
 
     - [ ] [messages.createChat](https://vk.com/dev/messages.createChat)
@@ -338,7 +338,7 @@ Implemented 205 methods of 339, 60%:
 
     - [ ] [messages.getDialogs](https://vk.com/dev/messages.getDialogs)
 
-    - [ ] [messages.getHistory](https://vk.com/dev/messages.getHistory)
+    - [x] [messages.getHistory](https://vk.com/dev/messages.getHistory)
 
     - [x] [messages.getLastActivity](https://vk.com/dev/messages.getLastActivity)
 
@@ -364,7 +364,7 @@ Implemented 205 methods of 339, 60%:
 
     - [ ] [messages.setChatPhoto](https://vk.com/dev/messages.setChatPhoto)
 
-* [Newsfeed](https://vk.com/dev/newsfeed). Implemented 3 of 15, 20%:
+* [Newsfeed](https://vk.com/dev/newsfeed). Implemented 4 of 15, 26%:
     - [x] [newsfeed.addBan](https://vk.com/dev/newsfeed.addBan)
 
     - [x] [newsfeed.deleteBan](https://vk.com/dev/newsfeed.deleteBan)
@@ -373,7 +373,7 @@ Implemented 205 methods of 339, 60%:
 
     - [ ] [newsfeed.get](https://vk.com/dev/newsfeed.get)
 
-    - [ ] [newsfeed.getBanned](https://vk.com/dev/newsfeed.getBanned)
+    - [x] [newsfeed.getBanned](https://vk.com/dev/newsfeed.getBanned)
 
     - [ ] [newsfeed.getComments](https://vk.com/dev/newsfeed.getComments)
 

@@ -29,7 +29,7 @@ namespace kasthack.vksharp.DataTypes {
             };
         }
         public override string ToString() {
-            return String.Format(
+            return string.Format(
                 Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}",
                 Day,
                 Month,
@@ -38,7 +38,7 @@ namespace kasthack.vksharp.DataTypes {
         }
 
         public string ToString( string format, IFormatProvider formatProvider ) {
-            return String.Format(
+            return string.Format(
                 formatProvider,
                 Year != null ? "{0:D2}.{1:D2}.{2:D4}" : "{0:D2}.{1:D2}",
                 Day,

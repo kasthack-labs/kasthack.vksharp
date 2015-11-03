@@ -24,6 +24,8 @@ namespace kasthack.vksharp.DataTypes.Entities {
         //public Counter Tags { get; set; }
         public Counter Comments { get; set; }
         public PhotoSize[] Sizes { get; set; }
-        public static implicit operator Attachment( Photo photo ) => new Attachment { Photo = photo, Type = AttachmentType.Photo };
+
+        public static implicit operator Attachment( Photo photo ) => new Attachment { Photo = photo, Type = ContentType.Photo };
+        public static implicit operator ObjectContentId(Photo photo) => new ObjectContentId( ContentType.Photo, photo.Id, photo.OwnerId, photo.AccessKey );
     }
 }

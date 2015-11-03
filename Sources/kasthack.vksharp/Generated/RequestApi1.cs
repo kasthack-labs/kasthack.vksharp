@@ -383,7 +383,7 @@ namespace kasthack.vksharp {
             internal MethodGroup_audio(RequestApi parent){_parent=parent;}
 
             public Request<int> Add(
-                int ownerId , long audioId ,  int? groupId = null
+                int ownerId , long audioId , int? groupId = null,  long? albumId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "audio.add",
@@ -392,6 +392,7 @@ namespace kasthack.vksharp {
                         { "owner_id", ownerId.ToNCString()},
                         { "audio_id", audioId.ToNCString()},
                         { "group_id", MiscTools.NullableString(groupId)},
+                        { "album_id", MiscTools.NullableString(albumId)},
 
                     }
                 };
@@ -503,7 +504,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Audio>> Get(
-                int? ownerId = null, long? albumId = null, ulong[] audioIds = null,  bool needUser = false, int offset = 0, int count = 100
+                int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
             ) {
                 var req = new Request<EntityList<Audio>>{
                     MethodName = "audio.get",
@@ -512,7 +513,7 @@ namespace kasthack.vksharp {
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "album_id", MiscTools.NullableString(albumId)},
                         { "audio_ids", (audioIds??new ulong[]{}).ToNCStringA()},
-                        { "need_user", (needUser?1:0).ToNCString()},
+                        {"need_user","false"},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -2275,6 +2276,44 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<EntityList<Message>> GetHistoryChat(
+                int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+            ) {
+                var req = new Request<EntityList<Message>>{
+                    MethodName = "messages.getHistory",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "chat_id", chatId.ToNCString()},
+                        { "rev", (rev?1:0).ToNCString()},
+                        { "start_message_id", MiscTools.NullableString(startMessageId)},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<Message>> GetHistoryUser(
+                int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+            ) {
+                var req = new Request<EntityList<Message>>{
+                    MethodName = "messages.getHistory",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "user_id", userId.ToNCString()},
+                        { "rev", (rev?1:0).ToNCString()},
+                        { "start_message_id", MiscTools.NullableString(startMessageId)},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<LastActivity> GetLastActivity(
                  int userId 
             ) {
@@ -2440,6 +2479,38 @@ namespace kasthack.vksharp {
                     Parameters = new Dictionary<string, string> {
 
                         { "list_id", listId.ToNCString()},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<NewsfeedBanned> GetBanned(
+                
+            ) {
+                var req = new Request<NewsfeedBanned>{
+                    MethodName = "newsfeed.getBanned",
+                    Parameters = new Dictionary<string, string> {
+
+                        {"extended","false"},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<NewsfeedBannedExtended> GetBannedExtended(
+                UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom
+            ) {
+                var req = new Request<NewsfeedBannedExtended>{
+                    MethodName = "newsfeed.getBanned",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
+                        { "name_case", nameCase.ToNCString().ToSnake()},
+                        {"extended","true"},
 
                     }
                 };
@@ -3700,13 +3771,31 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Post>> Get(
-                int? ownerId = null, string domain = "",  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
             ) {
                 var req = new Request<EntityList<Post>>{
                     MethodName = "wall.get",
                     Parameters = new Dictionary<string, string> {
 
-                        { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "owner_id", ownerId.ToNCString()},
+                        { "filter", filter.ToNCString().ToSnake()},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<Post>> Get(
+                string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<Post>>{
+                    MethodName = "wall.get",
+                    Parameters = new Dictionary<string, string> {
+
                         { "domain", domain},
                         { "filter", filter.ToNCString().ToSnake()},
                         { "offset", offset.ToNCString() },

@@ -1,4 +1,5 @@
 ﻿using System;
+using kasthack.vksharp.DataTypes.Enums;
 using kasthack.vksharp.DataTypes.Interfaces;
 
 namespace kasthack.vksharp.DataTypes.Entities {
@@ -10,5 +11,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public int? ReadCommentCount { get; set; }
         public string Text { get; set; }
         public string Title { get; set; }
+
+        public static implicit operator ContentId(Note note) => new ObjectContentId( ContentType.Note, note.Id, note.OwnerId );
     }
 }

@@ -1,4 +1,5 @@
-﻿using kasthack.vksharp.DataTypes.Interfaces;
+﻿using kasthack.vksharp.DataTypes.Enums;
+using kasthack.vksharp.DataTypes.Interfaces;
 
 namespace kasthack.vksharp.DataTypes.Entities {
 
@@ -13,5 +14,6 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public bool CanUpload { get; set; }
         public Privacy PrivacyView { get; set; }
         public Privacy PrivacyComment { get; set; }
+        public static implicit operator ContentId(PhotoAlbum album)=> new ObjectContentId( ContentType.Album, album.Id, album.OwnerId );
     }
 }

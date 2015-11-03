@@ -1,4 +1,5 @@
 ﻿using System;
+using kasthack.vksharp.DataTypes.Enums;
 using kasthack.vksharp.DataTypes.Interfaces;
 
 namespace kasthack.vksharp.DataTypes.Entities {
@@ -23,6 +24,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public bool? UserLikes { get; set; }
         public int? LikesCount { get; set; }
         public bool? PlaybackLooped { get; set; }
+        public static implicit operator ContentId(Video video) => new ObjectContentId( ContentType.Video, video.Id, video.OwnerId, video.AccessKey );
     }
 
     public class TaggedVideo : Video{

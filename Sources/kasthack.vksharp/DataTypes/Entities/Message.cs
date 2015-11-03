@@ -11,6 +11,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public MessageType? Type { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public bool Out { get; set; }
         public Attachment[] Attachments { get; set; }
         public Message[] ForwardedMessages { get; set; }
         public bool ContainsEmojiSmiles { get; set; }

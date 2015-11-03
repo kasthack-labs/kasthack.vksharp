@@ -12,5 +12,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public int Duration { get; set; }
 
         public override string ToString() => Artist + " - " + Title;
+        public static explicit operator ObjectContentId(Audio audio) => new ObjectContentId( ContentType.Audio, audio.Id, audio.OwnerId );
+        public static implicit operator ContentId(Audio audio) => (ObjectContentId)audio;
     }
 }

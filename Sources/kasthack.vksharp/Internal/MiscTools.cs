@@ -13,27 +13,27 @@ namespace kasthack.vksharp.Internal {
         /// <returns>Converted string</returns>
         public static string ToSnake( this string name ) {
             var t = new StringBuilder();
-            t.Append( Char.ToLower( name[ 0 ] ) );
+            t.Append( char.ToLower( name[ 0 ] ) );
             for ( var index = 1; index < name.Length; index++ ) {
                 var c = name[ index ];
                 //add '_' before numbers and captials 
-                if ( Char.IsUpper( c )
-                     || ( Char.IsNumber( c ) && !Char.IsNumber( name[ index - 1 ] ) ) ) {
+                if ( char.IsUpper( c )
+                     || ( char.IsNumber( c ) && !char.IsNumber( name[ index - 1 ] ) ) ) {
                     t.Append( '_' );
-                    t.Append( Char.ToLower( c ) );
+                    t.Append( char.ToLower( c ) );
                 }
                 else t.Append( c );
             }
             return t.ToString();
         }
 
-        public static string ToMeth( this string name, bool p = false ) {
+        public static string ToMeth( this string name, bool lowerFirst = false ) {
             var t = new StringBuilder();
-            t.Append( p ? Char.ToLower( name[ 0 ] ) : Char.ToUpper( name[ 0 ] ) );
+            t.Append( lowerFirst ? char.ToLower( name[ 0 ] ) : char.ToUpper( name[ 0 ] ) );
             for ( var index = 1; index < name.Length; index++ ) {
                 var c = name[ index ];
                 //add '_' before numbers and capitals 
-                if ( c == '.' || c == '_' ) t.Append( Char.ToUpper( name[ ++index ] ) );
+                if ( c == '.' || c == '_' ) t.Append( char.ToUpper( name[ ++index ] ) );
                 else t.Append( c );
             }
             return t.ToString();
@@ -78,7 +78,7 @@ namespace kasthack.vksharp.Internal {
         }
 
         public static string NullableString<T>( T? input ) where T : struct, IFormattable {
-            return input.HasValue ? input.Value.ToNCString() : String.Empty;
+            return input.HasValue ? input.Value.ToNCString() : string.Empty;
         }
 
         public static string ToNCString<T>( this T value ) where T : IFormattable {
@@ -90,7 +90,7 @@ namespace kasthack.vksharp.Internal {
         }
 
         public static string ToNCStringA<T>( this IEnumerable<T> value ) where T : IFormattable {
-            return String.Join( ",", value.Select( a => a.ToNCString() ) );
+            return string.Join( ",", value.Select( a => a.ToNCString() ) );
         }
     }
 }

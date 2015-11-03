@@ -23,10 +23,10 @@ namespace kasthack.vksharp {
                 Enum.GetValues(typeof (Permission))
                     .OfType<Permission>()
                     .Where(a => a != Permission.None && a != Permission.Everything);
-            return String.Format(
+            return string.Format(
                                  BuiltInData.Instance.OAuthURL,
                                  appId,
-                                 String.Join(
+                                 string.Join(
                                              ",",
                                              testperm
                                                 .Where( a => permissions.HasFlag( a ) )

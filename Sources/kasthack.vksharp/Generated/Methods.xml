@@ -127,6 +127,7 @@
       <Param Name="owner_id" Type="int" />
       <Param Name="audio_id" Type="long" />
       <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="album_id" Type="long?" Default="null" />
     </Params>
   </Method>
   <Method Name="audio.addAlbum" Type="AddAlbum" NeedToken="true" >
@@ -177,8 +178,10 @@
       <Param Name="owner_id" Type="int?" Default="null" />
       <Param Name="album_id" Type="long?" Default="null" />
       <Param Name="audio_ids" Type="ulong[]" Default="null" />
-      <Param Name="need_user" Type="bool" Default="false" />
     </Params>
+    <Hardcoded>
+      <HardcodedParam Name="need_user" Value="false"/><!--they've broken it-->
+    </Hardcoded>
   </Method>
   <Method Name="audio.getBroadcastList" NameSuffix="Groups" Type="Group[]" NeedToken="false" Pageable="100">
     <Params>
@@ -804,6 +807,20 @@
       <Param Name="last_message_id" Type="long?" Default="null"/>
     </Params>
   </Method>
+  <Method Name="messages.getHistory" NameSuffix="Chat" Type="EntityList&lt;Message&gt;" NeedToken="true" Pageable="200" >
+    <Params>
+      <Param Name="chat_id" Type="int"/>
+      <Param Name="rev" Type="bool" Default="false"/>
+      <Param Name="start_message_id" Type="long?" Default="null"/>
+    </Params>
+  </Method>
+  <Method Name="messages.getHistory" NameSuffix="User" Type="EntityList&lt;Message&gt;" NeedToken="true" Pageable="200" >
+    <Params>
+      <Param Name="user_id" Type="int"/>
+      <Param Name="rev" Type="bool" Default="false"/>
+      <Param Name="start_message_id" Type="long?" Default="null"/>
+    </Params>
+  </Method>
   <Method Name="messages.getLastActivity" Type="LastActivity" NeedToken="true" >
     <Params>
       <Param Name="user_id" Type="int" />
@@ -881,6 +898,21 @@
       <Param Name="comment_id" Type="int" />
       <Param Name="owner_id" Type="int?" Default="null" />
     </Params>
+  </Method>
+  <Method Name="newsfeed.getBanned" Type="NewsfeedBanned" NeedToken="true">
+    <Params/>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="false"/>
+    </Hardcoded>
+  </Method>
+  <Method Name="newsfeed.getBanned" NameSuffix="Extended" Type="NewsfeedBannedExtended" NeedToken="true">
+    <Params>
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="true"/>
+    </Hardcoded>
   </Method>
   <Method Name="notes.restoreComment" Type="void" NeedToken="true">
     <Params>
@@ -1351,8 +1383,13 @@
   </Method>
   <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="owner_id" Type="int?" Default="null" />
-      <Param Name="domain" Type="string" Default="&quot;&quot;" />
+      <Param Name="owner_id" Type="int"/>
+      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" />
+    </Params>
+  </Method>
+  <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="domain" Type="string" />
       <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" />
     </Params>
   </Method>

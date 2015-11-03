@@ -6,6 +6,7 @@
         public string ImageSrc { get; set; }
         public string PreviewPage { get; set; }
         public string PreviewUrl { get; set; }
+        public static implicit operator ContentId(Link link) => new StringContentId( link.Url );
     }
 }
 

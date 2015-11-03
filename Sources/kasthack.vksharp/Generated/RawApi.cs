@@ -257,11 +257,11 @@ namespace kasthack.vksharp {
             internal MethodGroup_Audio(RawApi parent){_parent=parent;}
 
             public async Task<string> Add(
-                int ownerId , long audioId ,  int? groupId = null
+                int ownerId , long audioId , int? groupId = null,  long? albumId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.Add(
-                           ownerId,audioId,groupId
+                           ownerId,audioId,groupId,albumId
                     )
                 ).ConfigureAwait(false);
             }
@@ -327,11 +327,11 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int? ownerId = null, long? albumId = null, ulong[] audioIds = null,  bool needUser = false, int offset = 0, int count = 100
+                int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.Get(
-                           ownerId,albumId,audioIds,needUser,offset, count
+                           ownerId,albumId,offset, count,audioIds
                     )
                 ).ConfigureAwait(false);
             }
@@ -1374,6 +1374,26 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> GetHistoryChat(
+                int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Messages.GetHistoryChat(
+                           chatId,rev,startMessageId,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetHistoryUser(
+                int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Messages.GetHistoryUser(
+                           userId,rev,startMessageId,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetLastActivity(
                  int userId 
             ){
@@ -1476,6 +1496,26 @@ namespace kasthack.vksharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Newsfeed.DeleteList(
                            listId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetBanned(
+                
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Newsfeed.GetBanned(
+                           
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetBannedExtended(
+                UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Newsfeed.GetBannedExtended(
+                           fields,nameCase
                     )
                 ).ConfigureAwait(false);
             }
@@ -2223,11 +2263,21 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int? ownerId = null, string domain = "",  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.Get(
-                           ownerId,domain,filter,offset, count
+                           ownerId,filter,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> Get(
+                string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Wall.Get(
+                           domain,filter,offset, count
                     )
                 ).ConfigureAwait(false);
             }

@@ -2,7 +2,7 @@
 
 namespace kasthack.vksharp.DataTypes.Entities {
     public class Attachment  {
-        public AttachmentType? Type { get; set; }
+        public ContentType? Type { get; set; }
         public Photo Photo { get; set; }
         public PostedPhoto PostedPhoto { get; set; }
         public Video Video { get; set; }
@@ -11,46 +11,46 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public Document Doc { get; set; }
         public Link Link { get; set; }
         public Note Note { get; set; }
-        
+        public Comment WallReply { get; set; }
         public Poll Poll { get; set; }
         public Page Page { get; set; }
         public PhotoAlbum Album { get; set; }
-
+        public Post Wall { get; set; }
 
         public override string ToString() {
             switch ( Type ) {
-                case AttachmentType.Photo:
-                    return $"photo{Photo.OwnerId}_{Photo.Id}";
-                case AttachmentType.PostedPhoto:
-                    return $"photo{PostedPhoto.OwnerId}_{PostedPhoto.Id}";
-                case AttachmentType.Video:
-                    return $"video{Video.OwnerId}_{Video.Id}";
-                case AttachmentType.Audio:
-                    return $"audio{Audio.OwnerId}_{Audio.Id}";
-                case AttachmentType.Doc:
-                    return $"doc{Doc.OwnerId}_{Doc.Id}";
-                case AttachmentType.Link:
-                    return Link.Url;
+                case ContentType.Photo:
+                    return ((ContentId)Photo).ToAttachmentString();
+                case ContentType.PostedPhoto:
+                    return ((ContentId)PostedPhoto).ToAttachmentString();
+                case ContentType.Video:
+                    return ((ContentId)Video).ToAttachmentString();
+                case ContentType.Audio:
+                    return ((ContentId)Audio).ToAttachmentString();
+                case ContentType.Doc:
+                    return ((ContentId)Doc).ToAttachmentString();
+                case ContentType.Link:
+                    return ((ContentId)Link).ToAttachmentString();
                 //case AttachmentType.Graffiti:
-                    //break;
-                case AttachmentType.Note:
-                    return $"note{Note.OwnerId}_{Note.Id}";
+                //break;
+                case ContentType.Note:
+                    return ((ContentId)Note).ToAttachmentString();
                 //case AttachmentType.App:
                 //    break;
-                case AttachmentType.Poll:
-                    return $"poll{Poll.OwnerId}_{Poll.Id}";
-                case AttachmentType.Page:
-                    return $"page{-Page.GroupId}_{Page.Id}";
-                case AttachmentType.Album:
-                    return $"album{Album.OwnerId}_{Album.Id}";
+                case ContentType.Poll:
+                    return ((ContentId)Poll).ToAttachmentString();
+                case ContentType.Page:
+                    return ((ContentId)Page).ToAttachmentString();
+                case ContentType.Album:
+                    return ((ContentId)Album).ToAttachmentString();
                 //case AttachmentType.PhotosList:
-                    //break;
-                //case AttachmentType.Wall:
-                    //return $"wall{Album.OwnerId}_{Album.Id}";
-                //case AttachmentType.WallReply:
-                    //break;
+                //break;
+                case ContentType.Wall:
+                    return ((ContentId)Wall).ToAttachmentString();
+                case ContentType.WallReply:
+                    return ((ContentId) WallReply).ToAttachmentString();
                 //case null:
-                    //break;
+                //break;
                 default:
                     return $"Attached {Type}";
             }
