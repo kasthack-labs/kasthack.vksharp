@@ -73,6 +73,7 @@
     <Compile Include="DataTypes\Entities\Note.cs" />
     <Compile Include="DataTypes\Entities\Offer.cs" />
     <Compile Include="DataTypes\Entities\Onlines.cs" />
+    <Compile Include="DataTypes\Entities\Page.cs" />
     <Compile Include="DataTypes\Entities\Photo.cs" />
     <Compile Include="DataTypes\Entities\PhotoAlbum.cs" />
     <Compile Include="DataTypes\Entities\PhotoLikes.cs" />

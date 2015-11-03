@@ -2601,7 +2601,7 @@ namespace kasthack.vksharp {
                     ).Response;
                 }
 
-                public async Task <EntityList<Comment>> GetComments(
+                public async Task <EntityListExtended<Comment>> GetComments(
                     int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int offset = 0, int count = 100
                 ) {
                     return (
@@ -2735,12 +2735,24 @@ namespace kasthack.vksharp {
                 internal MethodGroup_Likes(Api parent){_parent=parent;}
 
                 public async Task <EntityList<int>> GetList(
-                    string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                    string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Likes.GetList(
-                                type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset, count
+                                type,filter,friendsOnly,skipOwn,ownerId,itemId,pageUrl,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public async Task <EntityList<User>> GetListExtended(
+                    string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Likes.GetListExtended(
+                                type,filter,friendsOnly,skipOwn,ownerId,itemId,pageUrl,offset, count
                             )
                         ).ConfigureAwait(false)
                     ).Response;

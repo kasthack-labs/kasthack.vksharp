@@ -2369,11 +2369,21 @@ namespace kasthack.vksharp {
             internal MethodGroup_Likes(RawApi parent){_parent=parent;}
 
             public async Task<string> GetList(
-                string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Likes.GetList(
-                           type,filter,friendsOnly,skipOwn,extended,ownerId,itemId,pageUrl,offset, count
+                           type,filter,friendsOnly,skipOwn,ownerId,itemId,pageUrl,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetListExtended(
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Likes.GetListExtended(
+                           type,filter,friendsOnly,skipOwn,ownerId,itemId,pageUrl,offset, count
                     )
                 ).ConfigureAwait(false);
             }

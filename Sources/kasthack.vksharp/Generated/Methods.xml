@@ -1368,7 +1368,7 @@
       <Param Name="posts" Type="Tuple&lt;int,int&gt;[]" />
     </Params>
   </Method>
-  <Method Name="wall.getComments" Type="EntityList&lt;Comment&gt;" NeedToken="false" Pageable="100">
+  <Method Name="wall.getComments" Type="EntityListExtended&lt;Comment&gt;" NeedToken="false" Pageable="100">
     <Params>
       <Param Name="post_id" Type="int"/>
       <Param Name="sort" Type="string"/>
@@ -1384,11 +1384,27 @@
       <Param Name="filter" Type="string"/>
       <Param Name="friends_only" Type="bool"/>
       <Param Name="skip_own" Type="bool" />
-      <Param Name="extended" Type="bool" Default="false" />
       <Param Name="owner_id" Type="int?" Default="null"/>
       <Param Name="item_id" Type="int?" Default="null"/>
       <Param Name="page_url" Type="string" Default="null"/>
     </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="false" />
+    </Hardcoded>
+  </Method>
+  <Method Name="likes.getList" NameSuffix="Extended" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="type" Type="string"/>
+      <Param Name="filter" Type="string"/>
+      <Param Name="friends_only" Type="bool"/>
+      <Param Name="skip_own" Type="bool" />
+      <Param Name="owner_id" Type="int?" Default="null"/>
+      <Param Name="item_id" Type="int?" Default="null"/>
+      <Param Name="page_url" Type="string" Default="null"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="true" />
+    </Hardcoded>
   </Method>
   <Method Name="wall.getReposts" Type="EntityListExtended&lt;Post&gt;" NeedToken="false" Pageable="100">
     <Params>

@@ -3751,10 +3751,10 @@ namespace kasthack.vksharp {
                 return req;
             }
 
-            public Request<EntityList<Comment>> GetComments(
+            public Request<EntityListExtended<Comment>> GetComments(
                 int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int offset = 0, int count = 100
             ) {
-                var req = new Request<EntityList<Comment>>{
+                var req = new Request<EntityListExtended<Comment>>{
                     MethodName = "wall.getComments",
                     Parameters = new Dictionary<string, string> {
 
@@ -3955,7 +3955,7 @@ namespace kasthack.vksharp {
             internal MethodGroup_likes(RequestApi parent){_parent=parent;}
 
             public Request<EntityList<int>> GetList(
-                string type , string filter , bool friendsOnly , bool skipOwn , bool extended = false, int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "likes.getList",
@@ -3965,10 +3965,35 @@ namespace kasthack.vksharp {
                         { "filter", filter},
                         { "friends_only", (friendsOnly?1:0).ToNCString()},
                         { "skip_own", (skipOwn?1:0).ToNCString()},
-                        { "extended", (extended?1:0).ToNCString()},
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "item_id", MiscTools.NullableString(itemId)},
                         { "page_url", pageUrl},
+                        {"extended","false"},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<User>> GetListExtended(
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<User>>{
+                    MethodName = "likes.getList",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "type", type},
+                        { "filter", filter},
+                        { "friends_only", (friendsOnly?1:0).ToNCString()},
+                        { "skip_own", (skipOwn?1:0).ToNCString()},
+                        { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "item_id", MiscTools.NullableString(itemId)},
+                        { "page_url", pageUrl},
+                        {"extended","true"},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 

@@ -11,9 +11,9 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public Document Doc { get; set; }
         public Link Link { get; set; }
         public Note Note { get; set; }
-        //todo:app
+        
         public Poll Poll { get; set; }
-        //todo:wikipage
+        public Page Page { get; set; }
         public PhotoAlbum Album { get; set; }
 
 
@@ -39,8 +39,8 @@ namespace kasthack.vksharp.DataTypes.Entities {
                 //    break;
                 case AttachmentType.Poll:
                     return $"poll{Poll.OwnerId}_{Poll.Id}";
-                //case AttachmentType.Page:
-                //    break;
+                case AttachmentType.Page:
+                    return $"page{-Page.GroupId}_{Page.Id}";
                 case AttachmentType.Album:
                     return $"album{Album.OwnerId}_{Album.Id}";
                 //case AttachmentType.PhotosList:
