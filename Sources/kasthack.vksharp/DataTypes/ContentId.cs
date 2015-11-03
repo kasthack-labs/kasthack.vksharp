@@ -14,9 +14,9 @@ namespace kasthack.vksharp.DataTypes {
 
         public string AccessKey { get; }
 
-        public override string ToString() { return String.Format( AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey ); }
+        public override string ToString() => string.Format( AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey );
 
-        public string ToString( string format, IFormatProvider formatProvider ) { return String.Format(format, AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey); }
+        public string ToString( string format, IFormatProvider formatProvider ) => String.Format(formatProvider, AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey);
 
     }
 }

@@ -215,7 +215,7 @@
     <Compile Include="Internal\MiscTools.cs" />
     <Compile Include="Internal\MorozovHandler.cs" />
     <Compile Include="Internal\ProxyPoolingHttpClientHandler.cs" />
-    <Compile Include="Internal\UploadHelper.cs" />
+    <Compile Include="Util\UploadHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RawApi.cs" />
     <Compile Include="RequestApi.cs" />

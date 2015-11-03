@@ -17,6 +17,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public string Player { get; set; }
         public Privacy PrivacyView { get; set; }
         public Privacy PrivacyComment { get; set; }
+        public bool? CanEdit { get; set; }
         public bool? CanComment { get; set; }
         public bool? CanRepost { get; set; }
         public bool? UserLikes { get; set; }
