@@ -44,6 +44,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Account(RawApi parent){_parent=parent;}
 
+
             public async Task<string> BanUser(
                  int userId 
             ){
@@ -54,6 +55,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ChangePassword(
                 string restoreSid , string changePasswordHash , string oldPassword ,  string newPassword 
             ){
@@ -64,6 +66,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetActiveOffers(
                 int offset = 0, int count = 100
             ){
@@ -74,6 +77,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAppPermissions(
                  int? userId = null
             ){
@@ -84,6 +88,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetBanned(
                 int offset = 0, int count = 20
             ){
@@ -94,6 +99,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetInfo(
                 
             ){
@@ -104,6 +110,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SaveProfileInfo(
                 string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null,  string status = ""
             ){
@@ -114,6 +121,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetProfileInfo(
                 
             ){
@@ -124,6 +132,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetInfo(
                  int? intro = null
             ){
@@ -134,6 +143,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetNameInMenu(
                  string name 
             ){
@@ -144,6 +154,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetOffline(
                 
             ){
@@ -154,6 +165,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetOnline(
                  bool voip = true
             ){
@@ -164,6 +176,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetSilenceMode(
                 string deviceId , int time , int? chatId = null, int? userId = null,  int sound = 0
             ){
@@ -174,6 +187,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> UnbanUser(
                  int userId 
             ){
@@ -184,6 +198,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RegisterDevice(
                 string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "",  bool? sandbox = null
             ){
@@ -194,6 +209,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> UnregisterDevice(
                  string deviceId 
             ){
@@ -210,6 +226,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Apps(RawApi parent){_parent=parent;}
 
+
             public async Task<string> DeleteAppRequests(
                 
             ){
@@ -220,6 +237,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetScore(
                 
             ){
@@ -230,6 +248,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetLeaderboardExtended(
                 LeaderBoardType type ,  bool global = true
             ){
@@ -240,6 +259,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetLeaderboard(
                 LeaderBoardType type ,  bool global = true
             ){
@@ -256,6 +276,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Audio(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Add(
                 int ownerId , long audioId , int? groupId = null,  long? albumId = null
             ){
@@ -266,6 +287,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> AddAlbum(
                 string title ,  int? groupId = 0
             ){
@@ -276,6 +298,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Delete(
                 long audioId ,  int? ownerId = null
             ){
@@ -286,6 +309,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteAlbum(
                 long albumId ,  int? groupId = null
             ){
@@ -296,6 +320,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Edit(
                 int ownerId , long audioId , string artist = "", string title = "", string text = "", AudioGenre? genreId = null,  bool? noSearch = null
             ){
@@ -306,6 +331,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> EditAlbum(
                 long albumId , string title ,  int? groupId = null
             ){
@@ -316,6 +342,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> MoveToAlbum(
                 long albumId , int? groupId = null, params ulong[] audioIds 
             ){
@@ -326,6 +353,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
             ){
@@ -336,6 +364,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetBroadcastListGroups(
                  bool active = true, int offset = 0, int count = 100
             ){
@@ -346,6 +375,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetBroadcastListUsers(
                  bool active = true, int offset = 0, int count = 100
             ){
@@ -356,6 +386,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetPopular(
                 AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
             ){
@@ -366,6 +397,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetRecommendations(
                 AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
             ){
@@ -376,6 +408,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAlbums(
                  int? ownerId = null, int offset = 0, int count = 100
             ){
@@ -386,6 +419,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 bool itunes = false, params string[] audios 
             ){
@@ -396,6 +430,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 bool itunes = false, params Tuple<int, ulong>[] audios 
             ){
@@ -406,6 +441,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetCount(
                  int? ownerId = null
             ){
@@ -416,6 +452,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetLyrics(
                  long lyricsId 
             ){
@@ -426,6 +463,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetUploadServer(
                 long albumId ,  int? groupId = null
             ){
@@ -436,6 +474,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Reorder(
                 long audioId , int? ownerId = null, long? before = null,  long? after = null
             ){
@@ -446,6 +485,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Restore(
                 long audioId ,  int? ownerId = null
             ){
@@ -456,6 +496,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Save(
                 string server , string audio , string hash , string artist = "",  string title = ""
             ){
@@ -466,6 +507,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Search(
                 string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int offset = 0, int count = 100
             ){
@@ -476,6 +518,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetBroadcast(
                 Tuple<int, ulong> audio , params int[] targetIds 
             ){
@@ -492,6 +535,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Auth(RawApi parent){_parent=parent;}
 
+
             public async Task<string> CheckPhone(
                 string phone , string clientSecret ,  int? clientId = null
             ){
@@ -502,6 +546,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Confirm(
                 int clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false,  int? intro = null
             ){
@@ -512,6 +557,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Restore(
                  long phone 
             ){
@@ -528,6 +574,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Board(RawApi parent){_parent=parent;}
 
+
             public async Task<string> CloseTopic(
                 int groupId ,  int topicId 
             ){
@@ -538,6 +585,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteComment(
                 int groupId , int topicId ,  int commentId 
             ){
@@ -548,6 +596,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteTopic(
                 int groupId ,  int topicId 
             ){
@@ -558,6 +607,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> FixTopic(
                 int groupId ,  int topicId 
             ){
@@ -568,6 +618,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RestoreComment(
                 int groupId , int topicId ,  int commentId 
             ){
@@ -578,6 +629,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> UnfixTopic(
                 int groupId ,  int topicId 
             ){
@@ -594,6 +646,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Database(RawApi parent){_parent=parent;}
 
+
             public async Task<string> GetChairs(
                  int facultyId , int offset = 0, int count = 100
             ){
@@ -604,6 +657,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetCities(
                 int countryId , int? regionId = null, string q = "",  bool needAll = false, int offset = 0, int count = 100
             ){
@@ -614,6 +668,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetCitiesById(
                 params int[] cityIds 
             ){
@@ -624,6 +679,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetCountries(
                 string code = "",  bool needAll = false, int offset = 0, int count = 100
             ){
@@ -634,6 +690,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetCountriesById(
                 params int[] countryIds 
             ){
@@ -644,6 +701,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetFaculties(
                  int universityId , int offset = 0, int count = 100
             ){
@@ -654,6 +712,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetRegions(
                 int countryId ,  string q = "", int offset = 0, int count = 100
             ){
@@ -664,6 +723,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetSchools(
                 int? cityId = null,  string q = "", int offset = 0, int count = 100
             ){
@@ -674,6 +734,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetSchoolClasses(
                  int countryId 
             ){
@@ -684,6 +745,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetStreetsById(
                 params int[] streetIds 
             ){
@@ -694,6 +756,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetUniversities(
                 int? countryId = null, int? cityId = null,  string q = "", int offset = 0, int count = 100
             ){
@@ -710,6 +773,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Docs(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Add(
                 long docId , int ownerId ,  string accessKey = ""
             ){
@@ -720,6 +784,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Delete(
                 long docId ,  int? ownerId = null
             ){
@@ -730,6 +795,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                  int? ownerId = null, int offset = 0, int count = 100
             ){
@@ -740,6 +806,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 params Tuple<int,int>[] docs 
             ){
@@ -750,6 +817,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetUploadServer(
                  int? groupId = null
             ){
@@ -760,6 +828,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetWallUploadServer(
                  int? groupId = null
             ){
@@ -770,6 +839,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Save(
                 string file , string title , params string[] tags 
             ){
@@ -786,6 +856,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Fave(RawApi parent){_parent=parent;}
 
+
             public async Task<string> GetLinks(
                 int offset = 0, int count = 100
             ){
@@ -796,6 +867,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetUsers(
                 int offset = 0, int count = 100
             ){
@@ -806,6 +878,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetPhotos(
                 int offset = 0, int count = 100
             ){
@@ -816,6 +889,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetPosts(
                 int offset = 0, int count = 100
             ){
@@ -826,6 +900,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetVideos(
                 int offset = 0, int count = 100
             ){
@@ -836,6 +911,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveUser(
                  int userId 
             ){
@@ -846,6 +922,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveLink(
                  int linkId 
             ){
@@ -856,6 +933,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveGroup(
                  int groupId 
             ){
@@ -866,6 +944,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> AddGroup(
                  int groupId 
             ){
@@ -876,6 +955,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> AddUser(
                  int userId 
             ){
@@ -886,6 +966,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> AddLink(
                 string link ,  string text = ""
             ){
@@ -902,6 +983,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Friends(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Add(
                 int userId ,  string text = ""
             ){
@@ -912,6 +994,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> AddList(
                 string name , params int[] userIds 
             ){
@@ -922,6 +1005,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> AreFriends(
                 bool needSign = false, params int[] userIds 
             ){
@@ -932,6 +1016,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Delete(
                  int userId 
             ){
@@ -942,6 +1027,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteAllRequests(
                 
             ){
@@ -952,6 +1038,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteList(
                  int listId 
             ){
@@ -962,6 +1049,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Edit(
                 int userId , params long[] listIds 
             ){
@@ -972,6 +1060,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> EditList(
                 long listId , string name = "", int[] userIds = null, int[] addUserIds = null, params int[] deleteUserIds 
             ){
@@ -982,6 +1071,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetLists(
                 int? userId = null,  bool returnSystem = true
             ){
@@ -992,6 +1082,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
             ){
@@ -1002,6 +1093,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAvailableForCall(
                 
             ){
@@ -1012,6 +1104,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAvailableForCall(
                 UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom
             ){
@@ -1022,6 +1115,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
             ){
@@ -1032,6 +1126,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAppUsers(
                 
             ){
@@ -1042,6 +1137,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetByPhones(
                 UserFields fields = UserFields.None, params ulong[] phones 
             ){
@@ -1052,6 +1148,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetMutual(
                 int targetUid , int? sourceUid = null,  bool order = false, int offset = 0, int count = 100
             ){
@@ -1062,6 +1159,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetOnline(
                 int? userId = null, int? listId = null,  UserSortOrder? order = null, int offset = 0, int count = 100
             ){
@@ -1072,6 +1170,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetRecent(
                  int count = 20
             ){
@@ -1082,6 +1181,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetSuggestions(
                 FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
             ){
@@ -1092,6 +1192,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Search(
                 int userId , string q = "",  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 20
             ){
@@ -1108,6 +1209,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Groups(RawApi parent){_parent=parent;}
 
+
             public async Task<string> AddLink(
                 int groupId , string link ,  string text = ""
             ){
@@ -1118,6 +1220,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ApproveRequest(
                 int groupId ,  int userId 
             ){
@@ -1128,6 +1231,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Create(
                 string title , PageType type = PageType.Group, PageSubtype? subtype = null,  string description = ""
             ){
@@ -1138,6 +1242,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteLink(
                 int groupId ,  int linkId 
             ){
@@ -1148,6 +1253,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Edit(
                 int groupId , string title = "", string description = "", string screenName = "", string website = "", string email = "", string phone = "", string rss = "", DateTimeOffset? eventStartDate = null, DateTimeOffset? eventFinishDate = null, DateTimeOffset? eventGroupId = null, int? subject = null, int? publicCategory = null, int? publicSubcategory = null, GroupAccess? access = null, AccessType? wall = null, AccessType? topics = null, AccessType? photos = null, AccessType? video = null, AccessType? audio = null, Date? publicDate = null, bool? links = null, bool? events = null, bool? places = null,  bool? contacts = null
             ){
@@ -1158,6 +1264,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> EditLink(
                 int groupId , int linkId ,  string text = ""
             ){
@@ -1168,6 +1275,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetBanned(
                  int groupId , int offset = 0, int count = 100
             ){
@@ -1178,6 +1286,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 string[] groupIds ,  GroupFields fields 
             ){
@@ -1188,6 +1297,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 int groupId ,  GroupFields fields 
             ){
@@ -1198,6 +1308,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetMembers(
                 string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
             ){
@@ -1208,6 +1319,18 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
+            public async Task<string> GetMembers(
+                int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.GetMembers(
+                           groupId,filter,sort,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+
             public async Task<string> GetMembersManagers(
                 string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
             ){
@@ -1218,6 +1341,18 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
+            public async Task<string> GetMembersManagers(
+                int groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.GetMembersManagers(
+                           groupId,sort,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+
             public async Task<string> GetMembers(
                 string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
             ){
@@ -1228,6 +1363,18 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
+            public async Task<string> GetMembers(
+                int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.GetMembers(
+                           groupId,fields,filter,sort,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+
             public async Task<string> IsMember(
                 int groupId ,  int? userId = null
             ){
@@ -1238,6 +1385,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Invite(
                 int groupId ,  int userId 
             ){
@@ -1248,6 +1396,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> IsMemberExtended(
                 int groupId ,  int? userId = null
             ){
@@ -1258,6 +1407,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> IsMember(
                 int groupId , params int[] userIds 
             ){
@@ -1268,6 +1418,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Join(
                 int groupId ,  bool notSure = false
             ){
@@ -1278,6 +1429,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Leave(
                  int groupId 
             ){
@@ -1288,6 +1440,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> UnbanUser(
                 int groupId ,  int userId 
             ){
@@ -1298,6 +1451,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveUser(
                 int groupId ,  int userId 
             ){
@@ -1308,6 +1462,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReorderLink(
                 int groupId , long linkId ,  long after = 0
             ){
@@ -1324,6 +1479,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Messages(RawApi parent){_parent=parent;}
 
+
             public async Task<string> AddChatUser(
                 int userId ,  int? chatId = null
             ){
@@ -1334,6 +1490,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Delete(
                 params int[] messageIds 
             ){
@@ -1344,6 +1501,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteChatPhoto(
                  int chatId 
             ){
@@ -1354,6 +1512,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteDialog(
                  int userId 
             ){
@@ -1364,6 +1523,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int offset = 0, int count = 200
             ){
@@ -1374,6 +1534,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetHistoryChat(
                 int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
             ){
@@ -1384,6 +1545,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetHistoryUser(
                 int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
             ){
@@ -1394,6 +1556,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetLastActivity(
                  int userId 
             ){
@@ -1404,6 +1567,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> MarkAsImportant(
                 bool important , params int[] messageIds 
             ){
@@ -1414,6 +1578,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> MarkAsRead(
                 int userId , int? startMessageId = null, params int[] messageIds 
             ){
@@ -1424,6 +1589,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Send(
                 int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null,  int? stickerId = null
             ){
@@ -1434,6 +1600,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveChatUser(
                 int userId ,  int chatId 
             ){
@@ -1444,6 +1611,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Restore(
                  int messageId 
             ){
@@ -1454,6 +1622,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> SetActivity(
                 int userId ,  ImActivity type = ImActivity.Typing
             ){
@@ -1470,6 +1639,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Newsfeed(RawApi parent){_parent=parent;}
 
+
             public async Task<string> AddBan(
                 int[] userIds = null, params int[] groupIds 
             ){
@@ -1480,6 +1650,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteBan(
                 int[] userIds = null, params int[] groupIds 
             ){
@@ -1490,6 +1661,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteList(
                  int listId 
             ){
@@ -1500,6 +1672,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetBanned(
                 
             ){
@@ -1510,6 +1683,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetBannedExtended(
                 UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom
             ){
@@ -1526,6 +1700,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Notes(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Delete(
                  int noteId 
             ){
@@ -1536,6 +1711,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -1546,6 +1722,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RestoreComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -1561,6 +1738,7 @@ namespace kasthack.vksharp {
         public partial class MethodGroup_Notifications {
             private readonly RawApi _parent;
             internal MethodGroup_Notifications(RawApi parent){_parent=parent;}
+
 
             public async Task<string> MarkAsViewed(
                 
@@ -1578,6 +1756,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Pages(RawApi parent){_parent=parent;}
 
+
             public async Task<string> ClearCache(
                  string url 
             ){
@@ -1594,6 +1773,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Photos(RawApi parent){_parent=parent;}
 
+
             public async Task<string> ConfirmTag(
                 int tagId , long photoId ,  int? ownerId = null
             ){
@@ -1604,6 +1784,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Copy(
                 long photoId , int? ownerId = null,  string accessKey = ""
             ){
@@ -1614,6 +1795,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> CreateAlbum(
                 string title , string description = "", int? groupId = null, PrivacyType? privacy = null,  PrivacyType? commentPrivacy = null
             ){
@@ -1624,6 +1806,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Delete(
                 long photoId ,  int? ownerId = null
             ){
@@ -1634,6 +1817,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteAlbum(
                 long albumId ,  int? groupId = null
             ){
@@ -1644,6 +1828,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -1654,6 +1839,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Edit(
                 long photoId , int? ownerId = null,  string caption = ""
             ){
@@ -1664,6 +1850,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> EditAlbum(
                 long albumId , int? ownerId = null, string title = "", string description = "", PrivacyType? privacy = null,  PrivacyType? commentPrivacy = null
             ){
@@ -1674,6 +1861,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
             ){
@@ -1684,6 +1872,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
             ){
@@ -1694,6 +1883,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAlbums(
                 int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100, params long[] albumIds 
             ){
@@ -1704,6 +1894,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAlbumsCount(
                 int? userId = null,  int? groupId = null
             ){
@@ -1714,6 +1905,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetAll(
                 int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int offset = 0, int count = 100
             ){
@@ -1724,6 +1916,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 params ContentId[] photos 
             ){
@@ -1734,6 +1927,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetChatUploadServer(
                 int chatId , int? cropX = null, int? cropY = null,  int? cropWidth = null
             ){
@@ -1744,6 +1938,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetOwnerPhotoUploadServer(
                 
             ){
@@ -1754,6 +1949,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetTags(
                 long photoId , int? ownerId = null,  string accessKey = ""
             ){
@@ -1764,6 +1960,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetUploadServer(
                 long albumId ,  int? groupId = null
             ){
@@ -1774,6 +1971,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> MakeCover(
                 long albumId , long photoId ,  int? ownerId = null
             ){
@@ -1784,6 +1982,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Move(
                 long targetAlbumId , long photoId ,  int? ownerId = null
             ){
@@ -1794,6 +1993,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveTag(
                 int tagId , long photoId ,  int? ownerId = null
             ){
@@ -1804,6 +2004,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReorderAlbums(
                 long albumId , int? ownerId = null, long? before = null,  long? after = null
             ){
@@ -1814,6 +2015,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReorderPhotos(
                 long photoId , int? ownerId = null, long? before = null,  long? after = null
             ){
@@ -1824,6 +2026,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Report(
                 long photoId , int? ownerId = null,  ReportReason? reason = null
             ){
@@ -1834,6 +2037,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReportComment(
                 int commentId , int? ownerId = null,  ReportReason? reason = null
             ){
@@ -1844,6 +2048,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RestoreComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -1854,6 +2059,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Restore(
                 int ownerId ,  long photoId 
             ){
@@ -1864,6 +2070,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Save(
                 long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "",  string description = ""
             ){
@@ -1880,6 +2087,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Polls(RawApi parent){_parent=parent;}
 
+
             public async Task<string> AddVote(
                 long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
             ){
@@ -1890,6 +2098,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteVote(
                 long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
             ){
@@ -1905,6 +2114,7 @@ namespace kasthack.vksharp {
         public partial class MethodGroup_Stats {
             private readonly RawApi _parent;
             internal MethodGroup_Stats(RawApi parent){_parent=parent;}
+
 
             public async Task<string> TrackVisitor(
                 
@@ -1922,6 +2132,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Status(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Get(
                  int? userId = null
             ){
@@ -1932,6 +2143,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Set(
                  string text 
             ){
@@ -1948,6 +2160,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Storage(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Get(
                 int? userId = null, bool global = false, params string[] keys 
             ){
@@ -1958,6 +2171,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetKeys(
                 int? userId = null,  bool global = false, int offset = 0, int count = 100
             ){
@@ -1968,6 +2182,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Set(
                 string key , string value , int? userId = null,  bool global = false
             ){
@@ -1984,6 +2199,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Users(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Get(
                 UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params int[] userIds 
             ){
@@ -1994,6 +2210,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetFollowers(
                 int? userId = null,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
             ){
@@ -2004,6 +2221,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetFollowers(
                 int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
             ){
@@ -2014,6 +2232,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetNearby(
                 double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
             ){
@@ -2024,6 +2243,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetSubscriptions(
                  int? userId = null, int offset = 0, int count = 100
             ){
@@ -2034,6 +2254,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> IsAppUser(
                  int? userId = null
             ){
@@ -2044,6 +2265,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Report(
                 int userId , ComplaintType type ,  string comment 
             ){
@@ -2054,6 +2276,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Search(
                 string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int offset = 0, int count = 100
             ){
@@ -2070,6 +2293,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Utils(RawApi parent){_parent=parent;}
 
+
             public async Task<string> CheckLink(
                  string url 
             ){
@@ -2080,6 +2304,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetServerTime(
                 
             ){
@@ -2090,6 +2315,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ResolveScreenName(
                  string screenName 
             ){
@@ -2106,6 +2332,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Video(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Add(
                 ulong videoId ,  int ownerId 
             ){
@@ -2116,6 +2343,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Delete(
                 ulong videoId ,  int? ownerId = null
             ){
@@ -2126,6 +2354,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteAlbum(
                 long albumId ,  int? groupId = null
             ){
@@ -2136,6 +2365,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -2146,6 +2376,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> EditComment(
                 string message , int commentId ,  int? ownerId 
             ){
@@ -2156,6 +2387,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetNewTags(
                 int offset = 0, int count = 20
             ){
@@ -2166,6 +2398,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetTags(
                 long videoId ,  int? ownerId = null
             ){
@@ -2176,6 +2409,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> PutTag(
                 int userId , string taggedName , ulong videoId ,  int? ownerId = null
             ){
@@ -2186,6 +2420,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RemoveTag(
                 ulong videoId , int tagId ,  int? ownerId = null
             ){
@@ -2196,6 +2431,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Report(
                 ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
             ){
@@ -2206,6 +2442,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReportComment(
                 int commentId , int? ownerId = null,  ReportReason? reason = null
             ){
@@ -2216,6 +2453,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RestoreComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -2226,6 +2464,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Restore(
                 long videoId ,  int? ownerId = null
             ){
@@ -2242,6 +2481,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Wall(RawApi parent){_parent=parent;}
 
+
             public async Task<string> Delete(
                 int postId ,  int? ownerId = null
             ){
@@ -2252,6 +2492,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> DeleteComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -2262,6 +2503,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
             ){
@@ -2272,6 +2514,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Get(
                 string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
             ){
@@ -2282,6 +2525,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 int copyHistoryDepth = 2, params string[] posts 
             ){
@@ -2292,6 +2536,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetById(
                 int copyHistoryDepth = 2, params Tuple<int,int>[] posts 
             ){
@@ -2302,6 +2547,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetComments(
                 int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int offset = 0, int count = 100
             ){
@@ -2312,6 +2558,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetReposts(
                 int postId ,  int? ownerId = null, int offset = 0, int count = 100
             ){
@@ -2322,6 +2569,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Pin(
                 int postId ,  int? ownerId = null
             ){
@@ -2332,6 +2580,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Post(
                 string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
             ){
@@ -2342,6 +2591,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Post(
                 int postId ,  int? ownerId = null
             ){
@@ -2352,6 +2602,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReportComment(
                 int commentId , int? ownerId = null,  ReportReason? reason = null
             ){
@@ -2362,6 +2613,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> ReportPost(
                 int postId , int? ownerId = null,  ReportReason? reason = null
             ){
@@ -2372,6 +2624,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Repost(
                 string @object , string message = "",  int? groupId = null
             ){
@@ -2382,6 +2635,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Restore(
                 int postId ,  int? ownerId = null
             ){
@@ -2392,6 +2646,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> RestoreComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -2402,6 +2657,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> Unpin(
                 int postId ,  int? ownerId = null
             ){
@@ -2418,6 +2674,7 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Likes(RawApi parent){_parent=parent;}
 
+
             public async Task<string> GetList(
                 string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
             ){
@@ -2428,6 +2685,7 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+
             public async Task<string> GetListExtended(
                 string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
             ){

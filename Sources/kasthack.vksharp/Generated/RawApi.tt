@@ -40,6 +40,7 @@ var cln = "MethodGroup_"+group;
         var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
 #>
 
+
             public async Task<string> <#=methodName#>(
                 <#=GetParamsString(method)#>
             ){

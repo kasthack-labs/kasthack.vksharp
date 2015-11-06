@@ -699,6 +699,19 @@
       <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
       <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
     </Params>
+    <Hardcoded>
+      <HardcodedParam Name="fields" Value=""/>
+    </Hardcoded>
+  </Method>
+  <Method Name="groups.getMembers" Type="EntityList&lt;int&gt;" NeedToken="true" Pageable="100">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
+      <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="fields" Value=""/>
+    </Hardcoded>
   </Method>
   <Method Name="groups.getMembers" NameSuffix="Managers" Type="EntityList&lt;GroupManager&gt;" NeedToken="true" Pageable="100">
     <Params>
@@ -709,9 +722,26 @@
       <HardcodedParam Name="filter" Value="managers"/>
     </Hardcoded>
   </Method>
+  <Method Name="groups.getMembers" NameSuffix="Managers" Type="EntityList&lt;GroupManager&gt;" NeedToken="true" Pageable="100">
+    <Params>
+      <Param Name="group_id" Type="int" />
+      <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="filter" Value="managers"/>
+    </Hardcoded>
+  </Method>
   <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
     <Params>
       <Param Name="group_id" Type="string" />
+      <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
+      <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
+      <Param Name="sort" Type="MembersSortOrder?" Default="null"/>
+    </Params>
+  </Method>
+  <Method Name="groups.getMembers" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">
+    <Params>
+      <Param Name="group_id" Type="int" />
       <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
       <Param Name="filter" Type="GroupMembersFilter?" Default="null" />
       <Param Name="sort" Type="MembersSortOrder?" Default="null"/>

@@ -59,6 +59,19 @@ var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
                         ).ConfigureAwait(false)
                     <#if(parse){#>).Response<#}#>;
                 }
+
+                public <#=method.Type#> <#=methodName#>Sync(
+                    <#=GetParamsString(method)#>
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.<#=group#>.<#=methodName#>(
+                                <#=GetCallParamsString( method )#>
+                            )
+                        );
+                    task.Wait();
+                    <#if(parse) { #>return task.Result.Response;<#}#>
+
+                }
 <#
                 }
 #>

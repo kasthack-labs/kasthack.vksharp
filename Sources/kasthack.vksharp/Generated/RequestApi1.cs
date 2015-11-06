@@ -1992,6 +1992,27 @@ namespace kasthack.vksharp {
                         { "group_id", groupId},
                         { "filter", MiscTools.NullableString( (int?)filter )},
                         { "sort", MiscTools.NullableString( (int?)sort )},
+                        {"fields",""},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<int>> GetMembers(
+                int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<int>>{
+                    MethodName = "groups.getMembers",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId.ToNCString()},
+                        { "filter", MiscTools.NullableString( (int?)filter )},
+                        { "sort", MiscTools.NullableString( (int?)sort )},
+                        {"fields",""},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -2020,6 +2041,25 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<EntityList<GroupManager>> GetMembersManagers(
+                int groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<GroupManager>>{
+                    MethodName = "groups.getMembers",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId.ToNCString()},
+                        { "sort", MiscTools.NullableString( (int?)sort )},
+                        {"filter","managers"},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<EntityList<User>> GetMembers(
                 string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
             ) {
@@ -2028,6 +2068,26 @@ namespace kasthack.vksharp {
                     Parameters = new Dictionary<string, string> {
 
                         { "group_id", groupId},
+                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
+                        { "filter", MiscTools.NullableString( (int?)filter )},
+                        { "sort", MiscTools.NullableString( (int?)sort )},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<User>> GetMembers(
+                int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<User>>{
+                    MethodName = "groups.getMembers",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId.ToNCString()},
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "filter", MiscTools.NullableString( (int?)filter )},
                         { "sort", MiscTools.NullableString( (int?)sort )},
