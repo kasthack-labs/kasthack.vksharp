@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using kasthack.Tools;
 using kasthack.vksharp;
 using kasthack.vksharp.DataTypes.Entities;
 using kasthack.vksharp.DataTypes.Enums;
@@ -40,7 +39,7 @@ namespace TestApp
                     vk.AddToken(Token.FromRedirectUrl(v));
             }
             catch(Exception ex){
-                ex.Message.Dump();
+                Console.WriteLine( ex.Message );
             }
 #endif
             await Impl( vk ).ConfigureAwait(false);
@@ -63,7 +62,7 @@ namespace TestApp
                 posts.AddRange( await vk.Wall.Get( mox, count: chunk, offset: i ).ConfigureAwait( false ) );
                 await t;
             }
-            posts.Sum( a=>a.Text?.Length??0 ).Dump();
+            Console.WriteLine( posts.Sum( a => a.Text?.Length ?? 0 ) );
             Console.WriteLine(  );
             //File.WriteAllText(@"C:\Temp\mox\posts.json", JsonConvert.SerializeObject( posts, Formatting.Indented ));
 
