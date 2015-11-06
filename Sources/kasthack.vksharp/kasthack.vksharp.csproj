@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>kasthack.vksharp</RootNamespace>
     <AssemblyName>kasthack.vksharp</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -215,6 +216,7 @@
     <Compile Include="Internal\Converters\SnakeCaseContractResolver.cs" />
     <Compile Include="Internal\Converters\SnakeCaseEnumConverter.cs" />
     <Compile Include="Internal\Converters\UnixTimeConverter.cs" />
+    <Compile Include="Internal\DateTimeOffsetHelper.cs" />
     <Compile Include="Internal\MiscTools.cs" />
     <Compile Include="Internal\MorozovHandler.cs" />
     <Compile Include="Internal\ProxyPoolingHttpClientHandler.cs" />
@@ -228,8 +230,8 @@
     <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="favicon.ico" />
-    <Content Include="Generated\AllMethods.txt" />
+    <None Include="favicon.ico" />
+    <None Include="Generated\AllMethods.txt" />
     <None Include="Generated\Methods.xml">
       <SubType>Designer</SubType>
     </None>

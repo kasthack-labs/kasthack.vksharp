@@ -32,7 +32,7 @@ namespace kasthack.vksharp.Internal.Converters {
             var jsonValue = serializer.Deserialize<JValue>(reader);
             switch ( jsonValue.Type ) {
                 case JTokenType.Integer:
-                    var dto = DateTimeOffset.FromUnixTimeSeconds( jsonValue.Value<long>() );
+                    var dto = DateTimeOffsetHelper.FromUnixTimeSeconds( jsonValue.Value<long>() );
                     if ( objectType == DateTimeOffsetType || ( objectType.IsNullable() && Nullable.GetUnderlyingType( objectType ) == DateTimeOffsetType ) )
                         return dto;
                     return dto.LocalDateTime;
