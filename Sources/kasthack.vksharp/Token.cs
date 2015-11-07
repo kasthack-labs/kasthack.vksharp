@@ -65,8 +65,5 @@ namespace kasthack.vksharp {
                     );
             throw new FormatException("Can't parse VK response from URL");
         }
-        public static Token FromLoginPass( string login, string pass ) {
-            throw new NotImplementedException();
-        }
     }
 }
