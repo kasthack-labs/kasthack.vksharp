@@ -46,7 +46,12 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Account {
                 private readonly Api _parent;
                 internal MethodGroup_Account(Api parent){_parent=parent;}
-
+                ///<summary>
+                ///Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.
+                ///</summary>
+                ///<returns>
+                ///</returns>
+                ///<param name="userId">идентификатор пользователя, которого нужно добавить в черный список</param>
                 public async Task  BanUser(
                      int userId 
                 ) {
@@ -69,7 +74,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <ChangePassword> ChangePassword(
                     string restoreSid , string changePasswordHash , string oldPassword ,  string newPassword 
                 ) {
@@ -93,7 +97,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Offer>> GetActiveOffers(
                     int offset = 0, int count = 100
                 ) {
@@ -117,7 +120,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Permission> GetAppPermissions(
                      int? userId = null
                 ) {
@@ -141,7 +143,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <User[]> GetBanned(
                     int offset = 0, int count = 20
                 ) {
@@ -165,7 +166,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <AccountInfo> GetInfo(
                     
                 ) {
@@ -189,7 +189,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <SaveProfileInfo> SaveProfileInfo(
                     string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null,  string status = ""
                 ) {
@@ -213,7 +212,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <User> GetProfileInfo(
                     
                 ) {
@@ -237,7 +235,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  SetInfo(
                      int? intro = null
                 ) {
@@ -260,7 +257,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  SetNameInMenu(
                      string name 
                 ) {
@@ -283,7 +279,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  SetOffline(
                     
                 ) {
@@ -306,7 +301,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  SetOnline(
                      bool voip = true
                 ) {
@@ -329,7 +323,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  SetSilenceMode(
                     string deviceId , int time , int? chatId = null, int? userId = null,  int sound = 0
                 ) {
@@ -352,7 +345,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  UnbanUser(
                      int userId 
                 ) {
@@ -375,7 +367,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RegisterDevice(
                     string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "",  bool? sandbox = null
                 ) {
@@ -398,7 +389,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  UnregisterDevice(
                      string deviceId 
                 ) {
@@ -428,7 +418,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Apps {
                 private readonly Api _parent;
                 internal MethodGroup_Apps(Api parent){_parent=parent;}
-
                 public async Task  DeleteAppRequests(
                     
                 ) {
@@ -451,7 +440,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <long> GetScore(
                     
                 ) {
@@ -475,7 +463,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetLeaderboardExtended(
                     LeaderBoardType type ,  bool global = true
                 ) {
@@ -499,7 +486,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<int>> GetLeaderboard(
                     LeaderBoardType type ,  bool global = true
                 ) {
@@ -530,7 +516,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Audio {
                 private readonly Api _parent;
                 internal MethodGroup_Audio(Api parent){_parent=parent;}
-
                 public async Task <int> Add(
                     int ownerId , long audioId , int? groupId = null,  long? albumId = null
                 ) {
@@ -554,7 +539,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <AddAlbum> AddAlbum(
                     string title ,  int? groupId = 0
                 ) {
@@ -578,7 +562,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Delete(
                     long audioId ,  int? ownerId = null
                 ) {
@@ -601,7 +584,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteAlbum(
                     long albumId ,  int? groupId = null
                 ) {
@@ -624,7 +606,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <int> Edit(
                     int ownerId , long audioId , string artist = "", string title = "", string text = "", AudioGenre? genreId = null,  bool? noSearch = null
                 ) {
@@ -648,7 +629,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  EditAlbum(
                     long albumId , string title ,  int? groupId = null
                 ) {
@@ -671,7 +651,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  MoveToAlbum(
                     long albumId , int? groupId = null, params ulong[] audioIds 
                 ) {
@@ -694,7 +673,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<Audio>> Get(
                     int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
                 ) {
@@ -718,7 +696,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Group[]> GetBroadcastListGroups(
                      bool active = true, int offset = 0, int count = 100
                 ) {
@@ -742,7 +719,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <User[]> GetBroadcastListUsers(
                      bool active = true, int offset = 0, int count = 100
                 ) {
@@ -766,7 +742,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Audio>> GetPopular(
                     AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
                 ) {
@@ -790,7 +765,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Audio>> GetRecommendations(
                     AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
                 ) {
@@ -814,7 +788,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<AudioAlbum>> GetAlbums(
                      int? ownerId = null, int offset = 0, int count = 100
                 ) {
@@ -838,7 +811,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Audio[]> GetById(
                     bool itunes = false, params string[] audios 
                 ) {
@@ -862,7 +834,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Audio[]> GetById(
                     bool itunes = false, params Tuple<int, ulong>[] audios 
                 ) {
@@ -886,7 +857,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int> GetCount(
                      int? ownerId = null
                 ) {
@@ -910,7 +880,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Lyrics> GetLyrics(
                      long lyricsId 
                 ) {
@@ -934,7 +903,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <string> GetUploadServer(
                     long albumId ,  int? groupId = null
                 ) {
@@ -958,7 +926,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Reorder(
                     long audioId , int? ownerId = null, long? before = null,  long? after = null
                 ) {
@@ -981,7 +948,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <Audio> Restore(
                     long audioId ,  int? ownerId = null
                 ) {
@@ -1005,7 +971,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Audio[]> Save(
                     string server , string audio , string hash , string artist = "",  string title = ""
                 ) {
@@ -1029,7 +994,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Audio>> Search(
                     string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int offset = 0, int count = 100
                 ) {
@@ -1053,7 +1017,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  SetBroadcast(
                     Tuple<int, ulong> audio , params int[] targetIds 
                 ) {
@@ -1083,7 +1046,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Auth {
                 private readonly Api _parent;
                 internal MethodGroup_Auth(Api parent){_parent=parent;}
-
                 public async Task <bool> CheckPhone(
                     string phone , string clientSecret ,  int? clientId = null
                 ) {
@@ -1107,7 +1069,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <ConfirmResult> Confirm(
                     int clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false,  int? intro = null
                 ) {
@@ -1131,7 +1092,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <AuthRestore> Restore(
                      long phone 
                 ) {
@@ -1162,7 +1122,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Board {
                 private readonly Api _parent;
                 internal MethodGroup_Board(Api parent){_parent=parent;}
-
                 public async Task  CloseTopic(
                     int groupId ,  int topicId 
                 ) {
@@ -1185,7 +1144,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteComment(
                     int groupId , int topicId ,  int commentId 
                 ) {
@@ -1208,7 +1166,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteTopic(
                     int groupId ,  int topicId 
                 ) {
@@ -1231,7 +1188,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  FixTopic(
                     int groupId ,  int topicId 
                 ) {
@@ -1254,7 +1210,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RestoreComment(
                     int groupId , int topicId ,  int commentId 
                 ) {
@@ -1277,7 +1232,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  UnfixTopic(
                     int groupId ,  int topicId 
                 ) {
@@ -1307,7 +1261,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Database {
                 private readonly Api _parent;
                 internal MethodGroup_Database(Api parent){_parent=parent;}
-
                 public async Task <EntityList<DatabaseEntry>> GetChairs(
                      int facultyId , int offset = 0, int count = 100
                 ) {
@@ -1331,7 +1284,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseCity[]> GetCities(
                     int countryId , int? regionId = null, string q = "",  bool needAll = false, int offset = 0, int count = 100
                 ) {
@@ -1355,7 +1307,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseCity[]> GetCitiesById(
                     params int[] cityIds 
                 ) {
@@ -1379,7 +1330,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<DatabaseEntry>> GetCountries(
                     string code = "",  bool needAll = false, int offset = 0, int count = 100
                 ) {
@@ -1403,7 +1353,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseEntry[]> GetCountriesById(
                     params int[] countryIds 
                 ) {
@@ -1427,7 +1376,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<DatabaseEntry>> GetFaculties(
                      int universityId , int offset = 0, int count = 100
                 ) {
@@ -1451,7 +1399,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<DatabaseEntry>> GetRegions(
                     int countryId ,  string q = "", int offset = 0, int count = 100
                 ) {
@@ -1475,7 +1422,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseEntry[]> GetSchools(
                     int? cityId = null,  string q = "", int offset = 0, int count = 100
                 ) {
@@ -1499,7 +1445,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseClass[]> GetSchoolClasses(
                      int countryId 
                 ) {
@@ -1523,7 +1468,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseEntry[]> GetStreetsById(
                     params int[] streetIds 
                 ) {
@@ -1547,7 +1491,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <DatabaseEntry[]> GetUniversities(
                     int? countryId = null, int? cityId = null,  string q = "", int offset = 0, int count = 100
                 ) {
@@ -1578,7 +1521,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Docs {
                 private readonly Api _parent;
                 internal MethodGroup_Docs(Api parent){_parent=parent;}
-
                 public async Task <int> Add(
                     long docId , int ownerId ,  string accessKey = ""
                 ) {
@@ -1602,7 +1544,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Delete(
                     long docId ,  int? ownerId = null
                 ) {
@@ -1625,7 +1566,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<Document>> Get(
                      int? ownerId = null, int offset = 0, int count = 100
                 ) {
@@ -1649,7 +1589,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Document[]> GetById(
                     params Tuple<int,int>[] docs 
                 ) {
@@ -1673,7 +1612,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <string> GetUploadServer(
                      int? groupId = null
                 ) {
@@ -1697,7 +1635,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <string> GetWallUploadServer(
                      int? groupId = null
                 ) {
@@ -1721,7 +1658,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Document[]> Save(
                     string file , string title , params string[] tags 
                 ) {
@@ -1752,7 +1688,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Fave {
                 private readonly Api _parent;
                 internal MethodGroup_Fave(Api parent){_parent=parent;}
-
                 public async Task <EntityList<Link>> GetLinks(
                     int offset = 0, int count = 100
                 ) {
@@ -1776,7 +1711,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetUsers(
                     int offset = 0, int count = 100
                 ) {
@@ -1800,7 +1734,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Photo>> GetPhotos(
                     int offset = 0, int count = 100
                 ) {
@@ -1824,7 +1757,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Post>> GetPosts(
                     int offset = 0, int count = 100
                 ) {
@@ -1848,7 +1780,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Video>> GetVideos(
                     int offset = 0, int count = 100
                 ) {
@@ -1872,7 +1803,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  RemoveUser(
                      int userId 
                 ) {
@@ -1895,7 +1825,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RemoveLink(
                      int linkId 
                 ) {
@@ -1918,7 +1847,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RemoveGroup(
                      int groupId 
                 ) {
@@ -1941,7 +1869,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  AddGroup(
                      int groupId 
                 ) {
@@ -1964,7 +1891,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  AddUser(
                      int userId 
                 ) {
@@ -1987,7 +1913,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  AddLink(
                     string link ,  string text = ""
                 ) {
@@ -2017,7 +1942,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Friends {
                 private readonly Api _parent;
                 internal MethodGroup_Friends(Api parent){_parent=parent;}
-
                 public async Task <AddFriendResult> Add(
                     int userId ,  string text = ""
                 ) {
@@ -2041,7 +1965,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <AddFriendsList> AddList(
                     string name , params int[] userIds 
                 ) {
@@ -2065,7 +1988,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <FriendshipStatus[]> AreFriends(
                     bool needSign = false, params int[] userIds 
                 ) {
@@ -2089,7 +2011,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <FriendsDelete> Delete(
                      int userId 
                 ) {
@@ -2113,7 +2034,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  DeleteAllRequests(
                     
                 ) {
@@ -2136,7 +2056,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteList(
                      int listId 
                 ) {
@@ -2159,7 +2078,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Edit(
                     int userId , params long[] listIds 
                 ) {
@@ -2182,7 +2100,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  EditList(
                     long listId , string name = "", int[] userIds = null, int[] addUserIds = null, params int[] deleteUserIds 
                 ) {
@@ -2205,7 +2122,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<FriendsList>> GetLists(
                     int? userId = null,  bool returnSystem = true
                 ) {
@@ -2229,7 +2145,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> Get(
                     int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
                 ) {
@@ -2253,7 +2168,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<int>> GetAvailableForCall(
                     
                 ) {
@@ -2277,7 +2191,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetAvailableForCall(
                     UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom
                 ) {
@@ -2301,7 +2214,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<int>> Get(
                     int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
                 ) {
@@ -2325,7 +2237,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int[]> GetAppUsers(
                     
                 ) {
@@ -2349,7 +2260,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <User[]> GetByPhones(
                     UserFields fields = UserFields.None, params ulong[] phones 
                 ) {
@@ -2373,7 +2283,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int[]> GetMutual(
                     int targetUid , int? sourceUid = null,  bool order = false, int offset = 0, int count = 100
                 ) {
@@ -2397,7 +2306,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int[]> GetOnline(
                     int? userId = null, int? listId = null,  UserSortOrder? order = null, int offset = 0, int count = 100
                 ) {
@@ -2421,7 +2329,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int[]> GetRecent(
                      int count = 20
                 ) {
@@ -2445,7 +2352,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetSuggestions(
                     FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
                 ) {
@@ -2469,7 +2375,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> Search(
                     int userId , string q = "",  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 20
                 ) {
@@ -2500,7 +2405,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Groups {
                 private readonly Api _parent;
                 internal MethodGroup_Groups(Api parent){_parent=parent;}
-
                 public async Task <Link> AddLink(
                     int groupId , string link ,  string text = ""
                 ) {
@@ -2524,7 +2428,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  ApproveRequest(
                     int groupId ,  int userId 
                 ) {
@@ -2547,7 +2450,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <Group> Create(
                     string title , PageType type = PageType.Group, PageSubtype? subtype = null,  string description = ""
                 ) {
@@ -2571,7 +2473,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  DeleteLink(
                     int groupId ,  int linkId 
                 ) {
@@ -2594,7 +2495,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Edit(
                     int groupId , string title = "", string description = "", string screenName = "", string website = "", string email = "", string phone = "", string rss = "", DateTimeOffset? eventStartDate = null, DateTimeOffset? eventFinishDate = null, DateTimeOffset? eventGroupId = null, int? subject = null, int? publicCategory = null, int? publicSubcategory = null, GroupAccess? access = null, AccessType? wall = null, AccessType? topics = null, AccessType? photos = null, AccessType? video = null, AccessType? audio = null, Date? publicDate = null, bool? links = null, bool? events = null, bool? places = null,  bool? contacts = null
                 ) {
@@ -2617,7 +2517,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  EditLink(
                     int groupId , int linkId ,  string text = ""
                 ) {
@@ -2640,7 +2539,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <User[]> GetBanned(
                      int groupId , int offset = 0, int count = 100
                 ) {
@@ -2664,7 +2562,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Group[]> GetById(
                     string[] groupIds ,  GroupFields fields 
                 ) {
@@ -2688,7 +2585,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Group[]> GetById(
                     int groupId ,  GroupFields fields 
                 ) {
@@ -2712,7 +2608,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<int>> GetMembers(
                     string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
                 ) {
@@ -2736,7 +2631,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<int>> GetMembers(
                     int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
                 ) {
@@ -2760,7 +2654,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<GroupManager>> GetMembersManagers(
                     string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
                 ) {
@@ -2784,7 +2677,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<GroupManager>> GetMembersManagers(
                     int groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
                 ) {
@@ -2808,7 +2700,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetMembers(
                     string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
                 ) {
@@ -2832,7 +2723,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetMembers(
                     int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
                 ) {
@@ -2856,7 +2746,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <bool> IsMember(
                     int groupId ,  int? userId = null
                 ) {
@@ -2880,7 +2769,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Invite(
                     int groupId ,  int userId 
                 ) {
@@ -2903,7 +2791,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <MemberShip> IsMemberExtended(
                     int groupId ,  int? userId = null
                 ) {
@@ -2927,7 +2814,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <MemberShip[]> IsMember(
                     int groupId , params int[] userIds 
                 ) {
@@ -2951,7 +2837,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Join(
                     int groupId ,  bool notSure = false
                 ) {
@@ -2974,7 +2859,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Leave(
                      int groupId 
                 ) {
@@ -2997,7 +2881,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  UnbanUser(
                     int groupId ,  int userId 
                 ) {
@@ -3020,7 +2903,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RemoveUser(
                     int groupId ,  int userId 
                 ) {
@@ -3043,7 +2925,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  ReorderLink(
                     int groupId , long linkId ,  long after = 0
                 ) {
@@ -3073,7 +2954,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Messages {
                 private readonly Api _parent;
                 internal MethodGroup_Messages(Api parent){_parent=parent;}
-
                 public async Task  AddChatUser(
                     int userId ,  int? chatId = null
                 ) {
@@ -3096,7 +2976,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Delete(
                     params int[] messageIds 
                 ) {
@@ -3119,7 +2998,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteChatPhoto(
                      int chatId 
                 ) {
@@ -3142,7 +3020,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteDialog(
                      int userId 
                 ) {
@@ -3165,7 +3042,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<Message>> Get(
                     int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int offset = 0, int count = 200
                 ) {
@@ -3189,7 +3065,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Message>> GetHistoryChat(
                     int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
                 ) {
@@ -3213,7 +3088,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Message>> GetHistoryUser(
                     int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
                 ) {
@@ -3237,7 +3111,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <LastActivity> GetLastActivity(
                      int userId 
                 ) {
@@ -3261,7 +3134,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  MarkAsImportant(
                     bool important , params int[] messageIds 
                 ) {
@@ -3284,7 +3156,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  MarkAsRead(
                     int userId , int? startMessageId = null, params int[] messageIds 
                 ) {
@@ -3307,7 +3178,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <int> Send(
                     int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null,  int? stickerId = null
                 ) {
@@ -3331,7 +3201,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  RemoveChatUser(
                     int userId ,  int chatId 
                 ) {
@@ -3354,7 +3223,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Restore(
                      int messageId 
                 ) {
@@ -3377,7 +3245,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  SetActivity(
                     int userId ,  ImActivity type = ImActivity.Typing
                 ) {
@@ -3407,7 +3274,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Newsfeed {
                 private readonly Api _parent;
                 internal MethodGroup_Newsfeed(Api parent){_parent=parent;}
-
                 public async Task  AddBan(
                     int[] userIds = null, params int[] groupIds 
                 ) {
@@ -3430,7 +3296,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteBan(
                     int[] userIds = null, params int[] groupIds 
                 ) {
@@ -3453,7 +3318,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteList(
                      int listId 
                 ) {
@@ -3476,7 +3340,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <NewsfeedBanned> GetBanned(
                     
                 ) {
@@ -3500,7 +3363,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <NewsfeedBannedExtended> GetBannedExtended(
                     UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom
                 ) {
@@ -3531,7 +3393,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Notes {
                 private readonly Api _parent;
                 internal MethodGroup_Notes(Api parent){_parent=parent;}
-
                 public async Task  Delete(
                      int noteId 
                 ) {
@@ -3554,7 +3415,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -3577,7 +3437,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RestoreComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -3607,7 +3466,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Notifications {
                 private readonly Api _parent;
                 internal MethodGroup_Notifications(Api parent){_parent=parent;}
-
                 public async Task  MarkAsViewed(
                     
                 ) {
@@ -3637,7 +3495,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Pages {
                 private readonly Api _parent;
                 internal MethodGroup_Pages(Api parent){_parent=parent;}
-
                 public async Task  ClearCache(
                      string url 
                 ) {
@@ -3667,7 +3524,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Photos {
                 private readonly Api _parent;
                 internal MethodGroup_Photos(Api parent){_parent=parent;}
-
                 public async Task  ConfirmTag(
                     int tagId , long photoId ,  int? ownerId = null
                 ) {
@@ -3690,7 +3546,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <long> Copy(
                     long photoId , int? ownerId = null,  string accessKey = ""
                 ) {
@@ -3714,7 +3569,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <PhotoAlbum> CreateAlbum(
                     string title , string description = "", int? groupId = null, PrivacyType? privacy = null,  PrivacyType? commentPrivacy = null
                 ) {
@@ -3738,7 +3592,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Delete(
                     long photoId ,  int? ownerId = null
                 ) {
@@ -3761,7 +3614,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteAlbum(
                     long albumId ,  int? groupId = null
                 ) {
@@ -3784,7 +3636,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -3807,7 +3658,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Edit(
                     long photoId , int? ownerId = null,  string caption = ""
                 ) {
@@ -3830,7 +3680,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  EditAlbum(
                     long albumId , int? ownerId = null, string title = "", string description = "", PrivacyType? privacy = null,  PrivacyType? commentPrivacy = null
                 ) {
@@ -3853,7 +3702,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<Photo>> Get(
                     long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
                 ) {
@@ -3877,7 +3725,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Photo>> Get(
                     SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
                 ) {
@@ -3901,7 +3748,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<PhotoAlbum>> GetAlbums(
                     int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100, params long[] albumIds 
                 ) {
@@ -3925,7 +3771,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int> GetAlbumsCount(
                     int? userId = null,  int? groupId = null
                 ) {
@@ -3949,7 +3794,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Photo>> GetAll(
                     int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int offset = 0, int count = 100
                 ) {
@@ -3973,7 +3817,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Photo[]> GetById(
                     params ContentId[] photos 
                 ) {
@@ -3997,7 +3840,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <PhotosUploadServer> GetChatUploadServer(
                     int chatId , int? cropX = null, int? cropY = null,  int? cropWidth = null
                 ) {
@@ -4021,7 +3863,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <string> GetOwnerPhotoUploadServer(
                     
                 ) {
@@ -4045,7 +3886,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <PhotoTag[]> GetTags(
                     long photoId , int? ownerId = null,  string accessKey = ""
                 ) {
@@ -4069,7 +3909,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <PhotosUploadServer> GetUploadServer(
                     long albumId ,  int? groupId = null
                 ) {
@@ -4093,7 +3932,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  MakeCover(
                     long albumId , long photoId ,  int? ownerId = null
                 ) {
@@ -4116,7 +3954,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Move(
                     long targetAlbumId , long photoId ,  int? ownerId = null
                 ) {
@@ -4139,7 +3976,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RemoveTag(
                     int tagId , long photoId ,  int? ownerId = null
                 ) {
@@ -4162,7 +3998,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  ReorderAlbums(
                     long albumId , int? ownerId = null, long? before = null,  long? after = null
                 ) {
@@ -4185,7 +4020,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  ReorderPhotos(
                     long photoId , int? ownerId = null, long? before = null,  long? after = null
                 ) {
@@ -4208,7 +4042,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Report(
                     long photoId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -4231,7 +4064,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  ReportComment(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -4254,7 +4086,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RestoreComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -4277,7 +4108,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Restore(
                     int ownerId ,  long photoId 
                 ) {
@@ -4300,7 +4130,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <Photo[]> Save(
                     long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "",  string description = ""
                 ) {
@@ -4331,7 +4160,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Polls {
                 private readonly Api _parent;
                 internal MethodGroup_Polls(Api parent){_parent=parent;}
-
                 public async Task <bool> AddVote(
                     long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
                 ) {
@@ -4355,7 +4183,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <bool> DeleteVote(
                     long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
                 ) {
@@ -4386,7 +4213,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Stats {
                 private readonly Api _parent;
                 internal MethodGroup_Stats(Api parent){_parent=parent;}
-
                 public async Task  TrackVisitor(
                     
                 ) {
@@ -4416,7 +4242,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Status {
                 private readonly Api _parent;
                 internal MethodGroup_Status(Api parent){_parent=parent;}
-
                 public async Task <Status[]> Get(
                      int? userId = null
                 ) {
@@ -4440,7 +4265,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Set(
                      string text 
                 ) {
@@ -4470,7 +4294,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Storage {
                 private readonly Api _parent;
                 internal MethodGroup_Storage(Api parent){_parent=parent;}
-
                 public async Task <StorageEntry[]> Get(
                     int? userId = null, bool global = false, params string[] keys 
                 ) {
@@ -4494,7 +4317,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <string[]> GetKeys(
                     int? userId = null,  bool global = false, int offset = 0, int count = 100
                 ) {
@@ -4518,7 +4340,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <StorageEntry[]> Set(
                     string key , string value , int? userId = null,  bool global = false
                 ) {
@@ -4549,7 +4370,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Users {
                 private readonly Api _parent;
                 internal MethodGroup_Users(Api parent){_parent=parent;}
-
                 public async Task <User[]> Get(
                     UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params int[] userIds 
                 ) {
@@ -4573,7 +4393,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<int>> GetFollowers(
                     int? userId = null,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
                 ) {
@@ -4597,7 +4416,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetFollowers(
                     int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
                 ) {
@@ -4621,7 +4439,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetNearby(
                     double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
                 ) {
@@ -4645,7 +4462,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <UserSubscriptions> GetSubscriptions(
                      int? userId = null, int offset = 0, int count = 100
                 ) {
@@ -4669,7 +4485,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <bool> IsAppUser(
                      int? userId = null
                 ) {
@@ -4693,7 +4508,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Report(
                     int userId , ComplaintType type ,  string comment 
                 ) {
@@ -4716,7 +4530,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<User>> Search(
                     string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int offset = 0, int count = 100
                 ) {
@@ -4747,7 +4560,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Utils {
                 private readonly Api _parent;
                 internal MethodGroup_Utils(Api parent){_parent=parent;}
-
                 public async Task <LinkCheckResult> CheckLink(
                      string url 
                 ) {
@@ -4771,7 +4583,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <int> GetServerTime(
                     
                 ) {
@@ -4795,7 +4606,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <ResolveResult> ResolveScreenName(
                      string screenName 
                 ) {
@@ -4826,7 +4636,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Video {
                 private readonly Api _parent;
                 internal MethodGroup_Video(Api parent){_parent=parent;}
-
                 public async Task  Add(
                     ulong videoId ,  int ownerId 
                 ) {
@@ -4849,7 +4658,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Delete(
                     ulong videoId ,  int? ownerId = null
                 ) {
@@ -4872,7 +4680,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteAlbum(
                     long albumId ,  int? groupId = null
                 ) {
@@ -4895,7 +4702,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -4918,7 +4724,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  EditComment(
                     string message , int commentId ,  int? ownerId 
                 ) {
@@ -4941,7 +4746,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<TaggedVideo>> GetNewTags(
                     int offset = 0, int count = 20
                 ) {
@@ -4965,7 +4769,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Tag[]> GetTags(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -4989,7 +4792,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  PutTag(
                     int userId , string taggedName , ulong videoId ,  int? ownerId = null
                 ) {
@@ -5012,7 +4814,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RemoveTag(
                     ulong videoId , int tagId ,  int? ownerId = null
                 ) {
@@ -5035,7 +4836,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Report(
                     ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
                 ) {
@@ -5058,7 +4858,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  ReportComment(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5081,7 +4880,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RestoreComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5104,7 +4902,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Restore(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -5134,7 +4931,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Wall {
                 private readonly Api _parent;
                 internal MethodGroup_Wall(Api parent){_parent=parent;}
-
                 public async Task  Delete(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5157,7 +4953,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  DeleteComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5180,7 +4975,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <EntityList<Post>> Get(
                     int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
                 ) {
@@ -5204,7 +4998,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<Post>> Get(
                     string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
                 ) {
@@ -5228,7 +5021,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Post[]> GetById(
                     int copyHistoryDepth = 2, params string[] posts 
                 ) {
@@ -5252,7 +5044,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <Post[]> GetById(
                     int copyHistoryDepth = 2, params Tuple<int,int>[] posts 
                 ) {
@@ -5276,7 +5067,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityListExtended<Comment>> GetComments(
                     int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int offset = 0, int count = 100
                 ) {
@@ -5300,7 +5090,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityListExtended<Post>> GetReposts(
                     int postId ,  int? ownerId = null, int offset = 0, int count = 100
                 ) {
@@ -5324,7 +5113,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Pin(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5347,7 +5135,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <WallPost> Post(
                     string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
                 ) {
@@ -5371,7 +5158,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <WallPost> Post(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5395,7 +5181,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  ReportComment(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5418,7 +5203,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  ReportPost(
                     int postId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5441,7 +5225,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task <RepostInfo> Repost(
                     string @object , string message = "",  int? groupId = null
                 ) {
@@ -5465,7 +5248,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task  Restore(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5488,7 +5270,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  RestoreComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5511,7 +5292,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
-
                 public async Task  Unpin(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5541,7 +5321,6 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Likes {
                 private readonly Api _parent;
                 internal MethodGroup_Likes(Api parent){_parent=parent;}
-
                 public async Task <EntityList<int>> GetList(
                     string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
                 ) {
@@ -5565,7 +5344,6 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-
                 public async Task <EntityList<User>> GetListExtended(
                     string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
                 ) {

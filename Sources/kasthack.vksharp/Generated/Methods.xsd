@@ -6,13 +6,22 @@
         <xsd:element maxOccurs="unbounded" name="Method">
           <xsd:complexType>
             <xsd:sequence>
+              <xsd:element minOccurs="0" name="Doc">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="Summary" type="xsd:string" />
+                    <xsd:element name="Returns" />
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
               <xsd:element name="Params">
-                <xsd:complexType mixed="true">
+                <xsd:complexType>
                   <xsd:sequence minOccurs="0">
                     <xsd:element maxOccurs="unbounded" name="Param">
                       <xsd:complexType>
                         <xsd:attribute name="Name" type="xsd:string" use="required" />
                         <xsd:attribute name="Type" type="xsd:string" use="required" />
+                        <xsd:attribute name="Doc" type="xsd:string" use="optional" />
                         <xsd:attribute name="Default" type="xsd:string" use="optional" />
                         <xsd:attribute name="Custom" type="xsd:string" use="optional" />
                       </xsd:complexType>

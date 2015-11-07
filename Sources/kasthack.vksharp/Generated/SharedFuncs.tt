@@ -23,6 +23,7 @@ public class HardcodedParameter{
 }
 [Serializable]
 public class Method {
+    public Doc Doc {get;set;}
     [XmlAttribute]
     public string Name {get;set;}
     [XmlAttributeAttribute]
@@ -48,8 +49,15 @@ public class Param {
     public bool DefaultSpecified { get { return Default != null; } }
     [XmlAttribute]
     public string Custom {get;set;}
+    [XmlAttribute]
+    public string Doc {get;set;}
     [XmlIgnore]
     public bool CustomSpecified { get { return Custom != null; } }
+}
+[Serializable]
+public class Doc{
+    public string Summary {get;set;}
+    public string Returns {get;set;}
 }
 
 private static readonly XmlSerializer Serializer = new XmlSerializer(typeof(Method[]));

@@ -47,6 +47,12 @@ namespace kasthack.vksharp {
             private readonly RequestApi _parent;
             internal MethodGroup_account(RequestApi parent){_parent=parent;}
 
+            ///<summary>
+            ///Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.
+            ///</summary>
+            ///<returns>
+            ///</returns>
+            ///<param name="userId">идентификатор пользователя, которого нужно добавить в черный список</param>
             public Request<bool> BanUser(
                  int userId 
             ) {

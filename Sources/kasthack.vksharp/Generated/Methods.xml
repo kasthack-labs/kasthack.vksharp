@@ -1,8 +1,12 @@
 <?xml version="1.0"?>
 <ArrayOfMethod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Method Name="account.banUser" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.</Summary>
+      <Returns></Returns>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя, которого нужно добавить в черный список"/>
     </Params>
   </Method>
   <Method Name="account.changePassword" Type="ChangePassword" NeedToken="true">
