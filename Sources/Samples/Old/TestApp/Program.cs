@@ -29,8 +29,10 @@ namespace TestApp
             var vk = new Api();
 #if DEBUG
             var str = Token.GetOAuthURL( 3174839, Permission.Everything );
-            str.Dump();
-            var redirecturl = ConTools.ReadLine( "Enter redirect url or Ctrl-C" );
+            Console.WriteLine( str );
+            Console.WriteLine("Enter redirect url or Ctrl-C");
+            var redirecturl = Console.ReadLine();
+
             vk.AddToken( Token.FromRedirectUrl( redirecturl ) );
 #else
             try{
