@@ -11,7 +11,7 @@
 
 Обработка запроса происходит примерно так:
 
-1. Дёргается метод VKApi/RawApi
+1. Дёргается метод Api/RawApi
 2. Api/RawApi вызывает аналогичный метод у RequestApi, получая сформированный запрос(vkrequest<T>).
 3. Запрос передаётся Executor'у в ExecAsync/ExecRawAsync
 4. Executor(на данный момент это [JsonExecutor](Sources/kasthack.vksharp/Implementation/JsonExecutor)) строит HTTP-запрос по VKRequest'у и выполняет его.
@@ -75,7 +75,7 @@
 
 * [RequestApi.tt](Sources/kasthack.vksharp/Generated/RequestApi.tt) - реквесты
 * [RawApi.tt](Sources/kasthack.vksharp/Generated/RawApi.tt) - сырое апи
-* [VkApi.tt](Sources/kasthack.vksharp/Generated/Api.tt) - апи с объектами
+* [Api.tt](Sources/kasthack.vksharp/Generated/Api.tt) - апи с объектами
 * [ImplementedMethods.tt](Sources/kasthack.vksharp/Generated/ImplementedMethods.tt) - список готовых методов
 
 Студия запускает генератор при сохранении шаблона.
