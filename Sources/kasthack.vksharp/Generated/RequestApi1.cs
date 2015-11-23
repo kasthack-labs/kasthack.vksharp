@@ -2004,6 +2004,7 @@ namespace kasthack.vksharp {
 
                     }
                 };
+                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }
@@ -2024,6 +2025,7 @@ namespace kasthack.vksharp {
 
                     }
                 };
+                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }
