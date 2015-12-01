@@ -14,7 +14,7 @@
 1. Дёргается метод Api/RawApi
 2. Api/RawApi вызывает аналогичный метод у RequestApi, получая сформированный запрос(vkrequest<T>).
 3. Запрос передаётся Executor'у в ExecAsync/ExecRawAsync
-4. Executor(на данный момент это [JsonExecutor](Sources/kasthack.vksharp/Implementation/JsonExecutor)) строит HTTP-запрос по VKRequest'у и выполняет его.
+4. Executor(на данный момент это [JsonExecutor](Sources/kasthack.vksharp/Shared/Implementation/JsonExecutor)) строит HTTP-запрос по VKRequest'у и выполняет его.
 5. Если был вызван ExecRawAsync, Executor возвращает полученные данные в виде строке без обработки.
 6. Executor десериализует полученные данные.
 7. Если свойство Error отлично от null, бросается исключение.
@@ -24,7 +24,7 @@
 
 ### Методы
 
-Все методы API описаны в [Sources/kasthack.vksharp/Generated/Methods.xml](Sources/VKSharp/Api/Generated/VKSharpFuncs.xml). Формат описан в [соответствующем XSD](Sources/kasthack.vksharp/Generated/Methods.xsd). Автокомплит в студии иногда отваливается, но проблема на их стороне.
+Все методы API описаны в [Sources/kasthack.vksharp/Generated/Methods.xml](Sources/kasthack.vksharp/Shared/Api/Generated/VKSharpFuncs.xml). Формат описан в [соответствующем XSD](Sources/kasthack.vksharp/Shared/Generated/Methods.xsd). Автокомплит в студии иногда отваливается, но проблема на их стороне.
 
 Пример описания метода:
 
@@ -73,10 +73,10 @@
 
 Исходный код и список готовых методов генерируется из него T4-шаблонами из той же папки:
 
-* [RequestApi.tt](Sources/kasthack.vksharp/Generated/RequestApi.tt) - реквесты
-* [RawApi.tt](Sources/kasthack.vksharp/Generated/RawApi.tt) - сырое апи
-* [Api.tt](Sources/kasthack.vksharp/Generated/Api.tt) - апи с объектами
-* [ImplementedMethods.tt](Sources/kasthack.vksharp/Generated/ImplementedMethods.tt) - список готовых методов
+* [RequestApi.tt](Sources/kasthack.vksharp/Shared/Generated/RequestApi.tt) - реквесты
+* [RawApi.tt](Sources/kasthack.vksharp/Shared/Generated/RawApi.tt) - сырое апи
+* [Api.tt](Sources/kasthack.vksharp/Shared/Generated/Api.tt) - апи с объектами
+* [ImplementedMethods.tt](Sources/kasthack.vksharp/Shared/Generated/ImplementedMethods.tt) - список готовых методов
 
 Студия запускает генератор при сохранении шаблона.
 
