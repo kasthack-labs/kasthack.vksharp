@@ -7,7 +7,7 @@ install:
 nuget:
   project_feed: true
 before_build:
-- cmd: nuget restore Sources/kasthack.vksharp.sln
+- cmd: nuget restore -DisableParallelProcessing Sources/kasthack.vksharp.sln
 build:
   parallel: true
   verbosity: normal
