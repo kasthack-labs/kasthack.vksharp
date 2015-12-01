@@ -64,9 +64,9 @@
     <Content Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\kasthack.vksharp\kasthack.vksharp.csproj">
-      <Project>{068610CF-40E5-4F50-820C-AFF9C8C51F49}</Project>
-      <Name>kasthack.vksharp</Name>
+    <ProjectReference Include="..\..\..\kasthack.vksharp\4.5\kasthack.vksharp.4.5.csproj">
+      <Project>{16ee2be3-0f1e-473b-96e8-20c7e44fa61e}</Project>
+      <Name>kasthack.vksharp.4.5</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{160B1F70-0AA7-4F21-AD66-6103369FAFDD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>kasthack.vksharp</RootNamespace>
+    <AssemblyName>kasthack.vksharp</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET_46;NET_46_GT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <DocumentationFile>bin\Debug\kasthack.vksharp.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\nuget\build\lib\net46\</OutputPath>
+    <DefineConstants>NET_46;NET_46_GT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <DocumentationFile>..\..\..\nuget\build\lib\net46\kasthack.vksharp.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>..\Shared\favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Shared\DataTypes\Date.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Attachment.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Audio.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\AudioAlbum.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\BanInfo.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Chat.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\City.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Comment.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Counter.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\DatabaseEntry.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Document.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\EntityList.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\FriendsList.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Geo.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Graffity.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Group.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Link.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\LinkCheckResult.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Lyrics.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\MemberShip.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Message.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Note.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Offer.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Onlines.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Page.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Photo.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\PhotoAlbum.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\PhotoLikes.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Place.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Poll.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Post.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\PostedPhoto.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\PostLikes.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\PostReposts.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\PostSource.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Privacy.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\ResolveResult.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\School.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Status.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\StorageEntry.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Tag.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\University.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\User.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\UserSubscriptions.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\Video.cs" />
+    <Compile Include="..\Shared\DataTypes\Entities\VideoAlbum.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\Career.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\CommentLikes.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\CropPhoto.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\DatabaseClass.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\Exports.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\GeoEntry.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\GroupCounters.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\LastSeen.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\Military.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\Occupation.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\PhotoSize.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\PostComments.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\ProfileCounters.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\ProfilePhotos.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\Rect.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\Relative.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\SiteProfiles.cs" />
+    <Compile Include="..\Shared\DataTypes\EntityFragments\StandInLife.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\AccessType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\AddFriendResult.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\ContentType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\Attitude.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\AudioGenre.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\AudioSortOrder.cs" />
+    <Compile Include="..\Shared\DataTypes\ObjectContentId.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\ComplaintType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\CounterFields.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\Deleted.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\FeedType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\FriendshipStatusEnum.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\FriendshipType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\FriendSuggestionFilters.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\GroupAccess.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\GroupAdminLevel.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\GroupFields.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\GroupMembersFilter.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\GroupRole.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\ImActivity.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\LeaderBoardType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\LifeMain.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\LinkCheckStatus.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\MembersSortOrder.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\MessageReadState.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\MessageType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\NameCase.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\NameRequestStatus.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\OccupationType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PageSubtype.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PageType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PeopleMain.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PhotoSizeType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PoliticalPreferences.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PostSourceInfo.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PostSourceType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PostType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\PrivacyType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\Relation.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\RelativeType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\ReportReason.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\ResolvedItemType.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\SearchSortOrder.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\Sex.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\SpecialAlbum.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\UserFields.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\UserSortOrder.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\Platform.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\WallPostFilter.cs" />
+    <Compile Include="..\Shared\DataTypes\Interfaces\OwnedEntity.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\AccountInfo.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\AddAlbum.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\AddFriendsList.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\AuthRestore.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\ChangePassword.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\ConfirmResult.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\FriendsDelete.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\FriendshipStatus.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\GroupManager.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\LastActivity.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\NameRequest.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\NewsfeedBan.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\NewsfeedBannedExtended.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\PhotosUploadServer.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\RepostInfo.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\SaveProfileInfo.cs" />
+    <Compile Include="..\Shared\DataTypes\ResponseEntities\WallPost.cs" />
+    <Compile Include="..\Shared\Generated\RawApi.cs">
+      <DependentUpon>RawApi.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\Shared\Generated\RequestApi1.cs">
+      <DependentUpon>RequestApi.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\Shared\Generated\SharedFuncs.cs">
+      <DependentUpon>SharedFuncs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\Shared\Generated\Api.cs">
+      <DependentUpon>Api.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="..\Shared\Implementation\IExecutor.cs" />
+    <Compile Include="..\Shared\Implementation\JsonExecutor.cs" />
+    <Compile Include="..\Shared\Implementation\ResponseStatus.cs" />
+    <Compile Include="..\Shared\Implementation\Request.cs" />
+    <Compile Include="..\Shared\Implementation\VkResponse.cs" />
+    <Compile Include="..\Shared\Internal\BuiltInData.cs" />
+    <Compile Include="..\Shared\Internal\Converters\ArrConverter.cs" />
+    <Compile Include="..\Shared\Internal\Converters\ConverterHelpers.cs" />
+    <Compile Include="..\Shared\Internal\Converters\DateConverter.cs" />
+    <Compile Include="..\Shared\Internal\Converters\NumberConverter.cs" />
+    <Compile Include="..\Shared\Internal\Converters\ObjectArrConverter.cs" />
+    <Compile Include="..\Shared\Internal\Converters\OneTwoFUConverter.cs" />
+    <Compile Include="..\Shared\Internal\Converters\SnakeCaseContractResolver.cs" />
+    <Compile Include="..\Shared\Internal\Converters\SnakeCaseEnumConverter.cs" />
+    <Compile Include="..\Shared\Internal\Converters\UnixTimeConverter.cs" />
+    <Compile Include="..\Shared\Internal\DateTimeOffsetHelper.cs" />
+    <Compile Include="..\Shared\Internal\MiscTools.cs" />
+    <Compile Include="..\Shared\Internal\MorozovHandler.cs" />
+    <Compile Include="..\Shared\Internal\ProxyPoolingHttpClientHandler.cs" />
+    <Compile Include="..\Shared\Util\UploadHelper.cs" />
+    <Compile Include="..\Shared\Properties\AssemblyInfo.cs" />
+    <Compile Include="..\Shared\RawApi.cs" />
+    <Compile Include="..\Shared\RequestApi.cs" />
+    <Compile Include="..\Shared\Api.cs" />
+    <Compile Include="..\Shared\VkException.cs" />
+    <Compile Include="..\Shared\Permission.cs" />
+    <Compile Include="..\Shared\Token.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Shared\favicon.ico" />
+    <None Include="..\Shared\Generated\AllMethods.txt" />
+    <None Include="..\Shared\Generated\Methods.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="..\Shared\Generated\Api.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Api.cs</LastGenOutput>
+    </None>
+    <None Include="..\Shared\Generated\SharedFuncs.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>SharedFuncs.cs</LastGenOutput>
+    </None>
+    <None Include="..\Shared\Generated\RequestApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RequestApi1.cs</LastGenOutput>
+    </None>
+    <None Include="..\Shared\Generated\RawApi.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>RawApi.cs</LastGenOutput>
+    </None>
+    <None Include="..\Shared\Generated\ImplementedMethods.md">
+      <DependentUpon>ImplementedMethods.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </None>
+    <None Include="..\Shared\Generated\ImplementedMethods.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ImplementedMethods.md</LastGenOutput>
+    </None>
+    <None Include="..\Shared\Generated\Methods.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

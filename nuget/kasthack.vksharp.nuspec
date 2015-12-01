@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>kasthack.vksharp</id>
+        <version>0.7.2.0</version>
+        <title>kasthack.vksharp</title>
+        <authors>kasthack</authors>
+        <owners>kasthack</owners>
+        <licenseUrl>https://www.gnu.org/copyleft/lesser.html</licenseUrl>
+        <projectUrl>http://github.com/kasthack/kasthack.vksharp</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Managed VK.com API wrapper</description>
+        <releaseNotes></releaseNotes>
+        <copyright>Copyright kasthack 2014-2015</copyright>
+        <tags>vk api kasthack</tags>
+        <dependencies>
+            <group targetFramework="net40">
+                <dependency id="Newtonsoft.Json" />
+                <dependency id="Microsoft.Net.Http" />
+                <dependency id="Microsoft.Bcl.Async" />
+            </group>
+            <group targetFramework="net45">
+                <dependency id="Newtonsoft.Json" />
+            </group>
+            <group targetFramework="net46">
+                <dependency id="Newtonsoft.Json" />
+            </group>
+        </dependencies>
+    </metadata>
+    <files>
+      <file src="build\lib\net40\kasthack.vksharp.dll" target="lib\net40" />
+      <file src="build\lib\net40\kasthack.vksharp.XML" target="lib\net40" />
+      
+      <file src="build\lib\net45\kasthack.vksharp.dll" target="lib\net45" />
+      <file src="build\lib\net45\kasthack.vksharp.XML" target="lib\net45" />
+      
+      <file src="build\lib\net46\kasthack.vksharp.dll" target="lib\net46" />
+      <file src="build\lib\net46\kasthack.vksharp.XML" target="lib\net46" />
+    </files>
+</package>

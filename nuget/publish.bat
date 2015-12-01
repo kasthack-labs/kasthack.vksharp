@@ -1,4 +1,4 @@
-NuGet pack ..\Sources\kasthack.vksharp\kasthack.vksharp.csproj -Prop Configuration=Release -IncludeReferencedProjects
+NuGet pack kasthack.vksharp.nuspec
 Nuget Push kasthack.vksharp.*.nupkg
 del kasthack.vksharp.*.nupkg
 pause

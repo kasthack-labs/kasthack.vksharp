@@ -107,6 +107,12 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\kasthack.vksharp\4.5\kasthack.vksharp.4.5.csproj">
+      <Project>{16ee2be3-0f1e-473b-96e8-20c7e44fa61e}</Project>
+      <Name>kasthack.vksharp.4.5</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
