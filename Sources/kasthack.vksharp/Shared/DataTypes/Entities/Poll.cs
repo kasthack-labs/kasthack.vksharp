@@ -9,6 +9,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public int Votes { get; set; }
         public int AnswerId { get; set; }
 
-        public static implicit operator ContentId(Poll poll) => new ObjectContentId( ContentType.Poll, poll.Id, poll.OwnerId );
+        public static implicit operator ObjectContentId(Poll poll) => new ObjectContentId( ContentType.Poll, poll.Id, poll.OwnerId );
+        public static implicit operator ContentId(Poll poll) => (ObjectContentId)poll;
     }
 }

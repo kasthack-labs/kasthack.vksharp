@@ -625,31 +625,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<Audio[]> GetById(
-                bool itunes = false, params string[] audios 
+                bool itunes = false, params ContentId[] audios 
             ) {
                 var req = new Request<Audio[]>{
                     MethodName = "audio.getById",
                     Parameters = new Dictionary<string, string> {
 
                         { "itunes", (itunes?1:0).ToNCString()},
-                        { "audios", String.Join(",",audios)},
-
-                    }
-                };
-                if (_parent.IsLogged)
-                    req.Token = _parent.CurrentToken;
-                return req;
-            }
-
-            public Request<Audio[]> GetById(
-                bool itunes = false, params Tuple<int, ulong>[] audios 
-            ) {
-                var req = new Request<Audio[]>{
-                    MethodName = "audio.getById",
-                    Parameters = new Dictionary<string, string> {
-
-                        { "itunes", (itunes?1:0).ToNCString()},
-                        { "audios", String.Join(",",audios.Select(a=>a.Item1 +"_" +a.Item2))},
+                        { "audios",  String.Join(",",audios.Select(a=>a.ToIdString()).ToArray()) },
 
                     }
                 };
@@ -784,13 +767,13 @@ namespace kasthack.vksharp {
             }
 
             public Request<bool> SetBroadcast(
-                Tuple<int, ulong> audio , params int[] targetIds 
+                ContentId audio , params int[] targetIds 
             ) {
                 var req = new Request<bool>{
                     MethodName = "audio.setBroadcast",
                     Parameters = new Dictionary<string, string> {
 
-                        { "audio", audio.Item1.ToNCString() +"_" + audio.Item2.ToNCString()},
+                        { "audio",  audio.ToIdString() },
                         { "target_ids", (targetIds??new int[]{}).ToNCStringA()},
 
                     }
@@ -1222,13 +1205,13 @@ namespace kasthack.vksharp {
             }
 
             public Request<Document[]> GetById(
-                params Tuple<int,int>[] docs 
+                params ContentId[] docs 
             ) {
                 var req = new Request<Document[]>{
                     MethodName = "docs.getById",
                     Parameters = new Dictionary<string, string> {
 
-                        { "docs", String.Join(",",docs.Select(a=>a.Item1 +"_" +a.Item2))},
+                        { "docs",  String.Join(",",docs.Select(a=>a.ToIdString()).ToArray()) },
 
                     }
                 };
@@ -2431,7 +2414,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> Send(
-                int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null,  int? stickerId = null
+                int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
@@ -2445,8 +2428,8 @@ namespace kasthack.vksharp {
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
-                        { "attachment", attachment},
-                        { "forward_messages", forwardMessages},
+                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
                         { "sticker_id", MiscTools.NullableString(stickerId)},
 
                     }
@@ -3877,30 +3860,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<Post[]> GetById(
-                int copyHistoryDepth = 2, params string[] posts 
+                int copyHistoryDepth = 2, params ContentId[] posts 
             ) {
                 var req = new Request<Post[]>{
                     MethodName = "wall.getById",
                     Parameters = new Dictionary<string, string> {
 
                         { "copy_history_depth", copyHistoryDepth.ToNCString()},
-                        { "posts", String.Join(",",posts)},
-
-                    }
-                };
-                    req.Token = _parent.CurrentToken;
-                return req;
-            }
-
-            public Request<Post[]> GetById(
-                int copyHistoryDepth = 2, params Tuple<int,int>[] posts 
-            ) {
-                var req = new Request<Post[]>{
-                    MethodName = "wall.getById",
-                    Parameters = new Dictionary<string, string> {
-
-                        { "copy_history_depth", copyHistoryDepth.ToNCString()},
-                        { "posts", String.Join(",",posts.Select(a=>a.Item1 +"_" +a.Item2))},
+                        { "posts",  String.Join(",",posts.Select(a=>a.ToIdString()).ToArray()) },
 
                     }
                 };

@@ -18,7 +18,9 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public int? EditorId { get; set; }
         public int CreatorId { get; set; }
         public string ViewUrl { get; set; }
-        public static implicit operator ContentId(Page page) => new ObjectContentId( ContentType.Page, page.Id, -page.GroupId );
+
+        public static implicit operator ObjectContentId(Page page) => new ObjectContentId( ContentType.Page, page.Id, -page.GroupId );
+        public static implicit operator ContentId(Page page) => (ObjectContentId)page;
     }
 
 }

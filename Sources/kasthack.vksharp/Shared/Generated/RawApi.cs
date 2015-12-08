@@ -393,17 +393,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetById(
-                bool itunes = false, params string[] audios 
-            ){
-                return await _parent.Executor.ExecRawAsync(
-                    _parent._reqapi.Audio.GetById(
-                           itunes,audios
-                    )
-                ).ConfigureAwait(false);
-            }
-                    
-            public async Task<string> GetById(
-                bool itunes = false, params Tuple<int, ulong>[] audios 
+                bool itunes = false, params ContentId[] audios 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.GetById(
@@ -483,7 +473,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> SetBroadcast(
-                Tuple<int, ulong> audio , params int[] targetIds 
+                ContentId audio , params int[] targetIds 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.SetBroadcast(
@@ -747,7 +737,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetById(
-                params Tuple<int,int>[] docs 
+                params ContentId[] docs 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Docs.GetById(
@@ -1461,7 +1451,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Send(
-                int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null,  int? stickerId = null
+                int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.Send(
@@ -2319,17 +2309,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetById(
-                int copyHistoryDepth = 2, params string[] posts 
-            ){
-                return await _parent.Executor.ExecRawAsync(
-                    _parent._reqapi.Wall.GetById(
-                           copyHistoryDepth,posts
-                    )
-                ).ConfigureAwait(false);
-            }
-                    
-            public async Task<string> GetById(
-                int copyHistoryDepth = 2, params Tuple<int,int>[] posts 
+                int copyHistoryDepth = 2, params ContentId[] posts 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.GetById(

@@ -23,11 +23,13 @@ namespace kasthack.vksharp.DataTypes  {
             Value = value;
         }
 
-        public override string ToIdString( IFormatProvider info = null ) => Value;
+        public override string ToIdString( IFormatProvider info = null ) => Value;//todo: trim type?
 
         public override string ToAttachmentString( IFormatProvider info = null ) => Value;
 
         public override string ToString( string format, IFormatProvider formatProvider ) => Value;
+
+        public static implicit operator StringContentId(string source) => new StringContentId( source );
 
     }
     public class ObjectContentId : ContentId, IFormattable, IEquatable<ObjectContentId> {
@@ -49,13 +51,13 @@ namespace kasthack.vksharp.DataTypes  {
 
         public override string ToIdString(IFormatProvider info = null) => string.Format(info ?? CultureInfo.InvariantCulture, AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey );
 
-        public override string ToAttachmentString(IFormatProvider info = null) => string.Format( info??CultureInfo.InvariantCulture, AccessKey != "" ? "{3}{0}_{1}_{2}" : "{3}{0}_{1}", OwnerId, Id, AccessKey, Type.ToNCString().ToSnake() );
+        public override string ToAttachmentString(IFormatProvider info = null) => string.Format( info??CultureInfo.InvariantCulture, AccessKey != "" ? "{3}{0}_{1}_{2}" : "{3}{0}_{1}", OwnerId, Id, AccessKey, GetTypeString( Type ) );
 
         public override string ToString( string format, IFormatProvider formatProvider ) => ToIdString( formatProvider );
 
         public static bool operator ==( ObjectContentId a, ObjectContentId b ) {
-            if ( object.ReferenceEquals( a, b ) ) return true;
-            if ( object.ReferenceEquals( a, null ) || object.ReferenceEquals(b, null)) return false;
+            if ( ReferenceEquals( a, b ) ) return true;
+            if ( ReferenceEquals( a, null ) || ReferenceEquals(b, null)) return false;
             return a.Type == b.Type && a.Id == b.Id && a.OwnerId == b.OwnerId && a.AccessKey == b.AccessKey;
         }
 

@@ -12,6 +12,9 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public string Text { get; set; }
         public string Title { get; set; }
 
-        public static implicit operator ContentId(Note note) => new ObjectContentId( ContentType.Note, note.Id, note.OwnerId );
+        public static implicit operator ObjectContentId(Note note) => new ObjectContentId( ContentType.Note, note.Id, note.OwnerId );
+
+        public static implicit operator ContentId( Note note ) => (ObjectContentId) note;
+
     }
 }

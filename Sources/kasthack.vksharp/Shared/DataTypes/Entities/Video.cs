@@ -24,7 +24,9 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public bool? UserLikes { get; set; }
         public int? LikesCount { get; set; }
         public bool? PlaybackLooped { get; set; }
-        public static implicit operator ContentId(Video video) => new ObjectContentId( ContentType.Video, video.Id, video.OwnerId, video.AccessKey );
+
+        public static implicit operator ObjectContentId(Video video) => new ObjectContentId( ContentType.Video, video.Id, video.OwnerId, video.AccessKey );
+        public static implicit operator ContentId(Video video) => (ObjectContentId)video;
     }
 
     public class TaggedVideo : Video{

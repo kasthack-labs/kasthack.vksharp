@@ -14,6 +14,10 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public bool CanUpload { get; set; }
         public Privacy PrivacyView { get; set; }
         public Privacy PrivacyComment { get; set; }
-        public static implicit operator ContentId(PhotoAlbum album)=> new ObjectContentId( ContentType.Album, album.Id, album.OwnerId );
+
+        public static implicit operator ObjectContentId(PhotoAlbum album)=> new ObjectContentId( ContentType.Album, album.Id, album.OwnerId );
+
+        public static implicit operator ContentId( PhotoAlbum album ) => (ObjectContentId) album;
+
     }
 }

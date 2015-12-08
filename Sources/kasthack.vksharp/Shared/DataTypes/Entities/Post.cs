@@ -29,8 +29,9 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public Group[] Groups { get; set; }
         public User[] Profiles { get; set; }
 
-        public static implicit operator ContentId(Post post) => new ObjectContentId( ContentType.Wall, post.Id, post.OwnerId );
+        public static implicit operator ObjectContentId(Post post) => new ObjectContentId( ContentType.Wall, post.Id, post.OwnerId );
 
+        public static implicit operator ContentId( Post post ) => (ObjectContentId) post;
         public override string ToString () {
             return $"Post #{Id}@{OwnerId}by{FromId}";
         }

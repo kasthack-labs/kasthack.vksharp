@@ -223,13 +223,7 @@
   <Method Name="audio.getById" Type="Audio[]" NeedToken="false" >
     <Params>
       <Param Name="itunes" Type="bool" Default="false" />
-      <Param Name="audios" Type="string[]" />
-    </Params>
-  </Method>
-  <Method Name="audio.getById" Type="Audio[]" NeedToken="false" >
-    <Params>
-      <Param Name="itunes" Type="bool" Default="false" />
-      <Param Name="audios" Type="Tuple&lt;int, ulong&gt;[]" />
+      <Param Name="audios" Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToIdString()).ToArray())" />
     </Params>
   </Method>
   <Method Name="audio.getCount" Type="int" NeedToken="false" >
@@ -283,7 +277,7 @@
   </Method>
   <Method Name="audio.setBroadcast" Type="void" NeedToken="true">
     <Params>
-      <Param Name="audio" Type="Tuple&lt;int, ulong&gt;"/>
+      <Param Name="audio" Type="ContentId" Custom="#name.ToIdString()" />
       <Param Name="target_ids" Type="int[]"/>
     </Params>
   </Method>
@@ -431,7 +425,7 @@
   </Method>
   <Method Name="docs.getById" Type="Document[]" NeedToken="false" >
     <Params>
-      <Param Name="docs" Type="Tuple&lt;int,int&gt;[]" />
+      <Param Name="docs" Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToIdString()).ToArray())" />
     </Params>
   </Method>
   <Method Name="docs.getUploadServer" Type="string" NeedToken="true" >
@@ -883,8 +877,8 @@
       <Param Name="guid" Type="int?" Default="null"/>
       <Param Name="lat" Type="double?" Default="null"/>
       <Param Name="@long" Type="double?" Default="null"/>
-      <Param Name="attachment" Type="string" Default="null"/>
-      <Param Name="forward_messages" Type="string" Default="null"/>
+      <Param Name="attachment"  Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToAttachmentString()).ToArray())" Default="null"/>
+      <Param Name="forward_messages" Type="long[]" Default="null"/>
       <Param Name="sticker_id" Type="int?" Default="null"/>
     </Params>
   </Method>
@@ -1430,13 +1424,7 @@
   <Method Name="wall.getById" Type="Post[]" NeedToken="true" >
     <Params>
       <Param Name="copy_history_depth" Type="int" Default="2" />
-      <Param Name="posts" Type="string[]" />
-    </Params>
-  </Method>
-  <Method Name="wall.getById" Type="Post[]" NeedToken="true" >
-    <Params>
-      <Param Name="copy_history_depth" Type="int" Default="2" />
-      <Param Name="posts" Type="Tuple&lt;int,int&gt;[]" />
+      <Param Name="posts" Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToIdString()).ToArray())" />
     </Params>
   </Method>
   <Method Name="wall.getComments" Type="EntityListExtended&lt;Comment&gt;" NeedToken="false" Pageable="100">

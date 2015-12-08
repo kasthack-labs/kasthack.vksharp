@@ -812,7 +812,7 @@ namespace kasthack.vksharp {
                     return task.Result.Response;
                 }
                 public async Task <Audio[]> GetById(
-                    bool itunes = false, params string[] audios 
+                    bool itunes = false, params ContentId[] audios 
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
@@ -824,30 +824,7 @@ namespace kasthack.vksharp {
                 }
 
                 public Audio[] GetByIdSync(
-                    bool itunes = false, params string[] audios 
-                ) {
-                    var task = _parent.Executor.ExecAsync(
-                            _parent._reqapi.Audio.GetById(
-                                itunes,audios
-                            )
-                        );
-                    task.Wait();
-                    return task.Result.Response;
-                }
-                public async Task <Audio[]> GetById(
-                    bool itunes = false, params Tuple<int, ulong>[] audios 
-                ) {
-                    return (
-                        await _parent.Executor.ExecAsync(
-                            _parent._reqapi.Audio.GetById(
-                                itunes,audios
-                            )
-                        ).ConfigureAwait(false)
-                    ).Response;
-                }
-
-                public Audio[] GetByIdSync(
-                    bool itunes = false, params Tuple<int, ulong>[] audios 
+                    bool itunes = false, params ContentId[] audios 
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.GetById(
@@ -1018,7 +995,7 @@ namespace kasthack.vksharp {
                     return task.Result.Response;
                 }
                 public async Task  SetBroadcast(
-                    Tuple<int, ulong> audio , params int[] targetIds 
+                    ContentId audio , params int[] targetIds 
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.SetBroadcast(
@@ -1029,7 +1006,7 @@ namespace kasthack.vksharp {
                 }
 
                 public void SetBroadcastSync(
-                    Tuple<int, ulong> audio , params int[] targetIds 
+                    ContentId audio , params int[] targetIds 
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.SetBroadcast(
@@ -1590,7 +1567,7 @@ namespace kasthack.vksharp {
                     return task.Result.Response;
                 }
                 public async Task <Document[]> GetById(
-                    params Tuple<int,int>[] docs 
+                    params ContentId[] docs 
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
@@ -1602,7 +1579,7 @@ namespace kasthack.vksharp {
                 }
 
                 public Document[] GetByIdSync(
-                    params Tuple<int,int>[] docs 
+                    params ContentId[] docs 
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Docs.GetById(
@@ -3179,7 +3156,7 @@ namespace kasthack.vksharp {
                     
                 }
                 public async Task <int> Send(
-                    int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null,  int? stickerId = null
+                    int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
@@ -3191,7 +3168,7 @@ namespace kasthack.vksharp {
                 }
 
                 public int SendSync(
-                    int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, string attachment = null, string forwardMessages = null,  int? stickerId = null
+                    int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Messages.Send(
@@ -5022,7 +4999,7 @@ namespace kasthack.vksharp {
                     return task.Result.Response;
                 }
                 public async Task <Post[]> GetById(
-                    int copyHistoryDepth = 2, params string[] posts 
+                    int copyHistoryDepth = 2, params ContentId[] posts 
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
@@ -5034,30 +5011,7 @@ namespace kasthack.vksharp {
                 }
 
                 public Post[] GetByIdSync(
-                    int copyHistoryDepth = 2, params string[] posts 
-                ) {
-                    var task = _parent.Executor.ExecAsync(
-                            _parent._reqapi.Wall.GetById(
-                                copyHistoryDepth,posts
-                            )
-                        );
-                    task.Wait();
-                    return task.Result.Response;
-                }
-                public async Task <Post[]> GetById(
-                    int copyHistoryDepth = 2, params Tuple<int,int>[] posts 
-                ) {
-                    return (
-                        await _parent.Executor.ExecAsync(
-                            _parent._reqapi.Wall.GetById(
-                                copyHistoryDepth,posts
-                            )
-                        ).ConfigureAwait(false)
-                    ).Response;
-                }
-
-                public Post[] GetByIdSync(
-                    int copyHistoryDepth = 2, params Tuple<int,int>[] posts 
+                    int copyHistoryDepth = 2, params ContentId[] posts 
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Wall.GetById(

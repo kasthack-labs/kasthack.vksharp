@@ -14,6 +14,10 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public CommentLikes Likes { get; set; }
         public int ReplyToUser { get; set; }
         public long ReplyToComment { get; set; }
-        public static implicit operator ContentId(Comment comment)=>new ObjectContentId( ContentType.WallReply, comment.Id, comment.OwnerId );
+
+        public static implicit operator ObjectContentId(Comment comment)=>new ObjectContentId( ContentType.WallReply, comment.Id, comment.OwnerId );
+
+        public static implicit operator ContentId( Comment comment ) => (ObjectContentId) comment;
+
     }
 }
