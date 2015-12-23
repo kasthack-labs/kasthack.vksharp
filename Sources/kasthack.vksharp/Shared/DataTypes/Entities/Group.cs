@@ -4,7 +4,7 @@ using kasthack.vksharp.DataTypes.Enums;
 
 namespace kasthack.vksharp.DataTypes.Entities {
     public class Group {
-        
+        public int? InvitedBy { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsClosed { get; set; }
         public Deleted? Deactivated { get; set; }

@@ -998,11 +998,21 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
-            public async Task<string> GetAvailableForCall(
+            public async Task<string> GetIds(
+                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Friends.GetIds(
+                           userId,listId,order,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> GetAvailableForCallIds(
                 
             ){
                 return await _parent.Executor.ExecRawAsync(
-                    _parent._reqapi.Friends.GetAvailableForCall(
+                    _parent._reqapi.Friends.GetAvailableForCallIds(
                            
                     )
                 ).ConfigureAwait(false);
@@ -1160,6 +1170,16 @@ namespace kasthack.vksharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.EditLink(
                            groupId,linkId,text
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            public async Task<string> Get(
+                int userId ,  GroupsGetFilter? filter = null, int offset = 0, int count = 100
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Groups.Get(
+                           userId,filter,offset, count
                     )
                 ).ConfigureAwait(false);
             }

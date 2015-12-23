@@ -2145,23 +2145,46 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-                public async Task <EntityList<int>> GetAvailableForCall(
+                public async Task <EntityList<int>> GetIds(
+                    int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Friends.GetIds(
+                                userId,listId,order,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public EntityList<int> GetIdsSync(
+                    int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Friends.GetIds(
+                                userId,listId,order,offset, count
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                public async Task <EntityList<int>> GetAvailableForCallIds(
                     
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
-                            _parent._reqapi.Friends.GetAvailableForCall(
+                            _parent._reqapi.Friends.GetAvailableForCallIds(
                                 
                             )
                         ).ConfigureAwait(false)
                     ).Response;
                 }
 
-                public EntityList<int> GetAvailableForCallSync(
+                public EntityList<int> GetAvailableForCallIdsSync(
                     
                 ) {
                     var task = _parent.Executor.ExecAsync(
-                            _parent._reqapi.Friends.GetAvailableForCall(
+                            _parent._reqapi.Friends.GetAvailableForCallIds(
                                 
                             )
                         );
@@ -2515,6 +2538,29 @@ namespace kasthack.vksharp {
                         );
                     task.Wait();
                     
+                }
+                public async Task <EntityList<int>> Get(
+                    int userId ,  GroupsGetFilter? filter = null, int offset = 0, int count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.Get(
+                                userId,filter,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+
+                public EntityList<int> GetSync(
+                    int userId ,  GroupsGetFilter? filter = null, int offset = 0, int count = 100
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.Get(
+                                userId,filter,offset, count
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
                 }
                 public async Task <User[]> GetBanned(
                      int groupId , int offset = 0, int count = 100

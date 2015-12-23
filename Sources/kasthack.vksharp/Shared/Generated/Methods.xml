@@ -552,7 +552,14 @@
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
   </Method>
-  <Method Name="friends.getAvailableForCall" Type="EntityList&lt;int&gt;" NeedToken="false">
+  <Method Name="friends.get" NameSuffix="Ids" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="list_id" Type="int?" Default="null" />
+      <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
+    </Params>
+  </Method>
+  <Method Name="friends.getAvailableForCall" NameSuffix="Ids" Type="EntityList&lt;int&gt;" NeedToken="false">
     <Params/>
   </Method>
   <Method Name="friends.getAvailableForCall" Type="EntityList&lt;User&gt;" NeedToken="false">
@@ -672,6 +679,12 @@
       <Param Name="group_id" Type="int" />
       <Param Name="link_id" Type="int" />
       <Param Name="text" Type="string" Default="&quot;&quot;" />
+    </Params>
+  </Method>
+  <Method Name="groups.get" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
+    <Params>
+      <Param Name="user_id" Type="int"/>
+      <Param Name="filter" Type="GroupsGetFilter?" Default="null"/>
     </Params>
   </Method>
   <Method Name="groups.getBanned" Type="User[]" NeedToken="true" Pageable="100">

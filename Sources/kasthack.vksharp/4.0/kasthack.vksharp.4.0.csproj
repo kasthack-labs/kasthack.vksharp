@@ -173,6 +173,7 @@
     <Compile Include="..\Shared\DataTypes\Enums\GroupFields.cs" />
     <Compile Include="..\Shared\DataTypes\Enums\GroupMembersFilter.cs" />
     <Compile Include="..\Shared\DataTypes\Enums\GroupRole.cs" />
+    <Compile Include="..\Shared\DataTypes\Enums\GroupsGetFilter.cs" />
     <Compile Include="..\Shared\DataTypes\Enums\ImActivity.cs" />
     <Compile Include="..\Shared\DataTypes\Enums\LeaderBoardType.cs" />
     <Compile Include="..\Shared\DataTypes\Enums\LifeMain.cs" />

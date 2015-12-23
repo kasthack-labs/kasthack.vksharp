@@ -1614,7 +1614,27 @@ namespace kasthack.vksharp {
                 return req;
             }
 
-            public Request<EntityList<int>> GetAvailableForCall(
+            public Request<EntityList<int>> GetIds(
+                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<int>>{
+                    MethodName = "friends.get",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "user_id", MiscTools.NullableString(userId)},
+                        { "list_id", MiscTools.NullableString(listId)},
+                        { "order", order.ToNCString().ToSnake()},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<int>> GetAvailableForCallIds(
                 
             ) {
                 var req = new Request<EntityList<int>>{
@@ -1727,7 +1747,7 @@ namespace kasthack.vksharp {
 
                         { "user_id", MiscTools.NullableString(userId)},
                         { "list_id", MiscTools.NullableString(listId)},
-                        { "order", MiscTools.NullableString( order )},
+                        { "order", order?.ToNCString()?.ToSnake()??""},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 
@@ -1916,6 +1936,25 @@ namespace kasthack.vksharp {
 
                     }
                 };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<EntityList<int>> Get(
+                int userId ,  GroupsGetFilter? filter = null, int offset = 0, int count = 100
+            ) {
+                var req = new Request<EntityList<int>>{
+                    MethodName = "groups.get",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "user_id", userId.ToNCString()},
+                        { "filter", filter?.ToNCString()?.ToSnake()??""},
+                        { "offset", offset.ToNCString() },
+                        { "count", count.ToNCString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }
@@ -2816,7 +2855,7 @@ namespace kasthack.vksharp {
                         { "photo_ids", (photoIds??new int[]{}).ToNCStringA()},
                         { "rev", (rev?1:0).ToNCString()},
                         { "extended", (extended?1:0).ToNCString()},
-                        { "feed_type", MiscTools.NullableString( feedType )},
+                        { "feed_type", feedType?.ToNCString()?.ToSnake()??""},
                         { "feed", MiscTools.NullableString(feed)},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
@@ -2840,7 +2879,7 @@ namespace kasthack.vksharp {
                         { "photo_ids", (photoIds??new int[]{}).ToNCStringA()},
                         { "rev", (rev?1:0).ToNCString()},
                         { "extended", (extended?1:0).ToNCString()},
-                        { "feed_type", MiscTools.NullableString( feedType )},
+                        { "feed_type", feedType?.ToNCString()?.ToSnake()??""},
                         { "feed", MiscTools.NullableString(feed)},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
@@ -3500,7 +3539,7 @@ namespace kasthack.vksharp {
                         { "company", company},
                         { "position", position},
                         { "group_id", MiscTools.NullableString(groupId)},
-                        { "from_list", MiscTools.NullableString( fromList )},
+                        { "from_list", fromList?.ToNCString()?.ToSnake()??""},
                         { "offset", offset.ToNCString() },
                         { "count", count.ToNCString() },
 

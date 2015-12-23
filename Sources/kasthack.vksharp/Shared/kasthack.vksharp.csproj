@@ -121,6 +121,7 @@
     <Compile Include="DataTypes\Enums\Attitude.cs" />
     <Compile Include="DataTypes\Enums\AudioGenre.cs" />
     <Compile Include="DataTypes\Enums\AudioSortOrder.cs" />
+    <Compile Include="DataTypes\Enums\GroupsGetFilter.cs" />
     <Compile Include="DataTypes\ObjectContentId.cs" />
     <Compile Include="DataTypes\Enums\ComplaintType.cs" />
     <Compile Include="DataTypes\Enums\CounterFields.cs" />
@@ -188,9 +189,9 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Generated\RequestApi1.cs">
-      <DependentUpon>RequestApi.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>RequestApi.tt</DependentUpon>
     </Compile>
     <Compile Include="Generated\SharedFuncs.cs">
       <DependentUpon>SharedFuncs.tt</DependentUpon>

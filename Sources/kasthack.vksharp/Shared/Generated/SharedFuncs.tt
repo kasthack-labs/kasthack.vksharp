@@ -197,7 +197,8 @@ public static string Stringify(string name, string type){
         case "FriendshipType?":
         case "UserSortOrder?":
         case "PageType?":
-            return String.Format("MiscTools.NullableString( {0} )",name);
+        case "GroupsGetFilter?":
+            return name+"?.ToNCString()?.ToSnake()??\"\"";
         case "DateTimeOffset":
             return String.Format( "{0}.ToUnixTimeSeconds().ToNCString()", name );
         case "DateTimeOffset?":
