@@ -51,8 +51,10 @@ namespace kasthack.vksharp {
             ///Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.
             ///</summary>
             ///<returns>
+            ///        В случае успеха метод вернет 1
+            ///      
             ///</returns>
-            ///<param name="userId">идентификатор пользователя, которого нужно добавить в черный список</param>
+            ///<param name="userId">Идентификатор пользователя, которого нужно добавить в черный список</param>
             public Request<bool> BanUser(
                  int userId 
             ) {
@@ -68,6 +70,18 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        В результате выполнения этого метода будет возвращем объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
+            ///      
+            ///</returns>
+            ///<param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа)</param>
+            ///<param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа)</param>
+            ///<param name="oldPassword">Текущий пароль пользователя</param>
+            ///<param name="newPassword">Новый пароль, который будет установлен в качестве текущего</param>
             public Request<ChangePassword> ChangePassword(
                 string restoreSid , string changePasswordHash , string oldPassword ,  string newPassword 
             ) {
@@ -86,6 +100,14 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        Возвращает массив, состоящий из общего количества старгетированных на текущего пользователя специальных предложений (первый элемент), и списка объектов с информацией о предложениях
+            ///      
+            ///</returns>
             public Request<EntityList<Offer>> GetActiveOffers(
                 int? offset = null, int? count = 100
             ) {
@@ -103,6 +125,15 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Получает настройки текущего пользователя в данном приложении
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении
+            ///      
+            ///</returns>
+            ///<param name="userId">Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь</param>
             public Request<Permission> GetAppPermissions(
                  int? userId = null
             ) {
@@ -119,6 +150,14 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///      Возвращает список пользователей, находящихся в черном списке
+            ///    
+            ///</summary>
+            ///<returns>
+            ///      Возвращает набор объектов пользователей, находящихся в черном списке
+            ///    
+            ///</returns>
             public Request<User[]> GetBanned(
                 int? offset = null, int? count = 20
             ) {
@@ -135,6 +174,14 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает информацию о текущем аккаунте
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        Возвращает объект AccountInfo
+            ///      
+            ///</returns>
             public Request<AccountInfo> GetInfo(
                 
             ) {
@@ -149,8 +196,44 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Отменяет редактирование профиля
+            ///      
+            ///</summary>
+            ///<param name="cancelRequestId">идентификатор заявки на смену имени, которую необходимо отменить</param>
             public Request<SaveProfileInfo> SaveProfileInfo(
-                string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null,  string status = ""
+                 int cancelRequestId 
+            ) {
+                var req = new Request<SaveProfileInfo>{
+                    MethodName = "account.saveProfileInfo",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "cancel_request_id", cancelRequestId.ToNCString()},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            ///<summary>
+            ///        Редактирует информацию текущего профиля
+            ///      
+            ///</summary>
+            ///<param name="firstName">имя пользователя</param>
+            ///<param name="lastName">фамилия пользователя.</param>
+            ///<param name="maidenName">девичья фамилия пользователя (только для женского пола)</param>
+            ///<param name="screenName">короткое имя страницы</param>
+            ///<param name="sex">пол пользователя</param>
+            ///<param name="relation">семейное положение пользователя</param>
+            ///<param name="relationPartnerId">идентификатор пользователя, с которым связано семейное положение</param>
+            ///<param name="bdate">дата рождения пользователя</param>
+            ///<param name="homeTown">родной город пользователя</param>
+            ///<param name="countryId">идентификатор страны пользователя</param>
+            ///<param name="cityId">идентификатор города пользователя</param>
+            ///<param name="status">статус пользователя, который также может быть изменен методом status.set</param>
+            public Request<SaveProfileInfo> SaveProfileInfo(
+                string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, string homeTown = "", int? countryId = null, int? cityId = null,  string status = ""
             ) {
                 var req = new Request<SaveProfileInfo>{
                     MethodName = "account.saveProfileInfo",
@@ -164,6 +247,7 @@ namespace kasthack.vksharp {
                         { "relation", MiscTools.NullableString( (int?)relation )},
                         { "relation_partner_id", MiscTools.NullableString(relationPartnerId)},
                         { "bdate", MiscTools.NullableString(bdate)},
+                        { "home_town", homeTown},
                         { "country_id", MiscTools.NullableString(countryId)},
                         { "city_id", MiscTools.NullableString(cityId)},
                         { "status", status},
@@ -174,6 +258,10 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает информацию о текущем профиле
+            ///      
+            ///</summary>
             public Request<User> GetProfileInfo(
                 
             ) {
@@ -188,14 +276,23 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Позволяет редактировать информацию о текущем аккаунте.
+            ///      
+            ///</summary>
+            ///<param name="intro">битовая маска, отвечающая за прохождение обучения в мобильных клиентах</param>
+            ///<param name="ownPostsDefault">Отображать по дефолту только записи пользователя</param>
+            ///<param name="noWallReplies">отключить комментирование записей на стене</param>
             public Request<bool> SetInfo(
-                 int? intro = null
+                int? intro = null, bool? ownPostsDefault = null,  bool? noWallReplies = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "account.setInfo",
                     Parameters = new Dictionary<string, string> {
 
                         { "intro", MiscTools.NullableString(intro)},
+                        { "own_posts_default", (ownPostsDefault != null ? ( ownPostsDefault.Value ? 1 : 0 ).ToNCString() : "")},
+                        { "no_wall_replies", (noWallReplies != null ? ( noWallReplies.Value ? 1 : 0 ).ToNCString() : "")},
 
                     }
                 };
@@ -203,14 +300,21 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню
+            ///      
+            ///</summary>
+            ///<param name="name">короткое название приложения</param>
+            ///<param name="userId">идентификатор пользователя</param>
             public Request<bool> SetNameInMenu(
-                 string name 
+                string name ,  string userId 
             ) {
                 var req = new Request<bool>{
                     MethodName = "account.setNameInMenu",
                     Parameters = new Dictionary<string, string> {
 
                         { "name", name},
+                        { "user_id", userId},
 
                     }
                 };
@@ -4030,6 +4134,13 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Позволяет пожаловаться на запись.
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор пользователя или сообщества, которому принадлежит запись</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит запись</param>
+            ///<param name="reason">причина жалобы</param>
             public Request<bool> ReportPost(
                 int postId , int? ownerId = null,  ReportReason? reason = null
             ) {
@@ -4047,8 +4158,15 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Копирует объект на стену пользователя или сообщества
+            ///      
+            ///</summary>
+            ///<param name="@object">идентификатор объекта, который необходимо разместить на стене</param>
+            ///<param name="message">сопроводительный текст, который будет добавлен к записи с объектом</param>
+            ///<param name="groupId">идентификатор сообщества, на стене которого будет размещена запись с объектом. Если не указан, запись будет размещена на стене текущего пользователя</param>
             public Request<RepostInfo> Repost(
-                string @object , string message = "",  int? groupId = null
+                string @object , string message = "", int? groupId = null,  string @ref = ""
             ) {
                 var req = new Request<RepostInfo>{
                     MethodName = "wall.repost",
@@ -4057,6 +4175,7 @@ namespace kasthack.vksharp {
                         { "object", @object},
                         { "message", message},
                         { "group_id", MiscTools.NullableString(groupId)},
+                        { "ref", @ref},
 
                     }
                 };
@@ -4064,6 +4183,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Восстанавливает удаленную запись на стене пользователя или сообщества
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находилась удаленная запись, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Restore(
                 int postId ,  int? ownerId = null
             ) {
@@ -4080,6 +4205,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене
+            ///      
+            ///</summary>
+            ///<param name="commentId">идентификатор комментария на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится комментарий к записи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> RestoreComment(
                 int commentId ,  int? ownerId = null
             ) {
@@ -4096,6 +4227,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Отменяет закрепление записи на стене
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Unpin(
                 int postId ,  int? ownerId = null
             ) {

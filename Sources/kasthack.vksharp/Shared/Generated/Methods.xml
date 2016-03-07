@@ -3,29 +3,63 @@
   <Method Name="account.banUser" Type="void" NeedToken="true">
     <Doc>
       <Summary>Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.</Summary>
-      <Returns></Returns>
+      <Returns>
+        В случае успеха метод вернет 1
+      </Returns>
     </Doc>
     <Params>
-      <Param Name="user_id" Type="int" Doc="идентификатор пользователя, которого нужно добавить в черный список"/>
+      <Param Name="user_id" Type="int" Doc="Идентификатор пользователя, которого нужно добавить в черный список"/>
     </Params>
   </Method>
   <Method Name="account.changePassword" Type="ChangePassword" NeedToken="true">
+    <Doc>
+      <Summary>
+        Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore
+      </Summary>
+      <Returns>
+        В результате выполнения этого метода будет возвращем объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
+      </Returns>
+    </Doc>
     <Params>
-      <Param Name="restore_sid" Type="string" />
-      <Param Name="change_password_hash" Type="string" />
-      <Param Name="old_password" Type="string" />
-      <Param Name="new_password" Type="string" />
+      <Param Name="restore_sid" Type="string" Doc="Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа)"/>
+      <Param Name="change_password_hash" Type="string" Doc="Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа)"/>
+      <Param Name="old_password" Type="string" Doc="Текущий пароль пользователя" />
+      <Param Name="new_password" Type="string" Doc="Новый пароль, который будет установлен в качестве текущего"/>
     </Params>
   </Method>
   <Method Name="account.getActiveOffers" Type="EntityList&lt;Offer&gt;" NeedToken="false" Pageable="100" >
+    <Doc>
+      <Summary>
+        Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
+      </Summary>
+      <Returns>
+        Возвращает массив, состоящий из общего количества старгетированных на текущего пользователя специальных предложений (первый элемент), и списка объектов с информацией о предложениях
+      </Returns>
+    </Doc>
     <Params />
   </Method>
   <Method Name="account.getAppPermissions" Type="Permission" NeedToken="false" >
+    <Doc>
+      <Summary>
+        Получает настройки текущего пользователя в данном приложении
+      </Summary>
+      <Returns>
+        После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении
+      </Returns>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь"/>
     </Params>
   </Method>
   <Method Name="account.getBanned" Type="User[]" NeedToken="true" Pageable="20">
+    <Doc>
+    <Summary>
+      Возвращает список пользователей, находящихся в черном списке
+    </Summary>
+    <Returns>
+      Возвращает набор объектов пользователей, находящихся в черном списке
+    </Returns>
+    </Doc>
     <Params/>
   </Method>
   <!--<Method Name="account.getCounters" Type="ProfileCounters" NeedToken="true">
@@ -34,34 +68,76 @@
     </Params>
   </Method>-->
   <Method Name="account.getInfo" Type="AccountInfo" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Возвращает информацию о текущем аккаунте
+      </Summary>
+      <Returns>
+        Возвращает объект AccountInfo
+      </Returns>
+    </Doc>
     <Params />
   </Method>
   <Method Name="account.saveProfileInfo" Type="SaveProfileInfo" NeedToken="true">
+    <Doc>
+      <Summary>
+        Отменяет редактирование профиля
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="first_name" Type="string" Default="&quot;&quot;"/>
-      <Param Name="last_name" Type="string" Default="&quot;&quot;"/>
-      <Param Name="maiden_name" Type="string" Default="&quot;&quot;"/>
-      <Param Name="screen_name" Type="string" Default="&quot;&quot;"/>
-      <Param Name="sex" Type="Sex?" Default="null"/>
-      <Param Name="relation" Type="Relation?" Default="null"/>
-      <Param Name="relation_partner_id" Type="int?" Default="null"/>
-      <Param Name="bdate" Type="Date?" Default="null"/>
-      <Param Name="country_id" Type="int?" Default="null"/>
-      <Param Name="city_id" Type="int?" Default="null"/>
-      <Param Name="status" Type="string" Default="&quot;&quot;"/>
+      <Param Name="cancel_request_id" Type="int" Doc="идентификатор заявки на смену имени, которую необходимо отменить"/>
+    </Params>
+  </Method>
+  <Method Name="account.saveProfileInfo" Type="SaveProfileInfo" NeedToken="true">
+    <Doc>
+      <Summary>
+        Редактирует информацию текущего профиля
+      </Summary>
+    </Doc>
+    <Params>
+      <Param Name="first_name" Type="string" Default="&quot;&quot;" Doc="имя пользователя"/>
+      <Param Name="last_name" Type="string" Default="&quot;&quot;" Doc="фамилия пользователя."/>
+      <Param Name="maiden_name" Type="string" Default="&quot;&quot;" Doc="девичья фамилия пользователя (только для женского пола)"/>
+      <Param Name="screen_name" Type="string" Default="&quot;&quot;" Doc="короткое имя страницы"/>
+      <Param Name="sex" Type="Sex?" Default="null" Doc="пол пользователя"/>
+      <Param Name="relation" Type="Relation?" Default="null" Doc="семейное положение пользователя"/>
+      <Param Name="relation_partner_id" Type="int?" Default="null" Doc="идентификатор пользователя, с которым связано семейное положение"/>
+      <Param Name="bdate" Type="Date?" Default="null" Doc="дата рождения пользователя"/>
+      <Param Name="home_town" Type="string" Default="&quot;&quot;" Doc="родной город пользователя"/>
+      <Param Name="country_id" Type="int?" Default="null" Doc="идентификатор страны пользователя"/>
+      <Param Name="city_id" Type="int?" Default="null" Doc="идентификатор города пользователя"/>
+      <Param Name="status" Type="string" Default="&quot;&quot;" Doc="статус пользователя, который также может быть изменен методом status.set"/>
     </Params>
   </Method>
   <Method Name="account.getProfileInfo" Type="User" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Возвращает информацию о текущем профиле
+      </Summary>
+    </Doc>
     <Params />
   </Method>
   <Method Name="account.setInfo" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Позволяет редактировать информацию о текущем аккаунте.
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="intro" Type="int?" Default="null" />
+      <Param Name="intro" Type="int?" Default="null" Doc="битовая маска, отвечающая за прохождение обучения в мобильных клиентах"/>
+      <Param Name="own_posts_default" Type="bool?" Default="null" Doc="Отображать по дефолту только записи пользователя"/>
+      <Param Name="no_wall_replies" Type="bool?" Default="null" Doc="отключить комментирование записей на стене"/>
     </Params>
   </Method>
   <Method Name="account.setNameInMenu" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="name" Type="string" />
+      <Param Name="name" Type="string" Doc="короткое название приложения"/>
+      <Param Name="user_id" Type="string" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="account.setOffline" Type="void" NeedToken="true">
@@ -1520,35 +1596,61 @@
     </Params>
   </Method>
   <Method Name="wall.reportPost" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Позволяет пожаловаться на запись.
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
-      <Param Name="reason" Type="ReportReason?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор пользователя или сообщества, которому принадлежит запись"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, которому принадлежит запись" />
+      <Param Name="reason" Type="ReportReason?" Default="null" Doc="причина жалобы"/>
     </Params>
   </Method>
   <Method Name="wall.repost" Type="RepostInfo" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Копирует объект на стену пользователя или сообщества
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="@object" Type="string" />
-      <Param Name="message" Type="string" Default="&quot;&quot;" />
-      <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="@object" Type="string" Doc="идентификатор объекта, который необходимо разместить на стене" />
+      <Param Name="message" Type="string" Default="&quot;&quot;" Doc="сопроводительный текст, который будет добавлен к записи с объектом" />
+      <Param Name="group_id" Type="int?" Default="null" Doc="идентификатор сообщества, на стене которого будет размещена запись с объектом. Если не указан, запись будет размещена на стене текущего пользователя"/>
+      <Param Name="@ref" Type="string" Default="&quot;&quot;"/>
     </Params>
   </Method>
   <Method Name="wall.restore" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Восстанавливает удаленную запись на стене пользователя или сообщества
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене" />
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого находилась удаленная запись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="wall.restoreComment" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="comment_id" Type="int" Doc="идентификатор комментария на стене"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого находится комментарий к записи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="wall.unpin" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Отменяет закрепление записи на стене
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
 </ArrayOfMethod>

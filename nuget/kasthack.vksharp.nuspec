@@ -2,14 +2,14 @@
 <package >
     <metadata>
         <id>kasthack.vksharp</id>
-        <version>0.7.4.2</version>
+        <version>0.7.4.3</version>
         <title>kasthack.vksharp</title>
         <authors>kasthack</authors>
         <owners>kasthack</owners>
         <licenseUrl>https://www.gnu.org/copyleft/lesser.html</licenseUrl>
         <projectUrl>http://github.com/kasthack/kasthack.vksharp</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Managed VK.com API wrapper</description>
+        <description>Клиентская библиотека API VK.com. Документация и поддерживаемые методы: https://github.com/kasthack/kasthack.vksharp</description>
         <releaseNotes></releaseNotes>
         <copyright>Copyright kasthack 2014-2016</copyright>
         <iconUrl>https://raw.githubusercontent.com/kasthack/kasthack.vksharp/master/icon/icon.png</iconUrl>

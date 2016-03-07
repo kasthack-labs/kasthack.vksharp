@@ -48,8 +48,10 @@ namespace kasthack.vksharp {
             ///Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.
             ///</summary>
             ///<returns>
+            ///        В случае успеха метод вернет 1
+            ///      
             ///</returns>
-            ///<param name="userId">идентификатор пользователя, которого нужно добавить в черный список</param>
+            ///<param name="userId">Идентификатор пользователя, которого нужно добавить в черный список</param>
             public async Task<string> BanUser(
                  int userId 
             ){
@@ -60,6 +62,18 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        В результате выполнения этого метода будет возвращем объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
+            ///      
+            ///</returns>
+            ///<param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа)</param>
+            ///<param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа)</param>
+            ///<param name="oldPassword">Текущий пароль пользователя</param>
+            ///<param name="newPassword">Новый пароль, который будет установлен в качестве текущего</param>
             public async Task<string> ChangePassword(
                 string restoreSid , string changePasswordHash , string oldPassword ,  string newPassword 
             ){
@@ -70,6 +84,14 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        Возвращает массив, состоящий из общего количества старгетированных на текущего пользователя специальных предложений (первый элемент), и списка объектов с информацией о предложениях
+            ///      
+            ///</returns>
             public async Task<string> GetActiveOffers(
                 int? offset = null, int? count = 100
             ){
@@ -80,6 +102,15 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Получает настройки текущего пользователя в данном приложении
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении
+            ///      
+            ///</returns>
+            ///<param name="userId">Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь</param>
             public async Task<string> GetAppPermissions(
                  int? userId = null
             ){
@@ -90,6 +121,14 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///      Возвращает список пользователей, находящихся в черном списке
+            ///    
+            ///</summary>
+            ///<returns>
+            ///      Возвращает набор объектов пользователей, находящихся в черном списке
+            ///    
+            ///</returns>
             public async Task<string> GetBanned(
                 int? offset = null, int? count = 20
             ){
@@ -100,6 +139,14 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Возвращает информацию о текущем аккаунте
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        Возвращает объект AccountInfo
+            ///      
+            ///</returns>
             public async Task<string> GetInfo(
                 
             ){
@@ -110,16 +157,51 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Отменяет редактирование профиля
+            ///      
+            ///</summary>
+            ///<param name="cancelRequestId">идентификатор заявки на смену имени, которую необходимо отменить</param>
             public async Task<string> SaveProfileInfo(
-                string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, int? countryId = null, int? cityId = null,  string status = ""
+                 int cancelRequestId 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Account.SaveProfileInfo(
-                           firstName,lastName,maidenName,screenName,sex,relation,relationPartnerId,bdate,countryId,cityId,status
+                           cancelRequestId
                     )
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Редактирует информацию текущего профиля
+            ///      
+            ///</summary>
+            ///<param name="firstName">имя пользователя</param>
+            ///<param name="lastName">фамилия пользователя.</param>
+            ///<param name="maidenName">девичья фамилия пользователя (только для женского пола)</param>
+            ///<param name="screenName">короткое имя страницы</param>
+            ///<param name="sex">пол пользователя</param>
+            ///<param name="relation">семейное положение пользователя</param>
+            ///<param name="relationPartnerId">идентификатор пользователя, с которым связано семейное положение</param>
+            ///<param name="bdate">дата рождения пользователя</param>
+            ///<param name="homeTown">родной город пользователя</param>
+            ///<param name="countryId">идентификатор страны пользователя</param>
+            ///<param name="cityId">идентификатор города пользователя</param>
+            ///<param name="status">статус пользователя, который также может быть изменен методом status.set</param>
+            public async Task<string> SaveProfileInfo(
+                string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, string homeTown = "", int? countryId = null, int? cityId = null,  string status = ""
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Account.SaveProfileInfo(
+                           firstName,lastName,maidenName,screenName,sex,relation,relationPartnerId,bdate,homeTown,countryId,cityId,status
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            ///<summary>
+            ///        Возвращает информацию о текущем профиле
+            ///      
+            ///</summary>
             public async Task<string> GetProfileInfo(
                 
             ){
@@ -130,22 +212,35 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Позволяет редактировать информацию о текущем аккаунте.
+            ///      
+            ///</summary>
+            ///<param name="intro">битовая маска, отвечающая за прохождение обучения в мобильных клиентах</param>
+            ///<param name="ownPostsDefault">Отображать по дефолту только записи пользователя</param>
+            ///<param name="noWallReplies">отключить комментирование записей на стене</param>
             public async Task<string> SetInfo(
-                 int? intro = null
+                int? intro = null, bool? ownPostsDefault = null,  bool? noWallReplies = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Account.SetInfo(
-                           intro
+                           intro,ownPostsDefault,noWallReplies
                     )
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню
+            ///      
+            ///</summary>
+            ///<param name="name">короткое название приложения</param>
+            ///<param name="userId">идентификатор пользователя</param>
             public async Task<string> SetNameInMenu(
-                 string name 
+                string name ,  string userId 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Account.SetNameInMenu(
-                           name
+                           name,userId
                     )
                 ).ConfigureAwait(false);
             }
@@ -2398,6 +2493,13 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Позволяет пожаловаться на запись.
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор пользователя или сообщества, которому принадлежит запись</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит запись</param>
+            ///<param name="reason">причина жалобы</param>
             public async Task<string> ReportPost(
                 int postId , int? ownerId = null,  ReportReason? reason = null
             ){
@@ -2408,16 +2510,29 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Копирует объект на стену пользователя или сообщества
+            ///      
+            ///</summary>
+            ///<param name="@object">идентификатор объекта, который необходимо разместить на стене</param>
+            ///<param name="message">сопроводительный текст, который будет добавлен к записи с объектом</param>
+            ///<param name="groupId">идентификатор сообщества, на стене которого будет размещена запись с объектом. Если не указан, запись будет размещена на стене текущего пользователя</param>
             public async Task<string> Repost(
-                string @object , string message = "",  int? groupId = null
+                string @object , string message = "", int? groupId = null,  string @ref = ""
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.Repost(
-                           @object,message,groupId
+                           @object,message,groupId,@ref
                     )
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Восстанавливает удаленную запись на стене пользователя или сообщества
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находилась удаленная запись, по умолчанию идентификатор текущего пользователя</param>
             public async Task<string> Restore(
                 int postId ,  int? ownerId = null
             ){
@@ -2428,6 +2543,12 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене
+            ///      
+            ///</summary>
+            ///<param name="commentId">идентификатор комментария на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится комментарий к записи, по умолчанию идентификатор текущего пользователя</param>
             public async Task<string> RestoreComment(
                 int commentId ,  int? ownerId = null
             ){
@@ -2438,6 +2559,12 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Отменяет закрепление записи на стене
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
             public async Task<string> Unpin(
                 int postId ,  int? ownerId = null
             ){

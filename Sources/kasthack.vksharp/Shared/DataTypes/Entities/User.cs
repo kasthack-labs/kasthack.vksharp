@@ -1,6 +1,7 @@
 ﻿using System;
 using kasthack.vksharp.DataTypes.EntityFragments;
 using kasthack.vksharp.DataTypes.Enums;
+using kasthack.vksharp.DataTypes.ResponseEntities;
 using kasthack.vksharp.Internal.Converters;
 using Newtonsoft.Json;
 
@@ -42,6 +43,16 @@ namespace kasthack.vksharp.DataTypes.Entities {
         #endregion
 
         public Relation? Relation { get; set; }
+
+        //todo: move to separate class
+        #region account.getProfileInfo
+        public bool RelationPending { get; set; }
+        public User RelationPartner { get; set; }
+        public User[] RelationRequests { get; set; }
+        public NameRequest NameRequest { get; set; }
+        //todo: bdate visibility
+        #endregion
+
         public Relative[] Relatives { get; set; }
         public School[] Schools { get; set; }
         public Sex? Sex { get; set; }

@@ -31,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\kasthack.vksharp.XML</DocumentationFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>..\..\..\icon\icon.ico</ApplicationIcon>
@@ -260,9 +261,6 @@
     <None Include="Generated\ImplementedMethods.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ImplementedMethods.md</LastGenOutput>
-    </None>
-    <None Include="Generated\Methods.xsd">
-      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
