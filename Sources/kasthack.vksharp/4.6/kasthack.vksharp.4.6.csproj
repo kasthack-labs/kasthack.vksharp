@@ -33,7 +33,7 @@
     <DocumentationFile>..\..\..\nuget\build\lib\net46\kasthack.vksharp.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>..\Shared\favicon.ico</ApplicationIcon>
+    <ApplicationIcon>..\..\..\icon\icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

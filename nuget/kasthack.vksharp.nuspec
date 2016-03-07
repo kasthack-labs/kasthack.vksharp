@@ -2,7 +2,7 @@
 <package >
     <metadata>
         <id>kasthack.vksharp</id>
-        <version>0.7.4.1</version>
+        <version>0.7.4.2</version>
         <title>kasthack.vksharp</title>
         <authors>kasthack</authors>
         <owners>kasthack</owners>
@@ -11,7 +11,8 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Managed VK.com API wrapper</description>
         <releaseNotes></releaseNotes>
-        <copyright>Copyright kasthack 2014-2015</copyright>
+        <copyright>Copyright kasthack 2014-2016</copyright>
+        <iconUrl>https://raw.githubusercontent.com/kasthack/kasthack.vksharp/master/icon/icon.png</iconUrl>
         <tags>vk vk.com vkontakte Вконтакте vk api vksharp vknet kasthack kasthack.vksharp</tags>
         <dependencies>
             <group targetFramework="net40">
