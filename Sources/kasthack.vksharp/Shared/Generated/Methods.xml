@@ -3,9 +3,6 @@
   <Method Name="account.banUser" Type="void" NeedToken="true">
     <Doc>
       <Summary>Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.</Summary>
-      <Returns>
-        В случае успеха метод вернет 1
-      </Returns>
     </Doc>
     <Params>
       <Param Name="user_id" Type="int" Doc="Идентификатор пользователя, которого нужно добавить в черный список"/>
@@ -16,9 +13,6 @@
       <Summary>
         Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore
       </Summary>
-      <Returns>
-        В результате выполнения этого метода будет возвращем объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
-      </Returns>
     </Doc>
     <Params>
       <Param Name="restore_sid" Type="string" Doc="Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа)"/>
@@ -32,9 +26,6 @@
       <Summary>
         Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
       </Summary>
-      <Returns>
-        Возвращает массив, состоящий из общего количества старгетированных на текущего пользователя специальных предложений (первый элемент), и списка объектов с информацией о предложениях
-      </Returns>
     </Doc>
     <Params />
   </Method>
@@ -141,91 +132,163 @@
     </Params>
   </Method>
   <Method Name="account.setOffline" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Помечает текущего пользователя как offline
+      </Summary>
+    </Doc>
     <Params />
   </Method>
   <Method Name="account.setOnline" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Помечает текущего пользователя как online на 15 минут
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="voip" Type="bool" Default="true" />
+      <Param Name="voip" Type="bool" Default="true" Doc="возможны ли видеозвонки для данного устройства" />
     </Params>
   </Method>
   <Method Name="account.setSilenceMode" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Отключает push-уведомления на заданный промежуток времени
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="device_id" Type="string" />
-      <Param Name="time" Type="int" />
-      <Param Name="chat_id" Type="int?" Default="null" />
+      <Param Name="device_id" Type="string" Doc="уникальный идентификатор устройства"/>
+      <Param Name="time" Type="int" Doc="время в секундах на которое требуется отключить уведомления, -1 отключить навсегда"/>
+      <Param Name="chat_id" Type="int?" Default="null" Doc=""/>
       <Param Name="user_id" Type="int?" Default="null" />
-      <Param Name="sound" Type="int" Default="0" />
+      <Param Name="sound" Type="int" Default="0" Doc="включить/отключить звук в данном диалоге" />
     </Params>
   </Method>
   <Method Name="account.unbanUser" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Убирает пользователя из черного списка
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя, которого нужно убрать из черного списка"/>
     </Params>
   </Method>
   <Method Name="account.registerDevice" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="token" Type="string"/>
-      <Param Name="device_id" Type="string" />
-      <Param Name="settings" Type="string" />
+      <Param Name="token" Type="string" Doc="Идентификатор устройства, используемый для отправки уведомлений. (для mpns идентификатор должен представлять из себя URL для отправки уведомлений)"/>
+      <Param Name="device_id" Type="string"  Doc="уникальный идентификатор устройства"/>
+      <Param Name="settings" Type="string" Doc="сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате"/>
       <!--todo: serialization-->
-      <Param Name="device_model" Type="string" Default="&quot;&quot;"/>
-      <Param Name="system_version" Type="string"  Default="&quot;&quot;"/>
-      <Param Name="sandbox" Type="bool?" Default="null"/>
+      <Param Name="device_year" Type="int?" Default="null" Doc="год устройства"/>
+      <Param Name="device_model" Type="string" Default="&quot;&quot;" Doc="cтроковое название модели устройства"/>
+      <Param Name="system_version" Type="string"  Default="&quot;&quot;" Doc="строковая версия операционной системы устройства"/>
+      <Param Name="sandbox" Type="bool?" Default="null" Doc="(iOS) использовать sandbox сервер для отправки push-уведомлений"/>
     </Params>
   </Method>
   <Method Name="account.unregisterDevice" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Отписывает устройство от Push уведомлений
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="device_id" Type="string" />
+      <Param Name="device_id" Type="string" Doc="уникальный идентификатор устройства"/>
+      <Param Name="sandbox" Type="bool?" Default="null" Doc="отписать устройство, использующее sandbox сервер для отправки push-уведомлений"/>
     </Params>
   </Method>
   <Method Name="apps.deleteAppRequests" Type="void" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Удаляет все уведомления о запросах, отправленных из текущего приложения
+      </Summary>
+    </Doc>
     <Params />
   </Method>
   <Method Name="apps.getScore" Type="long" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Метод возвращает количество очков пользователя в этой игре
+      </Summary>
+    </Doc>
     <Params />
   </Method>
   <Method Name="apps.getLeaderboard" NameSuffix="Extended" Type="EntityList&lt;User&gt;" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Возвращает рейтинг пользователей в игре
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="type" Type="LeaderBoardType"/>
-      <Param Name="global" Type="bool" Default="true"/>
+      <Param Name="type" Type="LeaderBoardType" Doc="Тип рейтинга"/>
+      <Param Name="global" Type="bool" Default="true" Doc="Глобальный/только друзья"/>
     </Params>
     <Hardcoded>
       <HardcodedParam Name="extended" Value="1"/>
     </Hardcoded>
   </Method>
   <Method Name="apps.getLeaderboard" Type="EntityList&lt;int&gt;" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Возвращает рейтинг пользователей в игре
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="type" Type="LeaderBoardType"/>
-      <Param Name="global" Type="bool" Default="true"/>
+      <Param Name="type" Type="LeaderBoardType" Doc="Тип рейтинга"/>
+      <Param Name="global" Type="bool" Default="true" Doc="Глобальный/только друзья"/>
     </Params>
     <Hardcoded>
       <HardcodedParam Name="extended" Value="0"/>
     </Hardcoded>
   </Method>
   <Method Name="audio.add" Type="int" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Копирует аудиозапись на страницу пользователя или группы
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="owner_id" Type="int" />
-      <Param Name="audio_id" Type="long" />
-      <Param Name="group_id" Type="int?" Default="null" />
-      <Param Name="album_id" Type="long?" Default="null" />
+      <Param Name="owner_id" Type="int" Doc="идентификатор владельца аудиозаписи (пользователь или сообщество)"/>
+      <Param Name="audio_id" Type="long" Doc="Идентификатор аудиозаписи"/>
+      <Param Name="group_id" Type="int?" Default="null" Doc="идентификатор сообщества (если аудиозапись необходимо скопировать в список сообщества)"/>
+      <Param Name="album_id" Type="long?" Default="null" Doc="идентификатор альбома, в который нужно переместить аудиозапись" />
     </Params>
   </Method>
   <Method Name="audio.addAlbum" Type="AddAlbum" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Создает пустой альбом аудиозаписей
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="title" Type="string" />
-      <Param Name="group_id" Type="int?" Default="0" />
+      <Param Name="title" Type="string" Doc="название альбома"/>
+      <Param Name="group_id" Type="int?" Default="0" Doc="идентификатор сообщества (если альбом нужно создать в сообществе)"/>
     </Params>
   </Method>
   <Method Name="audio.delete" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Удаляет аудиозапись со страницы пользователя или сообщества
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="audio_id" Type="long" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="audio_id" Type="long" Doc="идентификатор аудиозаписи" />
+      <Param Name="owner_id" Type="int" Doc="идентификатор владельца аудиозаписи (пользователь или сообщество)"/>
     </Params>
   </Method>
   <Method Name="audio.deleteAlbum" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Удаляет альбом аудиозаписей
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="album_id" Type="long" />
-      <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="album_id" Type="long" Doc="идентификатор альбома"/>
+      <Param Name="group_id" Type="int?" Default="null" Doc="идентификатор сообщества, которому принадлежит альбом" />
     </Params>
   </Method>
   <Method Name="audio.edit" Type="int" NeedToken="true" >
@@ -1527,72 +1590,113 @@
     </Params>
   </Method>
   <Method Name="likes.getList" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+        Получает список идентификаторов пользователей, которые добавили заданный объект в свой список &quot;Мне нравится&quot;
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="type" Type="string"/>
-      <Param Name="filter" Type="string"/>
-      <Param Name="friends_only" Type="bool"/>
-      <Param Name="skip_own" Type="bool" />
-      <Param Name="owner_id" Type="int?" Default="null"/>
-      <Param Name="item_id" Type="int?" Default="null"/>
-      <Param Name="page_url" Type="string" Default="null"/>
+      <Param Name="type" Type="string" Doc="тип объекта"/>
+      <Param Name="filter" Type="string" Doc="указывает, следует ли вернуть всех пользователей, добавивших объект в список &quot;Мне нравится&quot; или только тех, которые рассказали о нем друзьям"/>
+      <Param Name="friends_only" Type="bool" Doc="указывает, необходимо ли возвращать только пользователей, которые являются друзьями текущего пользователя"/>
+      <Param Name="skip_own" Type="bool" Doc="не возвращать самого пользователя"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца Like-объекта"/>
+      <Param Name="item_id" Type="int?" Default="null" Doc="идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»"/>
+      <Param Name="page_url" Type="string" Default="null" Doc="url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id."/>
     </Params>
     <Hardcoded>
       <HardcodedParam Name="extended" Value="false" />
     </Hardcoded>
   </Method>
   <Method Name="likes.getList" NameSuffix="Extended" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+        Получает список идентификаторов пользователей, которые добавили заданный объект в свой список &quot;Мне нравится&quot;
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="type" Type="string"/>
-      <Param Name="filter" Type="string"/>
-      <Param Name="friends_only" Type="bool"/>
-      <Param Name="skip_own" Type="bool" />
-      <Param Name="owner_id" Type="int?" Default="null"/>
-      <Param Name="item_id" Type="int?" Default="null"/>
-      <Param Name="page_url" Type="string" Default="null"/>
+      <Param Name="type" Type="string" Doc="тип объекта"/>
+      <Param Name="filter" Type="string" Doc="указывает, следует ли вернуть всех пользователей, добавивших объект в список &quot;Мне нравится&quot; или только тех, которые рассказали о нем друзьям"/>
+      <Param Name="friends_only" Type="bool" Doc="указывает, необходимо ли возвращать только пользователей, которые являются друзьями текущего пользователя"/>
+      <Param Name="skip_own" Type="bool" Doc="не возвращать самого пользователя"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца Like-объекта"/>
+      <Param Name="item_id" Type="int?" Default="null" Doc="идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»"/>
+      <Param Name="page_url" Type="string" Default="null" Doc="url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id."/>
     </Params>
     <Hardcoded>
       <HardcodedParam Name="extended" Value="true" />
     </Hardcoded>
   </Method>
   <Method Name="wall.getReposts" Type="EntityListExtended&lt;Post&gt;" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+        Позволяет получать список репостов заданной записи
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int"/>
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="wall.pin" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Закрепляет запись на стене
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="wall.post" Type="WallPost" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Публикует отложенную запись на своей или чужой стене
+      </Summary>
+      <Returns>
+        После успешного выполнения возвращает идентификатор созданной записи
+      </Returns>
+    </Doc>
     <Params>
       <!--todo: strong typing-->
-      <Param Name="message" Type="string" Default="&quot;&quot;" />
-      <Param Name="attachments" Type="string" Default="&quot;&quot;"/>
-      <Param Name="owner_id" Type="int?" Default="null" />
-      <Param Name="from_group" Type="bool" Default="false" />
-      <Param Name="signed" Type="bool" Default="false" />
-      <Param Name="friends_only" Type="bool?" Default="false"/>
-      <Param Name="services" Type="string" Default="&quot;&quot;" />
-      <Param Name="publish_date" Type="int?" Default="null" />
-      <Param Name="lat" Type="double?" Default="null" />
-      <Param Name="@long" Type="double?" Default="null" />
-      <Param Name="place_id" Type="int?" Default="null" />
+      <Param Name="message" Type="string" Default="&quot;&quot;" Doc="текст сообщения (является обязательным, если не задан параметр attachments)" />
+      <Param Name="attachments" Type="string" Default="&quot;&quot;" Doc="список объектов, приложенных к записи"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись"/>
+      <Param Name="from_group" Type="bool" Default="false" Doc="Опубликовать от имени группы"/>
+      <Param Name="signed" Type="bool" Default="false" Doc="у записи, размещенной от имени сообщества, будет добавлена подпись"/>
+      <Param Name="friends_only" Type="bool?" Default="false" Doc="запись будет доступна только друзьям"/>
+      <Param Name="services" Type="string" Default="&quot;&quot;" Doc="список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию" />
+      <Param Name="publish_date" Type="int?" Default="null" Doc="дата публикации записи в формате unixtime. Если параметр указан, публикация записи будет отложена до указанного времени."/>
+      <Param Name="lat" Type="double?" Default="null" Doc="географическая широта отметки, заданная в градусах (от -90 до 90)"/>
+      <Param Name="@long" Type="double?" Default="null" Doc="географическая долгота отметки, заданная в градусах (от -180 до 180)" />
+      <Param Name="place_id" Type="int?" Default="null" Doc="идентификатор места, в котором отмечен пользователь"/>
     </Params>
   </Method>
   <Method Name="wall.post" Type="WallPost" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Публикует отложенную запись на своей или чужой стене
+      </Summary>
+      <Returns>
+        После успешного выполнения возвращает идентификатор созданной записи
+      </Returns>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи, которую необходимо опубликовать"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись"/>
     </Params>
   </Method>
   <Method Name="wall.reportComment" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+        Позволяет пожаловаться на комментарий к записи
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
-      <Param Name="reason" Type="ReportReason?" Default="null" />
+      <Param Name="comment_id" Type="int" Doc="идентификатор комментария"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, которому принадлежит комментарий"/>
+      <Param Name="reason" Type="ReportReason?" Default="null" Doc="причина жалобы"/>
     </Params>
   </Method>
   <Method Name="wall.reportPost" Type="void" NeedToken="true">

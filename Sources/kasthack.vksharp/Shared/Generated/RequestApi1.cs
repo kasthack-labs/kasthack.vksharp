@@ -50,10 +50,6 @@ namespace kasthack.vksharp {
             ///<summary>
             ///Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.
             ///</summary>
-            ///<returns>
-            ///        В случае успеха метод вернет 1
-            ///      
-            ///</returns>
             ///<param name="userId">Идентификатор пользователя, которого нужно добавить в черный список</param>
             public Request<bool> BanUser(
                  int userId 
@@ -74,10 +70,6 @@ namespace kasthack.vksharp {
             ///        Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore
             ///      
             ///</summary>
-            ///<returns>
-            ///        В результате выполнения этого метода будет возвращем объект с полем token, содержащим новый токен, и полем secret в случае, если токен был nohttps.
-            ///      
-            ///</returns>
             ///<param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа)</param>
             ///<param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа)</param>
             ///<param name="oldPassword">Текущий пароль пользователя</param>
@@ -104,10 +96,6 @@ namespace kasthack.vksharp {
             ///        Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
             ///      
             ///</summary>
-            ///<returns>
-            ///        Возвращает массив, состоящий из общего количества старгетированных на текущего пользователя специальных предложений (первый элемент), и списка объектов с информацией о предложениях
-            ///      
-            ///</returns>
             public Request<EntityList<Offer>> GetActiveOffers(
                 int? offset = null, int? count = 100
             ) {
@@ -322,6 +310,10 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Помечает текущего пользователя как offline
+            ///      
+            ///</summary>
             public Request<bool> SetOffline(
                 
             ) {
@@ -336,6 +328,11 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Помечает текущего пользователя как online на 15 минут
+            ///      
+            ///</summary>
+            ///<param name="voip">возможны ли видеозвонки для данного устройства</param>
             public Request<bool> SetOnline(
                  bool voip = true
             ) {
@@ -351,6 +348,14 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Отключает push-уведомления на заданный промежуток времени
+            ///      
+            ///</summary>
+            ///<param name="deviceId">уникальный идентификатор устройства</param>
+            ///<param name="time">время в секундах на которое требуется отключить уведомления, -1 отключить навсегда</param>
+            ///<param name="chatId"></param>
+            ///<param name="sound">включить/отключить звук в данном диалоге</param>
             public Request<bool> SetSilenceMode(
                 string deviceId , int time , int? chatId = null, int? userId = null,  int sound = 0
             ) {
@@ -370,6 +375,11 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Убирает пользователя из черного списка
+            ///      
+            ///</summary>
+            ///<param name="userId">идентификатор пользователя, которого нужно убрать из черного списка</param>
             public Request<bool> UnbanUser(
                  int userId 
             ) {
@@ -385,8 +395,19 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений
+            ///      
+            ///</summary>
+            ///<param name="token">Идентификатор устройства, используемый для отправки уведомлений. (для mpns идентификатор должен представлять из себя URL для отправки уведомлений)</param>
+            ///<param name="deviceId">уникальный идентификатор устройства</param>
+            ///<param name="settings">сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате</param>
+            ///<param name="deviceYear">год устройства</param>
+            ///<param name="deviceModel">cтроковое название модели устройства</param>
+            ///<param name="systemVersion">строковая версия операционной системы устройства</param>
+            ///<param name="sandbox">(iOS) использовать sandbox сервер для отправки push-уведомлений</param>
             public Request<bool> RegisterDevice(
-                string token , string deviceId , string settings , string deviceModel = "", string systemVersion = "",  bool? sandbox = null
+                string token , string deviceId , string settings , int? deviceYear = null, string deviceModel = "", string systemVersion = "",  bool? sandbox = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "account.registerDevice",
@@ -395,6 +416,7 @@ namespace kasthack.vksharp {
                         { "token", token},
                         { "device_id", deviceId},
                         { "settings", settings},
+                        { "device_year", MiscTools.NullableString(deviceYear)},
                         { "device_model", deviceModel},
                         { "system_version", systemVersion},
                         { "sandbox", (sandbox != null ? ( sandbox.Value ? 1 : 0 ).ToNCString() : "")},
@@ -405,14 +427,21 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Отписывает устройство от Push уведомлений
+            ///      
+            ///</summary>
+            ///<param name="deviceId">уникальный идентификатор устройства</param>
+            ///<param name="sandbox">отписать устройство, использующее sandbox сервер для отправки push-уведомлений</param>
             public Request<bool> UnregisterDevice(
-                 string deviceId 
+                string deviceId ,  bool? sandbox = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "account.unregisterDevice",
                     Parameters = new Dictionary<string, string> {
 
                         { "device_id", deviceId},
+                        { "sandbox", (sandbox != null ? ( sandbox.Value ? 1 : 0 ).ToNCString() : "")},
 
                     }
                 };
@@ -425,6 +454,10 @@ namespace kasthack.vksharp {
             private readonly RequestApi _parent;
             internal MethodGroup_apps(RequestApi parent){_parent=parent;}
 
+            ///<summary>
+            ///        Удаляет все уведомления о запросах, отправленных из текущего приложения
+            ///      
+            ///</summary>
             public Request<bool> DeleteAppRequests(
                 
             ) {
@@ -439,6 +472,10 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Метод возвращает количество очков пользователя в этой игре
+            ///      
+            ///</summary>
             public Request<long> GetScore(
                 
             ) {
@@ -453,6 +490,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает рейтинг пользователей в игре
+            ///      
+            ///</summary>
+            ///<param name="type">Тип рейтинга</param>
+            ///<param name="global">Глобальный/только друзья</param>
             public Request<EntityList<User>> GetLeaderboardExtended(
                 LeaderBoardType type ,  bool global = true
             ) {
@@ -470,6 +513,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает рейтинг пользователей в игре
+            ///      
+            ///</summary>
+            ///<param name="type">Тип рейтинга</param>
+            ///<param name="global">Глобальный/только друзья</param>
             public Request<EntityList<int>> GetLeaderboard(
                 LeaderBoardType type ,  bool global = true
             ) {
@@ -492,6 +541,14 @@ namespace kasthack.vksharp {
             private readonly RequestApi _parent;
             internal MethodGroup_audio(RequestApi parent){_parent=parent;}
 
+            ///<summary>
+            ///        Копирует аудиозапись на страницу пользователя или группы
+            ///      
+            ///</summary>
+            ///<param name="ownerId">идентификатор владельца аудиозаписи (пользователь или сообщество)</param>
+            ///<param name="audioId">Идентификатор аудиозаписи</param>
+            ///<param name="groupId">идентификатор сообщества (если аудиозапись необходимо скопировать в список сообщества)</param>
+            ///<param name="albumId">идентификатор альбома, в который нужно переместить аудиозапись</param>
             public Request<int> Add(
                 int ownerId , long audioId , int? groupId = null,  long? albumId = null
             ) {
@@ -510,6 +567,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Создает пустой альбом аудиозаписей
+            ///      
+            ///</summary>
+            ///<param name="title">название альбома</param>
+            ///<param name="groupId">идентификатор сообщества (если альбом нужно создать в сообществе)</param>
             public Request<AddAlbum> AddAlbum(
                 string title ,  int? groupId = 0
             ) {
@@ -526,15 +589,21 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Удаляет аудиозапись со страницы пользователя или сообщества
+            ///      
+            ///</summary>
+            ///<param name="audioId">идентификатор аудиозаписи</param>
+            ///<param name="ownerId">идентификатор владельца аудиозаписи (пользователь или сообщество)</param>
             public Request<bool> Delete(
-                long audioId ,  int? ownerId = null
+                long audioId ,  int ownerId 
             ) {
                 var req = new Request<bool>{
                     MethodName = "audio.delete",
                     Parameters = new Dictionary<string, string> {
 
                         { "audio_id", audioId.ToNCString()},
-                        { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "owner_id", ownerId.ToNCString()},
 
                     }
                 };
@@ -542,6 +611,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Удаляет альбом аудиозаписей
+            ///      
+            ///</summary>
+            ///<param name="albumId">идентификатор альбома</param>
+            ///<param name="groupId">идентификатор сообщества, которому принадлежит альбом</param>
             public Request<bool> DeleteAlbum(
                 long albumId ,  int? groupId = null
             ) {
@@ -4041,6 +4116,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Позволяет получать список репостов заданной записи
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
             public Request<EntityListExtended<Post>> GetReposts(
                 int postId ,  int? ownerId = null, int? offset = null, int? count = 100
             ) {
@@ -4060,6 +4141,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Закрепляет запись на стене
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Pin(
                 int postId ,  int? ownerId = null
             ) {
@@ -4076,6 +4163,25 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Публикует отложенную запись на своей или чужой стене
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        После успешного выполнения возвращает идентификатор созданной записи
+            ///      
+            ///</returns>
+            ///<param name="message">текст сообщения (является обязательным, если не задан параметр attachments)</param>
+            ///<param name="attachments">список объектов, приложенных к записи</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись</param>
+            ///<param name="fromGroup">Опубликовать от имени группы</param>
+            ///<param name="signed">у записи, размещенной от имени сообщества, будет добавлена подпись</param>
+            ///<param name="friendsOnly">запись будет доступна только друзьям</param>
+            ///<param name="services">список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию</param>
+            ///<param name="publishDate">дата публикации записи в формате unixtime. Если параметр указан, публикация записи будет отложена до указанного времени.</param>
+            ///<param name="lat">географическая широта отметки, заданная в градусах (от -90 до 90)</param>
+            ///<param name="@long">географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
+            ///<param name="placeId">идентификатор места, в котором отмечен пользователь</param>
             public Request<WallPost> Post(
                 string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
             ) {
@@ -4101,6 +4207,16 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Публикует отложенную запись на своей или чужой стене
+            ///      
+            ///</summary>
+            ///<returns>
+            ///        После успешного выполнения возвращает идентификатор созданной записи
+            ///      
+            ///</returns>
+            ///<param name="postId">идентификатор записи, которую необходимо опубликовать</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись</param>
             public Request<WallPost> Post(
                 int postId ,  int? ownerId = null
             ) {
@@ -4117,6 +4233,13 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Позволяет пожаловаться на комментарий к записи
+            ///      
+            ///</summary>
+            ///<param name="commentId">идентификатор комментария</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит комментарий</param>
+            ///<param name="reason">причина жалобы</param>
             public Request<bool> ReportComment(
                 int commentId , int? ownerId = null,  ReportReason? reason = null
             ) {
@@ -4254,6 +4377,17 @@ namespace kasthack.vksharp {
             private readonly RequestApi _parent;
             internal MethodGroup_likes(RequestApi parent){_parent=parent;}
 
+            ///<summary>
+            ///        Получает список идентификаторов пользователей, которые добавили заданный объект в свой список "Мне нравится"
+            ///      
+            ///</summary>
+            ///<param name="type">тип объекта</param>
+            ///<param name="filter">указывает, следует ли вернуть всех пользователей, добавивших объект в список "Мне нравится" или только тех, которые рассказали о нем друзьям</param>
+            ///<param name="friendsOnly">указывает, необходимо ли возвращать только пользователей, которые являются друзьями текущего пользователя</param>
+            ///<param name="skipOwn">не возвращать самого пользователя</param>
+            ///<param name="ownerId">идентификатор владельца Like-объекта</param>
+            ///<param name="itemId">идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»</param>
+            ///<param name="pageUrl">url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id.</param>
             public Request<EntityList<int>> GetList(
                 string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ) {
@@ -4279,6 +4413,17 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Получает список идентификаторов пользователей, которые добавили заданный объект в свой список "Мне нравится"
+            ///      
+            ///</summary>
+            ///<param name="type">тип объекта</param>
+            ///<param name="filter">указывает, следует ли вернуть всех пользователей, добавивших объект в список "Мне нравится" или только тех, которые рассказали о нем друзьям</param>
+            ///<param name="friendsOnly">указывает, необходимо ли возвращать только пользователей, которые являются друзьями текущего пользователя</param>
+            ///<param name="skipOwn">не возвращать самого пользователя</param>
+            ///<param name="ownerId">идентификатор владельца Like-объекта</param>
+            ///<param name="itemId">идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»</param>
+            ///<param name="pageUrl">url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id.</param>
             public Request<EntityList<User>> GetListExtended(
                 string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ) {
