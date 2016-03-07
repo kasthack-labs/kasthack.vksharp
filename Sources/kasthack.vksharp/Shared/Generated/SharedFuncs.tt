@@ -104,7 +104,7 @@ public static string GetParamsString(Method node) {
                         last.Type,
                         ToMeth( last.Name, true ),
                         !isparams && !string.IsNullOrWhiteSpace(last.Default) ? "= " + last.Default : "" ):null;
-    var pagestring = node.Pageable != 0 ? ( "int offset = 0, int count = " + node.Pageable ) : null;
+    var pagestring = node.Pageable != 0 ? ( "int? offset = null, int? count = " + node.Pageable ) : null;
     if ( isparams ) {
         if ( pagestring != null )
             ret.Add( pagestring );

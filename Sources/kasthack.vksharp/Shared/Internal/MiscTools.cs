@@ -77,7 +77,7 @@ namespace kasthack.vksharp.Internal {
             return s;
         }
 
-        public static string NullableString<T>( T? input ) where T : struct, IFormattable {
+        public static string NullableString<T>( this T? input ) where T : struct, IFormattable {
             return input.HasValue ? input.Value.ToNCString() : string.Empty;
         }
 

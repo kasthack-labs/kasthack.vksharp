@@ -71,7 +71,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetActiveOffers(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Account.GetActiveOffers(
@@ -91,7 +91,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetBanned(
-                int offset = 0, int count = 20
+                int? offset = null, int? count = 20
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Account.GetBanned(
@@ -333,7 +333,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
+                int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params ulong[] audioIds 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.Get(
@@ -343,7 +343,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetBroadcastListGroups(
-                 bool active = true, int offset = 0, int count = 100
+                 bool active = true, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.GetBroadcastListGroups(
@@ -353,7 +353,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetBroadcastListUsers(
-                 bool active = true, int offset = 0, int count = 100
+                 bool active = true, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.GetBroadcastListUsers(
@@ -363,7 +363,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetPopular(
-                AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
+                AudioGenre? genreId = null,  bool? onlyEng = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.GetPopular(
@@ -373,7 +373,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetRecommendations(
-                AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
+                AudioGenre? genreId = null,  bool? onlyEng = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.GetRecommendations(
@@ -383,7 +383,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetAlbums(
-                 int? ownerId = null, int offset = 0, int count = 100
+                 int? ownerId = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.GetAlbums(
@@ -463,7 +463,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Search(
-                string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int offset = 0, int count = 100
+                string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Audio.Search(
@@ -591,7 +591,7 @@ namespace kasthack.vksharp {
             internal MethodGroup_Database(RawApi parent){_parent=parent;}
 
             public async Task<string> GetChairs(
-                 int facultyId , int offset = 0, int count = 100
+                 int facultyId , int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetChairs(
@@ -601,7 +601,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetCities(
-                int countryId , int? regionId = null, string q = "",  bool needAll = false, int offset = 0, int count = 100
+                int countryId , int? regionId = null, string q = "",  bool needAll = false, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetCities(
@@ -621,7 +621,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetCountries(
-                string code = "",  bool needAll = false, int offset = 0, int count = 100
+                string code = "",  bool needAll = false, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetCountries(
@@ -641,7 +641,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetFaculties(
-                 int universityId , int offset = 0, int count = 100
+                 int universityId , int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetFaculties(
@@ -651,7 +651,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetRegions(
-                int countryId ,  string q = "", int offset = 0, int count = 100
+                int countryId ,  string q = "", int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetRegions(
@@ -661,7 +661,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetSchools(
-                int? cityId = null,  string q = "", int offset = 0, int count = 100
+                int? cityId = null,  string q = "", int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetSchools(
@@ -691,7 +691,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetUniversities(
-                int? countryId = null, int? cityId = null,  string q = "", int offset = 0, int count = 100
+                int? countryId = null, int? cityId = null,  string q = "", int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Database.GetUniversities(
@@ -727,7 +727,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                 int? ownerId = null, int offset = 0, int count = 100
+                 int? ownerId = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Docs.Get(
@@ -783,7 +783,7 @@ namespace kasthack.vksharp {
             internal MethodGroup_Fave(RawApi parent){_parent=parent;}
 
             public async Task<string> GetLinks(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Fave.GetLinks(
@@ -793,7 +793,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetUsers(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Fave.GetUsers(
@@ -803,7 +803,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetPhotos(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Fave.GetPhotos(
@@ -813,7 +813,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetPosts(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Fave.GetPosts(
@@ -823,7 +823,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetVideos(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Fave.GetVideos(
@@ -989,7 +989,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.Get(
@@ -999,7 +999,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetIds(
-                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.GetIds(
@@ -1029,7 +1029,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.Get(
@@ -1059,7 +1059,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMutual(
-                int targetUid , int? sourceUid = null,  bool order = false, int offset = 0, int count = 100
+                int targetUid , int? sourceUid = null,  bool order = false, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.GetMutual(
@@ -1069,7 +1069,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetOnline(
-                int? userId = null, int? listId = null,  UserSortOrder? order = null, int offset = 0, int count = 100
+                int? userId = null, int? listId = null,  UserSortOrder? order = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.GetOnline(
@@ -1089,7 +1089,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetSuggestions(
-                FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.GetSuggestions(
@@ -1099,7 +1099,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Search(
-                int userId , string q = "",  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 20
+                int userId , string q = "",  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 20
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Friends.Search(
@@ -1175,7 +1175,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int userId ,  GroupsGetFilter? filter = null, int offset = 0, int count = 100
+                int userId ,  GroupsGetFilter? filter = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.Get(
@@ -1185,7 +1185,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetBanned(
-                 int groupId , int offset = 0, int count = 100
+                 int groupId , int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetBanned(
@@ -1215,7 +1215,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMembers(
-                string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembers(
@@ -1225,7 +1225,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMembers(
-                int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembers(
@@ -1235,7 +1235,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMembersManagers(
-                string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                string groupId ,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembersManagers(
@@ -1245,7 +1245,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMembersManagers(
-                int groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                int groupId ,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembersManagers(
@@ -1255,7 +1255,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMembers(
-                string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembers(
@@ -1265,7 +1265,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetMembers(
-                int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Groups.GetMembers(
@@ -1411,7 +1411,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int offset = 0, int count = 200
+                int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int? offset = null, int? count = 200
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.Get(
@@ -1421,7 +1421,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetHistoryChat(
-                int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+                int chatId , bool rev = false,  long? startMessageId = null, int? offset = null, int? count = 200
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.GetHistoryChat(
@@ -1431,7 +1431,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetHistoryUser(
-                int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+                int userId , bool rev = false,  long? startMessageId = null, int? offset = null, int? count = 200
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.GetHistoryUser(
@@ -1721,7 +1721,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
+                long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Photos.Get(
@@ -1731,7 +1731,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
+                SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Photos.Get(
@@ -1741,7 +1741,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetAlbums(
-                int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100, params long[] albumIds 
+                int? ownerId = null, bool needSystem = true, bool needCovers = true, int? offset = null, int? count = 100, params long[] albumIds 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Photos.GetAlbums(
@@ -1761,7 +1761,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetAll(
-                int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int offset = 0, int count = 100
+                int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Photos.GetAll(
@@ -2005,7 +2005,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetKeys(
-                int? userId = null,  bool global = false, int offset = 0, int count = 100
+                int? userId = null,  bool global = false, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Storage.GetKeys(
@@ -2041,7 +2041,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetFollowers(
-                int? userId = null,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                int? userId = null,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.GetFollowers(
@@ -2051,7 +2051,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetFollowers(
-                int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.GetFollowers(
@@ -2061,7 +2061,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetNearby(
-                double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.GetNearby(
@@ -2071,7 +2071,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetSubscriptions(
-                 int? userId = null, int offset = 0, int count = 100
+                 int? userId = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.GetSubscriptions(
@@ -2101,7 +2101,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Search(
-                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int offset = 0, int count = 100
+                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.Search(
@@ -2203,7 +2203,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetNewTags(
-                int offset = 0, int count = 20
+                int? offset = null, int? count = 20
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.GetNewTags(
@@ -2309,7 +2309,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.Get(
@@ -2319,7 +2319,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Get(
-                string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.Get(
@@ -2339,7 +2339,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetComments(
-                int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int offset = 0, int count = 100
+                int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.GetComments(
@@ -2349,7 +2349,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetReposts(
-                int postId ,  int? ownerId = null, int offset = 0, int count = 100
+                int postId ,  int? ownerId = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Wall.GetReposts(
@@ -2455,7 +2455,7 @@ namespace kasthack.vksharp {
             internal MethodGroup_Likes(RawApi parent){_parent=parent;}
 
             public async Task<string> GetList(
-                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Likes.GetList(
@@ -2465,7 +2465,7 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> GetListExtended(
-                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Likes.GetListExtended(

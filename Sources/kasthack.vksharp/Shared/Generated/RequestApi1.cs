@@ -87,14 +87,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Offer>> GetActiveOffers(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Offer>>{
                     MethodName = "account.getActiveOffers",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -120,14 +120,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<User[]> GetBanned(
-                int offset = 0, int count = 20
+                int? offset = null, int? count = 20
             ) {
                 var req = new Request<User[]>{
                     MethodName = "account.getBanned",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -510,7 +510,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Audio>> Get(
-                int? ownerId = null, long? albumId = null, int offset = 0, int count = 100, params ulong[] audioIds 
+                int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params ulong[] audioIds 
             ) {
                 var req = new Request<EntityList<Audio>>{
                     MethodName = "audio.get",
@@ -520,8 +520,8 @@ namespace kasthack.vksharp {
                         { "album_id", MiscTools.NullableString(albumId)},
                         { "audio_ids", (audioIds??new ulong[]{}).ToNCStringA()},
                         {"need_user","false"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -531,7 +531,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<Group[]> GetBroadcastListGroups(
-                 bool active = true, int offset = 0, int count = 100
+                 bool active = true, int? offset = null, int? count = 100
             ) {
                 var req = new Request<Group[]>{
                     MethodName = "audio.getBroadcastList",
@@ -539,8 +539,8 @@ namespace kasthack.vksharp {
 
                         { "active", (active?1:0).ToNCString()},
                         {"filter","groups"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -550,7 +550,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<User[]> GetBroadcastListUsers(
-                 bool active = true, int offset = 0, int count = 100
+                 bool active = true, int? offset = null, int? count = 100
             ) {
                 var req = new Request<User[]>{
                     MethodName = "audio.getBroadcastList",
@@ -558,8 +558,8 @@ namespace kasthack.vksharp {
 
                         { "active", (active?1:0).ToNCString()},
                         {"filter","friends"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -569,7 +569,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Audio>> GetPopular(
-                AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
+                AudioGenre? genreId = null,  bool? onlyEng = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Audio>>{
                     MethodName = "audio.getPopular",
@@ -577,8 +577,8 @@ namespace kasthack.vksharp {
 
                         { "genre_id", MiscTools.NullableString( (int?)genreId )},
                         { "only_eng", (onlyEng != null ? ( onlyEng.Value ? 1 : 0 ).ToNCString() : "")},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -588,7 +588,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Audio>> GetRecommendations(
-                AudioGenre? genreId = null,  bool? onlyEng = null, int offset = 0, int count = 100
+                AudioGenre? genreId = null,  bool? onlyEng = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Audio>>{
                     MethodName = "audio.getRecommendations",
@@ -596,8 +596,8 @@ namespace kasthack.vksharp {
 
                         { "genre_id", MiscTools.NullableString( (int?)genreId )},
                         { "only_eng", (onlyEng != null ? ( onlyEng.Value ? 1 : 0 ).ToNCString() : "")},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -607,15 +607,15 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<AudioAlbum>> GetAlbums(
-                 int? ownerId = null, int offset = 0, int count = 100
+                 int? ownerId = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<AudioAlbum>>{
                     MethodName = "audio.getAlbums",
                     Parameters = new Dictionary<string, string> {
 
                         { "owner_id", MiscTools.NullableString(ownerId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -744,7 +744,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Audio>> Search(
-                string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int offset = 0, int count = 100
+                string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Audio>>{
                     MethodName = "audio.search",
@@ -756,8 +756,8 @@ namespace kasthack.vksharp {
                         { "performer_only", (performerOnly?1:0).ToNCString()},
                         { "sort", ((int)sort).ToNCString()},
                         { "search_own", (searchOwn?1:0).ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -951,15 +951,15 @@ namespace kasthack.vksharp {
             internal MethodGroup_database(RequestApi parent){_parent=parent;}
 
             public Request<EntityList<DatabaseEntry>> GetChairs(
-                 int facultyId , int offset = 0, int count = 100
+                 int facultyId , int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<DatabaseEntry>>{
                     MethodName = "database.getChairs",
                     Parameters = new Dictionary<string, string> {
 
                         { "faculty_id", facultyId.ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -969,7 +969,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<DatabaseCity[]> GetCities(
-                int countryId , int? regionId = null, string q = "",  bool needAll = false, int offset = 0, int count = 100
+                int countryId , int? regionId = null, string q = "",  bool needAll = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<DatabaseCity[]>{
                     MethodName = "database.getCities",
@@ -979,8 +979,8 @@ namespace kasthack.vksharp {
                         { "region_id", MiscTools.NullableString(regionId)},
                         { "q", q},
                         { "need_all", (needAll?1:0).ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1006,7 +1006,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<DatabaseEntry>> GetCountries(
-                string code = "",  bool needAll = false, int offset = 0, int count = 100
+                string code = "",  bool needAll = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<DatabaseEntry>>{
                     MethodName = "database.getCountries",
@@ -1014,8 +1014,8 @@ namespace kasthack.vksharp {
 
                         { "code", code},
                         { "need_all", (needAll?1:0).ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1041,15 +1041,15 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<DatabaseEntry>> GetFaculties(
-                 int universityId , int offset = 0, int count = 100
+                 int universityId , int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<DatabaseEntry>>{
                     MethodName = "database.getFaculties",
                     Parameters = new Dictionary<string, string> {
 
                         { "university_id", universityId.ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1059,7 +1059,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<DatabaseEntry>> GetRegions(
-                int countryId ,  string q = "", int offset = 0, int count = 100
+                int countryId ,  string q = "", int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<DatabaseEntry>>{
                     MethodName = "database.getRegions",
@@ -1067,8 +1067,8 @@ namespace kasthack.vksharp {
 
                         { "country_id", countryId.ToNCString()},
                         { "q", q},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1078,7 +1078,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<DatabaseEntry[]> GetSchools(
-                int? cityId = null,  string q = "", int offset = 0, int count = 100
+                int? cityId = null,  string q = "", int? offset = null, int? count = 100
             ) {
                 var req = new Request<DatabaseEntry[]>{
                     MethodName = "database.getSchools",
@@ -1086,8 +1086,8 @@ namespace kasthack.vksharp {
 
                         { "city_id", MiscTools.NullableString(cityId)},
                         { "q", q},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1129,7 +1129,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<DatabaseEntry[]> GetUniversities(
-                int? countryId = null, int? cityId = null,  string q = "", int offset = 0, int count = 100
+                int? countryId = null, int? cityId = null,  string q = "", int? offset = null, int? count = 100
             ) {
                 var req = new Request<DatabaseEntry[]>{
                     MethodName = "database.getUniversities",
@@ -1138,8 +1138,8 @@ namespace kasthack.vksharp {
                         { "country_id", MiscTools.NullableString(countryId)},
                         { "city_id", MiscTools.NullableString(cityId)},
                         { "q", q},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1187,15 +1187,15 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Document>> Get(
-                 int? ownerId = null, int offset = 0, int count = 100
+                 int? ownerId = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Document>>{
                     MethodName = "docs.get",
                     Parameters = new Dictionary<string, string> {
 
                         { "owner_id", MiscTools.NullableString(ownerId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1273,14 +1273,14 @@ namespace kasthack.vksharp {
             internal MethodGroup_fave(RequestApi parent){_parent=parent;}
 
             public Request<EntityList<Link>> GetLinks(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Link>>{
                     MethodName = "fave.getLinks",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1289,14 +1289,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetUsers(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "fave.getUsers",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1305,14 +1305,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Photo>> GetPhotos(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Photo>>{
                     MethodName = "fave.getPhotos",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1321,14 +1321,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Post>> GetPosts(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Post>>{
                     MethodName = "fave.getPosts",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1337,14 +1337,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Video>> GetVideos(
-                int offset = 0, int count = 100
+                int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Video>>{
                     MethodName = "fave.getVideos",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1593,7 +1593,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> Get(
-                int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "friends.get",
@@ -1604,8 +1604,8 @@ namespace kasthack.vksharp {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "order", order.ToNCString().ToSnake()},
                         { "name_case", nameCase.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1615,7 +1615,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<int>> GetIds(
-                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "friends.get",
@@ -1624,8 +1624,8 @@ namespace kasthack.vksharp {
                         { "user_id", MiscTools.NullableString(userId)},
                         { "list_id", MiscTools.NullableString(listId)},
                         { "order", order.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1667,7 +1667,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<int>> Get(
-                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int offset = 0, int count = 100
+                int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "friends.get",
@@ -1676,8 +1676,8 @@ namespace kasthack.vksharp {
                         { "user_id", MiscTools.NullableString(userId)},
                         { "list_id", MiscTools.NullableString(listId)},
                         { "order", order.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1719,7 +1719,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int[]> GetMutual(
-                int targetUid , int? sourceUid = null,  bool order = false, int offset = 0, int count = 100
+                int targetUid , int? sourceUid = null,  bool order = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<int[]>{
                     MethodName = "friends.getMutual",
@@ -1728,8 +1728,8 @@ namespace kasthack.vksharp {
                         { "target_uid", targetUid.ToNCString()},
                         { "source_uid", MiscTools.NullableString(sourceUid)},
                         { "order",  order ? "random" : "" },
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1739,7 +1739,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int[]> GetOnline(
-                int? userId = null, int? listId = null,  UserSortOrder? order = null, int offset = 0, int count = 100
+                int? userId = null, int? listId = null,  UserSortOrder? order = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<int[]>{
                     MethodName = "friends.getOnline",
@@ -1748,8 +1748,8 @@ namespace kasthack.vksharp {
                         { "user_id", MiscTools.NullableString(userId)},
                         { "list_id", MiscTools.NullableString(listId)},
                         { "order", order?.ToNCString()?.ToSnake()??""},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1774,7 +1774,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetSuggestions(
-                FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "friends.getSuggestions",
@@ -1783,8 +1783,8 @@ namespace kasthack.vksharp {
                         { "filters", String.Join( ",", MiscTools.GetFilterFields( filters ) )},
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "name_case", nameCase.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1793,7 +1793,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> Search(
-                int userId , string q = "",  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 20
+                int userId , string q = "",  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 20
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "friends.search",
@@ -1802,8 +1802,8 @@ namespace kasthack.vksharp {
                         { "user_id", userId.ToNCString()},
                         { "q", q},
                         { "name_case", nameCase.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1941,7 +1941,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<int>> Get(
-                int userId ,  GroupsGetFilter? filter = null, int offset = 0, int count = 100
+                int userId ,  GroupsGetFilter? filter = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "groups.get",
@@ -1949,8 +1949,8 @@ namespace kasthack.vksharp {
 
                         { "user_id", userId.ToNCString()},
                         { "filter", filter?.ToNCString()?.ToSnake()??""},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -1960,15 +1960,15 @@ namespace kasthack.vksharp {
             }
 
             public Request<User[]> GetBanned(
-                 int groupId , int offset = 0, int count = 100
+                 int groupId , int? offset = null, int? count = 100
             ) {
                 var req = new Request<User[]>{
                     MethodName = "groups.getBanned",
                     Parameters = new Dictionary<string, string> {
 
                         { "group_id", groupId.ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2011,7 +2011,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<int>> GetMembers(
-                string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "groups.getMembers",
@@ -2021,8 +2021,8 @@ namespace kasthack.vksharp {
                         { "filter", MiscTools.NullableString( (int?)filter )},
                         { "sort", MiscTools.NullableString( (int?)sort )},
                         {"fields",""},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2032,7 +2032,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<int>> GetMembers(
-                int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "groups.getMembers",
@@ -2042,8 +2042,8 @@ namespace kasthack.vksharp {
                         { "filter", MiscTools.NullableString( (int?)filter )},
                         { "sort", MiscTools.NullableString( (int?)sort )},
                         {"fields",""},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2053,7 +2053,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<GroupManager>> GetMembersManagers(
-                string groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                string groupId ,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<GroupManager>>{
                     MethodName = "groups.getMembers",
@@ -2062,8 +2062,8 @@ namespace kasthack.vksharp {
                         { "group_id", groupId},
                         { "sort", MiscTools.NullableString( (int?)sort )},
                         {"filter","managers"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2072,7 +2072,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<GroupManager>> GetMembersManagers(
-                int groupId ,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                int groupId ,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<GroupManager>>{
                     MethodName = "groups.getMembers",
@@ -2081,8 +2081,8 @@ namespace kasthack.vksharp {
                         { "group_id", groupId.ToNCString()},
                         { "sort", MiscTools.NullableString( (int?)sort )},
                         {"filter","managers"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2091,7 +2091,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetMembers(
-                string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "groups.getMembers",
@@ -2101,8 +2101,8 @@ namespace kasthack.vksharp {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "filter", MiscTools.NullableString( (int?)filter )},
                         { "sort", MiscTools.NullableString( (int?)sort )},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2111,7 +2111,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetMembers(
-                int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int offset = 0, int count = 100
+                int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "groups.getMembers",
@@ -2121,8 +2121,8 @@ namespace kasthack.vksharp {
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "filter", MiscTools.NullableString( (int?)filter )},
                         { "sort", MiscTools.NullableString( (int?)sort )},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2346,7 +2346,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Message>> Get(
-                int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int offset = 0, int count = 200
+                int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int? offset = null, int? count = 200
             ) {
                 var req = new Request<EntityList<Message>>{
                     MethodName = "messages.get",
@@ -2357,8 +2357,8 @@ namespace kasthack.vksharp {
                         { "filters", filters.ToNCString()},
                         { "preview_length", previewLength.ToNCString()},
                         { "last_message_id", MiscTools.NullableString(lastMessageId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2367,7 +2367,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Message>> GetHistoryChat(
-                int chatId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+                int chatId , bool rev = false,  long? startMessageId = null, int? offset = null, int? count = 200
             ) {
                 var req = new Request<EntityList<Message>>{
                     MethodName = "messages.getHistory",
@@ -2376,8 +2376,8 @@ namespace kasthack.vksharp {
                         { "chat_id", chatId.ToNCString()},
                         { "rev", (rev?1:0).ToNCString()},
                         { "start_message_id", MiscTools.NullableString(startMessageId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2386,7 +2386,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Message>> GetHistoryUser(
-                int userId , bool rev = false,  long? startMessageId = null, int offset = 0, int count = 200
+                int userId , bool rev = false,  long? startMessageId = null, int? offset = null, int? count = 200
             ) {
                 var req = new Request<EntityList<Message>>{
                     MethodName = "messages.getHistory",
@@ -2395,8 +2395,8 @@ namespace kasthack.vksharp {
                         { "user_id", userId.ToNCString()},
                         { "rev", (rev?1:0).ToNCString()},
                         { "start_message_id", MiscTools.NullableString(startMessageId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2844,7 +2844,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Photo>> Get(
-                long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
+                long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Photo>>{
                     MethodName = "photos.get",
@@ -2857,8 +2857,8 @@ namespace kasthack.vksharp {
                         { "extended", (extended?1:0).ToNCString()},
                         { "feed_type", feedType?.ToNCString()?.ToSnake()??""},
                         { "feed", MiscTools.NullableString(feed)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2868,7 +2868,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Photo>> Get(
-                SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int offset = 0, int count = 100
+                SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Photo>>{
                     MethodName = "photos.get",
@@ -2881,8 +2881,8 @@ namespace kasthack.vksharp {
                         { "extended", (extended?1:0).ToNCString()},
                         { "feed_type", feedType?.ToNCString()?.ToSnake()??""},
                         { "feed", MiscTools.NullableString(feed)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2892,7 +2892,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<PhotoAlbum>> GetAlbums(
-                int? ownerId = null, bool needSystem = true, bool needCovers = true, int offset = 0, int count = 100, params long[] albumIds 
+                int? ownerId = null, bool needSystem = true, bool needCovers = true, int? offset = null, int? count = 100, params long[] albumIds 
             ) {
                 var req = new Request<EntityList<PhotoAlbum>>{
                     MethodName = "photos.getAlbums",
@@ -2902,8 +2902,8 @@ namespace kasthack.vksharp {
                         { "need_system", (needSystem?1:0).ToNCString()},
                         { "need_covers", (needCovers?1:0).ToNCString()},
                         { "album_ids", (albumIds??new long[]{}).ToNCStringA()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -2930,7 +2930,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Photo>> GetAll(
-                int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int offset = 0, int count = 100
+                int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Photo>>{
                     MethodName = "photos.getAll",
@@ -2941,8 +2941,8 @@ namespace kasthack.vksharp {
                         { "no_service_albums", (noServiceAlbums?1:0).ToNCString()},
                         { "need_hidden", (needHidden != null ? ( needHidden.Value ? 1 : 0 ).ToNCString() : "")},
                         { "skip_hidden", (skipHidden != null ? ( skipHidden.Value ? 1 : 0 ).ToNCString() : "")},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3330,7 +3330,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<string[]> GetKeys(
-                int? userId = null,  bool global = false, int offset = 0, int count = 100
+                int? userId = null,  bool global = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<string[]>{
                     MethodName = "storage.getKeys",
@@ -3338,8 +3338,8 @@ namespace kasthack.vksharp {
 
                         { "user_id", MiscTools.NullableString(userId)},
                         { "global", (global?1:0).ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3391,7 +3391,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<int>> GetFollowers(
-                int? userId = null,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                int? userId = null,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "users.getFollowers",
@@ -3399,8 +3399,8 @@ namespace kasthack.vksharp {
 
                         { "user_id", MiscTools.NullableString(userId)},
                         { "name_case", nameCase.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3410,7 +3410,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetFollowers(
-                int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "users.getFollowers",
@@ -3419,8 +3419,8 @@ namespace kasthack.vksharp {
                         { "user_id", MiscTools.NullableString(userId)},
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "name_case", nameCase.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3430,7 +3430,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetNearby(
-                double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int offset = 0, int count = 100
+                double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "users.getNearby",
@@ -3443,8 +3443,8 @@ namespace kasthack.vksharp {
                         { "radius", MiscTools.NullableString(radius)},
                         { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
                         { "name_case", nameCase.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3454,15 +3454,15 @@ namespace kasthack.vksharp {
             }
 
             public Request<UserSubscriptions> GetSubscriptions(
-                 int? userId = null, int offset = 0, int count = 100
+                 int? userId = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<UserSubscriptions>{
                     MethodName = "users.getSubscriptions",
                     Parameters = new Dictionary<string, string> {
 
                         { "user_id", MiscTools.NullableString(userId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3505,7 +3505,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> Search(
-                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int offset = 0, int count = 100
+                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "users.search",
@@ -3540,8 +3540,8 @@ namespace kasthack.vksharp {
                         { "position", position},
                         { "group_id", MiscTools.NullableString(groupId)},
                         { "from_list", fromList?.ToNCString()?.ToSnake()??""},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3688,14 +3688,14 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<TaggedVideo>> GetNewTags(
-                int offset = 0, int count = 20
+                int? offset = null, int? count = 20
             ) {
                 var req = new Request<EntityList<TaggedVideo>>{
                     MethodName = "video.getNewTags",
                     Parameters = new Dictionary<string, string> {
 
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3861,7 +3861,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Post>> Get(
-                int ownerId ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Post>>{
                     MethodName = "wall.get",
@@ -3869,8 +3869,8 @@ namespace kasthack.vksharp {
 
                         { "owner_id", ownerId.ToNCString()},
                         { "filter", filter.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3880,7 +3880,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Post>> Get(
-                string domain ,  WallPostFilter filter = WallPostFilter.All, int offset = 0, int count = 100
+                string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<Post>>{
                     MethodName = "wall.get",
@@ -3888,8 +3888,8 @@ namespace kasthack.vksharp {
 
                         { "domain", domain},
                         { "filter", filter.ToNCString().ToSnake()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3915,7 +3915,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityListExtended<Comment>> GetComments(
-                int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int offset = 0, int count = 100
+                int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityListExtended<Comment>>{
                     MethodName = "wall.getComments",
@@ -3927,8 +3927,8 @@ namespace kasthack.vksharp {
                         { "extended", extended.ToNCString()},
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "need_likes", (needLikes?1:0).ToNCString()},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -3938,7 +3938,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityListExtended<Post>> GetReposts(
-                int postId ,  int? ownerId = null, int offset = 0, int count = 100
+                int postId ,  int? ownerId = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityListExtended<Post>>{
                     MethodName = "wall.getReposts",
@@ -3946,8 +3946,8 @@ namespace kasthack.vksharp {
 
                         { "post_id", postId.ToNCString()},
                         { "owner_id", MiscTools.NullableString(ownerId)},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -4118,7 +4118,7 @@ namespace kasthack.vksharp {
             internal MethodGroup_likes(RequestApi parent){_parent=parent;}
 
             public Request<EntityList<int>> GetList(
-                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<int>>{
                     MethodName = "likes.getList",
@@ -4132,8 +4132,8 @@ namespace kasthack.vksharp {
                         { "item_id", MiscTools.NullableString(itemId)},
                         { "page_url", pageUrl},
                         {"extended","false"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };
@@ -4143,7 +4143,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<User>> GetListExtended(
-                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int offset = 0, int count = 100
+                string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityList<User>>{
                     MethodName = "likes.getList",
@@ -4157,8 +4157,8 @@ namespace kasthack.vksharp {
                         { "item_id", MiscTools.NullableString(itemId)},
                         { "page_url", pageUrl},
                         {"extended","true"},
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 
                     }
                 };

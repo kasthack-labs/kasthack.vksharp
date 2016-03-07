@@ -232,7 +232,6 @@
     <Compile Include="Token.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="favicon.ico" />
     <None Include="Generated\AllMethods.txt" />
     <None Include="Generated\Methods.xml">
       <SubType>Designer</SubType>

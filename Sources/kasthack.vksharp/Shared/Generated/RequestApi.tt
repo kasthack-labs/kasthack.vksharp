@@ -88,8 +88,8 @@ foreach ( var parameter in method.Hardcoded??new HardcodedParameter[]{} ) {
 }
 #>
 <#if ( method.Pageable != 0 ) { #>
-                        { "offset", offset.ToNCString() },
-                        { "count", count.ToNCString() },
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
 <# } #>
 
                     }
