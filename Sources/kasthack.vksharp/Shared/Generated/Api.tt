@@ -79,7 +79,27 @@ var methodName = ToMeth( method.Name.Split( '.' ).Last() )+method.NameSuffix;
                         ).ConfigureAwait(false)
                     <#if(parse){#>).Response<#}#>;
                 }
-
+<#if(method.Doc!=null){#>
+<#if(method.Doc.Summary!=null){#>
+                ///<summary>
+<#foreach (var line in method.Doc.Summary.Split(new[]{'\r','\n'}, StringSplitOptions.RemoveEmptyEntries)){#>
+                ///<#=line#>
+<#}#>
+                ///</summary>
+<#}#>
+<#if(method.Doc.Returns!=null){#>
+                ///<returns>
+<#foreach (var line in method.Doc.Returns.Split(new[]{'\r','\n'}, StringSplitOptions.RemoveEmptyEntries)){#>
+                ///<#=line#>
+<#}#>
+                ///</returns>
+<#}#>
+<#if(method.Params!=null){#>
+<#foreach (var param in method.Params.Where(a=>a.Doc!=null)){#>
+                ///<param name="<#=ToMeth(param.Name,true)#>"><#=param.Doc#></param>
+<#}#>
+<#}#>
+<#}#>
                 public <#=method.Type#> <#=methodName#>Sync(
                     <#=GetParamsString(method)#>
                 ) {

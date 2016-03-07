@@ -60,7 +60,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///Добавляет пользователя в черный список.Если указанный пользователь является другом текущего пользователя или имеет от него входящую или исходящую заявку в друзья, то для добавления пользователя в черный список Ваше приложение должно иметь права: friends.
+                ///</summary>
+                ///<param name="userId">Идентификатор пользователя, которого нужно добавить в черный список</param>
                 public void BanUserSync(
                      int userId 
                 ) {
@@ -91,7 +94,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Позволяет сменить пароль пользователя после успешного восстановления доступа к аккаунту через СМС, используя метод auth.restore
+                ///      
+                ///</summary>
+                ///<param name="restoreSid">Идентификатор сессии, полученный при восстановлении доступа используя метод auth.restore. (В случае если пароль меняется сразу после восстановления доступа)</param>
+                ///<param name="changePasswordHash">Хэш, полученный при успешной OAuth авторизации по коду полученному по СМС (В случае если пароль меняется сразу после восстановления доступа)</param>
+                ///<param name="oldPassword">Текущий пароль пользователя</param>
+                ///<param name="newPassword">Новый пароль, который будет установлен в качестве текущего</param>
                 public ChangePassword ChangePasswordSync(
                     string restoreSid , string changePasswordHash , string oldPassword ,  string newPassword 
                 ) {
@@ -118,7 +128,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
+                ///      
+                ///</summary>
                 public EntityList<Offer> GetActiveOffersSync(
                     int? offset = null, int? count = 100
                 ) {
@@ -150,7 +163,15 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Получает настройки текущего пользователя в данном приложении
+                ///      
+                ///</summary>
+                ///<returns>
+                ///        После успешного выполнения возвращает битовую маску настроек текущего пользователя в данном приложении
+                ///      
+                ///</returns>
+                ///<param name="userId">Идентификатор пользователя, информацию о настройках которого необходимо получить. По умолчанию — текущий пользователь</param>
                 public Permission GetAppPermissionsSync(
                      int? userId = null
                 ) {
@@ -181,7 +202,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///      Возвращает список пользователей, находящихся в черном списке
+                ///    
+                ///</summary>
+                ///<returns>
+                ///      Возвращает набор объектов пользователей, находящихся в черном списке
+                ///    
+                ///</returns>
                 public User[] GetBannedSync(
                     int? offset = null, int? count = 20
                 ) {
@@ -212,7 +240,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Возвращает информацию о текущем аккаунте
+                ///      
+                ///</summary>
+                ///<returns>
+                ///        Возвращает объект AccountInfo
+                ///      
+                ///</returns>
                 public AccountInfo GetInfoSync(
                     
                 ) {
@@ -240,7 +275,11 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Отменяет редактирование профиля
+                ///      
+                ///</summary>
+                ///<param name="cancelRequestId">идентификатор заявки на смену имени, которую необходимо отменить</param>
                 public SaveProfileInfo SaveProfileInfoSync(
                      int cancelRequestId 
                 ) {
@@ -279,7 +318,22 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Редактирует информацию текущего профиля
+                ///      
+                ///</summary>
+                ///<param name="firstName">имя пользователя</param>
+                ///<param name="lastName">фамилия пользователя.</param>
+                ///<param name="maidenName">девичья фамилия пользователя (только для женского пола)</param>
+                ///<param name="screenName">короткое имя страницы</param>
+                ///<param name="sex">пол пользователя</param>
+                ///<param name="relation">семейное положение пользователя</param>
+                ///<param name="relationPartnerId">идентификатор пользователя, с которым связано семейное положение</param>
+                ///<param name="bdate">дата рождения пользователя</param>
+                ///<param name="homeTown">родной город пользователя</param>
+                ///<param name="countryId">идентификатор страны пользователя</param>
+                ///<param name="cityId">идентификатор города пользователя</param>
+                ///<param name="status">статус пользователя, который также может быть изменен методом status.set</param>
                 public SaveProfileInfo SaveProfileInfoSync(
                     string firstName = "", string lastName = "", string maidenName = "", string screenName = "", Sex? sex = null, Relation? relation = null, int? relationPartnerId = null, Date? bdate = null, string homeTown = "", int? countryId = null, int? cityId = null,  string status = ""
                 ) {
@@ -306,7 +360,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Возвращает информацию о текущем профиле
+                ///      
+                ///</summary>
                 public User GetProfileInfoSync(
                     
                 ) {
@@ -335,7 +392,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Позволяет редактировать информацию о текущем аккаунте.
+                ///      
+                ///</summary>
+                ///<param name="intro">битовая маска, отвечающая за прохождение обучения в мобильных клиентах</param>
+                ///<param name="ownPostsDefault">Отображать по дефолту только записи пользователя</param>
+                ///<param name="noWallReplies">отключить комментирование записей на стене</param>
                 public void SetInfoSync(
                     int? intro = null, bool? ownPostsDefault = null,  bool? noWallReplies = null
                 ) {
@@ -363,7 +426,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Устанавливает короткое название приложения (до 17 символов), которое выводится пользователю в левом меню
+                ///      
+                ///</summary>
+                ///<param name="name">короткое название приложения</param>
+                ///<param name="userId">идентификатор пользователя</param>
                 public void SetNameInMenuSync(
                     string name ,  string userId 
                 ) {
@@ -389,7 +457,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Помечает текущего пользователя как offline
+                ///      
+                ///</summary>
                 public void SetOfflineSync(
                     
                 ) {
@@ -416,7 +487,11 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Помечает текущего пользователя как online на 15 минут
+                ///      
+                ///</summary>
+                ///<param name="voip">возможны ли видеозвонки для данного устройства</param>
                 public void SetOnlineSync(
                      bool voip = true
                 ) {
@@ -446,7 +521,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Отключает push-уведомления на заданный промежуток времени
+                ///      
+                ///</summary>
+                ///<param name="deviceId">уникальный идентификатор устройства</param>
+                ///<param name="time">время в секундах на которое требуется отключить уведомления, -1 отключить навсегда</param>
+                ///<param name="chatId"></param>
+                ///<param name="sound">включить/отключить звук в данном диалоге</param>
                 public void SetSilenceModeSync(
                     string deviceId , int time , int? chatId = null, int? userId = null,  int sound = 0
                 ) {
@@ -473,7 +555,11 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Убирает пользователя из черного списка
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя, которого нужно убрать из черного списка</param>
                 public void UnbanUserSync(
                      int userId 
                 ) {
@@ -506,7 +592,17 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Подписывает устройство на базе iOS, Android или Windows Phone на получение Push-уведомлений
+                ///      
+                ///</summary>
+                ///<param name="token">Идентификатор устройства, используемый для отправки уведомлений. (для mpns идентификатор должен представлять из себя URL для отправки уведомлений)</param>
+                ///<param name="deviceId">уникальный идентификатор устройства</param>
+                ///<param name="settings">сериализованный JSON-объект, описывающий настройки уведомлений в специальном формате</param>
+                ///<param name="deviceYear">год устройства</param>
+                ///<param name="deviceModel">cтроковое название модели устройства</param>
+                ///<param name="systemVersion">строковая версия операционной системы устройства</param>
+                ///<param name="sandbox">(iOS) использовать sandbox сервер для отправки push-уведомлений</param>
                 public void RegisterDeviceSync(
                     string token , string deviceId , string settings , int? deviceYear = null, string deviceModel = "", string systemVersion = "",  bool? sandbox = null
                 ) {
@@ -534,7 +630,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Отписывает устройство от Push уведомлений
+                ///      
+                ///</summary>
+                ///<param name="deviceId">уникальный идентификатор устройства</param>
+                ///<param name="sandbox">отписать устройство, использующее sandbox сервер для отправки push-уведомлений</param>
                 public void UnregisterDeviceSync(
                     string deviceId ,  bool? sandbox = null
                 ) {
@@ -567,7 +668,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Удаляет все уведомления о запросах, отправленных из текущего приложения
+                ///      
+                ///</summary>
                 public void DeleteAppRequestsSync(
                     
                 ) {
@@ -594,7 +698,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Метод возвращает количество очков пользователя в этой игре
+                ///      
+                ///</summary>
                 public long GetScoreSync(
                     
                 ) {
@@ -623,7 +730,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Возвращает рейтинг пользователей в игре
+                ///      
+                ///</summary>
+                ///<param name="type">Тип рейтинга</param>
+                ///<param name="global">Глобальный/только друзья</param>
                 public EntityList<User> GetLeaderboardExtendedSync(
                     LeaderBoardType type ,  bool global = true
                 ) {
@@ -652,7 +764,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Возвращает рейтинг пользователей в игре
+                ///      
+                ///</summary>
+                ///<param name="type">Тип рейтинга</param>
+                ///<param name="global">Глобальный/только друзья</param>
                 public EntityList<int> GetLeaderboardSync(
                     LeaderBoardType type ,  bool global = true
                 ) {
@@ -690,7 +807,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Копирует аудиозапись на страницу пользователя или группы
+                ///      
+                ///</summary>
+                ///<param name="ownerId">идентификатор владельца аудиозаписи (пользователь или сообщество)</param>
+                ///<param name="audioId">Идентификатор аудиозаписи</param>
+                ///<param name="groupId">идентификатор сообщества (если аудиозапись необходимо скопировать в список сообщества)</param>
+                ///<param name="albumId">идентификатор альбома, в который нужно переместить аудиозапись</param>
                 public int AddSync(
                     int ownerId , long audioId , int? groupId = null,  long? albumId = null
                 ) {
@@ -719,7 +843,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Создает пустой альбом аудиозаписей
+                ///      
+                ///</summary>
+                ///<param name="title">название альбома</param>
+                ///<param name="groupId">идентификатор сообщества (если альбом нужно создать в сообществе)</param>
                 public AddAlbum AddAlbumSync(
                     string title ,  int? groupId = 0
                 ) {
@@ -747,7 +876,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Удаляет аудиозапись со страницы пользователя или сообщества
+                ///      
+                ///</summary>
+                ///<param name="audioId">идентификатор аудиозаписи</param>
+                ///<param name="ownerId">идентификатор владельца аудиозаписи (пользователь или сообщество)</param>
                 public void DeleteSync(
                     long audioId ,  int ownerId 
                 ) {
@@ -775,7 +909,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Удаляет альбом аудиозаписей
+                ///      
+                ///</summary>
+                ///<param name="albumId">идентификатор альбома</param>
+                ///<param name="groupId">идентификатор сообщества, которому принадлежит альбом</param>
                 public void DeleteAlbumSync(
                     long albumId ,  int? groupId = null
                 ) {
@@ -798,7 +937,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int EditSync(
                     int ownerId , long audioId , string artist = "", string title = "", string text = "", AudioGenre? genreId = null,  bool? noSearch = null
                 ) {
@@ -820,7 +958,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditAlbumSync(
                     long albumId , string title ,  int? groupId = null
                 ) {
@@ -842,7 +979,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void MoveToAlbumSync(
                     long albumId , int? groupId = null, params ulong[] audioIds 
                 ) {
@@ -865,7 +1001,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Audio> GetSync(
                     int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params ulong[] audioIds 
                 ) {
@@ -888,7 +1023,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Group[] GetBroadcastListGroupsSync(
                      bool active = true, int? offset = null, int? count = 100
                 ) {
@@ -911,7 +1045,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public User[] GetBroadcastListUsersSync(
                      bool active = true, int? offset = null, int? count = 100
                 ) {
@@ -934,7 +1067,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Audio> GetPopularSync(
                     AudioGenre? genreId = null,  bool? onlyEng = null, int? offset = null, int? count = 100
                 ) {
@@ -957,7 +1089,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Audio> GetRecommendationsSync(
                     AudioGenre? genreId = null,  bool? onlyEng = null, int? offset = null, int? count = 100
                 ) {
@@ -980,7 +1111,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<AudioAlbum> GetAlbumsSync(
                      int? ownerId = null, int? offset = null, int? count = 100
                 ) {
@@ -1003,7 +1133,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Audio[] GetByIdSync(
                     bool itunes = false, params ContentId[] audios 
                 ) {
@@ -1026,7 +1155,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int GetCountSync(
                      int? ownerId = null
                 ) {
@@ -1049,7 +1177,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Lyrics GetLyricsSync(
                      long lyricsId 
                 ) {
@@ -1072,7 +1199,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public string GetUploadServerSync(
                     long albumId ,  int? groupId = null
                 ) {
@@ -1094,7 +1220,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReorderSync(
                     long audioId , int? ownerId = null, long? before = null,  long? after = null
                 ) {
@@ -1117,7 +1242,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Audio RestoreSync(
                     long audioId ,  int? ownerId = null
                 ) {
@@ -1140,7 +1264,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Audio[] SaveSync(
                     string server , string audio , string hash , string artist = "",  string title = ""
                 ) {
@@ -1163,7 +1286,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Audio> SearchSync(
                     string q , bool autoComplete = true, bool lyrics = false, bool performerOnly = false, AudioSortOrder sort = AudioSortOrder.ByRating,  bool searchOwn = false, int? offset = null, int? count = 100
                 ) {
@@ -1185,7 +1307,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void SetBroadcastSync(
                     ContentId audio , params int[] targetIds 
                 ) {
@@ -1215,7 +1336,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public bool CheckPhoneSync(
                     string phone , string clientSecret ,  int? clientId = null
                 ) {
@@ -1238,7 +1358,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public ConfirmResult ConfirmSync(
                     int clientId , string clientSecret , string phone , string code , string password = "", bool testMode = false,  int? intro = null
                 ) {
@@ -1261,7 +1380,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public AuthRestore RestoreSync(
                      long phone 
                 ) {
@@ -1290,7 +1408,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void CloseTopicSync(
                     int groupId ,  int topicId 
                 ) {
@@ -1312,7 +1429,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteCommentSync(
                     int groupId , int topicId ,  int commentId 
                 ) {
@@ -1334,7 +1450,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteTopicSync(
                     int groupId ,  int topicId 
                 ) {
@@ -1356,7 +1471,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void FixTopicSync(
                     int groupId ,  int topicId 
                 ) {
@@ -1378,7 +1492,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreCommentSync(
                     int groupId , int topicId ,  int commentId 
                 ) {
@@ -1400,7 +1513,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void UnfixTopicSync(
                     int groupId ,  int topicId 
                 ) {
@@ -1430,7 +1542,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<DatabaseEntry> GetChairsSync(
                      int facultyId , int? offset = null, int? count = 100
                 ) {
@@ -1453,7 +1564,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseCity[] GetCitiesSync(
                     int countryId , int? regionId = null, string q = "",  bool needAll = false, int? offset = null, int? count = 100
                 ) {
@@ -1476,7 +1586,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseCity[] GetCitiesByIdSync(
                     params int[] cityIds 
                 ) {
@@ -1499,7 +1608,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<DatabaseEntry> GetCountriesSync(
                     string code = "",  bool needAll = false, int? offset = null, int? count = 100
                 ) {
@@ -1522,7 +1630,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseEntry[] GetCountriesByIdSync(
                     params int[] countryIds 
                 ) {
@@ -1545,7 +1652,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<DatabaseEntry> GetFacultiesSync(
                      int universityId , int? offset = null, int? count = 100
                 ) {
@@ -1568,7 +1674,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<DatabaseEntry> GetRegionsSync(
                     int countryId ,  string q = "", int? offset = null, int? count = 100
                 ) {
@@ -1591,7 +1696,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseEntry[] GetSchoolsSync(
                     int? cityId = null,  string q = "", int? offset = null, int? count = 100
                 ) {
@@ -1614,7 +1718,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseClass[] GetSchoolClassesSync(
                      int countryId 
                 ) {
@@ -1637,7 +1740,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseEntry[] GetStreetsByIdSync(
                     params int[] streetIds 
                 ) {
@@ -1660,7 +1762,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public DatabaseEntry[] GetUniversitiesSync(
                     int? countryId = null, int? cityId = null,  string q = "", int? offset = null, int? count = 100
                 ) {
@@ -1690,7 +1791,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int AddSync(
                     long docId , int ownerId ,  string accessKey = ""
                 ) {
@@ -1712,7 +1812,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteSync(
                     long docId ,  int? ownerId = null
                 ) {
@@ -1735,7 +1834,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Document> GetSync(
                      int? ownerId = null, int? offset = null, int? count = 100
                 ) {
@@ -1758,7 +1856,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Document[] GetByIdSync(
                     params ContentId[] docs 
                 ) {
@@ -1781,7 +1878,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public string GetUploadServerSync(
                      int? groupId = null
                 ) {
@@ -1804,7 +1900,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public string GetWallUploadServerSync(
                      int? groupId = null
                 ) {
@@ -1827,7 +1922,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Document[] SaveSync(
                     string file , string title , params string[] tags 
                 ) {
@@ -1857,7 +1951,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Link> GetLinksSync(
                     int? offset = null, int? count = 100
                 ) {
@@ -1880,7 +1973,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetUsersSync(
                     int? offset = null, int? count = 100
                 ) {
@@ -1903,7 +1995,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Photo> GetPhotosSync(
                     int? offset = null, int? count = 100
                 ) {
@@ -1926,7 +2017,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Post> GetPostsSync(
                     int? offset = null, int? count = 100
                 ) {
@@ -1949,7 +2039,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Video> GetVideosSync(
                     int? offset = null, int? count = 100
                 ) {
@@ -1971,7 +2060,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveUserSync(
                      int userId 
                 ) {
@@ -1993,7 +2081,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveLinkSync(
                      int linkId 
                 ) {
@@ -2015,7 +2102,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveGroupSync(
                      int groupId 
                 ) {
@@ -2037,7 +2123,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void AddGroupSync(
                      int groupId 
                 ) {
@@ -2059,7 +2144,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void AddUserSync(
                      int userId 
                 ) {
@@ -2081,7 +2165,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void AddLinkSync(
                     string link ,  string text = ""
                 ) {
@@ -2111,7 +2194,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public AddFriendResult AddSync(
                     int userId ,  string text = ""
                 ) {
@@ -2134,7 +2216,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public AddFriendsList AddListSync(
                     string name , params int[] userIds 
                 ) {
@@ -2157,7 +2238,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public FriendshipStatus[] AreFriendsSync(
                     bool needSign = false, params int[] userIds 
                 ) {
@@ -2180,7 +2260,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public FriendsDelete DeleteSync(
                      int userId 
                 ) {
@@ -2202,7 +2281,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteAllRequestsSync(
                     
                 ) {
@@ -2224,7 +2302,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteListSync(
                      int listId 
                 ) {
@@ -2246,7 +2323,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditSync(
                     int userId , params long[] listIds 
                 ) {
@@ -2268,7 +2344,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditListSync(
                     long listId , string name = "", int[] userIds = null, int[] addUserIds = null, params int[] deleteUserIds 
                 ) {
@@ -2291,7 +2366,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<FriendsList> GetListsSync(
                     int? userId = null,  bool returnSystem = true
                 ) {
@@ -2314,7 +2388,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetSync(
                     int? userId = null, int? listId = null, UserFields fields = UserFields.Anything, UserSortOrder order = UserSortOrder.ById,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
                 ) {
@@ -2337,7 +2410,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetIdsSync(
                     int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int? offset = null, int? count = 100
                 ) {
@@ -2360,7 +2432,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetAvailableForCallIdsSync(
                     
                 ) {
@@ -2383,7 +2454,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetAvailableForCallSync(
                     UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom
                 ) {
@@ -2406,7 +2476,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetSync(
                     int? userId = null, int? listId = null,  UserSortOrder order = UserSortOrder.ById, int? offset = null, int? count = 100
                 ) {
@@ -2429,7 +2498,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int[] GetAppUsersSync(
                     
                 ) {
@@ -2452,7 +2520,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public User[] GetByPhonesSync(
                     UserFields fields = UserFields.None, params ulong[] phones 
                 ) {
@@ -2475,7 +2542,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int[] GetMutualSync(
                     int targetUid , int? sourceUid = null,  bool order = false, int? offset = null, int? count = 100
                 ) {
@@ -2498,7 +2564,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int[] GetOnlineSync(
                     int? userId = null, int? listId = null,  UserSortOrder? order = null, int? offset = null, int? count = 100
                 ) {
@@ -2521,7 +2586,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int[] GetRecentSync(
                      int count = 20
                 ) {
@@ -2544,7 +2608,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetSuggestionsSync(
                     FriendSuggestionFilters filters = FriendSuggestionFilters.Everything, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
                 ) {
@@ -2567,7 +2630,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> SearchSync(
                     int userId , string q = "",  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 20
                 ) {
@@ -2597,7 +2659,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Link AddLinkSync(
                     int groupId , string link ,  string text = ""
                 ) {
@@ -2619,7 +2680,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ApproveRequestSync(
                     int groupId ,  int userId 
                 ) {
@@ -2642,7 +2702,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Group CreateSync(
                     string title , PageType type = PageType.Group, PageSubtype? subtype = null,  string description = ""
                 ) {
@@ -2664,7 +2723,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteLinkSync(
                     int groupId ,  int linkId 
                 ) {
@@ -2686,7 +2744,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditSync(
                     int groupId , string title = "", string description = "", string screenName = "", string website = "", string email = "", string phone = "", string rss = "", DateTimeOffset? eventStartDate = null, DateTimeOffset? eventFinishDate = null, DateTimeOffset? eventGroupId = null, int? subject = null, int? publicCategory = null, int? publicSubcategory = null, GroupAccess? access = null, AccessType? wall = null, AccessType? topics = null, AccessType? photos = null, AccessType? video = null, AccessType? audio = null, Date? publicDate = null, bool? links = null, bool? events = null, bool? places = null,  bool? contacts = null
                 ) {
@@ -2708,7 +2765,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditLinkSync(
                     int groupId , int linkId ,  string text = ""
                 ) {
@@ -2731,7 +2787,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetSync(
                     int userId ,  GroupsGetFilter? filter = null, int? offset = null, int? count = 100
                 ) {
@@ -2754,7 +2809,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public User[] GetBannedSync(
                      int groupId , int? offset = null, int? count = 100
                 ) {
@@ -2777,7 +2831,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Group[] GetByIdSync(
                     string[] groupIds ,  GroupFields fields 
                 ) {
@@ -2800,7 +2853,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Group[] GetByIdSync(
                     int groupId ,  GroupFields fields 
                 ) {
@@ -2823,7 +2875,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetMembersSync(
                     string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -2846,7 +2897,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetMembersSync(
                     int groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -2869,7 +2919,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<GroupManager> GetMembersManagersSync(
                     string groupId ,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -2892,7 +2941,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<GroupManager> GetMembersManagersSync(
                     int groupId ,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -2915,7 +2963,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetMembersSync(
                     string groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -2938,7 +2985,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetMembersSync(
                     int groupId , UserFields fields = UserFields.Anything, GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -2961,7 +3007,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public bool IsMemberSync(
                     int groupId ,  int? userId = null
                 ) {
@@ -2983,7 +3028,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void InviteSync(
                     int groupId ,  int userId 
                 ) {
@@ -3006,7 +3050,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public MemberShip IsMemberExtendedSync(
                     int groupId ,  int? userId = null
                 ) {
@@ -3029,7 +3072,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public MemberShip[] IsMemberSync(
                     int groupId , params int[] userIds 
                 ) {
@@ -3051,7 +3093,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void JoinSync(
                     int groupId ,  bool notSure = false
                 ) {
@@ -3073,7 +3114,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void LeaveSync(
                      int groupId 
                 ) {
@@ -3095,7 +3135,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void UnbanUserSync(
                     int groupId ,  int userId 
                 ) {
@@ -3117,7 +3156,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveUserSync(
                     int groupId ,  int userId 
                 ) {
@@ -3139,7 +3177,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReorderLinkSync(
                     int groupId , long linkId ,  long after = 0
                 ) {
@@ -3168,7 +3205,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void AddChatUserSync(
                     int userId ,  int? chatId = null
                 ) {
@@ -3190,7 +3226,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteSync(
                     params int[] messageIds 
                 ) {
@@ -3212,7 +3247,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteChatPhotoSync(
                      int chatId 
                 ) {
@@ -3234,7 +3268,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteDialogSync(
                      int userId 
                 ) {
@@ -3257,7 +3290,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Message> GetSync(
                     int @out = 0, int timeOffset = 0, int filters = 0, int previewLength = 0,  long? lastMessageId = null, int? offset = null, int? count = 200
                 ) {
@@ -3280,7 +3312,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Message> GetHistoryChatSync(
                     int chatId , bool rev = false,  long? startMessageId = null, int? offset = null, int? count = 200
                 ) {
@@ -3303,7 +3334,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Message> GetHistoryUserSync(
                     int userId , bool rev = false,  long? startMessageId = null, int? offset = null, int? count = 200
                 ) {
@@ -3326,7 +3356,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public LastActivity GetLastActivitySync(
                      int userId 
                 ) {
@@ -3348,7 +3377,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void MarkAsImportantSync(
                     bool important , params int[] messageIds 
                 ) {
@@ -3370,7 +3398,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void MarkAsReadSync(
                     int userId , int? startMessageId = null, params int[] messageIds 
                 ) {
@@ -3393,7 +3420,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int SendSync(
                     int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
                 ) {
@@ -3415,7 +3441,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveChatUserSync(
                     int userId ,  int chatId 
                 ) {
@@ -3437,7 +3462,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreSync(
                      int messageId 
                 ) {
@@ -3459,7 +3483,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void SetActivitySync(
                     int userId ,  ImActivity type = ImActivity.Typing
                 ) {
@@ -3488,7 +3511,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void AddBanSync(
                     int[] userIds = null, params int[] groupIds 
                 ) {
@@ -3510,7 +3532,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteBanSync(
                     int[] userIds = null, params int[] groupIds 
                 ) {
@@ -3532,7 +3553,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteListSync(
                      int listId 
                 ) {
@@ -3555,7 +3575,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public NewsfeedBanned GetBannedSync(
                     
                 ) {
@@ -3578,7 +3597,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public NewsfeedBannedExtended GetBannedExtendedSync(
                     UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom
                 ) {
@@ -3607,7 +3625,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteSync(
                      int noteId 
                 ) {
@@ -3629,7 +3646,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -3651,7 +3667,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -3680,7 +3695,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void MarkAsViewedSync(
                     
                 ) {
@@ -3709,7 +3723,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ClearCacheSync(
                      string url 
                 ) {
@@ -3738,7 +3751,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ConfirmTagSync(
                     int tagId , long photoId ,  int? ownerId = null
                 ) {
@@ -3761,7 +3773,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public long CopySync(
                     long photoId , int? ownerId = null,  string accessKey = ""
                 ) {
@@ -3784,7 +3795,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public PhotoAlbum CreateAlbumSync(
                     string title , string description = "", int? groupId = null, PrivacyType? privacy = null,  PrivacyType? commentPrivacy = null
                 ) {
@@ -3806,7 +3816,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteSync(
                     long photoId ,  int? ownerId = null
                 ) {
@@ -3828,7 +3837,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteAlbumSync(
                     long albumId ,  int? groupId = null
                 ) {
@@ -3850,7 +3858,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -3872,7 +3879,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditSync(
                     long photoId , int? ownerId = null,  string caption = ""
                 ) {
@@ -3894,7 +3900,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditAlbumSync(
                     long albumId , int? ownerId = null, string title = "", string description = "", PrivacyType? privacy = null,  PrivacyType? commentPrivacy = null
                 ) {
@@ -3917,7 +3922,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Photo> GetSync(
                     long? albumId = null, int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int? offset = null, int? count = 100
                 ) {
@@ -3940,7 +3944,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Photo> GetSync(
                     SpecialAlbum albumId , int? ownerId = null, int[] photoIds = null, bool rev = true, bool extended = false, FeedType? feedType = null,  int? feed = null, int? offset = null, int? count = 100
                 ) {
@@ -3963,7 +3966,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<PhotoAlbum> GetAlbumsSync(
                     int? ownerId = null, bool needSystem = true, bool needCovers = true, int? offset = null, int? count = 100, params long[] albumIds 
                 ) {
@@ -3986,7 +3988,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int GetAlbumsCountSync(
                     int? userId = null,  int? groupId = null
                 ) {
@@ -4009,7 +4010,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Photo> GetAllSync(
                     int? ownerId = null, bool extended = false, bool noServiceAlbums = false, bool? needHidden = null,  bool? skipHidden = null, int? offset = null, int? count = 100
                 ) {
@@ -4032,7 +4032,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Photo[] GetByIdSync(
                     params ContentId[] photos 
                 ) {
@@ -4055,7 +4054,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public PhotosUploadServer GetChatUploadServerSync(
                     int chatId , int? cropX = null, int? cropY = null,  int? cropWidth = null
                 ) {
@@ -4078,7 +4076,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public string GetOwnerPhotoUploadServerSync(
                     
                 ) {
@@ -4101,7 +4098,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public PhotoTag[] GetTagsSync(
                     long photoId , int? ownerId = null,  string accessKey = ""
                 ) {
@@ -4124,7 +4120,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public PhotosUploadServer GetUploadServerSync(
                     long albumId ,  int? groupId = null
                 ) {
@@ -4146,7 +4141,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void MakeCoverSync(
                     long albumId , long photoId ,  int? ownerId = null
                 ) {
@@ -4168,7 +4162,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void MoveSync(
                     long targetAlbumId , long photoId ,  int? ownerId = null
                 ) {
@@ -4190,7 +4183,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveTagSync(
                     int tagId , long photoId ,  int? ownerId = null
                 ) {
@@ -4212,7 +4204,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReorderAlbumsSync(
                     long albumId , int? ownerId = null, long? before = null,  long? after = null
                 ) {
@@ -4234,7 +4225,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReorderPhotosSync(
                     long photoId , int? ownerId = null, long? before = null,  long? after = null
                 ) {
@@ -4256,7 +4246,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReportSync(
                     long photoId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -4278,7 +4267,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReportCommentSync(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -4300,7 +4288,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -4322,7 +4309,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreSync(
                     int ownerId ,  long photoId 
                 ) {
@@ -4345,7 +4331,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Photo[] SaveSync(
                     long albumId , string server , string photosList , string hash , int? groupId = null, double? latitude = null, double? longitude = null, string caption = "",  string description = ""
                 ) {
@@ -4375,7 +4360,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public bool AddVoteSync(
                     long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
                 ) {
@@ -4398,7 +4382,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public bool DeleteVoteSync(
                     long pollId , int answerId , int? ownerId = null,  bool? isBoard = null
                 ) {
@@ -4427,7 +4410,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void TrackVisitorSync(
                     
                 ) {
@@ -4457,7 +4439,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Status[] GetSync(
                      int? userId = null
                 ) {
@@ -4479,7 +4460,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void SetSync(
                      string text 
                 ) {
@@ -4509,7 +4489,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public StorageEntry[] GetSync(
                     int? userId = null, bool global = false, params string[] keys 
                 ) {
@@ -4532,7 +4511,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public string[] GetKeysSync(
                     int? userId = null,  bool global = false, int? offset = null, int? count = 100
                 ) {
@@ -4555,7 +4533,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public StorageEntry[] SetSync(
                     string key , string value , int? userId = null,  bool global = false
                 ) {
@@ -4585,7 +4562,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public User[] GetSync(
                     UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params int[] userIds 
                 ) {
@@ -4608,7 +4584,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<int> GetFollowersSync(
                     int? userId = null,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
                 ) {
@@ -4631,7 +4606,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetFollowersSync(
                     int? userId = null, UserFields fields = UserFields.Anything,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
                 ) {
@@ -4654,7 +4628,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> GetNearbySync(
                     double latitude , double longitude , int? accuracy = null, int? timeout = null, byte? radius = null, UserFields fields = UserFields.None,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
                 ) {
@@ -4677,7 +4650,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public UserSubscriptions GetSubscriptionsSync(
                      int? userId = null, int? offset = null, int? count = 100
                 ) {
@@ -4700,7 +4672,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public bool IsAppUserSync(
                      int? userId = null
                 ) {
@@ -4722,7 +4693,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReportSync(
                     int userId , ComplaintType type ,  string comment 
                 ) {
@@ -4745,7 +4715,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<User> SearchSync(
                     string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int? offset = null, int? count = 100
                 ) {
@@ -4775,7 +4744,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public LinkCheckResult CheckLinkSync(
                      string url 
                 ) {
@@ -4798,7 +4766,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public int GetServerTimeSync(
                     
                 ) {
@@ -4821,7 +4788,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public ResolveResult ResolveScreenNameSync(
                      string screenName 
                 ) {
@@ -4850,7 +4816,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void AddSync(
                     ulong videoId ,  int ownerId 
                 ) {
@@ -4872,7 +4837,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteSync(
                     ulong videoId ,  int? ownerId = null
                 ) {
@@ -4894,7 +4858,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteAlbumSync(
                     long albumId ,  int? groupId = null
                 ) {
@@ -4916,7 +4879,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -4938,7 +4900,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void EditCommentSync(
                     string message , int commentId ,  int? ownerId 
                 ) {
@@ -4961,7 +4922,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<TaggedVideo> GetNewTagsSync(
                     int? offset = null, int? count = 20
                 ) {
@@ -4984,7 +4944,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Tag[] GetTagsSync(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -5006,7 +4965,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void PutTagSync(
                     int userId , string taggedName , ulong videoId ,  int? ownerId = null
                 ) {
@@ -5028,7 +4986,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RemoveTagSync(
                     ulong videoId , int tagId ,  int? ownerId = null
                 ) {
@@ -5050,7 +5007,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReportSync(
                     ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
                 ) {
@@ -5072,7 +5028,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void ReportCommentSync(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5094,7 +5049,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5116,7 +5070,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void RestoreSync(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -5145,7 +5098,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteSync(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5167,7 +5119,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
                 public void DeleteCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5190,7 +5141,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Post> GetSync(
                     int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
                 ) {
@@ -5213,7 +5163,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityList<Post> GetSync(
                     string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
                 ) {
@@ -5236,7 +5185,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public Post[] GetByIdSync(
                     int copyHistoryDepth = 2, params ContentId[] posts 
                 ) {
@@ -5259,7 +5207,6 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
                 public EntityListExtended<Comment> GetCommentsSync(
                     int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
                 ) {
@@ -5288,7 +5235,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Позволяет получать список репостов заданной записи
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public EntityListExtended<Post> GetRepostsSync(
                     int postId ,  int? ownerId = null, int? offset = null, int? count = 100
                 ) {
@@ -5316,7 +5268,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Закрепляет запись на стене
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public void PinSync(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5358,7 +5315,25 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Публикует отложенную запись на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<returns>
+                ///        После успешного выполнения возвращает идентификатор созданной записи
+                ///      
+                ///</returns>
+                ///<param name="message">текст сообщения (является обязательным, если не задан параметр attachments)</param>
+                ///<param name="attachments">список объектов, приложенных к записи</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись</param>
+                ///<param name="fromGroup">Опубликовать от имени группы</param>
+                ///<param name="signed">у записи, размещенной от имени сообщества, будет добавлена подпись</param>
+                ///<param name="friendsOnly">запись будет доступна только друзьям</param>
+                ///<param name="services">список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию</param>
+                ///<param name="publishDate">дата публикации записи в формате unixtime. Если параметр указан, публикация записи будет отложена до указанного времени.</param>
+                ///<param name="lat">географическая широта отметки, заданная в градусах (от -90 до 90)</param>
+                ///<param name="@long">географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
+                ///<param name="placeId">идентификатор места, в котором отмечен пользователь</param>
                 public WallPost PostSync(
                     string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
                 ) {
@@ -5391,7 +5366,16 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Публикует отложенную запись на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<returns>
+                ///        После успешного выполнения возвращает идентификатор созданной записи
+                ///      
+                ///</returns>
+                ///<param name="postId">идентификатор записи, которую необходимо опубликовать</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись</param>
                 public WallPost PostSync(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5420,7 +5404,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Позволяет пожаловаться на комментарий к записи
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит комментарий</param>
+                ///<param name="reason">причина жалобы</param>
                 public void ReportCommentSync(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5449,7 +5439,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Позволяет пожаловаться на запись.
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор пользователя или сообщества, которому принадлежит запись</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит запись</param>
+                ///<param name="reason">причина жалобы</param>
                 public void ReportPostSync(
                     int postId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5479,7 +5475,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Копирует объект на стену пользователя или сообщества
+                ///      
+                ///</summary>
+                ///<param name="@object">идентификатор объекта, который необходимо разместить на стене</param>
+                ///<param name="message">сопроводительный текст, который будет добавлен к записи с объектом</param>
+                ///<param name="groupId">идентификатор сообщества, на стене которого будет размещена запись с объектом. Если не указан, запись будет размещена на стене текущего пользователя</param>
                 public RepostInfo RepostSync(
                     string @object , string message = "", int? groupId = null,  string @ref = ""
                 ) {
@@ -5507,7 +5509,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Восстанавливает удаленную запись на стене пользователя или сообщества
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находилась удаленная запись, по умолчанию идентификатор текущего пользователя</param>
                 public void RestoreSync(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5535,7 +5542,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Восстанавливает комментарий текущего пользователя к записи на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария на стене</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится комментарий к записи, по умолчанию идентификатор текущего пользователя</param>
                 public void RestoreCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5563,7 +5575,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
-
+                ///<summary>
+                ///        Отменяет закрепление записи на стене
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="ownerId">Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public void UnpinSync(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5604,7 +5621,17 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Получает список идентификаторов пользователей, которые добавили заданный объект в свой список "Мне нравится"
+                ///      
+                ///</summary>
+                ///<param name="type">тип объекта</param>
+                ///<param name="filter">указывает, следует ли вернуть всех пользователей, добавивших объект в список "Мне нравится" или только тех, которые рассказали о нем друзьям</param>
+                ///<param name="friendsOnly">указывает, необходимо ли возвращать только пользователей, которые являются друзьями текущего пользователя</param>
+                ///<param name="skipOwn">не возвращать самого пользователя</param>
+                ///<param name="ownerId">идентификатор владельца Like-объекта</param>
+                ///<param name="itemId">идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»</param>
+                ///<param name="pageUrl">url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id.</param>
                 public EntityList<int> GetListSync(
                     string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
                 ) {
@@ -5638,7 +5665,17 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-
+                ///<summary>
+                ///        Получает список идентификаторов пользователей, которые добавили заданный объект в свой список "Мне нравится"
+                ///      
+                ///</summary>
+                ///<param name="type">тип объекта</param>
+                ///<param name="filter">указывает, следует ли вернуть всех пользователей, добавивших объект в список "Мне нравится" или только тех, которые рассказали о нем друзьям</param>
+                ///<param name="friendsOnly">указывает, необходимо ли возвращать только пользователей, которые являются друзьями текущего пользователя</param>
+                ///<param name="skipOwn">не возвращать самого пользователя</param>
+                ///<param name="ownerId">идентификатор владельца Like-объекта</param>
+                ///<param name="itemId">идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»</param>
+                ///<param name="pageUrl">url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id.</param>
                 public EntityList<User> GetListExtendedSync(
                     string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
                 ) {
