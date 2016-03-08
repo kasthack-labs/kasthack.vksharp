@@ -41,9 +41,9 @@ namespace kasthack.vksharp.DataTypes  {
             AccessKey = accessKey;
         }
 
-        public ContentType Type { get; set; }
+        public ContentType Type { get; }
 
-        public long Id { get; set; }
+        public long Id { get; }
 
         public int OwnerId { get;}
 
@@ -63,7 +63,11 @@ namespace kasthack.vksharp.DataTypes  {
 
         public static bool operator !=( ObjectContentId a, ObjectContentId b ) => !( a == b );
 
+        public override bool Equals(Object other) => !ReferenceEquals(other, null) && this == other as ObjectContentId;
+
         public bool Equals( ObjectContentId other ) => this == other;
+
+        public override int GetHashCode() => this.ToString().GetHashCode();
 
         private static string GetTypeString( ContentType type ) {
             switch ( type ) {

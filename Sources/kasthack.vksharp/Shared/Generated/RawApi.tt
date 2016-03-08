@@ -60,6 +60,10 @@ var cln = "MethodGroup_"+group;
             ///<param name="<#=ToMeth(param.Name,true)#>"><#=param.Doc#></param>
 <#}#>
 <#}#>
+<#if(method.Pageable!=0){#>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+<#}#>
 <#}#>
             public async Task<string> <#=methodName#>(
                 <#=GetParamsString(method)#>

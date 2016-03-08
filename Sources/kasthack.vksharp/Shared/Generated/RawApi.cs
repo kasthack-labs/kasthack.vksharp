@@ -80,6 +80,8 @@ namespace kasthack.vksharp {
             ///        Возвращает список активных рекламных предложений (офферов), выполнив которые пользователь сможет получить соответствующее количество голосов на свой счёт внутри приложения
             ///      
             ///</summary>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetActiveOffers(
                 int? offset = null, int? count = 100
             ){
@@ -117,6 +119,8 @@ namespace kasthack.vksharp {
             ///      Возвращает набор объектов пользователей, находящихся в черном списке
             ///    
             ///</returns>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetBanned(
                 int? offset = null, int? count = 20
             ){
@@ -2268,12 +2272,49 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Возвращает список пользователей в соответствии с заданным критерием поиска
+            ///      
+            ///</summary>
+            ///<param name="q">строка поискового запроса</param>
+            ///<param name="sort">порядок сортировки</param>
+            ///<param name="fields">список дополнительных полей профилей, которые необходимо вернуть</param>
+            ///<param name="city">идентификатор города</param>
+            ///<param name="country">идентификатор страны</param>
+            ///<param name="hometown">название города строкой</param>
+            ///<param name="universityCountry">идентификатор страны, в которой пользователи закончили ВУЗ</param>
+            ///<param name="university">идентификатор ВУЗа</param>
+            ///<param name="universityYear">год окончания ВУЗа</param>
+            ///<param name="universityFaculty">идентификатор факультета</param>
+            ///<param name="universityChair">идентификатор кафедры</param>
+            ///<param name="sex">пол</param>
+            ///<param name="status">семейное положение</param>
+            ///<param name="ageFrom">начиная с какого возраста</param>
+            ///<param name="ageTo">до какого возраста</param>
+            ///<param name="birthDay">день рождения</param>
+            ///<param name="birthMonth">месяц рождения</param>
+            ///<param name="birthYear">год рождения</param>
+            ///<param name="online">только в сети</param>
+            ///<param name="hasPhoto">только с фотографией</param>
+            ///<param name="schoolCountry">идентификатор страны, в которой пользователи закончили школу</param>
+            ///<param name="schoolCity">идентификатор города, в котором пользователи закончили школу</param>
+            ///<param name="schoolClass"></param>
+            ///<param name="school">идентификатор школы, которую закончили пользователи</param>
+            ///<param name="schoolYear">год окончания школы</param>
+            ///<param name="religion">религиозные взгляды</param>
+            ///<param name="interests">интересы</param>
+            ///<param name="company">название компании, в которой работают пользователи</param>
+            ///<param name="position">название должности</param>
+            ///<param name="groupId">идентификатор группы, среди пользователей которой необходимо проводить поиск</param>
+            ///<param name="fromList">Разделы среди которых нужно осуществить поиск</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> Search(
-                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int? offset = null, int? count = 100
+                string q = "", SearchSortOrder sort = SearchSortOrder.ByRating, UserFields fields = UserFields.None, int? city = null, int? country = null, string hometown = "", int? universityCountry = null, int? university = null, int? universityYear = null, int? universityFaculty = null, int? universityChair = null, Sex? sex = null, Relation? status = null, byte? ageFrom = null, byte? ageTo = null, byte? birthDay = null, byte? birthMonth = null, ushort? birthYear = null, bool? online = null, bool? hasPhoto = null, int? schoolCountry = null, int? schoolCity = null, int? schoolClass = null, int? school = null, int? schoolYear = null, string religion = "", string interests = "", string company = "", string position = "", int? groupId = null,  FriendshipType? fromList = null, int? offset = null, int? count = 100
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Users.Search(
-                           q,sort,fields,city,country,hometown,universityCountry,university,universityYear,sex,status,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountry,schoolCity,schoolClass,school,schoolYear,religion,interests,company,position,groupId,fromList,offset, count
+                           q,sort,fields,city,country,hometown,universityCountry,university,universityYear,universityFaculty,universityChair,sex,status,ageFrom,ageTo,birthDay,birthMonth,birthYear,online,hasPhoto,schoolCountry,schoolCity,schoolClass,school,schoolYear,religion,interests,company,position,groupId,fromList,offset, count
                     )
                 ).ConfigureAwait(false);
             }
@@ -2284,6 +2325,10 @@ namespace kasthack.vksharp {
             private readonly RawApi _parent;
             internal MethodGroup_Utils(RawApi parent){_parent=parent;}
 
+            ///<summary>
+            ///        Возвращает информацию о том, является ли внешняя ссылка заблокированной на сайте ВКонтакте
+            ///      
+            ///</summary>
             public async Task<string> CheckLink(
                  string url 
             ){
@@ -2294,6 +2339,10 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Возвращает текущее время на сервере ВКонтакте
+            ///      
+            ///</summary>
             public async Task<string> GetServerTime(
                 
             ){
@@ -2304,6 +2353,24 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            ///<summary>
+            ///        Возвращает текущее время на сервере ВКонтакте в unixtime
+            ///      
+            ///</summary>
+            public async Task<string> GetServerTimeRaw(
+                
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Utils.GetServerTimeRaw(
+                           
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            ///<summary>
+            ///        Определяет тип объекта (пользователь, сообщество, приложение) и его идентификатор по короткому имени screen_name
+            ///      
+            ///</summary>
             public async Task<string> ResolveScreenName(
                  string screenName 
             ){
@@ -2321,17 +2388,18 @@ namespace kasthack.vksharp {
             internal MethodGroup_Video(RawApi parent){_parent=parent;}
 
             ///<summary>
-            ///          Добавляет видеозапись
+            ///        Добавляет видеозапись в список пользователя
             ///      
             ///</summary>
             ///<param name="videoId">идентификатор видеозаписи</param>
             ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
+            ///<param name="targetId">идентификатор пользователя или сообщества, в которое нужно добавить видео</param>
             public async Task<string> Add(
-                long videoId ,  int? ownerId = null
+                long videoId , int? ownerId = null,  int? targetId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.Add(
-                           videoId,ownerId
+                           videoId,ownerId,targetId
                     )
                 ).ConfigureAwait(false);
             }
@@ -2405,6 +2473,8 @@ namespace kasthack.vksharp {
             ///          Возвращает список видеозаписей, на которых есть непросмотренные отметки
             ///      
             ///</summary>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetNewTags(
                 int? offset = null, int? count = 20
             ){
@@ -2572,6 +2642,8 @@ namespace kasthack.vksharp {
             ///</summary>
             ///<param name="ownerId">идентификатор пользователя или сообщества</param>
             ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> Get(
                 int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ){
@@ -2588,6 +2660,8 @@ namespace kasthack.vksharp {
             ///</summary>
             ///<param name="domain">короткий адрес пользователя или сообщества</param>
             ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> Get(
                 string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ){
@@ -2623,6 +2697,8 @@ namespace kasthack.vksharp {
             ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
             ///<param name="ownerId">идентификатор владельца страницы</param>
             ///<param name="needLikes">возвращать информацию о лайках</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetComments(
                 int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
             ){
@@ -2642,6 +2718,8 @@ namespace kasthack.vksharp {
             ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
             ///<param name="ownerId">идентификатор владельца страницы</param>
             ///<param name="needLikes">возвращать информацию о лайках</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetCommentsExtended(
                 int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
             ){
@@ -2658,6 +2736,8 @@ namespace kasthack.vksharp {
             ///</summary>
             ///<param name="postId">идентификатор записи на стене</param>
             ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetReposts(
                 int postId ,  int? ownerId = null, int? offset = null, int? count = 100
             ){
@@ -2849,6 +2929,8 @@ namespace kasthack.vksharp {
             ///<param name="ownerId">идентификатор владельца Like-объекта</param>
             ///<param name="itemId">идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»</param>
             ///<param name="pageUrl">url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id.</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetList(
                 string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ){
@@ -2870,6 +2952,8 @@ namespace kasthack.vksharp {
             ///<param name="ownerId">идентификатор владельца Like-объекта</param>
             ///<param name="itemId">идентификатор Like-объекта. Если type равен sitepage, то параметр item_id может содержать значение параметра page_id, используемый при инициализации виджета «Мне нравится»</param>
             ///<param name="pageUrl">url страницы, на которой установлен виджет «Мне нравится». Используется вместо параметра item_id, если при размещении виджета не был указан page_id.</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> GetListExtended(
                 string type , string filter , bool friendsOnly , bool skipOwn , int? ownerId = null, int? itemId = null,  string pageUrl = null, int? offset = null, int? count = 100
             ){
