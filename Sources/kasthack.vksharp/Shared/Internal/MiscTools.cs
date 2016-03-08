@@ -86,7 +86,7 @@ namespace kasthack.vksharp.Internal {
         }
 
         public static string ToNClString<T>( this T value ) where T : IFormattable {
-            return ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC ).ToLower( BuiltInData.Instance.NC );
+            return ( (IFormattable) value ).ToString( null, BuiltInData.Instance.NC ).ToLowerInvariant();// BuiltInData.Instance.NC 
         }
 
         public static string ToNCStringA<T>( this IEnumerable<T> value ) where T : IFormattable {

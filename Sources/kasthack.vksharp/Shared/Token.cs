@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
+#if !PORTABLE
 using System.Security.Authentication;
+#endif
 using kasthack.vksharp.Internal;
 
 namespace kasthack.vksharp {
@@ -60,8 +62,12 @@ namespace kasthack.vksharp {
                     int.Parse( query[ useridPn ] )
                 );
             if ( query.ContainsKey(errorPn))
+#if !PORTABLE
                 throw new AuthenticationException(
-                    $"Error: {query[errorPn]}\r\nType:{query[errorRPn]}\r\nMessage:{query[errorDescPn].Replace('+', ' ')}"
+#else
+                throw new VkException(
+#endif
+                $"Error: {query[errorPn]}\r\nType:{query[errorRPn]}\r\nMessage:{query[errorDescPn].Replace('+', ' ')}"
                     );
             throw new FormatException("Can't parse VK response from URL");
         }

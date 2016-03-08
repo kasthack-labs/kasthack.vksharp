@@ -159,7 +159,7 @@
       <Param Name="device_id" Type="string" Doc="уникальный идентификатор устройства"/>
       <Param Name="time" Type="int" Doc="время в секундах на которое требуется отключить уведомления, -1 отключить навсегда"/>
       <Param Name="chat_id" Type="int?" Default="null" Doc=""/>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
       <Param Name="sound" Type="int" Default="0" Doc="включить/отключить звук в данном диалоге" />
     </Params>
   </Method>
@@ -601,7 +601,7 @@
   </Method>
   <Method Name="fave.removeUser" Type="void" NeedToken="true">
     <Params>
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="fave.removeLink" Type="void" NeedToken="true">
@@ -621,7 +621,7 @@
   </Method>
   <Method Name="fave.addUser" Type="void" NeedToken="true">
     <Params>
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="fave.addLink" Type="void" NeedToken="true">
@@ -632,14 +632,14 @@
   </Method>
   <Method Name="friends.add" Type="AddFriendResult" NeedToken="true" >
     <Params>
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
       <Param Name="text" Type="string" Default="&quot;&quot;" />
     </Params>
   </Method>
   <Method Name="friends.addList" Type="AddFriendsList" NeedToken="true" >
     <Params>
       <Param Name="name" Type="string" />
-      <Param Name="user_ids" Type="int[]" />
+      <Param Name="user_ids" Type="int[]" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="friends.areFriends" Type="FriendshipStatus[]" NeedToken="true" >
@@ -650,7 +650,7 @@
   </Method>
   <Method Name="friends.delete" Type="FriendsDelete" NeedToken="true" >
     <Params>
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="friends.deleteAllRequests" Type="void" NeedToken="true">
@@ -663,7 +663,7 @@
   </Method>
   <Method Name="friends.edit" Type="void" NeedToken="true">
     <Params>
-      <Param Name="user_id" Type="int"/>
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
       <Param Name="list_ids" Type="long[]" />
     </Params>
   </Method>
@@ -678,13 +678,13 @@
   </Method>
   <Method Name="friends.getLists" Type="EntityList&lt;FriendsList&gt;" NeedToken="false">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
       <Param Name="return_system" Type="bool" Default="true"/>
     </Params>
   </Method>
   <Method Name="friends.get" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
       <Param Name="list_id" Type="int?" Default="null" />
       <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
       <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
@@ -693,7 +693,7 @@
   </Method>
   <Method Name="friends.get" NameSuffix="Ids" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
       <Param Name="list_id" Type="int?" Default="null" />
       <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
     </Params>
@@ -709,7 +709,7 @@
   </Method>
   <Method Name="friends.get" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя" />
       <Param Name="list_id" Type="int?" Default="null" />
       <Param Name="order" Type="UserSortOrder" Default="UserSortOrder.ById" />
     </Params>
@@ -732,7 +732,7 @@
   </Method>
   <Method Name="friends.getOnline" Type="int[]" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя" />
       <Param Name="list_id" Type="int?" Default="null" />
       <Param Name="order" Type="UserSortOrder?" Default="null" />
     </Params>
@@ -751,7 +751,7 @@
   </Method>
   <Method Name="friends.search" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="20">
     <Params>
-      <Param Name="user_id" Type="int"/>
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
       <Param Name="q" Type="string" Default="&quot;&quot;" />
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
@@ -766,7 +766,7 @@
   <Method Name="groups.approveRequest" Type="void" NeedToken="true">
     <Params>
       <Param Name="group_id" Type="int" />
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="groups.create" Type="Group" NeedToken="true">
@@ -822,7 +822,7 @@
   </Method>
   <Method Name="groups.get" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int"/>
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя" />
       <Param Name="filter" Type="GroupsGetFilter?" Default="null"/>
     </Params>
   </Method>
@@ -900,7 +900,7 @@
   <Method Name="groups.isMember" Type="bool" NeedToken="false" >
     <Params>
       <Param Name="group_id" Type="int" />
-      <Param Name="user_id" Type="int?" Default="null"/>
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
     </Params>
     <Hardcoded>
       <HardcodedParam Name="extended" Value="0"/>
@@ -909,7 +909,7 @@
   <Method Name="groups.invite" Type="void" NeedToken="true">
     <Params>
       <Param Name="group_id" Type="int" />
-      <Param Name="user_id" Type="int" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя" />
     </Params>
   </Method>
   <Method Name="groups.isMember" NameSuffix="Extended" Type="MemberShip" NeedToken="false" >
@@ -1381,13 +1381,13 @@
   </Method>
   <Method Name="users.getFollowers" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
   </Method>
   <Method Name="users.getFollowers" Type="EntityList&lt;User&gt;" NeedToken="false" Pageable="100">
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
       <Param Name="fields" Type="UserFields" Default="UserFields.Anything" />
       <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
     </Params>
@@ -1404,20 +1404,35 @@
     </Params>
   </Method>
   <Method Name="users.getSubscriptions" Type="UserSubscriptions" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+        Возвращает список идентификаторов пользователей и сообществ, которые входят в список подписок пользователя
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="users.isAppUser" Type="bool" NeedToken="false" >
+    <Doc>
+      <Summary>
+        Возвращает информацию о том, установил ли пользователь приложение
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
     </Params>
   </Method>
   <Method Name="users.report" Type="void" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Позволяет пожаловаться на пользователя
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int" />
-      <Param Name="type" Type="ComplaintType" />
-      <Param Name="comment" Type="string" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя, на которого нужно подать жалобу"/>
+      <Param Name="type" Type="ComplaintType" Doc="тип жалобы"/>
+      <Param Name="comment" Type="string" Doc="комментарий к жалобе на пользователя"/>
     </Params>
   </Method>
   <Method Name="users.search" Type="EntityList&lt;User&gt;" NeedToken="true" Pageable="100">

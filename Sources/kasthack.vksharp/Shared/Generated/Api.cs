@@ -518,6 +518,7 @@ namespace kasthack.vksharp {
                 ///<param name="deviceId">уникальный идентификатор устройства</param>
                 ///<param name="time">время в секундах на которое требуется отключить уведомления, -1 отключить навсегда</param>
                 ///<param name="chatId"></param>
+                ///<param name="userId">идентификатор пользователя</param>
                 ///<param name="sound">включить/отключить звук в данном диалоге</param>
                 public async Task  SetSilenceMode(
                     string deviceId , int time , int? chatId = null, int? userId = null,  int sound = 0
@@ -536,6 +537,7 @@ namespace kasthack.vksharp {
                 ///<param name="deviceId">уникальный идентификатор устройства</param>
                 ///<param name="time">время в секундах на которое требуется отключить уведомления, -1 отключить навсегда</param>
                 ///<param name="chatId"></param>
+                ///<param name="userId">идентификатор пользователя</param>
                 ///<param name="sound">включить/отключить звук в данном диалоге</param>
                 public void SetSilenceModeSync(
                     string deviceId , int time , int? chatId = null, int? userId = null,  int sound = 0
@@ -4647,6 +4649,13 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///        Возвращает список идентификаторов пользователей и сообществ, которые входят в список подписок пользователя
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
                 public async Task <UserSubscriptions> GetSubscriptions(
                      int? userId = null, int? offset = null, int? count = 100
                 ) {
@@ -4658,6 +4667,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///        Возвращает список идентификаторов пользователей и сообществ, которые входят в список подписок пользователя
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
                 public UserSubscriptions GetSubscriptionsSync(
                      int? userId = null, int? offset = null, int? count = 100
                 ) {
@@ -4669,6 +4685,11 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///        Возвращает информацию о том, установил ли пользователь приложение
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя</param>
                 public async Task <bool> IsAppUser(
                      int? userId = null
                 ) {
@@ -4680,6 +4701,11 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///        Возвращает информацию о том, установил ли пользователь приложение
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя</param>
                 public bool IsAppUserSync(
                      int? userId = null
                 ) {
@@ -4691,6 +4717,13 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///        Позволяет пожаловаться на пользователя
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя, на которого нужно подать жалобу</param>
+                ///<param name="type">тип жалобы</param>
+                ///<param name="comment">комментарий к жалобе на пользователя</param>
                 public async Task  Report(
                     int userId , ComplaintType type ,  string comment 
                 ) {
@@ -4701,6 +4734,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///        Позволяет пожаловаться на пользователя
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя, на которого нужно подать жалобу</param>
+                ///<param name="type">тип жалобы</param>
+                ///<param name="comment">комментарий к жалобе на пользователя</param>
                 public void ReportSync(
                     int userId , ComplaintType type ,  string comment 
                 ) {

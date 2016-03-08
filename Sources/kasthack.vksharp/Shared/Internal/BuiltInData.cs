@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Globalization;
+#if !PORTABLE
 using System.Security.Cryptography;
+#else
+//here goes....
+#endif
 using System.Text;
 
 namespace kasthack.vksharp.Internal {

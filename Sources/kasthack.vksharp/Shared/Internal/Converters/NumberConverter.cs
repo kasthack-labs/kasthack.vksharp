@@ -14,8 +14,9 @@ namespace kasthack.vksharp.Internal.Converters {
 
         private static readonly Type NullableNumberType = typeof(T?);
         private static readonly Type NumberType = typeof(T);
+#if !PORTABLE
         private static readonly TypeCode NumberTypeCode = Type.GetTypeCode( NumberType );
-
+#endif
         public NumberConverter( Func<string, T> parse ) { _parse = parse; }
 
         public override bool CanConvert( Type objectType ) {
@@ -25,7 +26,7 @@ namespace kasthack.vksharp.Internal.Converters {
             var jsonValue = serializer.Deserialize<JValue>( reader );
             switch ( jsonValue.Type ) {
                 case JTokenType.Float:
-                    return Convert.ChangeType( Math.Round( jsonValue.Value<double>()), NumberTypeCode );
+                    return Convert.ChangeType( Math.Round( jsonValue.Value<double>()), NumberType );
                 case JTokenType.Integer:
                     return jsonValue.Value<T>();
                 case JTokenType.String:

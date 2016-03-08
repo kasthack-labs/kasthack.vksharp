@@ -8,10 +8,13 @@ namespace kasthack.vksharp.Internal {
     /*
         Pure Public Morozov antipattern
     */
+#if !PORTABLE
     internal class MorozovHandler : WebRequestHandler {
         private static readonly FieldInfo _proxyInfo;
         static MorozovHandler() {
-            _proxyInfo = typeof( HttpClientHandler ).GetField( "proxy", BindingFlags.NonPublic | BindingFlags.Instance );
+            _proxyInfo = typeof(HttpClientHandler).
+                GetField( "proxy", BindingFlags.NonPublic | BindingFlags.Instance );
+
         }
 
         public new IWebProxy Proxy {
@@ -27,4 +30,5 @@ namespace kasthack.vksharp.Internal {
             return base.SendAsync( request, cancellationToken );
         }
     }
+#endif
 }

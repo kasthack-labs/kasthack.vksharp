@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+#if !PORTABLE
 using System.Net.Cache;
+#endif
 using System.Net.Http;
+#if !PORTABLE
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+#endif
 using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace kasthack.vksharp.Internal {
+#if !PORTABLE
     public class ProxyPoolingHttpClientHandler : HttpMessageHandler, IDisposable {
         private readonly MorozovHandler _handler;
 
@@ -18,7 +23,7 @@ namespace kasthack.vksharp.Internal {
             Proxies = new List<IWebProxy> { null };
         }
 
-        #region HttpClientHandler members
+#region HttpClientHandler members
 
         public bool SupportsAutomaticDecompression => _handler.SupportsAutomaticDecompression;
         public DecompressionMethods AutomaticDecompression {
@@ -109,14 +114,13 @@ namespace kasthack.vksharp.Internal {
         public X509CertificateCollection ClientCertificates => _handler.ClientCertificates;
 
 
-
         public new void Dispose()
         {
             base.Dispose();
             _handler.Dispose();
         }
 
-        #endregion
+#endregion
 
         public IWebProxy CurrentProxy => _handler.Proxy;
 
@@ -137,4 +141,5 @@ namespace kasthack.vksharp.Internal {
             _handler.Proxy = Proxies[ _currentProxyIndex % Proxies.Count ];
         }
     }
+#endif
 }

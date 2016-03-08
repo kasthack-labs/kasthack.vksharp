@@ -7,6 +7,12 @@ namespace kasthack.vksharp.Internal.Converters
 
         private static readonly Type NullableType = typeof(Nullable<>);
 
-        public static bool IsNullable(this Type t) => t.IsGenericType && t.GetGenericTypeDefinition() == NullableType;
+        public static bool IsNullable(this Type t) =>
+#if !PORTABLE
+            t.IsGenericType
+#else
+            t.IsConstructedGenericType//todo: check
+#endif
+             && t.GetGenericTypeDefinition() == NullableType;
     }
 }

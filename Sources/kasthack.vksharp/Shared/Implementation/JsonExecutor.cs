@@ -15,17 +15,31 @@ namespace kasthack.vksharp.Implementation {
     {
         private const string ReqExt = "json";
         private static readonly HttpClient Client;
-        private static readonly ProxyPoolingHttpClientHandler HttpClientHandler;
+        private static readonly
+#if !PORTABLE
+            ProxyPoolingHttpClientHandler
+#else
+            HttpClientHandler
+#endif
+            HttpClientHandler;
+#if !PORTABLE
         public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
         public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
+#endif
 
         static JsonExecutor() {
             //required for parallel IO
             //default conn limit is 2
+#if !PORTABLE
             ServicePointManager.DefaultConnectionLimit = Math.Max( 25, ServicePointManager.DefaultConnectionLimit );
-
+#endif
             //client w compresssion & proxy pooling
-            HttpClientHandler = new ProxyPoolingHttpClientHandler();
+            HttpClientHandler = new
+#if !PORTABLE
+             ProxyPoolingHttpClientHandler();
+#else
+            HttpClientHandler();
+#endif
             if ( HttpClientHandler.SupportsAutomaticDecompression )
                 HttpClientHandler.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
             Client = new HttpClient( HttpClientHandler );
@@ -37,7 +51,9 @@ namespace kasthack.vksharp.Implementation {
             //snake case parsing
             var snakeCaseContractResolver = new SnakeCaseContractResolver();
 #pragma warning disable 618
+#if !PORTABLE
             snakeCaseContractResolver.DefaultMembersSearchFlags |= BindingFlags.NonPublic;
+#endif
 #pragma warning restore 618
 
             var ser = new JsonSerializer { ContractResolver = snakeCaseContractResolver };

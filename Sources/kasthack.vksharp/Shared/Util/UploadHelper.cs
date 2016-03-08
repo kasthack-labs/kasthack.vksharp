@@ -23,11 +23,16 @@ namespace kasthack.vksharp.Util {
             int? gid = 0;
             if ( userId != null && userId < 0 ) gid = -userId;
             foreach ( var fileg in files.Select( ( path, index ) => new { path, index } ).GroupBy( a => a.index / 5 ) ) {
-                FileStream[] streams = null;
+                Stream[] streams = null;
                 try {
                     var us = await _api.Photos.GetUploadServer( albumId, gid == 0 ? null : gid ).ConfigureAwait( false );
                     var ul = fileg.Select( a => a.path ).ToArray();
-                    streams = ul.Select( File.OpenRead ).ToArray();
+                    streams =
+#if !PORTABLE
+                     ul.Select( File.OpenRead ).ToArray();
+#else
+                     null; throw new System.NotImplementedException(); //todo: file uploads on PORTABLE framework
+#endif
                     VkPhotoUploadResponse pr;
                     using ( var content = new MultipartFormDataContent() ) {
                         for ( var index = 0; index < streams.Length; index++ )
@@ -41,7 +46,7 @@ namespace kasthack.vksharp.Util {
                 finally {
                     foreach ( var stream in streams )
                         try {
-                            stream.Close();
+                            stream.Dispose();
                         }
                         catch {}
                 }

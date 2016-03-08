@@ -99,22 +99,62 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public ProfilePhotos ProfilePhotos { get; set; } = new ProfilePhotos();
 
         #region ProfilePhotos proxies
-        private string Photo50 { get { return ProfilePhotos.Photo50; } set { ProfilePhotos.Photo50 = value; } }
-        private string Photo100 { get { return ProfilePhotos.Photo100; } set { ProfilePhotos.Photo100 = value; } }
-        private string Photo200 { get { return ProfilePhotos.Photo200; } set { ProfilePhotos.Photo200 = value; } }
-        private string PhotoMax { get { return ProfilePhotos.PhotoMax; } set { ProfilePhotos.PhotoMax = value; } }
-        private string Photo400Orig { get { return ProfilePhotos.Photo400Orig; } set { ProfilePhotos.Photo400Orig = value; } }
-        private string Photo200Orig { get { return ProfilePhotos.Photo200Orig; } set { ProfilePhotos.Photo200Orig = value; } }
-        private string PhotoMaxOrig { get { return ProfilePhotos.PhotoMaxOrig; } set { ProfilePhotos.PhotoMaxOrig = value; } }
-        private string PhotoId { get { return ProfilePhotos.PhotoId; } set { ProfilePhotos.PhotoId = value; } }
-        #endregion
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Photo50 { get { return ProfilePhotos.Photo50; } set { ProfilePhotos.Photo50 = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Photo100 { get { return ProfilePhotos.Photo100; } set { ProfilePhotos.Photo100 = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Photo200 { get { return ProfilePhotos.Photo200; } set { ProfilePhotos.Photo200 = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string PhotoMax { get { return ProfilePhotos.PhotoMax; } set { ProfilePhotos.PhotoMax = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Photo400Orig { get { return ProfilePhotos.Photo400Orig; } set { ProfilePhotos.Photo400Orig = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Photo200Orig { get { return ProfilePhotos.Photo200Orig; } set { ProfilePhotos.Photo200Orig = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string PhotoMaxOrig { get { return ProfilePhotos.PhotoMaxOrig; } set { ProfilePhotos.PhotoMaxOrig = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string PhotoId { get { return ProfilePhotos.PhotoId; } set { ProfilePhotos.PhotoId = value; } }
+#endregion
         /// <summary>
         /// семейное положение пользователя
         /// </summary>
         public Relation? Relation { get; set; }
 
         //todo: move to separate class
-        #region account.getProfileInfo
+#region account.getProfileInfo
         /// <summary>
         /// 
         /// </summary>
@@ -132,7 +172,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         /// </summary>
         public NameRequest NameRequest { get; set; }
         //todo: bdate visibility
-        #endregion
+#endregion
         /// <summary>
         /// список родственников текущего пользователя
         /// </summary>
@@ -153,13 +193,43 @@ namespace kasthack.vksharp.DataTypes.Entities {
         //todo: fix serializer & remove code
 
         #region SiteProfiles proxies
-        private string Skype { get { return Connections.Skype; } set { Connections.Skype = value; } }
-        private ulong? Facebook { get { return Connections.Facebook; } set { Connections.Facebook = value; } }
-        private string FacebookName { get { return Connections.FacebookName; } set { Connections.FacebookName = value; } }
-        private string Twitter { get { return Connections.Twitter; } set { Connections.Twitter = value; } }
-        private string Instagram { get { return Connections.Instagram; } set { Connections.Instagram = value; } }
-        private string LiveJournal { get { return Connections.LiveJournal; } set { Connections.LiveJournal = value; } }
-        #endregion
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Skype { get { return Connections.Skype; } set { Connections.Skype = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        ulong? Facebook { get { return Connections.Facebook; } set { Connections.Facebook = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string FacebookName { get { return Connections.FacebookName; } set { Connections.FacebookName = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Twitter { get { return Connections.Twitter; } set { Connections.Twitter = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string Instagram { get { return Connections.Instagram; } set { Connections.Instagram = value; } }
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string LiveJournal { get { return Connections.LiveJournal; } set { Connections.LiveJournal = value; } }
+#endregion
         /// <summary>
         /// «О себе».
         /// </summary>
@@ -244,12 +314,16 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public GeoEntry City { get; set; }
         public GeoEntry Country { get; set; }
 
-        public University MainUniversity { get; set; } = new University();
+        public University MainUniversity { get; } = new University();
         #region Main university
-        private string UniversityName {
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string UniversityName {
             get
             {
-                CreateUniversityIfNotExists();
                 return MainUniversity?.Name;
             }
             set {
@@ -262,7 +336,6 @@ namespace kasthack.vksharp.DataTypes.Entities {
             }
             set
             {
-                CreateUniversityIfNotExists();
                 MainUniversity.FacultyName = value;
             }
         }
@@ -272,21 +345,20 @@ namespace kasthack.vksharp.DataTypes.Entities {
             }
             set
             {
-                CreateUniversityIfNotExists();
                 MainUniversity.Faculty = value;
             }
         }
         private int? University {
             get {
-                return MainUniversity?.Id;
+                var ret = MainUniversity?.Id ?? 0;
+                return ret > 0 ? ret : (int?)null;
             }
             set
             {
                 if ( value == null) {
-                    MainUniversity = null;
+                    MainUniversity.Id = 0;
                     return;
                 }
-                CreateUniversityIfNotExists();
                 MainUniversity.Id = (int) value;
             }
         }
@@ -296,11 +368,10 @@ namespace kasthack.vksharp.DataTypes.Entities {
             }
             set
             {
-                CreateUniversityIfNotExists();
                 MainUniversity.Graduation = value;
             }
         }
-        #endregion
+#endregion
         /// <summary>
         /// 
         /// </summary>
@@ -341,10 +412,6 @@ namespace kasthack.vksharp.DataTypes.Entities {
         /// роль пользователя в сообществе
         /// </summary>
         public GroupRole? Role { get; set; }
-        private void CreateUniversityIfNotExists() {
-            if (MainUniversity == null)
-                MainUniversity = new University();
-        }
 
         public bool Equals( User other ) => !ReferenceEquals( other, null ) && Id == other.Id;
 
