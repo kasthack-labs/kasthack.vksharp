@@ -313,14 +313,14 @@
     <Params>
       <Param Name="album_id" Type="long" />
       <Param Name="group_id" Type="int?" Default="null"/>
-      <Param Name="audio_ids" Type="ulong[]" />
+      <Param Name="audio_ids" Type="long[]" />
     </Params>
   </Method>
   <Method Name="audio.get" Type="EntityList&lt;Audio&gt;" NeedToken="false" Pageable="100">
     <Params>
       <Param Name="owner_id" Type="int?" Default="null" />
       <Param Name="album_id" Type="long?" Default="null" />
-      <Param Name="audio_ids" Type="ulong[]" Default="null" />
+      <Param Name="audio_ids" Type="long[]" Default="null" />
     </Params>
     <Hardcoded>
       <HardcodedParam Name="need_user" Value="false"/><!--they've broken it-->
@@ -1467,127 +1467,235 @@
     </Params>
   </Method>
   <Method Name="video.add" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Добавляет видеозапись
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="video_id" Type="ulong" />
-      <Param Name="owner_id" Type="int"/>
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="video.delete" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Удаляет видеозапись
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="video_id" Type="ulong" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="video.deleteAlbum" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Удаляет альбом видеозаписей
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="album_id" Type="long" />
-      <Param Name="group_id" Type="int?" Default="null" />
+      <Param Name="album_id" Type="long" Doc="идентификатор альбома"/>
+      <Param Name="group_id" Type="int?" Default="null" Doc="идентификатор сообщества (если альбом, который необходимо удалить, принадлежит сообществу)"/>
     </Params>
   </Method>
   <Method Name="video.deleteComment" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Удаляет комментарий к видеозаписи
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="comment_id" Type="int" Doc="идентификатор комментария"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
-  <Method Name="video.editComment" Type="void" NeedToken="true">
+  <Method Name="video.editComment" Type="void" NeedToken="true"><!--todo: attachments-->
+    <Doc>
+      <Summary>
+          Изменяет текст комментария к видеозаписи
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="message" Type="string" />
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?"/>
+      <Param Name="message" Type="string" Doc="новый текст комментария (является обязательным, если не задан параметр attachments)"/>
+      <Param Name="comment_id" Type="int" Doc="идентификатор комментария"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
-  <Method Name="video.getNewTags" Type="EntityList&lt;TaggedVideo&gt;" NeedToken="true" Pageable="20">
+  <Method Name="video.getNewTags" Type="EntityList&lt;TaggedVideo&gt;" NeedToken="true" Pageable="20"><Doc>
+      <Summary>
+          Возвращает список видеозаписей, на которых есть непросмотренные отметки
+      </Summary>
+    </Doc>
     <Params/>
   </Method>
   <Method Name="video.getTags" Type="Tag[]" NeedToken="false">
+    <Doc>
+      <Summary>
+          Добавляет отметку на видеозапись
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="video_id" Type="long" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="video.putTag" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Добавляет отметку на видеозапись
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="user_id" Type="int" />
-      <Param Name="tagged_name" Type="string" />
-      <Param Name="video_id" Type="ulong" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="user_id" Type="int" Doc="идентификатор пользователя, которого нужно отметить"/>
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="tagged_name" Type="string" Doc="текст отметки"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="video.removeTag" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Удаляет отметку с видеозаписи
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="video_id" Type="ulong" />
-      <Param Name="tag_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="tag_id" Type="int" Doc="идентификатор отметки"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи (пользователь или сообщество), по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="video.report" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Позволяет пожаловаться на видеозапись
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="video_id" Type="ulong" />
-      <Param Name="owner_id" Type="int?" Default="null" />
-      <Param Name="reason" Type="ReportReason?" Default="null" />
-      <Param Name="comment" Type="string" Default="&quot;&quot;" />
-      <Param Name="search_query" Type="string" Default="&quot;&quot;" />
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, которому принадлежит видеозапись"/>
+      <Param Name="reason" Type="ReportReason?" Default="null" Doc="тип жалобы"/>
+      <Param Name="comment" Type="string" Default="&quot;&quot;" Doc="комментарий для жалобы"/>
+      <Param Name="search_query" Type="string" Default="&quot;&quot;" Doc="поисковой запрос, если видеозапись была найдена через поиск"/>
     </Params>
   </Method>
   <Method Name="video.reportComment" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Позволяет пожаловаться на комментарий к видеозаписи
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
-      <Param Name="reason" Type="ReportReason?" Default="null" />
+      <Param Name="comment_id" Type="int" Doc="идентификатор комментария"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, к которой оставлен комментарий"/>
+      <Param Name="reason" Type="ReportReason?" Default="null" Doc="тип жалобы"/>
     </Params>
   </Method>
   <Method Name="video.restoreComment" Type="void" NeedToken="true">
     <Params>
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="comment_id" Type="int" Doc="идентификатор удаленного комментария"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, которому принадлежит видеозапись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="video.restore" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Восстанавливает удаленную видеозапись
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="video_id" Type="long" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя" />
     </Params>
   </Method>
   <Method Name="wall.delete" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Удаляет запись со стены
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
   <Method Name="wall.deleteComment" Type="void" NeedToken="true">
+    <Doc>
+      <Summary>
+          Удаляет комментарий текущего пользователя к записи на своей или чужой стене
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="comment_id" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null" />
+      <Param Name="comment_id" Type="int" Doc="идентификатор комментария"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя, на чьей стене находится комментарий к записи, по умолчанию идентификатор текущего пользователя" />
     </Params>
   </Method>
   <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="owner_id" Type="int"/>
-      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" />
+      <Param Name="owner_id" Type="int" Doc="идентификатор пользователя или сообщества"/>
+      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" Doc="определяет, какие типы записей на стене необходимо получить"/>
     </Params>
   </Method>
-  <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" Pageable="100">
+  <Method Name="wall.get" Type="EntityList&lt;Post&gt;" NeedToken="false" Pageable="100"><!--todo: extended version-->
+    <Doc>
+      <Summary>
+          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="domain" Type="string" />
-      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" />
+      <Param Name="domain" Type="string" Doc="короткий адрес пользователя или сообщества"/>
+      <Param Name="filter" Type="WallPostFilter" Default="WallPostFilter.All" Doc="определяет, какие типы записей на стене необходимо получить"/>
     </Params>
   </Method>
-  <Method Name="wall.getById" Type="Post[]" NeedToken="true" >
+  <Method Name="wall.getById" Type="Post[]" NeedToken="true" ><!--todo: extended version-->
+    <Doc>
+      <Summary>
+        Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="copy_history_depth" Type="int" Default="2" />
-      <Param Name="posts" Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToIdString()).ToArray())" />
+      <Param Name="copy_history_depth" Type="int" Default="2" Doc="идентификаторы постов"/>
+      <Param Name="posts" Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToIdString()).ToArray())"  Doc="глубина показа репостов"/>
     </Params>
   </Method>
-  <Method Name="wall.getComments" Type="EntityListExtended&lt;Comment&gt;" NeedToken="false" Pageable="100">
+  <Method Name="wall.getComments" Type="EntityList&lt;Comment&gt;" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+        Возвращает список комментариев к записи на стене
+      </Summary>
+    </Doc>
     <Params>
-      <Param Name="post_id" Type="int"/>
-      <Param Name="sort" Type="string"/>
-      <Param Name="preview_length" Type="int"/>
-      <Param Name="extended" Type="int" />
-      <Param Name="owner_id" Type="int?" Default="null"/>
-      <Param Name="need_likes" Type="bool" Default="false" />
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
+      <Param Name="sort" Type="string" Doc="порядок сортировки комментариев"/>
+      <Param Name="preview_length" Type="int" Doc="количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать" Default="0"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца страницы"/>
+      <Param Name="need_likes" Type="bool" Default="false" Doc="возвращать информацию о лайках"/>
     </Params>
+  <Hardcoded>
+    <HardcodedParam Name="extended" Value="0"/>
+  </Hardcoded>
+  </Method>
+  <Method Name="wall.getComments" Type="EntityListExtended&lt;Comment&gt;" NameSuffix="Extended" NeedToken="false" Pageable="100">
+    <Doc>
+      <Summary>
+        Возвращает список комментариев к записи на стене
+      </Summary>
+    </Doc>
+    <Params>
+      <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
+      <Param Name="sort" Type="string" Doc="порядок сортировки комментариев"/>
+      <Param Name="preview_length" Type="int" Doc="количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать" Default="0"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца страницы"/>
+      <Param Name="need_likes" Type="bool" Default="false" Doc="возвращать информацию о лайках"/>
+    </Params>
+    <Hardcoded>
+      <HardcodedParam Name="extended" Value="1"/>
+    </Hardcoded>
   </Method>
   <Method Name="likes.getList" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Doc>
@@ -1754,7 +1862,7 @@
     </Doc>
     <Params>
       <Param Name="post_id" Type="int" Doc="идентификатор записи на стене"/>
-      <Param Name="owner_id" Type="int?" Default="null" Doc="Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя"/>
+      <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя"/>
     </Params>
   </Method>
 </ArrayOfMethod>

@@ -970,7 +970,7 @@ namespace kasthack.vksharp {
                     
                 }
                 public async Task  MoveToAlbum(
-                    long albumId , int? groupId = null, params ulong[] audioIds 
+                    long albumId , int? groupId = null, params long[] audioIds 
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.MoveToAlbum(
@@ -980,7 +980,7 @@ namespace kasthack.vksharp {
                     ;
                 }
                 public void MoveToAlbumSync(
-                    long albumId , int? groupId = null, params ulong[] audioIds 
+                    long albumId , int? groupId = null, params long[] audioIds 
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.MoveToAlbum(
@@ -991,7 +991,7 @@ namespace kasthack.vksharp {
                     
                 }
                 public async Task <EntityList<Audio>> Get(
-                    int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params ulong[] audioIds 
+                    int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params long[] audioIds 
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
@@ -1002,7 +1002,7 @@ namespace kasthack.vksharp {
                     ).Response;
                 }
                 public EntityList<Audio> GetSync(
-                    int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params ulong[] audioIds 
+                    int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params long[] audioIds 
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Audio.Get(
@@ -4806,8 +4806,14 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Video {
                 private readonly Api _parent;
                 internal MethodGroup_Video(Api parent){_parent=parent;}
+                ///<summary>
+                ///          Добавляет видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  Add(
-                    ulong videoId ,  int ownerId 
+                    long videoId ,  int? ownerId = null
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.Add(
@@ -4816,8 +4822,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Добавляет видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public void AddSync(
-                    ulong videoId ,  int ownerId 
+                    long videoId ,  int? ownerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.Add(
@@ -4827,8 +4839,14 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Удаляет видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  Delete(
-                    ulong videoId ,  int? ownerId = null
+                    long videoId ,  int? ownerId = null
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.Delete(
@@ -4837,8 +4855,14 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Удаляет видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public void DeleteSync(
-                    ulong videoId ,  int? ownerId = null
+                    long videoId ,  int? ownerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.Delete(
@@ -4848,6 +4872,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Удаляет альбом видеозаписей
+                ///      
+                ///</summary>
+                ///<param name="albumId">идентификатор альбома</param>
+                ///<param name="groupId">идентификатор сообщества (если альбом, который необходимо удалить, принадлежит сообществу)</param>
                 public async Task  DeleteAlbum(
                     long albumId ,  int? groupId = null
                 ) {
@@ -4858,6 +4888,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Удаляет альбом видеозаписей
+                ///      
+                ///</summary>
+                ///<param name="albumId">идентификатор альбома</param>
+                ///<param name="groupId">идентификатор сообщества (если альбом, который необходимо удалить, принадлежит сообществу)</param>
                 public void DeleteAlbumSync(
                     long albumId ,  int? groupId = null
                 ) {
@@ -4869,6 +4905,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Удаляет комментарий к видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  DeleteComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -4879,6 +4921,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Удаляет комментарий к видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public void DeleteCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -4890,8 +4938,15 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Изменяет текст комментария к видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="message">новый текст комментария (является обязательным, если не задан параметр attachments)</param>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  EditComment(
-                    string message , int commentId ,  int? ownerId 
+                    string message , int commentId ,  int? ownerId = null
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.EditComment(
@@ -4900,8 +4955,15 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Изменяет текст комментария к видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="message">новый текст комментария (является обязательным, если не задан параметр attachments)</param>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public void EditCommentSync(
-                    string message , int commentId ,  int? ownerId 
+                    string message , int commentId ,  int? ownerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.EditComment(
@@ -4911,6 +4973,10 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Возвращает список видеозаписей, на которых есть непросмотренные отметки
+                ///      
+                ///</summary>
                 public async Task <EntityList<TaggedVideo>> GetNewTags(
                     int? offset = null, int? count = 20
                 ) {
@@ -4922,6 +4988,10 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///          Возвращает список видеозаписей, на которых есть непросмотренные отметки
+                ///      
+                ///</summary>
                 public EntityList<TaggedVideo> GetNewTagsSync(
                     int? offset = null, int? count = 20
                 ) {
@@ -4933,6 +5003,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///          Добавляет отметку на видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task <Tag[]> GetTags(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -4944,6 +5020,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///          Добавляет отметку на видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public Tag[] GetTagsSync(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -4955,29 +5037,52 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///          Добавляет отметку на видеозапись
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя, которого нужно отметить</param>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="taggedName">текст отметки</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  PutTag(
-                    int userId , string taggedName , ulong videoId ,  int? ownerId = null
+                    int userId , long videoId , string taggedName ,  int? ownerId = null
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.PutTag(
-                                userId,taggedName,videoId,ownerId
+                                userId,videoId,taggedName,ownerId
                             )
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Добавляет отметку на видеозапись
+                ///      
+                ///</summary>
+                ///<param name="userId">идентификатор пользователя, которого нужно отметить</param>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="taggedName">текст отметки</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public void PutTagSync(
-                    int userId , string taggedName , ulong videoId ,  int? ownerId = null
+                    int userId , long videoId , string taggedName ,  int? ownerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.PutTag(
-                                userId,taggedName,videoId,ownerId
+                                userId,videoId,taggedName,ownerId
                             )
                         );
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Удаляет отметку с видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="tagId">идентификатор отметки</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи (пользователь или сообщество), по умолчанию идентификатор текущего пользователя</param>
                 public async Task  RemoveTag(
-                    ulong videoId , int tagId ,  int? ownerId = null
+                    long videoId , int tagId ,  int? ownerId = null
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.RemoveTag(
@@ -4986,8 +5091,15 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Удаляет отметку с видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="tagId">идентификатор отметки</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи (пользователь или сообщество), по умолчанию идентификатор текущего пользователя</param>
                 public void RemoveTagSync(
-                    ulong videoId , int tagId ,  int? ownerId = null
+                    long videoId , int tagId ,  int? ownerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.RemoveTag(
@@ -4997,8 +5109,17 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Позволяет пожаловаться на видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит видеозапись</param>
+                ///<param name="reason">тип жалобы</param>
+                ///<param name="comment">комментарий для жалобы</param>
+                ///<param name="searchQuery">поисковой запрос, если видеозапись была найдена через поиск</param>
                 public async Task  Report(
-                    ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
+                    long videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
                 ) {
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.Report(
@@ -5007,8 +5128,17 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Позволяет пожаловаться на видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит видеозапись</param>
+                ///<param name="reason">тип жалобы</param>
+                ///<param name="comment">комментарий для жалобы</param>
+                ///<param name="searchQuery">поисковой запрос, если видеозапись была найдена через поиск</param>
                 public void ReportSync(
-                    ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
+                    long videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Video.Report(
@@ -5018,6 +5148,13 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Позволяет пожаловаться на комментарий к видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, к которой оставлен комментарий</param>
+                ///<param name="reason">тип жалобы</param>
                 public async Task  ReportComment(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5028,6 +5165,13 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Позволяет пожаловаться на комментарий к видеозаписи
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, к которой оставлен комментарий</param>
+                ///<param name="reason">тип жалобы</param>
                 public void ReportCommentSync(
                     int commentId , int? ownerId = null,  ReportReason? reason = null
                 ) {
@@ -5060,6 +5204,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Восстанавливает удаленную видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  Restore(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -5070,6 +5220,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Восстанавливает удаленную видеозапись
+                ///      
+                ///</summary>
+                ///<param name="videoId">идентификатор видеозаписи</param>
+                ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
                 public void RestoreSync(
                     long videoId ,  int? ownerId = null
                 ) {
@@ -5088,6 +5244,12 @@ namespace kasthack.vksharp {
             public partial class MethodGroup_Wall {
                 private readonly Api _parent;
                 internal MethodGroup_Wall(Api parent){_parent=parent;}
+                ///<summary>
+                ///          Удаляет запись со стены
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  Delete(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5098,6 +5260,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Удаляет запись со стены
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public void DeleteSync(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5109,6 +5277,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Удаляет комментарий текущего пользователя к записи на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор пользователя, на чьей стене находится комментарий к записи, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  DeleteComment(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5119,6 +5293,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ;
                 }
+                ///<summary>
+                ///          Удаляет комментарий текущего пользователя к записи на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<param name="commentId">идентификатор комментария</param>
+                ///<param name="ownerId">идентификатор пользователя, на чьей стене находится комментарий к записи, по умолчанию идентификатор текущего пользователя</param>
                 public void DeleteCommentSync(
                     int commentId ,  int? ownerId = null
                 ) {
@@ -5130,6 +5310,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     
                 }
+                ///<summary>
+                ///          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+                ///      
+                ///</summary>
+                ///<param name="ownerId">идентификатор пользователя или сообщества</param>
+                ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
                 public async Task <EntityList<Post>> Get(
                     int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
                 ) {
@@ -5141,6 +5327,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+                ///      
+                ///</summary>
+                ///<param name="ownerId">идентификатор пользователя или сообщества</param>
+                ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
                 public EntityList<Post> GetSync(
                     int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
                 ) {
@@ -5152,6 +5344,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+                ///      
+                ///</summary>
+                ///<param name="domain">короткий адрес пользователя или сообщества</param>
+                ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
                 public async Task <EntityList<Post>> Get(
                     string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
                 ) {
@@ -5163,6 +5361,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+                ///      
+                ///</summary>
+                ///<param name="domain">короткий адрес пользователя или сообщества</param>
+                ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
                 public EntityList<Post> GetSync(
                     string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
                 ) {
@@ -5174,6 +5378,12 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                ///<summary>
+                ///        Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+                ///      
+                ///</summary>
+                ///<param name="copyHistoryDepth">идентификаторы постов</param>
+                ///<param name="posts">глубина показа репостов</param>
                 public async Task <Post[]> GetById(
                     int copyHistoryDepth = 2, params ContentId[] posts 
                 ) {
@@ -5185,6 +5395,12 @@ namespace kasthack.vksharp {
                         ).ConfigureAwait(false)
                     ).Response;
                 }
+                ///<summary>
+                ///        Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+                ///      
+                ///</summary>
+                ///<param name="copyHistoryDepth">идентификаторы постов</param>
+                ///<param name="posts">глубина показа репостов</param>
                 public Post[] GetByIdSync(
                     int copyHistoryDepth = 2, params ContentId[] posts 
                 ) {
@@ -5196,23 +5412,81 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
-                public async Task <EntityListExtended<Comment>> GetComments(
-                    int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
+                ///<summary>
+                ///        Возвращает список комментариев к записи на стене
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="sort">порядок сортировки комментариев</param>
+                ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
+                ///<param name="ownerId">идентификатор владельца страницы</param>
+                ///<param name="needLikes">возвращать информацию о лайках</param>
+                public async Task <EntityList<Comment>> GetComments(
+                    int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Wall.GetComments(
-                                postId,sort,previewLength,extended,ownerId,needLikes,offset, count
+                                postId,sort,previewLength,ownerId,needLikes,offset, count
                             )
                         ).ConfigureAwait(false)
                     ).Response;
                 }
-                public EntityListExtended<Comment> GetCommentsSync(
-                    int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
+                ///<summary>
+                ///        Возвращает список комментариев к записи на стене
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="sort">порядок сортировки комментариев</param>
+                ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
+                ///<param name="ownerId">идентификатор владельца страницы</param>
+                ///<param name="needLikes">возвращать информацию о лайках</param>
+                public EntityList<Comment> GetCommentsSync(
+                    int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Wall.GetComments(
-                                postId,sort,previewLength,extended,ownerId,needLikes,offset, count
+                                postId,sort,previewLength,ownerId,needLikes,offset, count
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                ///<summary>
+                ///        Возвращает список комментариев к записи на стене
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="sort">порядок сортировки комментариев</param>
+                ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
+                ///<param name="ownerId">идентификатор владельца страницы</param>
+                ///<param name="needLikes">возвращать информацию о лайках</param>
+                public async Task <EntityListExtended<Comment>> GetCommentsExtended(
+                    int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Wall.GetCommentsExtended(
+                                postId,sort,previewLength,ownerId,needLikes,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                ///<summary>
+                ///        Возвращает список комментариев к записи на стене
+                ///      
+                ///</summary>
+                ///<param name="postId">идентификатор записи на стене</param>
+                ///<param name="sort">порядок сортировки комментариев</param>
+                ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
+                ///<param name="ownerId">идентификатор владельца страницы</param>
+                ///<param name="needLikes">возвращать информацию о лайках</param>
+                public EntityListExtended<Comment> GetCommentsExtendedSync(
+                    int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Wall.GetCommentsExtended(
+                                postId,sort,previewLength,ownerId,needLikes,offset, count
                             )
                         );
                     task.Wait();
@@ -5564,7 +5838,7 @@ namespace kasthack.vksharp {
                 ///      
                 ///</summary>
                 ///<param name="postId">идентификатор записи на стене</param>
-                ///<param name="ownerId">Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public async Task  Unpin(
                     int postId ,  int? ownerId = null
                 ) {
@@ -5580,7 +5854,7 @@ namespace kasthack.vksharp {
                 ///      
                 ///</summary>
                 ///<param name="postId">идентификатор записи на стене</param>
-                ///<param name="ownerId">Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
                 public void UnpinSync(
                     int postId ,  int? ownerId = null
                 ) {

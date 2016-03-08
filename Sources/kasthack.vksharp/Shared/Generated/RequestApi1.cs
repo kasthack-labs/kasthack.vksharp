@@ -672,7 +672,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<bool> MoveToAlbum(
-                long albumId , int? groupId = null, params ulong[] audioIds 
+                long albumId , int? groupId = null, params long[] audioIds 
             ) {
                 var req = new Request<bool>{
                     MethodName = "audio.moveToAlbum",
@@ -680,7 +680,7 @@ namespace kasthack.vksharp {
 
                         { "album_id", albumId.ToNCString()},
                         { "group_id", MiscTools.NullableString(groupId)},
-                        { "audio_ids", (audioIds??new ulong[]{}).ToNCStringA()},
+                        { "audio_ids", (audioIds??new long[]{}).ToNCStringA()},
 
                     }
                 };
@@ -689,7 +689,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<EntityList<Audio>> Get(
-                int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params ulong[] audioIds 
+                int? ownerId = null, long? albumId = null, int? offset = null, int? count = 100, params long[] audioIds 
             ) {
                 var req = new Request<EntityList<Audio>>{
                     MethodName = "audio.get",
@@ -697,7 +697,7 @@ namespace kasthack.vksharp {
 
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "album_id", MiscTools.NullableString(albumId)},
-                        { "audio_ids", (audioIds??new ulong[]{}).ToNCStringA()},
+                        { "audio_ids", (audioIds??new long[]{}).ToNCStringA()},
                         {"need_user","false"},
                         { "offset", offset.NullableString() },
                         { "count", count.NullableString() },
@@ -3785,15 +3785,21 @@ namespace kasthack.vksharp {
             private readonly RequestApi _parent;
             internal MethodGroup_video(RequestApi parent){_parent=parent;}
 
+            ///<summary>
+            ///          Добавляет видеозапись
+            ///      
+            ///</summary>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Add(
-                ulong videoId ,  int ownerId 
+                long videoId ,  int? ownerId = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.add",
                     Parameters = new Dictionary<string, string> {
 
                         { "video_id", videoId.ToNCString()},
-                        { "owner_id", ownerId.ToNCString()},
+                        { "owner_id", MiscTools.NullableString(ownerId)},
 
                     }
                 };
@@ -3801,8 +3807,14 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Удаляет видеозапись
+            ///      
+            ///</summary>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Delete(
-                ulong videoId ,  int? ownerId = null
+                long videoId ,  int? ownerId = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.delete",
@@ -3817,6 +3829,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Удаляет альбом видеозаписей
+            ///      
+            ///</summary>
+            ///<param name="albumId">идентификатор альбома</param>
+            ///<param name="groupId">идентификатор сообщества (если альбом, который необходимо удалить, принадлежит сообществу)</param>
             public Request<bool> DeleteAlbum(
                 long albumId ,  int? groupId = null
             ) {
@@ -3833,6 +3851,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Удаляет комментарий к видеозаписи
+            ///      
+            ///</summary>
+            ///<param name="commentId">идентификатор комментария</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> DeleteComment(
                 int commentId ,  int? ownerId = null
             ) {
@@ -3849,8 +3873,15 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Изменяет текст комментария к видеозаписи
+            ///      
+            ///</summary>
+            ///<param name="message">новый текст комментария (является обязательным, если не задан параметр attachments)</param>
+            ///<param name="commentId">идентификатор комментария</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> EditComment(
-                string message , int commentId ,  int? ownerId 
+                string message , int commentId ,  int? ownerId = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.editComment",
@@ -3866,6 +3897,10 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Возвращает список видеозаписей, на которых есть непросмотренные отметки
+            ///      
+            ///</summary>
             public Request<EntityList<TaggedVideo>> GetNewTags(
                 int? offset = null, int? count = 20
             ) {
@@ -3882,6 +3917,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Добавляет отметку на видеозапись
+            ///      
+            ///</summary>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<Tag[]> GetTags(
                 long videoId ,  int? ownerId = null
             ) {
@@ -3899,16 +3940,24 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Добавляет отметку на видеозапись
+            ///      
+            ///</summary>
+            ///<param name="userId">идентификатор пользователя, которого нужно отметить</param>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="taggedName">текст отметки</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> PutTag(
-                int userId , string taggedName , ulong videoId ,  int? ownerId = null
+                int userId , long videoId , string taggedName ,  int? ownerId = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.putTag",
                     Parameters = new Dictionary<string, string> {
 
                         { "user_id", userId.ToNCString()},
-                        { "tagged_name", taggedName},
                         { "video_id", videoId.ToNCString()},
+                        { "tagged_name", taggedName},
                         { "owner_id", MiscTools.NullableString(ownerId)},
 
                     }
@@ -3917,8 +3966,15 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Удаляет отметку с видеозаписи
+            ///      
+            ///</summary>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="tagId">идентификатор отметки</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи (пользователь или сообщество), по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> RemoveTag(
-                ulong videoId , int tagId ,  int? ownerId = null
+                long videoId , int tagId ,  int? ownerId = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.removeTag",
@@ -3934,8 +3990,17 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Позволяет пожаловаться на видеозапись
+            ///      
+            ///</summary>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежит видеозапись</param>
+            ///<param name="reason">тип жалобы</param>
+            ///<param name="comment">комментарий для жалобы</param>
+            ///<param name="searchQuery">поисковой запрос, если видеозапись была найдена через поиск</param>
             public Request<bool> Report(
-                ulong videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
+                long videoId , int? ownerId = null, ReportReason? reason = null, string comment = "",  string searchQuery = ""
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.report",
@@ -3953,6 +4018,13 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Позволяет пожаловаться на комментарий к видеозаписи
+            ///      
+            ///</summary>
+            ///<param name="commentId">идентификатор комментария</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, к которой оставлен комментарий</param>
+            ///<param name="reason">тип жалобы</param>
             public Request<bool> ReportComment(
                 int commentId , int? ownerId = null,  ReportReason? reason = null
             ) {
@@ -3986,6 +4058,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Восстанавливает удаленную видеозапись
+            ///      
+            ///</summary>
+            ///<param name="videoId">идентификатор видеозаписи</param>
+            ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Restore(
                 long videoId ,  int? ownerId = null
             ) {
@@ -4007,6 +4085,12 @@ namespace kasthack.vksharp {
             private readonly RequestApi _parent;
             internal MethodGroup_wall(RequestApi parent){_parent=parent;}
 
+            ///<summary>
+            ///          Удаляет запись со стены
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Delete(
                 int postId ,  int? ownerId = null
             ) {
@@ -4023,6 +4107,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Удаляет комментарий текущего пользователя к записи на своей или чужой стене
+            ///      
+            ///</summary>
+            ///<param name="commentId">идентификатор комментария</param>
+            ///<param name="ownerId">идентификатор пользователя, на чьей стене находится комментарий к записи, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> DeleteComment(
                 int commentId ,  int? ownerId = null
             ) {
@@ -4039,6 +4129,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+            ///      
+            ///</summary>
+            ///<param name="ownerId">идентификатор пользователя или сообщества</param>
+            ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
             public Request<EntityList<Post>> Get(
                 int ownerId ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ) {
@@ -4058,6 +4154,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///          Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+            ///      
+            ///</summary>
+            ///<param name="domain">короткий адрес пользователя или сообщества</param>
+            ///<param name="filter">определяет, какие типы записей на стене необходимо получить</param>
             public Request<EntityList<Post>> Get(
                 string domain ,  WallPostFilter filter = WallPostFilter.All, int? offset = null, int? count = 100
             ) {
@@ -4077,6 +4179,12 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает список записей со стен пользователей или сообществ по их идентификаторам
+            ///      
+            ///</summary>
+            ///<param name="copyHistoryDepth">идентификаторы постов</param>
+            ///<param name="posts">глубина показа репостов</param>
             public Request<Post[]> GetById(
                 int copyHistoryDepth = 2, params ContentId[] posts 
             ) {
@@ -4093,8 +4201,49 @@ namespace kasthack.vksharp {
                 return req;
             }
 
-            public Request<EntityListExtended<Comment>> GetComments(
-                int postId , string sort , int previewLength , int extended , int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
+            ///<summary>
+            ///        Возвращает список комментариев к записи на стене
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="sort">порядок сортировки комментариев</param>
+            ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
+            ///<param name="ownerId">идентификатор владельца страницы</param>
+            ///<param name="needLikes">возвращать информацию о лайках</param>
+            public Request<EntityList<Comment>> GetComments(
+                int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
+            ) {
+                var req = new Request<EntityList<Comment>>{
+                    MethodName = "wall.getComments",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "post_id", postId.ToNCString()},
+                        { "sort", sort},
+                        { "preview_length", previewLength.ToNCString()},
+                        { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "need_likes", (needLikes?1:0).ToNCString()},
+                        {"extended","0"},
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            ///<summary>
+            ///        Возвращает список комментариев к записи на стене
+            ///      
+            ///</summary>
+            ///<param name="postId">идентификатор записи на стене</param>
+            ///<param name="sort">порядок сортировки комментариев</param>
+            ///<param name="previewLength">количество символов, по которому нужно обрезать текст комментария, 0 - не обрезать</param>
+            ///<param name="ownerId">идентификатор владельца страницы</param>
+            ///<param name="needLikes">возвращать информацию о лайках</param>
+            public Request<EntityListExtended<Comment>> GetCommentsExtended(
+                int postId , string sort , int previewLength = 0, int? ownerId = null,  bool needLikes = false, int? offset = null, int? count = 100
             ) {
                 var req = new Request<EntityListExtended<Comment>>{
                     MethodName = "wall.getComments",
@@ -4103,9 +4252,9 @@ namespace kasthack.vksharp {
                         { "post_id", postId.ToNCString()},
                         { "sort", sort},
                         { "preview_length", previewLength.ToNCString()},
-                        { "extended", extended.ToNCString()},
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "need_likes", (needLikes?1:0).ToNCString()},
+                        {"extended","1"},
                         { "offset", offset.NullableString() },
                         { "count", count.NullableString() },
 
@@ -4355,7 +4504,7 @@ namespace kasthack.vksharp {
             ///      
             ///</summary>
             ///<param name="postId">идентификатор записи на стене</param>
-            ///<param name="ownerId">Bдентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, на стене которого находится запись, по умолчанию идентификатор текущего пользователя</param>
             public Request<bool> Unpin(
                 int postId ,  int? ownerId = null
             ) {

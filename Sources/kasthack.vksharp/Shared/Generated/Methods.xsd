@@ -10,7 +10,7 @@
                 <xsd:complexType>
                   <xsd:sequence>
                     <xsd:element name="Summary" type="xsd:string" />
-                    <xsd:element name="Returns" />
+                    <xsd:element minOccurs="0" name="Returns" type="xsd:string" />
                   </xsd:sequence>
                 </xsd:complexType>
               </xsd:element>
