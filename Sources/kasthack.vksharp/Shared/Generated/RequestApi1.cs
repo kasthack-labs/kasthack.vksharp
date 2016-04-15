@@ -2194,6 +2194,40 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<Group[]> GetById(
+                string groupId ,  GroupFields fields 
+            ) {
+                var req = new Request<Group[]>{
+                    MethodName = "groups.getById",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_id", groupId},
+                        { "fields", String.Join( ",", MiscTools.GetGroupFields( fields ) )},
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<Group[]> GetById(
+                int[] groupIds ,  GroupFields fields 
+            ) {
+                var req = new Request<Group[]>{
+                    MethodName = "groups.getById",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "group_ids", (groupIds??new int[]{}).ToNCStringA()},
+                        { "fields", String.Join( ",", MiscTools.GetGroupFields( fields ) )},
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<EntityList<int>> GetMembers(
                 string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
             ) {
@@ -2637,16 +2671,101 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> Send(
-                int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
                     Parameters = new Dictionary<string, string> {
 
-                        { "user_id", MiscTools.NullableString(userId)},
+                        { "user_id", userId.ToNCString()},
+                        { "message", message},
+                        { "guid", MiscTools.NullableString(guid)},
+                        { "lat", MiscTools.NullableString(lat)},
+                        { "long", MiscTools.NullableString(@long)},
+                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
+                        { "sticker_id", MiscTools.NullableString(stickerId)},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<int> Send(
+                int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+            ) {
+                var req = new Request<int>{
+                    MethodName = "messages.send",
+                    Parameters = new Dictionary<string, string> {
+
                         { "user_ids", (userIds??new int[]{}).ToNCStringA()},
+                        { "message", message},
+                        { "guid", MiscTools.NullableString(guid)},
+                        { "lat", MiscTools.NullableString(lat)},
+                        { "long", MiscTools.NullableString(@long)},
+                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
+                        { "sticker_id", MiscTools.NullableString(stickerId)},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<int> Send(
+                string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+            ) {
+                var req = new Request<int>{
+                    MethodName = "messages.send",
+                    Parameters = new Dictionary<string, string> {
+
                         { "domain", domain},
-                        { "chat_id", MiscTools.NullableString(chatId)},
+                        { "message", message},
+                        { "guid", MiscTools.NullableString(guid)},
+                        { "lat", MiscTools.NullableString(lat)},
+                        { "long", MiscTools.NullableString(@long)},
+                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
+                        { "sticker_id", MiscTools.NullableString(stickerId)},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<int> SendChat(
+                int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+            ) {
+                var req = new Request<int>{
+                    MethodName = "messages.send",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "chat_id", chatId.ToNCString()},
+                        { "message", message},
+                        { "guid", MiscTools.NullableString(guid)},
+                        { "lat", MiscTools.NullableString(lat)},
+                        { "long", MiscTools.NullableString(@long)},
+                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
+                        { "sticker_id", MiscTools.NullableString(stickerId)},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            public Request<int> SendPeer(
+                long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+            ) {
+                var req = new Request<int>{
+                    MethodName = "messages.send",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "peer_id", peerId.ToNCString()},
                         { "message", message},
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},

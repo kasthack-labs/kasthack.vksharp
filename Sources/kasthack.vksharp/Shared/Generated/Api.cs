@@ -2874,6 +2874,50 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                public async Task <Group[]> GetById(
+                    string groupId ,  GroupFields fields 
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.GetById(
+                                groupId,fields
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public Group[] GetByIdSync(
+                    string groupId ,  GroupFields fields 
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.GetById(
+                                groupId,fields
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                public async Task <Group[]> GetById(
+                    int[] groupIds ,  GroupFields fields 
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.GetById(
+                                groupIds,fields
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public Group[] GetByIdSync(
+                    int[] groupIds ,  GroupFields fields 
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Groups.GetById(
+                                groupIds,fields
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
                 public async Task <EntityList<int>> GetMembers(
                     string groupId , GroupMembersFilter? filter = null,  MembersSortOrder? sort = null, int? offset = null, int? count = 100
                 ) {
@@ -3420,22 +3464,110 @@ namespace kasthack.vksharp {
                     
                 }
                 public async Task <int> Send(
-                    int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                    int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
                             _parent._reqapi.Messages.Send(
-                                userId,userIds,domain,chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                                userId,message,guid,lat,@long,attachment,forwardMessages,stickerId
                             )
                         ).ConfigureAwait(false)
                     ).Response;
                 }
                 public int SendSync(
-                    int? userId = null, int[] userIds = null, string domain = null, int? chatId = null, string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                    int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Messages.Send(
-                                userId,userIds,domain,chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                                userId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                public async Task <int> Send(
+                    int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.Send(
+                                userIds,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public int SendSync(
+                    int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.Send(
+                                userIds,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                public async Task <int> Send(
+                    string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.Send(
+                                domain,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public int SendSync(
+                    string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.Send(
+                                domain,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                public async Task <int> SendChat(
+                    int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.SendChat(
+                                chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public int SendChatSync(
+                    int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.SendChat(
+                                chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                public async Task <int> SendPeer(
+                    long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.SendPeer(
+                                peerId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public int SendPeerSync(
+                    long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.SendPeer(
+                                peerId,message,guid,lat,@long,attachment,forwardMessages,stickerId
                             )
                         );
                     task.Wait();
