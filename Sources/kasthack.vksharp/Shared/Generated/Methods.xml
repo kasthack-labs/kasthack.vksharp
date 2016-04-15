@@ -1039,9 +1039,10 @@
       <Param Name="guid" Type="int?" Default="null"/>
       <Param Name="lat" Type="double?" Default="null"/>
       <Param Name="@long" Type="double?" Default="null"/>
-      <Param Name="attachment"  Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToAttachmentString()).ToArray())" Default="null"/>
+      <Param Name="attachment"  Type="ContentId[]" Default="null"/>
       <Param Name="forward_messages" Type="long[]" Default="null"/>
       <Param Name="sticker_id" Type="int?" Default="null"/>
+      <Param Name="random_id" Type="long?" Default="null"/>
     </Params>
   </Method>
   <Method Name="messages.send" Type="int" NeedToken="true">
@@ -1051,9 +1052,10 @@
       <Param Name="guid" Type="int?" Default="null"/>
       <Param Name="lat" Type="double?" Default="null"/>
       <Param Name="@long" Type="double?" Default="null"/>
-      <Param Name="attachment"  Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToAttachmentString()).ToArray())" Default="null"/>
+      <Param Name="attachment"  Type="ContentId[]" Default="null"/>
       <Param Name="forward_messages" Type="long[]" Default="null"/>
       <Param Name="sticker_id" Type="int?" Default="null"/>
+    <Param Name="random_id" Type="long?" Default="null"/>
     </Params>
   </Method>
   <Method Name="messages.send" Type="int" NeedToken="true">
@@ -1063,9 +1065,10 @@
       <Param Name="guid" Type="int?" Default="null"/>
       <Param Name="lat" Type="double?" Default="null"/>
       <Param Name="@long" Type="double?" Default="null"/>
-      <Param Name="attachment"  Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToAttachmentString()).ToArray())" Default="null"/>
+        <Param Name="attachment"  Type="ContentId[]" Default="null"/>
       <Param Name="forward_messages" Type="long[]" Default="null"/>
       <Param Name="sticker_id" Type="int?" Default="null"/>
+    <Param Name="random_id" Type="long?" Default="null"/>
     </Params>
   </Method>
   <Method Name="messages.send" NameSuffix="Chat" Type="int" NeedToken="true">
@@ -1075,9 +1078,10 @@
       <Param Name="guid" Type="int?" Default="null"/>
       <Param Name="lat" Type="double?" Default="null"/>
       <Param Name="@long" Type="double?" Default="null"/>
-      <Param Name="attachment"  Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToAttachmentString()).ToArray())" Default="null"/>
+      <Param Name="attachment"  Type="ContentId[]" Default="null"/>
       <Param Name="forward_messages" Type="long[]" Default="null"/>
       <Param Name="sticker_id" Type="int?" Default="null"/>
+    <Param Name="random_id" Type="long?" Default="null"/>
     </Params>
   </Method>
     
@@ -1088,9 +1092,10 @@
       <Param Name="guid" Type="int?" Default="null"/>
       <Param Name="lat" Type="double?" Default="null"/>
       <Param Name="@long" Type="double?" Default="null"/>
-      <Param Name="attachment"  Type="ContentId[]" Custom="String.Join(&quot;,&quot;,#name.Select(a=>a.ToAttachmentString()).ToArray())" Default="null"/>
+      <Param Name="attachment"  Type="ContentId[]" Default="null"/>
       <Param Name="forward_messages" Type="long[]" Default="null"/>
       <Param Name="sticker_id" Type="int?" Default="null"/>
+    <Param Name="random_id" Type="long?" Default="null"/>
     </Params>
   </Method>
   <Method Name="messages.removeChatUser" Type="void" NeedToken="true">

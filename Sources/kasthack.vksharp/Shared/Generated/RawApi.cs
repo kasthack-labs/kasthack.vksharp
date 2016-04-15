@@ -1664,51 +1664,51 @@ namespace kasthack.vksharp {
             }
                     
             public async Task<string> Send(
-                int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.Send(
-                           userId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                           userId,message,guid,lat,@long,attachment,forwardMessages,stickerId,randomId
                     )
                 ).ConfigureAwait(false);
             }
                     
             public async Task<string> Send(
-                int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.Send(
-                           userIds,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                           userIds,message,guid,lat,@long,attachment,forwardMessages,stickerId,randomId
                     )
                 ).ConfigureAwait(false);
             }
                     
             public async Task<string> Send(
-                string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.Send(
-                           domain,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                           domain,message,guid,lat,@long,attachment,forwardMessages,stickerId,randomId
                     )
                 ).ConfigureAwait(false);
             }
                     
             public async Task<string> SendChat(
-                int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.SendChat(
-                           chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                           chatId,message,guid,lat,@long,attachment,forwardMessages,stickerId,randomId
                     )
                 ).ConfigureAwait(false);
             }
                     
             public async Task<string> SendPeer(
-                long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Messages.SendPeer(
-                           peerId,message,guid,lat,@long,attachment,forwardMessages,stickerId
+                           peerId,message,guid,lat,@long,attachment,forwardMessages,stickerId,randomId
                     )
                 ).ConfigureAwait(false);
             }

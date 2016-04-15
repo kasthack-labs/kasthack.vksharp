@@ -2671,7 +2671,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> Send(
-                int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int userId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
@@ -2682,9 +2682,10 @@ namespace kasthack.vksharp {
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
-                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "attachment", (attachment??new ContentId[]{}).ToNCStringA()},
                         { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
                         { "sticker_id", MiscTools.NullableString(stickerId)},
+                        { "random_id", MiscTools.NullableString(randomId)},
 
                     }
                 };
@@ -2693,7 +2694,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> Send(
-                int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int[] userIds , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
@@ -2704,9 +2705,10 @@ namespace kasthack.vksharp {
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
-                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "attachment", (attachment??new ContentId[]{}).ToNCStringA()},
                         { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
                         { "sticker_id", MiscTools.NullableString(stickerId)},
+                        { "random_id", MiscTools.NullableString(randomId)},
 
                     }
                 };
@@ -2715,7 +2717,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> Send(
-                string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                string domain , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
@@ -2726,9 +2728,10 @@ namespace kasthack.vksharp {
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
-                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "attachment", (attachment??new ContentId[]{}).ToNCStringA()},
                         { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
                         { "sticker_id", MiscTools.NullableString(stickerId)},
+                        { "random_id", MiscTools.NullableString(randomId)},
 
                     }
                 };
@@ -2737,7 +2740,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> SendChat(
-                int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                int chatId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
@@ -2748,9 +2751,10 @@ namespace kasthack.vksharp {
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
-                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "attachment", (attachment??new ContentId[]{}).ToNCStringA()},
                         { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
                         { "sticker_id", MiscTools.NullableString(stickerId)},
+                        { "random_id", MiscTools.NullableString(randomId)},
 
                     }
                 };
@@ -2759,7 +2763,7 @@ namespace kasthack.vksharp {
             }
 
             public Request<int> SendPeer(
-                long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null,  int? stickerId = null
+                long peerId , string message = null, int? guid = null, double? lat = null, double? @long = null, ContentId[] attachment = null, long[] forwardMessages = null, int? stickerId = null,  long? randomId = null
             ) {
                 var req = new Request<int>{
                     MethodName = "messages.send",
@@ -2770,9 +2774,10 @@ namespace kasthack.vksharp {
                         { "guid", MiscTools.NullableString(guid)},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
-                        { "attachment",  String.Join(",",attachment.Select(a=>a.ToAttachmentString()).ToArray()) },
+                        { "attachment", (attachment??new ContentId[]{}).ToNCStringA()},
                         { "forward_messages", (forwardMessages??new long[]{}).ToNCStringA()},
                         { "sticker_id", MiscTools.NullableString(stickerId)},
+                        { "random_id", MiscTools.NullableString(randomId)},
 
                     }
                 };
