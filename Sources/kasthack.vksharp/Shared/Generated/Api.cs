@@ -5894,7 +5894,7 @@ namespace kasthack.vksharp {
                     
                 }
                 ///<summary>
-                ///        Публикует отложенную запись на своей или чужой стене
+                ///        Публикует запись на своей или чужой стене
                 ///      
                 ///</summary>
                 ///<returns>
@@ -5913,7 +5913,7 @@ namespace kasthack.vksharp {
                 ///<param name="@long">географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
                 ///<param name="placeId">идентификатор места, в котором отмечен пользователь</param>
                 public async Task <WallPost> Post(
-                    string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
+                    string message = "", ContentId[] attachments = null, int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", DateTimeOffset? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
                 ) {
                     return (
                         await _parent.Executor.ExecAsync(
@@ -5924,7 +5924,7 @@ namespace kasthack.vksharp {
                     ).Response;
                 }
                 ///<summary>
-                ///        Публикует отложенную запись на своей или чужой стене
+                ///        Публикует запись на своей или чужой стене
                 ///      
                 ///</summary>
                 ///<returns>
@@ -5943,11 +5943,45 @@ namespace kasthack.vksharp {
                 ///<param name="@long">географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
                 ///<param name="placeId">идентификатор места, в котором отмечен пользователь</param>
                 public WallPost PostSync(
-                    string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
+                    string message = "", ContentId[] attachments = null, int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", DateTimeOffset? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
                 ) {
                     var task = _parent.Executor.ExecAsync(
                             _parent._reqapi.Wall.Post(
                                 message,attachments,ownerId,fromGroup,signed,friendsOnly,services,publishDate,lat,@long,placeId
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                ///<summary>
+                ///        Публикует комментарий на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<returns>
+                ///</returns>
+                public async Task <CommentPost> AddComment(
+                    int ownerId , int postId , string text , bool fromGroup = false, long? replyToComment = null, ContentId[] attachments = null, long? stickerId = null, string @ref = "",  string guid = ""
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Wall.AddComment(
+                                ownerId,postId,text,fromGroup,replyToComment,attachments,stickerId,@ref,guid
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                ///<summary>
+                ///        Публикует комментарий на своей или чужой стене
+                ///      
+                ///</summary>
+                ///<returns>
+                ///</returns>
+                public CommentPost AddCommentSync(
+                    int ownerId , int postId , string text , bool fromGroup = false, long? replyToComment = null, ContentId[] attachments = null, long? stickerId = null, string @ref = "",  string guid = ""
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Wall.AddComment(
+                                ownerId,postId,text,fromGroup,replyToComment,attachments,stickerId,@ref,guid
                             )
                         );
                     task.Wait();

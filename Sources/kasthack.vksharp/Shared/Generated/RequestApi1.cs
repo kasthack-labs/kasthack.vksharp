@@ -4545,7 +4545,7 @@ namespace kasthack.vksharp {
             }
 
             ///<summary>
-            ///        Публикует отложенную запись на своей или чужой стене
+            ///        Публикует запись на своей или чужой стене
             ///      
             ///</summary>
             ///<returns>
@@ -4564,23 +4564,52 @@ namespace kasthack.vksharp {
             ///<param name="@long">географическая долгота отметки, заданная в градусах (от -180 до 180)</param>
             ///<param name="placeId">идентификатор места, в котором отмечен пользователь</param>
             public Request<WallPost> Post(
-                string message = "", string attachments = "", int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", int? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
+                string message = "", ContentId[] attachments = null, int? ownerId = null, bool fromGroup = false, bool signed = false, bool? friendsOnly = false, string services = "", DateTimeOffset? publishDate = null, double? lat = null, double? @long = null,  int? placeId = null
             ) {
                 var req = new Request<WallPost>{
                     MethodName = "wall.post",
                     Parameters = new Dictionary<string, string> {
 
                         { "message", message},
-                        { "attachments", attachments},
+                        { "attachments", (attachments??new ContentId[]{}).ToNCStringA()},
                         { "owner_id", MiscTools.NullableString(ownerId)},
                         { "from_group", (fromGroup?1:0).ToNCString()},
                         { "signed", (signed?1:0).ToNCString()},
                         { "friends_only", (friendsOnly != null ? ( friendsOnly.Value ? 1 : 0 ).ToNCString() : "")},
                         { "services", services},
-                        { "publish_date", MiscTools.NullableString(publishDate)},
+                        { "publish_date", MiscTools.NullableString(publishDate?.ToUnixTimeSeconds())},
                         { "lat", MiscTools.NullableString(lat)},
                         { "long", MiscTools.NullableString(@long)},
                         { "place_id", MiscTools.NullableString(placeId)},
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            ///<summary>
+            ///        Публикует комментарий на своей или чужой стене
+            ///      
+            ///</summary>
+            ///<returns>
+            ///</returns>
+            public Request<CommentPost> AddComment(
+                int ownerId , int postId , string text , bool fromGroup = false, long? replyToComment = null, ContentId[] attachments = null, long? stickerId = null, string @ref = "",  string guid = ""
+            ) {
+                var req = new Request<CommentPost>{
+                    MethodName = "wall.addComment",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "owner_id", ownerId.ToNCString()},
+                        { "post_id", postId.ToNCString()},
+                        { "text", text},
+                        { "from_group", (fromGroup?1:0).ToNCString()},
+                        { "reply_to_comment", MiscTools.NullableString(replyToComment)},
+                        { "attachments", (attachments??new ContentId[]{}).ToNCStringA()},
+                        { "sticker_id", MiscTools.NullableString(stickerId)},
+                        { "ref", @ref},
+                        { "guid", guid},
 
                     }
                 };

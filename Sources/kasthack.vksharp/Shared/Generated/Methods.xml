@@ -1870,7 +1870,7 @@
   <Method Name="wall.post" Type="WallPost" NeedToken="true" >
     <Doc>
       <Summary>
-        Публикует отложенную запись на своей или чужой стене
+        Публикует запись на своей или чужой стене
       </Summary>
       <Returns>
         После успешного выполнения возвращает идентификатор созданной записи
@@ -1879,18 +1879,41 @@
     <Params>
       <!--todo: strong typing-->
       <Param Name="message" Type="string" Default="&quot;&quot;" Doc="текст сообщения (является обязательным, если не задан параметр attachments)" />
-      <Param Name="attachments" Type="string" Default="&quot;&quot;" Doc="список объектов, приложенных к записи"/>
+      <Param Name="attachments" Type="ContentId[]" Default="null" Doc="список объектов, приложенных к записи"/>
       <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, на стене которого должна быть опубликована запись"/>
       <Param Name="from_group" Type="bool" Default="false" Doc="Опубликовать от имени группы"/>
       <Param Name="signed" Type="bool" Default="false" Doc="у записи, размещенной от имени сообщества, будет добавлена подпись"/>
       <Param Name="friends_only" Type="bool?" Default="false" Doc="запись будет доступна только друзьям"/>
       <Param Name="services" Type="string" Default="&quot;&quot;" Doc="список сервисов или сайтов, на которые необходимо экспортировать запись, в случае если пользователь настроил соответствующую опцию" />
-      <Param Name="publish_date" Type="int?" Default="null" Doc="дата публикации записи в формате unixtime. Если параметр указан, публикация записи будет отложена до указанного времени."/>
+      <Param Name="publish_date" Type="DateTimeOffset?" Default="null" Doc="дата публикации записи в формате unixtime. Если параметр указан, публикация записи будет отложена до указанного времени."/>
       <Param Name="lat" Type="double?" Default="null" Doc="географическая широта отметки, заданная в градусах (от -90 до 90)"/>
       <Param Name="@long" Type="double?" Default="null" Doc="географическая долгота отметки, заданная в градусах (от -180 до 180)" />
       <Param Name="place_id" Type="int?" Default="null" Doc="идентификатор места, в котором отмечен пользователь"/>
     </Params>
   </Method>
+  
+  <Method Name="wall.addComment" Type="CommentPost" NeedToken="true" >
+    <Doc>
+      <Summary>
+        Публикует комментарий на своей или чужой стене
+      </Summary>
+      <Returns>
+      </Returns>
+    </Doc>
+    <Params>
+      <Param Name="owner_id" Type="int"/>
+      <Param Name="post_id" Type="int"/>
+      <Param Name="text" Type="string"/>
+      <Param Name="from_group" Type="bool" Default="false"/>
+      <Param Name="reply_to_comment" Type="long?" Default="null"/>
+      <Param Name="attachments" Type="ContentId[]" Default="null"/>
+      <Param Name="sticker_id" Type="long?" Default="null"/>
+      <Param Name="@ref" Type="string" Default="&quot;&quot;"/>
+      <Param Name="guid" Type="string" Default="&quot;&quot;"/>
+    </Params>
+  </Method>
+  
+  
   <Method Name="wall.post" Type="WallPost" NeedToken="true" >
     <Doc>
       <Summary>
