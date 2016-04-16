@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using System.Threading.Tasks;
 using kasthack.vksharp.Internal;
 using kasthack.vksharp.Internal.Converters;
@@ -15,6 +17,10 @@ namespace kasthack.vksharp.Implementation {
     {
         private const string ReqExt = "json";
         private static readonly HttpClient Client;
+        private static int _maxRps =0;
+        //private static int _maxConnections =25;
+        private static readonly object rpsLimiterLock = new object();
+        private static SemaphoreSlim rpsLimiter;
         private static readonly
 #if !PORTABLE
             ProxyPoolingHttpClientHandler
@@ -25,6 +31,25 @@ namespace kasthack.vksharp.Implementation {
 #if !PORTABLE
         public IList<IWebProxy> Proxies => HttpClientHandler.Proxies;
         public IWebProxy CurrentProxy => HttpClientHandler.CurrentProxy;
+
+        public static int MaxRps {
+            get
+            {
+                return _maxRps;
+            }
+            set
+            {
+                lock (rpsLimiterLock) {
+                    if (rpsLimiter!=null) for ( int i = 0; i < _maxRps; i++ ) rpsLimiter.Release();
+                    rpsLimiter?.Dispose();
+                    rpsLimiter = new SemaphoreSlim(_maxRps = value);
+                }
+            }
+        }
+        
+
+        //public static int MaxConnections { get { return _maxConnections; } set { _maxConnections = value; } }
+
 #endif
 
         static JsonExecutor() {
@@ -82,14 +107,30 @@ namespace kasthack.vksharp.Implementation {
         }
 
 #region IO
-        private static async Task<HttpContent> InternalExecRawAsync<T>( Request<T> request, string format ) {
+        private async Task<HttpContent> InternalExecRawAsync<T>( Request<T> request, string format ) {
             var ps = request.Parameters;
             ps.Add(  "v", "5.29"  );//todo: privacy
             ps.Add(  "https", "1"  );
             var path = $"/method/{request.MethodName}.{format}";
             if ( request.Token != null ) ps.Add( "access_token", request.Token.Value  );
             foreach ( var source in ps.ToArray().Where( source => string.IsNullOrEmpty( source.Value ) ) ) ps.Remove( source.Key );
-            return (await Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) ).ConfigureAwait( false )).Content;
+            if ( _maxRps > 0 ) {
+                
+            }
+            if (MaxRps > 0) await rpsLimiter.WaitAsync().ConfigureAwait( false );
+
+            ConfiguredTaskAwaitable<HttpResponseMessage> postRequest;
+            try {
+                postRequest = Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) ).ConfigureAwait( false );
+            }
+            finally {
+                if (MaxRps > 0) {
+                    //it's not awaited for purpose
+                    //
+                    Task.Delay( 1100 ).ContinueWith( (Action<Task>) ( task => rpsLimiter.Release() ) ).ConfigureAwait( false );
+                }
+            }
+            return (await postRequest).Content;
         }
 #endregion
 #region IExecutor
@@ -99,6 +140,7 @@ namespace kasthack.vksharp.Implementation {
 #endregion
 #region Serialization
         private static readonly JsonSerializer Jsonser;
+
         public virtual VkResponse<T> Parse<T>( string input ) {
             using ( TextReader sr = new StringReader( input ) )
                 return ParseStreamReader<T>( sr );
