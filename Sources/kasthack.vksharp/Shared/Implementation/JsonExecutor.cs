@@ -10,6 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using kasthack.vksharp.Internal;
 using kasthack.vksharp.Internal.Converters;
+#if !NET_45_GT
+using Microsoft.Runtime.CompilerServices;
+#endif
 using Newtonsoft.Json;
 
 namespace kasthack.vksharp.Implementation {
@@ -117,20 +120,43 @@ namespace kasthack.vksharp.Implementation {
             if ( _maxRps > 0 ) {
                 
             }
-            if (MaxRps > 0) await rpsLimiter.WaitAsync().ConfigureAwait( false );
+            if ( MaxRps > 0 )
+#if NET_45_GT
+                await rpsLimiter.WaitAsync().ConfigureAwait( false );
+#else
+                rpsLimiter.Wait();
+#endif
 
-            ConfiguredTaskAwaitable<HttpResponseMessage> postRequest;
+                ConfiguredTaskAwaitable<HttpResponseMessage> postRequest;
             try {
                 postRequest = Client.PostAsync( new Uri( BuiltInData.Instance.VkDomain + path ), new FormUrlEncodedContent( ps ) ).ConfigureAwait( false );
             }
             finally {
                 if (MaxRps > 0) {
                     //it's not awaited for purpose
-                    //
-                    Task.Delay( 1100 ).ContinueWith( (Action<Task>) ( task => rpsLimiter.Release() ) ).ConfigureAwait( false );
+                    //1100 millisecond because vk fucks it up sometimes
+                    Delay( 1100 ).ContinueWith( (Action<Task>) ( task => rpsLimiter.Release() ) ).ConfigureAwait( false );
                 }
             }
             return (await postRequest).Content;
+        }
+        private static async Task Delay(double milliseconds)
+        {
+#if NET_45_GT
+            Task.Delay(milliseconds)
+#else
+            var tcs = new TaskCompletionSource<bool>();
+            System.Timers.Timer timer = new System.Timers.Timer();
+            timer.Elapsed += (obj, args) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            timer.Interval = milliseconds;
+            timer.AutoReset = false;
+            timer.Start();
+            tcs.Task
+#endif
+               .ConfigureAwait( false );
         }
 #endregion
 #region IExecutor
