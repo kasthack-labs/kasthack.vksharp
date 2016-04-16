@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NET_46;NET_46_GT</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET_46;NET_46_GT;NET_45_GT;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>0</WarningLevel>
     <DocumentationFile>bin\Debug\kasthack.vksharp.XML</DocumentationFile>
@@ -27,7 +27,7 @@
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>..\..\..\nuget\build\lib\net46\</OutputPath>
-    <DefineConstants>NET_46;NET_46_GT</DefineConstants>
+    <DefineConstants>NET_46;NET_46_GT;NET_45_GT;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>0</WarningLevel>
     <DocumentationFile>..\..\..\nuget\build\lib\net46\kasthack.vksharp.XML</DocumentationFile>

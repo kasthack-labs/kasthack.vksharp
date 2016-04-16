@@ -140,7 +140,7 @@ namespace kasthack.vksharp.Implementation {
             }
             return (await postRequest).Content;
         }
-        private static async Task Delay(double milliseconds)
+        private static async Task Delay(int milliseconds)
         {
 #if NET_45_GT
             Task.Delay(milliseconds)
