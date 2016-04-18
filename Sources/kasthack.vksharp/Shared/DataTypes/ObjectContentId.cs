@@ -49,11 +49,11 @@ namespace kasthack.vksharp.DataTypes  {
 
         public string AccessKey { get; }
 
-        public override string ToIdString(IFormatProvider info = null) => string.Format(info ?? CultureInfo.InvariantCulture, AccessKey != "" ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey );
+        public override string ToIdString(IFormatProvider info = null) => string.Format(info ?? CultureInfo.InvariantCulture, !String.IsNullOrEmpty( AccessKey ) ? "{0}_{1}_{2}" : "{0}_{1}", OwnerId, Id, AccessKey );
 
-        public override string ToAttachmentString(IFormatProvider info = null) => string.Format( info??CultureInfo.InvariantCulture, AccessKey != "" ? "{3}{0}_{1}_{2}" : "{3}{0}_{1}", OwnerId, Id, AccessKey, GetTypeString( Type ) );
+        public override string ToAttachmentString(IFormatProvider info = null) => string.Format( info??CultureInfo.InvariantCulture, !String.IsNullOrEmpty(AccessKey) ? "{3}{0}_{1}_{2}" : "{3}{0}_{1}", OwnerId, Id, AccessKey, GetTypeString( Type ) );
 
-        public override string ToString( string format, IFormatProvider formatProvider ) => ToIdString( formatProvider );
+        public override string ToString( string format, IFormatProvider formatProvider ) => ToAttachmentString( formatProvider );
 
         public static bool operator ==( ObjectContentId a, ObjectContentId b ) {
             if ( ReferenceEquals( a, b ) ) return true;
