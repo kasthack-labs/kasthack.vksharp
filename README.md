@@ -1,10 +1,9 @@
 # kasthack.vksharp
 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/ufrmo018fhqr7s8r?svg=true&passingText=I%20have%20time%20to%20do%20ya%20mom%20instead%20of%20fixing%20code)](https://ci.appveyor.com/project/kasthack/vksharp)
-
-
-[![Join the chat at https://gitter.im/kasthack/VKSharp](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kasthack/VKSharp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Nuget](https://img.shields.io/nuget/v/kasthack.vksharp.svg)](https://www.nuget.org/packages/kasthack.vksharp/)
+[![Build status](https://img.shields.io/appveyor/ci/kasthack/vksharp.svg)](https://ci.appveyor.com/project/kasthack/vksharp)
+[![Join the chat at https://gitter.im/kasthack/VKSharp](https://img.shields.io/gitter/room/kasthack/VKSharp.js.svg)](https://gitter.im/kasthack/VKSharp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
 ### Installation
