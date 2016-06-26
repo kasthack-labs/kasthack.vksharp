@@ -1443,6 +1443,13 @@
       <Param Name="user_ids" Type="int[]" />
     </Params>
   </Method>
+  <Method Name="users.get" Type="User[]" NeedToken="false" >
+    <Params>
+      <Param Name="fields" Type="UserFields" Default="UserFields.None" />
+      <Param Name="name_case" Type="NameCase" Default="NameCase.Nom" />
+      <Param Name="user_ids" Type="string[]" />
+    </Params>
+  </Method>
   <Method Name="users.getFollowers" Type="EntityList&lt;int&gt;" NeedToken="false" Pageable="100">
     <Params>
       <Param Name="user_id" Type="int?" Default="null" Doc="идентификатор пользователя"/>
@@ -1630,6 +1637,25 @@
       <Param Name="message" Type="string" Doc="новый текст комментария (является обязательным, если не задан параметр attachments)"/>
       <Param Name="comment_id" Type="int" Doc="идентификатор комментария"/>
       <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
+    </Params>
+  </Method>
+  <Method Name="video.get" Type="EntityList&lt;Video&gt;" NeedToken="false" Pageable="200"><Doc>
+      <Summary>
+          Возвращает информацию о видеозаписях
+      </Summary>
+    </Doc>
+    <Params>
+      <Param Name="owner_id" Type="int" Doc="идентификатор пользователя или сообщества, которому принадлежат видеозаписи"/>
+      <Param Name="album_id" Type="long?" Default="null" Doc="идентификатор альбома, видеозаписи из которого нужно вернуть"/>
+    </Params>
+  </Method>
+  <Method Name="video.get" Type="EntityList&lt;Video&gt;" NeedToken="false" Pageable="200"><Doc>
+      <Summary>
+          Возвращает информацию о видеозаписях
+      </Summary>
+    </Doc>
+    <Params>
+      <Param Name="videos" Type="ContentId[]" Doc="идентификатор видеозаписей"/>
     </Params>
   </Method>
   <Method Name="video.getNewTags" Type="EntityList&lt;TaggedVideo&gt;" NeedToken="true" Pageable="20"><Doc>

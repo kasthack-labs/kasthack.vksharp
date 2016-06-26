@@ -11,9 +11,11 @@ namespace kasthack.vksharp.DataTypes.Entities {
     /// Пользователь
     /// </summary>
     public class User : IEquatable<User> {
+
+        public bool HasPhoto { get; set; }
 #pragma warning restore 660, 661
         /// <summary>
-        /// 
+        /// транслируемая аудиозапись
         /// </summary>
         public Audio StatusAudio { get; set; }
         /// <summary>
@@ -32,6 +34,9 @@ namespace kasthack.vksharp.DataTypes.Entities {
         /// разрешено ли видеть чужие записи на стене пользователя
         /// </summary>
         public bool? CanSeeAllPosts { get; set; }
+        
+        public bool? IsHiddenFromFeed { get; set; }
+        public bool? CanSendFriendRequest { get; set; }
         /// <summary>
         /// разрешено ли видеть чужие аудиозаписи на стене пользователя
         /// </summary>
@@ -330,7 +335,12 @@ namespace kasthack.vksharp.DataTypes.Entities {
                 MainUniversity.Name = value;
             }
         }
-        private string FacultyName {
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        string FacultyName {
             get {
                 return MainUniversity?.FacultyName;
             }
@@ -339,7 +349,12 @@ namespace kasthack.vksharp.DataTypes.Entities {
                 MainUniversity.FacultyName = value;
             }
         }
-        private int? Faculty {
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        int? Faculty {
             get {
                 return MainUniversity?.Faculty;
             }
@@ -348,7 +363,12 @@ namespace kasthack.vksharp.DataTypes.Entities {
                 MainUniversity.Faculty = value;
             }
         }
-        private int? University {
+#if PORTABLE
+        public
+#else
+        private
+#endif
+         int? University {
             get {
                 var ret = MainUniversity?.Id ?? 0;
                 return ret > 0 ? ret : (int?)null;
@@ -362,7 +382,12 @@ namespace kasthack.vksharp.DataTypes.Entities {
                 MainUniversity.Id = (int) value;
             }
         }
-        private ushort? Graduation {
+#if PORTABLE
+        public
+#else
+        private
+#endif
+        ushort? Graduation {
             get {
                 return MainUniversity?.Graduation;
             }

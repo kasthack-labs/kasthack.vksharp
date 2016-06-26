@@ -123,6 +123,7 @@
     <Compile Include="DataTypes\Enums\AudioGenre.cs" />
     <Compile Include="DataTypes\Enums\AudioSortOrder.cs" />
     <Compile Include="DataTypes\Enums\GroupsGetFilter.cs" />
+    <Compile Include="DataTypes\Enums\SchoolType.cs" />
     <Compile Include="DataTypes\ObjectContentId.cs" />
     <Compile Include="DataTypes\Enums\ComplaintType.cs" />
     <Compile Include="DataTypes\Enums\CounterFields.cs" />

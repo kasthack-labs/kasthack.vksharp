@@ -52,7 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\**\*.cs"/>
+    <Compile Include="..\Shared\DataTypes\**\*.cs"/>
+    <Compile Include="..\Shared\Generated\**\*.cs"/>
+    <Compile Include="..\Shared\Implementation\**\*.cs"/>
+    <Compile Include="..\Shared\Internal\**\*.cs"/>
+    <Compile Include="..\Shared\Util\**\*.cs"/>
+    <Compile Include="..\Shared\*.cs"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shared\favicon.ico" />

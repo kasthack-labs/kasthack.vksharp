@@ -3698,6 +3698,24 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            public Request<User[]> Get(
+                UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params string[] userIds 
+            ) {
+                var req = new Request<User[]>{
+                    MethodName = "users.get",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "fields", String.Join( ",", MiscTools.GetUserFields( fields ) )},
+                        { "name_case", nameCase.ToNCString().ToSnake()},
+                        { "user_ids", String.Join(",",userIds)},
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<EntityList<int>> GetFollowers(
                 int? userId = null,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ) {
@@ -4113,6 +4131,58 @@ namespace kasthack.vksharp {
 
                     }
                 };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            ///<summary>
+            ///          Возвращает информацию о видеозаписях
+            ///      
+            ///</summary>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежат видеозаписи</param>
+            ///<param name="albumId">идентификатор альбома, видеозаписи из которого нужно вернуть</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+            public Request<EntityList<Video>> Get(
+                int ownerId ,  long? albumId = null, int? offset = null, int? count = 200
+            ) {
+                var req = new Request<EntityList<Video>>{
+                    MethodName = "video.get",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "owner_id", ownerId.ToNCString()},
+                        { "album_id", MiscTools.NullableString(albumId)},
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
+            ///<summary>
+            ///          Возвращает информацию о видеозаписях
+            ///      
+            ///</summary>
+            ///<param name="videos">идентификатор видеозаписей</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+            public Request<EntityList<Video>> Get(
+                int? offset = null, int? count = 200, params ContentId[] videos 
+            ) {
+                var req = new Request<EntityList<Video>>{
+                    MethodName = "video.get",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "videos", (videos??new ContentId[]{}).ToNCStringA()},
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
+
+                    }
+                };
+                if (_parent.IsLogged)
                     req.Token = _parent.CurrentToken;
                 return req;
             }

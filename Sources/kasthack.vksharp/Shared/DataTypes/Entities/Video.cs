@@ -13,6 +13,10 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public string Photo320 { get; set; }
         public string Photo640 { get; set; }
         public DateTimeOffset Date { get; set; }
+        public DateTimeOffset? AddingDate { get; set; }
+
+        public VideoFiles Files { get; set; }
+
         public int Views { get; set; }
         public int Comments { get; set; }
         public string Player { get; set; }
@@ -27,6 +31,15 @@ namespace kasthack.vksharp.DataTypes.Entities {
 
         public static implicit operator ObjectContentId(Video video) => new ObjectContentId( ContentType.Video, video.Id, video.OwnerId, video.AccessKey );
         public static implicit operator ContentId(Video video) => (ObjectContentId)video;
+    }
+
+    public class VideoFiles {
+
+        public string Mp4240 { get; set; }
+        public string Mp4360 { get; set; }
+        public string Mp4480 { get; set; }
+        public string Mp4720 { get; set; }
+        public string External { get; set; }
     }
 
     public class TaggedVideo : Video{

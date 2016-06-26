@@ -4715,6 +4715,28 @@ namespace kasthack.vksharp {
                     task.Wait();
                     return task.Result.Response;
                 }
+                public async Task <User[]> Get(
+                    UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params string[] userIds 
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Users.Get(
+                                fields,nameCase,userIds
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                public User[] GetSync(
+                    UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params string[] userIds 
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Users.Get(
+                                fields,nameCase,userIds
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
                 public async Task <EntityList<int>> GetFollowers(
                     int? userId = null,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
                 ) {
@@ -5282,6 +5304,80 @@ namespace kasthack.vksharp {
                         );
                     task.Wait();
                     
+                }
+                ///<summary>
+                ///          Возвращает информацию о видеозаписях
+                ///      
+                ///</summary>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежат видеозаписи</param>
+                ///<param name="albumId">идентификатор альбома, видеозаписи из которого нужно вернуть</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+                public async Task <EntityList<Video>> Get(
+                    int ownerId ,  long? albumId = null, int? offset = null, int? count = 200
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Video.Get(
+                                ownerId,albumId,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                ///<summary>
+                ///          Возвращает информацию о видеозаписях
+                ///      
+                ///</summary>
+                ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежат видеозаписи</param>
+                ///<param name="albumId">идентификатор альбома, видеозаписи из которого нужно вернуть</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+                public EntityList<Video> GetSync(
+                    int ownerId ,  long? albumId = null, int? offset = null, int? count = 200
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Video.Get(
+                                ownerId,albumId,offset, count
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
+                }
+                ///<summary>
+                ///          Возвращает информацию о видеозаписях
+                ///      
+                ///</summary>
+                ///<param name="videos">идентификатор видеозаписей</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+                public async Task <EntityList<Video>> Get(
+                    int? offset = null, int? count = 200, params ContentId[] videos 
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Video.Get(
+                                offset, count,videos
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                ///<summary>
+                ///          Возвращает информацию о видеозаписях
+                ///      
+                ///</summary>
+                ///<param name="videos">идентификатор видеозаписей</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+                public EntityList<Video> GetSync(
+                    int? offset = null, int? count = 200, params ContentId[] videos 
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Video.Get(
+                                offset, count,videos
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
                 }
                 ///<summary>
                 ///          Возвращает список видеозаписей, на которых есть непросмотренные отметки

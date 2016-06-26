@@ -2273,6 +2273,16 @@ namespace kasthack.vksharp {
                 ).ConfigureAwait(false);
             }
                     
+            public async Task<string> Get(
+                UserFields fields = UserFields.None, NameCase nameCase = NameCase.Nom, params string[] userIds 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Users.Get(
+                           fields,nameCase,userIds
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
             public async Task<string> GetFollowers(
                 int? userId = null,  NameCase nameCase = NameCase.Nom, int? offset = null, int? count = 100
             ){
@@ -2545,6 +2555,41 @@ namespace kasthack.vksharp {
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.EditComment(
                            message,commentId,ownerId
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            ///<summary>
+            ///          Возвращает информацию о видеозаписях
+            ///      
+            ///</summary>
+            ///<param name="ownerId">идентификатор пользователя или сообщества, которому принадлежат видеозаписи</param>
+            ///<param name="albumId">идентификатор альбома, видеозаписи из которого нужно вернуть</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+            public async Task<string> Get(
+                int ownerId ,  long? albumId = null, int? offset = null, int? count = 200
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Video.Get(
+                           ownerId,albumId,offset, count
+                    )
+                ).ConfigureAwait(false);
+            }
+                    
+            ///<summary>
+            ///          Возвращает информацию о видеозаписях
+            ///      
+            ///</summary>
+            ///<param name="videos">идентификатор видеозаписей</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+            public async Task<string> Get(
+                int? offset = null, int? count = 200, params ContentId[] videos 
+            ){
+                return await _parent.Executor.ExecRawAsync(
+                    _parent._reqapi.Video.Get(
+                           offset, count,videos
                     )
                 ).ConfigureAwait(false);
             }
