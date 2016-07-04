@@ -14,7 +14,7 @@
 1. Дёргается метод Api/RawApi
 2. Api/RawApi вызывает аналогичный метод у RequestApi, получая сформированный запрос(vkrequest<T>).
 3. Запрос передаётся Executor'у в ExecAsync/ExecRawAsync
-4. Executor(на данный момент это [JsonExecutor](Sources/kasthack.vksharp/Shared/Implementation/JsonExecutor)) строит HTTP-запрос по VKRequest'у и выполняет его.
+4. Executor(на данный момент это [JsonExecutor](Sources/kasthack.vksharp/Shared/Implementation/JsonExecutor.cs)) строит HTTP-запрос по VKRequest'у и выполняет его.
 5. Если был вызван ExecRawAsync, Executor возвращает полученные данные в виде строке без обработки.
 6. Executor десериализует полученные данные.
 7. Если свойство Error отлично от null, бросается исключение.
