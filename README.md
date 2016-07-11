@@ -14,6 +14,17 @@ Install-Package kasthack.vksharp
 
 ## Docs
 
+### Supported platforms
+
+* .NET
+    * 4.0
+    * 4.5
+    * 4.6
+* Mono
+    * Anything 4.0+ compatible. I've used 4.2 successfully.
+* Xamarin
+    * 4.* profile. PCL is not supported yet. Use shared project if you are building a cross-platform forms app.
+
 ### Usage
 
 1. Register app at https://vk.com/editapp?act=create
