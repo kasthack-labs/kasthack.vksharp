@@ -50,7 +50,7 @@ namespace TestApp
         private async static Task Impl(Api vk)
         {
             //await DeleteLikes(vk).ConfigureAwait(false);
-            await CheckWall( vk ).ConfigureAwait( false );
+            //await CheckWall( vk ).ConfigureAwait( false );
         }
 
         private static async Task CheckWall( Api vk )

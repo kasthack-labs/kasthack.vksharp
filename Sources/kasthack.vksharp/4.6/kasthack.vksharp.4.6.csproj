@@ -52,16 +52,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Shared\DataTypes\**\*.cs"/>
-    <Compile Include="..\Shared\Generated\**\*.cs"/>
-    <Compile Include="..\Shared\Implementation\**\*.cs"/>
-    <Compile Include="..\Shared\Internal\**\*.cs"/>
-    <Compile Include="..\Shared\Util\**\*.cs"/>
-    <Compile Include="..\Shared\*.cs"/>
+    <Compile Include="..\Shared\DataTypes\**\*.cs" />
+    <Compile Include="..\Shared\Generated\Api.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Api.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Shared\Generated\RawApi.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RawApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Shared\Generated\RequestApi1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequestApi.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Shared\Generated\SharedFuncs.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SharedFuncs.tt</DependentUpon>
+    </Compile>
+    <Compile Include="..\Shared\Implementation\**\*.cs" />
+    <Compile Include="..\Shared\Internal\**\*.cs" />
+    <Compile Include="..\Shared\Util\**\*.cs" />
+    <Compile Include="..\Shared\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Shared\favicon.ico" />
     <None Include="..\Shared\Generated\AllMethods.txt" />
+    <None Include="..\Shared\Generated\ImplementedMethods.md">
+      <Link>ImplementedMethods.md</Link>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImplementedMethods.tt</DependentUpon>
+    </None>
     <None Include="..\Shared\Generated\Methods.xml">
       <SubType>Designer</SubType>
     </None>
@@ -80,11 +105,6 @@
     <None Include="..\Shared\Generated\RawApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RawApi.cs</LastGenOutput>
-    </None>
-    <None Include="..\Shared\Generated\ImplementedMethods.md">
-      <DependentUpon>ImplementedMethods.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </None>
     <None Include="..\Shared\Generated\ImplementedMethods.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

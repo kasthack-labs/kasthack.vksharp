@@ -236,6 +236,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Generated\AllMethods.txt" />
+    <None Include="Generated\ImplementedMethods.md">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImplementedMethods.tt</DependentUpon>
+    </None>
     <None Include="Generated\Methods.xml">
       <SubType>Designer</SubType>
     </None>
@@ -254,11 +259,6 @@
     <None Include="Generated\RawApi.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>RawApi.cs</LastGenOutput>
-    </None>
-    <None Include="Generated\ImplementedMethods.md">
-      <DependentUpon>ImplementedMethods.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </None>
     <None Include="Generated\ImplementedMethods.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
