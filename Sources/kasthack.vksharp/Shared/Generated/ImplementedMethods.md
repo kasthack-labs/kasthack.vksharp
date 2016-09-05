@@ -1,5 +1,5 @@
-﻿
-Implemented 210 methods of 339, 61%:
+﻿﻿
+Implemented 211 methods of 339, 62%:
 
 * [Account](https://vk.com/dev/account). Implemented 16 of 20, 80%:
     - [x] [account.banUser](https://vk.com/dev/account.banUser)
@@ -315,7 +315,7 @@ Implemented 210 methods of 339, 61%:
 
     - [ ] [likes.isLiked](https://vk.com/dev/likes.isLiked)
 
-* [Messages](https://vk.com/dev/messages). Implemented 13 of 24, 54%:
+* [Messages](https://vk.com/dev/messages). Implemented 14 of 24, 58%:
     - [x] [messages.addChatUser](https://vk.com/dev/messages.addChatUser)
 
     - [ ] [messages.createChat](https://vk.com/dev/messages.createChat)
@@ -336,7 +336,7 @@ Implemented 210 methods of 339, 61%:
 
     - [ ] [messages.getChatUsers](https://vk.com/dev/messages.getChatUsers)
 
-    - [ ] [messages.getDialogs](https://vk.com/dev/messages.getDialogs)
+    - [x] [messages.getDialogs](https://vk.com/dev/messages.getDialogs)
 
     - [x] [messages.getHistory](https://vk.com/dev/messages.getHistory)
 
