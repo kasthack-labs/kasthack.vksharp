@@ -1,0 +1,3 @@
+[submodule "vk-api-schema"]
+	path = Sources/Generator/vk-api-schema
+	url = https://github.com/kasthack/vk-api-schema.git
