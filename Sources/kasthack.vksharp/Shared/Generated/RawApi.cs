@@ -2500,12 +2500,13 @@ namespace kasthack.vksharp {
             ///</summary>
             ///<param name="videoId">идентификатор видеозаписи</param>
             ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
+            ///<param name="targetId">идентификатор пользователя или сообщества, для которого нужно удалить видеозапись</param>
             public async Task<string> Delete(
-                long videoId ,  int? ownerId = null
+                long videoId , int? ownerId = null,  int? targetId = null
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.Delete(
-                           videoId,ownerId
+                           videoId,ownerId,targetId
                     )
                 ).ConfigureAwait(false);
             }
@@ -2568,11 +2569,11 @@ namespace kasthack.vksharp {
             ///<param name="offset">Оффсет для возврата результатов</param>
             ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> Get(
-                int ownerId ,  long? albumId = null, int? offset = null, int? count = 200
+                int ownerId , long? albumId = null,  bool extended = true, int? offset = null, int? count = 200
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.Get(
-                           ownerId,albumId,offset, count
+                           ownerId,albumId,extended,offset, count
                     )
                 ).ConfigureAwait(false);
             }
@@ -2585,11 +2586,11 @@ namespace kasthack.vksharp {
             ///<param name="offset">Оффсет для возврата результатов</param>
             ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public async Task<string> Get(
-                int? offset = null, int? count = 200, params ContentId[] videos 
+                bool extended = true, int? offset = null, int? count = 200, params ContentId[] videos 
             ){
                 return await _parent.Executor.ExecRawAsync(
                     _parent._reqapi.Video.Get(
-                           offset, count,videos
+                           extended,offset, count,videos
                     )
                 ).ConfigureAwait(false);
             }

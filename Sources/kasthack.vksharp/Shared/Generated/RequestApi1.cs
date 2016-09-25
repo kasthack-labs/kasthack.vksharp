@@ -4051,8 +4051,9 @@ namespace kasthack.vksharp {
             ///</summary>
             ///<param name="videoId">идентификатор видеозаписи</param>
             ///<param name="ownerId">идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя</param>
+            ///<param name="targetId">идентификатор пользователя или сообщества, для которого нужно удалить видеозапись</param>
             public Request<bool> Delete(
-                long videoId ,  int? ownerId = null
+                long videoId , int? ownerId = null,  int? targetId = null
             ) {
                 var req = new Request<bool>{
                     MethodName = "video.delete",
@@ -4060,6 +4061,7 @@ namespace kasthack.vksharp {
 
                         { "video_id", videoId.ToNCString()},
                         { "owner_id", MiscTools.NullableString(ownerId)},
+                        { "target_id", MiscTools.NullableString(targetId)},
 
                     }
                 };
@@ -4144,7 +4146,7 @@ namespace kasthack.vksharp {
             ///<param name="offset">Оффсет для возврата результатов</param>
             ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public Request<EntityList<Video>> Get(
-                int ownerId ,  long? albumId = null, int? offset = null, int? count = 200
+                int ownerId , long? albumId = null,  bool extended = true, int? offset = null, int? count = 200
             ) {
                 var req = new Request<EntityList<Video>>{
                     MethodName = "video.get",
@@ -4152,6 +4154,7 @@ namespace kasthack.vksharp {
 
                         { "owner_id", ownerId.ToNCString()},
                         { "album_id", MiscTools.NullableString(albumId)},
+                        { "extended", (extended?1:0).ToNCString()},
                         { "offset", offset.NullableString() },
                         { "count", count.NullableString() },
 
@@ -4170,12 +4173,13 @@ namespace kasthack.vksharp {
             ///<param name="offset">Оффсет для возврата результатов</param>
             ///<param name="count">Количество записей, которые необходимо вернуть</param>
             public Request<EntityList<Video>> Get(
-                int? offset = null, int? count = 200, params ContentId[] videos 
+                bool extended = true, int? offset = null, int? count = 200, params ContentId[] videos 
             ) {
                 var req = new Request<EntityList<Video>>{
                     MethodName = "video.get",
                     Parameters = new Dictionary<string, string> {
 
+                        { "extended", (extended?1:0).ToNCString()},
                         { "videos", (videos??new ContentId[]{}).ToNCStringA()},
                         { "offset", offset.NullableString() },
                         { "count", count.NullableString() },

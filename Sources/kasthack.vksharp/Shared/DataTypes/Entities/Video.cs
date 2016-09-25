@@ -1,6 +1,7 @@
 ﻿using System;
 using kasthack.vksharp.DataTypes.Enums;
 using kasthack.vksharp.DataTypes.Interfaces;
+using Newtonsoft.Json;
 
 namespace kasthack.vksharp.DataTypes.Entities {
     public class Video : OwnedEntity {
@@ -34,11 +35,14 @@ namespace kasthack.vksharp.DataTypes.Entities {
     }
 
     public class VideoFiles {
-
-        public string Mp4240 { get; set; }
-        public string Mp4360 { get; set; }
-        public string Mp4480 { get; set; }
-        public string Mp4720 { get; set; }
+        [JsonProperty("mp4_240")]
+        public string Q240 { get; set; }
+        [JsonProperty("mp4_360")]
+        public string Q360 { get; set; }
+        [JsonProperty("mp4_480")]
+        public string Q480 { get; set; }
+        [JsonProperty("mp4_720")]
+        public string Q720 { get; set; }
         public string External { get; set; }
     }
 

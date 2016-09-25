@@ -1603,6 +1603,7 @@
     <Params>
       <Param Name="video_id" Type="long" Doc="идентификатор видеозаписи"/>
       <Param Name="owner_id" Type="int?" Default="null" Doc="идентификатор владельца видеозаписи, по умолчанию идентификатор текущего пользователя"/>
+      <Param Name="target_id" Type="int?" Default="null" Doc="идентификатор пользователя или сообщества, для которого нужно удалить видеозапись"/>
     </Params>
   </Method>
   <Method Name="video.deleteAlbum" Type="void" NeedToken="true">
@@ -1647,6 +1648,7 @@
     <Params>
       <Param Name="owner_id" Type="int" Doc="идентификатор пользователя или сообщества, которому принадлежат видеозаписи"/>
       <Param Name="album_id" Type="long?" Default="null" Doc="идентификатор альбома, видеозаписи из которого нужно вернуть"/>
+      <Param Name="extended" Type="bool" Default="true"/>
     </Params>
   </Method>
   <Method Name="video.get" Type="EntityList&lt;Video&gt;" NeedToken="false" Pageable="200"><Doc>
@@ -1655,6 +1657,7 @@
       </Summary>
     </Doc>
     <Params>
+      <Param Name="extended" Type="bool" Default="true"/>
       <Param Name="videos" Type="ContentId[]" Doc="идентификатор видеозаписей"/>
     </Params>
   </Method>
