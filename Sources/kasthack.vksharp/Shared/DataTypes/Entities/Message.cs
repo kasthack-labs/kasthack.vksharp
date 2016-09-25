@@ -1,6 +1,7 @@
 ﻿using System;
 using kasthack.vksharp.DataTypes.EntityFragments;
 using kasthack.vksharp.DataTypes.Enums;
+using Newtonsoft.Json;
 
 namespace kasthack.vksharp.DataTypes.Entities {
     public class Message {
@@ -19,6 +20,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         public bool? IsDeleted { get; set; }
         public int Unread { get; set; }
         public long? ChatId { get; set; }
+        [JsonProperty("chat_active")]
         public int[] ChatActiveIds { get; set; }
         public int? UsersCount { get; set; }
         public long? AdminId { get; set; }

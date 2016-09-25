@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
 using kasthack.vksharp.DataTypes;
@@ -3593,6 +3592,46 @@ namespace kasthack.vksharp {
                         );
                     task.Wait();
                     
+                }
+                ///<summary>
+                ///        Возвращает список диалогов текущего пользователя или сообщества.
+                ///      
+                ///</summary>
+                ///<param name="startMessageId">Идентификатор сообщения, начиная с которого нужно вернуть список диалогов</param>
+                ///<param name="previewLength">Количество символов, по которому нужно обрезать сообщение. (по умолчанию сообщения не обрезаются)</param>
+                ///<param name="unread">Вернуть только диалоги, в которых есть непрочитанные входящие сообщения</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+                public async Task <EntityList<Dialog>> GetDialogs(
+                    long? startMessageId = null, int? previewLength = null,  bool? unread = null, int? offset = null, int? count = 20
+                ) {
+                    return (
+                        await _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.GetDialogs(
+                                startMessageId,previewLength,unread,offset, count
+                            )
+                        ).ConfigureAwait(false)
+                    ).Response;
+                }
+                ///<summary>
+                ///        Возвращает список диалогов текущего пользователя или сообщества.
+                ///      
+                ///</summary>
+                ///<param name="startMessageId">Идентификатор сообщения, начиная с которого нужно вернуть список диалогов</param>
+                ///<param name="previewLength">Количество символов, по которому нужно обрезать сообщение. (по умолчанию сообщения не обрезаются)</param>
+                ///<param name="unread">Вернуть только диалоги, в которых есть непрочитанные входящие сообщения</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+                public EntityList<Dialog> GetDialogsSync(
+                    long? startMessageId = null, int? previewLength = null,  bool? unread = null, int? offset = null, int? count = 20
+                ) {
+                    var task = _parent.Executor.ExecAsync(
+                            _parent._reqapi.Messages.GetDialogs(
+                                startMessageId,previewLength,unread,offset, count
+                            )
+                        );
+                    task.Wait();
+                    return task.Result.Response;
                 }
                 public async Task  Restore(
                      int messageId 

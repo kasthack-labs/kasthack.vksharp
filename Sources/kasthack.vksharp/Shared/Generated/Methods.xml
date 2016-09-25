@@ -1104,6 +1104,18 @@
       <Param Name="chat_id" Type="int" />
     </Params>
   </Method>
+  <Method Name="messages.getDialogs" Type="EntityList&lt;Dialog&gt;" NeedToken="true" Pageable="20">
+    <Doc>
+      <Summary>
+        Возвращает список диалогов текущего пользователя или сообщества.
+      </Summary>
+    </Doc>
+    <Params>
+      <Param Type="long?" Name="startMessageId" Default="null" Doc="Идентификатор сообщения, начиная с которого нужно вернуть список диалогов"/>
+      <Param Type="int?" Name="previewLength" Default="null" Doc="Количество символов, по которому нужно обрезать сообщение. (по умолчанию сообщения не обрезаются)"/>
+      <Param Type="bool?" Name="unread" Default="null" Doc="Вернуть только диалоги, в которых есть непрочитанные входящие сообщения"/>
+    </Params>
+  </Method>
   <Method Name="messages.restore" Type="void" NeedToken="true">
     <Params>
       <Param Name="message_id" Type="int" />

@@ -2801,6 +2801,34 @@ namespace kasthack.vksharp {
                 return req;
             }
 
+            ///<summary>
+            ///        Возвращает список диалогов текущего пользователя или сообщества.
+            ///      
+            ///</summary>
+            ///<param name="startMessageId">Идентификатор сообщения, начиная с которого нужно вернуть список диалогов</param>
+            ///<param name="previewLength">Количество символов, по которому нужно обрезать сообщение. (по умолчанию сообщения не обрезаются)</param>
+            ///<param name="unread">Вернуть только диалоги, в которых есть непрочитанные входящие сообщения</param>
+            ///<param name="offset">Оффсет для возврата результатов</param>
+            ///<param name="count">Количество записей, которые необходимо вернуть</param>
+            public Request<EntityList<Dialog>> GetDialogs(
+                long? startMessageId = null, int? previewLength = null,  bool? unread = null, int? offset = null, int? count = 20
+            ) {
+                var req = new Request<EntityList<Dialog>>{
+                    MethodName = "messages.getDialogs",
+                    Parameters = new Dictionary<string, string> {
+
+                        { "startMessageId", MiscTools.NullableString(startMessageId)},
+                        { "previewLength", MiscTools.NullableString(previewLength)},
+                        { "unread", (unread != null ? ( unread.Value ? 1 : 0 ).ToNCString() : "")},
+                        { "offset", offset.NullableString() },
+                        { "count", count.NullableString() },
+
+                    }
+                };
+                    req.Token = _parent.CurrentToken;
+                return req;
+            }
+
             public Request<bool> Restore(
                  int messageId 
             ) {

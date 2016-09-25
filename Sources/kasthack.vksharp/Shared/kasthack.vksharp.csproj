@@ -62,6 +62,7 @@
     <Compile Include="DataTypes\Entities\Comment.cs" />
     <Compile Include="DataTypes\Entities\Counter.cs" />
     <Compile Include="DataTypes\Entities\DatabaseEntry.cs" />
+    <Compile Include="DataTypes\Entities\Dialog.cs" />
     <Compile Include="DataTypes\Entities\Document.cs" />
     <Compile Include="DataTypes\Entities\EntityList.cs" />
     <Compile Include="DataTypes\Entities\FriendsList.cs" />
