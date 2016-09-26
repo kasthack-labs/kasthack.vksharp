@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.25618.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{FB5C64BC-1C1E-4255-839C-6F43BB106B15}"
 EndProject
@@ -31,6 +31,21 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kasthack.vksharp.4.5", "kasthack.vksharp\4.5\kasthack.vksharp.4.5.csproj", "{16EE2BE3-0F1E-473B-96E8-20C7E44FA61E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kasthack.vksharp.4.6", "kasthack.vksharp\4.6\kasthack.vksharp.4.6.csproj", "{160B1F70-0AA7-4F21-AD66-6103369FAFDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generator", "Generator", "{B1FA22F6-C2C0-4227-8520-3FDB4ABFD98D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchemaGenerator", "Generator\SchemaGenerator\SchemaGenerator.csproj", "{567335AA-371C-485F-92DF-35887FB8DDFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Schema", "Schema", "{09B129B2-E46F-4481-991E-249ADEBED8F4}"
+	ProjectSection(SolutionItems) = preProject
+		Generator\vk-api-schema\methods.json = Generator\vk-api-schema\methods.json
+		Generator\vk-api-schema\objects.json = Generator\vk-api-schema\objects.json
+		Generator\vk-api-schema\responses.json = Generator\vk-api-schema\responses.json
+		Generator\vk-api-schema\schema.json = Generator\vk-api-schema\schema.json
+	EndProjectSection
+	ProjectSection(FolderGlobals) = preProject
+		__JSONSchema = schema.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -96,6 +111,14 @@ Global
 		{160B1F70-0AA7-4F21-AD66-6103369FAFDD}.Release(net-45)|Any CPU.Build.0 = Release|Any CPU
 		{160B1F70-0AA7-4F21-AD66-6103369FAFDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{160B1F70-0AA7-4F21-AD66-6103369FAFDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Debug(net-45)|Any CPU.ActiveCfg = Debug|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Debug(net-45)|Any CPU.Build.0 = Debug|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Release(net-45)|Any CPU.ActiveCfg = Release|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Release(net-45)|Any CPU.Build.0 = Release|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{567335AA-371C-485F-92DF-35887FB8DDFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +133,8 @@ Global
 		{F6B54841-B1FF-487C-9A7B-EA5DADC4F5D3} = {0F396F9C-FE39-446E-A075-5974FE538469}
 		{16EE2BE3-0F1E-473B-96E8-20C7E44FA61E} = {0F396F9C-FE39-446E-A075-5974FE538469}
 		{160B1F70-0AA7-4F21-AD66-6103369FAFDD} = {0F396F9C-FE39-446E-A075-5974FE538469}
+		{567335AA-371C-485F-92DF-35887FB8DDFB} = {B1FA22F6-C2C0-4227-8520-3FDB4ABFD98D}
+		{09B129B2-E46F-4481-991E-249ADEBED8F4} = {B1FA22F6-C2C0-4227-8520-3FDB4ABFD98D}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = ..\TestApp\TestApp.csproj
