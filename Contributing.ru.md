@@ -24,7 +24,7 @@
 
 ### Методы
 
-Все методы API описаны в [Sources/kasthack.vksharp/Generated/Methods.xml](Sources/kasthack.vksharp/Shared/Api/Generated/VKSharpFuncs.xml). Формат описан в [соответствующем XSD](Sources/kasthack.vksharp/Shared/Generated/Methods.xsd). Автокомплит в студии иногда отваливается, но проблема на их стороне.
+Все методы API описаны в [Sources/kasthack.vksharp/Generated/Methods.xml](Sources/kasthack.vksharp/Shared/Generated/Methods.xml). Формат описан в [соответствующем XSD](Sources/kasthack.vksharp/Shared/Generated/Methods.xsd). Автокомплит в студии иногда отваливается, но проблема на их стороне.
 
 Пример описания метода:
 
