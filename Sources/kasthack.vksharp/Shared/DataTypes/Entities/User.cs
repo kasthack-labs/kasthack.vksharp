@@ -430,7 +430,7 @@ namespace kasthack.vksharp.DataTypes.Entities {
         /// <summary>
         /// является ли пользователь другом
         /// </summary>
-        [JsonConverter(typeof(OneTwoFUConverter))]
+        //[JsonConverter(typeof(OneTwoFUConverter))]
         public bool? IsFriend { get; set; }
         public FriendshipStatusEnum FriendStatus { get; set; }
         /// <summary>

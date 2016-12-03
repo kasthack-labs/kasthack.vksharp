@@ -14,6 +14,7 @@
         Album,
         PhotosList,
         Wall,
-        WallReply
+        WallReply,
+        Gift
     }
 }

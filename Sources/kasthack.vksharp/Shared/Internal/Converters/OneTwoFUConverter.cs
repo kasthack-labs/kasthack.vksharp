@@ -22,7 +22,7 @@ namespace kasthack.vksharp.Internal.Converters {
         public override object ReadJson( JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer ) {
             switch ( reader.TokenType ) {
                 case JsonToken.Integer:
-                    var v = (int) reader.Value;
+                    var v = (long) reader.Value;
                     switch ( v ) {
                         case True:
                             return true;
