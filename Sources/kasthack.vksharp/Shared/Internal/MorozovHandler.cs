@@ -11,19 +11,21 @@ namespace kasthack.vksharp.Internal {
 #if !PORTABLE
     internal class MorozovHandler : WebRequestHandler {
         private static readonly FieldInfo _proxyInfo;
-        static MorozovHandler() {
-            _proxyInfo = typeof(HttpClientHandler).
-                GetField( "proxy", BindingFlags.NonPublic | BindingFlags.Instance );
-
+        static MorozovHandler()
+        {
+            const string field = "proxy";
+            _proxyInfo = GetField(field) ?? GetField($"_{field}");
         }
 
-        public new IWebProxy Proxy {
-            get {
-                return base.Proxy;
-            }
-            set {
-                _proxyInfo.SetValue( this, value );
-            }
+        private static FieldInfo GetField(string field)
+        {
+            return typeof(HttpClientHandler).GetField(field, BindingFlags.NonPublic | BindingFlags.Instance);
+        }
+
+        public new IWebProxy Proxy
+        {
+            get => base.Proxy;
+            set => _proxyInfo?.SetValue(this, value);
         }
 
         public Task<HttpResponseMessage> SendAsyncPublic( HttpRequestMessage request, CancellationToken cancellationToken ) {
